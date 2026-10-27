@@ -1,0 +1,35 @@
+# Development dependencies and downloads never belong in a Lens release.
+third_party/*/
+!third_party/licenses/
+!third_party/overlays/
+.venv/
+.venv-train/
+.tools/
+.cache/
+build/
+dist/
+models/
+artifacts/
+data/external/
+data/private/
+*.cact
+*.bin
+*.onnx
+*.safetensors
+*.wav
+*.mp3
+*.db
+*.db-*
+*.sqlite*
+*.keystore
+*.jks
+*.key
+.env*
+__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+!reports/*.log.txt
+# Agent tool-hook receipts (tool names/ids only); not project evidence.
+receipts/
+review-receipts/
