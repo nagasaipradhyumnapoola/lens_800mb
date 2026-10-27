@@ -1,0 +1,10 @@
+language,script,model,sample_count,cer,exact_match,failure,fixture_kind,max_observed_wset_bytes,max_observed_commit_bytes,wall_ms,scope,certification
+en,Latin,PP-OCRv6_tiny_rec,1,0.0,True,,synthetic text crop,44068864,30756864,287.55309999905876,native text recognition; no screenshot detector,EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY
+es,Latin,PP-OCRv6_tiny_rec,1,0.0,True,,synthetic text crop,44822528,30593024,217.94489999956568,native text recognition; no screenshot detector,EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY
+zh,Han,PP-OCRv6_tiny_rec,1,0.0,True,,synthetic text crop,43364352,31203328,270.8053000023938,native text recognition; no screenshot detector,EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY
+hi,Devanagari,devanagari_PP-OCRv5_mobile_rec,1,0.125,False,,synthetic text crop,53383168,37179392,437.9494999993767,native text recognition; no screenshot detector,EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY
+ta,Tamil,,0,,,NOT TESTED,,,,,,PENDING
+te,Telugu,,0,,,NOT TESTED,,,,,,PENDING
+bn,Bengali,,0,,,NOT TESTED,,,,,,PENDING
+kn,Kannada,,0,,,NOT TESTED,,,,,,PENDING
+ml,Malayalam,,0,,,NOT TESTED,,,,,,PENDING

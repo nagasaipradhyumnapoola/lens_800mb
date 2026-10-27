@@ -1,0 +1,23 @@
+test_image_processing_requires_consent (test_native_ocr.NativeOCR.test_image_processing_requires_consent) ... FAIL
+test_native_recognition_preserves_primary_language_text (test_native_ocr.NativeOCR.test_native_recognition_preserves_primary_language_text) ... FAIL
+
+======================================================================
+FAIL: test_image_processing_requires_consent (test_native_ocr.NativeOCR.test_image_processing_requires_consent)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_ocr.py", line 26, in test_image_processing_requires_consent
+    self.assertTrue(EXE.exists())
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_native_recognition_preserves_primary_language_text (test_native_ocr.NativeOCR.test_native_recognition_preserves_primary_language_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_ocr.py", line 11, in test_native_recognition_preserves_primary_language_text
+    self.assertTrue(EXE.exists(),'Native OCR adapter is not built')
+AssertionError: False is not true : Native OCR adapter is not built
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+
+FAILED (failures=2)

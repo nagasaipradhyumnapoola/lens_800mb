@@ -1,0 +1,5 @@
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  Building Custom Rule D:/Lens/engine/CMakeLists.txt
+  ocr_main.cpp
+  lens-ocr.vcxproj -> D:\Lens\build\engine\Release\lens-ocr.exe

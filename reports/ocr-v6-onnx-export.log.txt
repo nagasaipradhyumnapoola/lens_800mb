@@ -1,0 +1,25 @@
+INFO: Could not find files for the given pattern(s).
+D:\Lens\.tools\ocr-convert\Lib\site-packages\paddle\utils\cpp_extension\extension_utils.py:717: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
+  warnings.warn(warning_message)
+[Paddle2ONNX] Start parsing the Paddle model file...
+[Paddle2ONNX] Use opset_version = 17 for ONNX export.
+[Paddle2ONNX] PaddlePaddle model is exported as ONNX format now.
+2026-10-26 02:40:16 [INFO]	Try to perform constant folding on the ONNX model with Polygraphy.
+[!] Could not automatically install required module: onnxruntime>=1.10.0. Please install it manually.
+[!] Could not automatically install required module: onnx_graphsurgeon>=0.3.27. Please install it manually.
+[W] 'colored' module is not installed, will not use colors when logging. To enable colors, please install the 'colored' module: python3 -m pip install colored
+[I] Module: 'onnxruntime' is required, but not installed. Attempting to install now.
+[I] Running installation command: D:\Lens\.tools\ocr-convert\Scripts\python.exe -m pip install onnxruntime>=1.10.0
+[E] Error during installation:
+        D:\Lens\.tools\ocr-convert\Scripts\python.exe: No module named pip
+[E] ONNX-Runtime is not installed, so constant folding may be suboptimal or not work at all.
+    Consider installing ONNX-Runtime: D:\Lens\.tools\ocr-convert\Scripts\python.exe -m pip install onnxruntime
+[I] Folding Constants | Pass 1
+[I] Module: 'onnx_graphsurgeon' is required, but not installed. Attempting to install now.
+[I] Running installation command: D:\Lens\.tools\ocr-convert\Scripts\python.exe -m pip install onnx_graphsurgeon>=0.3.27 --extra-index-url=https://pypi.ngc.nvidia.com
+[E] Error during installation:
+        D:\Lens\.tools\ocr-convert\Scripts\python.exe: No module named pip
+[W] Constant folding pass failed. Skipping subsequent passes.
+    Note: Error was:
+    Could not automatically install required module: onnx_graphsurgeon>=0.3.27. Please install it manually.
+2026-10-26 02:40:18 [INFO]	ONNX model saved in models/PaddlePaddle--PP-OCRv6_tiny_rec/inference.onnx.

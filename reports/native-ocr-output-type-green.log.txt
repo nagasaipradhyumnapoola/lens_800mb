@@ -1,0 +1,8 @@
+test_image_processing_requires_consent (test_native_ocr.NativeOCR.test_image_processing_requires_consent) ... ok
+test_native_recognition_preserves_primary_language_text (test_native_ocr.NativeOCR.test_native_recognition_preserves_primary_language_text) ... ok
+test_non_float_output_is_rejected_before_pointer_read (test_native_ocr.NativeOCR.test_non_float_output_is_rejected_before_pointer_read) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.642s
+
+OK

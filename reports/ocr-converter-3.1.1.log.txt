@@ -1,0 +1,4 @@
+INFO: Could not find files for the given pattern(s).
+D:\Lens\.tools\ocr-convert\Lib\site-packages\paddle\utils\cpp_extension\extension_utils.py:717: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
+  warnings.warn(warning_message)
+D:\Lens\.tools\ocr-convert\Scripts\python.exe: No module named paddle2onnx.__main__; 'paddle2onnx' is a package and cannot be directly executed

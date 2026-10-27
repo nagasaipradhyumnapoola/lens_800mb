@@ -1,0 +1,42 @@
+INFO: Could not find files for the given pattern(s).
+D:\Lens\.tools\ocr-convert\Lib\site-packages\paddle\utils\cpp_extension\extension_utils.py:717: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
+  warnings.warn(warning_message)
+usage: command.py [-h] [--model_dir MODEL_DIR]
+                  [--model_filename MODEL_FILENAME]
+                  [--params_filename PARAMS_FILENAME] [--save_file SAVE_FILE]
+                  [--opset_version OPSET_VERSION]
+                  [--enable_auto_update_opset ENABLE_AUTO_UPDATE_OPSET]
+                  [--enable_onnx_checker ENABLE_ONNX_CHECKER]
+                  [--enable_dist_prim_all ENABLE_DIST_PRIM_ALL]
+                  [--optimize_tool {polygraphy,onnxoptimizer,None}]
+                  [--enable_verbose ENABLE_VERBOSE] [--version]
+
+options:
+  -h, --help            show this help message and exit
+  --model_dir MODEL_DIR, -m MODEL_DIR
+                        PaddlePaddle model directory, if params stored in
+                        single file, you need define '--model_filename' and
+                        'params_filename'.
+  --model_filename MODEL_FILENAME, -mf MODEL_FILENAME
+                        PaddlePaddle model's network file name, which under
+                        directory seted by --model_dir
+  --params_filename PARAMS_FILENAME, -pf PARAMS_FILENAME
+                        PaddlePaddle model's param file name(param files
+                        combined in single file), which under directory seted
+                        by --model_dir.
+  --save_file SAVE_FILE, -s SAVE_FILE
+                        file path to save onnx model
+  --opset_version OPSET_VERSION, -ov OPSET_VERSION
+                        set onnx opset version to export
+  --enable_auto_update_opset ENABLE_AUTO_UPDATE_OPSET
+                        whether enable auto_update_opset, default is True
+  --enable_onnx_checker ENABLE_ONNX_CHECKER
+                        whether check onnx model validity, default is True
+  --enable_dist_prim_all ENABLE_DIST_PRIM_ALL
+                        Whether to enable the decomposition of combined
+                        operators, default is False.
+  --optimize_tool {polygraphy,onnxoptimizer,None}
+                        onnx optimization tool, default onnxoptimizer
+  --enable_verbose ENABLE_VERBOSE
+                        whether show verbose logs, default False
+  --version, -v         get version of paddle2onnx

@@ -1,0 +1,16 @@
+test_image_processing_requires_consent (test_native_ocr.NativeOCR.test_image_processing_requires_consent) ... ok
+test_native_recognition_preserves_primary_language_text (test_native_ocr.NativeOCR.test_native_recognition_preserves_primary_language_text) ... ok
+test_non_float_output_is_rejected_before_pointer_read (test_native_ocr.NativeOCR.test_non_float_output_is_rejected_before_pointer_read) ... FAIL
+
+======================================================================
+FAIL: test_non_float_output_is_rejected_before_pointer_read (test_native_ocr.NativeOCR.test_non_float_output_is_rejected_before_pointer_read)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_ocr.py", line 46, in test_non_float_output_is_rejected_before_pointer_read
+    self.assertNotEqual(p.returncode,0)
+AssertionError: 0 == 0
+
+----------------------------------------------------------------------
+Ran 3 tests in 3.245s
+
+FAILED (failures=1)
