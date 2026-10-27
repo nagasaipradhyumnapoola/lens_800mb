@@ -1,0 +1,12 @@
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  store.cpp
+  memory_query.cpp
+  Generating Code...
+  lens-store.vcxproj -> D:\Lens\build\engine\Release\lens-store.lib
+  main.cpp
+  lens-engine.vcxproj -> D:\Lens\build\engine\Release\lens-engine.exe
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  sherpa_main.cpp
+  lens-sherpa.vcxproj -> D:\Lens\build\engine\Release\lens-sherpa.exe

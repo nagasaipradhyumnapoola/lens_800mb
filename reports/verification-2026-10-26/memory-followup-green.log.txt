@@ -1,0 +1,16 @@
+test_batch_import_is_atomic_and_validates_timestamps_before_commit (test_memory_v2.MemoryV2.test_batch_import_is_atomic_and_validates_timestamps_before_commit) ... ok
+test_context_budget_keeps_the_matching_evidence_and_utf8_boundaries (test_memory_v2.MemoryV2.test_context_budget_keeps_the_matching_evidence_and_utf8_boundaries) ... ok
+test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence (test_memory_v2.MemoryV2.test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence) ... ok
+test_equivalent_optional_defaults_deduplicate_and_source_filters_apply (test_memory_v2.MemoryV2.test_equivalent_optional_defaults_deduplicate_and_source_filters_apply) ... ok
+test_existing_database_concurrent_writes_preserve_all_records (test_memory_v2.MemoryV2.test_existing_database_concurrent_writes_preserve_all_records) ... ok
+test_original_and_observation_metadata_survive_reopen_and_dedup (test_memory_v2.MemoryV2.test_original_and_observation_metadata_survive_reopen_and_dedup) ... ok
+test_subsecond_filters_and_original_timestamp_conflicts_are_exact (test_memory_v2.MemoryV2.test_subsecond_filters_and_original_timestamp_conflicts_are_exact) ... ok
+test_time_application_device_and_kind_filters_apply_to_all_candidates (test_memory_v2.MemoryV2.test_time_application_device_and_kind_filters_apply_to_all_candidates) ... ok
+test_unicode_fts_matches_retain_matching_context_excerpts (test_memory_v2.MemoryV2.test_unicode_fts_matches_retain_matching_context_excerpts) ... ok
+test_v1_migration_preserves_source_and_marks_unknown_original_time (test_memory_v2.MemoryV2.test_v1_migration_preserves_source_and_marks_unknown_original_time) ... ok
+test_v2_metadata_hash_migration_preserves_sha_and_deduplicates (test_memory_v2.MemoryV2.test_v2_metadata_hash_migration_preserves_sha_and_deduplicates) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 5.645s
+
+OK

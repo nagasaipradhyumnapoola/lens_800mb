@@ -1,0 +1,7 @@
+test_hindi_import_uses_verified_indicconformer_and_retrieves_original (test_cli_extended.ExtendedCLI.test_hindi_import_uses_verified_indicconformer_and_retrieves_original) ... ok
+test_historical_manual_metadata_timeline_context_and_filters (test_cli_extended.ExtendedCLI.test_historical_manual_metadata_timeline_context_and_filters) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 9.999s
+
+OK

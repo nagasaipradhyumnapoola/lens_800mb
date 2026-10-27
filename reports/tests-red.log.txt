@@ -1,0 +1,86 @@
+test_cjk_character_metric (test_metrics.MetricsTests.test_cjk_character_metric) ... FAIL
+test_decimal_budget_and_failure_enforcement (test_metrics.MetricsTests.test_decimal_budget_and_failure_enforcement) ... FAIL
+test_empty_reference_hallucination_is_counted (test_metrics.MetricsTests.test_empty_reference_hallucination_is_counted) ... FAIL
+test_field_metrics_penalize_hallucination_and_missing_fields (test_metrics.MetricsTests.test_field_metrics_penalize_hallucination_and_missing_fields) ... FAIL
+test_insertions_are_not_clamped_to_one (test_metrics.MetricsTests.test_insertions_are_not_clamped_to_one) ... FAIL
+test_missing_measurement_never_passes (test_metrics.MetricsTests.test_missing_measurement_never_passes) ... FAIL
+test_one_substitution_out_of_three_words (test_metrics.MetricsTests.test_one_substitution_out_of_three_words) ... FAIL
+test_unicode_scripts_and_marks_are_preserved (test_metrics.MetricsTests.test_unicode_scripts_and_marks_are_preserved) ... FAIL
+test_wrong_value_counts_false_positive_and_false_negative (test_metrics.MetricsTests.test_wrong_value_counts_false_positive_and_false_negative) ... FAIL
+
+======================================================================
+FAIL: test_cjk_character_metric (test_metrics.MetricsTests.test_cjk_character_metric)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 27, in test_cjk_character_metric
+    self.assertIsNotNone(error_rate)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_decimal_budget_and_failure_enforcement (test_metrics.MetricsTests.test_decimal_budget_and_failure_enforcement)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 45, in test_decimal_budget_and_failure_enforcement
+    self.assertIsNotNone(release_status)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_empty_reference_hallucination_is_counted (test_metrics.MetricsTests.test_empty_reference_hallucination_is_counted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 23, in test_empty_reference_hallucination_is_counted
+    self.assertIsNotNone(error_rate)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_field_metrics_penalize_hallucination_and_missing_fields (test_metrics.MetricsTests.test_field_metrics_penalize_hallucination_and_missing_fields)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 31, in test_field_metrics_penalize_hallucination_and_missing_fields
+    self.assertIsNotNone(field_scores, "Extraction scoring is not implemented")
+AssertionError: unexpectedly None : Extraction scoring is not implemented
+
+======================================================================
+FAIL: test_insertions_are_not_clamped_to_one (test_metrics.MetricsTests.test_insertions_are_not_clamped_to_one)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 19, in test_insertions_are_not_clamped_to_one
+    self.assertIsNotNone(error_rate)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_missing_measurement_never_passes (test_metrics.MetricsTests.test_missing_measurement_never_passes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 41, in test_missing_measurement_never_passes
+    self.assertIsNotNone(release_status, "Fail-closed gates are not implemented")
+AssertionError: unexpectedly None : Fail-closed gates are not implemented
+
+======================================================================
+FAIL: test_one_substitution_out_of_three_words (test_metrics.MetricsTests.test_one_substitution_out_of_three_words)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 15, in test_one_substitution_out_of_three_words
+    self.assertIsNotNone(error_rate, "ASR scoring is not implemented")
+AssertionError: unexpectedly None : ASR scoring is not implemented
+
+======================================================================
+FAIL: test_unicode_scripts_and_marks_are_preserved (test_metrics.MetricsTests.test_unicode_scripts_and_marks_are_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 11, in test_unicode_scripts_and_marks_are_preserved
+    self.assertIsNotNone(normalize, "Unicode scoring is not implemented")
+AssertionError: unexpectedly None : Unicode scoring is not implemented
+
+======================================================================
+FAIL: test_wrong_value_counts_false_positive_and_false_negative (test_metrics.MetricsTests.test_wrong_value_counts_false_positive_and_false_negative)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_metrics.py", line 37, in test_wrong_value_counts_false_positive_and_false_negative
+    self.assertIsNotNone(field_scores)
+AssertionError: unexpectedly None
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.005s
+
+FAILED (failures=9)

@@ -1,0 +1,82 @@
+{
+  "overall": "EXPERIMENTAL_DEVELOPER_PROOF_ONLY",
+  "production_release_ready": false,
+  "budget_revision": "500 MB is an optimization target; user accepted 740 MB and retained features",
+  "gates": [
+    {
+      "gate": "Native engine / regression suite",
+      "status": "PASS_WITHIN_TESTED_SCOPE",
+      "evidence": "29 tests; zero failures/errors/skips; staged native client exercised"
+    },
+    {
+      "gate": "English / Spanish configured ASR",
+      "status": "PROVISIONAL_MET",
+      "evidence": "100 clips each; WER/CER met; language ID/domain tests pending"
+    },
+    {
+      "gate": "Mandarin configured ASR",
+      "status": "PROVISIONAL_MET",
+      "evidence": "100 clips; CER 13.31%; language ID/domain tests pending"
+    },
+    {
+      "gate": "Hindi configured ASR",
+      "status": "FAIL_QUALITY",
+      "evidence": "100 clips; WER 40.27%, CER 25.90%; no runtime failure"
+    },
+    {
+      "gate": "Needle extraction / routing",
+      "status": "FAIL_QUALITY_AND_INSUFFICIENT_DATA",
+      "evidence": "22 synthetic cases; English routing precision 0.50; never execute calls"
+    },
+    {
+      "gate": "Code-switch speech / entity accuracy",
+      "status": "PENDING",
+      "evidence": "No adequate real labeled span/name/date/number set"
+    },
+    {
+      "gate": "OCR / screenshot detection",
+      "status": "PARTIAL",
+      "evidence": "Native crop smoke only; Hindi CER 12.5%; no detector or real UI corpus"
+    },
+    {
+      "gate": "Literal source retrieval",
+      "status": "PASS_SYNTHETIC_SCOPE",
+      "evidence": "10,000 records; 100/100 Recall@5; 20/20 absent queries"
+    },
+    {
+      "gate": "30-minute native workload",
+      "status": "PASS_BASE_CONFIGURATION",
+      "evidence": "800 cycles; zero failures; other configurations pending"
+    },
+    {
+      "gate": "Original 500 MB targets",
+      "status": "EXCEEDED_USER_ACCEPTED_OPTIMIZATION",
+      "evidence": "Staged 596957774 bytes; RAM/commit by configuration retained"
+    },
+    {
+      "gate": "Encryption / consent / provenance",
+      "status": "PARTIAL",
+      "evidence": "Wrong key, WAL, crash recovery, immutability, cascade, bounded-input tests passed"
+    },
+    {
+      "gate": "Tamper / rotation / backup / full leakage audit",
+      "status": "PENDING",
+      "evidence": "Not all mandatory negative tests or recovery features implemented"
+    },
+    {
+      "gate": "Network-restricted offline execution",
+      "status": "PENDING",
+      "evidence": "Local models used; network blocking/packet evidence not established"
+    },
+    {
+      "gate": "Clean-machine Windows installation",
+      "status": "PENDING",
+      "evidence": "Existing host/runtime only; no consumer installer"
+    },
+    {
+      "gate": "Android / Wear emulator / real watch",
+      "status": "PENDING",
+      "evidence": "No APK/device workload or physical-watch capture, thermals or battery tests"
+    }
+  ]
+}

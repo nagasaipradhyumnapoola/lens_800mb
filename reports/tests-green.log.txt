@@ -1,0 +1,15 @@
+test_cjk_character_metric (test_metrics.MetricsTests.test_cjk_character_metric) ... ok
+test_decimal_budget_and_failure_enforcement (test_metrics.MetricsTests.test_decimal_budget_and_failure_enforcement) ... ok
+test_empty_reference_hallucination_is_counted (test_metrics.MetricsTests.test_empty_reference_hallucination_is_counted) ... ok
+test_field_metrics_penalize_hallucination_and_missing_fields (test_metrics.MetricsTests.test_field_metrics_penalize_hallucination_and_missing_fields) ... ok
+test_insertions_are_not_clamped_to_one (test_metrics.MetricsTests.test_insertions_are_not_clamped_to_one) ... ok
+test_missing_measurement_never_passes (test_metrics.MetricsTests.test_missing_measurement_never_passes) ... ok
+test_one_substitution_out_of_three_words (test_metrics.MetricsTests.test_one_substitution_out_of_three_words) ... ok
+test_unicode_scripts_and_marks_are_preserved (test_metrics.MetricsTests.test_unicode_scripts_and_marks_are_preserved) ... ok
+test_wrong_value_counts_false_positive_and_false_negative (test_metrics.MetricsTests.test_wrong_value_counts_false_positive_and_false_negative) ... ok
+test_reads_cli_appended_extension_and_preserves_script (test_native_output.NativeOutputTests.test_reads_cli_appended_extension_and_preserves_script) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.018s
+
+OK

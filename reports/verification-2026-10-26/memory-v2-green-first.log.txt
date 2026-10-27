@@ -1,0 +1,11 @@
+test_batch_import_is_atomic_and_validates_timestamps_before_commit (test_memory_v2.MemoryV2.test_batch_import_is_atomic_and_validates_timestamps_before_commit) ... ok
+test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence (test_memory_v2.MemoryV2.test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence) ... ok
+test_existing_database_concurrent_writes_preserve_all_records (test_memory_v2.MemoryV2.test_existing_database_concurrent_writes_preserve_all_records) ... ok
+test_original_and_observation_metadata_survive_reopen_and_dedup (test_memory_v2.MemoryV2.test_original_and_observation_metadata_survive_reopen_and_dedup) ... ok
+test_time_application_device_and_kind_filters_apply_to_all_candidates (test_memory_v2.MemoryV2.test_time_application_device_and_kind_filters_apply_to_all_candidates) ... ok
+test_v1_migration_preserves_source_and_marks_unknown_original_time (test_memory_v2.MemoryV2.test_v1_migration_preserves_source_and_marks_unknown_original_time) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 3.347s
+
+OK

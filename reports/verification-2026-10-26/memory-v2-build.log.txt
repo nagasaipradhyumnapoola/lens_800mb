@@ -1,0 +1,7 @@
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  store.cpp
+  memory_query.cpp
+  Generating Code...
+  lens-store.vcxproj -> D:\Lens\build\engine\Release\lens-store.lib
+  lens-engine.vcxproj -> D:\Lens\build\engine\Release\lens-engine.exe

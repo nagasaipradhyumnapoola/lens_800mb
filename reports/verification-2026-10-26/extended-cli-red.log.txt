@@ -1,0 +1,29 @@
+test_hindi_import_uses_verified_indicconformer_and_retrieves_original (test_cli_extended.ExtendedCLI.test_hindi_import_uses_verified_indicconformer_and_retrieves_original) ... FAIL
+test_historical_manual_metadata_timeline_context_and_filters (test_cli_extended.ExtendedCLI.test_historical_manual_metadata_timeline_context_and_filters) ... FAIL
+
+======================================================================
+FAIL: test_hindi_import_uses_verified_indicconformer_and_retrieves_original (test_cli_extended.ExtendedCLI.test_hindi_import_uses_verified_indicconformer_and_retrieves_original)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_cli_extended.py", line 21, in test_hindi_import_uses_verified_indicconformer_and_retrieves_original
+    self.assertEqual(value['transcript']['provider'],'sherpa-onnx-indicconformer-ctc')
+AssertionError: 'sherpa-onnx-dolphin-ctc' != 'sherpa-onnx-indicconformer-ctc'
+- sherpa-onnx-dolphin-ctc
++ sherpa-onnx-indicconformer-ctc
+
+
+======================================================================
+FAIL: test_historical_manual_metadata_timeline_context_and_filters (test_cli_extended.ExtendedCLI.test_historical_manual_metadata_timeline_context_and_filters)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_cli_extended.py", line 30, in test_historical_manual_metadata_timeline_context_and_filters
+    self.call(db,'-Action','ImportText','-Id','historic-note','-Text','Arun discussed the Orion project.',
+  File "D:\Lens\tests\test_cli_extended.py", line 13, in call
+    self.assertEqual(p.returncode,0,p.stderr)
+AssertionError: 1 != 0 : lens.ps1: A parameter cannot be found that matches parameter name 'OriginalTimestamp'.
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 5.349s
+
+FAILED (failures=2)

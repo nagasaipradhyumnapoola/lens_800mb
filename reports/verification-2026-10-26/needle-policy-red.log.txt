@@ -1,0 +1,1020 @@
+setUpClass (__main__.NativeNeedlePolicy) ... ERROR
+
+======================================================================
+ERROR: setUpClass (__main__.NativeNeedlePolicy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 52, in setUpClass
+    raise RuntimeError("Temporary model-boundary stub build failed: " + build.stdout + build.stderr)
+RuntimeError: Temporary model-boundary stub build failed: '\"C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat\"' is not recognized as an internal or external command,
+operable program or batch file.
+
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.227s
+
+FAILED (errors=1)
+exit_code=1
+RETRY after correcting test compiler command quoting; prior setup failure preserved above.
+test_extra_arguments_are_blocked (__main__.NativeNeedlePolicy.test_extra_arguments_are_blocked) ... FAIL
+test_flat_official_schema_and_empty_refusal_work (__main__.NativeNeedlePolicy.test_flat_official_schema_and_empty_refusal_work) ... FAIL
+test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) ... 
+  test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=None) ... FAIL
+  test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=-0.1) ... FAIL
+  test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=1.1) ... FAIL
+  test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value='0.9') ... FAIL
+  test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=0.02) ... FAIL
+  test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=True) ... FAIL
+test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) ... FAIL
+test_invalid_schema_type_and_required_names_are_rejected (__main__.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) ... 
+  test_invalid_schema_type_and_required_names_are_rejected (__main__.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) (change='type') ... FAIL
+  test_invalid_schema_type_and_required_names_are_rejected (__main__.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) (change='required') ... FAIL
+  test_invalid_schema_type_and_required_names_are_rejected (__main__.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) (change='additionalProperties') ... FAIL
+test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) ... 
+  test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation=[]) ... FAIL
+  test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation='safe') ... FAIL
+  test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation={'negation': 'false'}) ... FAIL
+  test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation={'ungrounded': False}) ... FAIL
+  test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation={'new_safety_flag': True}) ... FAIL
+test_missing_required_field_is_blocked (__main__.NativeNeedlePolicy.test_missing_required_field_is_blocked) ... FAIL
+test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) ... 
+  test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='negation') ... FAIL
+  test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='uncertain') ... FAIL
+  test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='uncertainty') ... FAIL
+  test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='needs_confirmation') ... FAIL
+  test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='requires_confirmation') ... FAIL
+test_real_negated_meeting_is_blocked_even_if_native_emits_call (__main__.NativeNeedlePolicy.test_real_negated_meeting_is_blocked_even_if_native_emits_call) ... FAIL
+test_real_positive_english_remains_compatible (__main__.NativeNeedlePolicy.test_real_positive_english_remains_compatible) ... FAIL
+test_suppressed_call_is_never_promoted (__main__.NativeNeedlePolicy.test_suppressed_call_is_never_promoted) ... FAIL
+test_top_level_uncertainty_is_blocked (__main__.NativeNeedlePolicy.test_top_level_uncertainty_is_blocked) ... FAIL
+test_ungrounded_fields_are_blocked (__main__.NativeNeedlePolicy.test_ungrounded_fields_are_blocked) ... FAIL
+test_unknown_native_function_cannot_be_accepted (__main__.NativeNeedlePolicy.test_unknown_native_function_cannot_be_accepted) ... FAIL
+test_unregistered_tool_schema_is_rejected (__main__.NativeNeedlePolicy.test_unregistered_tool_schema_is_rejected) ... FAIL
+test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) ... 
+  test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) (keyword='pattern') ... FAIL
+  test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) (keyword='format') ... FAIL
+  test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) (keyword='oneOf') ... FAIL
+  test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) (keyword='$ref') ... FAIL
+test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) ... 
+  test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid=42) ... FAIL
+  test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid=None) ... FAIL
+  test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid=False) ... FAIL
+  test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid=['Arun']) ... FAIL
+  test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid={'value': 'Arun'}) ... FAIL
+
+======================================================================
+FAIL: test_extra_arguments_are_blocked (__main__.NativeNeedlePolicy.test_extra_arguments_are_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 130, in test_extra_arguments_are_blocked
+    self.assert_blocked(self.envelope({**ARGUMENTS, "password": "synthetic-marker"}))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'pas[101 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'password': 'synthetic-marker', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'password': 'synthetic-marker',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_flat_official_schema_and_empty_refusal_work (__main__.NativeNeedlePolicy.test_flat_official_schema_and_empty_refusal_work)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 193, in test_flat_official_schema_and_empty_refusal_work
+    self.assertEqual(result.get("accepted_calls"), [{"name": "save_event", "arguments": ARGUMENTS}])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [{'name': 'save_event', 'arguments': {'pe[70 chars]i'}}]
+
+======================================================================
+FAIL: test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 144, in test_invalid_or_missing_confidence_is_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=-0.1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 144, in test_invalid_or_missing_confidence_is_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=1.1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 144, in test_invalid_or_missing_confidence_is_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value='0.9')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 144, in test_invalid_or_missing_confidence_is_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=0.02)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 144, in test_invalid_or_missing_confidence_is_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) (value=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 144, in test_invalid_or_missing_confidence_is_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 147, in test_invalid_or_missing_confidence_is_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_invalid_schema_type_and_required_names_are_rejected (__main__.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) (change='type')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 184, in test_invalid_schema_type_and_required_names_are_rejected
+    self.assertNotEqual(proc.returncode, 0)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_invalid_schema_type_and_required_names_are_rejected (__main__.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) (change='required')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 184, in test_invalid_schema_type_and_required_names_are_rejected
+    self.assertNotEqual(proc.returncode, 0)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_invalid_schema_type_and_required_names_are_rejected (__main__.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) (change='additionalProperties')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 184, in test_invalid_schema_type_and_required_names_are_rejected
+    self.assertNotEqual(proc.returncode, 0)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation=[])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 154, in test_malformed_validation_cannot_bypass_gate
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation='safe')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 154, in test_malformed_validation_cannot_bypass_gate
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation={'negation': 'false'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 154, in test_malformed_validation_cannot_bypass_gate
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation={'ungrounded': False})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 154, in test_malformed_validation_cannot_bypass_gate
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) (validation={'new_safety_flag': True})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 154, in test_malformed_validation_cannot_bypass_gate
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_missing_required_field_is_blocked (__main__.NativeNeedlePolicy.test_missing_required_field_is_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 122, in test_missing_required_field_is_blocked
+    self.assert_blocked(self.envelope(arguments))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'pla[51 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27', 'place': 'Chennai', 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='negation')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 107, in test_native_negation_and_uncertainty_flags_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='uncertain')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 107, in test_native_negation_and_uncertainty_flags_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='uncertainty')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 107, in test_native_negation_and_uncertainty_flags_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='needs_confirmation')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 107, in test_native_negation_and_uncertainty_flags_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) (flag='requires_confirmation')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 107, in test_native_negation_and_uncertainty_flags_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_real_negated_meeting_is_blocked_even_if_native_emits_call (__main__.NativeNeedlePolicy.test_real_negated_meeting_is_blocked_even_if_native_emits_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 86, in test_real_negated_meeting_is_blocked_even_if_native_emits_call
+    self.assertEqual(result.get("function_calls"), [], "A native negation flag must prevent acceptance")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : A native negation flag must prevent acceptance
+
+======================================================================
+FAIL: test_real_positive_english_remains_compatible (__main__.NativeNeedlePolicy.test_real_positive_english_remains_compatible)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 96, in test_real_positive_english_remains_compatible
+    self.assertEqual(result.get("accepted_calls"), result["function_calls"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [{'arguments': {'date': '2026-10-27', 'pe[70 chars]nt'}]
+
+======================================================================
+FAIL: test_suppressed_call_is_never_promoted (__main__.NativeNeedlePolicy.test_suppressed_call_is_never_promoted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 137, in test_suppressed_call_is_never_promoted
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 77, in assert_blocked
+    self.assertEqual(result.get("accepted_calls"), [], "Unsafe proposals must not become accepted records")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [] : Unsafe proposals must not become accepted records
+
+======================================================================
+FAIL: test_top_level_uncertainty_is_blocked (__main__.NativeNeedlePolicy.test_top_level_uncertainty_is_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 112, in test_top_level_uncertainty_is_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_ungrounded_fields_are_blocked (__main__.NativeNeedlePolicy.test_ungrounded_fields_are_blocked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 117, in test_ungrounded_fields_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_unknown_native_function_cannot_be_accepted (__main__.NativeNeedlePolicy.test_unknown_native_function_cannot_be_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 100, in test_unknown_native_function_cannot_be_accepted
+    self.assert_blocked(self.envelope(name="delete_everything"))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[76 chars]ng'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'delete_everything'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'delete_everything'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_unregistered_tool_schema_is_rejected (__main__.NativeNeedlePolicy.test_unregistered_tool_schema_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 160, in test_unregistered_tool_schema_is_rejected
+    self.assertNotEqual(proc.returncode, 0, "Only the explicitly allowlisted extraction tool is supported")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0 : Only the explicitly allowlisted extraction tool is supported
+
+======================================================================
+FAIL: test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) (keyword='pattern')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 169, in test_unsupported_schema_keywords_are_rejected
+    self.assertNotEqual(proc.returncode, 0, "Unsupported schema features must fail closed")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0 : Unsupported schema features must fail closed
+
+======================================================================
+FAIL: test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) (keyword='format')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 169, in test_unsupported_schema_keywords_are_rejected
+    self.assertNotEqual(proc.returncode, 0, "Unsupported schema features must fail closed")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0 : Unsupported schema features must fail closed
+
+======================================================================
+FAIL: test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) (keyword='oneOf')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 169, in test_unsupported_schema_keywords_are_rejected
+    self.assertNotEqual(proc.returncode, 0, "Unsupported schema features must fail closed")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0 : Unsupported schema features must fail closed
+
+======================================================================
+FAIL: test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) (keyword='$ref')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 169, in test_unsupported_schema_keywords_are_rejected
+    self.assertNotEqual(proc.returncode, 0, "Unsupported schema features must fail closed")
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 == 0 : Unsupported schema features must fail closed
+
+======================================================================
+FAIL: test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid=42)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 127, in test_wrong_field_types_are_blocked
+    self.assert_blocked(self.envelope({**ARGUMENTS, "person": invalid}))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[65 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 42, 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 42,
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 127, in test_wrong_field_types_are_blocked
+    self.assert_blocked(self.envelope({**ARGUMENTS, "person": invalid}))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[67 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': None, 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': None,
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 127, in test_wrong_field_types_are_blocked
+    self.assert_blocked(self.envelope({**ARGUMENTS, "person": invalid}))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[68 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': False, 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': False,
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid=['Arun'])
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 127, in test_wrong_field_types_are_blocked
+    self.assert_blocked(self.envelope({**ARGUMENTS, "person": invalid}))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[71 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': ['Arun'], 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': ['Arun'],
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) (invalid={'value': 'Arun'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 127, in test_wrong_field_types_are_blocked
+    self.assert_blocked(self.envelope({**ARGUMENTS, "person": invalid}))
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[80 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': {'value': 'Arun'}, 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': {'value': 'Arun'},
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+----------------------------------------------------------------------
+Ran 16 tests in 6.490s
+
+FAILED (failures=39)
+exit_code=1
+Additional red coverage before implementation: nested/scalar types and malformed envelopes.
+test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) ... 
+  test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'integer'}) ... FAIL
+  test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'number'}) ... FAIL
+  test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'boolean'}) ... FAIL
+  test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'null'}) ... FAIL
+  test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'array', 'items': {'type': 'integer'}}) ... FAIL
+  test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'object', 'properties': {'enabled': {'type': 'boolean'}}, 'required': ['enabled']}) ... FAIL
+test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) ... 
+  test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) (change='success') ... FAIL
+  test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) (change='type') ... FAIL
+  test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) (change='function_calls') ... FAIL
+  test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) (change='suppressed_calls') ... FAIL
+
+======================================================================
+FAIL: test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'integer'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 218, in test_supported_scalar_and_nested_types_are_checked
+    self.assertEqual(json.loads(proc.stdout).get("accepted_calls"), good["function_calls"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [{'name': 'save_event', 'arguments': {'value': 7}}]
+
+======================================================================
+FAIL: test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'number'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 218, in test_supported_scalar_and_nested_types_are_checked
+    self.assertEqual(json.loads(proc.stdout).get("accepted_calls"), good["function_calls"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [{'name': 'save_event', 'arguments': {'value': 7.5}}]
+
+======================================================================
+FAIL: test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'boolean'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 218, in test_supported_scalar_and_nested_types_are_checked
+    self.assertEqual(json.loads(proc.stdout).get("accepted_calls"), good["function_calls"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [{'name': 'save_event', 'arguments': {'value': True}}]
+
+======================================================================
+FAIL: test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'null'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 218, in test_supported_scalar_and_nested_types_are_checked
+    self.assertEqual(json.loads(proc.stdout).get("accepted_calls"), good["function_calls"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [{'name': 'save_event', 'arguments': {'value': None}}]
+
+======================================================================
+FAIL: test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'array', 'items': {'type': 'integer'}})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 218, in test_supported_scalar_and_nested_types_are_checked
+    self.assertEqual(json.loads(proc.stdout).get("accepted_calls"), good["function_calls"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [{'name': 'save_event', 'arguments': {'value': [1, 2]}}]
+
+======================================================================
+FAIL: test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) (schema={'type': 'object', 'properties': {'enabled': {'type': 'boolean'}}, 'required': ['enabled']})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 218, in test_supported_scalar_and_nested_types_are_checked
+    self.assertEqual(json.loads(proc.stdout).get("accepted_calls"), good["function_calls"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: None != [{'name': 'save_event', 'arguments': {'value': {'enabled': True}}}]
+
+======================================================================
+FAIL: test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) (change='success')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 228, in test_failed_and_malformed_native_envelopes_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) (change='type')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 228, in test_failed_and_malformed_native_envelopes_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) (change='function_calls')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 228, in test_failed_and_malformed_native_envelopes_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'name': 'save_event'} != [] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) (change='suppressed_calls')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 228, in test_failed_and_malformed_native_envelopes_are_blocked
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.054s
+
+FAILED (failures=10)
+exit_code=1
+Additional red coverage before fixing contradictory native error fields.
+test_native_error_fields_cannot_be_overridden_by_success_true (__main__.NativeNeedlePolicy.test_native_error_fields_cannot_be_overridden_by_success_true) ... 
+  test_native_error_fields_cannot_be_overridden_by_success_true (__main__.NativeNeedlePolicy.test_native_error_fields_cannot_be_overridden_by_success_true) (field='error') ... FAIL
+  test_native_error_fields_cannot_be_overridden_by_success_true (__main__.NativeNeedlePolicy.test_native_error_fields_cannot_be_overridden_by_success_true) (field='error_code') ... FAIL
+
+======================================================================
+FAIL: test_native_error_fields_cannot_be_overridden_by_success_true (__main__.NativeNeedlePolicy.test_native_error_fields_cannot_be_overridden_by_success_true) (field='error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 235, in test_native_error_fields_cannot_be_overridden_by_success_true
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+======================================================================
+FAIL: test_native_error_fields_cannot_be_overridden_by_success_true (__main__.NativeNeedlePolicy.test_native_error_fields_cannot_be_overridden_by_success_true) (field='error_code')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_native_needle_policy.py", line 235, in test_native_error_fields_cannot_be_overridden_by_success_true
+    self.assert_blocked(proposal)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Lens\tests\test_native_needle_policy.py", line 76, in assert_blocked
+    self.assertEqual(result.get("function_calls"), [], "Unsafe native proposals must not remain callable")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'arguments': {'date': '2026-10-27', 'per[69 chars]nt'}] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+{'arguments': {'date': '2026-10-27', 'person': 'Arun', 'place': 'Chennai', 'time': '15:00'}, 'name': 'save_event'}
+
++ []
+- [{'arguments': {'date': '2026-10-27',
+-                 'person': 'Arun',
+-                 'place': 'Chennai',
+-                 'time': '15:00'},
+-   'name': 'save_event'}] : Unsafe native proposals must not remain callable
+
+----------------------------------------------------------------------
+Ran 1 test in 3.697s
+
+FAILED (failures=2)
+exit_code=1

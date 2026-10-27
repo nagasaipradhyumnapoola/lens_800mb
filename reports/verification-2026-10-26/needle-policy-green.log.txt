@@ -1,0 +1,61 @@
+Command: python tests/test_native_needle_policy.py
+test_extra_arguments_are_blocked (__main__.NativeNeedlePolicy.test_extra_arguments_are_blocked) ... ok
+test_failed_and_malformed_native_envelopes_are_blocked (__main__.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) ... ok
+test_flat_official_schema_and_empty_refusal_work (__main__.NativeNeedlePolicy.test_flat_official_schema_and_empty_refusal_work) ... ok
+test_invalid_or_missing_confidence_is_blocked (__main__.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) ... ok
+test_invalid_schema_type_and_required_names_are_rejected (__main__.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) ... ok
+test_malformed_validation_cannot_bypass_gate (__main__.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) ... ok
+test_missing_required_field_is_blocked (__main__.NativeNeedlePolicy.test_missing_required_field_is_blocked) ... ok
+test_native_negation_and_uncertainty_flags_are_blocked (__main__.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) ... ok
+test_real_negated_meeting_is_blocked_even_if_native_emits_call (__main__.NativeNeedlePolicy.test_real_negated_meeting_is_blocked_even_if_native_emits_call) ... ok
+test_real_positive_english_remains_compatible (__main__.NativeNeedlePolicy.test_real_positive_english_remains_compatible) ... ok
+test_supported_scalar_and_nested_types_are_checked (__main__.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) ... ok
+test_suppressed_call_is_never_promoted (__main__.NativeNeedlePolicy.test_suppressed_call_is_never_promoted) ... ok
+test_top_level_uncertainty_is_blocked (__main__.NativeNeedlePolicy.test_top_level_uncertainty_is_blocked) ... ok
+test_ungrounded_fields_are_blocked (__main__.NativeNeedlePolicy.test_ungrounded_fields_are_blocked) ... ok
+test_unknown_native_function_cannot_be_accepted (__main__.NativeNeedlePolicy.test_unknown_native_function_cannot_be_accepted) ... ok
+test_unregistered_tool_schema_is_rejected (__main__.NativeNeedlePolicy.test_unregistered_tool_schema_is_rejected) ... ok
+test_unsupported_schema_keywords_are_rejected (__main__.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) ... ok
+test_wrong_field_types_are_blocked (__main__.NativeNeedlePolicy.test_wrong_field_types_are_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 5.722s
+
+OK
+exit_code=0
+Final rebuild: existing VS CMake --build build/engine --config Release --target lens-needle; exit_code=0.
+Command: .venv\Scripts\python.exe -m unittest discover -s tests -p test_native_needle*.py -v
+test_native_adapter_extracts_explicit_english_fields_without_executing_action (test_native_needle.NativeNeedle.test_native_adapter_extracts_explicit_english_fields_without_executing_action) ... ok
+test_call_metadata_cannot_smuggle_an_extra_operation (test_native_needle_policy.NativeNeedlePolicy.test_call_metadata_cannot_smuggle_an_extra_operation) ... ok
+test_extra_arguments_are_blocked (test_native_needle_policy.NativeNeedlePolicy.test_extra_arguments_are_blocked) ... ok
+test_failed_and_malformed_native_envelopes_are_blocked (test_native_needle_policy.NativeNeedlePolicy.test_failed_and_malformed_native_envelopes_are_blocked) ... ok
+test_flat_official_schema_and_empty_refusal_work (test_native_needle_policy.NativeNeedlePolicy.test_flat_official_schema_and_empty_refusal_work) ... ok
+test_invalid_or_missing_confidence_is_blocked (test_native_needle_policy.NativeNeedlePolicy.test_invalid_or_missing_confidence_is_blocked) ... ok
+test_invalid_schema_type_and_required_names_are_rejected (test_native_needle_policy.NativeNeedlePolicy.test_invalid_schema_type_and_required_names_are_rejected) ... ok
+test_malformed_validation_cannot_bypass_gate (test_native_needle_policy.NativeNeedlePolicy.test_malformed_validation_cannot_bypass_gate) ... ok
+test_missing_required_field_is_blocked (test_native_needle_policy.NativeNeedlePolicy.test_missing_required_field_is_blocked) ... ok
+test_native_error_fields_cannot_be_overridden_by_success_true (test_native_needle_policy.NativeNeedlePolicy.test_native_error_fields_cannot_be_overridden_by_success_true) ... ok
+test_native_negation_and_uncertainty_flags_are_blocked (test_native_needle_policy.NativeNeedlePolicy.test_native_negation_and_uncertainty_flags_are_blocked) ... ok
+test_real_negated_meeting_is_blocked_even_if_native_emits_call (test_native_needle_policy.NativeNeedlePolicy.test_real_negated_meeting_is_blocked_even_if_native_emits_call) ... ok
+test_real_positive_english_remains_compatible (test_native_needle_policy.NativeNeedlePolicy.test_real_positive_english_remains_compatible) ... ok
+test_supported_scalar_and_nested_types_are_checked (test_native_needle_policy.NativeNeedlePolicy.test_supported_scalar_and_nested_types_are_checked) ... ok
+test_suppressed_call_is_never_promoted (test_native_needle_policy.NativeNeedlePolicy.test_suppressed_call_is_never_promoted) ... ok
+test_top_level_uncertainty_is_blocked (test_native_needle_policy.NativeNeedlePolicy.test_top_level_uncertainty_is_blocked) ... ok
+test_ungrounded_fields_are_blocked (test_native_needle_policy.NativeNeedlePolicy.test_ungrounded_fields_are_blocked) ... ok
+test_unknown_native_function_cannot_be_accepted (test_native_needle_policy.NativeNeedlePolicy.test_unknown_native_function_cannot_be_accepted) ... ok
+test_unregistered_tool_schema_is_rejected (test_native_needle_policy.NativeNeedlePolicy.test_unregistered_tool_schema_is_rejected) ... ok
+test_unsupported_schema_keywords_are_rejected (test_native_needle_policy.NativeNeedlePolicy.test_unsupported_schema_keywords_are_rejected) ... ok
+test_wrong_field_types_are_blocked (test_native_needle_policy.NativeNeedlePolicy.test_wrong_field_types_are_blocked) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 6.247s
+
+OK
+exit_code=0
+Command: .venv\Scripts\python.exe tests/test_input_safety.py
+....
+----------------------------------------------------------------------
+Ran 4 tests in 1.031s
+
+OK
+exit_code=0

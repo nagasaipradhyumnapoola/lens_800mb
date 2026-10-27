@@ -1,0 +1,52 @@
+{
+  "fixture_kind": "public recorded historical speech, not physical-watch testing",
+  "ingest": {
+    "deduplicated": false,
+    "id": "public-jfk-fixture",
+    "ok": true,
+    "sha256": "3ae1caa63545e9c1ebe36a4dcd493dd0c24b1d3b67b9ebef3990624f756d33ef",
+    "transcript": {
+      "confidence_is_accuracy": false,
+      "duration_s": 11.0,
+      "language": "en",
+      "segments": [
+        {
+          "end_ms": 11000,
+          "start_ms": 0,
+          "text": " And so my fellow Americans ask not what your country can do for you, ask what you can do for your country."
+        }
+      ],
+      "text": " And so my fellow Americans ask not what your country can do for you, ask what you can do for your country.",
+      "token_probability": 0.8155770858463186
+    }
+  },
+  "retrieval_after_process_restart": {
+    "not_found": false,
+    "ok": true,
+    "retrieval": "exact phrase / literal substring",
+    "sources": [
+      {
+        "confidence": 0.8155770858463186,
+        "device": "windows-development-fixture",
+        "id": "public-jfk-fixture",
+        "kind": "public_audio_import",
+        "language": "en",
+        "provenance": "whisper.cpp public JFK fixture; historical speech, not a live recording",
+        "sha256": "3ae1caa63545e9c1ebe36a4dcd493dd0c24b1d3b67b9ebef3990624f756d33ef",
+        "text": " And so my fellow Americans ask not what your country can do for you, ask what you can do for your country.",
+        "timestamp": "2026-10-25T21:49:17.160249+00:00"
+      }
+    ]
+  },
+  "unanswerable": {
+    "not_found": true,
+    "ok": true,
+    "retrieval": "exact phrase / literal substring",
+    "sources": []
+  },
+  "database": "D:\\Lens\\artifacts\\native-demo-20261025T214917Z\\public-fixture-memory.db",
+  "database_bytes": 36864,
+  "sqlcipher": "4.19.0 community",
+  "plaintext_signature_absent": true,
+  "result": "PASS"
+}

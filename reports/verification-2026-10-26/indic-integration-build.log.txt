@@ -1,0 +1,36 @@
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  store.cpp
+D:\Lens\engine\store.cpp(73,29): warning C4456: declaration of 'key' hides previous local declaration [D:\Lens\build\engine\lens-store.vcxproj]
+      D:\Lens\engine\store.cpp(30,10):
+      see declaration of 'key'
+  
+  memory_query.cpp
+D:\Lens\engine\memory_query.cpp(51,104): warning C4834: discarding return value of function with [[nodiscard]] attribute [D:\Lens\build\engine\lens-store.vcxproj]
+C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\xmemory(1581,18): error C2280: 'lens::sql::Statement::Statement(const lens::sql::Statement &)': attempting to reference a deleted function [D:\Lens\build\engine\lens-store.vcxproj]
+  (compiling source file '../../engine/memory_query.cpp')
+      D:\Lens\engine\sql.hpp(17,5):
+      see declaration of 'lens::sql::Statement::Statement'
+      D:\Lens\engine\sql.hpp(17,5):
+      'lens::sql::Statement::Statement(const lens::sql::Statement &)': function was explicitly deleted
+      C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\xmemory(1581,18):
+      the template instantiation context (the oldest one first) is
+          D:\Lens\engine\memory_query.cpp(51,104):
+          see reference to class template instantiation 'std::_Binder<std::_Unforced,lens::sql::Statement &,std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>> &,int>' being compiled
+          C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\functional(2471,5):
+          while compiling class template member function 'std::_Binder<std::_Unforced,lens::sql::Statement &,std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>> &,int>::_Binder(_Fx,std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>> &,int &&)'
+          with
+          [
+              _Fx=lens::sql::Statement &
+          ]
+              C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\functional(2522,5):
+              see the first reference to 'std::_Binder<std::_Unforced,lens::sql::Statement &,std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>> &,int>::_Binder' in 'std::bind'
+          C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.51.36231\include\functional(2472,18):
+          see reference to function template instantiation 'std::_Compressed_pair<lens::sql::Statement,std::tuple<std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>,int>,false>::_Compressed_pair<lens::sql::Statement&,std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>>&,_Ty>(std::_One_then_variadic_args_t,_Other1,std::vector<std::basic_string<char,std::char_traits<char>,std::allocator<char>>,std::allocator<std::basic_string<char,std::char_traits<char>,std::allocator<char>>>> &,_Ty &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=int,
+              _Other1=lens::sql::Statement &
+          ]
+  
+  Generating Code...
