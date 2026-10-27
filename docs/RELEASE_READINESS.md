@@ -29,7 +29,7 @@ V1 is NOT release-ready.
 
 - Code-signing certificate (Windows) and Android/Wear signing keys.
 - Physical Android phone and Wear OS watch for hardware validation.
-- Licence choice for Lens-specific source.
+- Licence for Lens-specific source: owner decided 2026-10-27 to publish with no licence (all rights reserved) for now; third-party components keep their own licences (third_party/licenses/).
 - Low-end test hardware: an 8 GB CPU-only laptop (H1), a 4 GB laptop (H2) and a laptop whose CPU lacks AVX2
   (H3), e.g. older HP models. Optionally Intel SDE (Intel licence; download needs approval) to emulate an
   SSE4.2-only CPU as a supplement, never a substitute.
