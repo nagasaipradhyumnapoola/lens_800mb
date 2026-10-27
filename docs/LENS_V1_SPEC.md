@@ -14,6 +14,20 @@ changed. Lens is NOT a screen recorder, screenshot database, OCR app, chatbot wi
 transcriber, or large-context LLM. It is one coherent, privacy-preserving personal memory system.
 There is one product, Lens V1 (no parallel "v2/v3" products).
 
+### 1a. Languages (founder directive, 2026-10-27): a global product
+
+Lens is built for the world, not one region. Quality-critical languages (every benchmark reports each one):
+- Top world languages: English (en), Mandarin Chinese (zh), Spanish (es), Arabic (ar), French (fr),
+  Portuguese (pt), Russian (ru), Indonesian (id), German (de), Japanese (ja).
+- Top Indian languages: Hindi (hi), Bengali (bn), Telugu (te), Marathi (mr), Tamil (ta), Urdu (ur), Gujarati (gu).
+- Real usage: code-switching (e.g. Hinglish, Spanglish, Chinese–English), romanized writing (romanized Indic,
+  Arabizi), colloquial and spoken registers, slang, and expressive/emotional speech.
+Training data must be balanced: per-language temperature sampling, the Indian group capped at about 40% and no
+single language above about 20% of any training mix, so no region is over-trained. Data is licensed public,
+synthetic or permitted teacher output only; never the user's own voice, screen or memories. Non-commercial
+datasets may be used for evaluation only, never in shipped weights. Other languages degrade gracefully
+(stored and keyword-searchable) and are reported as unsupported for quality claims.
+
 ## 2. Role inside Recursion
 
 One unified application. Internal capabilities share one memory and context: Personal Twin, Project Twins,
@@ -50,7 +64,8 @@ An unchanged screen must never produce repeated identical memories. No continuou
 - Detection: evaluate official PP-OCRv5 mobile detector; full detection → crop → orientation → recognition →
   boxes → confidence → reading order. (The current line-only recognizer is insufficient.)
 - Recognition: evaluate PP-OCRv6 tiny/small, PP-OCRv5 Devanagari, Tamil, Telugu, and existing recognizers;
-  six quality-critical languages (en, zh, es, hi, ta, te); mixed-script screens; script-aware model selection
+  the quality-critical languages of §1a (Latin, Han, Arabic, Cyrillic, Japanese, Devanagari, Bengali, Telugu,
+  Tamil and Gujarati scripts); mixed-script screens; script-aware model selection
   and fallback; never all recognizers resident at once; never assume one model covers every language.
 - Speed: event-driven, changed-region detection, frame/region hashing, duplicate suppression, adaptive
   intervals, ROI OCR, bounded queues, reusable sessions, lazy load/unload, CPU-aware scheduling; CPU-only operation is
@@ -202,7 +217,7 @@ Reproducible and honest: OCR (CER, missed text, latency, RAM), ASR (WER/CER, lat
 (R@1, R@10, top-1 evidence, false answers, false rejections, temporal accuracy), memory (compression,
 efficiency, retention, integrity), observation (CPU, RAM, latency, missed events), devices (pairing,
 encryption, sync, battery), application (task completion, usability, recovery). Per language
-en/zh/es/hi/ta/te, code-switching and romanized Indic. Separate dev and immutable holdout; never tune on the
+every §1a language, code-switching and romanized text. Separate dev and immutable holdout; never tune on the
 holdout or alter benchmarks retroactively. Report PASS/FAIL/BLOCKED.
 
 ## 20. Required end-to-end demonstrations (real components only)
