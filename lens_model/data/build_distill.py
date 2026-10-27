@@ -9,7 +9,9 @@ Pool (never a benchmark test split, never Lens fixtures, never personal data), l
 - v0 training pairs (SQuAD 2.0 train, TyDi train in 11 languages, IndicQA/XQuAD training splits) and v1's hard kinds
   (substitution near-misses, keyword lookups, cross-lingual XQuAD);
 - MLQA validation (13 configs incl. de/ar/vi and cross-lingual; 0 paragraphs shared with MLQA test — checked);
-- JaQuAD train (ja), UQA train (ur, with unanswerables), IndicQA bn/mr/gu minus every benchmark question.
+- JaQuAD train (ja), UQA train (ur, with unanswerables), IndicQA bn/mr/gu minus every benchmark question;
+- other-article topical negatives and paragraph-length evidence (v1 lost the reranker's topical relevance and only
+  saw windows of at most 320 characters; Belebele exposed both).
 fr/pt have no permissively licensed QA training data here: they rely on cross-lingual transfer and are measured on
 Belebele.
 Teacher scores are cached incrementally (resume after interruption).
@@ -92,6 +94,53 @@ def indicqa_train(rng,langs=('bn','mr','gu')):
     return rows
 
 
+def topical_negatives(rows,rng,per_lang=3000):
+    """Other-article negatives (the skill Belebele exposed: v1 lost the reranker's topical relevance): a question with
+    the most question-like supported window of a DIFFERENT group in the same language, among 300 random candidates."""
+    by=collections.defaultdict(list)
+    for r in rows:
+        if r['y']==1 and '>' not in r['lang']:by[r['lang']].append(r)
+    out=[]
+    for lang,pos in by.items():
+        rng.shuffle(pos)
+        for r in pos[:per_lang]:
+            cand=[x for x in rng.sample(pos,min(300,len(pos))) if x['group']!=r['group']]
+            if not cand:continue
+            q=grams(r['q']);e=max(cand,key=lambda x:len(q&grams(x['e'])))
+            out.append({'q':r['q'],'e':e['e'],'y':0,'lang':lang,'src':r['src']+'+topical','group':r['group'],'kind':'other_article_near_miss'})
+    return out
+
+
+def long_evidence(rng,per_source=4000,max_chars=1200):
+    """Paragraph-length evidence (memories are often long screen captures): the question with its whole context
+    (trimmed to max_chars around the answer) = 1, and with a long context of another article in the same language = 0."""
+    items=[]
+    for cfg in CFGS[:7]:
+        lang=cfg.split('.')[2]
+        for r in pq.read_table(EXT/f'mlqa/{cfg}.validation.parquet').to_pylist():items.append((lang,r['question'],r['context'],r['answers']['answer_start'][0],'mlqa_validation'))
+    for f in sorted((EXT/'uqa/data').glob('train*.parquet')):
+        for r in pq.read_table(f).to_pylist()[:20000]:
+            if not r['is_impossible'] and r['answer'] and (r['answer_start'] or -1)>=0:items.append(('ur',r['question'],r['context'],r['answer_start'],'uqa'))
+    for f in sorted((EXT/'jaquad/data/train').glob('*.json')):
+        for art in json.loads(f.read_text(encoding='utf-8'))['data']:
+            for para in art['paragraphs']:
+                for qa in para['qas']:
+                    if qa.get('answers'):items.append(('ja',qa['question'],para['context'],qa['answers'][0]['answer_start'],'jaquad'))
+    by=collections.defaultdict(list)
+    for it in items:by[(it[0],it[4])].append(it)
+    out=[]
+    for (lang,src),its in by.items():
+        rng.shuffle(its);ctxs=list({c for _,_,c,_,_ in its})
+        for _,q,ctx,start,_ in its[:per_source]:
+            lo=max(0,min(start-max_chars//2,len(ctx)-max_chars));e=ctx[lo:lo+max_chars]
+            other=rng.choice(ctxs)
+            if other==ctx:continue
+            g=f'long:{src}:{hash(ctx)&0xffffffff:x}'
+            out+=[{'q':q,'e':e,'y':1,'lang':lang,'src':src+'+long','group':g,'kind':'long_supported'},
+                  {'q':q,'e':other[:max_chars],'y':0,'lang':lang,'src':src+'+long','group':g,'kind':'long_other_article'}]
+    return out
+
+
 def balance(rows,total,rng,alpha=0.5,cap=0.20,indic_cap=0.40):
     """Temperature-sampled per-language quotas (n^alpha), no language above `cap`, Indian group at most `indic_cap`
     of the mix (spec §1a). Cross-lingual pairs ('xx>yy') form their own bucket; questions keep their pairs together."""
@@ -128,6 +177,7 @@ def main():
     v0=[json.loads(l) for l in (V0/'train.jsonl').open(encoding='utf-8')]  # SQuAD 2.0, TyDi (11 langs), IndicQA/XQuAD train splits
     v1=[r for r in map(json.loads,(V1/'train.jsonl').open(encoding='utf-8')) if r['kind'] in ('substitution_near_miss','keyword_present','keyword_absent') or r['src']=='xquad-cross']
     cands=v0+v1+mlqa_validation(rng)+jaquad(rng,12000)+uqa(rng,12000)+indicqa_train(rng)
+    cands+=topical_negatives(cands,rng)+long_evidence(rng)
     pool=balance(cands,a.pool_size,rng)
     for i,r in enumerate(pool):r['pid']=i
     cache=OUT/f'teacher-{a.teacher}.jsonl';done={}
