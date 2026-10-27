@@ -1,0 +1,23 @@
+{
+ "created_utc": "20261026T193940Z",
+ "records": 4000,
+ "span_hours": 93.63555555555556,
+ "indexed": false,
+ "raw_text_bytes": 5205048,
+ "db_bytes": 12800000,
+ "db_bytes_per_record": 3200.0,
+ "raw_bytes_per_record": 1301.262,
+ "db_bytes_per_8h_day": 1093601.6707803304,
+ "ingest_seconds": 25.512448000000404,
+ "zstd": {
+  "per_record_ratio": 1.836822499297744,
+  "trained_dictionary_ratio": 2.249099858581843,
+  "delta_vs_previous_version_ratio": 11.349716314221794,
+  "level": 3,
+  "zstd": [
+   1,
+   5,
+   7
+  ]
+ }
+}

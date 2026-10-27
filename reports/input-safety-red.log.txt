@@ -1,0 +1,36 @@
+test_decoded_duration_is_checked_before_pcm_allocation (test_input_safety.InputSafety.test_decoded_duration_is_checked_before_pcm_allocation) ... FAIL
+test_filesystem_failure_does_not_echo_private_path (test_input_safety.InputSafety.test_filesystem_failure_does_not_echo_private_path) ... ok
+test_native_needle_rejects_embedded_nul (test_input_safety.InputSafety.test_native_needle_rejects_embedded_nul) ... FAIL
+test_oversized_json_is_rejected_before_full_allocation (test_input_safety.InputSafety.test_oversized_json_is_rejected_before_full_allocation) ... FAIL
+
+======================================================================
+FAIL: test_decoded_duration_is_checked_before_pcm_allocation (test_input_safety.InputSafety.test_decoded_duration_is_checked_before_pcm_allocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_input_safety.py", line 39, in test_decoded_duration_is_checked_before_pcm_allocation
+    self.assertEqual(json.loads(p.stdout)['error'],'audio_duration_limit_exceeded')
+AssertionError: 'model_unavailable' != 'audio_duration_limit_exceeded'
+- model_unavailable
++ audio_duration_limit_exceeded
+
+
+======================================================================
+FAIL: test_native_needle_rejects_embedded_nul (test_input_safety.InputSafety.test_native_needle_rejects_embedded_nul)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_input_safety.py", line 48, in test_native_needle_rejects_embedded_nul
+    self.assertNotEqual(p.returncode,0)
+AssertionError: 0 == 0
+
+======================================================================
+FAIL: test_oversized_json_is_rejected_before_full_allocation (test_input_safety.InputSafety.test_oversized_json_is_rejected_before_full_allocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_input_safety.py", line 18, in test_oversized_json_is_rejected_before_full_allocation
+    self.assertEqual(result['exit_code'],2)
+AssertionError: 0 != 2
+
+----------------------------------------------------------------------
+Ran 4 tests in 3.060s
+
+FAILED (failures=3)

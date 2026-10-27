@@ -1,0 +1,30 @@
+{
+ "created_utc": "20261026T195040Z",
+ "records": 4000,
+ "span_hours": 93.63555555555556,
+ "indexed": false,
+ "train_after": 1000,
+ "engine_stats": {
+  "schema_version": 6,
+  "compressed_sources": 4000,
+  "compressed_text_bytes": 2462315,
+  "text_dictionaries": 1
+ },
+ "raw_text_bytes": 5205048,
+ "db_bytes": 8753152,
+ "db_bytes_per_record": 2188.288,
+ "raw_bytes_per_record": 1301.262,
+ "db_bytes_per_8h_day": 747848.5665464211,
+ "ingest_seconds": 26.696132399999442,
+ "zstd": {
+  "per_record_ratio": 1.836822499297744,
+  "trained_dictionary_ratio": 2.249099858581843,
+  "delta_vs_previous_version_ratio": 11.349716314221794,
+  "level": 3,
+  "zstd": [
+   1,
+   5,
+   7
+  ]
+ }
+}
