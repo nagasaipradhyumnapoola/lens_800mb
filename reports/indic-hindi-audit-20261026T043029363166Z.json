@@ -1,0 +1,18 @@
+{
+  "report": "indic-hindi-holdout-20261026T042620961617Z-results.json",
+  "report_sha256": "3369cc6ab34e5d2cb7ce005877bf07c1d70e6ecf7edc2738ad567183103271a8",
+  "unique_clips": 100,
+  "word_errors": 291,
+  "reference_words": 2600,
+  "character_errors": 516,
+  "reference_characters": 10608,
+  "wer": 0.11192307692307692,
+  "cer": 0.048642533936651584,
+  "strict_raw_utf8_and_digests": "PASS",
+  "u_fffd_in_scored_hypotheses": 0,
+  "observed_process_counts": [
+    1
+  ],
+  "original500mb_wset_overage_bytes": 20568832,
+  "original500mb_commit_overage_bytes": 25426688
+}

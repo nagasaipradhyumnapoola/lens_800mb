@@ -1,0 +1,5 @@
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  Building Custom Rule D:/Lens/engine/CMakeLists.txt
+  sherpa_main.cpp
+  lens-sherpa.vcxproj -> D:\Lens\build\engine\Release\lens-sherpa.exe

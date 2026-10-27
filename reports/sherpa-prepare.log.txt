@@ -1,0 +1,5 @@
+README.md 141 0ed3b1f1fb25f000be670f4b3dba24989f939609b89be84e91579eec397702a9
+model.int8.onnx 249658954 c1afcb9265de0ebd853eb8f570b371f399a6f9b2b9af9a3cb17c2e509171e697
+tokens.txt 504662 c3788261a51df1899ea4b210b552cd42139204de72c0ad60f6cebb199078872e
+Sherpa/Dolphin native reference pinned
+.tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline.exe

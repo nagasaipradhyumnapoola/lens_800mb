@@ -1,0 +1,168 @@
+{
+  "runs": [
+    {
+      "model": "dolphin-small-ctc-int8",
+      "language": "zh",
+      "fixture": "fleurs-cmn_hans_cn-1906-10026684690566417990.wav",
+      "word_errors": 0,
+      "reference_words": 3,
+      "character_errors": 0,
+      "reference_characters": 23,
+      "duration_s": 10.38,
+      "failure": null,
+      "model_sha256": "c1afcb9265de0ebd853eb8f570b371f399a6f9b2b9af9a3cb17c2e509171e697",
+      "original_fixture_sha256": "a72c0b59fdba80850552af7991de07f9f4940846d2d70f0890eeb153c40f164b",
+      "pcm16_fixture_sha256": "5214e16584b6498ddbd22f321738c0f62b19117ab1880b21e405fba983986b6a",
+      "measurement": {
+        "command": [
+          "D:\\Lens\\.tools\\sherpa-runtime\\sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts\\bin\\sherpa-onnx-offline.exe",
+          "--tokens=D:\\Lens\\models\\csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02\\tokens.txt",
+          "--dolphin-model=D:\\Lens\\models\\csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02\\model.int8.onnx",
+          "--num-threads=2",
+          "--provider=cpu",
+          "D:\\Lens\\artifacts\\sherpa-smoke\\fleurs-cmn_hans_cn-1906-10026684690566417990.wav.wav"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_ms": 2969.5484999974724,
+        "sampled_tree_rss_peak_bytes": 444923904,
+        "sampled_tree_private_peak_bytes": 436858880,
+        "sum_observed_process_peak_wset_bytes": 445009920,
+        "sum_observed_process_peak_commit_bytes": 436867072,
+        "observed_processes": 1,
+        "sample_count": 114,
+        "sampling_interval_ms": 10
+      }
+    },
+    {
+      "model": "dolphin-small-ctc-int8",
+      "language": "zh",
+      "fixture": "fleurs-cmn_hans_cn-2006-10040380210557600780.wav",
+      "word_errors": 3,
+      "reference_words": 3,
+      "character_errors": 2,
+      "reference_characters": 21,
+      "duration_s": 8.28,
+      "failure": null,
+      "model_sha256": "c1afcb9265de0ebd853eb8f570b371f399a6f9b2b9af9a3cb17c2e509171e697",
+      "original_fixture_sha256": "b39d2c84aefada280b73a9ab439726d370d45e5a75bd05f0a90153288ea4561b",
+      "pcm16_fixture_sha256": "d2ff70aa3a9b965bd2cab664852f2b5eb90d02dca4ed9066686d926152ade514",
+      "measurement": {
+        "command": [
+          "D:\\Lens\\.tools\\sherpa-runtime\\sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts\\bin\\sherpa-onnx-offline.exe",
+          "--tokens=D:\\Lens\\models\\csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02\\tokens.txt",
+          "--dolphin-model=D:\\Lens\\models\\csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02\\model.int8.onnx",
+          "--num-threads=2",
+          "--provider=cpu",
+          "D:\\Lens\\artifacts\\sherpa-smoke\\fleurs-cmn_hans_cn-2006-10040380210557600780.wav.wav"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_ms": 2727.9153000017686,
+        "sampled_tree_rss_peak_bytes": 402116608,
+        "sampled_tree_private_peak_bytes": 436543488,
+        "sum_observed_process_peak_wset_bytes": 402202624,
+        "sum_observed_process_peak_commit_bytes": 436551680,
+        "observed_processes": 1,
+        "sample_count": 99,
+        "sampling_interval_ms": 10
+      }
+    },
+    {
+      "model": "dolphin-small-ctc-int8",
+      "language": "hi",
+      "fixture": "fleurs-hi_in-1766-10011266027513218401.wav",
+      "word_errors": 10,
+      "reference_words": 24,
+      "character_errors": 15,
+      "reference_characters": 93,
+      "duration_s": 9.12,
+      "failure": null,
+      "model_sha256": "c1afcb9265de0ebd853eb8f570b371f399a6f9b2b9af9a3cb17c2e509171e697",
+      "original_fixture_sha256": "217f3abbd8e9cd3767d6e8b87d49fbf82421fc920a103de026b4586d7e644dc5",
+      "pcm16_fixture_sha256": "38cf0e883d64ae257288bce89cf41a9c4a693b218c3381d5bd462d90bf7b7ed6",
+      "measurement": {
+        "command": [
+          "D:\\Lens\\.tools\\sherpa-runtime\\sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts\\bin\\sherpa-onnx-offline.exe",
+          "--tokens=D:\\Lens\\models\\csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02\\tokens.txt",
+          "--dolphin-model=D:\\Lens\\models\\csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02\\model.int8.onnx",
+          "--num-threads=2",
+          "--provider=cpu",
+          "D:\\Lens\\artifacts\\sherpa-smoke\\fleurs-hi_in-1766-10011266027513218401.wav.wav"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_ms": 2644.580500000302,
+        "sampled_tree_rss_peak_bytes": 411844608,
+        "sampled_tree_private_peak_bytes": 437583872,
+        "sum_observed_process_peak_wset_bytes": 411885568,
+        "sum_observed_process_peak_commit_bytes": 437592064,
+        "observed_processes": 1,
+        "sample_count": 100,
+        "sampling_interval_ms": 10
+      }
+    },
+    {
+      "model": "dolphin-small-ctc-int8",
+      "language": "hi",
+      "fixture": "fleurs-hi_in-1784-10014385262415025488.wav",
+      "word_errors": 23,
+      "reference_words": 40,
+      "character_errors": 58,
+      "reference_characters": 159,
+      "duration_s": 13.8,
+      "failure": null,
+      "model_sha256": "c1afcb9265de0ebd853eb8f570b371f399a6f9b2b9af9a3cb17c2e509171e697",
+      "original_fixture_sha256": "b63e6ae5a8a5b53fcd5b60c467790baca13ca0c8490d35418d692ef7751a5459",
+      "pcm16_fixture_sha256": "39f91e5112c883518169024a6853921d2f4bea402f1e6a3bd3c05d99f9a5fae9",
+      "measurement": {
+        "command": [
+          "D:\\Lens\\.tools\\sherpa-runtime\\sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts\\bin\\sherpa-onnx-offline.exe",
+          "--tokens=D:\\Lens\\models\\csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02\\tokens.txt",
+          "--dolphin-model=D:\\Lens\\models\\csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02\\model.int8.onnx",
+          "--num-threads=2",
+          "--provider=cpu",
+          "D:\\Lens\\artifacts\\sherpa-smoke\\fleurs-hi_in-1784-10014385262415025488.wav.wav"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_ms": 3163.449199997558,
+        "sampled_tree_rss_peak_bytes": 502505472,
+        "sampled_tree_private_peak_bytes": 576110592,
+        "sum_observed_process_peak_wset_bytes": 516993024,
+        "sum_observed_process_peak_commit_bytes": 576118784,
+        "observed_processes": 1,
+        "sample_count": 121,
+        "sampling_interval_ms": 10
+      }
+    }
+  ],
+  "summary": [
+    {
+      "model": "dolphin-small-ctc-int8",
+      "language": "hi",
+      "sample_count": 2,
+      "wer": 0.515625,
+      "cer": 0.2896825396825397,
+      "failure_count": 0,
+      "model_bytes": 249658954,
+      "p95_latency_ms": 3163.449199997558,
+      "max_observed_wset_bytes": 516993024,
+      "max_observed_commit_bytes": 576118784,
+      "certification": "EXPERIMENTAL_SMOKE_ONLY"
+    },
+    {
+      "model": "dolphin-small-ctc-int8",
+      "language": "zh",
+      "sample_count": 2,
+      "wer": 0.5,
+      "cer": 0.045454545454545456,
+      "failure_count": 0,
+      "model_bytes": 249658954,
+      "p95_latency_ms": 2969.5484999974724,
+      "max_observed_wset_bytes": 445009920,
+      "max_observed_commit_bytes": 436867072,
+      "certification": "EXPERIMENTAL_SMOKE_ONLY"
+    }
+  ]
+}

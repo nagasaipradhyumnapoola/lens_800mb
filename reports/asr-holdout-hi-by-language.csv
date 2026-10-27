@@ -1,0 +1,2 @@
+model,language,sample_count,wer,cer,language_id_accuracy,language_mode,avg_latency_ms,p95_latency_ms,mean_rtf,max_observed_wset_bytes,max_observed_commit_bytes,model_bytes,runtime_bytes,failure_count,sample_quality_target_met,certification
+ggml-small-q5_1.bin,hi,100,0.6203846153846154,0.3542609351432881,,configured,11834.844984999872,27131.158199998026,1.0442298778650305,453787648,896557056,190085487,2116608,3,False,REQUIRES_REVIEW

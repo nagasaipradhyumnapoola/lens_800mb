@@ -1,0 +1,95 @@
+test_mandarin_audio_native_worker_preserves_original_in_memory (test_cli.LensCLI.test_mandarin_audio_native_worker_preserves_original_in_memory) ... ok
+test_missing_private_path_is_not_echoed (test_cli.LensCLI.test_missing_private_path_is_not_echoed) ... ok
+test_text_and_native_image_reach_encrypted_memory (test_cli.LensCLI.test_text_and_native_image_reach_encrypted_memory) ... ok
+test_consent_and_wrong_key_fail_closed (test_engine_integration.EngineIntegration.test_consent_and_wrong_key_fail_closed) ... ok
+test_derived_record_requires_source_and_deletion_removes_search (test_engine_integration.EngineIntegration.test_derived_record_requires_source_and_deletion_removes_search) ... ok
+test_encrypted_reopen_dedup_immutability_and_source_search (test_engine_integration.EngineIntegration.test_encrypted_reopen_dedup_immutability_and_source_search) ... ok
+test_native_audio_import_and_retrieval (test_engine_integration.EngineIntegration.test_native_audio_import_and_retrieval) ... ok
+test_sensitive_fields_are_excluded_by_default (test_engine_integration.EngineIntegration.test_sensitive_fields_are_excluded_by_default) ... ok
+test_token_match_does_not_hide_chinese_substring_sources (test_engine_integration.EngineIntegration.test_token_match_does_not_hide_chinese_substring_sources) ... ok
+test_unicode_and_literal_query (test_engine_integration.EngineIntegration.test_unicode_and_literal_query) ... ok
+test_wal_contains_no_plaintext_and_recovers_after_process_crash (test_engine_integration.EngineIntegration.test_wal_contains_no_plaintext_and_recovers_after_process_crash) ... ok
+test_decoded_duration_is_checked_before_pcm_allocation (test_input_safety.InputSafety.test_decoded_duration_is_checked_before_pcm_allocation) ... ok
+test_filesystem_failure_does_not_echo_private_path (test_input_safety.InputSafety.test_filesystem_failure_does_not_echo_private_path) ... ok
+test_native_needle_rejects_embedded_nul (test_input_safety.InputSafety.test_native_needle_rejects_embedded_nul) ... ok
+test_oversized_json_is_rejected_before_full_allocation (test_input_safety.InputSafety.test_oversized_json_is_rejected_before_full_allocation) ... ok
+test_batch_import_is_atomic_and_validates_timestamps_before_commit (test_memory_v2.MemoryV2.test_batch_import_is_atomic_and_validates_timestamps_before_commit) ... FAIL
+test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence (test_memory_v2.MemoryV2.test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence) ... FAIL
+test_existing_database_concurrent_writes_preserve_all_records (test_memory_v2.MemoryV2.test_existing_database_concurrent_writes_preserve_all_records) ... FAIL
+test_original_and_observation_metadata_survive_reopen_and_dedup (test_memory_v2.MemoryV2.test_original_and_observation_metadata_survive_reopen_and_dedup) ... FAIL
+test_time_application_device_and_kind_filters_apply_to_all_candidates (test_memory_v2.MemoryV2.test_time_application_device_and_kind_filters_apply_to_all_candidates) ... FAIL
+test_v1_migration_preserves_source_and_marks_unknown_original_time (test_memory_v2.MemoryV2.test_v1_migration_preserves_source_and_marks_unknown_original_time) ... FAIL
+test_cjk_character_metric (test_metrics.MetricsTests.test_cjk_character_metric) ... ok
+test_decimal_budget_and_failure_enforcement (test_metrics.MetricsTests.test_decimal_budget_and_failure_enforcement) ... ok
+test_empty_reference_hallucination_is_counted (test_metrics.MetricsTests.test_empty_reference_hallucination_is_counted) ... ok
+test_field_metrics_penalize_hallucination_and_missing_fields (test_metrics.MetricsTests.test_field_metrics_penalize_hallucination_and_missing_fields) ... ok
+test_insertions_are_not_clamped_to_one (test_metrics.MetricsTests.test_insertions_are_not_clamped_to_one) ... ok
+test_missing_measurement_never_passes (test_metrics.MetricsTests.test_missing_measurement_never_passes) ... ok
+test_one_substitution_out_of_three_words (test_metrics.MetricsTests.test_one_substitution_out_of_three_words) ... ok
+test_unicode_scripts_and_marks_are_preserved (test_metrics.MetricsTests.test_unicode_scripts_and_marks_are_preserved) ... ok
+test_wrong_value_counts_false_positive_and_false_negative (test_metrics.MetricsTests.test_wrong_value_counts_false_positive_and_false_negative) ... ok
+test_native_adapter_extracts_explicit_english_fields_without_executing_action (test_native_needle.NativeNeedle.test_native_adapter_extracts_explicit_english_fields_without_executing_action) ... ok
+test_image_processing_requires_consent (test_native_ocr.NativeOCR.test_image_processing_requires_consent) ... ok
+test_native_recognition_preserves_primary_language_text (test_native_ocr.NativeOCR.test_native_recognition_preserves_primary_language_text) ... ok
+test_non_float_output_is_rejected_before_pointer_read (test_native_ocr.NativeOCR.test_non_float_output_is_rejected_before_pointer_read) ... ok
+test_reads_cli_appended_extension_and_preserves_script (test_native_output.NativeOutputTests.test_reads_cli_appended_extension_and_preserves_script) ... ok
+
+======================================================================
+FAIL: test_batch_import_is_atomic_and_validates_timestamps_before_commit (test_memory_v2.MemoryV2.test_batch_import_is_atomic_and_validates_timestamps_before_commit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_memory_v2.py", line 112, in test_batch_import_is_atomic_and_validates_timestamps_before_commit
+    self.assertTrue(rows[2]['ok'], rows[2])
+AssertionError: False is not true : {'error': 'unsupported_operation', 'ok': False}
+
+======================================================================
+FAIL: test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence (test_memory_v2.MemoryV2.test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_memory_v2.py", line 122, in test_context_returns_exact_source_quotes_and_abstains_for_missing_evidence
+    self.assertTrue(rows[1]['ok'], rows[1])
+AssertionError: False is not true : {'error': 'unsupported_operation', 'ok': False}
+
+======================================================================
+FAIL: test_existing_database_concurrent_writes_preserve_all_records (test_memory_v2.MemoryV2.test_existing_database_concurrent_writes_preserve_all_records)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_memory_v2.py", line 153, in test_existing_database_concurrent_writes_preserve_all_records
+    self.assertTrue(all(r['ok'] for group in results for r in group), results)
+AssertionError: False is not true : [[{'deduplicated': False, 'id': '0-0', 'ok': True, 'sha256': '7ba636d5892ee804751c0a900411dff2c60718243474790953cc555b039dc485'}, {'deduplicated': False, 'id': '0-1', 'ok': True, 'sha256': 'ba96284b5be6830c8d870538ad15a53a0b5e588ceb62aea558098efedab546fc'}, {'deduplicated': False, 'id': '0-2', 'ok': True, 'sha256': '9f9ca599d9b21c25e507ea4cc166b038bff7ef5f1fb3a65b70cc46e547c744b4'}, {'deduplicated': False, 'id': '0-3', 'ok': True, 'sha256': '57d2770f45602fc9e1ac522ec168d549c95429362458628fd4c3eb1ad597fea6'}, {'deduplicated': False, 'id': '0-4', 'ok': True, 'sha256': '97fd3992fcff42546c51d32a59fe7555e6994c409d3937dc9785ad5adab67ff4'}, {'error': 'database_operation_failed', 'ok': False}, {'error': 'database_operation_failed', 'ok': False}, {'error': 'database_operation_failed', 'ok': False}], [{'deduplicated': False, 'id': '1-0', 'ok': True, 'sha256': '2a66c297cd7711ff519de7ce4a9ff8b0fd1ac41b34ec4a27242fe47e823e5f55'}, {'deduplicated': False, 'id': '1-1', 'ok': True, 'sha256': 'a6925510a9f47542e50ad22d56b6b1bc371fbe34f4db9fb2bbcfd9ef80d7caf9'}, {'deduplicated': False, 'id': '1-2', 'ok': True, 'sha256': '96007102e2b5e4cd63a6b435682b2e86335af783196cc78ea3a18c206833a7ca'}, {'deduplicated': False, 'id': '1-3', 'ok': True, 'sha256': 'd3ff5e0a9f2419cffa0b36b833a6589752b0400b80d2998edf11be89a5ac5731'}, {'deduplicated': False, 'id': '1-4', 'ok': True, 'sha256': '1ad6befb5a81c607a95a015eb6c42635983b2cbdb05e0c26d55010135ddabfee'}, {'deduplicated': False, 'id': '1-5', 'ok': True, 'sha256': '5e875bc65134277ca79cb57e157c2b306cd26f77b20a57f0b454c2f70ecd2792'}, {'deduplicated': False, 'id': '1-6', 'ok': True, 'sha256': '88f9bb438dab3e8519a37bc2733232da41bcf2b183da7f70b5d82e1469b009e6'}, {'deduplicated': False, 'id': '1-7', 'ok': True, 'sha256': 'ed2bf201a30f47f327b004a8560a6a1f441d1b0bff473821cf1f14473717f1c4'}], [{'deduplicated': False, 'id': '2-0', 'ok': True, 'sha256': 'd722461eefac3bd0ab8e638249d3f8af1625c8b796739a226ed19aa3d5f10d3c'}, {'deduplicated': False, 'id': '2-1', 'ok': True, 'sha256': 'e2c91c0673a0c2bbc8267e68bde9bf4b5c523703c313f51f41ead599d344cfa4'}, {'deduplicated': False, 'id': '2-2', 'ok': True, 'sha256': 'a3e7bffadaea4e161a640a82f6b958dfa6741a3d30baccf96ad295ee05302cbe'}, {'deduplicated': False, 'id': '2-3', 'ok': True, 'sha256': '2682acdd01ed2021f5fb347402b3e1c6be854280516cd4bf2c74d7f4d7e4cc83'}, {'deduplicated': False, 'id': '2-4', 'ok': True, 'sha256': '2cab4c021af7951f96a45683d68d2ed847e0cac3765b525a72a64653f87776b2'}, {'deduplicated': False, 'id': '2-5', 'ok': True, 'sha256': '2db75f795e010b9e74bed2f1bfb82ddbdea5e40ece37edd7f28fda14331114e5'}, {'deduplicated': False, 'id': '2-6', 'ok': True, 'sha256': '44db97c5a1855c28e77fabd057729e2c3d41db7a688320bcbcb3c9259ba85b97'}, {'deduplicated': False, 'id': '2-7', 'ok': True, 'sha256': 'fc17abfce9cec2bbe476eb273ef1c4aeae527bf5990b13d98bdfefd3224f8f31'}], [{'error': 'database_operation_failed', 'ok': False}, {'deduplicated': False, 'id': '3-1', 'ok': True, 'sha256': 'f56426cb11a7d4c9850331040347d49bb46d8253ff52a897a61526d7d0ef05c3'}, {'deduplicated': False, 'id': '3-2', 'ok': True, 'sha256': 'a0a70acea915a2e1cb170b9a6ab9e9cdaa5b227d0c7c8e540c88a9e1a9ebe8ce'}, {'deduplicated': False, 'id': '3-3', 'ok': True, 'sha256': '05188b0cc836b1367b40da07914580dcd639b2d38052db2803029c33f155ff0e'}, {'deduplicated': False, 'id': '3-4', 'ok': True, 'sha256': 'aedb45806fa061c0e39566fd8eef1a0a1b388eac01f2ebd1e614b4869d0ad0eb'}, {'deduplicated': False, 'id': '3-5', 'ok': True, 'sha256': '1e320a3653f836dd6b8172b0110d8d6cd4886d1b4c81a9896a1c1efc8510f8d4'}, {'deduplicated': False, 'id': '3-6', 'ok': True, 'sha256': 'ac1bccbb6dd623f6ffea666b69af25eb2a633f0672cd00c6bf7763a06bc10a14'}, {'deduplicated': False, 'id': '3-7', 'ok': True, 'sha256': 'ec29910efd7af23dd3d55dd2d7178fde26ccc7eb6024184b03653a65abe0b09a'}]]
+
+======================================================================
+FAIL: test_original_and_observation_metadata_survive_reopen_and_dedup (test_memory_v2.MemoryV2.test_original_and_observation_metadata_survive_reopen_and_dedup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_memory_v2.py", line 80, in test_original_and_observation_metadata_survive_reopen_and_dedup
+    self.assertEqual(result.get('observed_at'), '2026-10-26T05:00:00Z')
+AssertionError: None != '2026-10-26T05:00:00Z'
+
+======================================================================
+FAIL: test_time_application_device_and_kind_filters_apply_to_all_candidates (test_memory_v2.MemoryV2.test_time_application_device_and_kind_filters_apply_to_all_candidates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_memory_v2.py", line 99, in test_time_application_device_and_kind_filters_apply_to_all_candidates
+    self.assertEqual([x['id'] for x in rows[2]['sources']], ['source-b'])
+AssertionError: Lists differ: ['source-b', 'source-a'] != ['source-b']
+
+First list contains 1 additional elements.
+First extra element 1:
+'source-a'
+
+- ['source-b', 'source-a']
++ ['source-b']
+
+======================================================================
+FAIL: test_v1_migration_preserves_source_and_marks_unknown_original_time (test_memory_v2.MemoryV2.test_v1_migration_preserves_source_and_marks_unknown_original_time)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_memory_v2.py", line 139, in test_v1_migration_preserves_source_and_marks_unknown_original_time
+    self.assertEqual(rows[0]['schema_version'], 2)
+AssertionError: 1 != 2
+
+----------------------------------------------------------------------
+Ran 35 tests in 19.948s
+
+FAILED (failures=6)

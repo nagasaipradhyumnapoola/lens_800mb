@@ -1,0 +1,4 @@
+README.md 21249 f3b4755f4949f292f2db80084a982fdcd3908a36bd457f493cd86b058e580265
+hi/model.int8.onnx 197595593 915c71e04dd7e5378a4057fdebb252b3a587188e4e99db6d7ce0909ad5ad05fa
+tokens.txt 67605 ee60967630213f31951817ac8b402b92ec18cce80718a24a49b388e56672dfb2
+Pinned Hindi model and source license; no inference performed

@@ -1,0 +1,2 @@
+model,language,mode,sample_count,failure_count,wer,cer,model_bytes,tokens_bytes,p95_latency_ms,p95_real_time_factor,total_audio_duration_s,aggregate_real_time_factor,max_observed_wset_bytes,max_observed_commit_bytes,sampled_tree_rss_peak_bytes,sampled_tree_private_peak_bytes,language_id,certification
+IndicConformer Hindi 120M CTC MatMul-int8,hi,smoke,2,0,0.015625,0.007936507936507936,197595593,67605,2071.622900002694,0.19316669956121282,22.92,0.16724708551487588,359923712,385306624,359014400,385298432,not measured; Hindi-specific model,EXPERIMENTAL; release gates remain

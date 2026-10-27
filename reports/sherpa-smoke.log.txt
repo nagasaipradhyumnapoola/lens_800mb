@@ -1,0 +1,4 @@
+zh WER=0.000 CER=0.000 scored
+zh WER=1.000 CER=0.095 scored
+hi WER=0.417 CER=0.161 scored
+hi WER=0.575 CER=0.365 scored

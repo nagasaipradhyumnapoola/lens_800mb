@@ -1,0 +1,3 @@
+model,language,sample_count,wer,cer,failure_count,model_bytes,p95_latency_ms,max_observed_wset_bytes,max_observed_commit_bytes,certification
+dolphin-small-ctc-int8,hi,2,0.515625,0.2896825396825397,0,249658954,3163.449199997558,516993024,576118784,EXPERIMENTAL_SMOKE_ONLY
+dolphin-small-ctc-int8,zh,2,0.5,0.045454545454545456,0,249658954,2969.5484999974724,445009920,436867072,EXPERIMENTAL_SMOKE_ONLY

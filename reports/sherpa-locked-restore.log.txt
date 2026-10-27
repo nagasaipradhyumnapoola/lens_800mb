@@ -1,0 +1,2 @@
+Sherpa/Dolphin native reference pinned
+.tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline.exe

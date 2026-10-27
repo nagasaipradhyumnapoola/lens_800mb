@@ -1,0 +1,2 @@
+model,language,sample_count,wer,cer,language_id_accuracy,language_mode,avg_latency_ms,p95_latency_ms,mean_rtf,max_observed_wset_bytes,max_observed_commit_bytes,model_bytes,runtime_bytes,failure_count,sample_quality_target_met,certification
+ggml-base-q5_1.bin,en,100,0.10274291027429103,0.04814278822961891,,configured,2321.378752999881,3618.3227000001352,0.2736633987530113,175230976,689942528,59707625,2116608,0,True,REQUIRES_REVIEW

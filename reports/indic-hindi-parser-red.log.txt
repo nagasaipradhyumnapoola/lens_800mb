@@ -1,0 +1,76 @@
+FFFFFFF
+======================================================================
+FAIL: test_preserves_hindi_from_json_surrounded_by_logs (__main__.IndicNativeOutputTests.test_preserves_hindi_from_json_surrounded_by_logs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 21, in test_preserves_hindi_from_json_surrounded_by_logs
+    self.assertEqual(self.parse(b"diagnostic\n" + payload + b"\n"), "\u0939\u093f\u0928\u094d\u0926\u0940 \u0928\u092e\u0938\u094d\u0924\u0947")
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 16, in parse
+    self.assertIsNotNone(parse_native_result, "Strict native parser is not implemented")
+AssertionError: unexpectedly None : Strict native parser is not implemented
+
+======================================================================
+FAIL: test_rejects_ambiguous_transcripts (__main__.IndicNativeOutputTests.test_rejects_ambiguous_transcripts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 41, in test_rejects_ambiguous_transcripts
+    self.parse(b'{"text":"one"}\n{"text":"two"}')
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 16, in parse
+    self.assertIsNotNone(parse_native_result, "Strict native parser is not implemented")
+AssertionError: unexpectedly None : Strict native parser is not implemented
+
+======================================================================
+FAIL: test_rejects_invalid_utf8_before_json_scoring (__main__.IndicNativeOutputTests.test_rejects_invalid_utf8_before_json_scoring)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 25, in test_rejects_invalid_utf8_before_json_scoring
+    self.parse(b'{"text":"\xff"}')
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 16, in parse
+    self.assertIsNotNone(parse_native_result, "Strict native parser is not implemented")
+AssertionError: unexpectedly None : Strict native parser is not implemented
+
+======================================================================
+FAIL: test_rejects_json_escaped_lone_surrogate (__main__.IndicNativeOutputTests.test_rejects_json_escaped_lone_surrogate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 29, in test_rejects_json_escaped_lone_surrogate
+    self.parse(b'{"text":"\\ud800"}')
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 16, in parse
+    self.assertIsNotNone(parse_native_result, "Strict native parser is not implemented")
+AssertionError: unexpectedly None : Strict native parser is not implemented
+
+======================================================================
+FAIL: test_rejects_missing_transcript (__main__.IndicNativeOutputTests.test_rejects_missing_transcript)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 45, in test_rejects_missing_transcript
+    self.parse(b"diagnostics only")
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 16, in parse
+    self.assertIsNotNone(parse_native_result, "Strict native parser is not implemented")
+AssertionError: unexpectedly None : Strict native parser is not implemented
+
+======================================================================
+FAIL: test_rejects_nonzero_exit_even_with_plausible_text (__main__.IndicNativeOutputTests.test_rejects_nonzero_exit_even_with_plausible_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 33, in test_rejects_nonzero_exit_even_with_plausible_text
+    self.parse(b'{"text":"valid"}', exit_code=1)
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 16, in parse
+    self.assertIsNotNone(parse_native_result, "Strict native parser is not implemented")
+AssertionError: unexpectedly None : Strict native parser is not implemented
+
+======================================================================
+FAIL: test_rejects_timeout_even_with_plausible_text (__main__.IndicNativeOutputTests.test_rejects_timeout_even_with_plausible_text)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 37, in test_rejects_timeout_even_with_plausible_text
+    self.parse(b'{"text":"valid"}', timed_out=True)
+  File "D:\Lens\reports\indic-hindi-parser-tests.py", line 16, in parse
+    self.assertIsNotNone(parse_native_result, "Strict native parser is not implemented")
+AssertionError: unexpectedly None : Strict native parser is not implemented
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.005s
+
+FAILED (failures=7)

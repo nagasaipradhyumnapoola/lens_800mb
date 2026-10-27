@@ -1,0 +1,8 @@
+ggml-small-q5_1.bin zh WER=1.000 CER=0.478 wall=6680ms scored
+ggml-small-q5_1.bin zh WER=1.000 CER=0.143 wall=6677ms scored
+ggml-small-q5_1.bin en WER=0.143 CER=0.045 wall=6977ms scored
+ggml-small-q5_1.bin en WER=0.053 CER=0.012 wall=7250ms scored
+ggml-small-q5_1.bin es WER=0.039 CER=0.008 wall=8026ms scored
+ggml-small-q5_1.bin es WER=0.034 CER=0.007 wall=7324ms scored
+ggml-small-q5_1.bin hi WER=0.542 CER=0.258 wall=21050ms scored
+ggml-small-q5_1.bin hi WER=0.475 CER=0.151 wall=14792ms scored

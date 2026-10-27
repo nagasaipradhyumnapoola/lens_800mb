@@ -1,0 +1,2 @@
+model,language,sample_count,wer,cer,language_id_accuracy,language_mode,avg_latency_ms,p95_latency_ms,mean_rtf,max_observed_wset_bytes,max_observed_commit_bytes,model_bytes,runtime_bytes,failure_count,sample_quality_target_met,certification
+ggml-tiny-q5_1.bin,zh,100,1.0418848167539267,0.4142735285754905,,configured,1335.7235150000633,2320.5989000016416,0.13208641432956722,125304832,639262720,32152673,2116608,0,False,REQUIRES_REVIEW
