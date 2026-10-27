@@ -1,0 +1,51 @@
+{
+ "baseline": "x86-64 SSE4.2 + POPCNT",
+ "checks": [
+  {
+   "check": "ggml CPU backend ISA",
+   "status": "PASS",
+   "detail": "runtime-selected CPU variants"
+  },
+  {
+   "check": "Lens native compile flags",
+   "status": "PASS",
+   "detail": "no ISA-raising flags (MSVC x64 default: SSE2)"
+  },
+  {
+   "check": "binaries linking the ggml CPU backend",
+   "status": "INFO",
+   "detail": "see ggml check; executables: none"
+  },
+  {
+   "check": "ISA-named ONNX model variants",
+   "status": "INFO",
+   "detail": "ONNX graphs run on any CPU through ONNX Runtime kernels; speed on CPUs without that ISA must be measured per tier: models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1/onnx/model_qint8_avx512_vnni.onnx, models/intfloat--multilingual-e5-small/onnx/model_qint8_avx512_vnni.onnx"
+  },
+  {
+   "check": "baseline ggml CPU variant shipped beside the engine",
+   "status": "PASS",
+   "detail": "ggml-cpu-x64.dll (SSE2) present"
+  },
+  {
+   "check": "prebuilt runtime: ONNX Runtime 1.24.4 (retrieval, OCR)",
+   "status": "NOT_VERIFIED",
+   "detail": "requires a dynamic run on a CPU without AVX/AVX2 (H3 machine or emulator)"
+  },
+  {
+   "check": "prebuilt runtime: sherpa-onnx 2.0.0 bundled ONNX Runtime",
+   "status": "NOT_VERIFIED",
+   "detail": "requires a dynamic run on a CPU without AVX/AVX2 (H3 machine or emulator)"
+  },
+  {
+   "check": "prebuilt runtime: SQLCipher / OpenSSL (vcpkg x64-windows)",
+   "status": "NOT_VERIFIED",
+   "detail": "requires a dynamic run on a CPU without AVX/AVX2 (H3 machine or emulator)"
+  },
+  {
+   "check": "prebuilt runtime: Needle3 published native engine",
+   "status": "NOT_VERIFIED",
+   "detail": "requires a dynamic run on a CPU without AVX/AVX2 (H3 machine or emulator)"
+  }
+ ],
+ "result": "PASS_STATIC"
+}

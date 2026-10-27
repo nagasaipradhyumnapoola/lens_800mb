@@ -1,0 +1,81 @@
+{
+ "cpu": {
+  "name": "AMD Ryzen 9 270 w/ Radeon 780M Graphics",
+  "logical_processors": 16,
+  "architecture": "AMD64",
+  "features": {
+   "avx": true,
+   "avx2": true,
+   "avx512_vnni": false,
+   "avx512f": true,
+   "avx_vnni": false,
+   "f16c": true,
+   "fma3": true,
+   "popcnt": true,
+   "sse2": true,
+   "sse3": true,
+   "sse4_1": true,
+   "sse4_2": true,
+   "ssse3": true
+  },
+  "features_windows": {
+   "sse2": true,
+   "sse3": true,
+   "ssse3": true,
+   "sse4_1": true,
+   "sse4_2": true,
+   "avx": true,
+   "avx2": true,
+   "avx512f": true
+  },
+  "features_cpuid": {
+   "sse2": true,
+   "sse3": true,
+   "ssse3": true,
+   "sse4_1": true,
+   "sse4_2": true,
+   "popcnt": true,
+   "avx": true,
+   "f16c": true,
+   "fma3": true,
+   "avx2": true,
+   "avx512f": true,
+   "avx512_vnni": false,
+   "avx_vnni": false
+  },
+  "source_disagreements": [],
+  "meets_lens_baseline": true,
+  "baseline": [
+   "sse4_2",
+   "popcnt"
+  ]
+ },
+ "memory": {
+  "total_bytes": 16421998592,
+  "available_bytes": 467816448,
+  "load_percent": 97,
+  "commit_limit_bytes": 59371671552,
+  "commit_available_bytes": 26886053888
+ },
+ "windows": {
+  "product": "Windows 11",
+  "display_version": "26H2",
+  "build": 26300,
+  "ubr": 9711,
+  "edition": "CoreSingleLanguage"
+ },
+ "display_adapters": [
+  {
+   "name": "AMD Radeon 780M Graphics",
+   "driver": "32.0.32015.7029",
+   "adapter_ram_bytes": 536870912
+  }
+ ],
+ "power": {
+  "ac_online": true,
+  "battery_present": true,
+  "battery_percent": 100,
+  "battery_saver": false
+ },
+ "python": "3.12.13"
+}

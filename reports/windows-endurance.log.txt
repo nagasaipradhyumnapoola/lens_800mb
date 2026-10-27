@@ -1,0 +1,56 @@
+completed_cycles 25 elapsed_s 57
+completed_cycles 50 elapsed_s 114
+completed_cycles 75 elapsed_s 172
+completed_cycles 100 elapsed_s 228
+completed_cycles 125 elapsed_s 286
+completed_cycles 150 elapsed_s 343
+completed_cycles 175 elapsed_s 401
+completed_cycles 200 elapsed_s 457
+completed_cycles 225 elapsed_s 514
+completed_cycles 250 elapsed_s 570
+completed_cycles 275 elapsed_s 629
+completed_cycles 300 elapsed_s 686
+completed_cycles 325 elapsed_s 743
+completed_cycles 350 elapsed_s 800
+completed_cycles 375 elapsed_s 857
+completed_cycles 400 elapsed_s 917
+completed_cycles 425 elapsed_s 980
+completed_cycles 450 elapsed_s 1041
+completed_cycles 475 elapsed_s 1102
+completed_cycles 500 elapsed_s 1161
+completed_cycles 525 elapsed_s 1224
+completed_cycles 550 elapsed_s 1279
+completed_cycles 575 elapsed_s 1333
+completed_cycles 600 elapsed_s 1386
+completed_cycles 625 elapsed_s 1439
+completed_cycles 650 elapsed_s 1492
+completed_cycles 675 elapsed_s 1543
+completed_cycles 700 elapsed_s 1594
+completed_cycles 725 elapsed_s 1645
+completed_cycles 750 elapsed_s 1695
+completed_cycles 775 elapsed_s 1748
+completed_cycles 800 elapsed_s 1800
+{
+  "duration_requested_s": 1800,
+  "duration_measured_s": 1800.4939646999992,
+  "completed_cycles": 800,
+  "failure_count": 0,
+  "failures": [],
+  "exit_code": 0,
+  "p95_cycle_ms": 2325.7506000009016,
+  "average_cycle_ms": 2046.59737975001,
+  "peak_sampled_tree_wset_bytes": 184766464,
+  "peak_sampled_tree_private_bytes": 693264384,
+  "peak_observed_os_wset_bytes": 184766464,
+  "peak_observed_os_commit_bytes": 693276672,
+  "maximum_observed_process_count": 1,
+  "sampling_interval_ms": 20,
+  "sample_count": 49874,
+  "engine_sha256": "6da3b517f184c0d47a1e0d12a82d51227430f408e9ba8dfbdac9cbb4dd239d76",
+  "binary_unchanged": true,
+  "isolated_runtime_directory": "D:\\Lens\\artifacts\\endurance-20261025T211937Z\\runtime",
+  "fixture": "public JFK 11-second WAV, model unloaded/reloaded for each cycle",
+  "model_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "stderr_empty": true,
+  "passes_requested_duration": true
+}

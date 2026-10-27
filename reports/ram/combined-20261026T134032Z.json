@@ -1,0 +1,79 @@
+{
+  "created_utc": "20261026T134032Z",
+  "limit_bytes": 500000000,
+  "note": "Observation (Milestone 3) does not exist yet; its share is not included.",
+  "runs": [
+    {
+      "scenario": "concurrent",
+      "wall_s": 3.1032465000025695,
+      "peak_sum_working_set_bytes": 979775488,
+      "peak_sum_private_bytes": 1539203072,
+      "per_process_os_peak_working_set_bytes": {
+        "retrieval": 407793664,
+        "asr_whisper_base": 180805632,
+        "asr_dolphin_zh": 449130496,
+        "ocr_ppocrv6": 44855296
+      },
+      "results": {
+        "ocr_ppocrv6": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        },
+        "asr_whisper_base": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        },
+        "asr_dolphin_zh": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        },
+        "retrieval": {
+          "exit": 0,
+          "ok_lines": 15,
+          "stderr": ""
+        }
+      },
+      "within_500MB_working_set": false,
+      "within_500MB_private": false
+    },
+    {
+      "scenario": "serial",
+      "wall_s": 6.899358299997402,
+      "peak_sum_working_set_bytes": 447750144,
+      "peak_sum_private_bytes": 690728960,
+      "per_process_os_peak_working_set_bytes": {
+        "retrieval": 407764992,
+        "asr_whisper_base": 180359168,
+        "asr_dolphin_zh": 447856640,
+        "ocr_ppocrv6": 44343296
+      },
+      "results": {
+        "retrieval": {
+          "exit": 0,
+          "ok_lines": 15,
+          "stderr": ""
+        },
+        "asr_whisper_base": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        },
+        "asr_dolphin_zh": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        },
+        "ocr_ppocrv6": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        }
+      },
+      "within_500MB_working_set": true,
+      "within_500MB_private": false
+    }
+  ]
+}

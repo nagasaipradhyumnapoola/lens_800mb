@@ -1,0 +1,448 @@
+{
+ "created_utc": "20261027T041404Z",
+ "minutes": 30.0,
+ "consent": "owner-approved real-screen run 2026-10-27",
+ "samples": 353,
+ "peak_working_set_mb": 637.0546875,
+ "peak_private_mb": 905.10546875,
+ "median_working_set_mb": 146.90625,
+ "first_quarter_median_ws_mb": 33.005859375,
+ "last_quarter_median_ws_mb": 144.25390625,
+ "mean_cpu_percent_of_one_core": 178.89721820809248,
+ "peak_by_process_mb": {
+  "lens-agent.exe": 10.3515625,
+  "lens-observer.exe": 38.8125,
+  "lens-ocr.exe": 506.87109375,
+  "lens-engine.exe": 244.80859375
+ },
+ "observed": 463,
+ "stored": 462,
+ "failed": 1,
+ "screen_observations": 462,
+ "capture_paths": {
+  "uia": 457,
+  "ocr": 5
+ },
+ "distinct_applications": 4,
+ "exact_duplicate_texts": 0,
+ "languages": {
+  "und-Latn": 462
+ },
+ "median_chars": 15528.0,
+ "embedded_sources": 366,
+ "recall_ms_p50": 1981.772599996475,
+ "recalls_answered": 3,
+ "recalls": 5,
+ "status_trace": [
+  {
+   "t": 25.3,
+   "observed": 13,
+   "stored": 13,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 55.6,
+   "observed": 27,
+   "stored": 27,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 85.9,
+   "observed": 44,
+   "stored": 44,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 116.3,
+   "observed": 64,
+   "stored": 64,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 146.6,
+   "observed": 84,
+   "stored": 84,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 176.9,
+   "observed": 105,
+   "stored": 105,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 207.1,
+   "observed": 125,
+   "stored": 125,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 237.5,
+   "observed": 146,
+   "stored": 145,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 267.8,
+   "observed": 166,
+   "stored": 166,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 298.3,
+   "observed": 186,
+   "stored": 185,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 328.7,
+   "observed": 205,
+   "stored": 205,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 359.1,
+   "observed": 224,
+   "stored": 224,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 389.7,
+   "observed": 244,
+   "stored": 244,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 420.2,
+   "observed": 263,
+   "stored": 263,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 450.8,
+   "observed": 283,
+   "stored": 283,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 481.3,
+   "observed": 303,
+   "stored": 303,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 511.6,
+   "observed": 323,
+   "stored": 322,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 542.2,
+   "observed": 342,
+   "stored": 342,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 572.6,
+   "observed": 362,
+   "stored": 362,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 602.9,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 633.6,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 664.4,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 695.0,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 725.5,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 755.8,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 786.6,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 817.5,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 848.3,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 879.0,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 909.5,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 940.2,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 970.9,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1001.4,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1032.2,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1063.2,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1093.9,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1125.1,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1156.4,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1186.9,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1218.4,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1249.3,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1280.5,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1311.7,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1342.8,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1373.5,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1404.9,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1435.6,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1467.1,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1498.0,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1528.9,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1559.9,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1590.8,
+   "observed": 367,
+   "stored": 366,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1621.3,
+   "observed": 371,
+   "stored": 370,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1651.7,
+   "observed": 390,
+   "stored": 390,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1682.2,
+   "observed": 410,
+   "stored": 410,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1713.0,
+   "observed": 430,
+   "stored": 430,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1743.5,
+   "observed": 449,
+   "stored": 449,
+   "failed": 0,
+   "observer_running": true
+  },
+  {
+   "t": 1773.9,
+   "observed": 460,
+   "stored": 459,
+   "failed": 1,
+   "observer_running": true
+  }
+ ],
+ "within_800MB": false,
+ "concurrent_load": "a CPU model-training job and other sessions were running on the same laptop",
+ "idle_after_ws_mb": 16.1640625,
+ "database_deleted": true
+}

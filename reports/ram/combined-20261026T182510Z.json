@@ -1,0 +1,79 @@
+{
+  "created_utc": "20261026T182510Z",
+  "limit_bytes": 800000000,
+  "note": "Observation (Milestone 3) does not exist yet; its share is not included.",
+  "runs": [
+    {
+      "scenario": "concurrent",
+      "wall_s": 3.160271499999908,
+      "peak_sum_working_set_bytes": 879022080,
+      "peak_sum_private_bytes": 995061760,
+      "per_process_os_peak_working_set_bytes": {
+        "retrieval": 407687168,
+        "asr_whisper_base": 165679104,
+        "ocr_ppocrv6": 44675072,
+        "asr_dolphin_zh": 448524288
+      },
+      "results": {
+        "ocr_ppocrv6": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        },
+        "asr_whisper_base": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": "load_backend: loaded CPU backend from D:\\Lens\\build\\engine\\Release\\ggml-cpu-cascadelake.dll"
+        },
+        "asr_dolphin_zh": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        },
+        "retrieval": {
+          "exit": 0,
+          "ok_lines": 15,
+          "stderr": ""
+        }
+      },
+      "within_limit_working_set": false,
+      "within_limit_private": false
+    },
+    {
+      "scenario": "serial",
+      "wall_s": 7.0120255000001634,
+      "peak_sum_working_set_bytes": 447770624,
+      "peak_sum_private_bytes": 439615488,
+      "per_process_os_peak_working_set_bytes": {
+        "retrieval": 407347200,
+        "asr_whisper_base": 165462016,
+        "asr_dolphin_zh": 447836160,
+        "ocr_ppocrv6": 44228608
+      },
+      "results": {
+        "retrieval": {
+          "exit": 0,
+          "ok_lines": 15,
+          "stderr": ""
+        },
+        "asr_whisper_base": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": "load_backend: loaded CPU backend from D:\\Lens\\build\\engine\\Release\\ggml-cpu-cascadelake.dll"
+        },
+        "asr_dolphin_zh": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        },
+        "ocr_ppocrv6": {
+          "exit": 0,
+          "ok_lines": 1,
+          "stderr": ""
+        }
+      },
+      "within_limit_working_set": true,
+      "within_limit_private": true
+    }
+  ]
+}
