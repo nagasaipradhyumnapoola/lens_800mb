@@ -1,0 +1,6 @@
+test_native_adapter_extracts_explicit_english_fields_without_executing_action (test_native_needle.NativeNeedle.test_native_adapter_extracts_explicit_english_fields_without_executing_action) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.702s
+
+OK

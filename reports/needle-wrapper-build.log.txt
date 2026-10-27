@@ -1,0 +1,4 @@
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  needle_main.cpp
+  lens-needle.vcxproj -> D:\Lens\build\engine\Release\lens-needle.exe

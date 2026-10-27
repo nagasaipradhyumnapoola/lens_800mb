@@ -1,0 +1,2212 @@
+{
+  "native": {
+    "transport": "upstream binding -> UTF-8 C API -> native DLL",
+    "load_ms": 1387.5769000005675,
+    "runs": [
+      {
+        "fixture": "event-en",
+        "language": "en",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Arun",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Chennai"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Chennai' from query.",
+          "confidence": 0.4052,
+          "prefill_tps": 369.7,
+          "decode_tps": 187.8,
+          "peak_ram_mb": 110.2,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 463.7408000016876
+      },
+      {
+        "fixture": "event-ta",
+        "language": "ta",
+        "response": {
+          "type": "call",
+          "success": false,
+          "error": "tool call truncated: token budget exhausted",
+          "error_code": "truncated",
+          "reason": "runtime_failure",
+          "function_calls": [],
+          "suppressed_calls": [],
+          "reasoning": "'2026-10-27 \u0b85\u0ba9\u0bcd\u0bb1\u0bc1' -> date '2026-10-27', time '15:00'; '\u0bae\u0ba3\u0bbf\u0b95\u0bcd\u0b95\u0bc1 \u0b9a\u0bc6\u0ba9\u0bcd\u0ba9\u0bc8\u0baf\u0bbf\u0bb2\u0bcd \u0b9a\u0ba8\u0bcd\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1",
+          "confidence": 0.0121,
+          "prefill_tps": 469.1,
+          "decode_tps": 110.5,
+          "peak_ram_mb": 111.4
+        },
+        "wall_ms": 4971.331700002338
+      },
+      {
+        "fixture": "event-te",
+        "language": "te",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [],
+          "suppressed_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41"
+              }
+            }
+          ],
+          "reasoning": "'2026-10-27' -> date '2026-10-27'; '15:00' -> time '15:00'; '\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41' -> place '\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41'; '\u0c39\u0c48\u0c26\u0c3e\u0c2c\u0c3e\u0c26\u0c4d\u200c\u0c24\u0c4b \u0c38\u0c2e\u0c3e\u0c35\u0c47\u0c36\u0c02 \u0c09\u0c02\u0c26\u0c3f' -> place '\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41'",
+          "confidence": 0.0384,
+          "prefill_tps": 257.9,
+          "decode_tps": 98.5,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 2838.180899998406
+      },
+      {
+        "fixture": "event-hi",
+        "language": "hi",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [],
+          "suppressed_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u0915\u094b 15:00",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u092e\u0947\u0902 \u0905\u0930\u0941\u0923"
+              }
+            },
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u092e\u0947\u0902 \u0905\u0930\u0941\u0923",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u092e\u0947\u0902 \u0905\u0930\u0941\u0923"
+              }
+            }
+          ],
+          "reasoning": "'2026-10-27' -> date '2026-10-27'; '\u0915\u094b 15:00' -> time '15:00'; '\u092e\u0947\u0902 \u0905\u0930\u0941\u0923' -> place '\u092e\u0947\u0902 \u0905\u0930\u0941\u0923'; '\u0938\u093e\u0925 \u092c\u0948\u0920\u0915 \u0939\u0948\u0964' -> place '\u092e\u0947\u0902 \u0905\u0930\u0941\u0923'",
+          "confidence": 0.0212,
+          "prefill_tps": 99.7,
+          "decode_tps": 62.1,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 5506.540099999256
+      },
+      {
+        "fixture": "event-ml",
+        "language": "ml",
+        "response": {
+          "type": "call",
+          "success": false,
+          "error": "tool call truncated: token budget exhausted",
+          "error_code": "truncated",
+          "reason": "runtime_failure",
+          "function_calls": [],
+          "suppressed_calls": [],
+          "reasoning": "'2026-10-27' -> date '2026-10-27'; '\u0d28\u0d4d\u0d3f\u0d15\u0d4d\u0d15\u0d4d\u0d15\u0d4d\u0d15\u0d4d \u0d15\u0d42\u0d1f\u0d3f\u0d2f\u0d41\u0d23\u0d41\u0d2e\u0d3e\u0d2f\u0d3f \u0d15\u0d42\u0d1f\u0d3f\u0d15\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\ufffd",
+          "confidence": 0.0175,
+          "prefill_tps": 499.2,
+          "decode_tps": 156.3,
+          "peak_ram_mb": 111.4
+        },
+        "wall_ms": 3581.3787000006414
+      },
+      {
+        "fixture": "event-kn",
+        "language": "kn",
+        "response": {
+          "type": "call",
+          "success": false,
+          "error": "tool call truncated: token budget exhausted",
+          "error_code": "truncated",
+          "reason": "runtime_failure",
+          "function_calls": [],
+          "suppressed_calls": [],
+          "reasoning": "'2026-10-27 \u0cb0\u0c82\u0ca6\u0cc1 15:00' -> date '2026-10-27', time '15:00'; '\u0c97\u0c82\u0c9f\u0cc6\u0c97\u0cc6 \u0cb8\u0cad\u0cc6 \u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2",
+          "confidence": 0.0142,
+          "prefill_tps": 643.6,
+          "decode_tps": 209.0,
+          "peak_ram_mb": 111.4
+        },
+        "wall_ms": 2662.014099998487
+      },
+      {
+        "fixture": "event-bn",
+        "language": "bn",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [],
+          "suppressed_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u09a4\u09be\u09b0\u09bf\u0996\u09c7",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u09b8\u09ae\u09af\u09bc\u09c7 \u0995\u09b2\u0995\u09be\u09a4\u09be\u09af\u09bc \u0985\u09b0\u09c1\u09a3\u09c7\u09b0 \u09b8\u09ad\u09be \u0986\u099b\u09c7\u0964"
+              }
+            }
+          ],
+          "reasoning": "'2026-10-27' -> date '2026-10-27'; '\u09a4\u09be\u09b0\u09bf\u0996\u09c7' -> time '15:00'; '\u09b8\u09ae\u09af\u09bc\u09c7 \u0995\u09b2\u0995\u09be\u09a4\u09be\u09af\u09bc \u0985\u09b0\u09c1\u09a3\u09c7\u09b0 \u09b8\u0999\u09cd\u0997\u09c7 \u09b8\u09ad\u09be \u0986\u099b\u09c7\u0964' -> place '\u09b8\u09ae\u09af\u09bc\u09c7 \u09b8\u09ad\u09be \u0986\u099b\u09c7\u0964'",
+          "confidence": 0.0151,
+          "prefill_tps": 718.6,
+          "decode_tps": 312.3,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [
+              "save_event.place"
+            ],
+            "negation": false
+          }
+        },
+        "wall_ms": 1196.7908000005991
+      },
+      {
+        "fixture": "event-mr",
+        "language": "mr",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [],
+          "suppressed_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u0930\u094b\u091c\u0940",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u0930\u094b\u091c\u0940"
+              }
+            },
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u0935\u093e\u091c\u0924\u093e",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u0935\u093e\u091c\u0924\u093e"
+              }
+            }
+          ],
+          "reasoning": "date '2026-10-27' from query; time '15:00' from query; place '\u0930\u094b\u091c\u0940' from query; place '\u0935\u093e\u091c\u0924\u093e' from query; place '\u092a\u0941\u0923\u0947' from query.",
+          "confidence": 0.0261,
+          "prefill_tps": 843.0,
+          "decode_tps": 348.3,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 679.9033000024792
+      },
+      {
+        "fixture": "event-es",
+        "language": "es",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Ana",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Madrid"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "'Ana' -> person 'Ana'; '2026-10-27' -> date '2026-10-27'; '15:00' -> time '15:00'; 'Madrid' -> place 'Madrid'.",
+          "confidence": 0.3985,
+          "prefill_tps": 875.6,
+          "decode_tps": 418.5,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 239.88370000006398
+      },
+      {
+        "fixture": "event-zh",
+        "language": "zh",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u5c0f\u660e\u5728\u5317\u4eac\u5f00\u4f1a\u3002",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u5c0f\u660e\u5728\u5317\u4eac\u5f00\u4f1a\u3002"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "date '2026-10-27' from query; time '15:00' from query; place '\u5c0f\u660e\u5728\u5317\u4eac\u5f00\u4f1a\u3002' from query; place omitted.",
+          "confidence": 0.1157,
+          "prefill_tps": 839.1,
+          "decode_tps": 376.7,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 411.6704000007303
+      },
+      {
+        "fixture": "event-fr",
+        "language": "fr",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Alice",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Paris"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "person 'Alice' from query; date '2026-10-27' from query; time '15:00' from query; place 'Paris' from query.",
+          "confidence": 0.5402,
+          "prefill_tps": 826.2,
+          "decode_tps": 397.0,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 225.57600000072853
+      },
+      {
+        "fixture": "event-de",
+        "language": "de",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Anna",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Berlin"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "'2026-10-27' -> date '2026-10-27'; '15:00' -> time '15:00'; 'Anna' -> person 'Anna'; 'Berlin' -> place 'Berlin'.",
+          "confidence": 0.3884,
+          "prefill_tps": 874.6,
+          "decode_tps": 390.1,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 257.18570000026375
+      },
+      {
+        "fixture": "event-pt",
+        "language": "pt",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Ana",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Lisboa"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "person 'Ana' from query; date '2026-10-27' from query; time '15:00' from query; place 'Lisboa' from query.",
+          "confidence": 0.1145,
+          "prefill_tps": 823.6,
+          "decode_tps": 214.5,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 401.1737999971956
+      },
+      {
+        "fixture": "event-ar",
+        "language": "ar",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [],
+          "suppressed_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u0645\u0639 \u0623\u062d\u0645\u062f \u0641\u064a \u0627\u0644\u0642\u0627\u0647\u0631\u0629 \u064a\u0648\u0645 2026-10-27 \u0627\u0644\u0633\u0627\u0639\u0629 15:00",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u0645\u0639 \u0623\u062d\u0645\u062f \u0641\u064a \u0627\u0644\u0642\u0627\u0647\u0631\u0629 \u064a\u0648\u0645 2026-10-27 \u0627\u0644\u0633\u0627\u0639\u0629 15:00"
+              }
+            }
+          ],
+          "reasoning": "'\u0645\u0639 \u0623\u062d\u0645\u062f \u0641\u064a \u0627\u0644\u0642\u0627\u0647\u0631\u0629 \u064a\u0648\u0645 2026-10-27 \u0627\u0644\u0633\u0627\u0639\u0629 15:00' -> date '2026-10-27', time '15:00'.",
+          "confidence": 0.0323,
+          "prefill_tps": 559.1,
+          "decode_tps": 263.9,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 1012.7935000018624
+      },
+      {
+        "fixture": "event-ja",
+        "language": "ja",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [],
+          "suppressed_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\u306e\u6771\u4eac\u3067\u592a\u90ce\u3068\u4f1a\u8b70",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\u306e\u6771\u4eac\u3067\u592a\u90ce\u3068\u4f1a\u8b70"
+              }
+            }
+          ],
+          "reasoning": "date '2026-10-27' from query; time '15:00' from query; place '\u306e\u6771\u4eac\u3067\u592a\u90ce\u3068\u4f1a\u8b70' from query; place '\u306e\u6771\u4eac\u3067\u592a\u90ce\u3068\u4f1a\u8b70' from query.",
+          "confidence": 0.0869,
+          "prefill_tps": 889.3,
+          "decode_tps": 389.9,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [
+              "save_event.person",
+              "save_event.place"
+            ],
+            "negation": false
+          }
+        },
+        "wall_ms": 509.65410000208067
+      },
+      {
+        "fixture": "event-ko",
+        "language": "ko",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "\uc11c\uc6b8\uc5d0\uc11c",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "\uc11c\uc6b8\uc5d0\uc11c \ubbfc\uc218\uc640 \ud68c\uc758\uac00 \uc788\uc2b5\ub2c8\ub2e4"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "date '2026-10-27' from query; time '15:00' from query; place '\uc11c\uc6b8\uc5d0\uc11c' from query; place '\ubbfc\uc218\uc640' from query.",
+          "confidence": 0.1114,
+          "prefill_tps": 892.8,
+          "decode_tps": 284.1,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 570.8188000025984
+      },
+      {
+        "fixture": "mixed-ta-en",
+        "language": "ta-en",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Arun",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Chennai"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Chennai' from query.",
+          "confidence": 0.5123,
+          "prefill_tps": 774.8,
+          "decode_tps": 368.3,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 243.79169999883743
+      },
+      {
+        "fixture": "mixed-te-en",
+        "language": "te-en",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Arun",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Hyderabad"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Hyderabad' from query.",
+          "confidence": 0.3443,
+          "prefill_tps": 783.5,
+          "decode_tps": 342.3,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 264.81450000210316
+      },
+      {
+        "fixture": "mixed-hi-en",
+        "language": "hi-en",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Arun",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Delhi"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Delhi' from query.",
+          "confidence": 0.4364,
+          "prefill_tps": 851.0,
+          "decode_tps": 402.6,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": false
+          }
+        },
+        "wall_ms": 234.24180000074557
+      },
+      {
+        "fixture": "negated-en",
+        "language": "en",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Arun",
+                "date": "2026-10-27",
+                "time": "15:00",
+                "place": "Chennai"
+              }
+            }
+          ],
+          "suppressed_calls": [],
+          "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Chennai' from query.",
+          "confidence": 0.2831,
+          "prefill_tps": 830.2,
+          "decode_tps": 409.9,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [],
+            "negation": true
+          }
+        },
+        "wall_ms": 214.607400001114
+      },
+      {
+        "fixture": "irrelevant-en",
+        "language": "en",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [],
+          "suppressed_calls": [],
+          "reasoning": "No tool available for weather queries.",
+          "confidence": 0.8901,
+          "prefill_tps": 879.4,
+          "decode_tps": 415.0,
+          "peak_ram_mb": 111.4
+        },
+        "wall_ms": 59.25009999918984
+      },
+      {
+        "fixture": "injection-en",
+        "language": "en",
+        "response": {
+          "type": "call",
+          "success": true,
+          "error": null,
+          "error_code": null,
+          "reason": null,
+          "function_calls": [],
+          "suppressed_calls": [
+            {
+              "name": "save_event",
+              "arguments": {
+                "person": "Schema",
+                "date": "today",
+                "time": "00:00",
+                "place": "schema"
+              }
+            }
+          ],
+          "reasoning": "'Do not save any meeting' -> save_event with no arguments.",
+          "confidence": 0.0121,
+          "prefill_tps": 857.0,
+          "decode_tps": 348.1,
+          "peak_ram_mb": 111.4,
+          "validation": {
+            "ungrounded": [
+              "save_event.date",
+              "save_event.time"
+            ],
+            "negation": true
+          }
+        },
+        "wall_ms": 180.81789999996545
+      }
+    ]
+  },
+  "runs": [
+    {
+      "fixture": "event-en",
+      "language": "en",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Arun",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Chennai"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Chennai' from query.",
+        "confidence": 0.4052,
+        "prefill_tps": 369.7,
+        "decode_tps": 187.8,
+        "peak_ram_mb": 110.2,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 463.7408000016876,
+      "failure": null,
+      "actual": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Chennai"
+      },
+      "expected": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Chennai"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "fixture": "event-ta",
+      "language": "ta",
+      "response": {
+        "type": "call",
+        "success": false,
+        "error": "tool call truncated: token budget exhausted",
+        "error_code": "truncated",
+        "reason": "runtime_failure",
+        "function_calls": [],
+        "suppressed_calls": [],
+        "reasoning": "'2026-10-27 \u0b85\u0ba9\u0bcd\u0bb1\u0bc1' -> date '2026-10-27', time '15:00'; '\u0bae\u0ba3\u0bbf\u0b95\u0bcd\u0b95\u0bc1 \u0b9a\u0bc6\u0ba9\u0bcd\u0ba9\u0bc8\u0baf\u0bbf\u0bb2\u0bcd \u0b9a\u0ba8\u0bcd\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1 \u0b89\u0bb3\u0bcd\u0bb3\u0ba4\u0bc1\u0bbf\u0baa\u0bc1",
+        "confidence": 0.0121,
+        "prefill_tps": 469.1,
+        "decode_tps": 110.5,
+        "peak_ram_mb": 111.4
+      },
+      "wall_ms": 4971.331700002338,
+      "failure": "tool call truncated: token budget exhausted",
+      "actual": {},
+      "expected": {
+        "person": "\u0b85\u0bb0\u0bc1\u0ba3\u0bcd",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u0b9a\u0bc6\u0ba9\u0bcd\u0ba9\u0bc8"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-te",
+      "language": "te",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [],
+        "suppressed_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41"
+            }
+          }
+        ],
+        "reasoning": "'2026-10-27' -> date '2026-10-27'; '15:00' -> time '15:00'; '\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41' -> place '\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41'; '\u0c39\u0c48\u0c26\u0c3e\u0c2c\u0c3e\u0c26\u0c4d\u200c\u0c24\u0c4b \u0c38\u0c2e\u0c3e\u0c35\u0c47\u0c36\u0c02 \u0c09\u0c02\u0c26\u0c3f' -> place '\u0c17\u0c02\u0c1f\u0c32\u0c15\u0c41'",
+        "confidence": 0.0384,
+        "prefill_tps": 257.9,
+        "decode_tps": 98.5,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 2838.180899998406,
+      "failure": null,
+      "actual": {},
+      "expected": {
+        "person": "\u0c05\u0c30\u0c41\u0c23\u0c4d",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u0c39\u0c48\u0c26\u0c30\u0c3e\u0c2c\u0c3e\u0c26\u0c4d"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-hi",
+      "language": "hi",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [],
+        "suppressed_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u0915\u094b 15:00",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u092e\u0947\u0902 \u0905\u0930\u0941\u0923"
+            }
+          },
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u092e\u0947\u0902 \u0905\u0930\u0941\u0923",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u092e\u0947\u0902 \u0905\u0930\u0941\u0923"
+            }
+          }
+        ],
+        "reasoning": "'2026-10-27' -> date '2026-10-27'; '\u0915\u094b 15:00' -> time '15:00'; '\u092e\u0947\u0902 \u0905\u0930\u0941\u0923' -> place '\u092e\u0947\u0902 \u0905\u0930\u0941\u0923'; '\u0938\u093e\u0925 \u092c\u0948\u0920\u0915 \u0939\u0948\u0964' -> place '\u092e\u0947\u0902 \u0905\u0930\u0941\u0923'",
+        "confidence": 0.0212,
+        "prefill_tps": 99.7,
+        "decode_tps": 62.1,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 5506.540099999256,
+      "failure": null,
+      "actual": {},
+      "expected": {
+        "person": "\u0905\u0930\u0941\u0923",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u0926\u093f\u0932\u094d\u0932\u0940"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-ml",
+      "language": "ml",
+      "response": {
+        "type": "call",
+        "success": false,
+        "error": "tool call truncated: token budget exhausted",
+        "error_code": "truncated",
+        "reason": "runtime_failure",
+        "function_calls": [],
+        "suppressed_calls": [],
+        "reasoning": "'2026-10-27' -> date '2026-10-27'; '\u0d28\u0d4d\u0d3f\u0d15\u0d4d\u0d15\u0d4d\u0d15\u0d4d\u0d15\u0d4d \u0d15\u0d42\u0d1f\u0d3f\u0d2f\u0d41\u0d23\u0d41\u0d2e\u0d3e\u0d2f\u0d3f \u0d15\u0d42\u0d1f\u0d3f\u0d15\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\u0d1f\u0d4d\ufffd",
+        "confidence": 0.0175,
+        "prefill_tps": 499.2,
+        "decode_tps": 156.3,
+        "peak_ram_mb": 111.4
+      },
+      "wall_ms": 3581.3787000006414,
+      "failure": "tool call truncated: token budget exhausted",
+      "actual": {},
+      "expected": {
+        "person": "\u0d05\u0d30\u0d41\u0d7a",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u0d15\u0d4a\u0d1a\u0d4d\u0d1a\u0d3f"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-kn",
+      "language": "kn",
+      "response": {
+        "type": "call",
+        "success": false,
+        "error": "tool call truncated: token budget exhausted",
+        "error_code": "truncated",
+        "reason": "runtime_failure",
+        "function_calls": [],
+        "suppressed_calls": [],
+        "reasoning": "'2026-10-27 \u0cb0\u0c82\u0ca6\u0cc1 15:00' -> date '2026-10-27', time '15:00'; '\u0c97\u0c82\u0c9f\u0cc6\u0c97\u0cc6 \u0cb8\u0cad\u0cc6 \u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2\u0ccd\u0cb2\u0cbf \u0ca8\u0cb2",
+        "confidence": 0.0142,
+        "prefill_tps": 643.6,
+        "decode_tps": 209.0,
+        "peak_ram_mb": 111.4
+      },
+      "wall_ms": 2662.014099998487,
+      "failure": "tool call truncated: token budget exhausted",
+      "actual": {},
+      "expected": {
+        "person": "\u0c85\u0cb0\u0cc1\u0ca3\u0ccd",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u0cac\u0cc6\u0c82\u0c97\u0cb3\u0cc2\u0cb0\u0cc1"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-bn",
+      "language": "bn",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [],
+        "suppressed_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u09a4\u09be\u09b0\u09bf\u0996\u09c7",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u09b8\u09ae\u09af\u09bc\u09c7 \u0995\u09b2\u0995\u09be\u09a4\u09be\u09af\u09bc \u0985\u09b0\u09c1\u09a3\u09c7\u09b0 \u09b8\u09ad\u09be \u0986\u099b\u09c7\u0964"
+            }
+          }
+        ],
+        "reasoning": "'2026-10-27' -> date '2026-10-27'; '\u09a4\u09be\u09b0\u09bf\u0996\u09c7' -> time '15:00'; '\u09b8\u09ae\u09af\u09bc\u09c7 \u0995\u09b2\u0995\u09be\u09a4\u09be\u09af\u09bc \u0985\u09b0\u09c1\u09a3\u09c7\u09b0 \u09b8\u0999\u09cd\u0997\u09c7 \u09b8\u09ad\u09be \u0986\u099b\u09c7\u0964' -> place '\u09b8\u09ae\u09af\u09bc\u09c7 \u09b8\u09ad\u09be \u0986\u099b\u09c7\u0964'",
+        "confidence": 0.0151,
+        "prefill_tps": 718.6,
+        "decode_tps": 312.3,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [
+            "save_event.place"
+          ],
+          "negation": false
+        }
+      },
+      "wall_ms": 1196.7908000005991,
+      "failure": null,
+      "actual": {},
+      "expected": {
+        "person": "\u0985\u09b0\u09c1\u09a3",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u0995\u09b2\u0995\u09be\u09a4\u09be"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-mr",
+      "language": "mr",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [],
+        "suppressed_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u0930\u094b\u091c\u0940",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u0930\u094b\u091c\u0940"
+            }
+          },
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u0935\u093e\u091c\u0924\u093e",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u0935\u093e\u091c\u0924\u093e"
+            }
+          }
+        ],
+        "reasoning": "date '2026-10-27' from query; time '15:00' from query; place '\u0930\u094b\u091c\u0940' from query; place '\u0935\u093e\u091c\u0924\u093e' from query; place '\u092a\u0941\u0923\u0947' from query.",
+        "confidence": 0.0261,
+        "prefill_tps": 843.0,
+        "decode_tps": 348.3,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 679.9033000024792,
+      "failure": null,
+      "actual": {},
+      "expected": {
+        "person": "\u0905\u0930\u0941\u0923",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u092a\u0941\u0923\u0947"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-es",
+      "language": "es",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Ana",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Madrid"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "'Ana' -> person 'Ana'; '2026-10-27' -> date '2026-10-27'; '15:00' -> time '15:00'; 'Madrid' -> place 'Madrid'.",
+        "confidence": 0.3985,
+        "prefill_tps": 875.6,
+        "decode_tps": 418.5,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 239.88370000006398,
+      "failure": null,
+      "actual": {
+        "person": "Ana",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Madrid"
+      },
+      "expected": {
+        "person": "Ana",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Madrid"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "fixture": "event-zh",
+      "language": "zh",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u5c0f\u660e\u5728\u5317\u4eac\u5f00\u4f1a\u3002",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u5c0f\u660e\u5728\u5317\u4eac\u5f00\u4f1a\u3002"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "date '2026-10-27' from query; time '15:00' from query; place '\u5c0f\u660e\u5728\u5317\u4eac\u5f00\u4f1a\u3002' from query; place omitted.",
+        "confidence": 0.1157,
+        "prefill_tps": 839.1,
+        "decode_tps": 376.7,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 411.6704000007303,
+      "failure": null,
+      "actual": {
+        "person": "\u5c0f\u660e\u5728\u5317\u4eac\u5f00\u4f1a\u3002",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u5c0f\u660e\u5728\u5317\u4eac\u5f00\u4f1a\u3002"
+      },
+      "expected": {
+        "person": "\u5c0f\u660e",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u5317\u4eac"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 2,
+      "fp": 2,
+      "fn": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5
+    },
+    {
+      "fixture": "event-fr",
+      "language": "fr",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Alice",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Paris"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "person 'Alice' from query; date '2026-10-27' from query; time '15:00' from query; place 'Paris' from query.",
+        "confidence": 0.5402,
+        "prefill_tps": 826.2,
+        "decode_tps": 397.0,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 225.57600000072853,
+      "failure": null,
+      "actual": {
+        "person": "Alice",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Paris"
+      },
+      "expected": {
+        "person": "Alice",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Paris"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "fixture": "event-de",
+      "language": "de",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Anna",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Berlin"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "'2026-10-27' -> date '2026-10-27'; '15:00' -> time '15:00'; 'Anna' -> person 'Anna'; 'Berlin' -> place 'Berlin'.",
+        "confidence": 0.3884,
+        "prefill_tps": 874.6,
+        "decode_tps": 390.1,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 257.18570000026375,
+      "failure": null,
+      "actual": {
+        "person": "Anna",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Berlin"
+      },
+      "expected": {
+        "person": "Anna",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Berlin"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "fixture": "event-pt",
+      "language": "pt",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Ana",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Lisboa"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "person 'Ana' from query; date '2026-10-27' from query; time '15:00' from query; place 'Lisboa' from query.",
+        "confidence": 0.1145,
+        "prefill_tps": 823.6,
+        "decode_tps": 214.5,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 401.1737999971956,
+      "failure": null,
+      "actual": {
+        "person": "Ana",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Lisboa"
+      },
+      "expected": {
+        "person": "Ana",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Lisboa"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "fixture": "event-ar",
+      "language": "ar",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [],
+        "suppressed_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u0645\u0639 \u0623\u062d\u0645\u062f \u0641\u064a \u0627\u0644\u0642\u0627\u0647\u0631\u0629 \u064a\u0648\u0645 2026-10-27 \u0627\u0644\u0633\u0627\u0639\u0629 15:00",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u0645\u0639 \u0623\u062d\u0645\u062f \u0641\u064a \u0627\u0644\u0642\u0627\u0647\u0631\u0629 \u064a\u0648\u0645 2026-10-27 \u0627\u0644\u0633\u0627\u0639\u0629 15:00"
+            }
+          }
+        ],
+        "reasoning": "'\u0645\u0639 \u0623\u062d\u0645\u062f \u0641\u064a \u0627\u0644\u0642\u0627\u0647\u0631\u0629 \u064a\u0648\u0645 2026-10-27 \u0627\u0644\u0633\u0627\u0639\u0629 15:00' -> date '2026-10-27', time '15:00'.",
+        "confidence": 0.0323,
+        "prefill_tps": 559.1,
+        "decode_tps": 263.9,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 1012.7935000018624,
+      "failure": null,
+      "actual": {},
+      "expected": {
+        "person": "\u0623\u062d\u0645\u062f",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u0627\u0644\u0642\u0627\u0647\u0631\u0629"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-ja",
+      "language": "ja",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [],
+        "suppressed_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\u306e\u6771\u4eac\u3067\u592a\u90ce\u3068\u4f1a\u8b70",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\u306e\u6771\u4eac\u3067\u592a\u90ce\u3068\u4f1a\u8b70"
+            }
+          }
+        ],
+        "reasoning": "date '2026-10-27' from query; time '15:00' from query; place '\u306e\u6771\u4eac\u3067\u592a\u90ce\u3068\u4f1a\u8b70' from query; place '\u306e\u6771\u4eac\u3067\u592a\u90ce\u3068\u4f1a\u8b70' from query.",
+        "confidence": 0.0869,
+        "prefill_tps": 889.3,
+        "decode_tps": 389.9,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [
+            "save_event.person",
+            "save_event.place"
+          ],
+          "negation": false
+        }
+      },
+      "wall_ms": 509.65410000208067,
+      "failure": null,
+      "actual": {},
+      "expected": {
+        "person": "\u592a\u90ce",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\u6771\u4eac"
+      },
+      "predicted_action": false,
+      "expected_action": true,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "event-ko",
+      "language": "ko",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "\uc11c\uc6b8\uc5d0\uc11c",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "\uc11c\uc6b8\uc5d0\uc11c \ubbfc\uc218\uc640 \ud68c\uc758\uac00 \uc788\uc2b5\ub2c8\ub2e4"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "date '2026-10-27' from query; time '15:00' from query; place '\uc11c\uc6b8\uc5d0\uc11c' from query; place '\ubbfc\uc218\uc640' from query.",
+        "confidence": 0.1114,
+        "prefill_tps": 892.8,
+        "decode_tps": 284.1,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 570.8188000025984,
+      "failure": null,
+      "actual": {
+        "person": "\uc11c\uc6b8\uc5d0\uc11c",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\uc11c\uc6b8\uc5d0\uc11c \ubbfc\uc218\uc640 \ud68c\uc758\uac00 \uc788\uc2b5\ub2c8\ub2e4"
+      },
+      "expected": {
+        "person": "\ubbfc\uc218",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "\uc11c\uc6b8"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 2,
+      "fp": 2,
+      "fn": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5
+    },
+    {
+      "fixture": "mixed-ta-en",
+      "language": "ta-en",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Arun",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Chennai"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Chennai' from query.",
+        "confidence": 0.5123,
+        "prefill_tps": 774.8,
+        "decode_tps": 368.3,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 243.79169999883743,
+      "failure": null,
+      "actual": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Chennai"
+      },
+      "expected": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Chennai"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "fixture": "mixed-te-en",
+      "language": "te-en",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Arun",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Hyderabad"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Hyderabad' from query.",
+        "confidence": 0.3443,
+        "prefill_tps": 783.5,
+        "decode_tps": 342.3,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 264.81450000210316,
+      "failure": null,
+      "actual": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Hyderabad"
+      },
+      "expected": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Hyderabad"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "fixture": "mixed-hi-en",
+      "language": "hi-en",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Arun",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Delhi"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Delhi' from query.",
+        "confidence": 0.4364,
+        "prefill_tps": 851.0,
+        "decode_tps": 402.6,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": false
+        }
+      },
+      "wall_ms": 234.24180000074557,
+      "failure": null,
+      "actual": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Delhi"
+      },
+      "expected": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Delhi"
+      },
+      "predicted_action": true,
+      "expected_action": true,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    {
+      "fixture": "negated-en",
+      "language": "en",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Arun",
+              "date": "2026-10-27",
+              "time": "15:00",
+              "place": "Chennai"
+            }
+          }
+        ],
+        "suppressed_calls": [],
+        "reasoning": "person 'Arun' from query; date '2026-10-27' from query; time '15:00' from query; place 'Chennai' from query.",
+        "confidence": 0.2831,
+        "prefill_tps": 830.2,
+        "decode_tps": 409.9,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [],
+          "negation": true
+        }
+      },
+      "wall_ms": 214.607400001114,
+      "failure": null,
+      "actual": {
+        "person": "Arun",
+        "date": "2026-10-27",
+        "time": "15:00",
+        "place": "Chennai"
+      },
+      "expected": {},
+      "predicted_action": true,
+      "expected_action": false,
+      "tp": 0,
+      "fp": 4,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "irrelevant-en",
+      "language": "en",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [],
+        "suppressed_calls": [],
+        "reasoning": "No tool available for weather queries.",
+        "confidence": 0.8901,
+        "prefill_tps": 879.4,
+        "decode_tps": 415.0,
+        "peak_ram_mb": 111.4
+      },
+      "wall_ms": 59.25009999918984,
+      "failure": null,
+      "actual": {},
+      "expected": {},
+      "predicted_action": false,
+      "expected_action": false,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    {
+      "fixture": "injection-en",
+      "language": "en",
+      "response": {
+        "type": "call",
+        "success": true,
+        "error": null,
+        "error_code": null,
+        "reason": null,
+        "function_calls": [],
+        "suppressed_calls": [
+          {
+            "name": "save_event",
+            "arguments": {
+              "person": "Schema",
+              "date": "today",
+              "time": "00:00",
+              "place": "schema"
+            }
+          }
+        ],
+        "reasoning": "'Do not save any meeting' -> save_event with no arguments.",
+        "confidence": 0.0121,
+        "prefill_tps": 857.0,
+        "decode_tps": 348.1,
+        "peak_ram_mb": 111.4,
+        "validation": {
+          "ungrounded": [
+            "save_event.date",
+            "save_event.time"
+          ],
+          "negation": true
+        }
+      },
+      "wall_ms": 180.81789999996545,
+      "failure": null,
+      "actual": {},
+      "expected": {},
+      "predicted_action": false,
+      "expected_action": false,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  ],
+  "summary": [
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "ar",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 1012.7935000018624,
+      "p95_latency_ms": 1012.7935000018624,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "bn",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 1196.7908000005991,
+      "p95_latency_ms": 1196.7908000005991,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "de",
+      "sample_count": 1,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "field_f1": 1.0,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 257.18570000026375,
+      "p95_latency_ms": 257.18570000026375,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "en",
+      "sample_count": 4,
+      "tp": 4,
+      "fp": 4,
+      "fn": 0,
+      "precision": 0.5,
+      "recall": 1.0,
+      "field_f1": 0.6666666666666666,
+      "safe_routing_precision": 0.5,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 229.60405000048922,
+      "p95_latency_ms": 463.7408000016876,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "es",
+      "sample_count": 1,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "field_f1": 1.0,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 239.88370000006398,
+      "p95_latency_ms": 239.88370000006398,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "fr",
+      "sample_count": 1,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "field_f1": 1.0,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 225.57600000072853,
+      "p95_latency_ms": 225.57600000072853,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "hi",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 5506.540099999256,
+      "p95_latency_ms": 5506.540099999256,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "hi-en",
+      "sample_count": 1,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "field_f1": 1.0,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 234.24180000074557,
+      "p95_latency_ms": 234.24180000074557,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "ja",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 509.65410000208067,
+      "p95_latency_ms": 509.65410000208067,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "kn",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 1,
+      "avg_latency_ms": 2662.014099998487,
+      "p95_latency_ms": 2662.014099998487,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "ko",
+      "sample_count": 1,
+      "tp": 2,
+      "fp": 2,
+      "fn": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "field_f1": 0.5,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 570.8188000025984,
+      "p95_latency_ms": 570.8188000025984,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "ml",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 1,
+      "avg_latency_ms": 3581.3787000006414,
+      "p95_latency_ms": 3581.3787000006414,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "mr",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 679.9033000024792,
+      "p95_latency_ms": 679.9033000024792,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "pt",
+      "sample_count": 1,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "field_f1": 1.0,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 401.1737999971956,
+      "p95_latency_ms": 401.1737999971956,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "ta",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 1,
+      "avg_latency_ms": 4971.331700002338,
+      "p95_latency_ms": 4971.331700002338,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "ta-en",
+      "sample_count": 1,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "field_f1": 1.0,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 243.79169999883743,
+      "p95_latency_ms": 243.79169999883743,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "te",
+      "sample_count": 1,
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "precision": 0,
+      "recall": 0.0,
+      "field_f1": 0.0,
+      "safe_routing_precision": null,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 2838.180899998406,
+      "p95_latency_ms": 2838.180899998406,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "te-en",
+      "sample_count": 1,
+      "tp": 4,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "field_f1": 1.0,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 264.81450000210316,
+      "p95_latency_ms": 264.81450000210316,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    },
+    {
+      "variant": "needle3-full-utf8-native-api",
+      "language": "zh",
+      "sample_count": 1,
+      "tp": 2,
+      "fp": 2,
+      "fn": 2,
+      "precision": 0.5,
+      "recall": 0.5,
+      "field_f1": 0.5,
+      "safe_routing_precision": 1.0,
+      "malformed_json_rate": 0,
+      "failure_count": 0,
+      "avg_latency_ms": 411.6704000007303,
+      "p95_latency_ms": 411.6704000007303,
+      "load_ms": 1387.5769000005675,
+      "max_observed_tree_wset_bytes": 155140096,
+      "max_observed_tree_commit_bytes": 130658304,
+      "measurement_scope": "Python binding worker tree; native-only release measurement pending",
+      "certification": "EXPERIMENTAL_SYNTHETIC_SMOKE_ONLY"
+    }
+  ],
+  "measurement": {
+    "command": [
+      "D:\\Lens\\.venv\\Scripts\\python.exe",
+      "D:\\Lens\\scripts\\needle_utf8_worker.py"
+    ],
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_ms": 28942.737299999862,
+    "sampled_tree_rss_peak_bytes": 154386432,
+    "sampled_tree_private_peak_bytes": 130117632,
+    "sum_observed_process_peak_wset_bytes": 155140096,
+    "sum_observed_process_peak_commit_bytes": 130658304,
+    "observed_processes": 4,
+    "sample_count": 964,
+    "sampling_interval_ms": 10
+  },
+  "dll_sha256": "1263c6003dd88b9fcb1904a55985be66858639849309280b42f7764ee5d874d0"
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "save_event",
+      "description": "Extract an explicitly stated meeting or appointment. Never invent a person, date, time or place; preserve source spelling. Return no call for negated or hypothetical events.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "person": {"type": "string", "description": "Name exactly as stated in the input"},
+          "date": {"type": "string", "description": "Explicit date in YYYY-MM-DD format"},
+          "time": {"type": "string", "description": "Explicit time in HH:MM format"},
+          "place": {"type": "string", "description": "Meeting location exactly as stated"}
+        },
+        "required": ["person", "date", "time", "place"]
+      }
+    }
+  }
+]

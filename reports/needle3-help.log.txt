@@ -1,0 +1,20 @@
+usage: D:\Lens\models\Cactus-Compute--needle3\windows-x86_64\needle.exe [--model needle3.cact] [--model whistle.cact] [--tools tools.json] [--system system.txt] [--prompt "..."] [--audio clip.wav] [--serve] [--port N] [--max N] [--depth N] [--threads N] [--forced] [--fail-input-overflow] [--tool-index path]
+  --model file.cact        a .cact to load, text or speech; repeat it to load both
+  --tools tools.json       the functions the assistant may call, as a JSON array
+  --tool-index path        file holding this tool set's embeddings, reused when the schemas match
+  --system system.txt      session facts like date, locale, or device
+  --prompt "..."           answer one query and exit
+  --max N                  response token limit (default 512)
+  --depth N                endpoint-preserving ladder depth (2..full; default full)
+  --threads N              worker threads (default: the device's fast cores, at most 4)
+  --forced                 benchmark mode: always dispatch a call when tools are offered
+  --fail-input-overflow    refuse a turn that would not fit the context window instead of trimming it
+  --serve [--port N]       run an HTTP server (default port 8080): POST /complete {"input":"..."}, POST /reset
+                           turns accumulate as one conversation; POST /reset starts a new one
+  --audio clip.wav         RIFF WAV to answer or transcribe: 8/16/24/32-bit PCM or float, any channels and rate
+  --audio-language en      force the language (default: detect it)
+  --audio-keywords file    words and phrases to favour, one per line
+  --audio-word-timestamps  add each word's start, end and probability to the JSON
+  --audio-depth N          endpoint-preserving ladder depth of the speech decoder (2..full; default full)
+  --audio-stream           transcribe the clip live: feed it chunk by chunk and print every piece as it is committed
+  --audio-chunk S          seconds of audio per --audio-stream chunk (default 1)
