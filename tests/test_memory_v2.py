@@ -137,7 +137,7 @@ class MemoryV2(unittest.TestCase):
             engine(db, [legacy])
             schema_sql_for_synthetic_db(db, 'DROP TABLE IF EXISTS source_metadata; DROP TABLE IF EXISTS schema_migrations; PRAGMA user_version=1;')
             rows = engine(db, [{'op': 'stats'}, {'op': 'search', 'query': 'Orion'}])
-            self.assertEqual(rows[0]['schema_version'], 8)
+            self.assertEqual(rows[0]['schema_version'], 9)
             source = rows[1]['sources'][0]
             self.assertEqual(source['text'], legacy['text'])
             self.assertIsNone(source['original_timestamp'])

@@ -36,7 +36,7 @@ class TextCompression(unittest.TestCase):
             db=Path(tmp)/'m.db'
             rows=run(db,[record(1,text),record(2,short),{'op':'stats'},{'op':'find_source','id':'c-0001'},
                          {'op':'search','query':'Zephyrine settlement'},{'op':'search','query':'9 December'}])
-            stats=rows[2];self.assertEqual(stats['schema_version'],8);self.assertEqual(stats['compressed_sources'],1)
+            stats=rows[2];self.assertEqual(stats['schema_version'],9);self.assertEqual(stats['compressed_sources'],1)
             self.assertLess(stats['compressed_text_bytes'],len(text.encode())*0.85)
             self.assertEqual(json.dumps(rows[3]).count('Zephyrine settlement'),1)
             src=rows[3].get('source') or rows[3].get('sources',[None])[0];self.assertEqual(src['text'],text)

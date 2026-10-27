@@ -245,12 +245,12 @@ class Lifecycle(unittest.TestCase):
                                            'DROP TABLE IF EXISTS extraction_state; DROP TABLE IF EXISTS entity_mentions; DROP TABLE IF EXISTS entity_aliases;'
                                            'DROP TABLE IF EXISTS entities; DELETE FROM schema_migrations WHERE version=8; PRAGMA user_version=7;')
             r=run(db,[{'op':'stats'},{'op':'consolidate'},{'op':'entities'}])
-            self.assertEqual(r[0]['schema_version'],8);self.assertEqual(r[0]['entity_count'],0)
+            self.assertEqual(r[0]['schema_version'],9);self.assertEqual(r[0]['entity_count'],0)
             self.assertEqual(r[1]['memory']['sources_extracted'],4);self.assertFalse(r[2]['not_found'])
             # Re-running the v8 migration on a current database (version reset) keeps all derived memory.
             schema_sql_for_synthetic_db(db,'PRAGMA user_version=7;')
             again=run(db,[{'op':'stats'},{'op':'entities'},{'op':'consolidate'}])
-            self.assertEqual(again[0]['schema_version'],8);self.assertEqual(again[1]['entities'],r[2]['entities'])
+            self.assertEqual(again[0]['schema_version'],9);self.assertEqual(again[1]['entities'],r[2]['entities'])
             self.assertEqual(again[2]['memory']['sources_extracted'],0)
 
 

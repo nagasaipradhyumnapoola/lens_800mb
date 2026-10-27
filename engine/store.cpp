@@ -6,6 +6,8 @@
 #include "text_codec.hpp"
 #include "episodes.hpp"
 #include "memory_layers.hpp"
+#include "lifecycle.hpp"
+#include "user_memory.hpp"
 #include "../adapters/windows/key_store.hpp"
 #include <sqlcipher/sqlite3.h>
 #include <openssl/evp.h>
@@ -36,7 +38,31 @@ std::string canonical_source_hash(const json& value){
 }
 }
 
-Store::Store(const std::filesystem::path& path,EmbedderConfig embedding,RerankerConfig reranking,RerankerConfig verification):codec_(std::make_unique<TextCodec>()),embedding_(std::move(embedding)),reranking_(std::move(reranking)),verification_(std::move(verification)) {
+Store::Store(const std::filesystem::path& path,EmbedderConfig embedding,RerankerConfig reranking,RerankerConfig verification):codec_(std::make_unique<TextCodec>()),path_(path),embedding_(std::move(embedding)),reranking_(std::move(reranking)),verification_(std::move(verification)) {
+    open();
+}
+namespace {
+std::filesystem::path suffixed(std::filesystem::path p,const wchar_t* s){p+=s;return p;}
+// Key rotation writes <db>.next and <db>.key.next, swaps the database, then the key. Whatever point a crash
+// interrupted, exactly one of the two keys opens the database file; the other files are leftovers.
+void recover_rotation(const std::filesystem::path& db) {
+    const auto key_path=suffixed(db,L".key"),next_key=suffixed(key_path,L".next"),next_db=suffixed(db,L".next");
+    std::error_code ec;
+    if(!std::filesystem::exists(next_key,ec)){if(std::filesystem::exists(next_db,ec))std::filesystem::remove(next_db,ec);return;}
+    if(std::filesystem::exists(next_db,ec)){  // the swap never happened: the old database and key are intact
+        for(const wchar_t* x:{L"",L"-journal",L"-wal",L"-shm"})std::filesystem::remove(suffixed(next_db,x),ec);
+        std::filesystem::remove(next_key,ec);return;
+    }
+    bool current=false;try{auto k=unwrap_key_file(key_path);current=database_opens_with(db,k);OPENSSL_cleanse(k.data(),k.size());}catch(const Error&){}
+    if(current){std::filesystem::remove(next_key,ec);return;}
+    auto k=unwrap_key_file(next_key);const bool next=database_opens_with(db,k);OPENSSL_cleanse(k.data(),k.size());
+    if(!next)throw Error("key_unavailable");
+    replace_file(next_key,key_path);  // the database was swapped; finish by promoting its key
+}
+}
+void Store::open() {
+    const auto& path=path_;
+    recover_rotation(path);
     const bool exists=std::filesystem::exists(path);
     auto key_path=path;key_path+=L".key";
     auto key=load_or_create_key(key_path,exists);
@@ -53,7 +79,7 @@ Store::Store(const std::filesystem::path& path,EmbedderConfig embedding,Reranker
         codec_->register_sql(db_);  // lens_text() is used by schema v6 triggers, the FTS view and all text reads
         Transaction migration(db_);int v;
         {Statement version(db_,"PRAGMA user_version;");if(version.step()!=SQLITE_ROW)throw Error("schema_unavailable");v=sqlite3_column_int(version.p,0);}
-        if(v>8)throw Error("schema_too_new");
+        if(v>schema_version)throw Error("schema_too_new");
         if(v==0) {
             exec(db_,R"sql(
 CREATE TABLE observations(id TEXT PRIMARY KEY,text TEXT NOT NULL,language TEXT NOT NULL,captured_at TEXT NOT NULL,
@@ -146,11 +172,44 @@ INSERT OR REPLACE INTO schema_migrations VALUES(7,strftime('%Y-%m-%dT%H:%M:%fZ',
 PRAGMA user_version=7;)sql");
         // v8: semantic memory (entities, facts) and project memory (engine/memory_layers.hpp), derived by consolidate.
         if(v<8)create_memory_layer_schema(db_);
+        // v9: lifecycle and user memory (engine/lifecycle.hpp, engine/user_memory.hpp): pins, feedback, corrections, retention.
+        if(v<9)create_lifecycle_schema(db_);
         migration.commit();
         codec_->load_dictionaries(db_);
     } catch(...) {OPENSSL_cleanse(key.data(),key.size());if(db_)sqlite3_close_v2(db_);db_=nullptr;throw;}
 }
 Store::~Store(){reranker_.reset();embedder_.reset();if(db_)sqlite3_close_v2(db_);}
+
+void Store::after_purge() {
+    bool empty=false;{Statement left(db_,"SELECT count(*) FROM observations;");left.step();empty=sqlite3_column_int64(left.p,0)==0;}
+    if(empty&&sqlite3_get_autocommit(db_)) {  // dictionaries were deleted with the last source; never encode with them again
+        auto fresh=std::make_unique<TextCodec>();fresh->register_sql(db_);fresh->load_dictionaries(db_);codec_=std::move(fresh);
+    }
+    checkpoint(db_,false);
+}
+
+json Store::rotate_key() {
+    if(explicit_)throw Error("transaction_open");
+    const auto key_path=suffixed(path_,L".key"),next_key=suffixed(key_path,L".next"),next_db=suffixed(path_,L".next");
+    std::error_code ec;if(std::filesystem::exists(next_key,ec)||std::filesystem::exists(next_db,ec))throw Error("rotation_pending");
+    long long sources=0;{Statement c(db_,"SELECT count(*) FROM observations;");c.step();sources=sqlite3_column_int64(c.p,0);}
+    auto key=create_key_file(next_key);
+    try{export_encrypted(db_,next_db,key,"lens_rekey");}
+    catch(...){OPENSSL_cleanse(key.data(),key.size());for(const wchar_t* x:{L"",L"-journal"})std::filesystem::remove(suffixed(next_db,x),ec);std::filesystem::remove(next_key,ec);throw;}
+    OPENSSL_cleanse(key.data(),key.size());
+    fault_point("rotate_after_export");
+    exec(db_,"PRAGMA wal_checkpoint(TRUNCATE);");
+    sqlite3_close_v2(db_);db_=nullptr;
+    try{replace_file(next_db,path_);}
+    catch(...){open();std::filesystem::remove(next_db,ec);std::filesystem::remove(next_key,ec);throw;}
+    for(const wchar_t* x:{L"-wal",L"-shm"})std::filesystem::remove(suffixed(path_,x),ec);  // belonged to the old file
+    fault_point("rotate_after_db_swap");
+    replace_file(next_key,key_path);
+    open();
+    long long after=0;{Statement c(db_,"SELECT count(*) FROM observations;");c.step();after=sqlite3_column_int64(c.p,0);}
+    if(after!=sources)throw Error("rotation_verification_failed");
+    return {{"ok",true},{"rotated",true},{"sources",after}};
+}
 
 Embedder& Store::embedder(){
     if(!embedding_.configured())throw Error("embedding_model_not_configured");
@@ -215,10 +274,16 @@ json Store::dispatch(const json& j) {
             for(auto& r:result["results"])if(r.contains("source")&&r["source"].contains("id"))r["episode"]=episode_of(db_,r["source"]["id"].get<std::string>());
         // L4: entities named in the question are an extra signal; each result carries its linked entities and facts.
         if(result.contains("results"))annotate_recall(db_,j.at("query").get<std::string>(),result,j.value("entity_boost",true));
+        // Section 12: per-question relevance feedback and pinned memories (the user's own signals) order the evidence last.
+        if(result.contains("results"))apply_user_signals(db_,j.at("query").get<std::string>(),result,j.value("user_signals",true));
         return result;
     }
     if(op=="consolidate"){  // L3 episodes, then L4/L5 incrementally (projects group episodes, so episodes come first)
-        Transaction tx(db_);auto result=consolidate_episodes(db_,j);result["memory"]=consolidate_memory_layers(db_,j);tx.commit();return result;
+        json retention;
+        {Transaction tx(db_);retention=apply_retention(db_);tx.commit();}  // expired sources go before anything is derived from them
+        if(retention.at("deleted").get<long long>())after_purge();
+        Transaction tx(db_);auto result=consolidate_episodes(db_,j);result["memory"]=consolidate_memory_layers(db_,j);tx.commit();
+        result["retention"]=retention;return result;
     }
     if(op=="entities")return list_entities(db_,j);
     if(op=="entity_context")return entity_context(db_,j);
@@ -292,19 +357,36 @@ json Store::dispatch(const json& j) {
     }
     if(op=="delete") {
         if(!j.value("consent",false))throw Error("consent_required");
-        const auto id=required(j,"id");Transaction tx(db_);
-        const auto touched=entities_of_source(db_,id);  // derived names/links that may have come from this source
-        Statement s(db_,"DELETE FROM observations WHERE id=?;");s.text(1,id);s.step();const int deleted=sqlite3_changes(db_);
-        if(deleted)refresh_after_delete(db_,touched);
-        tx.commit();return {{"ok",true},{"deleted",deleted}};
+        const auto id=required(j,"id");long long deleted=0;
+        {Transaction tx(db_);deleted=purge_sources(db_,{id});tx.commit();}  // everything derived from it goes too
+        if(deleted)after_purge();
+        return {{"ok",true},{"deleted",deleted}};
     }
+    if(op=="delete_sources") {  // delete-all and scoped deletion (application, kind, time range, import, ids)
+        if(!j.value("consent",false))throw Error("consent_required");
+        if(!j.contains("scope"))throw Error("invalid_scope");
+        long long deleted=0;const bool all=j["scope"].is_object()&&j["scope"].contains("all");
+        {Transaction tx(db_);deleted=purge_sources(db_,select_sources(db_,j["scope"]));tx.commit();}
+        after_purge();
+        const bool vacuum=j.contains("compact")?j.at("compact").get<bool>():all;
+        if(vacuum)checkpoint(db_,true);
+        return {{"ok",true},{"deleted",deleted},{"compacted",vacuum&&sqlite3_get_autocommit(db_)!=0}};
+    }
+    if(op=="export")return export_sources(db_,j);
+    if(op=="imports")return list_imports(db_,j);
+    if(op=="backup")return backup_database(db_,j);
+    if(op=="restore")return restore_database(db_,j);
+    if(op=="rotate_key")return rotate_key();
+    if(op=="retention_set"||op=="retention_list"||op=="retention_remove")return retention_op(db_,op,j);
+    if(op=="pin"||op=="unpin"||op=="pins"||op=="feedback"||op=="correct_fact")return user_memory_op(db_,op,j);
     if(op=="stats") {
         Statement s(db_,"SELECT (SELECT count(*) FROM observations),(SELECT count(*) FROM derived),(SELECT count(*) FROM embedding_chunks),(SELECT count(DISTINCT source_id) FROM embedding_chunks),"
                         "(SELECT count(*) FROM observations WHERE text_codec IS NOT NULL),(SELECT coalesce(sum(length(text_zstd)),0) FROM observations),(SELECT count(*) FROM text_dictionaries),"
-                        "(SELECT count(*) FROM entities),(SELECT count(*) FROM facts),(SELECT count(*) FROM projects);");s.step();
+                        "(SELECT count(*) FROM entities),(SELECT count(*) FROM facts),(SELECT count(*) FROM projects),(SELECT count(*) FROM pins),(SELECT count(*) FROM user_facts),"
+                        "(SELECT count(*) FROM retention_rules);");s.step();
         Statement cipher(db_,"PRAGMA cipher_version;");cipher.step();
         return {{"ok",true},{"source_count",sqlite3_column_int64(s.p,0)},{"derived_count",sqlite3_column_int64(s.p,1)},
-                {"schema_version",8},{"entity_count",sqlite3_column_int64(s.p,7)},{"fact_count",sqlite3_column_int64(s.p,8)},{"project_count",sqlite3_column_int64(s.p,9)},{"compressed_sources",sqlite3_column_int64(s.p,4)},{"compressed_text_bytes",sqlite3_column_int64(s.p,5)},
+                {"schema_version",schema_version},{"pin_count",sqlite3_column_int64(s.p,10)},{"user_fact_count",sqlite3_column_int64(s.p,11)},{"retention_rule_count",sqlite3_column_int64(s.p,12)},{"entity_count",sqlite3_column_int64(s.p,7)},{"fact_count",sqlite3_column_int64(s.p,8)},{"project_count",sqlite3_column_int64(s.p,9)},{"compressed_sources",sqlite3_column_int64(s.p,4)},{"compressed_text_bytes",sqlite3_column_int64(s.p,5)},
                 {"text_dictionaries",sqlite3_column_int64(s.p,6)},{"vector_chunks",sqlite3_column_int64(s.p,2)},{"embedded_sources",sqlite3_column_int64(s.p,3)},{"embedding_model",embedding_.configured()?json(embedding_.model_id):json(nullptr)},{"models_loaded",static_cast<bool>(embedder_)||static_cast<bool>(reranker_)},{"reranker_configured",reranking_.configured()},{"cipher_version",cipher.text(0)},{"engine_version","0.2.0-dev"},{"api_version",1}};
     }
     throw Error("unsupported_operation");

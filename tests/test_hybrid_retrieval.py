@@ -75,7 +75,7 @@ class HybridRetrieval(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             db=self.seeded(tmp)
             stats=self.engine(db,{'op':'stats'})[0]
-            self.assertEqual((stats['schema_version'],stats['vector_chunks'],stats['embedded_sources']),(8,len(SAMPLES),len(SAMPLES)))
+            self.assertEqual((stats['schema_version'],stats['vector_chunks'],stats['embedded_sources']),(9,len(SAMPLES),len(SAMPLES)))
             for f in Path(tmp).iterdir():
                 data=f.read_bytes()
                 for marker in (b'embedding_chunks',b'SQLite format 3','王芳'.encode(),b'passage: '):self.assertNotIn(marker,data,f.name)

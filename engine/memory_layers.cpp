@@ -3,6 +3,7 @@
 #include "semantic_extract.hpp"
 #include "sql.hpp"
 #include "temporal.hpp"
+#include "user_memory.hpp"
 #include <openssl/evp.h>
 #include <algorithm>
 #include <cctype>
@@ -178,7 +179,7 @@ std::vector<std::pair<std::string,extract::Mention>> metadata_mentions(const std
     std::vector<std::pair<std::string,extract::Mention>> out;
     json m;try{m=json::parse(metadata);}catch(...){return out;}
     if(!m.is_object())return out;
-    for(const char* field:{"sender","author","from"}) {
+    for(const char* field:{"sender","author","from","contact_name","organizer"}) {
         if(!m.contains(field)||!m[field].is_string())continue;
         const auto v=m[field].get<std::string>();
         if(v.empty()||v.size()>80||v.find('@')!=std::string::npos||v.find_first_of("0123456789")!=std::string::npos)continue;
@@ -435,7 +436,8 @@ json entity_context(sqlite3* db,const json& j) {
             {"excerpt",field=="text"?excerpt(text,static_cast<std::size_t>(sqlite3_column_int64(m.p,1)),static_cast<std::size_t>(sqlite3_column_int64(m.p,2))):json(nullptr)}});
      }}
     {Statement f(db,(std::string(fact_columns)+"WHERE f.subject_id=? OR f.object_entity_id=? ORDER BY coalesce(f.value_seconds,0) DESC,f.id LIMIT 50;").c_str());
-     f.text(1,id);f.text(2,id);while(f.step()==SQLITE_ROW)facts.push_back(fact_row(db,f,3));}
+     f.text(1,id);f.text(2,id);while(f.step()==SQLITE_ROW)facts.push_back(fact_row(db,f,3));
+     for(auto& u:user_facts_for(db,{id},""))facts.push_back(std::move(u));annotate_facts(db,facts);}
     {Statement r(db,"SELECT e.id,e.type,e.name,count(DISTINCT b.source_id) n FROM entity_mentions a JOIN entity_mentions b ON b.source_id=a.source_id AND b.entity_id<>a.entity_id "
                     "JOIN entities e ON e.id=b.entity_id WHERE a.entity_id=? GROUP BY e.id ORDER BY n DESC,e.id LIMIT 20;");r.text(1,id);
      while(r.step()==SQLITE_ROW)related.push_back({{"id",r.text(0)},{"type",r.text(1)},{"name",r.text(2)},{"shared_sources",sqlite3_column_int64(r.p,3)}});}
@@ -465,7 +467,8 @@ json list_facts(sqlite3* db,const json& j) {
         for(const auto& id:entity_ids)values.push_back(id);
         where+=" AND (f.subject_id IN ("+in+") OR f.object_entity_id IN ("+in+"))";
     }
-    if(j.contains("type")){const auto t=required(j,"type",32);if(!types.contains(t))throw Error("invalid_type");where+=" AND f.type=?";values.push_back(t);}
+    std::string type_filter;
+    if(j.contains("type")){const auto t=required(j,"type",32);if(!types.contains(t))throw Error("invalid_type");where+=" AND f.type=?";values.push_back(t);type_filter=t;}
     if(j.contains("project_id")) {
         const auto p=required(j,"project_id",64);
         where+=" AND (f.subject_id=(SELECT entity_id FROM projects WHERE id=?) OR EXISTS(SELECT 1 FROM fact_sources fs JOIN project_sources ps ON ps.source_id=fs.source_id WHERE fs.fact_id=f.id AND ps.project_id=?))";
@@ -479,6 +482,13 @@ json list_facts(sqlite3* db,const json& j) {
     query::bind_values(s,values);
     for(std::size_t i=0;i<bounds.size();++i)bind_int(s,static_cast<int>(values.size()+i+1),bounds[i]);
     json out=json::array();while(s.step()==SQLITE_ROW)out.push_back(fact_row(db,s));
+    // User corrections are facts too (provenance: the user), listed beside the derived facts they supersede.
+    if(!j.contains("project_id")&&!j.contains("source_id")&&!j.contains("start")&&!j.contains("end"))
+        for(auto& u:user_facts_for(db,entity_ids,type_filter))out.push_back(std::move(u));
+    annotate_facts(db,out);
+    if(j.contains("current_only")&&j.at("current_only").get<bool>()) {
+        json current=json::array();for(auto& f:out)if(f.value("current",true))current.push_back(std::move(f));out=std::move(current);
+    }
     return {{"ok",true},{"facts",out},{"not_found",out.empty()}};
 }
 
@@ -550,6 +560,7 @@ json project_context(sqlite3* db,const json& j) {
         }
         fact["project_link"]=link;facts.push_back(fact);
      }}
+    annotate_facts(db,facts);
     {Statement s(db,("SELECT ps.source_id,ps.via,o.captured_at,m.source_application,o.device,lens_text(o.text,o.text_codec,o.text_zstd) FROM project_sources ps "
                      "JOIN observations o ON o.id=ps.source_id JOIN source_metadata m ON m.source_id=o.id WHERE ps.project_id=? ORDER BY m.event_seconds DESC,o.id LIMIT "+std::to_string(limit)+";").c_str());
      s.text(1,id);
@@ -572,7 +583,7 @@ void annotate_recall(sqlite3* db,const std::string& question,json& result,bool b
         json facts=json::array();
         {Statement f(db,(std::string(fact_columns)+"WHERE EXISTS(SELECT 1 FROM fact_sources fs WHERE fs.fact_id=f.id AND fs.source_id=?) ORDER BY f.id LIMIT 5;").c_str());
          f.text(1,sid);while(f.step()==SQLITE_ROW)facts.push_back(fact_row(db,f,3));}
-        r["entities"]=linked;r["facts"]=facts;
+        annotate_facts(db,facts);r["entities"]=linked;r["facts"]=facts;
         if(r.contains("scores"))r["scores"]["entity_match"]=hit;
     }
     // Extra signal: when the question names a known entity, evidence linked to it moves ahead (stable within groups).
@@ -589,6 +600,8 @@ void annotate_recall(sqlite3* db,const std::string& question,json& result,bool b
         Statement f(db,(std::string(fact_columns)+"WHERE f.subject_id IN ("+in+") OR f.object_entity_id IN ("+in+") ORDER BY coalesce(f.value_seconds,0) DESC,f.id LIMIT 10;").c_str());
         int k=1;for(int pass=0;pass<2;++pass)for(const auto& id:matched_ids)f.text(k++,id);
         while(f.step()==SQLITE_ROW)entity_facts.push_back(fact_row(db,f,3));
+        for(auto& u:user_facts_for(db,std::vector<std::string>(matched_ids.begin(),matched_ids.end()),""))entity_facts.push_back(std::move(u));
+        annotate_facts(db,entity_facts);
     }
     result["entities"]=entities;result["entity_facts"]=entity_facts;result["entity_boosted"]=reordered;
 }
