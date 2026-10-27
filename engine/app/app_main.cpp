@@ -2,13 +2,16 @@
 // WebView2. The UI talks only to the local lens-agent through this host: page messages {"id","request"} are relayed
 // to the agent's user-only named pipe and answered with {"id","response"}. The page can load nothing but the bundled
 // UI (virtual host https://lens.local/); any other navigation is cancelled. If the agent is not running it is started.
-// --self-test: never shows the window; loads the UI, runs window.lensSelfTest() and prints its JSON result.
+// --self-test: never shows the window; loads the UI, runs window.lensSelfTest() and prints its JSON result, with
+// host_ready_ms (process start to result). --self-test-hold <ms> keeps the hidden window alive afterwards (RAM measurement).
+// {"id","host":"pick_file"} from the page opens the native file dialog (Import) and answers with the chosen path.
 // --background: makes sure the agent runs (starting it with its tray icon) and exits without a window or WebView2; the
 // per-user autostart entry uses this, so signing in starts only the agent. --tray-hidden passes the agent's test mode.
 // Opening Lens while its window exists brings that window forward instead of starting a second app.
 #include <windows.h>
 #include <dwmapi.h>
 #include <shlobj.h>
+#include <shobjidl.h>
 #include <wrl.h>
 #include <wrl/event.h>
 #include "WebView2.h"
@@ -27,7 +30,7 @@ namespace {
 constexpr UINT WM_LENS_REPLY=WM_APP+10;
 std::wstring pipe_name,data_dir_arg,root_arg,agent_tray=L"--tray";bool self_test=false,background=false;
 HWND window=nullptr;ComPtr<ICoreWebView2Controller> controller;ComPtr<ICoreWebView2> webview;
-std::mutex pipe_lock;HANDLE pipe=INVALID_HANDLE_VALUE;std::string pipe_buffer;int exit_code=0;
+std::mutex pipe_lock;HANDLE pipe=INVALID_HANDLE_VALUE;std::string pipe_buffer;int exit_code=0;DWORD self_test_hold=0;
 
 std::string utf8(const std::wstring& w) {
     if(w.empty())return {};
@@ -76,7 +79,33 @@ json ask_agent(const json& request) {
 void on_message(const std::wstring& raw) {
     const auto msg=json::parse(utf8(raw),nullptr,false);
     if(!msg.is_object())return;
-    if(msg.contains("selftest")){out(msg["selftest"]);exit_code=msg["selftest"].value("ok",false)?0:1;PostMessageW(window,WM_CLOSE,0,0);return;}
+    if(msg.contains("selftest")) {
+        auto result=msg["selftest"];FILETIME created,exited,kernel,user,now;GetSystemTimeAsFileTime(&now);
+        if(GetProcessTimes(GetCurrentProcess(),&created,&exited,&kernel,&user)) {
+            const auto t=[](const FILETIME& f){return (static_cast<unsigned long long>(f.dwHighDateTime)<<32)|f.dwLowDateTime;};
+            result["host_ready_ms"]=(t(now)-t(created))/10000;
+        }
+        KillTimer(window,1);out(result);exit_code=result.value("ok",false)?0:1;
+        if(self_test_hold)SetTimer(window,2,self_test_hold,[](HWND w,UINT,UINT_PTR,DWORD){DestroyWindow(w);});
+        else PostMessageW(window,WM_CLOSE,0,0);
+        return;
+    }
+    if(msg.value("host",std::string())=="pick_file"&&msg.contains("id")) {  // Import: the user chooses a file; only its path goes to the page
+        json response={{"ok",false},{"error","cancelled"}};
+        ComPtr<IFileOpenDialog> dialog;
+        if(self_test)response["error"]="unavailable_in_self_test";
+        else if(SUCCEEDED(CoCreateInstance(CLSID_FileOpenDialog,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&dialog)))) {
+            const COMDLG_FILTERSPEC types[]={{L"Chat exports and notes (*.txt;*.jsonl)",L"*.txt;*.jsonl"},{L"All files",L"*.*"}};
+            dialog->SetFileTypes(2,types);dialog->SetTitle(L"Choose a file to import into Lens");
+            DWORD opts=0;dialog->GetOptions(&opts);dialog->SetOptions(opts|FOS_FORCEFILESYSTEM|FOS_FILEMUSTEXIST);
+            ComPtr<IShellItem> item;PWSTR path=nullptr;
+            if(SUCCEEDED(dialog->Show(window))&&SUCCEEDED(dialog->GetResult(&item))&&SUCCEEDED(item->GetDisplayName(SIGDN_FILESYSPATH,&path))) {
+                response={{"ok",true},{"path",utf8(path)},{"name",utf8(fs::path(path).filename().wstring())}};CoTaskMemFree(path);
+            }
+        }
+        if(webview)webview->PostWebMessageAsJson(wide(json{{"id",msg["id"]},{"response",response}}.dump()).c_str());
+        return;
+    }
     if(!msg.contains("id")||!msg.contains("request")||!msg["request"].is_object())return;
     std::thread([msg]{  // pipe I/O off the UI thread; the reply is posted back to it
         const json reply={{"id",msg["id"]},{"response",ask_agent(msg["request"])}};
@@ -134,6 +163,7 @@ int WINAPI wWinMain(HINSTANCE inst,HINSTANCE,LPWSTR,int show) {
     for(int i=1;i<argc;++i) {
         const std::wstring a=argv[i];auto next=[&]{return i+1<argc?std::wstring(argv[++i]):std::wstring();};
         if(a==L"--self-test")self_test=true;else if(a==L"--background")background=true;
+        else if(a==L"--self-test-hold")self_test_hold=static_cast<DWORD>(std::wcstoul(next().c_str(),nullptr,10));
         else if(a==L"--tray-hidden")agent_tray=L"--tray-hidden";else if(a==L"--pipe-name")pipe_name=next();
         else if(a==L"--data-dir")data_dir_arg=next();else if(a==L"--root")root_arg=next();
     }

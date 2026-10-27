@@ -5,6 +5,7 @@
 //
 // Client ops: status | set_consent {"observe_screen","microphone","phone_link","onboarded": bool} |
 // set_exclusions {"excluded_processes","private_title_markers": [string]} | set_autostart {"enabled":bool} |
+// diagnostics | import_preview|import_start|import_status|import_cancel|import_delete (imports.hpp) |
 // pause | resume | engine ops passed through (recall, search, timeline, retrieve_context, find_source, episodes,
 // episode_context, stats, consolidate, delete, add, import_batch, ingest_audio, unload_models). Anything else is rejected.
 // Pause stops all capture (screen and microphone) at once and holds until resume, whatever else changes meanwhile.
@@ -12,11 +13,14 @@
 // resident system stays one process; --tray-hidden runs the same commands without the icon (tests).
 #include "child_process.hpp"
 #include "actions.hpp"
+#include "imports.hpp"
 #include <windows.h>
 #include <bcrypt.h>
 #include <sddl.h>
 #include <shellapi.h>
 #include <shlobj.h>
+#include <tlhelp32.h>
+#include <psapi.h>
 #include <nlohmann/json.hpp>
 #include <atomic>
 #include <chrono>
@@ -101,7 +105,29 @@ bool user_only_security(SECURITY_ATTRIBUTES& sa) {
 }
 
 const std::set<std::string> passthrough={"recall","search","timeline","retrieve_context","find_source","episodes","episode_context","stats",
-    "consolidate","index","delete","add","import_batch","ingest_audio","unload_models","entities","entity_context","facts","projects","project_context"};
+    "consolidate","index","delete","add","import_batch","ingest_audio","unload_models","entities","entity_context","facts","projects","project_context",
+    "delete_sources","export","imports","backup","restore","rotate_key","retention_set","retention_list","retention_remove",
+    "pin","unpin","pins","feedback","correct_fact"};
+
+// The agent and every process it started (engine, observer and its OCR worker, voice, mesh), with real memory use.
+json process_tree() {
+    json out=json::array();HANDLE snap=CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);if(snap==INVALID_HANDLE_VALUE)return out;
+    std::vector<PROCESSENTRY32W> all;PROCESSENTRY32W e{};e.dwSize=sizeof e;
+    if(Process32FirstW(snap,&e))do all.push_back(e);while(Process32NextW(snap,&e));
+    CloseHandle(snap);
+    std::vector<DWORD> tree{GetCurrentProcessId()};
+    for(size_t i=0;i<tree.size();++i)for(const auto& p:all)
+        if(p.th32ParentProcessID==tree[i]&&std::find(tree.begin(),tree.end(),p.th32ProcessID)==tree.end())tree.push_back(p.th32ProcessID);
+    for(const DWORD pid:tree) {
+        std::wstring name;for(const auto& p:all)if(p.th32ProcessID==pid)name=p.szExeFile;
+        HANDLE h=OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION,FALSE,pid);if(!h)continue;
+        PROCESS_MEMORY_COUNTERS_EX m{};m.cb=sizeof m;
+        if(GetProcessMemoryInfo(h,reinterpret_cast<PROCESS_MEMORY_COUNTERS*>(&m),sizeof m))
+            out.push_back({{"name",utf8(name)},{"pid",pid},{"working_set",m.WorkingSetSize},{"private",m.PrivateUsage}});
+        CloseHandle(h);
+    }
+    return out;
+}
 
 // Notification-area icon. The window is never shown; it only receives the icon's mouse messages and menu commands
 // (tests send the same WM_COMMANDs to the window found by class "LensAgentTray" and the pipe name as its title).
@@ -218,6 +244,21 @@ int wmain(int argc,wchar_t** argv) {
     const auto stats=engine.ask({{"op","stats"}});
     if(!stats||!stats->value("ok",false)){log({{"event","refused"},{"reason","database_open_failed"}});return 1;}
 
+    // Capture telemetry for Diagnostics: when and how the last record was captured and stored. Never content.
+    std::mutex telemetry_lock;json telemetry={{"screen",nullptr},{"voice",nullptr}};const auto started_at=std::chrono::steady_clock::now();
+    auto note_capture=[&](const char* channel,const json& req,const std::optional<json>& r,long long store_ms) {
+        const auto meta=req.value("metadata",json::object());json t={{"at",req.value("timestamp",std::string())},{"store_ms",store_ms},
+            {"ok",r&&r->value("ok",false)},{"language",req.value("language",std::string())}};
+        if(!t["ok"].get<bool>())t["error"]=r?r->value("error",std::string("engine_error")):std::string("engine_unavailable");
+        if(meta.is_object()) {
+            t["path"]=meta.value("capture",std::string(std::string(channel)=="voice"?"microphone":"uia"));
+            for(const char* k:{"extract_ms","ocr_ms","recognizers","mean_confidence","duration_ms","speech_ms"})if(meta.contains(k))t[k]=meta[k];
+        }
+        std::lock_guard g(telemetry_lock);telemetry[channel]=t;
+    };
+    auto timed_ask=[&](const json& req,long long& ms){const auto t0=std::chrono::steady_clock::now();auto r=engine.ask(req);
+        ms=std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now()-t0).count();return r;};
+
     // Observer: started only while consent is recorded in the config; its records go straight into memory.
     Child observer;std::mutex observer_lock;std::atomic<long long> observed=0,stored=0,failed=0;std::atomic<bool> paused=false;
     auto start_observer=[&]{
@@ -236,7 +277,8 @@ int wmain(int argc,wchar_t** argv) {
         std::vector<std::wstring> args{L"--consent",L"--config",cfg.wstring()};if(!follow.empty()){args.push_back(L"--follow");args.push_back(follow);}
         observer.start((exe_dir/L"lens-observer.exe").wstring(),args,[&](const std::string& line){
             ++observed;const auto req=json::parse(line,nullptr,false);if(!req.is_object()){++failed;return;}
-            const auto r=engine.ask(req);if(r&&r->value("ok",false))++stored;else ++failed;
+            long long ms=0;const auto r=timed_ask(req,ms);if(r&&r->value("ok",false))++stored;else ++failed;
+            note_capture("screen",req,r,ms);
         });
         log({{"event","observer_started"}});
     };
@@ -256,7 +298,8 @@ int wmain(int argc,wchar_t** argv) {
         if(!voice_input.empty()){args.push_back(L"--input-wav");args.push_back(voice_input);}
         voice.start((exe_dir/L"lens-voice.exe").wstring(),args,[&](const std::string& line){
             const auto req=json::parse(line,nullptr,false);if(!req.is_object()){++failed;return;}
-            const auto r=engine.ask(req);if(r&&r->value("ok",false))++voiced;else ++failed;
+            long long ms=0;const auto r=timed_ask(req,ms);if(r&&r->value("ok",false))++voiced;else ++failed;
+            note_capture("voice",req,r,ms);
         });
         log({{"event","voice_started"}});
     };
@@ -306,6 +349,8 @@ int wmain(int argc,wchar_t** argv) {
         log({{"event",on?"paused":"resumed"}});
         return {{"ok",true},{"paused",paused.load()}};
     };
+
+    lens::agent::imports::Jobs imports(data_dir/L"imports.json",[&](const json& r){return engine.ask(r);});
 
     auto handle=[&](const json& req)->json {
         const auto op=req.value("op",std::string());
@@ -383,6 +428,26 @@ int wmain(int argc,wchar_t** argv) {
             }
             return r;
         }
+        if(op=="diagnostics") {  // real measurements only: process memory, capture telemetry, data folder sizes
+            const auto procs=process_tree();unsigned long long ws=0,pv=0;
+            for(const auto& p:procs){ws+=p["working_set"].get<unsigned long long>();pv+=p["private"].get<unsigned long long>();}
+            json files=json::array();unsigned long long total=0;std::error_code ec;
+            for(const auto& e:fs::directory_iterator(data_dir,ec)) {
+                if(!e.is_regular_file(ec))continue;const auto b=e.file_size(ec);if(ec)continue;
+                total+=b;files.push_back({{"name",utf8(e.path().filename().wstring())},{"bytes",b}});
+            }
+            json t;{std::lock_guard g(telemetry_lock);t=telemetry;}
+            const auto up=std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now()-started_at).count();
+            return {{"ok",true},{"uptime_seconds",up},{"processes",procs},{"memory",{{"working_set",ws},{"private",pv},{"ceiling",800000000}}},
+                    {"capture",t},{"observer_running",observer.running()},{"voice_running",voice_running()},{"mesh_running",mesh_running()},
+                    {"paused",paused.load()},{"observed",observed.load()},{"stored",stored.load()},{"failed",failed.load()},{"voiced",voiced.load()},
+                    {"semantic",semantic},{"storage",{{"data_dir",utf8(data_dir.wstring())},{"files",files},{"total_bytes",total}}}};
+        }
+        if(op=="import_preview")return imports.preview(req);
+        if(op=="import_start")return imports.start(req);
+        if(op=="import_status")return imports.status(req);
+        if(op=="import_cancel")return imports.cancel(req);
+        if(op=="import_delete")return imports.remove(req);
         if(op=="shutdown"){stopping=true;wake.notify_all();return {{"ok",true}};}
         if(!passthrough.count(op))return {{"ok",false},{"error","unsupported_operation"}};
         const auto r=engine.ask(req);return r?*r:json{{"ok",false},{"error","engine_unavailable"}};
@@ -429,7 +494,7 @@ int wmain(int argc,wchar_t** argv) {
     if(tray_thread.joinable()){while(!tray_ready)Sleep(10);if(HWND w=tray_window)PostMessageW(w,WM_CLOSE,0,0);tray_thread.join();}
     stop_mesh();stop_observer();stop_voice();  // the mesh holds a pipe connection of its own; stop children before joining clients
     for(auto& t:clients)if(t.joinable()){CancelSynchronousIo(t.native_handle());t.join();}  // unblock idle clients (e.g. an open app)
-    consolidator.join();engine.child.stop();
+    consolidator.join();imports.cancel_all();engine.child.stop();
     LocalFree(sa.lpSecurityDescriptor);ReleaseMutex(single);CloseHandle(single);
     log({{"event","stopped"}});
     return 0;

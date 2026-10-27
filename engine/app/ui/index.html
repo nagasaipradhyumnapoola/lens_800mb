@@ -4,24 +4,33 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>Lens</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<a class="skip" href="#stage">Skip to content</a>
 <div class="shell">
   <nav class="rail" aria-label="Sections">
     <div class="brand"><span class="mark" aria-hidden="true"></span><span>Lens</span></div>
-    <button class="nav active" data-view="ask">Ask</button>
+    <button class="nav active" data-view="ask" aria-current="page">Ask</button>
     <button class="nav" data-view="timeline">Timeline</button>
+    <button class="nav" data-view="people">People</button>
+    <button class="nav" data-view="projects">Projects</button>
+    <div class="rail-group" role="presentation">Connect</div>
+    <button class="nav" data-view="devices">Devices</button>
+    <button class="nav" data-view="import">Import</button>
+    <div class="rail-group" role="presentation">This PC</div>
     <button class="nav" data-view="privacy">Privacy</button>
-    <button class="nav" data-view="status">Status</button>
-    <div class="capture" id="capture-pill" role="status" aria-live="polite"><span class="dot"></span><span id="capture-text">Checking…</span></div>
+    <button class="nav" data-view="storage">Storage</button>
+    <button class="nav" data-view="diagnostics">Diagnostics</button>
+    <div class="capture" id="capture-pill" role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span id="capture-text">Checking…</span></div>
   </nav>
 
-  <main class="stage">
+  <main class="stage" id="stage" tabindex="-1">
     <section class="view active" id="view-ask" aria-labelledby="ask-title">
       <h1 id="ask-title" class="title">Ask your memory</h1>
-      <form id="ask-form" class="ask" autocomplete="off">
+      <form id="ask-form" class="ask" autocomplete="off" role="search">
         <input id="ask-input" type="search" placeholder="What was the paper I was reading in Chrome yesterday?" aria-label="Question" maxlength="1000">
         <button type="submit" class="primary">Ask</button>
       </form>
@@ -31,8 +40,113 @@
 
     <section class="view" id="view-timeline" aria-labelledby="timeline-title">
       <h1 id="timeline-title" class="title">Timeline</h1>
-      <div class="toolbar"><button id="timeline-refresh" class="ghost">Refresh</button></div>
-      <div id="timeline" class="timeline"></div>
+      <form class="filters" id="timeline-filters" aria-label="Timeline filters">
+        <label>App <input id="tl-app" type="search" placeholder="e.g. chrome" maxlength="64"></label>
+        <label>Kind
+          <select id="tl-kind">
+            <option value="">Everything</option>
+            <option value="screen_observation">Screen</option>
+            <option value="voice_note">Voice</option>
+            <option value="imported_message">Imported messages</option>
+            <option value="imported_note">Imported notes</option>
+            <option value="note">Notes</option>
+          </select>
+        </label>
+        <label>From <input id="tl-from" type="date"></label>
+        <label>To <input id="tl-to" type="date"></label>
+        <button type="submit" class="ghost">Apply</button>
+        <button type="button" class="link" id="tl-clear">Clear</button>
+      </form>
+      <p class="hint" id="timeline-mode"></p>
+      <div id="timeline" class="timeline" aria-live="polite"></div>
+    </section>
+
+    <section class="view" id="view-people" aria-labelledby="people-title">
+      <h1 id="people-title" class="title">People and things</h1>
+      <form class="filters" id="people-form" aria-label="Find people and things">
+        <label class="grow">Search <input id="people-q" type="search" placeholder="A name, in any language" maxlength="200"></label>
+        <label>Type
+          <select id="people-type">
+            <option value="">All</option>
+            <option value="person">People</option>
+            <option value="organization">Organisations</option>
+            <option value="place">Places</option>
+            <option value="project">Projects</option>
+            <option value="product">Products</option>
+          </select>
+        </label>
+        <button type="submit" class="ghost">Search</button>
+      </form>
+      <div class="split">
+        <div id="people-list" class="list" aria-live="polite" aria-label="People and things"></div>
+        <div id="people-detail" class="detail" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-projects" aria-labelledby="projects-title">
+      <h1 id="projects-title" class="title">Projects</h1>
+      <p class="hint">Lens groups work it has seen around a project name. Every link below comes from your own memories.</p>
+      <div class="split">
+        <div id="projects-list" class="list" aria-live="polite" aria-label="Projects"></div>
+        <div id="projects-detail" class="detail" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-devices" aria-labelledby="devices-title">
+      <h1 id="devices-title" class="title">Devices</h1>
+      <div class="card" id="devices-link"></div>
+      <div class="card" id="pairing-card" hidden>
+        <h2>Pair a phone or watch</h2>
+        <p class="muted">Open Lens on the phone, choose “Pair with laptop” and scan this code. It works once and expires in five minutes.
+          The phone then trusts only this PC’s certificate.</p>
+        <div class="pairing">
+          <div class="qr" id="pair-qr"></div>
+          <div class="pair-side">
+            <p class="countdown" id="pair-expiry" role="timer" aria-live="off"></p>
+            <details><summary>Show the code as text</summary><code class="code" id="pair-text"></code></details>
+            <button class="ghost" id="pair-cancel">Done</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2>Paired devices</h2><button class="primary" id="pair-start">Pair a device</button></div>
+        <div id="devices-list" class="rows" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-import" aria-labelledby="import-title">
+      <h1 id="import-title" class="title">Import</h1>
+      <div class="card">
+        <h2>Bring in history</h2>
+        <p class="muted">Choose an export on this PC. Lens reads it here, shows a preview, and only adds memories when you confirm.
+          The file itself is not changed or copied.</p>
+        <div class="filters">
+          <label>Format
+            <select id="imp-format">
+              <option value="whatsapp">WhatsApp chat export (.txt)</option>
+              <option value="jsonl">JSON Lines (.jsonl)</option>
+              <option value="text">Plain text notes (.txt)</option>
+            </select>
+          </label>
+          <label id="imp-order-label">Dates are written
+            <select id="imp-order">
+              <option value="dmy">day/month/year</option>
+              <option value="mdy">month/day/year</option>
+            </select>
+          </label>
+          <button class="ghost" id="imp-pick">Choose file…</button>
+          <span class="muted file-name" id="imp-file" aria-live="polite"></span>
+        </div>
+        <div id="imp-preview" class="preview" aria-live="polite"></div>
+        <div id="imp-progress" class="progress-block" hidden>
+          <div class="bar" role="progressbar" aria-label="Import progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="imp-bar"><span></span></div>
+          <div class="progress-row"><span id="imp-progress-text" aria-live="polite"></span><button class="ghost" id="imp-cancel">Cancel</button></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2>Past imports</h2><button class="link" id="imp-refresh">Refresh</button></div>
+        <div id="imports-list" class="rows" aria-live="polite"></div>
+      </div>
     </section>
 
     <section class="view" id="view-privacy" aria-labelledby="privacy-title">
@@ -89,12 +203,47 @@
       </div>
     </section>
 
-    <section class="view" id="view-status" aria-labelledby="status-title">
-      <h1 id="status-title" class="title">Status</h1>
-      <div class="grid" id="status-grid"></div>
+    <section class="view" id="view-storage" aria-labelledby="storage-title">
+      <h1 id="storage-title" class="title">Storage</h1>
+      <div class="grid" id="status-grid" aria-live="polite"></div>
+      <div class="card spaced">
+        <h2>Files in your Lens data folder</h2>
+        <p class="muted path" id="storage-dir"></p>
+        <div id="storage-files" class="rows"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-diagnostics" aria-labelledby="diag-title">
+      <h1 id="diag-title" class="title">Diagnostics</h1>
+      <div class="toolbar"><button id="diag-refresh" class="ghost">Refresh</button><span class="muted" id="diag-updated" aria-live="polite"></span></div>
+      <div class="grid" id="diag-grid" aria-live="polite"></div>
+      <div class="card spaced">
+        <h2>Memory use</h2>
+        <div class="meter" id="diag-meter" role="meter" aria-label="Background memory use against the 800 MB limit" aria-valuemin="0" aria-valuemax="800"><span></span></div>
+        <div id="diag-processes" class="rows"></div>
+      </div>
+      <div class="card">
+        <h2>Last capture</h2>
+        <div id="diag-capture" class="rows"></div>
+      </div>
     </section>
   </main>
 </div>
+
+<aside class="drawer" id="evidence" role="dialog" aria-modal="true" aria-labelledby="ev-title" hidden>
+  <div class="drawer-panel">
+    <header class="drawer-head">
+      <div><p class="eyebrow" id="ev-app"></p><h2 id="ev-title" class="drawer-title" dir="auto"></h2></div>
+      <button class="ghost icon" id="ev-close" aria-label="Close evidence">×</button>
+    </header>
+    <dl class="meta" id="ev-meta"></dl>
+    <h3 class="section-label">Full source</h3>
+    <div class="ev-text" id="ev-text" dir="auto" tabindex="0" aria-label="Full source text"></div>
+    <div id="ev-links"></div>
+    <footer class="drawer-foot"><span class="muted" id="ev-status" role="status"></span><button class="danger-btn" id="ev-delete">Delete this memory</button></footer>
+  </div>
+</aside>
+
 <section class="onboarding" id="onboarding" hidden aria-labelledby="ob-title" aria-modal="true" role="dialog">
   <div class="ob-panel">
     <div class="brand"><span class="mark" aria-hidden="true"></span><span>Lens</span></div>
@@ -140,12 +289,12 @@
 </section>
 <template id="result-template">
   <article class="result">
-    <header><span class="app"></span><span class="window"></span><time></time></header>
-    <blockquote class="quote"></blockquote>
-    <footer><span class="episode"></span><span class="spacer"></span><button class="link source-btn">Show full source</button><button class="link danger delete-btn">Delete</button></footer>
-    <pre class="source" hidden></pre>
+    <header><span class="app"></span><span class="window" dir="auto"></span><time></time></header>
+    <blockquote class="quote" dir="auto"></blockquote>
+    <footer><span class="episode"></span><span class="spacer"></span><button class="link source-btn">Open evidence</button><button class="link danger delete-btn">Delete</button></footer>
   </article>
 </template>
+<script src="qr.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
