@@ -644,3 +644,88 @@ Query interpretation (applications in 6 languages, action trace, relax-on-no-evi
 - Not yet: running the real tray icon by hand, accessibility audit of onboarding, WebView2 runtime bootstrap, clean-machine
   install on H1–H3, upgrade path, usability testing with people.
 
+## Voice capture quality under noise — file-driven (2026-10-27) — PARTIAL (VAD fixed and measured; zh/hi ASR fails; latency/soak pending)
+
+No microphone was opened. scripts/benchmark_voice.py builds sessions from public FLEURS test clips (CC BY 4.0,
+revision 70bb2e84) with 1.2-4 s gaps, mixes white/pink/babble (FLEURS clips of non-evaluated languages)/fan+mains hum
+at SNR 20/10/5 dB plus clean, raw FLEURS levels, quiet (-46 dBFS), hot (clipping) and 48 kHz stereo input, and relays
+lens-voice requests to lens-engine on a temporary encrypted DB. Clips are split by sentence id (sha256 bucket <3/10 =
+dev); VAD parameters were chosen on dev only (reports/voice/vad-tuning-dev*.json, tune-dev-round*.log.txt).
+- lens-voice fixes: adaptive VAD (default; `--vad legacy` keeps the old -45 dBFS detector): 80 Hz-3 kHz analysis
+  band-pass, noise floor = 20th percentile of last 5 s, start/continue 8/4 dB above floor (>= -65 dBFS), 60 ms onset,
+  600 ms hangover (500 ms kept), 150 ms min speech, soft split after 20 s, 30 s cap; resampler LPF order 8; clipping
+  counted and reported; file input decoded incrementally (old code held the whole file in RAM) with `--pace`; a
+  stalled consumer drops audio past 60 s (counted as overrun). Requests carry stream offsets for evaluation.
+- Held-out VAD, all 561 sessions / 4386 utterances (vad-heldout-*-all.json), adaptive vs legacy: non-speech captured
+  7.2% vs 66.7%; 30-s capped segments 0 vs 1087; missed speech 4.7% vs 3.3%; utterance recall 0.83 vs 0.94 (legacy
+  "recall" comes from capturing everything). Quiet input missed speech 4.9% vs 29.2%; raw FLEURS levels 3.1% vs 22.7%.
+  Babble still captures 11-31% of non-speech (energy VAD cannot reject speech-like noise).
+- Held-out end-to-end WER (product path: whisper base-q5_1, language auto, 1 session x 8 utterances per cell;
+  asr-heldout-*-product.json), adaptive (legacy): en clean 6.3% (5.7%), raw level 13.7% (71.4%), quiet 8.6% (14.9%),
+  pink10 13.7% (12.6%), white10 22.3% (24.0%), fan10 6.3% (8.6%), babble10 31.4% (26.9%), white5 42.3%, babble5 54.9%;
+  es clean 8.2% (9.3%), quiet 10.9% (36.1%), babble10 18.6% (21.3%). Mandarin CER clean 30% (33.6%), up to 78% at
+  babble5; Hindi CER ~100% in every condition: whisper base emits Urdu script/romanised text. The voice path never
+  routes zh/hi to Dolphin/IndicConformer (only scripts/lens.ps1 does, from a file) — FAIL for zh/hi voice.
+- RAM (sampled, lens-voice + lens-engine, no embeddings): peak sum working set ~180-220 MB; lens-voice ~12 MB.
+  Engine reloads whisper per request. Unit tests: tests/test_voice.py 10/10 (noise, hum/clicks, 48 kHz stereo,
+  clipping, pacing, 12-min file under 40 MB, legacy comparison).
+- Pending at time of writing (running): configured-language zh/hi/es, paced (1.0x) latency speech-end to stored,
+  32-minute paced soak with RSS sampling (reports/voice/latency-*.json, soak.json). Live microphone NOT VERIFIED.
+
+## Windows app: remaining views, accessibility, languages (2026-10-27) — PARTIAL (H0; hidden-window measurements; not usability-tested)
+
+- New views (engine/app/ui; same strict CSP, untrusted text only through textContent / SVG geometry):
+  - Evidence viewer (drawer dialog): the full source from find_source, with the recall/mention span highlighted from the
+    engine's UTF-8 byte offsets (correct after CJK/Telugu text). It shows provenance (time, app, window or file, device,
+    kind, language, capture path, consent mode), facts from `facts {source_id}` with an "inferred" marker, the
+    people/things named in the passage (`entities {query}`) and "Delete this memory". Esc closes it, focus is trapped
+    inside and returns to the opener.
+  - Timeline filters (app contains, kind, from/to date) through `timeline {filters}`; with no filter it shows sessions
+    (episodes).
+  - People and things (`entities`, with type filter and search; `entity_context`: aliases, facts, projects, related,
+    mentions that open the evidence at the mention).
+  - Projects (`projects`, `project_context`: people, facts, sessions, memories).
+  - Devices: phone-link switch, in-app QR pairing from mesh_pair_begin with a 5-minute countdown and the text code,
+    paired-device list, revoke (mesh_unpair), and this PC's certificate fingerprint and port.
+  - Import: native file picker in the host, preview, import with live progress, cancel, history, and delete-by-import.
+  - Storage (engine stats plus the files in the data folder).
+  - Diagnostics (agent `diagnostics`: process-tree memory from GetProcessMemoryInfo, uptime, capture state, the last
+    screen/voice capture's path and timings, models).
+- QR encoder: our own (engine/app/ui/qr.js, ISO 18004 byte mode, level M, versions 1–40, penalty-scored masks), so no
+  third-party code. Verified by OpenCV 4.10's independent decoder for 1–400-byte payloads (the pairing code is about
+  180 bytes, version 10). A 1200-byte / version-29 payload did not decode in an ad-hoc check, so codes that large are
+  NOT VERIFIED.
+- lens-agent: `diagnostics` op (real measurements, never captured text); import jobs (engine/agent/imports.hpp) with
+  `import_preview|start|status|cancel|delete`. They parse WhatsApp (day/month order chosen by the user, multi-line
+  messages, media lines and impossible dates skipped), JSON Lines and plain text, and add records one at a time, so
+  the engine's sensitive-content filter rejects single records (counted by code). Records are tagged exactly like
+  scripts/import-history.ps1: source_locator `sha256:<file sha256>#record=<n>` (no file name) and provenance JSON
+  {export_sha256, format WhatsApp/LensJsonl/Text, importer_version}. Ids derive from that locator, so re-importing the
+  same file is deduplicated. Checked: the engine's `imports` op lists an app import (format Text, 2 sources) and
+  `delete_sources {scope:{import}}` deletes it. imports.json also lists which ids each import created.
+  Only one import runs at a time. The memory-lifecycle session wants parsing to live in scripts/import-history.ps1. That
+  needs PowerShell 7, starts its own engine from the repository build path, and would open memory.db a second time, so
+  the app keeps the C++ parser until the script can run in the installed layout (to be decided by the coordinator).
+- Accessibility (WCAG 2.2 AA, automated in tests/test_app.py AppViews.test_wcag_aa_checks_on_every_view, every view
+  with data plus the evidence drawer and all three onboarding steps):
+  - Checked: text contrast 1.4.3 (computed colours composited over the real backgrounds; 4.5:1, or 3:1 for large text),
+    accessible names 4.1.2, target size 2.5.8 (≥ 24×24 CSS px), no positive tabindex 2.4.3, a :focus-visible outline
+    2.4.7, all navigation focusable 2.1.1, page language 3.1.1, dialog role/aria-modal/label, a skip link, forced-colors
+    and reduced-motion support.
+  - Result: 0 failures across more than 150 text nodes and more than 60 controls. Negative control: lowering --muted
+    to #55565c produced 126 contrast failures, and removing the 24 px minimum produced 7 target-size failures.
+  - Real keyboard navigation and screen-reader output were not tested (headless).
+- Languages (spec §1a, AppLanguages test): text in each of the 17 languages renders through the result cards with lang=
+  and dir=auto. Arabic and Urdu come out right-to-left, the others left-to-right. Each resolves to a Windows font whose
+  cmap (read by a small reader in the test) covers every character of the sample: Segoe UI, Microsoft YaHei UI, Yu
+  Gothic UI or Nirmala UI. Urdu Typesetting is not installed on H0, so Urdu uses Segoe UI's Arabic glyphs (Naskh, not
+  Nastaliq).
+- Tests (`.venv\Scripts\python.exe -B -m unittest tests.test_app tests.test_installer -v`, no visible window):
+  - test_app 15/15 OK, including XSS payloads in every view (0 injected elements, no script execution), the agent
+    import/diagnostics tests, and AppHost's self-test loading all 9 views against a real agent with 0 errors.
+  - test_installer 4/4 OK.
+  - Measured on H0: lens-app time to interactive 2.72–2.78 s from process start (UI ready at 2.1 s). lens-app idle
+    with the hidden window, 7 processes including WebView2: 339 MB working set, 131 MB private. Background agent tree
+    23 MB, so app plus agent is about 362 MB, under 800 MB.
+  - The app runs only while its window is open. The visible window's RAM, low-end tiers and usability with people are
+    not measured.
