@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lens</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+  <nav class="rail" aria-label="Sections">
+    <div class="brand"><span class="mark" aria-hidden="true"></span><span>Lens</span></div>
+    <button class="nav active" data-view="ask">Ask</button>
+    <button class="nav" data-view="timeline">Timeline</button>
+    <button class="nav" data-view="privacy">Privacy</button>
+    <button class="nav" data-view="status">Status</button>
+    <div class="capture" id="capture-pill" role="status" aria-live="polite"><span class="dot"></span><span id="capture-text">Checking…</span></div>
+  </nav>
+
+  <main class="stage">
+    <section class="view active" id="view-ask" aria-labelledby="ask-title">
+      <h1 id="ask-title" class="title">Ask your memory</h1>
+      <form id="ask-form" class="ask" autocomplete="off">
+        <input id="ask-input" type="search" placeholder="What was the paper I was reading in Chrome yesterday?" aria-label="Question" maxlength="1000">
+        <button type="submit" class="primary">Ask</button>
+      </form>
+      <p class="hint" id="ask-hint">Answers are your own memories, shown as evidence with where and when they were seen.</p>
+      <div id="results" class="results" aria-live="polite"></div>
+    </section>
+
+    <section class="view" id="view-timeline" aria-labelledby="timeline-title">
+      <h1 id="timeline-title" class="title">Timeline</h1>
+      <div class="toolbar"><button id="timeline-refresh" class="ghost">Refresh</button></div>
+      <div id="timeline" class="timeline"></div>
+    </section>
+
+    <section class="view" id="view-privacy" aria-labelledby="privacy-title">
+      <h1 id="privacy-title" class="title">Privacy and capture</h1>
+      <div class="card">
+        <div class="row">
+          <div>
+            <h2>Screen observation</h2>
+            <p class="muted">When on, Lens reads text from the window you are using (accessibility text first, on-device OCR only
+              when needed) and keeps it encrypted on this PC. Nothing is uploaded.</p>
+          </div>
+          <label class="switch"><input type="checkbox" id="observe-toggle" data-consent="observe_screen" aria-label="Screen observation"><span></span></label>
+        </div>
+        <div class="row">
+          <div>
+            <h2>Microphone</h2>
+            <p class="muted">When on, Lens listens to your default microphone and turns speech into text on this PC. It keeps the
+              text, not the recording.</p>
+          </div>
+          <label class="switch"><input type="checkbox" id="mic-toggle" data-consent="microphone" aria-label="Microphone"><span></span></label>
+        </div>
+        <div class="row">
+          <div>
+            <h2>Phone link</h2>
+            <p class="muted">Lets a phone or watch you pair send notes and requests to this PC over your local network.</p>
+          </div>
+          <label class="switch"><input type="checkbox" id="phone-toggle" data-consent="phone_link" aria-label="Phone link"><span></span></label>
+        </div>
+        <div class="row">
+          <div><h2>Pause</h2><p class="muted">Stops all capture immediately without changing your choices above. Also in the tray icon.</p></div>
+          <button id="pause-button" class="ghost" disabled>Pause</button>
+        </div>
+        <div class="row">
+          <div><h2>Start with Windows</h2><p class="muted">Starts the Lens background agent and its tray icon when you sign in.</p></div>
+          <label class="switch"><input type="checkbox" id="autostart-toggle" aria-label="Start with Windows"><span></span></label>
+        </div>
+      </div>
+      <div class="card" id="requests-card">
+        <h2>Requests from your devices</h2>
+        <p class="muted">Paired devices can ask this PC to do something. Nothing happens until you approve it here.</p>
+        <div id="requests" class="requests"></div>
+      </div>
+      <div class="card">
+        <h2>Never captured</h2>
+        <ul class="plain">
+          <li>Password fields and the contents of password managers</li>
+          <li>Private and incognito browser windows</li>
+          <li>Windows that protect themselves from capture</li>
+          <li>Sign-in, consent and lock screens</li>
+        </ul>
+        <h2 class="spaced">Also never capture</h2>
+        <div id="privacy-exclusions"></div>
+        <div class="toolbar-end"><span class="muted" id="exclusions-saved" role="status"></span><button id="exclusions-save" class="ghost">Save exclusions</button></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-status" aria-labelledby="status-title">
+      <h1 id="status-title" class="title">Status</h1>
+      <div class="grid" id="status-grid"></div>
+    </section>
+  </main>
+</div>
+<section class="onboarding" id="onboarding" hidden aria-labelledby="ob-title" aria-modal="true" role="dialog">
+  <div class="ob-panel">
+    <div class="brand"><span class="mark" aria-hidden="true"></span><span>Lens</span></div>
+    <ol class="ob-steps" aria-label="Setup steps"><li data-step="1">What Lens does</li><li data-step="2">Your choices</li><li data-step="3">Never capture</li></ol>
+    <div class="ob-step" data-step="1">
+      <h1 id="ob-title" class="title">Your memory, kept on this PC</h1>
+      <p>Lens remembers what you see and say, so you can ask about it later. It captures only what you switch on in the next
+        step. Until then nothing is captured.</p>
+      <ul class="ob-list">
+        <li><strong>Screen</strong>: text from the window you are using, read through Windows accessibility, with on-device
+          text recognition only when needed.</li>
+        <li><strong>Microphone</strong>: speech, turned into text on this PC. The recording is not kept.</li>
+        <li><strong>Phone link</strong>: notes and requests from a phone or watch you pair, over your local network.</li>
+      </ul>
+      <p class="muted">Memories are stored encrypted in <span class="path" id="ob-data-dir"></span>, readable only by your Windows
+        account. Nothing is uploaded. You can pause, change these choices or delete memories at any time.</p>
+      <div class="ob-actions"><button class="ghost" id="ob-skip">Keep everything off</button><button class="primary" data-next>Next</button></div>
+    </div>
+    <div class="ob-step" data-step="2">
+      <h1 class="title">Your choices</h1>
+      <p class="muted">Each one is off until you turn it on. You can change them later under Privacy.</p>
+      <div class="card">
+        <div class="row"><div><h2>Screen observation</h2><p class="muted">Read text from the window you are using.</p></div>
+          <label class="switch"><input type="checkbox" id="ob-screen" aria-label="Screen observation"><span></span></label></div>
+        <div class="row"><div><h2>Microphone</h2><p class="muted">Turn your speech into text memories.</p></div>
+          <label class="switch"><input type="checkbox" id="ob-mic" aria-label="Microphone"><span></span></label></div>
+        <div class="row"><div><h2>Phone link</h2><p class="muted">Allow a paired phone or watch to connect.</p></div>
+          <label class="switch"><input type="checkbox" id="ob-phone" aria-label="Phone link"><span></span></label></div>
+        <div class="row"><div><h2>Start with Windows</h2><p class="muted">Run the background agent and tray icon when you sign in.</p></div>
+          <label class="switch"><input type="checkbox" id="ob-autostart" aria-label="Start with Windows"><span></span></label></div>
+      </div>
+      <div class="ob-actions"><button class="ghost" data-back>Back</button><button class="primary" data-next>Next</button></div>
+    </div>
+    <div class="ob-step" data-step="3">
+      <h1 class="title">Never capture</h1>
+      <p class="muted">Lens always skips password fields, password managers, private browser windows, windows that protect
+        themselves, and sign-in and lock screens. Add anything else you want left out.</p>
+      <div id="ob-exclusions"></div>
+      <p class="error" id="ob-error" hidden></p>
+      <div class="ob-actions"><button class="ghost" data-back>Back</button><button class="primary" id="ob-finish">Finish</button></div>
+    </div>
+  </div>
+</section>
+<template id="result-template">
+  <article class="result">
+    <header><span class="app"></span><span class="window"></span><time></time></header>
+    <blockquote class="quote"></blockquote>
+    <footer><span class="episode"></span><span class="spacer"></span><button class="link source-btn">Show full source</button><button class="link danger delete-btn">Delete</button></footer>
+    <pre class="source" hidden></pre>
+  </article>
+</template>
+<script src="app.js"></script>
+</body>
+</html>
