@@ -1,0 +1,9 @@
+{
+  "source": "microsoft/vcpkg",
+  "commit": "817892b0ecbc6af994dd6df999c73faf795adbf2",
+  "path": "ports/sqlcipher",
+  "changes": "release/digest, mandatory 4.19 init/shutdown/thread-safety definitions, and SQLCipher pkg-config template replacing the removed upstream filename",
+  "sqlcipher_release": "4.19.0",
+  "url": "https://github.com/sqlcipher/sqlcipher/archive/refs/tags/v4.19.0.tar.gz",
+  "sha512": "17083306b4e5f4236810b318cbca4c101fa02184f57d90261fd9b2e71c6dbce7d6e6f7586f3f7410a38c49453967a0068938200b434ca3972e19648f810761ef"
+}

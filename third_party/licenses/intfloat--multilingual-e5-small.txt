@@ -1,0 +1,6 @@
+intfloat/multilingual-e5-small (revision 614241f622f53c4eeff9890bdc4f31cfecc418b3)
+
+License: MIT, as declared in the model card metadata (README.md line 97: 'license: mit').
+The Hub repository contains no separate LICENSE file; the model card is pinned by SHA256 in
+third_party/embedding-lock.json. Citation requested by the authors:
+Wang et al., Multilingual E5 Text Embeddings: A Technical Report, arXiv:2402.05672 (2024).

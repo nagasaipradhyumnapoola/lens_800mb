@@ -1,0 +1,138 @@
+ggml-org/whisper.cpp 231638a0717b7822784297e5980965ffcec05810 MIT
+cactus-compute/needle b4fc11b04f1852888d375c8c6dfbaca44572d014 Apache-2.0
+PaddlePaddle/PaddleOCR dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf Apache-2.0
+k2-fsa/sherpa-onnx 532f1b5a8a207bf53b116b747207c1506696c843 Apache-2.0
+sqlcipher/sqlcipher c4b275a47932888216bade83aff2bbc73df0ff85 NOASSERTION
+sqlcipher/sqlcipher-android db8a03716be2b5695ab7a5aff09687f27b3af041 BSD-3-Clause
+ActivityWatch/activitywatch c8b9203be894b690c00d317e59d7fb3ab6658af4 MPL-2.0
+arkohut/pensieve 3e55c66edc871c0960b5dcc2315b62da558d17d8 Apache-2.0
+asg017/sqlite-vec 04d28bd21773981e2d266bbf6aa4efbd011eb4f6 NOASSERTION
+vercel-labs/skills a80e4c9d12d607631249d4d7d059f835d4b2f13a MIT
+{
+  "repo": "ggerganov/whisper.cpp",
+  "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+  "files": [
+    {
+      "rfilename": "ggml-base-q5_1.bin",
+      "blobId": "4947e22c7365d941a9864b2d0f9f474a505cf39b",
+      "size": 59707625,
+      "lfs": {
+        "sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+        "size": 59707625,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "ggml-tiny-q5_1.bin",
+      "blobId": "42701a9c1d8a9f4f0b96dbcefcc049075814bcf3",
+      "size": 32152673,
+      "lfs": {
+        "sha256": "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7",
+        "size": 32152673,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "ggml-tiny-q8_0.bin",
+      "blobId": "fc48fd17b13f7eb147bab1c66dee10c97f471b27",
+      "size": 43537433,
+      "lfs": {
+        "sha256": "c2085835d3f50733e2ff6e4b41ae8a2b8d8110461e18821b09a15c40c42d1cca",
+        "size": 43537433,
+        "pointerSize": 133
+      }
+    }
+  ]
+}
+{
+  "repo": "Cactus-Compute/needle3",
+  "revision": "d6c7d6a2e9655505e0f8e23339356dd1705900eb",
+  "files": [
+    {
+      "rfilename": "LICENSE",
+      "blobId": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "size": 11358
+    },
+    {
+      "rfilename": "needle3.cact",
+      "blobId": "847dde4d45ba992782d772b2e1188c10fc3869a1",
+      "size": 35335380,
+      "lfs": {
+        "sha256": "c9d915eca282ed42d1a09b143b592adb4cc6744ffe2d294adf5cfc5548170c38",
+        "size": 35335380,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "windows-x86_64/libneedle.a",
+      "blobId": "f2b4f37f92a0b9893bd90c3c4d090e2a181b8cce",
+      "size": 2347552,
+      "lfs": {
+        "sha256": "22d95a38f34c225a6af115c40069ea61360766479222862f1fea8b615ea7718a",
+        "size": 2347552,
+        "pointerSize": 132
+      }
+    },
+    {
+      "rfilename": "windows-x86_64/needle.exe",
+      "blobId": "d0be7e1c78af8e9ee27db883a0159165c870fa8f",
+      "size": 1570816,
+      "lfs": {
+        "sha256": "0d4bc1da8c51f5600f5c4f4bb4a92e0abe142fae7b69e695ccab93e6745c883d",
+        "size": 1570816,
+        "pointerSize": 132
+      }
+    },
+    {
+      "rfilename": "windows-x86_64/needle.h",
+      "blobId": "170c4b9b51a6196a53e7be7ea11adbdbe7ad7f8c",
+      "size": 4528
+    }
+  ]
+}
+{
+  "repo": "Cactus-Compute/needle2",
+  "revision": "32e9e3a93b205f786929697446ae669cf0a84579",
+  "files": [
+    {
+      "rfilename": "LICENSE",
+      "blobId": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "size": 11358
+    },
+    {
+      "rfilename": "needle2.cact",
+      "blobId": "67fb63f999b52204f0482ede4d31f9f5c019c772",
+      "size": 13737807,
+      "lfs": {
+        "sha256": "b43aabfcaf1a6db6acf488076eab71d823c08697c7af4521fc1d174b60ede5ba",
+        "size": 13737807,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "windows-x86_64/libneedle.a",
+      "blobId": "c3b3ea4652b5d3ceff92bb8581e820454197c734",
+      "size": 17427342,
+      "lfs": {
+        "sha256": "69f67056fed158f155f40ea50c14c64f52290ac253261703a0c40b75a134c474",
+        "size": 17427342,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "windows-x86_64/needle.exe",
+      "blobId": "9b1aee30aa1da20ef26884c95e7c19817a723df2",
+      "size": 14929408,
+      "lfs": {
+        "sha256": "93ea7ae8c9ea92b746f41668d87597463bee0d6f6ae8ab4e855ec8b396556740",
+        "size": 14929408,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "windows-x86_64/needle.h",
+      "blobId": "cda89a889621c88556b6492c622453077df52851",
+      "size": 562
+    }
+  ]
+}

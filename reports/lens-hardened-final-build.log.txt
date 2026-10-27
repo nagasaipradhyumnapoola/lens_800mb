@@ -1,0 +1,7 @@
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  lens-store.vcxproj -> D:\Lens\build\engine\Release\lens-store.lib
+  lens-needle.vcxproj -> D:\Lens\build\engine\Release\lens-needle.exe
+  lens-asr-probe.vcxproj -> D:\Lens\build\engine\Release\lens-asr-probe.exe
+  asr.cpp
+  lens-engine.vcxproj -> D:\Lens\build\engine\Release\lens-engine.exe

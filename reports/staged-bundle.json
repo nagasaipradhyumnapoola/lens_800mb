@@ -1,0 +1,280 @@
+{
+  "directory": "D:\\Lens\\artifacts\\lens-micro-0.1.0-dev-20261025T220923Z",
+  "file_count": 54,
+  "total_bytes": 596957774,
+  "manifest_sha256": "08de9a771a23831dc3542622177616e8f754ab430441aa943cd32cebde4e8563",
+  "scope": "native developer bundle; not installed app/device measurement",
+  "prerequisites": [
+    "Windows x64",
+    "PowerShell 7",
+    "installed MSVC runtime"
+  ],
+  "clean_machine_validated": false,
+  "files": [
+    {
+      "path": ".tools/ocr-runtime/onnxruntime.dll",
+      "bytes": 16119840,
+      "sha256": "87da0279ab54add397fd518f7022efe8b9a89fd968669d0adff9f9f242344b6c"
+    },
+    {
+      "path": ".tools/ocr-runtime/onnxruntime_providers_shared.dll",
+      "bytes": 22048,
+      "sha256": "838048bae6e1d040e41e4d428a831ac9c5bc91da24abced383d42cb24f2b1376"
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/onnxruntime.dll",
+      "bytes": 17136128,
+      "sha256": "422d776ab0e3218260f7f628fcb84606aaa5c21116f720c8619a6da5e0b2e0f9"
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/onnxruntime_providers_shared.dll",
+      "bytes": 10752,
+      "sha256": "0190137dee4933261c065c5d030c3568a68c7aa43cad942b4726a07011738bc2"
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll",
+      "bytes": 3255808,
+      "sha256": "949e720ba4282d1097025d1f469317e16c06c69820d0384acd648cd12fcba983"
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-cxx-api.dll",
+      "bytes": 134144,
+      "sha256": "676ae735e9fdfed7f7fdaecdb364d22f92fc90bad487afe15e846be237df8ba0"
+    },
+    {
+      "path": "build/engine/Release/lens-engine.exe",
+      "bytes": 2130432,
+      "sha256": "6da3b517f184c0d47a1e0d12a82d51227430f408e9ba8dfbdac9cbb4dd239d76"
+    },
+    {
+      "path": "build/engine/Release/lens-needle.exe",
+      "bytes": 146432,
+      "sha256": "c4b6ecd84b70a6c6aa3740b78b0f78c6d9d4f5f04e66e4aa3cfceb74aeb24497"
+    },
+    {
+      "path": "build/engine/Release/lens-ocr.exe",
+      "bytes": 165376,
+      "sha256": "68cd3df6a5345fe224dc4e75029c42cddbb97affb049e98039014355bb67fad5"
+    },
+    {
+      "path": "build/engine/Release/lens-sherpa.exe",
+      "bytes": 471552,
+      "sha256": "070a72901b82d793c5014eb055af68a5febab198fc46a91daace71ae8062884e"
+    },
+    {
+      "path": "build/engine/Release/libcrypto-3-x64.dll",
+      "bytes": 5270528,
+      "sha256": "adebd13e56a4aa138a774c12005556895f2e92c94a131c01d2b41a0b4e05dca6"
+    },
+    {
+      "path": "build/engine/Release/libssl-3-x64.dll",
+      "bytes": 866816,
+      "sha256": "61e9839f5d73818ec09315d092a2576976e2513238b6881959713d35712a564a"
+    },
+    {
+      "path": "build/engine/Release/sqlcipher.dll",
+      "bytes": 1489920,
+      "sha256": "16635773377b274b2eb2fe65fc5ae458d45cf4bbd73531b1f71f468744bd26c4"
+    },
+    {
+      "path": "data/fixtures/extraction-tools.json",
+      "bytes": 795,
+      "sha256": "9b058ffd4f142d39a05a76995a00ce6d5e1ff97515b54e5436068d12ce2c5e80"
+    },
+    {
+      "path": "engine/model-registry.json",
+      "bytes": 1311,
+      "sha256": "cdafab0e01d466a295802201cfbd07a240c0374c56ddb54227c4f815d85e277d"
+    },
+    {
+      "path": "LICENSES.md",
+      "bytes": 3413,
+      "sha256": "e708427c0f78d9f9e1d2427e0e3f2be45c4eb437eafaefb5be3706ce7477e1d2"
+    },
+    {
+      "path": "models/Cactus-Compute--needle3/needle3.cact",
+      "bytes": 35335380,
+      "sha256": "c9d915eca282ed42d1a09b143b592adb4cc6744ffe2d294adf5cfc5548170c38"
+    },
+    {
+      "path": "models/Cactus-Compute--needle3/windows-x86_64/libneedle3.dll",
+      "bytes": 1533952,
+      "sha256": "1263c6003dd88b9fcb1904a55985be66858639849309280b42f7764ee5d874d0"
+    },
+    {
+      "path": "models/csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/model.int8.onnx",
+      "bytes": 249658954,
+      "sha256": "c1afcb9265de0ebd853eb8f570b371f399a6f9b2b9af9a3cb17c2e509171e697"
+    },
+    {
+      "path": "models/csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/README.md",
+      "bytes": 141,
+      "sha256": "0ed3b1f1fb25f000be670f4b3dba24989f939609b89be84e91579eec397702a9"
+    },
+    {
+      "path": "models/csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/tokens.txt",
+      "bytes": 504662,
+      "sha256": "c3788261a51df1899ea4b210b552cd42139204de72c0ad60f6cebb199078872e"
+    },
+    {
+      "path": "models/ggerganov--whisper.cpp/ggml-base-q5_1.bin",
+      "bytes": 59707625,
+      "sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898"
+    },
+    {
+      "path": "models/ggerganov--whisper.cpp/ggml-small-q5_1.bin",
+      "bytes": 190085487,
+      "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb"
+    },
+    {
+      "path": "models/PaddlePaddle--devanagari_PP-OCRv5_mobile_rec/ctc-dictionary.json",
+      "bytes": 3663,
+      "sha256": "372e4d37830b435e22253f8d310b0003015241ca21186e1e60ee66553781a5ff"
+    },
+    {
+      "path": "models/PaddlePaddle--devanagari_PP-OCRv5_mobile_rec/inference.onnx",
+      "bytes": 7907399,
+      "sha256": "148432fddb2144ba65adbd8fa9b333b761472382b7bda9c4d893ce8e07510ad7"
+    },
+    {
+      "path": "models/PaddlePaddle--PP-OCRv6_tiny_rec/ctc-dictionary.json",
+      "bytes": 47884,
+      "sha256": "7b03a8fb82b507e5aff04b2b312539adc7698e54ef9d03b731cf272c3e52c0a2"
+    },
+    {
+      "path": "models/PaddlePaddle--PP-OCRv6_tiny_rec/inference.onnx",
+      "bytes": 4456893,
+      "sha256": "4f153794605e0f8de6bf1965fee8a4a83abd04154215b9ce27f8ad28e3c68f48"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1744,
+      "sha256": "6b7a5af69a22c308167f7e42747d5dd9a5cdbe20bb07794deb0a9cd9951fb14b"
+    },
+    {
+      "path": "scripts/lens.ps1",
+      "bytes": 7385,
+      "sha256": "50a99f7ade4ab70526c66c55ed106a923a06f1a175455e06af6453eae5c7bd07"
+    },
+    {
+      "path": "third_party/build-lock.json",
+      "bytes": 371,
+      "sha256": "ddc8cc0b3b799773d12989709357fbed9c69f40c1d3c6a738ef66ee575f1f293"
+    },
+    {
+      "path": "third_party/licenses/ActivityWatch--activitywatch.txt",
+      "bytes": 16726,
+      "sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "path": "third_party/licenses/arkohut--pensieve.txt",
+      "bytes": 11336,
+      "sha256": "48cf24e10446d69c7f67d9e44c56becd8e4ae1606a90dd883e5cf930f3229980"
+    },
+    {
+      "path": "third_party/licenses/asg017--sqlite-vec.txt",
+      "bytes": 10931,
+      "sha256": "a38070a94d4afd9cd710e3ce67bd1de78097cfe1784c1f0109ac95d3c196bfdc"
+    },
+    {
+      "path": "third_party/licenses/cactus-compute--needle.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "third_party/licenses/DataoceanAI--Dolphin.txt",
+      "bytes": 11341,
+      "sha256": "252bff52e32f4339afca6e035776043cb96cb611cd02f42eafa6758990cf4c71"
+    },
+    {
+      "path": "third_party/licenses/ggml-org--whisper.cpp.txt",
+      "bytes": 1078,
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d"
+    },
+    {
+      "path": "third_party/licenses/k2-fsa--sherpa-onnx.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "third_party/licenses/microsoft--vcpkg.txt",
+      "bytes": 1073,
+      "sha256": "1ee376fc340e0aa6ad6a3581c94126e741468705096ac92263048a21daa86460"
+    },
+    {
+      "path": "third_party/licenses/miniaudio.txt",
+      "bytes": 2649,
+      "sha256": "6f5c79bbfe2314fc957a23940017fde20aa27e73ebada8b43ec7ea979bc66638"
+    },
+    {
+      "path": "third_party/licenses/onnxruntime-LICENSE.txt",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+    },
+    {
+      "path": "third_party/licenses/onnxruntime-ThirdPartyNotices.txt.txt",
+      "bytes": 325054,
+      "sha256": "0e07b95f3a8d6230037707c5c4a2b554d12c4cb67369669ac255635528ffcee2"
+    },
+    {
+      "path": "third_party/licenses/PaddlePaddle--PaddleOCR.txt",
+      "bytes": 11376,
+      "sha256": "3840c5c0c61c294264d2dd77b8777be6ddd90121ef4e0e64abcd22edea581d6e"
+    },
+    {
+      "path": "third_party/licenses/PaddlePaddle--PaddleX-3.7.2.txt",
+      "bytes": 11325,
+      "sha256": "accc36c817ac5ede473d05732e14afc11cb6e55ef5919bc826b653f631165043"
+    },
+    {
+      "path": "third_party/licenses/sqlcipher--sqlcipher-android.txt",
+      "bytes": 1468,
+      "sha256": "09e4af560ce2e3c9c2aa6b564e35947b03db7d1ae345f22a32793ed46542cc14"
+    },
+    {
+      "path": "third_party/licenses/sqlcipher--sqlcipher.txt",
+      "bytes": 1463,
+      "sha256": "2a2826f6acf46fa650730cf42cbb22a642be33a7ef119c9c4f4bf6daf3bef48e"
+    },
+    {
+      "path": "third_party/licenses/vcpkg--nlohmann-json.txt",
+      "bytes": 1076,
+      "sha256": "46a65cffd1ea955132d95a8dd921640714a8d6b537d2e4e482d31145ae95b603"
+    },
+    {
+      "path": "third_party/licenses/vcpkg--openssl.txt",
+      "bytes": 10175,
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a"
+    },
+    {
+      "path": "third_party/licenses/vcpkg--sqlcipher.txt",
+      "bytes": 1463,
+      "sha256": "2a2826f6acf46fa650730cf42cbb22a642be33a7ef119c9c4f4bf6daf3bef48e"
+    },
+    {
+      "path": "third_party/licenses/vercel-labs--skills.txt",
+      "bytes": 1069,
+      "sha256": "661142e53c313d2bb5e1b055f5c0a39001450ff1b5e27b89dc4bc7de9a6352ca"
+    },
+    {
+      "path": "third_party/model-lock.json",
+      "bytes": 10140,
+      "sha256": "6adbf9084fd1c99bac3016fd0a360c18c73b2cd8aae47f40b4f008fd35a699dd"
+    },
+    {
+      "path": "third_party/ocr-runtime-lock.json",
+      "bytes": 4881,
+      "sha256": "3b09ebce1715a0397f5958b45ddaf4b952e5b61b5c80ebded80367391b86471f"
+    },
+    {
+      "path": "third_party/sherpa-reference-lock.json",
+      "bytes": 8907,
+      "sha256": "8eaf46e7dcadf788cc65b6ece82bb7c34e3755dfc37db74ddd4b99379198b83c"
+    },
+    {
+      "path": "third_party/upstream-lock.json",
+      "bytes": 3476,
+      "sha256": "1c0ed28e98e24d18d8851aab18f750989a4d9a3d8c7eebf5c34fb46ebd91c589"
+    }
+  ]
+}

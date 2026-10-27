@@ -1,0 +1,334 @@
+[
+ {
+  "repo": "ggerganov/whisper.cpp",
+  "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+  "filename": "ggml-base-q5_1.bin",
+  "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-base-q5_1.bin",
+  "path": "models/ggerganov--whisper.cpp/ggml-base-q5_1.bin",
+  "bytes": 59707625,
+  "sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "ggerganov/whisper.cpp",
+  "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+  "filename": "ggml-tiny-q5_1.bin",
+  "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-tiny-q5_1.bin",
+  "path": "models/ggerganov--whisper.cpp/ggml-tiny-q5_1.bin",
+  "bytes": 32152673,
+  "sha256": "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "ggerganov/whisper.cpp",
+  "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+  "filename": "ggml-tiny-q8_0.bin",
+  "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-tiny-q8_0.bin",
+  "path": "models/ggerganov--whisper.cpp/ggml-tiny-q8_0.bin",
+  "bytes": 43537433,
+  "sha256": "c2085835d3f50733e2ff6e4b41ae8a2b8d8110461e18821b09a15c40c42d1cca",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "Cactus-Compute/needle3",
+  "revision": "d6c7d6a2e9655505e0f8e23339356dd1705900eb",
+  "filename": "LICENSE",
+  "url": "https://huggingface.co/Cactus-Compute/needle3/resolve/d6c7d6a2e9655505e0f8e23339356dd1705900eb/LICENSE",
+  "path": "models/Cactus-Compute--needle3/LICENSE",
+  "bytes": 11358,
+  "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "upstream_verification": "git-blob-sha1"
+ },
+ {
+  "repo": "Cactus-Compute/needle3",
+  "revision": "d6c7d6a2e9655505e0f8e23339356dd1705900eb",
+  "filename": "needle3.cact",
+  "url": "https://huggingface.co/Cactus-Compute/needle3/resolve/d6c7d6a2e9655505e0f8e23339356dd1705900eb/needle3.cact",
+  "path": "models/Cactus-Compute--needle3/needle3.cact",
+  "bytes": 35335380,
+  "sha256": "c9d915eca282ed42d1a09b143b592adb4cc6744ffe2d294adf5cfc5548170c38",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "Cactus-Compute/needle3",
+  "revision": "d6c7d6a2e9655505e0f8e23339356dd1705900eb",
+  "filename": "python/cactus_needle-3.3.3-py3-none-win_amd64.whl",
+  "url": "https://huggingface.co/Cactus-Compute/needle3/resolve/d6c7d6a2e9655505e0f8e23339356dd1705900eb/python/cactus_needle-3.3.3-py3-none-win_amd64.whl",
+  "path": "models/Cactus-Compute--needle3/python/cactus_needle-3.3.3-py3-none-win_amd64.whl",
+  "bytes": 700859,
+  "sha256": "b6447b2be7426b7ff3b06360b15a90a8b7870e3fa2275023e20541d5e8d81bdb",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "Cactus-Compute/needle3",
+  "revision": "d6c7d6a2e9655505e0f8e23339356dd1705900eb",
+  "filename": "windows-x86_64/libneedle3.dll",
+  "path": "models/Cactus-Compute--needle3/windows-x86_64/libneedle3.dll",
+  "bytes": 1533952,
+  "sha256": "1263c6003dd88b9fcb1904a55985be66858639849309280b42f7764ee5d874d0",
+  "source": "python/cactus_needle-3.3.3-py3-none-win_amd64.whl",
+  "upstream_verification": "member of verified wheel"
+ },
+ {
+  "repo": "Cactus-Compute/needle3",
+  "revision": "d6c7d6a2e9655505e0f8e23339356dd1705900eb",
+  "filename": "windows-x86_64/needle.exe",
+  "url": "https://huggingface.co/Cactus-Compute/needle3/resolve/d6c7d6a2e9655505e0f8e23339356dd1705900eb/windows-x86_64/needle.exe",
+  "path": "models/Cactus-Compute--needle3/windows-x86_64/needle.exe",
+  "bytes": 1570816,
+  "sha256": "0d4bc1da8c51f5600f5c4f4bb4a92e0abe142fae7b69e695ccab93e6745c883d",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "Cactus-Compute/needle3",
+  "revision": "d6c7d6a2e9655505e0f8e23339356dd1705900eb",
+  "filename": "windows-x86_64/needle.h",
+  "url": "https://huggingface.co/Cactus-Compute/needle3/resolve/d6c7d6a2e9655505e0f8e23339356dd1705900eb/windows-x86_64/needle.h",
+  "path": "models/Cactus-Compute--needle3/windows-x86_64/needle.h",
+  "bytes": 4528,
+  "sha256": "a27dac4b3239eead91d124b7f7dbce5495c13019903fd817b68c16d39b055a99",
+  "upstream_verification": "git-blob-sha1"
+ },
+ {
+  "repo": "Cactus-Compute/needle2",
+  "revision": "32e9e3a93b205f786929697446ae669cf0a84579",
+  "filename": "LICENSE",
+  "url": "https://huggingface.co/Cactus-Compute/needle2/resolve/32e9e3a93b205f786929697446ae669cf0a84579/LICENSE",
+  "path": "models/Cactus-Compute--needle2/LICENSE",
+  "bytes": 11358,
+  "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "upstream_verification": "git-blob-sha1"
+ },
+ {
+  "repo": "Cactus-Compute/needle2",
+  "revision": "32e9e3a93b205f786929697446ae669cf0a84579",
+  "filename": "needle2.cact",
+  "url": "https://huggingface.co/Cactus-Compute/needle2/resolve/32e9e3a93b205f786929697446ae669cf0a84579/needle2.cact",
+  "path": "models/Cactus-Compute--needle2/needle2.cact",
+  "bytes": 13737807,
+  "sha256": "b43aabfcaf1a6db6acf488076eab71d823c08697c7af4521fc1d174b60ede5ba",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "Cactus-Compute/needle2",
+  "revision": "32e9e3a93b205f786929697446ae669cf0a84579",
+  "filename": "windows-x86_64/needle.exe",
+  "url": "https://huggingface.co/Cactus-Compute/needle2/resolve/32e9e3a93b205f786929697446ae669cf0a84579/windows-x86_64/needle.exe",
+  "path": "models/Cactus-Compute--needle2/windows-x86_64/needle.exe",
+  "bytes": 14929408,
+  "sha256": "93ea7ae8c9ea92b746f41668d87597463bee0d6f6ae8ab4e855ec8b396556740",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "Cactus-Compute/needle2",
+  "revision": "32e9e3a93b205f786929697446ae669cf0a84579",
+  "filename": "windows-x86_64/needle.h",
+  "url": "https://huggingface.co/Cactus-Compute/needle2/resolve/32e9e3a93b205f786929697446ae669cf0a84579/windows-x86_64/needle.h",
+  "path": "models/Cactus-Compute--needle2/windows-x86_64/needle.h",
+  "bytes": 562,
+  "sha256": "cb7a720eba7bc895b5bbfa5d6f6fc635906938fdc569eb2520a2c09ba06d9eed",
+  "upstream_verification": "git-blob-sha1"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv6_tiny_rec",
+  "revision": "0736086f72f666350ebcdc0c3a504eeac89cdfad",
+  "filename": "inference.json",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_rec/resolve/0736086f72f666350ebcdc0c3a504eeac89cdfad/inference.json",
+  "path": "models/PaddlePaddle--PP-OCRv6_tiny_rec/inference.json",
+  "bytes": 108959,
+  "sha256": "b5b14770c7dcf092781e92f4278a2ae5f95048f08b4b8a04140e88cb2745f147",
+  "upstream_verification": "git-blob-sha1"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv6_tiny_rec",
+  "revision": "0736086f72f666350ebcdc0c3a504eeac89cdfad",
+  "filename": "inference.pdiparams",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_rec/resolve/0736086f72f666350ebcdc0c3a504eeac89cdfad/inference.pdiparams",
+  "path": "models/PaddlePaddle--PP-OCRv6_tiny_rec/inference.pdiparams",
+  "bytes": 4420410,
+  "sha256": "bb2f8f54d1e25f28c71b6fa4fe23f5940e159cae27fbee96155c99f822156e57",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv6_tiny_rec",
+  "revision": "0736086f72f666350ebcdc0c3a504eeac89cdfad",
+  "filename": "inference.yml",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_rec/resolve/0736086f72f666350ebcdc0c3a504eeac89cdfad/inference.yml",
+  "path": "models/PaddlePaddle--PP-OCRv6_tiny_rec/inference.yml",
+  "bytes": 55571,
+  "sha256": "66170210bad538e83fff3c4a3867e547d6bf20b50d64b20347c4b913f3034ea1",
+  "upstream_verification": "git-blob-sha1"
+ },
+ {
+  "repo": "PaddlePaddle/devanagari_PP-OCRv5_mobile_rec",
+  "revision": "99dcce6d196bd4aaf268c7a5c72c3cc9f3ea4932",
+  "filename": "inference.json",
+  "url": "https://huggingface.co/PaddlePaddle/devanagari_PP-OCRv5_mobile_rec/resolve/99dcce6d196bd4aaf268c7a5c72c3cc9f3ea4932/inference.json",
+  "path": "models/PaddlePaddle--devanagari_PP-OCRv5_mobile_rec/inference.json",
+  "bytes": 217712,
+  "sha256": "20d3b121184ec6b7de1705015022f4b22117990f6e5728a5d21c314bac9c1444",
+  "upstream_verification": "git-blob-sha1"
+ },
+ {
+  "repo": "PaddlePaddle/devanagari_PP-OCRv5_mobile_rec",
+  "revision": "99dcce6d196bd4aaf268c7a5c72c3cc9f3ea4932",
+  "filename": "inference.pdiparams",
+  "url": "https://huggingface.co/PaddlePaddle/devanagari_PP-OCRv5_mobile_rec/resolve/99dcce6d196bd4aaf268c7a5c72c3cc9f3ea4932/inference.pdiparams",
+  "path": "models/PaddlePaddle--devanagari_PP-OCRv5_mobile_rec/inference.pdiparams",
+  "bytes": 7836203,
+  "sha256": "719be7d20bfe9530e2deae324c999e9911087496bce5e70846767c448d023a01",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "PaddlePaddle/devanagari_PP-OCRv5_mobile_rec",
+  "revision": "99dcce6d196bd4aaf268c7a5c72c3cc9f3ea4932",
+  "filename": "inference.yml",
+  "url": "https://huggingface.co/PaddlePaddle/devanagari_PP-OCRv5_mobile_rec/resolve/99dcce6d196bd4aaf268c7a5c72c3cc9f3ea4932/inference.yml",
+  "path": "models/PaddlePaddle--devanagari_PP-OCRv5_mobile_rec/inference.yml",
+  "bytes": 5027,
+  "sha256": "9bd172dd26440c8ce94d1cde5d5baea6aefdc7cf3c5c8492e0beedef656d4e54",
+  "upstream_verification": "git-blob-sha1"
+ },
+ {
+  "repo": "ggerganov/whisper.cpp",
+  "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+  "filename": "ggml-small-q5_1.bin",
+  "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-small-q5_1.bin",
+  "path": "models/ggerganov--whisper.cpp/ggml-small-q5_1.bin",
+  "bytes": 190085487,
+  "sha256": "ae85e4a935d7a567bd102fe55afc16bb595bdb618e11b2fc7591bc08120411bb",
+  "upstream_verification": "lfs-sha256"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv5_mobile_det",
+  "revision": "0d63e78e2b680928f6b1747d76a08db6e645efb7",
+  "filename": "inference.json",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det/resolve/0d63e78e2b680928f6b1747d76a08db6e645efb7/inference.json",
+  "path": "models/PaddlePaddle--PP-OCRv5_mobile_det/inference.json",
+  "bytes": 229777,
+  "sha256": "05feef1acb00aa4cd7362b15f7f501fc4f99d7b1fa73c1c871e0c7b1504b0f5c",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv5_mobile_det",
+  "revision": "0d63e78e2b680928f6b1747d76a08db6e645efb7",
+  "filename": "inference.pdiparams",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det/resolve/0d63e78e2b680928f6b1747d76a08db6e645efb7/inference.pdiparams",
+  "path": "models/PaddlePaddle--PP-OCRv5_mobile_det/inference.pdiparams",
+  "bytes": 4692937,
+  "sha256": "afa1820cb16c1fd0dad589d0f8b389139061c1ef6d68019685fd07be997dda5b",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv5_mobile_det",
+  "revision": "0d63e78e2b680928f6b1747d76a08db6e645efb7",
+  "filename": "inference.yml",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det/resolve/0d63e78e2b680928f6b1747d76a08db6e645efb7/inference.yml",
+  "path": "models/PaddlePaddle--PP-OCRv5_mobile_det/inference.yml",
+  "bytes": 903,
+  "sha256": "98069072e1b6b37d727fd9d9f11725faa46d6ea0de012f2ed26caea011c37699",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv6_tiny_det",
+  "revision": "d3177d4e5551463292a61e27cfca2b53e7c3fe9d",
+  "filename": "inference.json",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_det/resolve/d3177d4e5551463292a61e27cfca2b53e7c3fe9d/inference.json",
+  "path": "models/PaddlePaddle--PP-OCRv6_tiny_det/inference.json",
+  "bytes": 229184,
+  "sha256": "935c18972799dd8f2a2ff424b9f8b2c6adee4b89f3a76f0746210ec33ba9b3d8",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv6_tiny_det",
+  "revision": "d3177d4e5551463292a61e27cfca2b53e7c3fe9d",
+  "filename": "inference.pdiparams",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_det/resolve/d3177d4e5551463292a61e27cfca2b53e7c3fe9d/inference.pdiparams",
+  "path": "models/PaddlePaddle--PP-OCRv6_tiny_det/inference.pdiparams",
+  "bytes": 1718055,
+  "sha256": "853f7ed317d4f2f80de646842e5bbc32f9d39c601562cbe466cda42e4bafb1b1",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv6_tiny_det",
+  "revision": "d3177d4e5551463292a61e27cfca2b53e7c3fe9d",
+  "filename": "inference.yml",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_det/resolve/d3177d4e5551463292a61e27cfca2b53e7c3fe9d/inference.yml",
+  "path": "models/PaddlePaddle--PP-OCRv6_tiny_det/inference.yml",
+  "bytes": 883,
+  "sha256": "3ac018be6f97499a08faa3bbdeb33640968d9307f6736d152902747a9f259593",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/ta_PP-OCRv5_mobile_rec",
+  "revision": "1bb164dad1d8eb23c7f7a382827e5305b37868d4",
+  "filename": "inference.json",
+  "url": "https://huggingface.co/PaddlePaddle/ta_PP-OCRv5_mobile_rec/resolve/1bb164dad1d8eb23c7f7a382827e5305b37868d4/inference.json",
+  "path": "models/PaddlePaddle--ta_PP-OCRv5_mobile_rec/inference.json",
+  "bytes": 217712,
+  "sha256": "9f845b15eef3272a47201fa0e411f8e466392b7dcfd705ade2890bf434b70370",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/ta_PP-OCRv5_mobile_rec",
+  "revision": "1bb164dad1d8eb23c7f7a382827e5305b37868d4",
+  "filename": "inference.pdiparams",
+  "url": "https://huggingface.co/PaddlePaddle/ta_PP-OCRv5_mobile_rec/resolve/1bb164dad1d8eb23c7f7a382827e5305b37868d4/inference.pdiparams",
+  "path": "models/PaddlePaddle--ta_PP-OCRv5_mobile_rec/inference.pdiparams",
+  "bytes": 7809583,
+  "sha256": "7e7bb6c9cbcc401aeaceb0cdace485dbfcc15a410f299294e7c3123bbcbc68f0",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/ta_PP-OCRv5_mobile_rec",
+  "revision": "1bb164dad1d8eb23c7f7a382827e5305b37868d4",
+  "filename": "inference.yml",
+  "url": "https://huggingface.co/PaddlePaddle/ta_PP-OCRv5_mobile_rec/resolve/1bb164dad1d8eb23c7f7a382827e5305b37868d4/inference.yml",
+  "path": "models/PaddlePaddle--ta_PP-OCRv5_mobile_rec/inference.yml",
+  "bytes": 4579,
+  "sha256": "88a28f5a1bb30cabe38a0985cb5e6619fa4f0c7c78e57a08274674228c5219a6",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/te_PP-OCRv5_mobile_rec",
+  "revision": "151ab3b1c2f2a058f07a944416b92e9eaec6bf36",
+  "filename": "inference.json",
+  "url": "https://huggingface.co/PaddlePaddle/te_PP-OCRv5_mobile_rec/resolve/151ab3b1c2f2a058f07a944416b92e9eaec6bf36/inference.json",
+  "path": "models/PaddlePaddle--te_PP-OCRv5_mobile_rec/inference.json",
+  "bytes": 217712,
+  "sha256": "ad866e22872fbc0ee498b2c47d9537bd8f49f125353e43d82a4d173b595e6bfb",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/te_PP-OCRv5_mobile_rec",
+  "revision": "151ab3b1c2f2a058f07a944416b92e9eaec6bf36",
+  "filename": "inference.pdiparams",
+  "url": "https://huggingface.co/PaddlePaddle/te_PP-OCRv5_mobile_rec/resolve/151ab3b1c2f2a058f07a944416b92e9eaec6bf36/inference.pdiparams",
+  "path": "models/PaddlePaddle--te_PP-OCRv5_mobile_rec/inference.pdiparams",
+  "bytes": 7822651,
+  "sha256": "45967d00d6b4af590221733bf0d93791babc1feb17b98da401dba53d3cf110c9",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/te_PP-OCRv5_mobile_rec",
+  "revision": "151ab3b1c2f2a058f07a944416b92e9eaec6bf36",
+  "filename": "inference.yml",
+  "url": "https://huggingface.co/PaddlePaddle/te_PP-OCRv5_mobile_rec/resolve/151ab3b1c2f2a058f07a944416b92e9eaec6bf36/inference.yml",
+  "path": "models/PaddlePaddle--te_PP-OCRv5_mobile_rec/inference.yml",
+  "bytes": 4795,
+  "sha256": "acebbe53f1831bf28ddfed75aedf58225d7aa5d09100c1d5a9140a2a53b137ce",
+  "upstream_verification": "recorded-at-download",
+  "license": "Apache-2.0"
+ }
+]

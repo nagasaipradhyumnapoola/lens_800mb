@@ -1,0 +1,97 @@
+{
+  "observed_at_utc": "2026-10-25T20:44:16.2308911Z",
+  "operating_system": {
+    "Caption": "Microsoft Windows 11 Home Single Language",
+    "Version": "10.0.26300",
+    "BuildNumber": "26300",
+    "TotalVisibleMemorySize": 16037108,
+    "FreePhysicalMemory": 1145296
+  },
+  "cpu": {
+    "Name": "AMD Ryzen 9 270 w/ Radeon 780M Graphics        ",
+    "NumberOfCores": 8,
+    "NumberOfLogicalProcessors": 16
+  },
+  "gpu_visible_to_wmi": {
+    "Name": "AMD Radeon 780M Graphics",
+    "AdapterRAM": 536870912,
+    "DriverVersion": "32.0.32015.7029"
+  },
+  "disk": {
+    "DriveLetter": "D",
+    "FileSystem": "NTFS",
+    "Size": 323370590208,
+    "SizeRemaining": 250981388288
+  },
+  "powershell": "7.6.5",
+  "tools": [
+    {
+      "path": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "name": "git"
+    },
+    {
+      "path": null,
+      "name": "gh"
+    },
+    {
+      "path": "C:\\Python314\\python.exe",
+      "name": "python"
+    },
+    {
+      "path": "C:\\Windows\\py.exe",
+      "name": "py"
+    },
+    {
+      "path": "C:\\Users\\poola\\AppData\\Local\\hermes\\bin\\uv.exe",
+      "name": "uv"
+    },
+    {
+      "path": null,
+      "name": "cmake"
+    },
+    {
+      "path": null,
+      "name": "ninja"
+    },
+    {
+      "path": null,
+      "name": "cl"
+    },
+    {
+      "path": "C:\\Users\\poola\\.cargo\\bin\\rustc.exe",
+      "name": "rustc"
+    },
+    {
+      "path": "C:\\Users\\poola\\.cargo\\bin\\cargo.exe",
+      "name": "cargo"
+    },
+    {
+      "path": "C:\\Program Files\\nodejs\\node.exe",
+      "name": "node"
+    },
+    {
+      "path": "C:\\Program Files\\nodejs\\npm.ps1",
+      "name": "npm"
+    },
+    {
+      "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\java.exe",
+      "name": "java"
+    },
+    {
+      "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\javac.exe",
+      "name": "javac"
+    },
+    {
+      "path": "C:\\Users\\poola\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+      "name": "adb"
+    },
+    {
+      "path": "C:\\Users\\poola\\AppData\\Local\\Android\\Sdk\\cmdline-tools\\latest\\bin\\sdkmanager.bat",
+      "name": "sdkmanager"
+    },
+    {
+      "path": null,
+      "name": "emulator"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "name": "PowerShell",
+  "version": "7.6.6",
+  "license_spdx": "MIT",
+  "purpose": "Project-local runtime for scripts/lens.ps1 and scripts/import-history.ps1; no system-wide install",
+  "archive": "PowerShell-7.6.6-win-x64.zip",
+  "url": "https://github.com/PowerShell/PowerShell/releases/download/v7.6.6/PowerShell-7.6.6-win-x64.zip",
+  "bytes": 106328873,
+  "sha512": "d95037cfa3ea9df5287a409680bb2cf122451760e9b07e3d9b61cda2155262326911d24643cb1018da6fd899a9c5bd1f30055ca7b74f785b72b6dd99ef3a54fa",
+  "sha256": "02fe458be20493fbdf43f61ea20610b811ee6c738ab1676c61b9cfcd1a33c860",
+  "sha512_source": "third_party/vcpkg/scripts/vcpkg-tools.json (powershell-core windows x64 7.6.6)",
+  "install_path": ".tools/pwsh-7.6.6"
+}

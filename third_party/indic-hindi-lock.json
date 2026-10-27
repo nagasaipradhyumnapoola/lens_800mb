@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "model": "IndicConformer Hindi 120M CTC MatMul-int8",
+  "repo": "parismitaglobalsolutions/indicconformer-sherpa-onnx",
+  "revision": "9721eb71eea141fae0982cfcdb9dd2e3d4953c4a",
+  "models": [
+    {
+      "repo": "parismitaglobalsolutions/indicconformer-sherpa-onnx",
+      "revision": "9721eb71eea141fae0982cfcdb9dd2e3d4953c4a",
+      "filename": "README.md",
+      "url": "https://huggingface.co/parismitaglobalsolutions/indicconformer-sherpa-onnx/resolve/9721eb71eea141fae0982cfcdb9dd2e3d4953c4a/README.md",
+      "path": "models/parismitaglobalsolutions--indicconformer-sherpa-onnx/README.md",
+      "bytes": 21249,
+      "sha256": "f3b4755f4949f292f2db80084a982fdcd3908a36bd457f493cd86b058e580265",
+      "upstream_verification": "git-blob-sha1"
+    },
+    {
+      "repo": "parismitaglobalsolutions/indicconformer-sherpa-onnx",
+      "revision": "9721eb71eea141fae0982cfcdb9dd2e3d4953c4a",
+      "filename": "hi/model.int8.onnx",
+      "url": "https://huggingface.co/parismitaglobalsolutions/indicconformer-sherpa-onnx/resolve/9721eb71eea141fae0982cfcdb9dd2e3d4953c4a/hi/model.int8.onnx",
+      "path": "models/parismitaglobalsolutions--indicconformer-sherpa-onnx/hi/model.int8.onnx",
+      "bytes": 197595593,
+      "sha256": "915c71e04dd7e5378a4057fdebb252b3a587188e4e99db6d7ce0909ad5ad05fa",
+      "upstream_verification": "lfs-sha256"
+    },
+    {
+      "repo": "parismitaglobalsolutions/indicconformer-sherpa-onnx",
+      "revision": "9721eb71eea141fae0982cfcdb9dd2e3d4953c4a",
+      "filename": "tokens.txt",
+      "url": "https://huggingface.co/parismitaglobalsolutions/indicconformer-sherpa-onnx/resolve/9721eb71eea141fae0982cfcdb9dd2e3d4953c4a/tokens.txt",
+      "path": "models/parismitaglobalsolutions--indicconformer-sherpa-onnx/tokens.txt",
+      "bytes": 67605,
+      "sha256": "ee60967630213f31951817ac8b402b92ec18cce80718a24a49b388e56672dfb2",
+      "upstream_verification": "git-blob-sha1"
+    }
+  ],
+  "source_model_repo": "ai4bharat/indicconformer_stt_hi_hybrid_ctc_rnnt_large",
+  "source_model_revision": "deada84ce880997c56ee933aa21571d768264700",
+  "source_model_card": "https://huggingface.co/ai4bharat/indicconformer_stt_hi_hybrid_ctc_rnnt_large/blob/deada84ce880997c56ee933aa21571d768264700/README.md",
+  "source_model_license": "MIT",
+  "export_repo_license_tag": "Apache-2.0",
+  "license_interpretation": "Exporter explicitly retains source weights license; preserve MIT notice and export attribution. Commercial use permitted by MIT.",
+  "license_url": "https://raw.githubusercontent.com/AI4Bharat/IndicConformerASR/3a4c52d0e9168746a2df0da841c6ca5fbb6f18d9/LICENSE",
+  "license_sha256": "e5bc20552aeac6e99c3d2811f90695868e9918d9b8e0c69ebd70828f7dfda60f",
+  "source_provenance_limit": "Exporter notebook loads an unpinned NeMo source alias; exact export bytes are pinned here, but source checkpoint revision used by exporter is not established.",
+  "native_runtime_lock": "third_party/sherpa-reference-lock.json",
+  "native_runtime_version": "2.0.0",
+  "decoding": "greedy_search",
+  "provider": "cpu",
+  "num_threads": 2
+}

@@ -1,0 +1,75 @@
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  1>Checking Build System
+  Building Custom Rule D:/Lens/third_party/whisper.cpp/ggml/src/CMakeLists.txt
+  ggml.c
+  ggml.cpp
+  ggml-alloc.c
+  ggml-quants.c
+  Generating Code...
+  ggml-backend.cpp
+  ggml-backend-meta.cpp
+  ggml-opt.cpp
+  ggml-threading.cpp
+  gguf.cpp
+  Generating Code...
+  ggml-base.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml-base.lib
+  Building Custom Rule D:/Lens/third_party/whisper.cpp/ggml/src/CMakeLists.txt
+  ggml-cpu.c
+  ggml-cpu.cpp
+  repack.cpp
+  hbm.cpp
+  traits.cpp
+  amx.cpp
+  mmq.cpp
+  tiled.cpp
+  tiled-kernel.cpp
+  binary-ops.cpp
+D:\Lens\third_party\whisper.cpp\ggml\src\ggml-cpu\tiled\tiled-kernel.cpp(290,37): warning C4068: unknown pragma 'GCC' [D:\Lens\build\whisper\ggml\src\ggml-cpu.vcxproj]
+D:\Lens\third_party\whisper.cpp\ggml\src\ggml-cpu\tiled\tiled-kernel.cpp(299,37): warning C4068: unknown pragma 'GCC' [D:\Lens\build\whisper\ggml\src\ggml-cpu.vcxproj]
+D:\Lens\third_party\whisper.cpp\ggml\src\ggml-cpu\tiled\tiled-kernel.cpp(307,33): warning C4068: unknown pragma 'GCC' [D:\Lens\build\whisper\ggml\src\ggml-cpu.vcxproj]
+D:\Lens\third_party\whisper.cpp\ggml\src\ggml-cpu\tiled\tiled-kernel.cpp(330,37): warning C4068: unknown pragma 'GCC' [D:\Lens\build\whisper\ggml\src\ggml-cpu.vcxproj]
+D:\Lens\third_party\whisper.cpp\ggml\src\ggml-cpu\tiled\tiled-kernel.cpp(339,37): warning C4068: unknown pragma 'GCC' [D:\Lens\build\whisper\ggml\src\ggml-cpu.vcxproj]
+D:\Lens\third_party\whisper.cpp\ggml\src\ggml-cpu\tiled\tiled-kernel.cpp(347,33): warning C4068: unknown pragma 'GCC' [D:\Lens\build\whisper\ggml\src\ggml-cpu.vcxproj]
+D:\Lens\third_party\whisper.cpp\ggml\src\ggml-cpu\tiled\tiled-kernel.cpp(368,21): warning C4068: unknown pragma 'GCC' [D:\Lens\build\whisper\ggml\src\ggml-cpu.vcxproj]
+  unary-ops.cpp
+  vec.cpp
+  ops.cpp
+  Generating Code...
+  quants.c
+  quants.c
+  repack.cpp
+  ggml-cpu.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml-cpu.lib
+  Building Custom Rule D:/Lens/third_party/whisper.cpp/ggml/src/CMakeLists.txt
+  ggml-backend-dl.cpp
+  ggml-backend-reg.cpp
+  Generating Code...
+  ggml.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml.lib
+  Building Custom Rule D:/Lens/third_party/whisper.cpp/src/CMakeLists.txt
+  whisper.cpp
+  whisper-aneforge.cpp
+  Generating Code...
+  whisper.vcxproj -> D:\Lens\build\whisper\src\Release\whisper.lib
+  Building Custom Rule D:/Lens/third_party/whisper.cpp/examples/CMakeLists.txt
+  common.cpp
+  common-ggml.cpp
+  common-whisper.cpp
+  grammar-parser.cpp
+  Generating Code...
+  common.vcxproj -> D:\Lens\build\whisper\examples\Release\common.lib
+  Building Custom Rule D:/Lens/third_party/whisper.cpp/examples/cli/CMakeLists.txt
+  cli.cpp
+  whisper-cli.vcxproj -> D:\Lens\build\whisper\bin\Release\whisper-cli.exe
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  ggml-base.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml-base.lib
+  ggml-cpu.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml-cpu.lib
+  ggml.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml.lib
+  whisper.vcxproj -> D:\Lens\build\whisper\src\Release\whisper.lib
+  common.vcxproj -> D:\Lens\build\whisper\examples\Release\common.lib
+  Building Custom Rule D:/Lens/third_party/whisper.cpp/examples/quantize/CMakeLists.txt
+  quantize.cpp
+D:\Lens\third_party\whisper.cpp\examples\common.h(267,41): warning C4244: '=': conversion from 'double' to 'int', possible loss of data [D:\Lens\build\whisper\examples\quantize\whisper-quantize.vcxproj]
+  (compiling source file '../../../../third_party/whisper.cpp/examples/quantize/quantize.cpp')
+  
+  whisper-quantize.vcxproj -> D:\Lens\build\whisper\bin\Release\whisper-quantize.exe

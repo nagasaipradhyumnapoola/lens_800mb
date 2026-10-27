@@ -1,0 +1,48 @@
+Computing installation plan...
+The following packages are already installed:
+    nlohmann-json:x64-windows@3.12.0#2
+The following packages will be built and installed:
+    sqlcipher[core,fts5,tool]:x64-windows@4.19.0 -- D:\Lens\third_party/overlays\sqlcipher
+Detecting compiler hash for triplet x64-windows...
+Compiler found: C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe
+Restored 0 package(s) from C:\Users\poola\AppData\Local\vcpkg\archives in 549 us. Use --debug to see more details.
+Installing 1/1 sqlcipher[core,fts5,tool]:x64-windows@4.19.0...
+sqlcipher[core,fts5,tool]:x64-windows@4.19.0 package ABI: ab0eb381627b992033a8fed64c83c59a8f13de2c67047cb4a0c37868a98fe628
+Building sqlcipher[core,fts5,tool]:x64-windows@4.19.0...
+D:\Lens\third_party/overlays\sqlcipher: info: installing overlay port from here
+-- Using cached sqlcipher-sqlcipher-v4.19.0.tar.gz
+-- Cleaning sources at D:/Lens/third_party/vcpkg/buildtrees/sqlcipher/src/v4.19.0-fb220cdba3.clean. Use --editable to skip cleaning for the packages you specify.
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/sqlcipher-sqlcipher-v4.19.0.tar.gz
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/sqlcipher/src/v4.19.0-fb220cdba3.clean
+-- Pre-building x64-windows
+-- Pre-building x64-windows done
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Installing: D:/Lens/third_party/vcpkg/packages/sqlcipher_x64-windows/share/sqlcipher/copyright
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/sqlcipher_x64-windows/lib/pkgconfig/sqlcipher.pc
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst
+-- Using msys root at D:/Lens/third_party/vcpkg/downloads/tools/msys2/d5586eb050429df1
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/sqlcipher_x64-windows/debug/lib/pkgconfig/sqlcipher.pc
+-- Performing post-build validation
+Starting submission of sqlcipher[core,fts5,tool]:x64-windows@4.19.0 to 1 binary cache(s) in the background
+Elapsed time to handle sqlcipher:x64-windows: 1.3 min
+Total install time: 1.3 min
+Installed contents are licensed to you by owners. Microsoft is not responsible for, nor does it grant any licenses to, third-party packages.
+Packages installed in this vcpkg installation declare the following licenses:
+BSD-3-Clause
+sqlcipher provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(sqlcipher CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE sqlcipher::sqlcipher)
+
+sqlcipher provides pkg-config modules:
+
+  # SQLCipher encrypted SQLite database engine
+  sqlcipher
+
+Waiting for 1 remaining binary cache submissions...
+Completed submission of sqlcipher[core,fts5,tool]:x64-windows@4.19.0 to 1 binary cache(s) in 875 ms (1/1)
+All requested installations completed successfully in: 1.3 min

@@ -1,0 +1,14 @@
+diff --git a/src/whisper.cpp b/src/whisper.cpp
+index 6e0fbf4..29a4dfd 100644
+--- a/src/whisper.cpp
++++ b/src/whisper.cpp
+@@ -3568,7 +3568,8 @@ struct whisper_state * whisper_init_state(whisper_context * ctx) {
+         WHISPER_LOG_INFO("%s: ANEForge encoder loaded\n", __func__);
+     }
+ 
+-    state->logits.reserve(ctx->vocab.n_vocab * ctx->model.hparams.n_text_ctx);
++    // grown on demand by whisper_decode_internal (logits_out.resize); reserving n_vocab*n_text_ctx up front commits
++    // ~93 MB that greedy decoding never touches
+ 
+     state->batch = whisper_batch_init(ctx->model.hparams.n_text_ctx, WHISPER_MAX_DECODERS);
+ 

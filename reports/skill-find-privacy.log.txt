@@ -1,0 +1,64 @@
+
+[38;5;102mInstall with[0m npx skills add <owner/repo@skill>
+
+[38;5;145maddyosmani/agent-skills@security-and-hardening[0m [36m69.4K installs[0m
+[38;5;102m└ https://skills.sh/addyosmani/agent-skills/security-and-hardening[0m
+
+[38;5;145maffaan-m/ecc@hipaa-compliance[0m [36m8.6K installs[0m
+[38;5;102m└ https://skills.sh/affaan-m/ecc/hipaa-compliance[0m
+
+[38;5;145mdpearson2699/swift-ios-skills@ios-simulator[0m [36m3K installs[0m
+[38;5;102m└ https://skills.sh/dpearson2699/swift-ios-skills/ios-simulator[0m
+
+[38;5;145mcap-go/capgo-skills@debugging-capacitor[0m [36m1.3K installs[0m
+[38;5;102m└ https://skills.sh/cap-go/capgo-skills/debugging-capacitor[0m
+
+[38;5;145mlilmgenius/paperthin@autobahn[0m [36m1.3K installs[0m
+[38;5;102m└ https://skills.sh/lilmgenius/paperthin/autobahn[0m
+
+[38;5;145mdpearson2699/swift-ios-skills@ios-security[0m [36m1.1K installs[0m
+[38;5;102m└ https://skills.sh/dpearson2699/swift-ios-skills/ios-security[0m
+
+[38;5;145mdimillian/skills@review-swarm[0m [36m753 installs[0m
+[38;5;102m└ https://skills.sh/dimillian/skills/review-swarm[0m
+
+[38;5;145mjoellewis/finance_skills@privacy-data-security[0m [36m698 installs[0m
+[38;5;102m└ https://skills.sh/joellewis/finance_skills/privacy-data-security[0m
+
+[38;5;145mshiplightai/agent-skills@review[0m [36m606 installs[0m
+[38;5;102m└ https://skills.sh/shiplightai/agent-skills/review[0m
+
+[38;5;145mrshankras/claude-code-apple-skills@release-review[0m [36m512 installs[0m
+[38;5;102m└ https://skills.sh/rshankras/claude-code-apple-skills/release-review[0m
+
+[38;5;145mrshankras/claude-code-apple-skills@security[0m [36m487 installs[0m
+[38;5;102m└ https://skills.sh/rshankras/claude-code-apple-skills/security[0m
+
+[38;5;145mbagelhole/devops-security-agent-skills@gdpr-compliance[0m [36m364 installs[0m
+[38;5;102m└ https://skills.sh/bagelhole/devops-security-agent-skills/gdpr-compliance[0m
+
+[38;5;145mbagelhole/devops-security-agent-skills@hipaa-compliance[0m [36m321 installs[0m
+[38;5;102m└ https://skills.sh/bagelhole/devops-security-agent-skills/hipaa-compliance[0m
+
+[38;5;145mbriiirussell/cybersecurity-skills@hipaa-audit[0m [36m309 installs[0m
+[38;5;102m└ https://skills.sh/briiirussell/cybersecurity-skills/hipaa-audit[0m
+
+[38;5;145mwhawkinsiv/solo-founder-skills@secure[0m [36m203 installs[0m
+[38;5;102m└ https://skills.sh/whawkinsiv/solo-founder-skills/secure[0m
+
+[38;5;145mtransilienceai/communitytools@mobile-security[0m [36m173 installs[0m
+[38;5;102m└ https://skills.sh/transilienceai/communitytools/mobile-security[0m
+
+[38;5;145mleonvanzyl/skills@review-an-app[0m [36m163 installs[0m
+[38;5;102m└ https://skills.sh/leonvanzyl/skills/review-an-app[0m
+
+[38;5;145mstellar/stellar-dev-skill@stellar-dev[0m [36m158 installs[0m
+[38;5;102m└ https://skills.sh/stellar/stellar-dev-skill/stellar-dev[0m
+
+[38;5;145mkali-decoder/midnight-skills@compact[0m [36m142 installs[0m
+[38;5;102m└ https://skills.sh/kali-decoder/midnight-skills/compact[0m
+
+[38;5;145mmgifford/accessibility-skills@opquast-digital-quality[0m [36m133 installs[0m
+[38;5;102m└ https://skills.sh/mgifford/accessibility-skills/opquast-digital-quality[0m
+
+Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\win\async.c, line 76

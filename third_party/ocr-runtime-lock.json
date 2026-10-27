@@ -1,0 +1,142 @@
+{
+  "onnxruntime_version": "1.24.4",
+  "source_commit": "2d924974ef147392ced8409d36bd6d2e7fcc8a74",
+  "wheel_url": "https://files.pythonhosted.org/packages/8b/f4/6b89e297b93704345f0f3f8c62229bee323ef25682a3f9b4f89a39324950/onnxruntime-1.24.4-cp312-cp312-win_amd64.whl",
+  "wheel_sha256": "535b29475ca42b593c45fbb2152fbf1cdf3f287315bf650e6a724a0a1d065cdb",
+  "runtime_artifacts": [
+    {
+      "path": ".tools/ocr-runtime/onnxruntime.dll",
+      "sha256": "87da0279ab54add397fd518f7022efe8b9a89fd968669d0adff9f9f242344b6c",
+      "bytes": 16119840,
+      "wheel_member": "onnxruntime/capi/onnxruntime.dll"
+    },
+    {
+      "path": ".tools/ocr-runtime/onnxruntime_providers_shared.dll",
+      "sha256": "838048bae6e1d040e41e4d428a831ac9c5bc91da24abced383d42cb24f2b1376",
+      "bytes": 22048,
+      "wheel_member": "onnxruntime/capi/onnxruntime_providers_shared.dll"
+    },
+    {
+      "path": ".tools/ocr-runtime/include/onnxruntime_c_api.h",
+      "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/2d924974ef147392ced8409d36bd6d2e7fcc8a74/include/onnxruntime/core/session/onnxruntime_c_api.h",
+      "sha256": "9ed0d7054a4e74249467365b25b415d36f51a44a6349e2a994a1812e4723d1e2",
+      "bytes": 373908
+    },
+    {
+      "path": ".tools/ocr-runtime/include/onnxruntime_cxx_api.h",
+      "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/2d924974ef147392ced8409d36bd6d2e7fcc8a74/include/onnxruntime/core/session/onnxruntime_cxx_api.h",
+      "sha256": "5eb8809db561261210ffcafcf9823873f0603fd799542797b6b728bb3f75e5f6",
+      "bytes": 156761
+    },
+    {
+      "path": ".tools/ocr-runtime/include/onnxruntime_cxx_inline.h",
+      "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/2d924974ef147392ced8409d36bd6d2e7fcc8a74/include/onnxruntime/core/session/onnxruntime_cxx_inline.h",
+      "sha256": "022f4559009a35b157bc05a1aae9a59a2603a17e535d9410a49d0f9187f18039",
+      "bytes": 144392
+    },
+    {
+      "path": ".tools/ocr-runtime/include/onnxruntime_float16.h",
+      "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/2d924974ef147392ced8409d36bd6d2e7fcc8a74/include/onnxruntime/core/session/onnxruntime_float16.h",
+      "sha256": "88b242845d25981633a0bbd1c148e273cf8bfb016ea3f57c4af41a06530f72b0",
+      "bytes": 17991
+    },
+    {
+      "path": ".tools/ocr-runtime/include/onnxruntime_ep_c_api.h",
+      "url": "https://raw.githubusercontent.com/microsoft/onnxruntime/2d924974ef147392ced8409d36bd6d2e7fcc8a74/include/onnxruntime/core/session/onnxruntime_ep_c_api.h",
+      "sha256": "e94ac3490697bdb107844fa9d403952ee7136134132a057eae5c1207b57ce352",
+      "bytes": 102494
+    }
+  ],
+  "exports": [
+    {
+      "model": "PP-OCRv6_tiny_rec",
+      "path": "models/PaddlePaddle--PP-OCRv6_tiny_rec/inference.onnx",
+      "bytes": 4456893,
+      "sha256": "4f153794605e0f8de6bf1965fee8a4a83abd04154215b9ce27f8ad28e3c68f48",
+      "source_config_sha256": "66170210bad538e83fff3c4a3867e547d6bf20b50d64b20347c4b913f3034ea1",
+      "source_weights_sha256": "bb2f8f54d1e25f28c71b6fa4fe23f5940e159cae27fbee96155c99f822156e57",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "PP-OCRv6_tiny_rec",
+      "path": "models/PaddlePaddle--PP-OCRv6_tiny_rec/ctc-dictionary.json",
+      "bytes": 47884,
+      "sha256": "7b03a8fb82b507e5aff04b2b312539adc7698e54ef9d03b731cf272c3e52c0a2",
+      "source_config_sha256": "66170210bad538e83fff3c4a3867e547d6bf20b50d64b20347c4b913f3034ea1",
+      "source_weights_sha256": "bb2f8f54d1e25f28c71b6fa4fe23f5940e159cae27fbee96155c99f822156e57",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "devanagari_PP-OCRv5_mobile_rec",
+      "path": "models/PaddlePaddle--devanagari_PP-OCRv5_mobile_rec/inference.onnx",
+      "bytes": 7907399,
+      "sha256": "148432fddb2144ba65adbd8fa9b333b761472382b7bda9c4d893ce8e07510ad7",
+      "source_config_sha256": "9bd172dd26440c8ce94d1cde5d5baea6aefdc7cf3c5c8492e0beedef656d4e54",
+      "source_weights_sha256": "719be7d20bfe9530e2deae324c999e9911087496bce5e70846767c448d023a01",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "devanagari_PP-OCRv5_mobile_rec",
+      "path": "models/PaddlePaddle--devanagari_PP-OCRv5_mobile_rec/ctc-dictionary.json",
+      "bytes": 3663,
+      "sha256": "372e4d37830b435e22253f8d310b0003015241ca21186e1e60ee66553781a5ff",
+      "source_config_sha256": "9bd172dd26440c8ce94d1cde5d5baea6aefdc7cf3c5c8492e0beedef656d4e54",
+      "source_weights_sha256": "719be7d20bfe9530e2deae324c999e9911087496bce5e70846767c448d023a01",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "PP-OCRv5_mobile_det",
+      "path": "models/PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx",
+      "bytes": 4766440,
+      "sha256": "c8d9b07063420ce5365c74e42532de48238feeeedcdb7a330b195708bc38a93f",
+      "source_config_sha256": "98069072e1b6b37d727fd9d9f11725faa46d6ea0de012f2ed26caea011c37699",
+      "source_weights_sha256": "afa1820cb16c1fd0dad589d0f8b389139061c1ef6d68019685fd07be997dda5b",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "PP-OCRv6_tiny_det",
+      "path": "models/PaddlePaddle--PP-OCRv6_tiny_det/inference.onnx",
+      "bytes": 1793140,
+      "sha256": "7603ac05a98aef4f7284517b9210c09f37352debd1183511645e9ee03c5a0406",
+      "source_config_sha256": "3ac018be6f97499a08faa3bbdeb33640968d9307f6736d152902747a9f259593",
+      "source_weights_sha256": "853f7ed317d4f2f80de646842e5bbc32f9d39c601562cbe466cda42e4bafb1b1",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "ta_PP-OCRv5_mobile_rec",
+      "path": "models/PaddlePaddle--ta_PP-OCRv5_mobile_rec/inference.onnx",
+      "bytes": 7880779,
+      "sha256": "0ee6292265d4891155789c6c5fedffeff64ea54983944bc7fc8c2ae19736b62a",
+      "source_config_sha256": "88a28f5a1bb30cabe38a0985cb5e6619fa4f0c7c78e57a08274674228c5219a6",
+      "source_weights_sha256": "7e7bb6c9cbcc401aeaceb0cdace485dbfcc15a410f299294e7c3123bbcbc68f0",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "ta_PP-OCRv5_mobile_rec",
+      "path": "models/PaddlePaddle--ta_PP-OCRv5_mobile_rec/ctc-dictionary.json",
+      "bytes": 3278,
+      "sha256": "2980a83df652ff82b0e3ab5f842c83ff04e0258b8bbd8ba977aed49a56714a53",
+      "source_config_sha256": "88a28f5a1bb30cabe38a0985cb5e6619fa4f0c7c78e57a08274674228c5219a6",
+      "source_weights_sha256": "7e7bb6c9cbcc401aeaceb0cdace485dbfcc15a410f299294e7c3123bbcbc68f0",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "te_PP-OCRv5_mobile_rec",
+      "path": "models/PaddlePaddle--te_PP-OCRv5_mobile_rec/inference.onnx",
+      "bytes": 7893847,
+      "sha256": "636f40684474dc5a9d5aa321018d9a591deff5f9d7eec6230b1576482637a48b",
+      "source_config_sha256": "acebbe53f1831bf28ddfed75aedf58225d7aa5d09100c1d5a9140a2a53b137ce",
+      "source_weights_sha256": "45967d00d6b4af590221733bf0d93791babc1feb17b98da401dba53d3cf110c9",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "te_PP-OCRv5_mobile_rec",
+      "path": "models/PaddlePaddle--te_PP-OCRv5_mobile_rec/ctc-dictionary.json",
+      "bytes": 3467,
+      "sha256": "95e8e49a96fd501481c0cd18ce5e71161716acca0ba0cf819b8a72678aa111b8",
+      "source_config_sha256": "acebbe53f1831bf28ddfed75aedf58225d7aa5d09100c1d5a9140a2a53b137ce",
+      "source_weights_sha256": "45967d00d6b4af590221733bf0d93791babc1feb17b98da401dba53d3cf110c9",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    }
+  ]
+}

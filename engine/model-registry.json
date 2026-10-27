@@ -1,0 +1,16 @@
+{
+  "engine_version": "0.2.0-dev",
+  "status": "experimental; not a language-quality certification",
+  "primary_languages": ["en", "zh", "es", "hi"],
+  "models_are_unmodified_upstream_weights": true,
+  "trained_on_personal_data": false,
+  "asr": {
+    "en": {"model":"ggml-base-q5_1.bin","status":"100-clip configured-language holdout meets provisional WER/CER targets; domain validation pending"},
+    "zh": {"provider":"sherpa-onnx-dolphin-ctc","model":"model.int8.onnx","status":"experimental; Mandarin holdout evaluated; further domain validation required"},
+    "es": {"model":"ggml-small-q5_1.bin","status":"100-clip configured-language holdout meets provisional WER/CER targets; domain validation pending"},
+    "hi": {"provider":"sherpa-onnx-indicconformer-ctc","model":"hi/model.int8.onnx","lock":"third_party/indic-hindi-lock.json","status":"100-clip configured-language holdout WER11.19% CER4.86%; native export source-chain limitation and broader domain validation pending"},
+    "auto": {"model":"ggml-base-q5_1.bin","status":"experimental language detection; worldwide quality unverified"}
+  },
+  "extraction": {"model":"needle3.cact","status":"experimental; unsafe routing/factual errors in smoke set; never execute its calls"},
+  "ocr": {"global":"PP-OCRv6_tiny_rec","hindi":"devanagari_PP-OCRv5_mobile_rec","status":"native recognition-crop adapter tested; screenshot detection and real UI validation pending"}
+}

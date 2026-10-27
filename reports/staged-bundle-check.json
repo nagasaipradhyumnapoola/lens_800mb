@@ -1,0 +1,99 @@
+{
+  "success": true,
+  "bundle": "D:\\Lens\\artifacts\\lens-micro-0.1.0-dev-20261025T220923Z",
+  "checks": [
+    {
+      "name": "stats",
+      "elapsed_ms": 1216.0234000039054,
+      "stderr_empty": true
+    },
+    {
+      "name": "text_import",
+      "elapsed_ms": 1069.5474999956787,
+      "stderr_empty": true
+    },
+    {
+      "name": "audio_en",
+      "elapsed_ms": 2989.425100000517,
+      "stderr_empty": true
+    },
+    {
+      "name": "source_reopen_en",
+      "elapsed_ms": 1008.3833000026061,
+      "stderr_empty": true
+    },
+    {
+      "name": "audio_es",
+      "elapsed_ms": 9457.769699998607,
+      "stderr_empty": true
+    },
+    {
+      "name": "source_reopen_es",
+      "elapsed_ms": 1025.0569999989239,
+      "stderr_empty": true
+    },
+    {
+      "name": "audio_zh",
+      "elapsed_ms": 4250.637700002699,
+      "stderr_empty": true
+    },
+    {
+      "name": "source_reopen_zh",
+      "elapsed_ms": 1277.9277000008733,
+      "stderr_empty": true
+    },
+    {
+      "name": "audio_hi",
+      "elapsed_ms": 4117.089899998973,
+      "stderr_empty": true
+    },
+    {
+      "name": "source_reopen_hi",
+      "elapsed_ms": 1026.3183999995817,
+      "stderr_empty": true
+    },
+    {
+      "name": "ocr_en",
+      "elapsed_ms": 1403.0327999935253,
+      "stderr_empty": true
+    },
+    {
+      "name": "ocr_es",
+      "elapsed_ms": 1343.2549999997718,
+      "stderr_empty": true
+    },
+    {
+      "name": "ocr_zh",
+      "elapsed_ms": 1334.9746000021696,
+      "stderr_empty": true
+    },
+    {
+      "name": "ocr_hi",
+      "elapsed_ms": 1518.9711999992142,
+      "stderr_empty": true
+    },
+    {
+      "name": "extraction_proposal",
+      "elapsed_ms": 1470.0649000005797,
+      "stderr_empty": true
+    },
+    {
+      "name": "literal_retrieval",
+      "elapsed_ms": 1016.0379000008106,
+      "stderr_empty": true
+    },
+    {
+      "name": "not_found",
+      "elapsed_ms": 1024.7617000059108,
+      "stderr_empty": true
+    },
+    {
+      "name": "encrypted_database_and_dpapi_key",
+      "passed": true
+    }
+  ],
+  "fixtures": "public FLEURS speech and Lens-authored synthetic text crops; not private capture",
+  "controller": "Python development harness; all product operations use staged PowerShell/native workers",
+  "network_restriction": "not imposed; offline gate remains pending",
+  "clean_machine_validation": false
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "dependencies": [
+    {
+      "repository": "ggml-org/whisper.cpp",
+      "url": "https://github.com/ggml-org/whisper.cpp",
+      "commit": "231638a0717b7822784297e5980965ffcec05810",
+      "license_spdx": "MIT",
+      "license_path": "LICENSE",
+      "license_sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+      "patches": [
+        {
+          "path": "third_party/overlays/whisper.cpp/0001-sched-single-backend-split-storage.patch",
+          "sha256": "f9f70bd19ef2ee396c5ab55bdef7828273b3861993230a35697f660a663dce08",
+          "purpose": "single-backend ggml scheduler reserves 64 splits instead of graph_size: -86 MB commit per scheduler"
+        },
+        {
+          "path": "third_party/overlays/whisper.cpp/0002-logits-grow-on-demand.patch",
+          "sha256": "375e1263198012e9d2daceb0f701fe1c9db2a14051bb3b85e9da708092cbd0a8",
+          "purpose": "do not reserve n_vocab*n_text_ctx logits up front: -93 MB commit"
+        }
+      ],
+      "build": {
+        "directory": "build/whisper-dl",
+        "options": [
+          "BUILD_SHARED_LIBS=ON",
+          "GGML_BACKEND_DL=ON",
+          "GGML_CPU_ALL_VARIANTS=ON",
+          "GGML_NATIVE=OFF",
+          "GGML_OPENMP=OFF"
+        ],
+        "apply": "git -C third_party/whisper.cpp apply third_party/overlays/whisper.cpp/*.patch"
+      }
+    },
+    {
+      "repository": "cactus-compute/needle",
+      "url": "https://github.com/cactus-compute/needle",
+      "commit": "b4fc11b04f1852888d375c8c6dfbaca44572d014",
+      "license_spdx": "Apache-2.0",
+      "license_path": "LICENSE",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "repository": "PaddlePaddle/PaddleOCR",
+      "url": "https://github.com/PaddlePaddle/PaddleOCR",
+      "commit": "dab3fe35379033fdcb2d0e9572fac0b36c9a9ebf",
+      "license_spdx": "Apache-2.0",
+      "license_path": "LICENSE",
+      "license_sha256": "3840c5c0c61c294264d2dd77b8777be6ddd90121ef4e0e64abcd22edea581d6e"
+    },
+    {
+      "repository": "k2-fsa/sherpa-onnx",
+      "url": "https://github.com/k2-fsa/sherpa-onnx",
+      "commit": "532f1b5a8a207bf53b116b747207c1506696c843",
+      "license_spdx": "Apache-2.0",
+      "license_path": "LICENSE",
+      "license_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "repository": "sqlcipher/sqlcipher",
+      "url": "https://github.com/sqlcipher/sqlcipher",
+      "commit": "c4b275a47932888216bade83aff2bbc73df0ff85",
+      "license_spdx": "NOASSERTION",
+      "license_path": "LICENSE.md",
+      "license_sha256": "2a2826f6acf46fa650730cf42cbb22a642be33a7ef119c9c4f4bf6daf3bef48e"
+    },
+    {
+      "repository": "sqlcipher/sqlcipher-android",
+      "url": "https://github.com/sqlcipher/sqlcipher-android",
+      "commit": "db8a03716be2b5695ab7a5aff09687f27b3af041",
+      "license_spdx": "BSD-3-Clause",
+      "license_path": "LICENSE",
+      "license_sha256": "09e4af560ce2e3c9c2aa6b564e35947b03db7d1ae345f22a32793ed46542cc14"
+    },
+    {
+      "repository": "ActivityWatch/activitywatch",
+      "url": "https://github.com/ActivityWatch/activitywatch",
+      "commit": "c8b9203be894b690c00d317e59d7fb3ab6658af4",
+      "license_spdx": "MPL-2.0",
+      "license_path": "LICENSE.txt",
+      "license_sha256": "3f3d9e0024b1921b067d6f7f88deb4a60cbe7a78e76c64e3f1d7fc3b779b9d04"
+    },
+    {
+      "repository": "arkohut/pensieve",
+      "url": "https://github.com/arkohut/pensieve",
+      "commit": "3e55c66edc871c0960b5dcc2315b62da558d17d8",
+      "license_spdx": "Apache-2.0",
+      "license_path": "LICENSE",
+      "license_sha256": "48cf24e10446d69c7f67d9e44c56becd8e4ae1606a90dd883e5cf930f3229980"
+    },
+    {
+      "repository": "asg017/sqlite-vec",
+      "url": "https://github.com/asg017/sqlite-vec",
+      "commit": "04d28bd21773981e2d266bbf6aa4efbd011eb4f6",
+      "license_spdx": "NOASSERTION",
+      "license_path": "LICENSE-APACHE",
+      "license_sha256": "a38070a94d4afd9cd710e3ce67bd1de78097cfe1784c1f0109ac95d3c196bfdc"
+    },
+    {
+      "repository": "vercel-labs/skills",
+      "url": "https://github.com/vercel-labs/skills",
+      "commit": "a80e4c9d12d607631249d4d7d059f835d4b2f13a",
+      "license_spdx": "MIT",
+      "license_path": "LICENSE",
+      "license_sha256": "661142e53c313d2bb5e1b055f5c0a39001450ff1b5e27b89dc4bc7de9a6352ca"
+    }
+  ]
+}

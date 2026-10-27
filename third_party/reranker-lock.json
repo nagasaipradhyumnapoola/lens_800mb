@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "repo": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+  "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+  "license_spdx": "Apache-2.0",
+  "license_source": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/blob/1427fd652930e4ba29e8149678df786c240d8825/README.md (model card license)",
+  "files": [
+    {
+      "filename": "onnx/model_qint8_avx512_vnni.onnx",
+      "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/onnx/model_qint8_avx512_vnni.onnx",
+      "path": "models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1/onnx/model_qint8_avx512_vnni.onnx",
+      "bytes": 118620017,
+      "sha256": "1825907d6c1a9001ff78124780bbde20a614a8c3df3b63409cf3c72c6fe5c8b4",
+      "upstream_verification": "lfs-sha256"
+    },
+    {
+      "filename": "tokenizer.json",
+      "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/tokenizer.json",
+      "path": "models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1/tokenizer.json",
+      "bytes": 17082660,
+      "sha256": "62c24cdc13d4c9952d63718d6c9fa4c287974249e16b7ade6d5a85e7bbb75626",
+      "upstream_verification": "lfs-sha256"
+    },
+    {
+      "filename": "tokenizer_config.json",
+      "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/tokenizer_config.json",
+      "path": "models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1/tokenizer_config.json",
+      "bytes": 435,
+      "sha256": "e7fbfbfa6347b4e414c1cee50d142e2c2f9a895dad68b068ae83a8b564c3837e",
+      "upstream_verification": "recorded-on-first-fetch"
+    },
+    {
+      "filename": "special_tokens_map.json",
+      "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/special_tokens_map.json",
+      "path": "models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1/special_tokens_map.json",
+      "bytes": 239,
+      "sha256": "378eb3bf733eb16e65792d7e3fda5b8a4631387ca04d2015199c4d4f22ae554d",
+      "upstream_verification": "recorded-on-first-fetch"
+    },
+    {
+      "filename": "config.json",
+      "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/config.json",
+      "path": "models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1/config.json",
+      "bytes": 891,
+      "sha256": "cc2cfe51aa3fd759d21d21acf5dfd6994aa67a3c9210636d22e143699d336c77",
+      "upstream_verification": "recorded-on-first-fetch"
+    },
+    {
+      "filename": "README.md",
+      "url": "https://huggingface.co/cross-encoder/mmarco-mMiniLMv2-L12-H384-v1/resolve/1427fd652930e4ba29e8149678df786c240d8825/README.md",
+      "path": "models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1/README.md",
+      "bytes": 2278,
+      "sha256": "474736a65d6393a060119a8dc304563af67af4d8d86ccfee4a05dd0df107fc11",
+      "upstream_verification": "recorded-on-first-fetch"
+    }
+  ]
+}

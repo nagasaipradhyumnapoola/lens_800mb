@@ -1,0 +1,172 @@
+{
+  "runtime_url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.0/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts.tar.bz2",
+  "runtime_sha256": "98d8cf1c0e0bfb5768042e90ffe9591203855b8f4aabdcd5c154eb39b87a0707",
+  "runtime_version": "2.0.0",
+  "runtime_artifacts": [
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/onnxruntime.dll",
+      "sha256": "422d776ab0e3218260f7f628fcb84606aaa5c21116f720c8619a6da5e0b2e0f9",
+      "bytes": 17136128
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/onnxruntime_providers_shared.dll",
+      "sha256": "0190137dee4933261c065c5d030c3568a68c7aa43cad942b4726a07011738bc2",
+      "bytes": 10752
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-keyword-spotter.exe",
+      "sha256": "ae83a52962875523d0c3d852baae8d667821f7bcd1b5dc2dc1f4fc97b94fe88b",
+      "bytes": 872448
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-audio-tagging.exe",
+      "sha256": "e50b1fd878c8073aa51b908328f3e794838953a1ac4de3c5dc2f8011b97ff811",
+      "bytes": 563712
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-denoiser.exe",
+      "sha256": "267793c3c1006d4dfec4ba5f7a52babddab7f2a53419788339524116a7118201",
+      "bytes": 582144
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-diacritization.exe",
+      "sha256": "5b5293c6aabbc16ab81fded4a307e2a6fcc850b794772aaa5c82920d503eb9d1",
+      "bytes": 520704
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-language-identification.exe",
+      "sha256": "4416fcf3e63148dc934401b1fb1e5ce9557a1d71e0f25b1922b296ef1f2f8f06",
+      "bytes": 591360
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-parallel.exe",
+      "sha256": "d228ccf79df9b66b5f96a7d587a6f918308cae98e960c578d084027088276831",
+      "bytes": 2405888
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-punctuation.exe",
+      "sha256": "e0743622a5c2f3b4e1964e011769b23a4a59ba1753c7c2f6e570fbec54a4469d",
+      "bytes": 503296
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-source-separation.exe",
+      "sha256": "2b0065e0ba475495b11e49e82daf8cc7574e94fff27475d69246a818e417739e",
+      "bytes": 578560
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-speaker-diarization.exe",
+      "sha256": "f00149e8081343c4c1ad4c658f4961f88248987834bd70731a20ebf5d8f845f1",
+      "bytes": 683008
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline-websocket-server.exe",
+      "sha256": "fd1600e7dba81981f24b63f9ed1417d96ab8fcd156fa36967d536e2f6a077c1d",
+      "bytes": 2711040
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-offline.exe",
+      "sha256": "70e083ee9bd572a807437a4ed32d94c56da73d3186388cb9e2f5dd7b85089463",
+      "bytes": 2398208
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-online-denoiser.exe",
+      "sha256": "8d2e71ea553733fad96eebaa365ac1dcc32249b59823f48ee91c9c005ce03677",
+      "bytes": 571392
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-online-punctuation.exe",
+      "sha256": "18a17529a9bebce9fcc1ab02412314a97ac98475f6a0e80ef5494e8519c00ed3",
+      "bytes": 532480
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-online-websocket-client.exe",
+      "sha256": "fd067a5ada22e6a9065a1d09ced28aedb877798cf90660601625efa2432ada01",
+      "bytes": 842752
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-online-websocket-server.exe",
+      "sha256": "6fed10e6eb146dd853e7de5487496540e2ad85cca7bfc566aef25ee3a6308665",
+      "bytes": 2422272
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-vad-with-offline-asr.exe",
+      "sha256": "af8f44b8c1e84c35d2f7fa991f4e89af8b2472c2972405333331ba7539aeb000",
+      "bytes": 2446848
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-vad-with-online-asr.exe",
+      "sha256": "4d4b7b1c4b7889dff3023a19f35c484b17407527b305b71d07726574da61976c",
+      "bytes": 2131968
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-vad.exe",
+      "sha256": "633c0d5e318a8aa47a394bd5f46e840638445edd969c14f7e6c64c56bea6b1be",
+      "bytes": 568832
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx-version.exe",
+      "sha256": "fcc57a5ed43f3393f1dcdecdda2d7049a1d351063d46b138dad539fa89cd3397",
+      "bytes": 11264
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/bin/sherpa-onnx.exe",
+      "sha256": "2e3852d4c955b7b938d76aedbb2ac30941922971dd4604f2288dd79f9e3252ce",
+      "bytes": 2086400
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/onnxruntime.dll",
+      "sha256": "422d776ab0e3218260f7f628fcb84606aaa5c21116f720c8619a6da5e0b2e0f9",
+      "bytes": 17136128
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/onnxruntime_providers_shared.dll",
+      "sha256": "0190137dee4933261c065c5d030c3568a68c7aa43cad942b4726a07011738bc2",
+      "bytes": 10752
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll",
+      "sha256": "949e720ba4282d1097025d1f469317e16c06c69820d0384acd648cd12fcba983",
+      "bytes": 3255808
+    },
+    {
+      "path": ".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-cxx-api.dll",
+      "sha256": "676ae735e9fdfed7f7fdaecdb364d22f92fc90bad487afe15e846be237df8ba0",
+      "bytes": 134144
+    }
+  ],
+  "models": [
+    {
+      "repo": "csukuangfj/sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02",
+      "revision": "c8b6689509acfcd744c04e5e169164f9ac4cae32",
+      "filename": "README.md",
+      "url": "https://huggingface.co/csukuangfj/sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/resolve/c8b6689509acfcd744c04e5e169164f9ac4cae32/README.md",
+      "path": "models/csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/README.md",
+      "bytes": 141,
+      "sha256": "0ed3b1f1fb25f000be670f4b3dba24989f939609b89be84e91579eec397702a9",
+      "upstream_verification": "git-blob-sha1"
+    },
+    {
+      "repo": "csukuangfj/sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02",
+      "revision": "c8b6689509acfcd744c04e5e169164f9ac4cae32",
+      "filename": "model.int8.onnx",
+      "url": "https://huggingface.co/csukuangfj/sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/resolve/c8b6689509acfcd744c04e5e169164f9ac4cae32/model.int8.onnx",
+      "path": "models/csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/model.int8.onnx",
+      "bytes": 249658954,
+      "sha256": "c1afcb9265de0ebd853eb8f570b371f399a6f9b2b9af9a3cb17c2e509171e697",
+      "upstream_verification": "lfs-sha256"
+    },
+    {
+      "repo": "csukuangfj/sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02",
+      "revision": "c8b6689509acfcd744c04e5e169164f9ac4cae32",
+      "filename": "tokens.txt",
+      "url": "https://huggingface.co/csukuangfj/sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/resolve/c8b6689509acfcd744c04e5e169164f9ac4cae32/tokens.txt",
+      "path": "models/csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02/tokens.txt",
+      "bytes": 504662,
+      "sha256": "c3788261a51df1899ea4b210b552cd42139204de72c0ad60f6cebb199078872e",
+      "upstream_verification": "git-blob-sha1"
+    }
+  ],
+  "upstream_model_repository": "DataoceanAI/Dolphin",
+  "upstream_model_source_commit": "78ea615194777f91a3970ff010b5d678d0bbf5f0",
+  "license": "Apache-2.0"
+}

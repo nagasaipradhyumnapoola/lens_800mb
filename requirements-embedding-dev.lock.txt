@@ -1,0 +1,6 @@
+# Development-only reference tokenizer for parity tests (tests/test_embedding.py).
+# Installed with --no-deps: its metadata caps huggingface-hub<2, but only Tokenizer.from_file is used,
+# so the pinned huggingface-hub==2.3.0 from requirements-dev.lock.txt is kept.
+tokenizers==0.22.1
+# Required by onnxruntime.quantization (offline INT8 export of evaluation models); --no-deps, numpy already pinned.
+ml_dtypes==0.5.3

@@ -1,0 +1,22 @@
+{
+  "vcpkg_repository": "https://github.com/microsoft/vcpkg.git",
+  "vcpkg_commit": "817892b0ecbc6af994dd6df999c73faf795adbf2",
+  "triplet": "x64-windows",
+  "packages": [
+    "sqlcipher[fts5,tool]@4.19.0 (local overlay)",
+    "openssl@3.6.5#2",
+    "nlohmann-json@3.12.0#2",
+    "zstd@1.5.7 (x64-windows, shared; runtime CPU dispatch for BMI2 built in)"
+  ],
+  "overlay_provenance": "third_party/overlays/sqlcipher/lens-provenance.json",
+  "development_python": "3.12.13",
+  "webview2_sdk": {
+    "package": "Microsoft.Web.WebView2",
+    "version": "1.0.4258.31",
+    "url": "https://api.nuget.org/v3-flatcontainer/microsoft.web.webview2/1.0.4258.31/microsoft.web.webview2.1.0.4258.31.nupkg",
+    "sha256": "56f7f4b8bf9aee4b8efefbbdd4f67d5f74ebd1b100ed0806da71bf76af481aa9",
+    "license": "BSD-3-Clause (third_party/licenses/webview2-sdk-LICENSE.txt)",
+    "extract_to": ".tools/webview2",
+    "linked": "WebView2LoaderStatic.lib"
+  }
+}

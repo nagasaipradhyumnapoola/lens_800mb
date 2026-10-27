@@ -1,0 +1,55 @@
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26300.
+-- whisper.cpp version: 1.9.5-dev
+-- Warning: ccache not found - consider installing it for faster compilation or disable this warning with GGML_CCACHE=OFF
+-- CMAKE_SYSTEM_PROCESSOR: AMD64
+-- CMAKE_GENERATOR_PLATFORM: x64
+-- GGML_SYSTEM_ARCH: x86
+-- Including CPU backend
+-- x86 detected
+-- Adding CPU backend variant ggml-cpu: /arch:AVX2 GGML_AVX2;GGML_FMA;GGML_F16C;__BMI2__;GGML_BMI2
+-- ggml version: 0.27.0
+-- ggml commit:  231638a
+-- Configuring done (3.0s)
+-- Generating done (2.4s)
+-- Build files have been written to: D:/Lens/build/whisper
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  1>Checking Build System
+  ggml-base.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml-base.lib
+  ggml-cpu.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml-cpu.lib
+  ggml.vcxproj -> D:\Lens\build\whisper\ggml\src\Release\ggml.lib
+  whisper.vcxproj -> D:\Lens\build\whisper\src\Release\whisper.lib
+  common.vcxproj -> D:\Lens\build\whisper\examples\Release\common.lib
+  whisper-cli.vcxproj -> D:\Lens\build\whisper\bin\Release\whisper-cli.exe
+-- Selecting Windows SDK version 10.0.26100.0 to target Windows 10.0.26300.
+-- Found OpenSSL: D:/Lens/third_party/vcpkg/installed/x64-windows/lib/libcrypto.lib (found version "3.6.5")
+-- Configuring done (0.2s)
+-- Generating done (0.2s)
+-- Build files have been written to: D:/Lens/build/engine
+MSBuild version 18.9.1+a81b43525 for .NET Framework
+
+  1>Checking Build System
+  Building Custom Rule D:/Lens/engine/CMakeLists.txt
+  Building Custom Rule D:/Lens/engine/CMakeLists.txt
+  lens-asr-probe.vcxproj -> D:\Lens\build\engine\Release\lens-asr-probe.exe
+  store.cpp
+  Building Custom Rule D:/Lens/engine/CMakeLists.txt
+  lens-needle.vcxproj -> D:\Lens\build\engine\Release\lens-needle.exe
+  key_store.cpp
+  Generating Code...
+  lens-store.vcxproj -> D:\Lens\build\engine\Release\lens-store.lib
+  Building Custom Rule D:/Lens/engine/CMakeLists.txt
+  main.cpp
+  asr.cpp
+  Generating Code...
+  lens-engine.vcxproj -> D:\Lens\build\engine\Release\lens-engine.exe
+  Building Custom Rule D:/Lens/engine/CMakeLists.txt

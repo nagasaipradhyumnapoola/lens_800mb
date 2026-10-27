@@ -1,0 +1,284 @@
+Computing installation plan...
+A suitable version of cmake was not found (required v4.4.3).
+Downloading https://github.com/Kitware/CMake/releases/download/v4.4.3/cmake-4.4.3-windows-x86_64.zip -> cmake-4.4.3-windows-x86_64.zip
+Successfully downloaded cmake-4.4.3-windows-x86_64.zip
+Extracting cmake...
+A suitable version of 7zip was not found (required v26.03).
+Downloading https://github.com/ip7z/7zip/releases/download/26.03/7z2603-x64.exe -> 7z2603-x64.7z.exe
+Successfully downloaded 7z2603-x64.7z.exe
+Extracting 7zip...
+A suitable version of 7zr was not found (required v26.03).
+Downloading https://github.com/ip7z/7zip/releases/download/26.03/7zr.exe -> 211a9748-7zr.exe
+Successfully downloaded 211a9748-7zr.exe
+The following packages will be built and installed:
+  * libtommath:x64-windows@1.3.0#3
+  * minizip:x64-windows@1.3.2
+    nlohmann-json:x64-windows@3.12.0#2
+  * openssl:x64-windows@3.6.5#2
+    sqlcipher[core,fts5,tool]:x64-windows@4.19.0 -- D:\Lens\third_party/overlays\sqlcipher
+  * sqlite3[core,dbpage-vtab,dbstat,fts3,fts4,fts5,geopoly,json1,limit,math,rtree,soundex]:x64-windows@3.54.1
+  * tcl:x64-windows@9.0.3#2
+  * vcpkg-cmake:x64-windows@2025-08-07
+  * vcpkg-cmake-config:x64-windows@2026-07-21
+  * vcpkg-cmake-get-vars:x64-windows@2025-05-29
+  * zlib:x64-windows@1.3.2#2
+Additional packages (*) will be modified to complete this operation.
+Detecting compiler hash for triplet x64-windows...
+A suitable version of powershell-core was not found (required v7.6.6).
+Downloading https://github.com/PowerShell/PowerShell/releases/download/v7.6.6/PowerShell-7.6.6-win-x64.zip -> PowerShell-7.6.6-win-x64.zip
+Successfully downloaded PowerShell-7.6.6-win-x64.zip
+Extracting powershell-core...
+Compiler found: C:/Program Files/Microsoft Visual Studio/18/Community/VC/Tools/MSVC/14.51.36231/bin/Hostx64/x64/cl.exe
+Restored 0 package(s) from C:\Users\poola\AppData\Local\vcpkg\archives in 2.13 ms. Use --debug to see more details.
+Installing 1/11 vcpkg-cmake:x64-windows@2025-08-07...
+vcpkg-cmake:x64-windows@2025-08-07 package ABI: d54a73c9adc3a73de000016a9507b6df0c8ba963f384ddbc122cb187f722a94e
+Building vcpkg-cmake:x64-windows@2025-08-07...
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_configure.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_build.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg_cmake_install.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/vcpkg-port-config.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake_x64-windows/share/vcpkg-cmake/copyright
+-- Performing post-build validation
+Starting submission of vcpkg-cmake:x64-windows@2025-08-07 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake:x64-windows: 194 ms
+Installing 2/11 vcpkg-cmake-config:x64-windows@2026-07-21...
+vcpkg-cmake-config:x64-windows@2026-07-21 package ABI: 89f9dd1b369984df380a4d5edbcd763e22af889f1d7bdd8a4a7fcc365251b7a7
+Building vcpkg-cmake-config:x64-windows@2026-07-21...
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/vcpkg_cmake_config_fixup.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/vcpkg-port-config.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-config_x64-windows/share/vcpkg-cmake-config/copyright
+-- Skipping post-build validation due to VCPKG_POLICY_EMPTY_PACKAGE
+Starting submission of vcpkg-cmake-config:x64-windows@2026-07-21 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake-config:x64-windows: 116 ms
+Completed submission of vcpkg-cmake:x64-windows@2025-08-07 to 1 binary cache(s) in 92 ms
+Installing 3/11 libtommath:x64-windows@1.3.0#3...
+libtommath:x64-windows@1.3.0#3 package ABI: f87e1388fbc8fc849c79afbe37c821b4bd83f5e8c1b7d2add262db314b83077a
+Building libtommath:x64-windows@1.3.0#3...
+Downloading https://github.com/libtom/libtommath/archive/v1.3.0.tar.gz -> libtom-libtommath-v1.3.0.tar.gz
+Successfully downloaded libtom-libtommath-v1.3.0.tar.gz
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/libtom-libtommath-v1.3.0.tar.gz
+-- Applying patch pkgconfig.diff
+-- Applying patch bcrypt.patch
+-- Applying patch import-lib.patch
+-- Applying patch has-set-double.patch
+-- Applying patch msvc-dce.patch
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/libtommath/src/v1.3.0-fc7d67d771.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/libtommath_x64-windows/lib/pkgconfig/libtommath.pc
+Downloading msys2-mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst, trying https://mirror.msys2.org/mingw/mingw64/mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst
+Successfully downloaded msys2-mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst
+Downloading msys2-msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst, trying https://mirror.msys2.org/msys/x86_64/msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst
+Successfully downloaded msys2-msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst
+-- Using msys root at D:/Lens/third_party/vcpkg/downloads/tools/msys2/d5586eb050429df1
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/libtommath_x64-windows/debug/lib/pkgconfig/libtommath.pc
+-- Installing: D:/Lens/third_party/vcpkg/packages/libtommath_x64-windows/share/libtommath/copyright
+-- Performing post-build validation
+Starting submission of libtommath:x64-windows@1.3.0#3 to 1 binary cache(s) in the background
+Elapsed time to handle libtommath:x64-windows: 46 s
+Completed submission of vcpkg-cmake-config:x64-windows@2026-07-21 to 1 binary cache(s) in 72.2 ms
+Installing 4/11 vcpkg-cmake-get-vars:x64-windows@2025-05-29...
+vcpkg-cmake-get-vars:x64-windows@2025-05-29 package ABI: 7c7f7fd8304de4e914e548d6e8e0bc880fd014ae5207f60d42cf224cd803718a
+Building vcpkg-cmake-get-vars:x64-windows@2025-05-29...
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-get-vars_x64-windows/share/vcpkg-cmake-get-vars/vcpkg_cmake_get_vars.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-get-vars_x64-windows/share/vcpkg-cmake-get-vars/cmake_get_vars
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-get-vars_x64-windows/share/vcpkg-cmake-get-vars/cmake_get_vars/CMakeLists.txt
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-get-vars_x64-windows/share/vcpkg-cmake-get-vars/cmake-get-vars.cmake.in
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-get-vars_x64-windows/share/vcpkg-cmake-get-vars/vcpkg-port-config.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/vcpkg-cmake-get-vars_x64-windows/share/vcpkg-cmake-get-vars/copyright
+-- Performing post-build validation
+Starting submission of vcpkg-cmake-get-vars:x64-windows@2025-05-29 to 1 binary cache(s) in the background
+Elapsed time to handle vcpkg-cmake-get-vars:x64-windows: 138 ms
+Installing 5/11 zlib:x64-windows@1.3.2#2...
+zlib:x64-windows@1.3.2#2 package ABI: d22d271c6cf431e8d488707f484fc3047b2ffe9e56c96ac5f5dfb0a1a6c9861d
+Building zlib:x64-windows@1.3.2#2...
+Downloading https://github.com/madler/zlib/archive/v1.3.2.tar.gz -> madler-zlib-v1.3.2.tar.gz
+Successfully downloaded madler-zlib-v1.3.2.tar.gz
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/madler-zlib-v1.3.2.tar.gz
+-- Applying patch 0001-no-version-script-on-ohos.patch
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/zlib/src/v1.3.2-c19a0bfd23.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/zlib_x64-windows/lib/pkgconfig/zlib.pc
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst
+-- Using msys root at D:/Lens/third_party/vcpkg/downloads/tools/msys2/d5586eb050429df1
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/zlib_x64-windows/debug/lib/pkgconfig/zlib.pc
+-- Installing: D:/Lens/third_party/vcpkg/packages/zlib_x64-windows/share/zlib/vcpkg-cmake-wrapper.cmake
+-- Installing: D:/Lens/third_party/vcpkg/packages/zlib_x64-windows/share/zlib/copyright
+-- Performing post-build validation
+Starting submission of zlib:x64-windows@1.3.2#2 to 1 binary cache(s) in the background
+Elapsed time to handle zlib:x64-windows: 14 s
+Completed submission of libtommath:x64-windows@1.3.0#3 to 1 binary cache(s) in 298 ms
+Completed submission of vcpkg-cmake-get-vars:x64-windows@2025-05-29 to 1 binary cache(s) in 95.6 ms
+Installing 6/11 minizip:x64-windows@1.3.2...
+minizip:x64-windows@1.3.2 package ABI: baa7f22f3625e5433c44498222ab324906cbbaadb4a59acc7b41ea7f8a768b58
+Building minizip:x64-windows@1.3.2...
+-- Using cached madler-zlib-v1.3.2.tar.gz
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/madler-zlib-v1.3.2.tar.gz
+-- Applying patch pkgconfig.patch
+-- Applying patch install-tools.diff
+-- Applying patch restore-32bit.diff
+-- Applying patch unofficial-iowin32.diff
+-- Applying patch header-destination.diff
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/minizip/src/v1.3.2-355bf577a0.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/minizip_x64-windows/lib/pkgconfig/minizip.pc
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst
+-- Using msys root at D:/Lens/third_party/vcpkg/downloads/tools/msys2/d5586eb050429df1
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/minizip_x64-windows/debug/lib/pkgconfig/minizip.pc
+-- Installing: D:/Lens/third_party/vcpkg/packages/minizip_x64-windows/share/minizip/copyright
+-- Performing post-build validation
+Starting submission of minizip:x64-windows@1.3.2 to 1 binary cache(s) in the background
+Elapsed time to handle minizip:x64-windows: 10 s
+Completed submission of zlib:x64-windows@1.3.2#2 to 1 binary cache(s) in 247 ms
+Installing 7/11 nlohmann-json:x64-windows@3.12.0#2...
+nlohmann-json:x64-windows@3.12.0#2 package ABI: 53e9e8b67fe492cadae3d438325b9753e990d0410cde54da323ecfa30a2bbab6
+Building nlohmann-json:x64-windows@3.12.0#2...
+Downloading https://github.com/nlohmann/json/archive/v3.12.0.tar.gz -> nlohmann-json-v3.12.0.tar.gz
+Successfully downloaded nlohmann-json-v3.12.0.tar.gz
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/nlohmann-json-v3.12.0.tar.gz
+-- Applying patch fix-4736_char8_t.patch
+-- Applying patch fix-4742_std_optional.patch
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/nlohmann-json/src/v3.12.0-89fed620e6.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/nlohmann-json_x64-windows/share/pkgconfig/nlohmann_json.pc
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst
+-- Using msys root at D:/Lens/third_party/vcpkg/downloads/tools/msys2/d5586eb050429df1
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/nlohmann-json_x64-windows/debug/share/pkgconfig/nlohmann_json.pc
+-- Installing: D:/Lens/third_party/vcpkg/packages/nlohmann-json_x64-windows/share/nlohmann-json/copyright
+-- Performing post-build validation
+Starting submission of nlohmann-json:x64-windows@3.12.0#2 to 1 binary cache(s) in the background
+Elapsed time to handle nlohmann-json:x64-windows: 10 s
+Completed submission of minizip:x64-windows@1.3.2 to 1 binary cache(s) in 213 ms
+Installing 8/11 openssl:x64-windows@3.6.5#2...
+openssl:x64-windows@3.6.5#2 package ABI: 60f376d3b9e1ec2c37857e34f85d9b489576184f00686efa6db9234ffd087ef1
+Building openssl:x64-windows@3.6.5#2...
+Downloading https://github.com/openssl/openssl/archive/openssl-3.6.5.tar.gz -> openssl-openssl-openssl-3.6.5.tar.gz
+Successfully downloaded openssl-openssl-openssl-3.6.5.tar.gz
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/openssl-openssl-openssl-3.6.5.tar.gz
+-- Applying patch cmake-config.patch
+-- Applying patch command-line-length.patch
+-- Applying patch script-prefix.patch
+-- Applying patch windows/install-layout.patch
+-- Applying patch windows/install-pdbs.patch
+-- Applying patch windows/install-programs.diff
+-- Applying patch unix/android-cc.patch
+-- Applying patch unix/move-openssldir.patch
+-- Applying patch unix/no-empty-dirs.patch
+-- Applying patch unix/no-static-libs-for-shared.patch
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/openssl/src/nssl-3.6.5-c2a478abe6.clean
+-- Getting CMake variables for x64-windows
+-- Loading CMake variables from D:/Lens/third_party/vcpkg/buildtrees/openssl/cmake-get-vars_C_CXX-x64-windows.cmake.log
+Downloading https://github.com/StrawberryPerl/Perl-Dist-Strawberry/releases/download/SP_54221_64bit/strawberry-perl-5.42.2.1-64bit-portable.zip -> strawberry-perl-5.42.2.1-64bit-portable.zip
+Successfully downloaded strawberry-perl-5.42.2.1-64bit-portable.zip
+Downloading nasm-3.01-win64.zip, trying https://www.nasm.us/pub/nasm/releasebuilds/3.01/win64/nasm-3.01-win64.zip
+Successfully downloaded nasm-3.01-win64.zip
+-- Getting CMake variables for x64-windows
+Downloading jom_1_1_7.zip, trying https://download.qt.io/official_releases/jom/jom_1_1_7.zip
+Successfully downloaded jom_1_1_7.zip
+-- Prerunning x64-windows-dbg
+-- Building x64-windows-dbg
+-- Prerunning x64-windows-rel
+-- Building x64-windows-rel
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/openssl_x64-windows/lib/pkgconfig/libcrypto.pc
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/openssl_x64-windows/lib/pkgconfig/libssl.pc
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/openssl_x64-windows/lib/pkgconfig/openssl.pc
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst
+-- Using msys root at D:/Lens/third_party/vcpkg/downloads/tools/msys2/d5586eb050429df1
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/openssl_x64-windows/debug/lib/pkgconfig/libcrypto.pc
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/openssl_x64-windows/debug/lib/pkgconfig/libssl.pc
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/openssl_x64-windows/debug/lib/pkgconfig/openssl.pc
+-- Installing: D:/Lens/third_party/vcpkg/packages/openssl_x64-windows/share/openssl/usage
+-- Installing: D:/Lens/third_party/vcpkg/packages/openssl_x64-windows/share/openssl/copyright
+-- Performing post-build validation
+Starting submission of openssl:x64-windows@3.6.5#2 to 1 binary cache(s) in the background
+Elapsed time to handle openssl:x64-windows: 19 min
+Completed submission of nlohmann-json:x64-windows@3.12.0#2 to 1 binary cache(s) in 131 ms
+Installing 9/11 sqlite3[core,dbpage-vtab,dbstat,fts3,fts4,fts5,geopoly,json1,limit,math,rtree,soundex]:x64-windows@3.54.1...
+sqlite3[core,dbpage-vtab,dbstat,fts3,fts4,fts5,geopoly,json1,limit,math,rtree,soundex]:x64-windows@3.54.1 package ABI: 9dabc85dc5bf931b7a61d4c3c7e296dea664aef1b85a133afdafb90a637ad19f
+Building sqlite3[core,dbpage-vtab,dbstat,fts3,fts4,fts5,geopoly,json1,limit,math,rtree,soundex]:x64-windows@3.54.1...
+Downloading https://sqlite.org/2026/sqlite-autoconf-3540100.tar.gz -> sqlite-autoconf-3540100.tar.gz
+Successfully downloaded sqlite-autoconf-3540100.tar.gz
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/sqlite-autoconf-3540100.tar.gz
+-- Applying patch fix-arm-uwp.patch
+-- Applying patch add-config-include.patch
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/sqlite3/src/nf-3540100-0b4b6fce90.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/sqlite3_x64-windows/lib/pkgconfig/sqlite3.pc
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~3.0.7-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.6.10-4-x86_64.pkg.tar.zst
+-- Using msys root at D:/Lens/third_party/vcpkg/downloads/tools/msys2/d5586eb050429df1
+-- Fixing pkgconfig file: D:/Lens/third_party/vcpkg/packages/sqlite3_x64-windows/debug/lib/pkgconfig/sqlite3.pc
+-- Installing: D:/Lens/third_party/vcpkg/packages/sqlite3_x64-windows/share/sqlite3/usage
+-- Performing post-build validation
+Starting submission of sqlite3[core,dbpage-vtab,dbstat,fts3,fts4,fts5,geopoly,json1,limit,math,rtree,soundex]:x64-windows@3.54.1 to 1 binary cache(s) in the background
+Elapsed time to handle sqlite3:x64-windows: 51 s
+Completed submission of openssl:x64-windows@3.6.5#2 to 1 binary cache(s) in 3.1 s
+Installing 10/11 tcl:x64-windows@9.0.3#2...
+tcl:x64-windows@9.0.3#2 package ABI: 4b685097057d83b4e793bd7ed23d83c9789639a18a251935e9cf6e6011ddc202
+Building tcl:x64-windows@9.0.3#2...
+Downloading https://sourceforge.net/projects/tcl/files/Tcl/9.0.3/tcl9.0.3-src.tar.gz/download -> tcl9.0.3-src.tar.gz
+Successfully downloaded tcl9.0.3-src.tar.gz
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/tcl9.0.3-src.tar.gz
+-- Applying patch dependencies.diff
+-- Applying patch nmake.diff
+-- Applying patch fix-copy-binary.diff
+-- Applying patch no-werror.diff
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/tcl/src/tcl9-376bf4b021.clean
+-- Getting CMake variables for x64-windows
+-- Building and installing x64-windows-dbg
+-- Building and installing x64-windows-rel
+-- Performing post-build validation
+Starting submission of tcl:x64-windows@9.0.3#2 to 1 binary cache(s) in the background
+Elapsed time to handle tcl:x64-windows: 4.5 min
+Completed submission of sqlite3[core,dbpage-vtab,dbstat,fts3,fts4,fts5,geopoly,json1,limit,math,rtree,soundex]:x64-windows@3.54.1 to 1 binary cache(s) in 1 s
+Installing 11/11 sqlcipher[core,fts5,tool]:x64-windows@4.19.0...
+sqlcipher[core,fts5,tool]:x64-windows@4.19.0 package ABI: ac1e7cc4fe92103c3cf5dec1200db0586b618a2b2deff7db70867ef5690aba82
+Building sqlcipher[core,fts5,tool]:x64-windows@4.19.0...
+D:\Lens\third_party/overlays\sqlcipher: info: installing overlay port from here
+Downloading https://github.com/sqlcipher/sqlcipher/archive/v4.19.0.tar.gz -> sqlcipher-sqlcipher-v4.19.0.tar.gz
+Successfully downloaded sqlcipher-sqlcipher-v4.19.0.tar.gz
+-- Extracting source D:/Lens/third_party/vcpkg/downloads/sqlcipher-sqlcipher-v4.19.0.tar.gz
+-- Using source at D:/Lens/third_party/vcpkg/buildtrees/sqlcipher/src/v4.19.0-fb220cdba3.clean
+-- Pre-building x64-windows
+-- Pre-building x64-windows done
+-- Configuring x64-windows
+CMake Error at scripts/cmake/vcpkg_execute_required_process.cmake:127 (message):
+    Command failed: "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja\\ninja.exe" -v
+    Working Directory: D:/Lens/third_party/vcpkg/buildtrees/sqlcipher/x64-windows-rel/vcpkg-parallel-configure
+    Error code: 1
+    See logs for more information:
+      D:\Lens\third_party\vcpkg\buildtrees\sqlcipher\config-x64-windows-dbg-CMakeCache.txt.log
+      D:\Lens\third_party\vcpkg\buildtrees\sqlcipher\config-x64-windows-rel-CMakeCache.txt.log
+      D:\Lens\third_party\vcpkg\buildtrees\sqlcipher\config-x64-windows-dbg-CMakeConfigureLog.yaml.log
+      D:\Lens\third_party\vcpkg\buildtrees\sqlcipher\config-x64-windows-rel-CMakeConfigureLog.yaml.log
+      D:\Lens\third_party\vcpkg\buildtrees\sqlcipher\config-x64-windows-out.log
+
+Call Stack (most recent call first):
+  installed/x64-windows/share/vcpkg-cmake/vcpkg_cmake_configure.cmake:271 (vcpkg_execute_required_process)
+  D:/Lens/third_party/overlays/sqlcipher/portfile.cmake:53 (vcpkg_cmake_configure)
+  scripts/ports.cmake:209 (include)
+
+
+error: building sqlcipher:x64-windows failed with: BUILD_FAILED
+See https://learn.microsoft.com/vcpkg/troubleshoot/build-failures?WT.mc_id=vcpkg_inproduct_cli for more information.
+Elapsed time to handle sqlcipher:x64-windows: 1.1 min
+Please ensure you're using the latest port files with `git pull` and `vcpkg update`.
+Then check for known issues at:
+  https://github.com/microsoft/vcpkg/issues?q=is%3Aissue+is%3Aopen+in%3Atitle+sqlcipher
+You can submit a new issue at:
+  https://github.com/microsoft/vcpkg/issues/new?title=%5Bsqlcipher%5D%20build%20error%20on%20x64-windows&body=Copy%20issue%20body%20from%20D%3A%2FLens%2Fthird_party%2Fvcpkg%2Finstalled%2Fvcpkg%2Fissue_body.md
+
+Completed submission of tcl:x64-windows@9.0.3#2 to 1 binary cache(s) in 1.4 s
