@@ -1,0 +1,24 @@
+{
+ "fp32_sha256": "1156ccd1048ae382742a010a429bba7412bfb28264e9b246c18701b9e047eff5",
+ "int8_sha256": "9054e6788d42cc90e9a8c9521213c0f0d677bea92cf844840b4a6b79dda5de90",
+ "int8_bytes": 123731063,
+ "kept_fp32": [
+  {
+   "node": "/roberta/encoder/layer.5/output/dense/MatMul",
+   "max_logit_error": 0.2653617858886719
+  },
+  {
+   "node": "/roberta/encoder/layer.6/intermediate/dense/MatMul",
+   "max_logit_error": 0.25127267837524414
+  },
+  {
+   "node": "/roberta/encoder/layer.8/intermediate/dense/MatMul",
+   "max_logit_error": 0.2323065996170044
+  }
+ ],
+ "parity_pairs": 600,
+ "sign_agreement": 0.9916666666666667,
+ "pearson": 0.9993601744557511,
+ "max_abs_logit_error": 0.8461427688598633,
+ "mean_abs_logit_error": 0.1312237052153796
+}

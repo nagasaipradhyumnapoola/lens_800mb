@@ -1,0 +1,130 @@
+{
+ "schema_version": 1,
+ "policy": "Only licensed public data; no personal data; held-out splits never trained on. docs/LENS_MODEL.md section 5.",
+ "datasets": [
+  {
+   "name": "squad_v2",
+   "repository": "rajpurkar/squad_v2",
+   "revision": "3ffb306f725f7d2ce8394bc1873b24868140c412",
+   "license": "CC-BY-SA-4.0",
+   "note": "en; adversarial unanswerable questions; validation = evaluation only",
+   "files": [
+    {
+     "path": "data/external/squad_v2/train.parquet",
+     "sha256": "f6da32ffb482ff463ad056477740d1bb284b96a45db3a08bee6a225ca6abf291",
+     "bytes": 16369982
+    },
+    {
+     "path": "data/external/squad_v2/validation.parquet",
+     "sha256": "0560174ab095c5ac0a8c8dc8da05f1625453c45a77e4ce9cabc6947ddfdd24cb",
+     "bytes": 1350511
+    }
+   ]
+  },
+  {
+   "name": "tydiqa_goldp",
+   "repository": "google-research-datasets/tydiqa",
+   "revision": "da78f23f9119363459acbaf46bf89426ff26c259",
+   "license": "Apache-2.0",
+   "note": "secondary task (GoldP), 9 languages incl. te; answerable only; validation = evaluation only",
+   "files": [
+    {
+     "path": "data/external/tydiqa_goldp/train.parquet",
+     "sha256": "8139944554bcd89f6c4b167b93c9a63ec44a6d97b8caebe049061f78fcc0e786",
+     "bytes": 26918058
+    },
+    {
+     "path": "data/external/tydiqa_goldp/validation.parquet",
+     "sha256": "38760fbfc8fa4d0765026d56cfbb65a39231ad8cf5afef40f9c962a26bd3f94d",
+     "bytes": 2484180
+    }
+   ]
+  },
+  {
+   "name": "indicqa",
+   "repository": "ai4bharat/IndicQA",
+   "revision": "d7e91454f5c8a85b82e2549453521a2b7a185c44",
+   "license": "CC-BY-4.0",
+   "note": "hi/ta/te with unanswerables; 30% of articles held out, never trained",
+   "files": [
+    {
+     "path": "data/external/indicqa/indicqa.hi.json",
+     "sha256": "9c91d20e7c095956a097e8d2962c0e4bd7029006f2031e86fc4af16f7fef8cb5",
+     "bytes": 2673518
+    },
+    {
+     "path": "data/external/indicqa/indicqa.ta.json",
+     "sha256": "247c9e74623f8e73e723f0dabd725c4504b3ca6690c4019c0c6e78f4a7aae77c",
+     "bytes": 2709926
+    },
+    {
+     "path": "data/external/indicqa/indicqa.te.json",
+     "sha256": "6e32cd280bc4792c9b0852abe6450984a7ba807cb7d1d004df8c9e6eaf33dc6d",
+     "bytes": 3119401
+    }
+   ]
+  },
+  {
+   "name": "xquad",
+   "repository": "google/xquad",
+   "revision": "51adfef1c1287aab1d2d91b5bead9bcfb9c68583",
+   "license": "CC-BY-SA-4.0",
+   "note": "es/zh/hi answerable; 30% of paragraphs held out, never trained",
+   "files": [
+    {
+     "path": "data/external/xquad/xquad.es.parquet",
+     "sha256": "69b6ad587e2ebcb0b00105f6736661154f9b1ce95eaa581bcac240d6edfc11ce",
+     "bytes": 236874
+    },
+    {
+     "path": "data/external/xquad/xquad.zh.parquet",
+     "sha256": "6d9033e82b2a1dbf67b66025e84fab9a44e13dc91401e4914a9529db784146f6",
+     "bytes": 205768
+    },
+    {
+     "path": "data/external/xquad/xquad.hi.parquet",
+     "sha256": "e6c7be8500401994d4812db12380239b4ca844c21b650ebdd393d4aba045177e",
+     "bytes": 322083
+    }
+   ]
+  }
+ ],
+ "initialisation": [
+  {
+   "name": "mmarco-mMiniLMv2-L12-H384-v1",
+   "repository": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+   "revision": "1427fd652930e4ba29e8149678df786c240d8825",
+   "license": "Apache-2.0",
+   "note": "initialisation for the answerability pilot (weights Apache-2.0; upstream training data includes mMARCO, documented as provenance)",
+   "files": [
+    {
+     "path": "models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1/model.safetensors",
+     "sha256": "5daeca2481a76b5976a2bdc32f0a78532b6716da4f8cd3ff59460ef8d2f359b4",
+     "bytes": 470592698
+    }
+   ]
+  }
+ ],
+ "excluded": [
+  {
+   "name": "mMARCO / MS MARCO",
+   "reason": "non-commercial terms"
+  },
+  {
+   "name": "XNLI",
+   "reason": "CC BY-NC 4.0"
+  },
+  {
+   "name": "Samanantar",
+   "reason": "hub card CC BY-NC 4.0"
+  },
+  {
+   "name": "MobileCLIP",
+   "reason": "Apple AMLR research licence"
+  },
+  {
+   "name": "SenseVoice",
+   "reason": "custom licence"
+  }
+ ]
+}
