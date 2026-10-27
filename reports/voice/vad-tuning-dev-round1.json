@@ -1,0 +1,1134 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "bc8eb95c13cbc5053e10ff3c6329c3813c0840be77e1669dee7af02de40e1edc",
+  "lens_engine_sha256": "042ae09ccbd11552ce0db19eaadbad30e969fab4093125502e44f5b9ed5963ac",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-27T10:13:35",
+  "git_head": "b192ad8bb25296def0dde08d1d7632512ae870e4"
+ },
+ "objective": "3*missed_speech + nonspeech_captured + 0.02*capped/session",
+ "split": "dev",
+ "sessions_per_language": 2,
+ "conditions": [
+  "clean",
+  "raw_level",
+  "quiet",
+  "hot",
+  "resample48k",
+  "white20",
+  "white10",
+  "white5",
+  "pink20",
+  "pink10",
+  "pink5",
+  "babble20",
+  "babble10",
+  "babble5",
+  "fan20",
+  "fan10",
+  "fan5"
+ ],
+ "best": {
+  "threshold-db": -65,
+  "on-margin-db": 8,
+  "off-margin-db": 4,
+  "silence-ms": 600,
+  "min-speech-ms": 150,
+  "onset-ms": 60,
+  "tail-ms": 500
+ },
+ "best_cost": 0.3058,
+ "legacy_dev": {
+  "sessions": 136,
+  "utterances": 1088,
+  "segments": 820,
+  "utterance_recall": 0.9375,
+  "missed_speech": 0.0351,
+  "nonspeech_captured": 0.67,
+  "false_triggers_per_10min": 1.369,
+  "capped_segments": 249
+ },
+ "legacy_cost": 0.8119176470588236,
+ "trials": [
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 10,
+    "off-margin-db": 6,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1441,
+    "utterance_recall": 0.6415,
+    "missed_speech": 0.1211,
+    "nonspeech_captured": 0.0374,
+    "false_triggers_per_10min": 0.362,
+    "capped_segments": 0
+   },
+   "cost": 0.4007
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 6,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1542,
+    "utterance_recall": 0.6912,
+    "missed_speech": 0.0953,
+    "nonspeech_captured": 0.0926,
+    "false_triggers_per_10min": 1.168,
+    "capped_segments": 0
+   },
+   "cost": 0.3785
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 8,
+    "off-margin-db": 6,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1497,
+    "utterance_recall": 0.6654,
+    "missed_speech": 0.1053,
+    "nonspeech_captured": 0.065,
+    "false_triggers_per_10min": 0.684,
+    "capped_segments": 0
+   },
+   "cost": 0.3809
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 10,
+    "off-margin-db": 6,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1441,
+    "utterance_recall": 0.6415,
+    "missed_speech": 0.1211,
+    "nonspeech_captured": 0.0374,
+    "false_triggers_per_10min": 0.362,
+    "capped_segments": 0
+   },
+   "cost": 0.4007
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 12,
+    "off-margin-db": 6,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1384,
+    "utterance_recall": 0.6167,
+    "missed_speech": 0.1431,
+    "nonspeech_captured": 0.0243,
+    "false_triggers_per_10min": 0.242,
+    "capped_segments": 0
+   },
+   "cost": 0.4536
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 15,
+    "off-margin-db": 6,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1266,
+    "utterance_recall": 0.5699,
+    "missed_speech": 0.1948,
+    "nonspeech_captured": 0.0158,
+    "false_triggers_per_10min": 0.161,
+    "capped_segments": 0
+   },
+   "cost": 0.6002
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 3,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1327,
+    "utterance_recall": 0.7555,
+    "missed_speech": 0.0712,
+    "nonspeech_captured": 0.1556,
+    "false_triggers_per_10min": 0.564,
+    "capped_segments": 0
+   },
+   "cost": 0.3692
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1406,
+    "utterance_recall": 0.7417,
+    "missed_speech": 0.0772,
+    "nonspeech_captured": 0.1314,
+    "false_triggers_per_10min": 0.886,
+    "capped_segments": 0
+   },
+   "cost": 0.363
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 6,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1542,
+    "utterance_recall": 0.6912,
+    "missed_speech": 0.0953,
+    "nonspeech_captured": 0.0926,
+    "false_triggers_per_10min": 1.168,
+    "capped_segments": 0
+   },
+   "cost": 0.3785
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 8,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1606,
+    "utterance_recall": 0.6259,
+    "missed_speech": 0.1285,
+    "nonspeech_captured": 0.0518,
+    "false_triggers_per_10min": 0.966,
+    "capped_segments": 0
+   },
+   "cost": 0.4373
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 400,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1826,
+    "utterance_recall": 0.7243,
+    "missed_speech": 0.0828,
+    "nonspeech_captured": 0.115,
+    "false_triggers_per_10min": 1.449,
+    "capped_segments": 0
+   },
+   "cost": 0.3634
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1169,
+    "utterance_recall": 0.7564,
+    "missed_speech": 0.0703,
+    "nonspeech_captured": 0.1433,
+    "false_triggers_per_10min": 0.604,
+    "capped_segments": 0
+   },
+   "cost": 0.3542
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 1000,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1084,
+    "utterance_recall": 0.7748,
+    "missed_speech": 0.0659,
+    "nonspeech_captured": 0.1603,
+    "false_triggers_per_10min": 0.564,
+    "capped_segments": 0
+   },
+   "cost": 0.358
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1187,
+    "utterance_recall": 0.7574,
+    "missed_speech": 0.0694,
+    "nonspeech_captured": 0.1439,
+    "false_triggers_per_10min": 0.684,
+    "capped_segments": 0
+   },
+   "cost": 0.3521
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1169,
+    "utterance_recall": 0.7564,
+    "missed_speech": 0.0703,
+    "nonspeech_captured": 0.1433,
+    "false_triggers_per_10min": 0.604,
+    "capped_segments": 0
+   },
+   "cost": 0.3542
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 500,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1163,
+    "utterance_recall": 0.7564,
+    "missed_speech": 0.0711,
+    "nonspeech_captured": 0.143,
+    "false_triggers_per_10min": 0.564,
+    "capped_segments": 0
+   },
+   "cost": 0.3563
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 30,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1265,
+    "utterance_recall": 0.7886,
+    "missed_speech": 0.0601,
+    "nonspeech_captured": 0.2148,
+    "false_triggers_per_10min": 2.577,
+    "capped_segments": 0
+   },
+   "cost": 0.3951
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 60,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1205,
+    "utterance_recall": 0.7675,
+    "missed_speech": 0.0654,
+    "nonspeech_captured": 0.1666,
+    "false_triggers_per_10min": 0.926,
+    "capped_segments": 0
+   },
+   "cost": 0.3628
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 150,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1165,
+    "utterance_recall": 0.7289,
+    "missed_speech": 0.0823,
+    "nonspeech_captured": 0.1189,
+    "false_triggers_per_10min": 0.604,
+    "capped_segments": 0
+   },
+   "cost": 0.3658
+  },
+  {
+   "params": {
+    "threshold-db": -70,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1183,
+    "utterance_recall": 0.7877,
+    "missed_speech": 0.057,
+    "nonspeech_captured": 0.1667,
+    "false_triggers_per_10min": 0.604,
+    "capped_segments": 0
+   },
+   "cost": 0.3377
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1185,
+    "utterance_recall": 0.784,
+    "missed_speech": 0.0584,
+    "nonspeech_captured": 0.1591,
+    "false_triggers_per_10min": 0.644,
+    "capped_segments": 0
+   },
+   "cost": 0.3343
+  },
+  {
+   "params": {
+    "threshold-db": -60,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1190,
+    "utterance_recall": 0.7757,
+    "missed_speech": 0.0621,
+    "nonspeech_captured": 0.1492,
+    "false_triggers_per_10min": 0.644,
+    "capped_segments": 0
+   },
+   "cost": 0.3355
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1187,
+    "utterance_recall": 0.7574,
+    "missed_speech": 0.0694,
+    "nonspeech_captured": 0.1439,
+    "false_triggers_per_10min": 0.684,
+    "capped_segments": 0
+   },
+   "cost": 0.3521
+  },
+  {
+   "params": {
+    "threshold-db": -50,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1198,
+    "utterance_recall": 0.7344,
+    "missed_speech": 0.076,
+    "nonspeech_captured": 0.1398,
+    "false_triggers_per_10min": 0.604,
+    "capped_segments": 0
+   },
+   "cost": 0.3678
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 150
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1185,
+    "utterance_recall": 0.7574,
+    "missed_speech": 0.0669,
+    "nonspeech_captured": 0.1571,
+    "false_triggers_per_10min": 0.644,
+    "capped_segments": 0
+   },
+   "cost": 0.3578
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 6,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1185,
+    "utterance_recall": 0.8419,
+    "missed_speech": 0.0488,
+    "nonspeech_captured": 0.1621,
+    "false_triggers_per_10min": 0.644,
+    "capped_segments": 0
+   },
+   "cost": 0.3085
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1165,
+    "utterance_recall": 0.8171,
+    "missed_speech": 0.0576,
+    "nonspeech_captured": 0.1347,
+    "false_triggers_per_10min": 0.403,
+    "capped_segments": 0
+   },
+   "cost": 0.3075
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 10,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1135,
+    "utterance_recall": 0.7886,
+    "missed_speech": 0.0729,
+    "nonspeech_captured": 0.1192,
+    "false_triggers_per_10min": 0.201,
+    "capped_segments": 0
+   },
+   "cost": 0.3379
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 12,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1096,
+    "utterance_recall": 0.7629,
+    "missed_speech": 0.0928,
+    "nonspeech_captured": 0.1059,
+    "false_triggers_per_10min": 0.161,
+    "capped_segments": 0
+   },
+   "cost": 0.3843
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 15,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1016,
+    "utterance_recall": 0.705,
+    "missed_speech": 0.1467,
+    "nonspeech_captured": 0.0948,
+    "false_triggers_per_10min": 0.081,
+    "capped_segments": 0
+   },
+   "cost": 0.5349
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 3,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1112,
+    "utterance_recall": 0.8355,
+    "missed_speech": 0.0522,
+    "nonspeech_captured": 0.1747,
+    "false_triggers_per_10min": 0.201,
+    "capped_segments": 0
+   },
+   "cost": 0.3313
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 6,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1235,
+    "utterance_recall": 0.7767,
+    "missed_speech": 0.072,
+    "nonspeech_captured": 0.0918,
+    "false_triggers_per_10min": 0.765,
+    "capped_segments": 0
+   },
+   "cost": 0.3078
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 8,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1330,
+    "utterance_recall": 0.7279,
+    "missed_speech": 0.0919,
+    "nonspeech_captured": 0.0692,
+    "false_triggers_per_10min": 1.329,
+    "capped_segments": 0
+   },
+   "cost": 0.3449
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 400,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1752,
+    "utterance_recall": 0.7555,
+    "missed_speech": 0.0726,
+    "nonspeech_captured": 0.0961,
+    "false_triggers_per_10min": 0.846,
+    "capped_segments": 0
+   },
+   "cost": 0.3139
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1373,
+    "utterance_recall": 0.8033,
+    "missed_speech": 0.0626,
+    "nonspeech_captured": 0.1184,
+    "false_triggers_per_10min": 0.523,
+    "capped_segments": 0
+   },
+   "cost": 0.3062
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 800,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1165,
+    "utterance_recall": 0.8171,
+    "missed_speech": 0.0576,
+    "nonspeech_captured": 0.1347,
+    "false_triggers_per_10min": 0.403,
+    "capped_segments": 0
+   },
+   "cost": 0.3075
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 1000,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1084,
+    "utterance_recall": 0.8364,
+    "missed_speech": 0.0529,
+    "nonspeech_captured": 0.1522,
+    "false_triggers_per_10min": 0.362,
+    "capped_segments": 0
+   },
+   "cost": 0.3109
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 300,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1352,
+    "utterance_recall": 0.8015,
+    "missed_speech": 0.0636,
+    "nonspeech_captured": 0.1181,
+    "false_triggers_per_10min": 0.483,
+    "capped_segments": 0
+   },
+   "cost": 0.3089
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 500,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1336,
+    "utterance_recall": 0.7969,
+    "missed_speech": 0.0655,
+    "nonspeech_captured": 0.118,
+    "false_triggers_per_10min": 0.483,
+    "capped_segments": 0
+   },
+   "cost": 0.3145
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 30,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1419,
+    "utterance_recall": 0.8401,
+    "missed_speech": 0.0502,
+    "nonspeech_captured": 0.1592,
+    "false_triggers_per_10min": 1.248,
+    "capped_segments": 0
+   },
+   "cost": 0.3098
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 60,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1396,
+    "utterance_recall": 0.8189,
+    "missed_speech": 0.0571,
+    "nonspeech_captured": 0.1345,
+    "false_triggers_per_10min": 0.846,
+    "capped_segments": 0
+   },
+   "cost": 0.3058
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 90,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1373,
+    "utterance_recall": 0.8033,
+    "missed_speech": 0.0626,
+    "nonspeech_captured": 0.1184,
+    "false_triggers_per_10min": 0.523,
+    "capped_segments": 0
+   },
+   "cost": 0.3062
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 150,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1310,
+    "utterance_recall": 0.7307,
+    "missed_speech": 0.0876,
+    "nonspeech_captured": 0.0919,
+    "false_triggers_per_10min": 0.282,
+    "capped_segments": 0
+   },
+   "cost": 0.3547
+  },
+  {
+   "params": {
+    "threshold-db": -70,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 60,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1387,
+    "utterance_recall": 0.8199,
+    "missed_speech": 0.0559,
+    "nonspeech_captured": 0.1425,
+    "false_triggers_per_10min": 0.966,
+    "capped_segments": 0
+   },
+   "cost": 0.3102
+  },
+  {
+   "params": {
+    "threshold-db": -60,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 60,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1410,
+    "utterance_recall": 0.8125,
+    "missed_speech": 0.0608,
+    "nonspeech_captured": 0.1235,
+    "false_triggers_per_10min": 0.765,
+    "capped_segments": 0
+   },
+   "cost": 0.3059
+  },
+  {
+   "params": {
+    "threshold-db": -55,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 60,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1422,
+    "utterance_recall": 0.7987,
+    "missed_speech": 0.0672,
+    "nonspeech_captured": 0.1182,
+    "false_triggers_per_10min": 0.886,
+    "capped_segments": 0
+   },
+   "cost": 0.3198
+  },
+  {
+   "params": {
+    "threshold-db": -50,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 60,
+    "tail-ms": 500
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1460,
+    "utterance_recall": 0.7822,
+    "missed_speech": 0.0724,
+    "nonspeech_captured": 0.1159,
+    "false_triggers_per_10min": 0.725,
+    "capped_segments": 0
+   },
+   "cost": 0.3331
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 60,
+    "tail-ms": 150
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1396,
+    "utterance_recall": 0.7261,
+    "missed_speech": 0.079,
+    "nonspeech_captured": 0.1294,
+    "false_triggers_per_10min": 0.886,
+    "capped_segments": 0
+   },
+   "cost": 0.3664
+  },
+  {
+   "params": {
+    "threshold-db": -65,
+    "on-margin-db": 8,
+    "off-margin-db": 4,
+    "silence-ms": 600,
+    "min-speech-ms": 150,
+    "onset-ms": 60,
+    "tail-ms": 300
+   },
+   "aggregate": {
+    "sessions": 136,
+    "utterances": 1088,
+    "segments": 1396,
+    "utterance_recall": 0.7528,
+    "missed_speech": 0.0684,
+    "nonspeech_captured": 0.1314,
+    "false_triggers_per_10min": 0.886,
+    "capped_segments": 0
+   },
+   "cost": 0.3366
+  }
+ ]
+}

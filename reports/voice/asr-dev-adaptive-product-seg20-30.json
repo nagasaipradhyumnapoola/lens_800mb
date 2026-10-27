@@ -1,0 +1,2060 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "ff17c94c4333f96afa111ec4983b484b1e84df182d327f052b5eaeadb9579193",
+  "lens_engine_sha256": "a8b17424b74b19edd60aaf1932e189a9de0432a946ab2fb537d60d1cfe99e980",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-27T19:36:04",
+  "git_head": "4eb315f73b497bb147c49ff43a5ed44a1bb653e3"
+ },
+ "vad": "adaptive",
+ "params": {
+  "soft-split-s": 20,
+  "max-segment-s": 30
+ },
+ "mode": "product",
+ "split": "dev",
+ "table": [
+  {
+   "language": "en",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 10,
+   "stored": 9,
+   "failed": 1,
+   "wer": 0.2765,
+   "cer": 0.151,
+   "utterance_recall": 0.625,
+   "missed_speech": 0.0876,
+   "nonspeech_captured": 0.2248,
+   "false_triggers_per_10min": 5.998,
+   "peak_sum_working_set_bytes": 179691520,
+   "p95_asr_ms": 6059
+  },
+  {
+   "language": "en",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 8,
+   "stored": 8,
+   "failed": 0,
+   "wer": 0.1235,
+   "cer": 0.0595,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0031,
+   "nonspeech_captured": 0.022,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 179859456,
+   "p95_asr_ms": 6549
+  },
+  {
+   "language": "es",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 13,
+   "stored": 13,
+   "failed": 0,
+   "wer": 0.4136,
+   "cer": 0.2074,
+   "utterance_recall": 0.75,
+   "missed_speech": 0.0834,
+   "nonspeech_captured": 0.0561,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 179970048,
+   "p95_asr_ms": 5118
+  },
+  {
+   "language": "es",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 10,
+   "stored": 10,
+   "failed": 0,
+   "wer": 0.1099,
+   "cer": 0.0359,
+   "utterance_recall": 0.875,
+   "missed_speech": 0.0223,
+   "nonspeech_captured": 0.1438,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 180195328,
+   "p95_asr_ms": 4696
+  },
+  {
+   "language": "hi",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 12,
+   "stored": 11,
+   "failed": 1,
+   "wer": 0.2488,
+   "cer": 0.1473,
+   "utterance_recall": 0.875,
+   "missed_speech": 0.0476,
+   "nonspeech_captured": 0.1458,
+   "false_triggers_per_10min": 5.353,
+   "peak_sum_working_set_bytes": 393031680,
+   "p95_asr_ms": 6326
+  },
+  {
+   "language": "hi",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 8,
+   "stored": 8,
+   "failed": 0,
+   "wer": 0.0945,
+   "cer": 0.0392,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0044,
+   "nonspeech_captured": 0.0103,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 404611072,
+   "p95_asr_ms": 6677
+  },
+  {
+   "language": "zh",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 15,
+   "stored": 12,
+   "failed": 3,
+   "wer": 0.973,
+   "cer": 0.2945,
+   "utterance_recall": 0.875,
+   "missed_speech": 0.054,
+   "nonspeech_captured": 0.3799,
+   "false_triggers_per_10min": 4.912,
+   "peak_sum_working_set_bytes": 492425216,
+   "p95_asr_ms": 6105
+  },
+  {
+   "language": "zh",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 11,
+   "stored": 8,
+   "failed": 3,
+   "wer": 1.0,
+   "cer": 0.1891,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0,
+   "nonspeech_captured": 0.2871,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 486465536,
+   "p95_asr_ms": 7982
+  }
+ ],
+ "rows": [
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 40.7,
+   "reference_utterances": 8,
+   "segments": 8,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.214,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.404,
+   "nonspeech_s": 18.383,
+   "capped_segments": 0,
+   "duration_s": 97.433,
+   "word_errors": 21,
+   "reference_words": 170,
+   "character_errors": 50,
+   "reference_characters": 841,
+   "stored": 8,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " To the north and within easy reach is a romantic and fascinating town of Sinatra, in which was made famous, to foreigners after a glowing account of its splendorous recorded by Lord Byron.  The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.  20th century research has shown that there are two pools of genetic variation hidden and expressed.  The aspect ratio of this format, the vying by 12 to obtain the simplest whole number ratio, is therefore said to be free to two.  The night between 150 and 200 copies were made now known as the lab broadsides.  For example, each of your students from Bennett School in North Carolina to sign a website about their trip to the state capital. Each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.  The Internet combines elements of both mass and interpersonal communication.  As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.",
+   "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron. The Northern Marianas emergency management office said that there were no damages reported in the nation. Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed. The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2. Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. The Internet combines elements of both mass and interpersonal communication. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "ram": {
+    "samples": 150,
+    "peak_sum_working_set_bytes": 179859456,
+    "peak_sum_private_bytes": 266723328,
+    "peak_voice_working_set_bytes": 11755520,
+    "peak_engine_working_set_bytes": 169062400,
+    "peak_engine_private_bytes": 260972544
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    6070,
+    4569,
+    4678,
+    6549,
+    4266,
+    5236,
+    4328,
+    4839
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.04,
+     "end": 13.28,
+     "ok": true,
+     "error": null,
+     "text": " To the north and within easy reach is a romantic and fascinating town of Sinatra, in which was made famous, to foreigners after a glowing account of its splendorous recorded by Lord Byron.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7523181003540061,
+     "lid": {
+      "chosen_probability": 0.9969775676727295,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9969775676727295
+     },
+     "asr_ms": 6070
+    },
+    {
+     "start": 16.35,
+     "end": 27.32,
+     "ok": true,
+     "error": null,
+     "text": " The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8135443650186062,
+     "lid": {
+      "chosen_probability": 0.9928460121154785,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9928460121154785
+     },
+     "asr_ms": 4569
+    },
+    {
+     "start": 30.96,
+     "end": 38.69,
+     "ok": true,
+     "error": null,
+     "text": " 20th century research has shown that there are two pools of genetic variation hidden and expressed.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8332624431699515,
+     "lid": {
+      "chosen_probability": 0.9895004034042358,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9895004034042358
+     },
+     "asr_ms": 4678
+    },
+    {
+     "start": 40.35,
+     "end": 52.01,
+     "ok": true,
+     "error": null,
+     "text": " The aspect ratio of this format, the vying by 12 to obtain the simplest whole number ratio, is therefore said to be free to two.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7828396033146419,
+     "lid": {
+      "chosen_probability": 0.9937599301338196,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9937599301338196
+     },
+     "asr_ms": 6549
+    },
+    {
+     "start": 52.98,
+     "end": 58.58,
+     "ok": true,
+     "error": null,
+     "text": " The night between 150 and 200 copies were made now known as the lab broadsides.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7118829926475883,
+     "lid": {
+      "chosen_probability": 0.9910410642623901,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9910410642623901
+     },
+     "asr_ms": 4266
+    },
+    {
+     "start": 59.1,
+     "end": 70.61,
+     "ok": true,
+     "error": null,
+     "text": " For example, each of your students from Bennett School in North Carolina to sign a website about their trip to the state capital. Each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8587051871418953,
+     "lid": {
+      "chosen_probability": 0.9963987469673157,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9963987469673157
+     },
+     "asr_ms": 5236
+    },
+    {
+     "start": 73.41,
+     "end": 79.7,
+     "ok": true,
+     "error": null,
+     "text": " The Internet combines elements of both mass and interpersonal communication.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7816984808215728,
+     "lid": {
+      "chosen_probability": 0.9931427836418152,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9931427836418152
+     },
+     "asr_ms": 4328
+    },
+    {
+     "start": 81.66,
+     "end": 92.03,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8222452410711691,
+     "lid": {
+      "chosen_probability": 0.9956299662590027,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9956299662590027
+     },
+     "asr_ms": 4839
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 47.2,
+   "reference_utterances": 8,
+   "segments": 10,
+   "detected_utterances": 5,
+   "missed_speech_s": 6.022,
+   "speech_s": 68.75,
+   "false_trigger_segments": 1,
+   "nonspeech_captured_s": 4.717,
+   "nonspeech_s": 20.98,
+   "capped_segments": 0,
+   "duration_s": 100.03,
+   "word_errors": 47,
+   "reference_words": 170,
+   "character_errors": 127,
+   "reference_characters": 841,
+   "stored": 9,
+   "failed": 1,
+   "errors": [
+    "no_speech_found"
+   ],
+   "hypothesis": " To the north and within an easy reach is a romantic and fascinating town of Cintra in which was made famous.  to foreigners after a glowing account of its plentiful record by Lord Byron.  The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.  20th century research has shown that there are two pools of genetic variation hidden in express.  The aspect ratio of this format, vying by 12 to a king's simplest formula ratio, is therefore said to be \"need to choose.\"  There's a night between 152nd and 20th copies were made now known as the lab broadside experience.  For example, each year students from Bennett School in North Carolina to sign a website about their trips to the state capital. Each year the website gets remodeled, but both versions are kept online to serve as a scrapbook.  The Internet combined elements of both mass and interpersonal communication.  As a result, you can fish and you can become extinct and two other people have become endangered including the home-backed shot.",
+   "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron. The Northern Marianas emergency management office said that there were no damages reported in the nation. Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed. The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2. Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. The Internet combines elements of both mass and interpersonal communication. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "ram": {
+    "samples": 175,
+    "peak_sum_working_set_bytes": 179691520,
+    "peak_sum_private_bytes": 266706944,
+    "peak_voice_working_set_bytes": 12558336,
+    "peak_engine_working_set_bytes": 168611840,
+    "peak_engine_private_bytes": 259567616
+   },
+   "stored_observations": 9,
+   "asr_ms": [
+    5615,
+    4691,
+    4149,
+    4400,
+    5077,
+    5059,
+    6059,
+    4336,
+    4040,
+    3635
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    null
+   ],
+   "segments_detail": [
+    {
+     "start": 2.13,
+     "end": 8.48,
+     "ok": true,
+     "error": null,
+     "text": " To the north and within an easy reach is a romantic and fascinating town of Cintra in which was made famous.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.772326197958103,
+     "lid": {
+      "chosen_probability": 0.9966420531272888,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9966420531272888
+     },
+     "asr_ms": 5615
+    },
+    {
+     "start": 8.37,
+     "end": 13.22,
+     "ok": true,
+     "error": null,
+     "text": " to foreigners after a glowing account of its plentiful record by Lord Byron.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6620902015190375,
+     "lid": {
+      "chosen_probability": 0.9879282116889954,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9879282116889954
+     },
+     "asr_ms": 4691
+    },
+    {
+     "start": 17.46,
+     "end": 24.53,
+     "ok": true,
+     "error": null,
+     "text": " The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8274566322565079,
+     "lid": {
+      "chosen_probability": 0.9981877207756042,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9981877207756042
+     },
+     "asr_ms": 4149
+    },
+    {
+     "start": 30.6,
+     "end": 35.93,
+     "ok": true,
+     "error": null,
+     "text": " 20th century research has shown that there are two pools of genetic variation hidden in express.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8054743504151702,
+     "lid": {
+      "chosen_probability": 0.9816530346870422,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9816530346870422
+     },
+     "asr_ms": 4400
+    },
+    {
+     "start": 38.37,
+     "end": 49.91,
+     "ok": true,
+     "error": null,
+     "text": " The aspect ratio of this format, vying by 12 to a king's simplest formula ratio, is therefore said to be \"need to choose.\"",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6297859163023531,
+     "lid": {
+      "chosen_probability": 0.9352834820747375,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9352834820747375
+     },
+     "asr_ms": 5077
+    },
+    {
+     "start": 51.3,
+     "end": 56.75,
+     "ok": true,
+     "error": null,
+     "text": " There's a night between 152nd and 20th copies were made now known as the lab broadside experience.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5589266044553369,
+     "lid": {
+      "chosen_probability": 0.9111810922622681,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9111810922622681
+     },
+     "asr_ms": 5059
+    },
+    {
+     "start": 59.58,
+     "end": 71.57,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Bennett School in North Carolina to sign a website about their trips to the state capital. Each year the website gets remodeled, but both versions are kept online to serve as a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8021564672887326,
+     "lid": {
+      "chosen_probability": 0.9873386025428772,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9873386025428772
+     },
+     "asr_ms": 6059
+    },
+    {
+     "start": 75.09,
+     "end": 80.03,
+     "ok": true,
+     "error": null,
+     "text": " The Internet combined elements of both mass and interpersonal communication.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7151898099825933,
+     "lid": {
+      "chosen_probability": 0.9830475449562073,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9830475449562073
+     },
+     "asr_ms": 4336
+    },
+    {
+     "start": 84.3,
+     "end": 94.19,
+     "ok": true,
+     "error": null,
+     "text": " As a result, you can fish and you can become extinct and two other people have become endangered including the home-backed shot.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6415622669963106,
+     "lid": {
+      "chosen_probability": 0.9504536986351013,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9504536986351013
+     },
+     "asr_ms": 4040
+    },
+    {
+     "start": 95.85,
+     "end": 100.02,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3635
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 42.7,
+   "reference_utterances": 8,
+   "segments": 10,
+   "detected_utterances": 7,
+   "missed_speech_s": 1.7,
+   "speech_s": 76.29,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 4.017,
+   "nonspeech_s": 27.933,
+   "capped_segments": 0,
+   "duration_s": 116.943,
+   "word_errors": 21,
+   "reference_words": 191,
+   "character_errors": 35,
+   "reference_characters": 974,
+   "stored": 10,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " El uso adecuado de los blogs pueden poderar a los alumnos para que sean más analíticos y críticos a través de la respostativa a los contenidos de Internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos.  Ahora ve que es 2002.  Carpaneo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles.  Hoy en día las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de siquiera próxima al sensacapuntas.  Los luchadores compañeros de Luna también le rindieron homenaje.  Se puede definir a una civilización como una cultura específica de que  forma parte un extenso grupo de personas que vive y trabaja en conjunto, es decir, una sociedad.  Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles Poutukawa, que ofrecen lugares de sombra  No ha podido tomarse medicamentos para libir el dolor porque está prohibido su uso en los juegos.  Agradego, aun así no es correcto que exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su novel de responsabilidad y sus capacidades.",
+   "reference": "El uso adecuado de los blogs «puede empoderar a los alumnos para que sean más analíticos y críticos, a través de la respuesta activa a los contenidos de internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos» (Oravec, 2002). Carpanedo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles. Hoy en día, las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de, siquiera, aproximarse a un sacapuntas. Los luchadores compañeros de Luna también le rindieron homenaje. Se puede definir a una civilización como una cultura específica de la que forma parte un extenso grupo de personas que viven y trabajan en conjunto; es decir, una sociedad. Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles pohutukawa que ofrecen lugares de sombra. No ha podido tomarse medicamentos para aliviar el dolor, porque está prohibido su uso en los Juegos. Agregó: «Aun así, no es correcto exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su nivel de responsabilidad y sus capacidades».",
+   "ram": {
+    "samples": 164,
+    "peak_sum_working_set_bytes": 180195328,
+    "peak_sum_private_bytes": 267251712,
+    "peak_voice_working_set_bytes": 12083200,
+    "peak_engine_working_set_bytes": 169959424,
+    "peak_engine_private_bytes": 261369856
+   },
+   "stored_observations": 10,
+   "asr_ms": [
+    4473,
+    4609,
+    4309,
+    4459,
+    4004,
+    3915,
+    4078,
+    4696,
+    3564,
+    4333
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.01,
+     "end": 20.69,
+     "ok": true,
+     "error": null,
+     "text": " El uso adecuado de los blogs pueden poderar a los alumnos para que sean más analíticos y críticos a través de la respostativa a los contenidos de Internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8620820733374113,
+     "lid": {
+      "chosen_probability": 0.9992112517356873,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9992112517356873
+     },
+     "asr_ms": 4473
+    },
+    {
+     "start": 20.61,
+     "end": 22.49,
+     "ok": true,
+     "error": null,
+     "text": " Ahora ve que es 2002.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9777761474251747,
+     "lid": {
+      "chosen_probability": 0.9156674146652222,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9156674146652222
+     },
+     "asr_ms": 4609
+    },
+    {
+     "start": 26.55,
+     "end": 37.16,
+     "ok": true,
+     "error": null,
+     "text": " Carpaneo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8361728956302007,
+     "lid": {
+      "chosen_probability": 0.990955114364624,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.990955114364624
+     },
+     "asr_ms": 4309
+    },
+    {
+     "start": 38.94,
+     "end": 49.46,
+     "ok": true,
+     "error": null,
+     "text": " Hoy en día las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de siquiera próxima al sensacapuntas.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7428964309786495,
+     "lid": {
+      "chosen_probability": 0.983988344669342,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.983988344669342
+     },
+     "asr_ms": 4459
+    },
+    {
+     "start": 50.73,
+     "end": 55.58,
+     "ok": true,
+     "error": null,
+     "text": " Los luchadores compañeros de Luna también le rindieron homenaje.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.828179946659427,
+     "lid": {
+      "chosen_probability": 0.9768578410148621,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9768578410148621
+     },
+     "asr_ms": 4004
+    },
+    {
+     "start": 60.09,
+     "end": 66.53,
+     "ok": true,
+     "error": null,
+     "text": " Se puede definir a una civilización como una cultura específica de que",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8410757482051849,
+     "lid": {
+      "chosen_probability": 0.9397923350334167,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9397923350334167
+     },
+     "asr_ms": 3915
+    },
+    {
+     "start": 66.36,
+     "end": 72.83,
+     "ok": true,
+     "error": null,
+     "text": " forma parte un extenso grupo de personas que vive y trabaja en conjunto, es decir, una sociedad.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7712849792838097,
+     "lid": {
+      "chosen_probability": 0.9561547040939331,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9561547040939331
+     },
+     "asr_ms": 4078
+    },
+    {
+     "start": 75.48,
+     "end": 85.67,
+     "ok": true,
+     "error": null,
+     "text": " Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles Poutukawa, que ofrecen lugares de sombra",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8104875440207812,
+     "lid": {
+      "chosen_probability": 0.9830735325813293,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9830735325813293
+     },
+     "asr_ms": 4696
+    },
+    {
+     "start": 88.77,
+     "end": 94.55,
+     "ok": true,
+     "error": null,
+     "text": " No ha podido tomarse medicamentos para libir el dolor porque está prohibido su uso en los juegos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7680321834236383,
+     "lid": {
+      "chosen_probability": 0.990179717540741,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.990179717540741
+     },
+     "asr_ms": 3564
+    },
+    {
+     "start": 98.25,
+     "end": 110.27,
+     "ok": true,
+     "error": null,
+     "text": " Agradego, aun así no es correcto que exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su novel de responsabilidad y sus capacidades.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7361511268266817,
+     "lid": {
+      "chosen_probability": 0.9902347326278687,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9902347326278687
+     },
+     "asr_ms": 4333
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 56.3,
+   "reference_utterances": 8,
+   "segments": 13,
+   "detected_utterances": 6,
+   "missed_speech_s": 6.366,
+   "speech_s": 76.29,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 1.508,
+   "nonspeech_s": 26.86,
+   "capped_segments": 0,
+   "duration_s": 115.87,
+   "word_errors": 79,
+   "reference_words": 191,
+   "character_errors": 202,
+   "reference_characters": 974,
+   "stored": 13,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " El uso de cuadro de los blocs pueden poderar a los alumnos para que sean más analíticos críticos.  A través de la respuesta activa a los contenidos de Internet.  pueden definir sus posturas en el contexto de los escritos de otro, además de establecer sus perspectivas sobre temas específicos. Ahora ve, 2002.  Carpaneo participó en dos carregas individuales del campeonato aparte de la competencia de almerga.  Hoy en día las personas escriben mensajes que las mantienen en sus computadoras. No tienen las necesidades de sutura, pero tienen hace un saca de pompos.  Los licenadores compañeros de el nomás también les envieron homenado.  Se puede definir a una situación con la cultura profusica de espíritu.  forma parte de un tempo de personas que no han sido correctas en la ciudad.  Las playas son casitos de arena con lugares que duran para nadar en gemelería tienen árboles  full of food power.  que ocurre en lugares en los aburados.  No ha podido tomarse medicamentos para el dinero porque está prohibido si uso los juegos.  Agradego, aun así no es correcto que si pierdes que asuma la obligación que sobrepasan su fase de desarrollo, su novel de responsabilidad y su capacidad.",
+   "reference": "El uso adecuado de los blogs «puede empoderar a los alumnos para que sean más analíticos y críticos, a través de la respuesta activa a los contenidos de internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos» (Oravec, 2002). Carpanedo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles. Hoy en día, las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de, siquiera, aproximarse a un sacapuntas. Los luchadores compañeros de Luna también le rindieron homenaje. Se puede definir a una civilización como una cultura específica de la que forma parte un extenso grupo de personas que viven y trabajan en conjunto; es decir, una sociedad. Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles pohutukawa que ofrecen lugares de sombra. No ha podido tomarse medicamentos para aliviar el dolor, porque está prohibido su uso en los Juegos. Agregó: «Aun así, no es correcto exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su nivel de responsabilidad y sus capacidades».",
+   "ram": {
+    "samples": 218,
+    "peak_sum_working_set_bytes": 179970048,
+    "peak_sum_private_bytes": 266870784,
+    "peak_voice_working_set_bytes": 12660736,
+    "peak_engine_working_set_bytes": 168767488,
+    "peak_engine_private_bytes": 259866624
+   },
+   "stored_observations": 13,
+   "asr_ms": [
+    4589,
+    4263,
+    4400,
+    4261,
+    5118,
+    3931,
+    4293,
+    6056,
+    3933,
+    3785,
+    3507,
+    3914,
+    4110
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "en",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.39,
+     "end": 9.5,
+     "ok": true,
+     "error": null,
+     "text": " El uso de cuadro de los blocs pueden poderar a los alumnos para que sean más analíticos críticos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7847489060769821,
+     "lid": {
+      "chosen_probability": 0.9903425574302673,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9903425574302673
+     },
+     "asr_ms": 4589
+    },
+    {
+     "start": 9.36,
+     "end": 12.71,
+     "ok": true,
+     "error": null,
+     "text": " A través de la respuesta activa a los contenidos de Internet.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7639452191069722,
+     "lid": {
+      "chosen_probability": 0.9808772206306458,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9808772206306458
+     },
+     "asr_ms": 4263
+    },
+    {
+     "start": 12.63,
+     "end": 23.21,
+     "ok": true,
+     "error": null,
+     "text": " pueden definir sus posturas en el contexto de los escritos de otro, además de establecer sus perspectivas sobre temas específicos. Ahora ve, 2002.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7412830467025439,
+     "lid": {
+      "chosen_probability": 0.9725310802459717,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9725310802459717
+     },
+     "asr_ms": 4400
+    },
+    {
+     "start": 27.3,
+     "end": 33.62,
+     "ok": true,
+     "error": null,
+     "text": " Carpaneo participó en dos carregas individuales del campeonato aparte de la competencia de almerga.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7189131083587805,
+     "lid": {
+      "chosen_probability": 0.9382625818252563,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9382625818252563
+     },
+     "asr_ms": 4261
+    },
+    {
+     "start": 39.27,
+     "end": 47.42,
+     "ok": true,
+     "error": null,
+     "text": " Hoy en día las personas escriben mensajes que las mantienen en sus computadoras. No tienen las necesidades de sutura, pero tienen hace un saca de pompos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6341788618393788,
+     "lid": {
+      "chosen_probability": 0.9466513395309448,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9466513395309448
+     },
+     "asr_ms": 5118
+    },
+    {
+     "start": 50.94,
+     "end": 55.07,
+     "ok": true,
+     "error": null,
+     "text": " Los licenadores compañeros de el nomás también les envieron homenado.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5216399194672704,
+     "lid": {
+      "chosen_probability": 0.951693058013916,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.951693058013916
+     },
+     "asr_ms": 3931
+    },
+    {
+     "start": 59.28,
+     "end": 64.1,
+     "ok": true,
+     "error": null,
+     "text": " Se puede definir a una situación con la cultura profusica de espíritu.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8435853898525238,
+     "lid": {
+      "chosen_probability": 0.6366143822669983,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.6366143822669983
+     },
+     "asr_ms": 4293
+    },
+    {
+     "start": 64.29,
+     "end": 70.97,
+     "ok": true,
+     "error": null,
+     "text": " forma parte de un tempo de personas que no han sido correctas en la ciudad.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8798823203891516,
+     "lid": {
+      "chosen_probability": 0.7346606254577637,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.7346606254577637
+     },
+     "asr_ms": 6056
+    },
+    {
+     "start": 73.65,
+     "end": 80.12,
+     "ok": true,
+     "error": null,
+     "text": " Las playas son casitos de arena con lugares que duran para nadar en gemelería tienen árboles",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6842293551621529,
+     "lid": {
+      "chosen_probability": 0.957802414894104,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.957802414894104
+     },
+     "asr_ms": 3933
+    },
+    {
+     "start": 80.16,
+     "end": 81.83,
+     "ok": true,
+     "error": null,
+     "text": " full of food power.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8786269128322601,
+     "lid": {
+      "chosen_probability": 0.5753697156906128,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.5753697156906128
+     },
+     "asr_ms": 3785
+    },
+    {
+     "start": 81.66,
+     "end": 84.17,
+     "ok": true,
+     "error": null,
+     "text": " que ocurre en lugares en los aburados.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9115931128080075,
+     "lid": {
+      "chosen_probability": 0.3045632541179657,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.3045632541179657
+     },
+     "asr_ms": 3507
+    },
+    {
+     "start": 87.96,
+     "end": 93.95,
+     "ok": true,
+     "error": null,
+     "text": " No ha podido tomarse medicamentos para el dinero porque está prohibido si uso los juegos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6732705630023371,
+     "lid": {
+      "chosen_probability": 0.9834453463554382,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9834453463554382
+     },
+     "asr_ms": 3914
+    },
+    {
+     "start": 98.4,
+     "end": 110.09,
+     "ok": true,
+     "error": null,
+     "text": " Agradego, aun así no es correcto que si pierdes que asuma la obligación que sobrepasan su fase de desarrollo, su novel de responsabilidad y su capacidad.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6483041647821665,
+     "lid": {
+      "chosen_probability": 0.9740867018699646,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9740867018699646
+     },
+     "asr_ms": 4110
+    }
+   ]
+  },
+  {
+   "language": "zh",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 65.4,
+   "reference_utterances": 8,
+   "segments": 11,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.0,
+   "speech_s": 55.43,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 12.321,
+   "nonspeech_s": 42.92,
+   "capped_segments": 0,
+   "duration_s": 119.51,
+   "word_errors": 37,
+   "reference_words": 37,
+   "character_errors": 52,
+   "reference_characters": 275,
+   "stored": 8,
+   "failed": 3,
+   "errors": [
+    "no_speech_found"
+   ],
+   "hypothesis": "这并不是告别这是一个篇章的结束也是新篇章的开始 桥下垂直净空十五米该项目于二零一一年八月完工但直到二零一七年三月才开始通车 科学家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同 scob 四零三路公交汽车定期发车前往新特拉在罗卡角停靠 这里几乎都是沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫 就像月球对地球施加拉利引起潮汐一样银河戏也对人马作性戏施加者作用力 自有派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的这一做法 特朗普与土耳其总统雷杰普塔伊普埃尔多安通话后发表了声明",
+   "reference": "“这并不是告别。这是一个篇章的结束，也是新篇章的开始。” 桥下垂直净空 15 米。该项目于 2011 年 8 月完工，但直到 2017 年 3 月才开始通车。 科学家们可以得出结论，暗物质对其他暗物质的影响方式与普通物质相同。 Scotturb 403 路公共汽车定期发车前往辛特拉 (Sintra)，在罗卡角停靠。 这里几乎都是沙滩，游泳很安全，大部分地方都有新西兰圣诞树的树荫。 就像月球对地球施加拉力，引起潮汐一样，银河系也对人马座星系施加着作用力。 自由派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的这一做法。 特朗普与土耳其总统雷杰普·塔伊普·埃尔多安（Recep Tayyip Erdoğan）通话后发表了声明。",
+   "ram": {
+    "samples": 249,
+    "peak_sum_working_set_bytes": 486465536,
+    "peak_sum_private_bytes": 594014208,
+    "peak_voice_working_set_bytes": 11980800,
+    "peak_engine_working_set_bytes": 476762112,
+    "peak_engine_private_bytes": 589942784
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    7982,
+    6923,
+    3813,
+    5776,
+    6350,
+    5319,
+    6406,
+    4193,
+    6547,
+    4537,
+    7332
+   ],
+   "detected_languages": [
+    "zh",
+    "zh",
+    null,
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    null,
+    "zh",
+    null,
+    "zh"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.74,
+     "end": 11.84,
+     "ok": true,
+     "error": null,
+     "text": "这并不是告别这是一个篇章的结束也是新篇章的开始",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9965388774871826,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9965388774871826
+     },
+     "asr_ms": 7982
+    },
+    {
+     "start": 14.22,
+     "end": 26.39,
+     "ok": true,
+     "error": null,
+     "text": "桥下垂直净空十五米该项目于二零一一年八月完工但直到二零一七年三月才开始通车",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9984399080276489,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9984399080276489
+     },
+     "asr_ms": 6923
+    },
+    {
+     "start": 26.25,
+     "end": 27.62,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3813
+    },
+    {
+     "start": 30.96,
+     "end": 39.32,
+     "ok": true,
+     "error": null,
+     "text": "科学家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9950312972068787,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9950312972068787
+     },
+     "asr_ms": 5776
+    },
+    {
+     "start": 44.13,
+     "end": 52.01,
+     "ok": true,
+     "error": null,
+     "text": "scob 四零三路公交汽车定期发车前往新特拉在罗卡角停靠",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9501335024833679,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9501335024833679
+     },
+     "asr_ms": 6350
+    },
+    {
+     "start": 54.93,
+     "end": 62.54,
+     "ok": true,
+     "error": null,
+     "text": "这里几乎都是沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9950353503227234,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9950353503227234
+     },
+     "asr_ms": 5319
+    },
+    {
+     "start": 64.92,
+     "end": 76.79,
+     "ok": true,
+     "error": null,
+     "text": "就像月球对地球施加拉利引起潮汐一样银河戏也对人马作性戏施加者作用力",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9816005825996399,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9816005825996399
+     },
+     "asr_ms": 6406
+    },
+    {
+     "start": 77.67,
+     "end": 78.68,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 4193
+    },
+    {
+     "start": 83.7,
+     "end": 95.06,
+     "ok": true,
+     "error": null,
+     "text": "自有派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的这一做法",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9926201701164246,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9926201701164246
+     },
+     "asr_ms": 6547
+    },
+    {
+     "start": 96.06,
+     "end": 97.25,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 4537
+    },
+    {
+     "start": 100.71,
+     "end": 112.67,
+     "ok": true,
+     "error": null,
+     "text": "特朗普与土耳其总统雷杰普塔伊普埃尔多安通话后发表了声明",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9612666368484497,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9612666368484497
+     },
+     "asr_ms": 7332
+    }
+   ]
+  },
+  {
+   "language": "zh",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 78.6,
+   "reference_utterances": 8,
+   "segments": 15,
+   "detected_utterances": 7,
+   "missed_speech_s": 2.991,
+   "speech_s": 55.43,
+   "false_trigger_segments": 1,
+   "nonspeech_captured_s": 17.313,
+   "nonspeech_s": 45.571,
+   "capped_segments": 0,
+   "duration_s": 122.161,
+   "word_errors": 36,
+   "reference_words": 37,
+   "character_errors": 81,
+   "reference_characters": 275,
+   "stored": 12,
+   "failed": 3,
+   "errors": [
+    "no_speech_found"
+   ],
+   "hypothesis": "这并不是告辞 这是一个篇章的结束也是新篇章的开始。 桥下垂直净空十五米该项目于二零一一年八月完固但直到二零一七年三月才开始通车 科学儒家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同 四零三公交汽车定期发车前往新特拉在罗角停靠 這裡幾乎都是沙灘游泳很安全大部分地方都有新西蘭聖誕樹的樹荫 就像月球对地球施加拉力 引起操心呀 联合戏面对对人脉作小戏是家长作用力 自有派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的这一做法 特朗普与土耳其总统 雷杰普塔普埃尔多通话后发表了声明",
+   "reference": "“这并不是告别。这是一个篇章的结束，也是新篇章的开始。” 桥下垂直净空 15 米。该项目于 2011 年 8 月完工，但直到 2017 年 3 月才开始通车。 科学家们可以得出结论，暗物质对其他暗物质的影响方式与普通物质相同。 Scotturb 403 路公共汽车定期发车前往辛特拉 (Sintra)，在罗卡角停靠。 这里几乎都是沙滩，游泳很安全，大部分地方都有新西兰圣诞树的树荫。 就像月球对地球施加拉力，引起潮汐一样，银河系也对人马座星系施加着作用力。 自由派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的这一做法。 特朗普与土耳其总统雷杰普·塔伊普·埃尔多安（Recep Tayyip Erdoğan）通话后发表了声明。",
+   "ram": {
+    "samples": 298,
+    "peak_sum_working_set_bytes": 492425216,
+    "peak_sum_private_bytes": 457502720,
+    "peak_voice_working_set_bytes": 12455936,
+    "peak_engine_working_set_bytes": 480604160,
+    "peak_engine_private_bytes": 450441216
+   },
+   "stored_observations": 12,
+   "asr_ms": [
+    5425,
+    6105,
+    5733,
+    5821,
+    6397,
+    5950,
+    5188,
+    4148,
+    4956,
+    4683,
+    3613,
+    5459,
+    5292,
+    5664,
+    4057
+   ],
+   "detected_languages": [
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    null,
+    null,
+    "zh",
+    "zh",
+    "zh",
+    null
+   ],
+   "segments_detail": [
+    {
+     "start": 3.72,
+     "end": 5.72,
+     "ok": true,
+     "error": null,
+     "text": "这并不是告辞",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9778875708580017,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9778875708580017
+     },
+     "asr_ms": 5425
+    },
+    {
+     "start": 5.76,
+     "end": 12.71,
+     "ok": true,
+     "error": null,
+     "text": "这是一个篇章的结束也是新篇章的开始。",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9853655695915222,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9853655695915222
+     },
+     "asr_ms": 6105
+    },
+    {
+     "start": 14.61,
+     "end": 25.7,
+     "ok": true,
+     "error": null,
+     "text": "桥下垂直净空十五米该项目于二零一一年八月完固但直到二零一七年三月才开始通车",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9964277148246765,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9964277148246765
+     },
+     "asr_ms": 5733
+    },
+    {
+     "start": 30.66,
+     "end": 40.28,
+     "ok": true,
+     "error": null,
+     "text": "科学儒家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.975254476070404,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.975254476070404
+     },
+     "asr_ms": 5821
+    },
+    {
+     "start": 47.58,
+     "end": 54.17,
+     "ok": true,
+     "error": null,
+     "text": "四零三公交汽车定期发车前往新特拉在罗角停靠",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9704548120498657,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9704548120498657
+     },
+     "asr_ms": 6397
+    },
+    {
+     "start": 59.04,
+     "end": 64.7,
+     "ok": true,
+     "error": null,
+     "text": "這裡幾乎都是沙灘游泳很安全大部分地方都有新西蘭聖誕樹的樹荫",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9929003715515137,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9929003715515137
+     },
+     "asr_ms": 5950
+    },
+    {
+     "start": 70.29,
+     "end": 72.89,
+     "ok": true,
+     "error": null,
+     "text": "就像月球对地球施加拉力",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9876567125320435,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9876567125320435
+     },
+     "asr_ms": 5188
+    },
+    {
+     "start": 72.75,
+     "end": 74.27,
+     "ok": true,
+     "error": null,
+     "text": "引起操心呀",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9848031401634216,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9848031401634216
+     },
+     "asr_ms": 4148
+    },
+    {
+     "start": 74.49,
+     "end": 78.89,
+     "ok": true,
+     "error": null,
+     "text": "联合戏面对对人脉作小戏是家长作用力",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9740209579467773,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9740209579467773
+     },
+     "asr_ms": 4956
+    },
+    {
+     "start": 79.35,
+     "end": 84.2,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 4683
+    },
+    {
+     "start": 84.45,
+     "end": 86.84,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3613
+    },
+    {
+     "start": 88.47,
+     "end": 96.71,
+     "ok": true,
+     "error": null,
+     "text": "自有派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的这一做法",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9948403239250183,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9948403239250183
+     },
+     "asr_ms": 5459
+    },
+    {
+     "start": 100.62,
+     "end": 108.71,
+     "ok": true,
+     "error": null,
+     "text": "特朗普与土耳其总统",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9721513390541077,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9721513390541077
+     },
+     "asr_ms": 5292
+    },
+    {
+     "start": 108.87,
+     "end": 114.47,
+     "ok": true,
+     "error": null,
+     "text": "雷杰普塔普埃尔多通话后发表了声明",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9421418309211731,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9421418309211731
+     },
+     "asr_ms": 5664
+    },
+    {
+     "start": 119.97,
+     "end": 122.16,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 4057
+    }
+   ]
+  },
+  {
+   "language": "hi",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 47.2,
+   "reference_utterances": 8,
+   "segments": 8,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.35,
+   "speech_s": 78.78,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.242,
+   "nonspeech_s": 23.586,
+   "capped_segments": 0,
+   "duration_s": 113.896,
+   "word_errors": 19,
+   "reference_words": 201,
+   "character_errors": 33,
+   "reference_characters": 842,
+   "stored": 8,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": "कुछ अणुओं में अस्स्थ केंद्रक होता है जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटिक होते हैं कुछ कर एजेंसियां सौ साल से पुराने सामान को एंटिक के तौर पर परिभाषित करती है इंटरनेट पर यह खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी सबसे नज़दीकी सिरे पर क्रिस्ट की मोटाई करीब सत्तर किलोमीटर है और सबसे दूर के सिरे पर यह सौ किलोमीटर है यह संबंधित है लेकिन आमतौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेनियरंग शामिल नहीं होती है जिसे खड़े इलाक़ों में किया जाता है और जिसके लिए बहुत कड़ी स्की और बूट की ज़रूरत होती है पुरुषों के स्टैंडिंग सुपर जी में ऑस्ट्रेलिया के मिशेल गोर्ले ग्यारहवें स्थान पर रहे चेक प्रतियोगी र्ड्रिच जेलनेक पुरुषों के सिटिंग सुपर ग में सोलहवें स्थान पर रहे गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान गंभीर सामाजिक व्यवधान या मानव जीवन की हानि की संभावना है कल्शियम और पोटियशियम जैसे तत्वों को धातु माना जाता है बेशक चांदी और सोने जैसी धातुएं भी हैं",
+   "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है, ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटीक होते हैं. कुछ कर एजेंसियाँ 100 साल से पुराने सामान को एंटीक के तौर पर परिभाषित करती हैं. इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी। सबसे नज़दीकी सिरे पर क्रस्ट की मोटाई करीब 70 किलोमीटर है और सबसे दूर के सिरे पर यह 100 किलोमीटर है. यह संबंधित है, लेकिन आम तौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेनीयरिंग शामिल नहीं होती है, जिसे खड़े इलाकों में किया जाता है और जिसके लिए बहुत कड़ी स्की और बूट की ज़रूरत होती है. पुरुषों के स्टैंडिंग सुपर-जी में ऑस्ट्रेलिया के मिशेल गौरले ग्यारहवें स्थान पर रहे. चेक प्रतियोगी ओल्डरिच जेलिनेक पुरुषों के सिटिंग सुपर-जी में सोलहवें स्थान पर रहे. गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान, गंभीर सामाजिक व्यवधान, या मानव जीवन की हानि की संभावना है। कैल्शियम और पोटैशियम जैसे तत्वों को धातु माना जाता है। बेशक, चांदी और सोने जैसी धातुएं भी हैं।",
+   "ram": {
+    "samples": 179,
+    "peak_sum_working_set_bytes": 404611072,
+    "peak_sum_private_bytes": 408227840,
+    "peak_voice_working_set_bytes": 13025280,
+    "peak_engine_working_set_bytes": 391585792,
+    "peak_engine_private_bytes": 400564224
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    6080,
+    6677,
+    5754,
+    5789,
+    6209,
+    5925,
+    5056,
+    5558
+   ],
+   "detected_languages": [
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.31,
+     "end": 11.57,
+     "ok": true,
+     "error": null,
+     "text": "कुछ अणुओं में अस्स्थ केंद्रक होता है जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9607528448104858,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9607528448104858
+     },
+     "asr_ms": 6080
+    },
+    {
+     "start": 12.36,
+     "end": 27.26,
+     "ok": true,
+     "error": null,
+     "text": "ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटिक होते हैं कुछ कर एजेंसियां सौ साल से पुराने सामान को एंटिक के तौर पर परिभाषित करती है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8873700499534607,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8873700499534607
+     },
+     "asr_ms": 6677
+    },
+    {
+     "start": 30.21,
+     "end": 44.12,
+     "ok": true,
+     "error": null,
+     "text": "इंटरनेट पर यह खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9067778587341309,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9067778587341309
+     },
+     "asr_ms": 5754
+    },
+    {
+     "start": 46.8,
+     "end": 53.69,
+     "ok": true,
+     "error": null,
+     "text": "सबसे नज़दीकी सिरे पर क्रिस्ट की मोटाई करीब सत्तर किलोमीटर है और सबसे दूर के सिरे पर यह सौ किलोमीटर है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8945873975753784,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8945873975753784
+     },
+     "asr_ms": 5789
+    },
+    {
+     "start": 58.08,
+     "end": 70.7,
+     "ok": true,
+     "error": null,
+     "text": "यह संबंधित है लेकिन आमतौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेनियरंग शामिल नहीं होती है जिसे खड़े इलाक़ों में किया जाता है और जिसके लिए बहुत कड़ी स्की और बूट की ज़रूरत होती है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8785136342048645,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8785136342048645
+     },
+     "asr_ms": 6209
+    },
+    {
+     "start": 73.05,
+     "end": 87.5,
+     "ok": true,
+     "error": null,
+     "text": "पुरुषों के स्टैंडिंग सुपर जी में ऑस्ट्रेलिया के मिशेल गोर्ले ग्यारहवें स्थान पर रहे चेक प्रतियोगी र्ड्रिच जेलनेक पुरुषों के सिटिंग सुपर ग में सोलहवें स्थान पर रहे",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8223642110824585,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8223642110824585
+     },
+     "asr_ms": 5925
+    },
+    {
+     "start": 91.05,
+     "end": 99.86,
+     "ok": true,
+     "error": null,
+     "text": "गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान गंभीर सामाजिक व्यवधान या मानव जीवन की हानि की संभावना है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9546173214912415,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9546173214912415
+     },
+     "asr_ms": 5056
+    },
+    {
+     "start": 104.01,
+     "end": 110.72,
+     "ok": true,
+     "error": null,
+     "text": "कल्शियम और पोटियशियम जैसे तत्वों को धातु माना जाता है बेशक चांदी और सोने जैसी धातुएं भी हैं",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9161224961280823,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9161224961280823
+     },
+     "asr_ms": 5558
+    }
+   ]
+  },
+  {
+   "language": "hi",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 67.6,
+   "reference_utterances": 8,
+   "segments": 12,
+   "detected_utterances": 7,
+   "missed_speech_s": 3.753,
+   "speech_s": 78.78,
+   "false_trigger_segments": 1,
+   "nonspeech_captured_s": 3.177,
+   "nonspeech_s": 21.787,
+   "capped_segments": 0,
+   "duration_s": 112.097,
+   "word_errors": 50,
+   "reference_words": 201,
+   "character_errors": 124,
+   "reference_characters": 842,
+   "stored": 11,
+   "failed": 1,
+   "errors": [
+    "no_speech_found"
+   ],
+   "hypothesis": "कुछ अणओ में अ होता है जिसका मतलब यह है कि इनने थोड़े या बिना किसी हटके से टूटने की प्रगति होती है ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटिक होते हैं कुछ कर एजेनसियां सौ साल से पुराने सामान को एंटिक के तौर पर परिभाषित करती है इंटरनेट पर यह खोज शत्रुतापर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको एक स्थानीय कम्पनी का पता प्रदान करेगी सबसे नज़दीक के सिरे पर कृषठ की मोटाई करीब सत्तर किलोमीटर है और सबसे दूर के सिरे पर यह सौ किलोमीटर है यह संबंधित है लेकिन आम तौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेन ईयरिंग शामिल नहीं उसी है जिसे खड़े इलाकों में किया जाता है और जिसके लिए बहुत बड़ी स्कीम और बूड की ज़रूरत होती होती पुरषों के स्टैंडिंग उपर जी में ऑस्ट्रेलिया के मन गर्ले जारवे स्थान पर रही चेक प्रतियोगी लडेस जैलने कुलकों के सिटिंग सुपर जी में सोलहवें स्थान पर रहे गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान गंभीर सामाजिक व्यवधान या मानव जीवन की हानि की समवना है एल्सियम और पोटलसियम जैसे तत्व पौधातू माना जाता है बे सब चांदी और सोने जैसी तात्वरें भी है  -¿Alte la vena? -¿Alte la vena?",
+   "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है, ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटीक होते हैं. कुछ कर एजेंसियाँ 100 साल से पुराने सामान को एंटीक के तौर पर परिभाषित करती हैं. इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी। सबसे नज़दीकी सिरे पर क्रस्ट की मोटाई करीब 70 किलोमीटर है और सबसे दूर के सिरे पर यह 100 किलोमीटर है. यह संबंधित है, लेकिन आम तौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेनीयरिंग शामिल नहीं होती है, जिसे खड़े इलाकों में किया जाता है और जिसके लिए बहुत कड़ी स्की और बूट की ज़रूरत होती है. पुरुषों के स्टैंडिंग सुपर-जी में ऑस्ट्रेलिया के मिशेल गौरले ग्यारहवें स्थान पर रहे. चेक प्रतियोगी ओल्डरिच जेलिनेक पुरुषों के सिटिंग सुपर-जी में सोलहवें स्थान पर रहे. गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान, गंभीर सामाजिक व्यवधान, या मानव जीवन की हानि की संभावना है। कैल्शियम और पोटैशियम जैसे तत्वों को धातु माना जाता है। बेशक, चांदी और सोने जैसी धातुएं भी हैं।",
+   "ram": {
+    "samples": 255,
+    "peak_sum_working_set_bytes": 393031680,
+    "peak_sum_private_bytes": 406974464,
+    "peak_voice_working_set_bytes": 11792384,
+    "peak_engine_working_set_bytes": 381239296,
+    "peak_engine_private_bytes": 399384576
+   },
+   "stored_observations": 11,
+   "asr_ms": [
+    6326,
+    6633,
+    5995,
+    4432,
+    4538,
+    5011,
+    5593,
+    5934,
+    5555,
+    5792,
+    5994,
+    5538
+   ],
+   "detected_languages": [
+    "hi",
+    "hi",
+    "hi",
+    null,
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.52,
+     "end": 11.27,
+     "ok": true,
+     "error": null,
+     "text": "कुछ अणओ में अ होता है जिसका मतलब यह है कि इनने थोड़े या बिना किसी हटके से टूटने की प्रगति होती है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.28351709246635437,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.28351709246635437
+     },
+     "asr_ms": 6326
+    },
+    {
+     "start": 13.95,
+     "end": 27.83,
+     "ok": true,
+     "error": null,
+     "text": "ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटिक होते हैं कुछ कर एजेनसियां सौ साल से पुराने सामान को एंटिक के तौर पर परिभाषित करती है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8255005478858948,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8255005478858948
+     },
+     "asr_ms": 6633
+    },
+    {
+     "start": 31.47,
+     "end": 41.96,
+     "ok": true,
+     "error": null,
+     "text": "इंटरनेट पर यह खोज शत्रुतापर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको एक स्थानीय कम्पनी का पता प्रदान करेगी",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8780975937843323,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8780975937843323
+     },
+     "asr_ms": 5995
+    },
+    {
+     "start": 42.63,
+     "end": 44.12,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 4432
+    },
+    {
+     "start": 46.47,
+     "end": 53.3,
+     "ok": true,
+     "error": null,
+     "text": "सबसे नज़दीक के सिरे पर कृषठ की मोटाई करीब सत्तर किलोमीटर है और सबसे दूर के सिरे पर यह सौ किलोमीटर है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.6342145800590515,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.6342145800590515
+     },
+     "asr_ms": 4538
+    },
+    {
+     "start": 57.39,
+     "end": 64.22,
+     "ok": true,
+     "error": null,
+     "text": "यह संबंधित है लेकिन आम तौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेन ईयरिंग शामिल नहीं उसी है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.5829379558563232,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.5829379558563232
+     },
+     "asr_ms": 5011
+    },
+    {
+     "start": 64.32,
+     "end": 69.8,
+     "ok": true,
+     "error": null,
+     "text": "जिसे खड़े इलाकों में किया जाता है और जिसके लिए बहुत बड़ी स्कीम और बूड की ज़रूरत होती होती",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.4073410630226135,
+      "unrestricted": "ur",
+      "unrestricted_probability": 0.5818132758140564
+     },
+     "asr_ms": 5593
+    },
+    {
+     "start": 72.6,
+     "end": 81.56,
+     "ok": true,
+     "error": null,
+     "text": "पुरषों के स्टैंडिंग उपर जी में ऑस्ट्रेलिया के मन गर्ले जारवे स्थान पर रही चेक प्रतियोगी लडेस",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.4614473879337311,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.4614473879337311
+     },
+     "asr_ms": 5934
+    },
+    {
+     "start": 81.45,
+     "end": 85.88,
+     "ok": true,
+     "error": null,
+     "text": "जैलने कुलकों के सिटिंग सुपर जी में सोलहवें स्थान पर रहे",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8051480650901794,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8051480650901794
+     },
+     "asr_ms": 5555
+    },
+    {
+     "start": 88.77,
+     "end": 97.7,
+     "ok": true,
+     "error": null,
+     "text": "गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान गंभीर सामाजिक व्यवधान या मानव जीवन की हानि की समवना है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.10191697627305984,
+      "unrestricted": "ne",
+      "unrestricted_probability": 0.12007128447294235
+     },
+     "asr_ms": 5792
+    },
+    {
+     "start": 101.76,
+     "end": 107.84,
+     "ok": true,
+     "error": null,
+     "text": "एल्सियम और पोटलसियम जैसे तत्व पौधातू माना जाता है बे सब चांदी और सोने जैसी तात्वरें भी है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.3994494378566742,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.3994494378566742
+     },
+     "asr_ms": 5994
+    },
+    {
+     "start": 109.71,
+     "end": 112.08,
+     "ok": true,
+     "error": null,
+     "text": " -¿Alte la vena? -¿Alte la vena?",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8522250654382838,
+     "lid": {
+      "chosen_probability": 0.4976257383823395,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.4976257383823395
+     },
+     "asr_ms": 5538
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,182 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "bc8eb95c13cbc5053e10ff3c6329c3813c0840be77e1669dee7af02de40e1edc",
+  "lens_engine_sha256": "042ae09ccbd11552ce0db19eaadbad30e969fab4093125502e44f5b9ed5963ac",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-27T09:44:34",
+  "git_head": "b192ad8bb25296def0dde08d1d7632512ae870e4"
+ },
+ "vad": "legacy",
+ "params": {},
+ "split": "dev",
+ "overall": {
+  "sessions": 4,
+  "utterances": 32,
+  "segments": 19,
+  "utterance_recall": 0.7812,
+  "missed_speech": 0.169,
+  "nonspeech_captured": 0.5247,
+  "false_triggers_per_10min": 0.0,
+  "capped_segments": 6
+ },
+ "by_condition": {
+  "babble5": {
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 4,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0,
+   "nonspeech_captured": 1.0067,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 3
+  },
+  "clean": {
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 8,
+   "utterance_recall": 0.875,
+   "missed_speech": 0.0145,
+   "nonspeech_captured": 0.0008,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 0
+  },
+  "pink10": {
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 4,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0,
+   "nonspeech_captured": 0.9986,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 3
+  },
+  "raw_level": {
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 3,
+   "utterance_recall": 0.25,
+   "missed_speech": 0.6616,
+   "nonspeech_captured": 0.0009,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 0
+  }
+ },
+ "by_language": {
+  "en": {
+   "sessions": 4,
+   "utterances": 32,
+   "segments": 19,
+   "utterance_recall": 0.7812,
+   "missed_speech": 0.169,
+   "nonspeech_captured": 0.5247,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 6
+  }
+ },
+ "by_language_condition": {
+  "en|babble5": {
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 4,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0,
+   "nonspeech_captured": 1.0067,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 3
+  },
+  "en|clean": {
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 8,
+   "utterance_recall": 0.875,
+   "missed_speech": 0.0145,
+   "nonspeech_captured": 0.0008,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 0
+  },
+  "en|pink10": {
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 4,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0,
+   "nonspeech_captured": 0.9986,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 3
+  },
+  "en|raw_level": {
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 3,
+   "utterance_recall": 0.25,
+   "missed_speech": 0.6616,
+   "nonspeech_captured": 0.0009,
+   "false_triggers_per_10min": 0.0,
+   "capped_segments": 0
+  }
+ },
+ "rows": [
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "clean",
+   "reference_utterances": 8,
+   "segments": 8,
+   "detected_utterances": 7,
+   "missed_speech_s": 1.0,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.014,
+   "nonspeech_s": 18.383,
+   "capped_segments": 0,
+   "duration_s": 97.433
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "pink10",
+   "reference_utterances": 8,
+   "segments": 4,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.0,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 19.05,
+   "nonspeech_s": 19.077,
+   "capped_segments": 3,
+   "duration_s": 98.127
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "raw_level",
+   "reference_utterances": 8,
+   "segments": 3,
+   "detected_utterances": 2,
+   "missed_speech_s": 45.484,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.02,
+   "nonspeech_s": 22.521,
+   "capped_segments": 0,
+   "duration_s": 101.571
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "babble5",
+   "reference_utterances": 8,
+   "segments": 4,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.0,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 25.88,
+   "nonspeech_s": 25.708,
+   "capped_segments": 3,
+   "duration_s": 104.758
+  }
+ ]
+}

@@ -9,6 +9,7 @@
 #define MA_NO_NODE_GRAPH
 #include "miniaudio.h"
 #include <windows.h>
+#include <wincrypt.h>
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <memory>
@@ -18,11 +19,19 @@ struct Audio {ma_decoder d{};bool loaded=false;~Audio(){if(loaded)ma_decoder_uni
 template<class T>T api(HMODULE h,const char* name){auto p=reinterpret_cast<T>(GetProcAddress(h,name));if(!p)throw lens::Error("asr_api_unavailable");return p;}
 int main(){
   try{
-    std::string line;if(lens::read_line(std::cin,line,262144)!=lens::Line::ready)throw lens::Error("invalid_request");
+    // "audio": a file path, or "audio_base64": encoded audio piped from lens-engine (voice capture; never on disk).
+    std::string line;if(lens::read_line(std::cin,line,4*1024*1024)!=lens::Line::ready)throw lens::Error("invalid_request");
     const auto req=json::parse(line);if(!req.value("consent",false))throw lens::Error("consent_required");
     const auto model_type=lens::validated_string(req.value("model_type",std::string("dolphin")),64);
     if(model_type!="dolphin"&&model_type!="nemo_ctc")throw lens::Error("unsupported_asr_model_type");
-    const auto bytes=lens::read_file(lens::utf8_path(req.at("audio").get<std::string>()),64000000);
+    std::vector<char> bytes;
+    if(req.contains("audio_base64")) {
+        const auto text=req.at("audio_base64").get<std::string>();DWORD size=0;
+        if(!CryptStringToBinaryA(text.data(),static_cast<DWORD>(text.size()),CRYPT_STRING_BASE64,nullptr,&size,nullptr,nullptr))throw lens::Error("audio_decode_failed");
+        bytes.resize(size);
+        if(!CryptStringToBinaryA(text.data(),static_cast<DWORD>(text.size()),CRYPT_STRING_BASE64,reinterpret_cast<BYTE*>(bytes.data()),&size,nullptr,nullptr))throw lens::Error("audio_decode_failed");
+        bytes.resize(size);
+    } else bytes=lens::read_file(lens::utf8_path(req.at("audio").get<std::string>()),64000000);
     Audio audio;auto cfg=ma_decoder_config_init(ma_format_f32,1,16000);
     if(ma_decoder_init_memory(bytes.data(),bytes.size(),&cfg,&audio.d)!=MA_SUCCESS)throw lens::Error("audio_decode_failed");audio.loaded=true;
     ma_uint64 count{};if(ma_decoder_get_length_in_pcm_frames(&audio.d,&count)!=MA_SUCCESS)throw lens::Error("audio_decode_failed");
@@ -31,7 +40,8 @@ int main(){
     if(ma_decoder_read_pcm_frames(&audio.d,pcm.data(),count,&got)!=MA_SUCCESS||!got)throw lens::Error("audio_decode_failed");
     const auto model=lens::validated_string(req.at("model").get<std::string>(),32768);
     const auto tokens=lens::validated_string(req.at("tokens").get<std::string>(),32768);
-    const auto library=lens::utf8_path(req.at("library").get<std::string>());
+    // Fully qualified with backslashes, or LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR is ignored and Windows' System32 onnxruntime.dll loads.
+    const auto library=std::filesystem::absolute(lens::utf8_path(req.at("library").get<std::string>())).make_preferred();
     if(!std::filesystem::is_regular_file(lens::utf8_path(model))||!std::filesystem::is_regular_file(lens::utf8_path(tokens)))throw lens::Error("model_unavailable");
     Module module{LoadLibraryExW(library.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_DEFAULT_DIRS)};
     if(!module.h)throw lens::Error("asr_runtime_unavailable");

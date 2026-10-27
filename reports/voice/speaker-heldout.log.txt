@@ -1,0 +1,100 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "e65a7404c759f46602291c8492beffc8db9995c5ee642ec3341cdce48f62729a",
+  "lens_engine_sha256": "095675c619b0af6ee38bd71f2e6cdc5112bf348c84f5906ff76d1861d7ec522e",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-27T21:33:02",
+  "git_head": "b28dacc644b18668d89842eb446825a4ee3d5926",
+  "speaker_model": "nemo_en_titanet_small.onnx sha256 ad4a1802485d8b34c722d2a9d04249662f2ece5d28a7a039063ca22f515a789e",
+  "speaker_data": "LibriSpeech test-clean (openslr 12, CC BY 4.0, md5 32fa31d27d2e1cad72775fee3f4849a9) + FLEURS impostors"
+ },
+ "split": "heldout",
+ "gate_threshold": 0.46,
+ "conditions": [
+  "clean",
+  "pink10",
+  "babble10"
+ ],
+ "at_gate": {
+  "threshold": 0.46,
+  "targets": 468,
+  "impostors": 468,
+  "frr": 0.0534,
+  "far": 0.015,
+  "far_fleurs": 0.0
+ },
+ "by_condition": {
+  "clean": {
+   "threshold": 0.46,
+   "targets": 156,
+   "impostors": 156,
+   "frr": 0.0,
+   "far": 0.0064,
+   "far_fleurs": 0.0
+  },
+  "pink10": {
+   "threshold": 0.46,
+   "targets": 156,
+   "impostors": 156,
+   "frr": 0.0,
+   "far": 0.0064,
+   "far_fleurs": 0.0
+  },
+  "babble10": {
+   "threshold": 0.46,
+   "targets": 156,
+   "impostors": 156,
+   "frr": 0.1603,
+   "far": 0.0321,
+   "far_fleurs": 0.0
+  }
+ },
+ "voice_peak_working_set_bytes": 190513152
+}
+{'threshold': 0.0, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.02, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.04, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.06, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.08, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.1, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.12, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.14, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.16, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.18, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.2, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.22, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.24, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.26, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.28, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.3, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.32, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.34, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.36, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.38, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.4, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.42, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.44, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.46, 'targets': 468, 'impostors': 468, 'frr': 0.0534, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.48, 'targets': 468, 'impostors': 468, 'frr': 0.0641, 'far': 0.015, 'far_fleurs': 0.0}
+{'threshold': 0.5, 'targets': 468, 'impostors': 468, 'frr': 0.0748, 'far': 0.0107, 'far_fleurs': 0.0}
+{'threshold': 0.52, 'targets': 468, 'impostors': 468, 'frr': 0.094, 'far': 0.0085, 'far_fleurs': 0.0}
+{'threshold': 0.54, 'targets': 468, 'impostors': 468, 'frr': 0.1004, 'far': 0.0085, 'far_fleurs': 0.0}
+{'threshold': 0.56, 'targets': 468, 'impostors': 468, 'frr': 0.1132, 'far': 0.0064, 'far_fleurs': 0.0}
+{'threshold': 0.58, 'targets': 468, 'impostors': 468, 'frr': 0.1239, 'far': 0.0064, 'far_fleurs': 0.0}
+{'threshold': 0.6, 'targets': 468, 'impostors': 468, 'frr': 0.1432, 'far': 0.0064, 'far_fleurs': 0.0}
+{'threshold': 0.62, 'targets': 468, 'impostors': 468, 'frr': 0.1624, 'far': 0.0064, 'far_fleurs': 0.0}
+{'threshold': 0.64, 'targets': 468, 'impostors': 468, 'frr': 0.188, 'far': 0.0021, 'far_fleurs': 0.0}
+{'threshold': 0.66, 'targets': 468, 'impostors': 468, 'frr': 0.2115, 'far': 0.0021, 'far_fleurs': 0.0}
+{'threshold': 0.68, 'targets': 468, 'impostors': 468, 'frr': 0.25, 'far': 0.0021, 'far_fleurs': 0.0}
+{'threshold': 0.7, 'targets': 468, 'impostors': 468, 'frr': 0.3077, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.72, 'targets': 468, 'impostors': 468, 'frr': 0.3504, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.74, 'targets': 468, 'impostors': 468, 'frr': 0.4124, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.76, 'targets': 468, 'impostors': 468, 'frr': 0.4679, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.78, 'targets': 468, 'impostors': 468, 'frr': 0.5214, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.8, 'targets': 468, 'impostors': 468, 'frr': 0.5855, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.82, 'targets': 468, 'impostors': 468, 'frr': 0.6645, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.84, 'targets': 468, 'impostors': 468, 'frr': 0.7158, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.86, 'targets': 468, 'impostors': 468, 'frr': 0.7756, 'far': 0.0, 'far_fleurs': 0.0}
+{'threshold': 0.88, 'targets': 468, 'impostors': 468, 'frr': 0.8504, 'far': 0.0, 'far_fleurs': 0.0}

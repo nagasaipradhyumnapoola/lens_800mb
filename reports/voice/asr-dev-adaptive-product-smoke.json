@@ -1,0 +1,95 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "bc8eb95c13cbc5053e10ff3c6329c3813c0840be77e1669dee7af02de40e1edc",
+  "lens_engine_sha256": "042ae09ccbd11552ce0db19eaadbad30e969fab4093125502e44f5b9ed5963ac",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-27T09:49:29",
+  "git_head": "b192ad8bb25296def0dde08d1d7632512ae870e4"
+ },
+ "vad": "adaptive",
+ "params": {},
+ "mode": "product",
+ "split": "dev",
+ "table": [
+  {
+   "language": "en",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 8,
+   "stored": 8,
+   "failed": 0,
+   "wer": 0.1529,
+   "cer": 0.0702,
+   "utterance_recall": 0.75,
+   "missed_speech": 0.0521,
+   "nonspeech_captured": 0.0,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 178552832,
+   "p95_asr_ms": 10209
+  }
+ ],
+ "rows": [
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 56.3,
+   "reference_utterances": 8,
+   "segments": 8,
+   "detected_utterances": 6,
+   "missed_speech_s": 3.58,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 18.383,
+   "capped_segments": 0,
+   "duration_s": 97.433,
+   "word_errors": 26,
+   "reference_words": 170,
+   "character_errors": 59,
+   "reference_characters": 841,
+   "stored": 8,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " To the north and within easy reach is a romantic and fascinating town of Sinatra, which was made famous, to foreigners after a glowing account of its blinteres recorded by Lord Byron.  The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.  20th century research has shown that there are two pools of genetic variation hidden and expressed.  The aspect ratio of this format, the vying by 12 to obtain the simplest whole number ratio, is therefore said to be free to two.  The night between 150 and 200 copies were made now known as the \"Nap Broad Sides\".  For example, each of your students from Bennett School in North Carolina to sign a website about their trips to the state capital. Each year the website gets remodeled, but old versions are kept online to service a scrapbook.  The internet combines elements of both mass and interpersonal communication.  As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron. The Northern Marianas emergency management office said that there were no damages reported in the nation. Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed. The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2. Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. The Internet combines elements of both mass and interpersonal communication. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "ram": {
+    "samples": 271,
+    "peak_sum_working_set_bytes": 178552832,
+    "peak_sum_private_bytes": 265830400,
+    "peak_voice_working_set_bytes": 11681792,
+    "peak_engine_working_set_bytes": 167415808,
+    "peak_engine_private_bytes": 258539520
+   },
+   "stored_observations": null,
+   "asr_ms": [
+    6860,
+    5342,
+    6740,
+    7898,
+    6352,
+    10209,
+    5488,
+    7200
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ]
+  }
+ ]
+}

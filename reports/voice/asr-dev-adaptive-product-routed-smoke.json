@@ -1,0 +1,563 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "ff17c94c4333f96afa111ec4983b484b1e84df182d327f052b5eaeadb9579193",
+  "lens_engine_sha256": "a8b17424b74b19edd60aaf1932e189a9de0432a946ab2fb537d60d1cfe99e980",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-27T19:10:38",
+  "git_head": "60db724f1b94e391147b9b961bbda5ba8eebd5ef"
+ },
+ "vad": "adaptive",
+ "params": {},
+ "mode": "product",
+ "split": "dev",
+ "table": [
+  {
+   "language": "hi",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 11,
+   "stored": 10,
+   "failed": 1,
+   "wer": 0.1294,
+   "cer": 0.0689,
+   "utterance_recall": 0.875,
+   "missed_speech": 0.0198,
+   "nonspeech_captured": 0.0103,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 178532352,
+   "p95_asr_ms": 6382
+  },
+  {
+   "language": "zh",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 13,
+   "stored": 10,
+   "failed": 3,
+   "wer": 0.973,
+   "cer": 0.1818,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0,
+   "nonspeech_captured": 0.2517,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 178118656,
+   "p95_asr_ms": 7092
+  }
+ ],
+ "rows": [
+  {
+   "language": "hi",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 58.0,
+   "reference_utterances": 8,
+   "segments": 11,
+   "detected_utterances": 7,
+   "missed_speech_s": 1.563,
+   "speech_s": 78.78,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.242,
+   "nonspeech_s": 23.586,
+   "capped_segments": 0,
+   "duration_s": 113.896,
+   "word_errors": 26,
+   "reference_words": 201,
+   "character_errors": 58,
+   "reference_characters": 842,
+   "stored": 10,
+   "failed": 1,
+   "errors": [
+    "no_speech_found"
+   ],
+   "hypothesis": "कुछ अणुओं में अस्स्थ केंद्रक होता है जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटिक होते हैं कुछ कर एजेंसिया सव साल से पुराने सामान को तो म त प्र इंटरनेट पर यह खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको एक स्थानीय कम्पनी का पता प्रदान करेगी सबसे नज़दीकी सिरे पर क्रिस्ट की मोटाई करीब सत्तर किलोमीटर है और सबसे दूर के सिरे पर यह सौ किलोमीटर है यह संबंधित है लेकिन आमतौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेनियरंग शामिल नहीं होती है जिसे खड़े इलाक़ों में किया जाता है और जिसके लिए बहुत कड़ी स्की और बूट की ज़रूरत होती है पुरुषों के स्टैंडिंग सुपर जी में ऑस्ट्रेलिया के मिशल गोर्ले ग्यारहवे स्थान पर रहे चेक प्रतियोगी औरड्रिच जेलिनैक पुरुषों के सिटिंग सुपर जी में सोलहवें स्थान पर रहे गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान गंभीर सामाजिक व्यवधान या मानव जीवन की हानि की संभावना है कल्शियम और पोटियशियम जैसे तत्वों को धातु माना जाता है बेशक चांदी और सोने जैसी धातुएं भी हैं",
+   "reference": "कुछ अणुओं में अस्थिर केंद्रक होता है, जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है, ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटीक होते हैं. कुछ कर एजेंसियाँ 100 साल से पुराने सामान को एंटीक के तौर पर परिभाषित करती हैं. इंटरनेट पर यह खोज 'शत्रुतापूर्ण पर्यावरण पाठ्यक्रम' के लिए अक्सर आपको एक स्थानीय कंपनी का पता प्रदान करेगी। सबसे नज़दीकी सिरे पर क्रस्ट की मोटाई करीब 70 किलोमीटर है और सबसे दूर के सिरे पर यह 100 किलोमीटर है. यह संबंधित है, लेकिन आम तौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेनीयरिंग शामिल नहीं होती है, जिसे खड़े इलाकों में किया जाता है और जिसके लिए बहुत कड़ी स्की और बूट की ज़रूरत होती है. पुरुषों के स्टैंडिंग सुपर-जी में ऑस्ट्रेलिया के मिशेल गौरले ग्यारहवें स्थान पर रहे. चेक प्रतियोगी ओल्डरिच जेलिनेक पुरुषों के सिटिंग सुपर-जी में सोलहवें स्थान पर रहे. गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान, गंभीर सामाजिक व्यवधान, या मानव जीवन की हानि की संभावना है। कैल्शियम और पोटैशियम जैसे तत्वों को धातु माना जाता है। बेशक, चांदी और सोने जैसी धातुएं भी हैं।",
+   "ram": {
+    "samples": 283,
+    "peak_sum_working_set_bytes": 178532352,
+    "peak_sum_private_bytes": 266436608,
+    "peak_voice_working_set_bytes": 12288000,
+    "peak_engine_working_set_bytes": 166920192,
+    "peak_engine_private_bytes": 258732032
+   },
+   "stored_observations": 10,
+   "asr_ms": [
+    4241,
+    3627,
+    5545,
+    4639,
+    5292,
+    5423,
+    6382,
+    5975,
+    5310,
+    6299,
+    5145
+   ],
+   "detected_languages": [
+    "hi",
+    null,
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.31,
+     "end": 10.59,
+     "ok": true,
+     "error": null,
+     "text": "कुछ अणुओं में अस्स्थ केंद्रक होता है जिसका मतलब यह है कि उनमें थोड़े या बिना किसी झटके से टूटने की प्रवृत्ति होती है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9681217074394226,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9681217074394226
+     },
+     "asr_ms": 4241
+    },
+    {
+     "start": 10.44,
+     "end": 11.57,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3627
+    },
+    {
+     "start": 12.36,
+     "end": 24.0,
+     "ok": true,
+     "error": null,
+     "text": "ऐसी कोई वैश्विक परिभाषा नहीं है जिसके लिए निर्मित सामान एंटिक होते हैं कुछ कर एजेंसिया सव साल से पुराने सामान को",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9100563526153564,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9100563526153564
+     },
+     "asr_ms": 5545
+    },
+    {
+     "start": 23.76,
+     "end": 27.26,
+     "ok": true,
+     "error": null,
+     "text": "तो म त प्र",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.6750642657279968,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.6750642657279968
+     },
+     "asr_ms": 4639
+    },
+    {
+     "start": 30.21,
+     "end": 42.21,
+     "ok": true,
+     "error": null,
+     "text": "इंटरनेट पर यह खोज शत्रुतापूर्ण पर्यावरण पाठ्यक्रम के लिए अक्सर आपको एक स्थानीय कम्पनी का पता प्रदान करेगी",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9165567755699158,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9165567755699158
+     },
+     "asr_ms": 5292
+    },
+    {
+     "start": 46.8,
+     "end": 53.69,
+     "ok": true,
+     "error": null,
+     "text": "सबसे नज़दीकी सिरे पर क्रिस्ट की मोटाई करीब सत्तर किलोमीटर है और सबसे दूर के सिरे पर यह सौ किलोमीटर है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8945873975753784,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8945873975753784
+     },
+     "asr_ms": 5423
+    },
+    {
+     "start": 58.08,
+     "end": 70.23,
+     "ok": true,
+     "error": null,
+     "text": "यह संबंधित है लेकिन आमतौर पर इसमें अल्पाइन शैली की स्की टूरिंग या माउंटेनियरंग शामिल नहीं होती है जिसे खड़े इलाक़ों में किया जाता है और जिसके लिए बहुत कड़ी स्की और बूट की ज़रूरत होती है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.901389479637146,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.901389479637146
+     },
+     "asr_ms": 6382
+    },
+    {
+     "start": 73.05,
+     "end": 82.14,
+     "ok": true,
+     "error": null,
+     "text": "पुरुषों के स्टैंडिंग सुपर जी में ऑस्ट्रेलिया के मिशल गोर्ले ग्यारहवे स्थान पर रहे चेक प्रतियोगी औरड्रिच",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.7978144884109497,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.7978144884109497
+     },
+     "asr_ms": 5975
+    },
+    {
+     "start": 82.11,
+     "end": 87.5,
+     "ok": true,
+     "error": null,
+     "text": "जेलिनैक पुरुषों के सिटिंग सुपर जी में सोलहवें स्थान पर रहे",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8724474906921387,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8724474906921387
+     },
+     "asr_ms": 5310
+    },
+    {
+     "start": 91.05,
+     "end": 99.39,
+     "ok": true,
+     "error": null,
+     "text": "गंभीर मौसम किसी भी खतरनाक मौसमी घटना के लिए वर्गीय शब्द है जिसमें नुकसान गंभीर सामाजिक व्यवधान या मानव जीवन की हानि की संभावना है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.959485650062561,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.959485650062561
+     },
+     "asr_ms": 6299
+    },
+    {
+     "start": 104.01,
+     "end": 110.72,
+     "ok": true,
+     "error": null,
+     "text": "कल्शियम और पोटियशियम जैसे तत्वों को धातु माना जाता है बेशक चांदी और सोने जैसी धातुएं भी हैं",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9161224961280823,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9161224961280823
+     },
+     "asr_ms": 5145
+    }
+   ]
+  },
+  {
+   "language": "zh",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 82.2,
+   "reference_utterances": 8,
+   "segments": 13,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.0,
+   "speech_s": 55.43,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 10.801,
+   "nonspeech_s": 42.92,
+   "capped_segments": 0,
+   "duration_s": 119.51,
+   "word_errors": 36,
+   "reference_words": 37,
+   "character_errors": 50,
+   "reference_characters": 275,
+   "stored": 10,
+   "failed": 3,
+   "errors": [
+    "no_speech_found"
+   ],
+   "hypothesis": "这并不是告别这是一个篇章的结束也是新篇章的开始 桥下垂直净空十五米该项目于二零一一年八月完工但直到二零一七年三月才开始通车 科学家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同 scob 四零三路公交汽车定期发车前往新特拉在罗卡角停靠 这里几乎都是沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫 就像月球对地球施加拉利引起潮汐一样银河系也对人马作性系施加着作用力 自有派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的 的这一做法 特朗普与土耳其总统雷杰普塔伊普埃尔多安 通话后发表了声明",
+   "reference": "“这并不是告别。这是一个篇章的结束，也是新篇章的开始。” 桥下垂直净空 15 米。该项目于 2011 年 8 月完工，但直到 2017 年 3 月才开始通车。 科学家们可以得出结论，暗物质对其他暗物质的影响方式与普通物质相同。 Scotturb 403 路公共汽车定期发车前往辛特拉 (Sintra)，在罗卡角停靠。 这里几乎都是沙滩，游泳很安全，大部分地方都有新西兰圣诞树的树荫。 就像月球对地球施加拉力，引起潮汐一样，银河系也对人马座星系施加着作用力。 自由派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的这一做法。 特朗普与土耳其总统雷杰普·塔伊普·埃尔多安（Recep Tayyip Erdoğan）通话后发表了声明。",
+   "ram": {
+    "samples": 398,
+    "peak_sum_working_set_bytes": 178118656,
+    "peak_sum_private_bytes": 265490432,
+    "peak_voice_working_set_bytes": 11849728,
+    "peak_engine_working_set_bytes": 166559744,
+    "peak_engine_private_bytes": 258637824
+   },
+   "stored_observations": 10,
+   "asr_ms": [
+    7002,
+    7092,
+    5035,
+    6431,
+    6402,
+    6544,
+    7373,
+    4757,
+    6632,
+    6211,
+    4854,
+    7074,
+    6572
+   ],
+   "detected_languages": [
+    "zh",
+    "zh",
+    null,
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    null,
+    "zh",
+    "zh",
+    null,
+    "zh",
+    "zh"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.74,
+     "end": 10.08,
+     "ok": true,
+     "error": null,
+     "text": "这并不是告别这是一个篇章的结束也是新篇章的开始",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9961038827896118,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9961038827896118
+     },
+     "asr_ms": 7002
+    },
+    {
+     "start": 14.22,
+     "end": 25.56,
+     "ok": true,
+     "error": null,
+     "text": "桥下垂直净空十五米该项目于二零一一年八月完工但直到二零一七年三月才开始通车",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9985441565513611,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9985441565513611
+     },
+     "asr_ms": 7092
+    },
+    {
+     "start": 26.25,
+     "end": 27.62,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 5035
+    },
+    {
+     "start": 30.96,
+     "end": 38.97,
+     "ok": true,
+     "error": null,
+     "text": "科学家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9947791695594788,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9947791695594788
+     },
+     "asr_ms": 6431
+    },
+    {
+     "start": 44.13,
+     "end": 52.01,
+     "ok": true,
+     "error": null,
+     "text": "scob 四零三路公交汽车定期发车前往新特拉在罗卡角停靠",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9501335024833679,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9501335024833679
+     },
+     "asr_ms": 6402
+    },
+    {
+     "start": 54.93,
+     "end": 62.54,
+     "ok": true,
+     "error": null,
+     "text": "这里几乎都是沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9950353503227234,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9950353503227234
+     },
+     "asr_ms": 6544
+    },
+    {
+     "start": 64.92,
+     "end": 76.32,
+     "ok": true,
+     "error": null,
+     "text": "就像月球对地球施加拉利引起潮汐一样银河系也对人马作性系施加着作用力",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9790458083152771,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9790458083152771
+     },
+     "asr_ms": 7373
+    },
+    {
+     "start": 77.67,
+     "end": 78.68,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 4757
+    },
+    {
+     "start": 83.7,
+     "end": 93.81,
+     "ok": true,
+     "error": null,
+     "text": "自有派人士对重建工作的批判主要集中在把重建合同授予了视为华盛顿内部人士的",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9902937412261963,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9902937412261963
+     },
+     "asr_ms": 6632
+    },
+    {
+     "start": 93.6,
+     "end": 95.06,
+     "ok": true,
+     "error": null,
+     "text": "的这一做法",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9898138046264648,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9898138046264648
+     },
+     "asr_ms": 6211
+    },
+    {
+     "start": 96.06,
+     "end": 97.25,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 4854
+    },
+    {
+     "start": 100.71,
+     "end": 109.95,
+     "ok": true,
+     "error": null,
+     "text": "特朗普与土耳其总统雷杰普塔伊普埃尔多安",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9232450127601624,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9232450127601624
+     },
+     "asr_ms": 7074
+    },
+    {
+     "start": 109.92,
+     "end": 112.67,
+     "ok": true,
+     "error": null,
+     "text": "通话后发表了声明",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9937471151351929,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9937471151351929
+     },
+     "asr_ms": 6572
+    }
+   ]
+  }
+ ]
+}

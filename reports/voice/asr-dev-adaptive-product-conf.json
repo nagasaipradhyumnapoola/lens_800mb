@@ -1,0 +1,5168 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "ca18ca832e32779dd626ba7c0fb2dccd77ec2c11ce6e645f7d7085c168abe2c5",
+  "lens_engine_sha256": "095675c619b0af6ee38bd71f2e6cdc5112bf348c84f5906ff76d1861d7ec522e",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-27T21:51:43",
+  "git_head": "b28dacc644b18668d89842eb446825a4ee3d5926"
+ },
+ "vad": "adaptive",
+ "params": {},
+ "mode": "product",
+ "split": "dev",
+ "table": [
+  {
+   "language": "en",
+   "condition": "babble5",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 20,
+   "stored": 20,
+   "failed": 0,
+   "wer": 0.4088,
+   "cer": 0.2501,
+   "utterance_recall": 0.6875,
+   "missed_speech": 0.0741,
+   "nonspeech_captured": 0.2777,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 181063680,
+   "p95_asr_ms": 6326
+  },
+  {
+   "language": "en",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 16,
+   "stored": 16,
+   "failed": 0,
+   "wer": 0.0884,
+   "cer": 0.0373,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0044,
+   "nonspeech_captured": 0.0113,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 180662272,
+   "p95_asr_ms": 6368
+  },
+  {
+   "language": "en",
+   "condition": "fan5",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 19,
+   "stored": 19,
+   "failed": 0,
+   "wer": 0.116,
+   "cer": 0.048,
+   "utterance_recall": 0.625,
+   "missed_speech": 0.083,
+   "nonspeech_captured": 0.0,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 179970048,
+   "p95_asr_ms": 6222
+  },
+  {
+   "language": "en",
+   "condition": "pink5",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 23,
+   "stored": 23,
+   "failed": 0,
+   "wer": 0.2431,
+   "cer": 0.1197,
+   "utterance_recall": 0.5625,
+   "missed_speech": 0.089,
+   "nonspeech_captured": 0.0,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 180666368,
+   "p95_asr_ms": 5461
+  },
+  {
+   "language": "en",
+   "condition": "white5",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 22,
+   "stored": 22,
+   "failed": 0,
+   "wer": 0.3564,
+   "cer": 0.1982,
+   "utterance_recall": 0.5,
+   "missed_speech": 0.0962,
+   "nonspeech_captured": 0.0,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 180215808,
+   "p95_asr_ms": 6031
+  },
+  {
+   "language": "es",
+   "condition": "babble5",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 25,
+   "stored": 18,
+   "failed": 7,
+   "wer": 0.5251,
+   "cer": 0.3687,
+   "utterance_recall": 0.8125,
+   "missed_speech": 0.0562,
+   "nonspeech_captured": 0.2232,
+   "false_triggers_per_10min": 5.119,
+   "peak_sum_working_set_bytes": 180170752,
+   "p95_asr_ms": 7833
+  },
+  {
+   "language": "es",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 21,
+   "stored": 21,
+   "failed": 0,
+   "wer": 0.1156,
+   "cer": 0.0359,
+   "utterance_recall": 0.9375,
+   "missed_speech": 0.0135,
+   "nonspeech_captured": 0.1365,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 181780480,
+   "p95_asr_ms": 11192
+  },
+  {
+   "language": "es",
+   "condition": "fan5",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 26,
+   "stored": 26,
+   "failed": 0,
+   "wer": 0.1231,
+   "cer": 0.0354,
+   "utterance_recall": 0.75,
+   "missed_speech": 0.0645,
+   "nonspeech_captured": 0.0035,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 179204096,
+   "p95_asr_ms": 4380
+  },
+  {
+   "language": "es",
+   "condition": "pink5",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 28,
+   "stored": 28,
+   "failed": 0,
+   "wer": 0.3467,
+   "cer": 0.1528,
+   "utterance_recall": 0.75,
+   "missed_speech": 0.0708,
+   "nonspeech_captured": 0.0,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 178851840,
+   "p95_asr_ms": 4187
+  },
+  {
+   "language": "es",
+   "condition": "white5",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 2,
+   "utterances": 16,
+   "segments": 29,
+   "stored": 29,
+   "failed": 0,
+   "wer": 0.5452,
+   "cer": 0.2841,
+   "utterance_recall": 0.8125,
+   "missed_speech": 0.0702,
+   "nonspeech_captured": 0.0,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 178442240,
+   "p95_asr_ms": 6311
+  }
+ ],
+ "rows": [
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 35.3,
+   "reference_utterances": 8,
+   "segments": 8,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.214,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.404,
+   "nonspeech_s": 18.383,
+   "capped_segments": 0,
+   "duration_s": 97.433,
+   "word_errors": 21,
+   "reference_words": 170,
+   "character_errors": 50,
+   "reference_characters": 841,
+   "stored": 8,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " To the north and within easy reach is a romantic and fascinating town of Sinatra, in which was made famous, to foreigners after a glowing account of its splendorous recorded by Lord Byron.  The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.  20th century research has shown that there are two pools of genetic variation hidden and expressed.  The aspect ratio of this format, the vying by 12 to obtain the simplest whole number ratio, is therefore said to be free to two.  The night between 150 and 200 copies were made now known as the lab broadsides.  For example, each of your students from Bennett School in North Carolina to sign a website about their trip to the state capital. Each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.  The Internet combines elements of both mass and interpersonal communication.  As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.",
+   "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron. The Northern Marianas emergency management office said that there were no damages reported in the nation. Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed. The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2. Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. The Internet combines elements of both mass and interpersonal communication. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "ram": {
+    "samples": 134,
+    "peak_sum_working_set_bytes": 180662272,
+    "peak_sum_private_bytes": 267964416,
+    "peak_voice_working_set_bytes": 11980800,
+    "peak_engine_working_set_bytes": 169144320,
+    "peak_engine_private_bytes": 261017600
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    6368,
+    5070,
+    4643,
+    4388,
+    3629,
+    3891,
+    3788,
+    3304
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.04,
+     "end": 13.28,
+     "ok": true,
+     "error": null,
+     "text": " To the north and within easy reach is a romantic and fascinating town of Sinatra, in which was made famous, to foreigners after a glowing account of its splendorous recorded by Lord Byron.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7523181003540061,
+     "lid": {
+      "chosen_probability": 0.9969775676727295,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9969775676727295
+     },
+     "asr_ms": 6368
+    },
+    {
+     "start": 16.35,
+     "end": 27.32,
+     "ok": true,
+     "error": null,
+     "text": " The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8135443650186062,
+     "lid": {
+      "chosen_probability": 0.9928460121154785,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9928460121154785
+     },
+     "asr_ms": 5070
+    },
+    {
+     "start": 30.96,
+     "end": 38.69,
+     "ok": true,
+     "error": null,
+     "text": " 20th century research has shown that there are two pools of genetic variation hidden and expressed.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8332624431699515,
+     "lid": {
+      "chosen_probability": 0.9895004034042358,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9895004034042358
+     },
+     "asr_ms": 4643
+    },
+    {
+     "start": 40.35,
+     "end": 52.01,
+     "ok": true,
+     "error": null,
+     "text": " The aspect ratio of this format, the vying by 12 to obtain the simplest whole number ratio, is therefore said to be free to two.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7828396033146419,
+     "lid": {
+      "chosen_probability": 0.9937599301338196,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9937599301338196
+     },
+     "asr_ms": 4388
+    },
+    {
+     "start": 52.98,
+     "end": 58.58,
+     "ok": true,
+     "error": null,
+     "text": " The night between 150 and 200 copies were made now known as the lab broadsides.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7118829926475883,
+     "lid": {
+      "chosen_probability": 0.9910410642623901,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9910410642623901
+     },
+     "asr_ms": 3629
+    },
+    {
+     "start": 59.1,
+     "end": 70.61,
+     "ok": true,
+     "error": null,
+     "text": " For example, each of your students from Bennett School in North Carolina to sign a website about their trip to the state capital. Each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8587051871418953,
+     "lid": {
+      "chosen_probability": 0.9963987469673157,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9963987469673157
+     },
+     "asr_ms": 3891
+    },
+    {
+     "start": 73.41,
+     "end": 79.7,
+     "ok": true,
+     "error": null,
+     "text": " The Internet combines elements of both mass and interpersonal communication.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7816984808215728,
+     "lid": {
+      "chosen_probability": 0.9931427836418152,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9931427836418152
+     },
+     "asr_ms": 3788
+    },
+    {
+     "start": 81.66,
+     "end": 92.03,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8222452410711691,
+     "lid": {
+      "chosen_probability": 0.9956299662590027,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9956299662590027
+     },
+     "asr_ms": 3304
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "white5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 38.5,
+   "reference_utterances": 8,
+   "segments": 11,
+   "detected_utterances": 5,
+   "missed_speech_s": 6.806,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 18.241,
+   "capped_segments": 0,
+   "duration_s": 97.291,
+   "word_errors": 60,
+   "reference_words": 170,
+   "character_errors": 160,
+   "reference_characters": 841,
+   "stored": 11,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " to the north and within easy reach is a romantic and fascinating town of Sinatra and it's this famous  To foreigners after a blowing account of the expelings are recorded by a board by him.  The Northern Mariana's Emergency Management Office said there were no damages reported in the museum.  20th century research has shown that there are two pools of genetic variation, didn't express.  The aspect ratio of this format is by the SYNCIS-HELM-MEMORATION.  Therefore it's actually beautiful.  to the night between 150 and 200 copies were laid now known as the map of the sites.  For example, each year students from Bennett School and North Carolina to find a website about the subscription list of the hospitals. Each year the website gets remodeled, but both versions are kept online to serve as a scrapbook.  The Internet combines elements of both masks and interpersonal communication.  As a result, two fish species have become extinct and two other  has become endangered. It's during the humpback shrub.",
+   "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron. The Northern Marianas emergency management office said that there were no damages reported in the nation. Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed. The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2. Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. The Internet combines elements of both mass and interpersonal communication. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "ram": {
+    "samples": 149,
+    "peak_sum_working_set_bytes": 179163136,
+    "peak_sum_private_bytes": 265809920,
+    "peak_voice_working_set_bytes": 12148736,
+    "peak_engine_working_set_bytes": 168476672,
+    "peak_engine_private_bytes": 259461120
+   },
+   "stored_observations": 11,
+   "asr_ms": [
+    3524,
+    2150,
+    2097,
+    2470,
+    4078,
+    2581,
+    2499,
+    6031,
+    3564,
+    4704,
+    4651
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.13,
+     "end": 8.51,
+     "ok": true,
+     "error": null,
+     "text": " to the north and within easy reach is a romantic and fascinating town of Sinatra and it's this famous",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6913396501913667,
+     "lid": {
+      "chosen_probability": 0.9921504855155945,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9921504855155945
+     },
+     "asr_ms": 3524
+    },
+    {
+     "start": 8.37,
+     "end": 13.22,
+     "ok": true,
+     "error": null,
+     "text": " To foreigners after a blowing account of the expelings are recorded by a board by him.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8836514431805838,
+     "lid": {
+      "chosen_probability": 0.9723981618881226,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9723981618881226
+     },
+     "asr_ms": 2150
+    },
+    {
+     "start": 17.7,
+     "end": 24.74,
+     "ok": true,
+     "error": null,
+     "text": " The Northern Mariana's Emergency Management Office said there were no damages reported in the museum.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7854464966803789,
+     "lid": {
+      "chosen_probability": 0.9913035035133362,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9913035035133362
+     },
+     "asr_ms": 2097
+    },
+    {
+     "start": 31.44,
+     "end": 36.77,
+     "ok": true,
+     "error": null,
+     "text": " 20th century research has shown that there are two pools of genetic variation, didn't express.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7071489576588977,
+     "lid": {
+      "chosen_probability": 0.9679821729660034,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9679821729660034
+     },
+     "asr_ms": 2470
+    },
+    {
+     "start": 40.32,
+     "end": 47.33,
+     "ok": true,
+     "error": null,
+     "text": " The aspect ratio of this format is by the SYNCIS-HELM-MEMORATION.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8849078500270844,
+     "lid": {
+      "chosen_probability": 0.8657721281051636,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.8657721281051636
+     },
+     "asr_ms": 4078
+    },
+    {
+     "start": 47.49,
+     "end": 51.32,
+     "ok": true,
+     "error": null,
+     "text": " Therefore it's actually beautiful.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7938588261604309,
+     "lid": {
+      "chosen_probability": 0.5833500027656555,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.5833500027656555
+     },
+     "asr_ms": 2581
+    },
+    {
+     "start": 53.04,
+     "end": 57.77,
+     "ok": true,
+     "error": null,
+     "text": " to the night between 150 and 200 copies were laid now known as the map of the sites.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6274494454264641,
+     "lid": {
+      "chosen_probability": 0.9114725589752197,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9114725589752197
+     },
+     "asr_ms": 2499
+    },
+    {
+     "start": 61.38,
+     "end": 72.47,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Bennett School and North Carolina to find a website about the subscription list of the hospitals. Each year the website gets remodeled, but both versions are kept online to serve as a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7052795664996517,
+     "lid": {
+      "chosen_probability": 0.9862076044082642,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9862076044082642
+     },
+     "asr_ms": 6031
+    },
+    {
+     "start": 75.57,
+     "end": 80.09,
+     "ok": true,
+     "error": null,
+     "text": " The Internet combines elements of both masks and interpersonal communication.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7442135707690165,
+     "lid": {
+      "chosen_probability": 0.9869492053985596,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9869492053985596
+     },
+     "asr_ms": 3564
+    },
+    {
+     "start": 83.37,
+     "end": 89.09,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct and two other",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.722503429154555,
+     "lid": {
+      "chosen_probability": 0.9126308560371399,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9126308560371399
+     },
+     "asr_ms": 4704
+    },
+    {
+     "start": 89.16,
+     "end": 93.26,
+     "ok": true,
+     "error": null,
+     "text": " has become endangered. It's during the humpback shrub.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9332255959510803,
+     "lid": {
+      "chosen_probability": 0.9066249132156372,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9066249132156372
+     },
+     "asr_ms": 4651
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "babble5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 61.1,
+   "reference_utterances": 8,
+   "segments": 11,
+   "detected_utterances": 6,
+   "missed_speech_s": 4.544,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 6.834,
+   "nonspeech_s": 25.708,
+   "capped_segments": 0,
+   "duration_s": 104.758,
+   "word_errors": 69,
+   "reference_words": 170,
+   "character_errors": 204,
+   "reference_characters": 841,
+   "stored": 11,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " to the north and within easy reach is the romantic and fascinating town of Sinatra and which was famous. To foreigners after a glowing account of its splinters recorded by the North Byron.  The Northern Marianas, emergency management office said there were no damages.  supported in the NHL.  20th century research has shown that there are two poles of genetic variations in an X-Prest.   The aspect ratio is from buying by 12 char piers the simplest home ownership.  Therefore said I will free to say.  The night between 150 and 20 copies were made now known as the \"Nive Broadside\"  For example, each year students from Venice will learn about the line of training website about the interest in state capital.  Each year the website gets remodeled, but all the resources are kept online to serve as a grant book.  And John and I will be talking to you both. The Internet combined elements of both mass and interpersonal communication.  As a result, two fish species have become extinct. Two other have become endangered, including the home-dead-ass shot.",
+   "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron. The Northern Marianas emergency management office said that there were no damages reported in the nation. Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed. The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2. Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. The Internet combines elements of both mass and interpersonal communication. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "ram": {
+    "samples": 233,
+    "peak_sum_working_set_bytes": 177963008,
+    "peak_sum_private_bytes": 267128832,
+    "peak_voice_working_set_bytes": 11292672,
+    "peak_engine_working_set_bytes": 168120320,
+    "peak_engine_private_bytes": 260165632
+   },
+   "stored_observations": 11,
+   "asr_ms": [
+    10306,
+    6326,
+    4305,
+    4943,
+    5562,
+    5408,
+    4942,
+    4581,
+    4463,
+    5240,
+    4748
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.35,
+     "end": 12.98,
+     "ok": true,
+     "error": null,
+     "text": " to the north and within easy reach is the romantic and fascinating town of Sinatra and which was famous. To foreigners after a glowing account of its splinters recorded by the North Byron.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6511375046357876,
+     "lid": {
+      "chosen_probability": 0.9863060116767883,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9863060116767883
+     },
+     "asr_ms": 10306
+    },
+    {
+     "start": 15.78,
+     "end": 22.88,
+     "ok": true,
+     "error": null,
+     "text": " The Northern Marianas, emergency management office said there were no damages.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.538024116307497,
+     "lid": {
+      "chosen_probability": 0.9536086916923523,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9536086916923523
+     },
+     "asr_ms": 6326
+    },
+    {
+     "start": 22.77,
+     "end": 24.86,
+     "ok": true,
+     "error": null,
+     "text": " supported in the NHL.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8297097571194172,
+     "lid": {
+      "chosen_probability": 0.9215779304504395,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9215779304504395
+     },
+     "asr_ms": 4305
+    },
+    {
+     "start": 31.77,
+     "end": 39.74,
+     "ok": true,
+     "error": null,
+     "text": " 20th century research has shown that there are two poles of genetic variations in an X-Prest. ",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5937269880539842,
+     "lid": {
+      "chosen_probability": 0.9487271904945374,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9487271904945374
+     },
+     "asr_ms": 4943
+    },
+    {
+     "start": 41.67,
+     "end": 48.74,
+     "ok": true,
+     "error": null,
+     "text": " The aspect ratio is from buying by 12 char piers the simplest home ownership.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9090937566426065,
+     "lid": {
+      "chosen_probability": 0.831287682056427,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.831287682056427
+     },
+     "asr_ms": 5562
+    },
+    {
+     "start": 48.84,
+     "end": 54.17,
+     "ok": true,
+     "error": null,
+     "text": " Therefore said I will free to say.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6284705996513367,
+     "lid": {
+      "chosen_probability": 0.7380611896514893,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.7380611896514893
+     },
+     "asr_ms": 5408
+    },
+    {
+     "start": 54.96,
+     "end": 60.53,
+     "ok": true,
+     "error": null,
+     "text": " The night between 150 and 20 copies were made now known as the \"Nive Broadside\"",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5911331707168193,
+     "lid": {
+      "chosen_probability": 0.9194737672805786,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9194737672805786
+     },
+     "asr_ms": 4942
+    },
+    {
+     "start": 63.51,
+     "end": 69.62,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Venice will learn about the line of training website about the interest in state capital.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.4891526371240616,
+     "lid": {
+      "chosen_probability": 0.9677806496620178,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9677806496620178
+     },
+     "asr_ms": 4581
+    },
+    {
+     "start": 69.72,
+     "end": 74.6,
+     "ok": true,
+     "error": null,
+     "text": " Each year the website gets remodeled, but all the resources are kept online to serve as a grant book.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6607866280332759,
+     "lid": {
+      "chosen_probability": 0.9766624569892883,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9766624569892883
+     },
+     "asr_ms": 4463
+    },
+    {
+     "start": 76.89,
+     "end": 84.08,
+     "ok": true,
+     "error": null,
+     "text": " And John and I will be talking to you both. The Internet combined elements of both mass and interpersonal communication.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8802318965705732,
+     "lid": {
+      "chosen_probability": 0.9761035442352295,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9761035442352295
+     },
+     "asr_ms": 5240
+    },
+    {
+     "start": 87.87,
+     "end": 99.87,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct. Two other have become endangered, including the home-dead-ass shot.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6236139159649611,
+     "lid": {
+      "chosen_probability": 0.9267368316650391,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9267368316650391
+     },
+     "asr_ms": 4748
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "pink5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 62.6,
+   "reference_utterances": 8,
+   "segments": 13,
+   "detected_utterances": 5,
+   "missed_speech_s": 6.617,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 21.147,
+   "capped_segments": 0,
+   "duration_s": 100.197,
+   "word_errors": 55,
+   "reference_words": 170,
+   "character_errors": 134,
+   "reference_characters": 841,
+   "stored": 13,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " to the north and with an easy reach is a romantic and fascinating town of Sinatra in which was made famous.  to foreigners after a gluing account of the splendor is recorded by Lord Byron.  The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.  20th Century Research has shown that there are two pools of genetic variation hidden in express.  The aspect ratio of this format by 12 to 15 is the simplest home memory check.  is there for a set of the three to two?  for the night between 150 and 200 copies surveyed now known as the map websites.  For example, each year students from Bennett School and West Carolina to sign a website about the subscription estate capital. Each year the website gets remodeled, but both regions are kept online to start business scrapbook.  The Internet combines elements of both mass and interpersonal communication.  as a result two fish species have become extinct.  two other...  become endangered.  including the humpback chub.",
+   "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron. The Northern Marianas emergency management office said that there were no damages reported in the nation. Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed. The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2. Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. The Internet combines elements of both mass and interpersonal communication. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "ram": {
+    "samples": 245,
+    "peak_sum_working_set_bytes": 179253248,
+    "peak_sum_private_bytes": 266559488,
+    "peak_voice_working_set_bytes": 11837440,
+    "peak_engine_working_set_bytes": 168624128,
+    "peak_engine_private_bytes": 260001792
+   },
+   "stored_observations": 13,
+   "asr_ms": [
+    4648,
+    4190,
+    4615,
+    4593,
+    6401,
+    5281,
+    4620,
+    5461,
+    5107,
+    4772,
+    4455,
+    4183,
+    4168
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.13,
+     "end": 8.51,
+     "ok": true,
+     "error": null,
+     "text": " to the north and with an easy reach is a romantic and fascinating town of Sinatra in which was made famous.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7645610012114048,
+     "lid": {
+      "chosen_probability": 0.9948282241821289,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9948282241821289
+     },
+     "asr_ms": 4648
+    },
+    {
+     "start": 8.37,
+     "end": 13.22,
+     "ok": true,
+     "error": null,
+     "text": " to foreigners after a gluing account of the splendor is recorded by Lord Byron.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.733747334126383,
+     "lid": {
+      "chosen_probability": 0.9812752604484558,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9812752604484558
+     },
+     "asr_ms": 4190
+    },
+    {
+     "start": 17.19,
+     "end": 24.26,
+     "ok": true,
+     "error": null,
+     "text": " The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7994327757507562,
+     "lid": {
+      "chosen_probability": 0.9959868788719177,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9959868788719177
+     },
+     "asr_ms": 4615
+    },
+    {
+     "start": 31.08,
+     "end": 36.38,
+     "ok": true,
+     "error": null,
+     "text": " 20th Century Research has shown that there are two pools of genetic variation hidden in express.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7623989997431636,
+     "lid": {
+      "chosen_probability": 0.9847792387008667,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9847792387008667
+     },
+     "asr_ms": 4593
+    },
+    {
+     "start": 40.89,
+     "end": 48.05,
+     "ok": true,
+     "error": null,
+     "text": " The aspect ratio of this format by 12 to 15 is the simplest home memory check.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5903204110892195,
+     "lid": {
+      "chosen_probability": 0.921122670173645,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.921122670173645
+     },
+     "asr_ms": 6401
+    },
+    {
+     "start": 48.06,
+     "end": 51.92,
+     "ok": true,
+     "error": null,
+     "text": " is there for a set of the three to two?",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8120947887118046,
+     "lid": {
+      "chosen_probability": 0.888178825378418,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.888178825378418
+     },
+     "asr_ms": 5281
+    },
+    {
+     "start": 54.51,
+     "end": 59.24,
+     "ok": true,
+     "error": null,
+     "text": " for the night between 150 and 200 copies surveyed now known as the map websites.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6938739522899452,
+     "lid": {
+      "chosen_probability": 0.9695361852645874,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9695361852645874
+     },
+     "asr_ms": 4620
+    },
+    {
+     "start": 62.04,
+     "end": 73.13,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Bennett School and West Carolina to sign a website about the subscription estate capital. Each year the website gets remodeled, but both regions are kept online to start business scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7626019547814908,
+     "lid": {
+      "chosen_probability": 0.9911507368087769,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9911507368087769
+     },
+     "asr_ms": 5461
+    },
+    {
+     "start": 76.53,
+     "end": 81.14,
+     "ok": true,
+     "error": null,
+     "text": " The Internet combines elements of both mass and interpersonal communication.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7543948799944841,
+     "lid": {
+      "chosen_probability": 0.9904052019119263,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9904052019119263
+     },
+     "asr_ms": 5107
+    },
+    {
+     "start": 85.65,
+     "end": 89.96,
+     "ok": true,
+     "error": null,
+     "text": " as a result two fish species have become extinct.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7083628553276261,
+     "lid": {
+      "chosen_probability": 0.9231648445129395,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9231648445129395
+     },
+     "asr_ms": 4772
+    },
+    {
+     "start": 89.94,
+     "end": 91.34,
+     "ok": true,
+     "error": null,
+     "text": " two other...",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7656051337718963,
+     "lid": {
+      "chosen_probability": 0.9655750393867493,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9655750393867493
+     },
+     "asr_ms": 4455
+    },
+    {
+     "start": 91.59,
+     "end": 93.08,
+     "ok": true,
+     "error": null,
+     "text": " become endangered.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7593574352562428,
+     "lid": {
+      "chosen_probability": 0.965488851070404,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.965488851070404
+     },
+     "asr_ms": 4183
+    },
+    {
+     "start": 93.0,
+     "end": 95.51,
+     "ok": true,
+     "error": null,
+     "text": " including the humpback chub.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5876850825217035,
+     "lid": {
+      "chosen_probability": 0.9372862577438354,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9372862577438354
+     },
+     "asr_ms": 4168
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "fan5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 53.1,
+   "reference_utterances": 8,
+   "segments": 10,
+   "detected_utterances": 5,
+   "missed_speech_s": 6.444,
+   "speech_s": 68.75,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 18.99,
+   "capped_segments": 0,
+   "duration_s": 98.04,
+   "word_errors": 26,
+   "reference_words": 170,
+   "character_errors": 62,
+   "reference_characters": 841,
+   "stored": 10,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " To the north and within an easy reach is a romantic and fascinating town of Sinatra, which was made famous, to foreigners after a glowing account of its blinchress recorded by Lord Byron.  The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.  20th century research has shown that there are two pools of genetic variation hidden and expressed.  The aspect ratio of this format, dividing by 12 to obtain the simplest whole number ratio.  is therefore said to be free to choose.  There's a night between 150 and 200 copies were made now known as the \"Nlap broadsides\".  For example, each of your students from Bennett School in North Carolina to sign a website about their trips to the state capital. Each year the website gets remodeled, but old versions are kept online to service a scrapbook.  The internet combines elements of both mass and interpersonal communication.  As a result, two fish species have become extinct and two others.  have become endangered, including the humpback chub.",
+   "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron. The Northern Marianas emergency management office said that there were no damages reported in the nation. Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed. The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2. Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. The Internet combines elements of both mass and interpersonal communication. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+   "ram": {
+    "samples": 210,
+    "peak_sum_working_set_bytes": 179478528,
+    "peak_sum_private_bytes": 265871360,
+    "peak_voice_working_set_bytes": 12320768,
+    "peak_engine_working_set_bytes": 168583168,
+    "peak_engine_private_bytes": 259575808
+   },
+   "stored_observations": 10,
+   "asr_ms": [
+    5074,
+    4436,
+    4547,
+    4694,
+    5986,
+    6222,
+    8443,
+    4947,
+    4327,
+    4270
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.13,
+     "end": 13.16,
+     "ok": true,
+     "error": null,
+     "text": " To the north and within an easy reach is a romantic and fascinating town of Sinatra, which was made famous, to foreigners after a glowing account of its blinchress recorded by Lord Byron.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7346532017820411,
+     "lid": {
+      "chosen_probability": 0.9971175789833069,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9971175789833069
+     },
+     "asr_ms": 5074
+    },
+    {
+     "start": 15.48,
+     "end": 22.58,
+     "ok": true,
+     "error": null,
+     "text": " The Northern Mariana's Emergency Management Office said there were no damages reported in the nation.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8175906755030156,
+     "lid": {
+      "chosen_probability": 0.9966702461242676,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9966702461242676
+     },
+     "asr_ms": 4436
+    },
+    {
+     "start": 29.79,
+     "end": 35.15,
+     "ok": true,
+     "error": null,
+     "text": " 20th century research has shown that there are two pools of genetic variation hidden and expressed.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8582084180787206,
+     "lid": {
+      "chosen_probability": 0.9963542819023132,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9963542819023132
+     },
+     "asr_ms": 4547
+    },
+    {
+     "start": 37.47,
+     "end": 45.08,
+     "ok": true,
+     "error": null,
+     "text": " The aspect ratio of this format, dividing by 12 to obtain the simplest whole number ratio.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7963083259761333,
+     "lid": {
+      "chosen_probability": 0.991952121257782,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.991952121257782
+     },
+     "asr_ms": 4694
+    },
+    {
+     "start": 45.09,
+     "end": 49.01,
+     "ok": true,
+     "error": null,
+     "text": " is therefore said to be free to choose.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7654877840117975,
+     "lid": {
+      "chosen_probability": 0.9831679463386536,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9831679463386536
+     },
+     "asr_ms": 5986
+    },
+    {
+     "start": 52.29,
+     "end": 57.02,
+     "ok": true,
+     "error": null,
+     "text": " There's a night between 150 and 200 copies were made now known as the \"Nlap broadsides\".",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6508663409948349,
+     "lid": {
+      "chosen_probability": 0.9903767704963684,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9903767704963684
+     },
+     "asr_ms": 6222
+    },
+    {
+     "start": 59.43,
+     "end": 70.76,
+     "ok": true,
+     "error": null,
+     "text": " For example, each of your students from Bennett School in North Carolina to sign a website about their trips to the state capital. Each year the website gets remodeled, but old versions are kept online to service a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8294559703767299,
+     "lid": {
+      "chosen_probability": 0.9985030293464661,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9985030293464661
+     },
+     "asr_ms": 8443
+    },
+    {
+     "start": 74.43,
+     "end": 78.98,
+     "ok": true,
+     "error": null,
+     "text": " The internet combines elements of both mass and interpersonal communication.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7685047783530675,
+     "lid": {
+      "chosen_probability": 0.9946326613426208,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9946326613426208
+     },
+     "asr_ms": 4947
+    },
+    {
+     "start": 83.34,
+     "end": 89.15,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct and two others.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8265832331962883,
+     "lid": {
+      "chosen_probability": 0.985281765460968,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.985281765460968
+     },
+     "asr_ms": 4327
+    },
+    {
+     "start": 89.13,
+     "end": 93.23,
+     "ok": true,
+     "error": null,
+     "text": " have become endangered, including the humpback chub.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8038491366001276,
+     "lid": {
+      "chosen_probability": 0.9876888394355774,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9876888394355774
+     },
+     "asr_ms": 4270
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 1,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 41.4,
+   "reference_utterances": 8,
+   "segments": 8,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.444,
+   "speech_s": 81.13,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.01,
+   "nonspeech_s": 18.156,
+   "capped_segments": 0,
+   "duration_s": 110.656,
+   "word_errors": 11,
+   "reference_words": 192,
+   "character_errors": 16,
+   "reference_characters": 930,
+   "stored": 8,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " On August 15, 1940, the Allies invaded southern France and the invasion was called Operation Dragoon.  For example, each year students from Bennett School in North Carolina design a website about their trip to the state capital. Each year the website gets remodeled, but older versions are kept online to serve as a scrapbook.  Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.  As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.  Oliver Sacks in his paper, The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.  As knowledge of Greek decline, the West found itself cut off from its Greek philosophical and scientific roots.  A harbour was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US and Britain refused to leave the harbour.  A civilization is a singular culture shared by a significant large group of people who live and work cooperatively a society.",
+   "reference": "On 15 August 1940, the Allies invaded southern France, the invasion was called \"Operation Dragoon\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. Due to the underwater topology the return flow is concentrated at a few deeper sections, and a fast current to deep water may form there. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub. Oliver Sacks, in his paper The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately. As knowledge of Greek declined, the West found itself cut off from its Greek philosophical and scientific roots. The harbor was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US, and Britain refused to leave the harbor. A civilization is a singular culture shared by a significant large group of people who live and work co-operatively, a society.",
+   "ram": {
+    "samples": 155,
+    "peak_sum_working_set_bytes": 180658176,
+    "peak_sum_private_bytes": 268886016,
+    "peak_voice_working_set_bytes": 11935744,
+    "peak_engine_working_set_bytes": 169336832,
+    "peak_engine_private_bytes": 261681152
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    4823,
+    6135,
+    6632,
+    4877,
+    4831,
+    4607,
+    4635,
+    4629
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.86,
+     "end": 12.62,
+     "ok": true,
+     "error": null,
+     "text": " On August 15, 1940, the Allies invaded southern France and the invasion was called Operation Dragoon.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7986865943918625,
+     "lid": {
+      "chosen_probability": 0.9667022228240967,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9667022228240967
+     },
+     "asr_ms": 4823
+    },
+    {
+     "start": 15.69,
+     "end": 27.56,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Bennett School in North Carolina design a website about their trip to the state capital. Each year the website gets remodeled, but older versions are kept online to serve as a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8531211137305945,
+     "lid": {
+      "chosen_probability": 0.9980362057685852,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9980362057685852
+     },
+     "asr_ms": 6135
+    },
+    {
+     "start": 30.66,
+     "end": 42.35,
+     "ok": true,
+     "error": null,
+     "text": " Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.873168686164483,
+     "lid": {
+      "chosen_probability": 0.9958329796791077,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9958329796791077
+     },
+     "asr_ms": 6632
+    },
+    {
+     "start": 43.17,
+     "end": 51.5,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8121039688300628,
+     "lid": {
+      "chosen_probability": 0.9938384294509888,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9938384294509888
+     },
+     "asr_ms": 4877
+    },
+    {
+     "start": 52.47,
+     "end": 65.55,
+     "ok": true,
+     "error": null,
+     "text": " Oliver Sacks in his paper, The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8035863561289651,
+     "lid": {
+      "chosen_probability": 0.9862370491027832,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9862370491027832
+     },
+     "asr_ms": 4831
+    },
+    {
+     "start": 67.74,
+     "end": 78.5,
+     "ok": true,
+     "error": null,
+     "text": " As knowledge of Greek decline, the West found itself cut off from its Greek philosophical and scientific roots.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7917089485986666,
+     "lid": {
+      "chosen_probability": 0.9887202978134155,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9887202978134155
+     },
+     "asr_ms": 4607
+    },
+    {
+     "start": 79.38,
+     "end": 91.38,
+     "ok": true,
+     "error": null,
+     "text": " A harbour was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US and Britain refused to leave the harbour.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8263686400971242,
+     "lid": {
+      "chosen_probability": 0.9685162305831909,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9685162305831909
+     },
+     "asr_ms": 4635
+    },
+    {
+     "start": 95.52,
+     "end": 105.17,
+     "ok": true,
+     "error": null,
+     "text": " A civilization is a singular culture shared by a significant large group of people who live and work cooperatively a society.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8420972207188606,
+     "lid": {
+      "chosen_probability": 0.9970117807388306,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9970117807388306
+     },
+     "asr_ms": 4629
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 1,
+   "condition": "white5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 56.8,
+   "reference_utterances": 8,
+   "segments": 11,
+   "detected_utterances": 3,
+   "missed_speech_s": 7.606,
+   "speech_s": 81.13,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 13.962,
+   "capped_segments": 0,
+   "duration_s": 106.462,
+   "word_errors": 69,
+   "reference_words": 192,
+   "character_errors": 191,
+   "reference_characters": 930,
+   "stored": 11,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " und August  15, 1940, the Allies invaded southern France and the invasions called Operation Federal.  For example, each year students from Bennett School in North Carolina define a website about their trips to the state capital. Each year the website gets be modeled, but all the reasons are kept on waiting to serve as a scrapbook.  Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.  As a result, two fish species have become extinct and two others have become endangered, including that from staff, staff.  Oliver Sacks and his papers with President's speech indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.  As now is the deep inside, the rest of the stuff is cut off from your deep fill's vertical and side-ticket use.  The father was the size of a missus.  Не вовсю, не вовсю, не вовсю.  In 1867, some children knew how to introduce themselves to each other.  A civilization is a similar culture shared by a significant large group of people who live in work cooperatively in society.",
+   "reference": "On 15 August 1940, the Allies invaded southern France, the invasion was called \"Operation Dragoon\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. Due to the underwater topology the return flow is concentrated at a few deeper sections, and a fast current to deep water may form there. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub. Oliver Sacks, in his paper The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately. As knowledge of Greek declined, the West found itself cut off from its Greek philosophical and scientific roots. The harbor was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US, and Britain refused to leave the harbor. A civilization is a singular culture shared by a significant large group of people who live and work co-operatively, a society.",
+   "ram": {
+    "samples": 221,
+    "peak_sum_working_set_bytes": 180215808,
+    "peak_sum_private_bytes": 266862592,
+    "peak_voice_working_set_bytes": 11206656,
+    "peak_engine_working_set_bytes": 169009152,
+    "peak_engine_private_bytes": 260407296
+   },
+   "stored_observations": 11,
+   "asr_ms": [
+    4644,
+    4587,
+    5077,
+    5173,
+    4491,
+    4717,
+    7470,
+    4952,
+    4529,
+    5789,
+    5261
+   ],
+   "detected_languages": [
+    "de",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "ru",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.94,
+     "end": 4.28,
+     "ok": true,
+     "error": null,
+     "text": " und August",
+     "language": "de",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5051613952964544,
+     "lid": {
+      "chosen_probability": 0.5066337585449219,
+      "unrestricted": "de",
+      "unrestricted_probability": 0.5066337585449219
+     },
+     "asr_ms": 4644
+    },
+    {
+     "start": 4.92,
+     "end": 11.69,
+     "ok": true,
+     "error": null,
+     "text": " 15, 1940, the Allies invaded southern France and the invasions called Operation Federal.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5388536423444747,
+     "lid": {
+      "chosen_probability": 0.9628167748451233,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9628167748451233
+     },
+     "asr_ms": 4587
+    },
+    {
+     "start": 14.25,
+     "end": 25.49,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Bennett School in North Carolina define a website about their trips to the state capital. Each year the website gets be modeled, but all the reasons are kept on waiting to serve as a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7462660112217361,
+     "lid": {
+      "chosen_probability": 0.9867756366729736,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9867756366729736
+     },
+     "asr_ms": 5077
+    },
+    {
+     "start": 27.72,
+     "end": 36.89,
+     "ok": true,
+     "error": null,
+     "text": " Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8519604584622767,
+     "lid": {
+      "chosen_probability": 0.9820014238357544,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9820014238357544
+     },
+     "asr_ms": 5173
+    },
+    {
+     "start": 40.8,
+     "end": 48.53,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct and two others have become endangered, including that from staff, staff.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6126926345085459,
+     "lid": {
+      "chosen_probability": 0.8638564944267273,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.8638564944267273
+     },
+     "asr_ms": 4491
+    },
+    {
+     "start": 52.14,
+     "end": 62.9,
+     "ok": true,
+     "error": null,
+     "text": " Oliver Sacks and his papers with President's speech indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8146438509225845,
+     "lid": {
+      "chosen_probability": 0.9805494546890259,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9805494546890259
+     },
+     "asr_ms": 4717
+    },
+    {
+     "start": 65.7,
+     "end": 76.34,
+     "ok": true,
+     "error": null,
+     "text": " As now is the deep inside, the rest of the stuff is cut off from your deep fill's vertical and side-ticket use.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.866448693536222,
+     "lid": {
+      "chosen_probability": 0.921347439289093,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.921347439289093
+     },
+     "asr_ms": 7470
+    },
+    {
+     "start": 78.57,
+     "end": 81.8,
+     "ok": true,
+     "error": null,
+     "text": " The father was the size of a missus.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.847842256228129,
+     "lid": {
+      "chosen_probability": 0.5922302007675171,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.5922302007675171
+     },
+     "asr_ms": 4952
+    },
+    {
+     "start": 81.72,
+     "end": 83.39,
+     "ok": true,
+     "error": null,
+     "text": " Не вовсю, не вовсю, не вовсю.",
+     "language": "ru",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5813639536499977,
+     "lid": {
+      "chosen_probability": 0.3107016682624817,
+      "unrestricted": "ru",
+      "unrestricted_probability": 0.3107016682624817
+     },
+     "asr_ms": 4529
+    },
+    {
+     "start": 83.46,
+     "end": 89.57,
+     "ok": true,
+     "error": null,
+     "text": " In 1867, some children knew how to introduce themselves to each other.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.821598631055916,
+     "lid": {
+      "chosen_probability": 0.6453260779380798,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.6453260779380798
+     },
+     "asr_ms": 5789
+    },
+    {
+     "start": 93.81,
+     "end": 101.36,
+     "ok": true,
+     "error": null,
+     "text": " A civilization is a similar culture shared by a significant large group of people who live in work cooperatively in society.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7383939469089875,
+     "lid": {
+      "chosen_probability": 0.9772037267684937,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9772037267684937
+     },
+     "asr_ms": 5261
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 1,
+   "condition": "babble5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 40.9,
+   "reference_utterances": 8,
+   "segments": 9,
+   "detected_utterances": 5,
+   "missed_speech_s": 6.558,
+   "speech_s": 81.13,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 6.307,
+   "nonspeech_s": 21.608,
+   "capped_segments": 0,
+   "duration_s": 114.108,
+   "word_errors": 79,
+   "reference_words": 192,
+   "character_errors": 239,
+   "reference_characters": 930,
+   "stored": 9,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " On August 15, 1940, the Allies invaded southern France, and the invasion was called Operation Factory.  For example, each year students from Bennett School in North Carolina are signing a website about their trips to the state capital. Each year the website gets remodeled, but those versions are kept online to serve as a scrapbook.  Due to the underwater topology, the return flow was concentrated at a few deeper sections and a chest current to deep water made from the air.  As a result, two fish and a fish have become extinct, and two others have become endangered, including the humpback chocolate hatches.  Oliver Sacks and his papers in President's speech indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity at the point.  As long as it's free to decline, the West government self-help law firms still are social support for the scientific and the public.  Harder was decided by the people of the United States in the United States.  The civilization is a singular culture shared by the people.  I can't marvel at people who live in work cooperatively based on science.",
+   "reference": "On 15 August 1940, the Allies invaded southern France, the invasion was called \"Operation Dragoon\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. Due to the underwater topology the return flow is concentrated at a few deeper sections, and a fast current to deep water may form there. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub. Oliver Sacks, in his paper The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately. As knowledge of Greek declined, the West found itself cut off from its Greek philosophical and scientific roots. The harbor was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US, and Britain refused to leave the harbor. A civilization is a singular culture shared by a significant large group of people who live and work co-operatively, a society.",
+   "ram": {
+    "samples": 162,
+    "peak_sum_working_set_bytes": 181063680,
+    "peak_sum_private_bytes": 268124160,
+    "peak_voice_working_set_bytes": 11374592,
+    "peak_engine_working_set_bytes": 169730048,
+    "peak_engine_private_bytes": 260702208
+   },
+   "stored_observations": 9,
+   "asr_ms": [
+    5511,
+    4605,
+    4350,
+    4284,
+    4325,
+    4531,
+    4484,
+    4354,
+    4277
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.94,
+     "end": 13.16,
+     "ok": true,
+     "error": null,
+     "text": " On August 15, 1940, the Allies invaded southern France, and the invasion was called Operation Factory.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6867316417679514,
+     "lid": {
+      "chosen_probability": 0.9527606964111328,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9527606964111328
+     },
+     "asr_ms": 5511
+    },
+    {
+     "start": 15.69,
+     "end": 26.96,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Bennett School in North Carolina are signing a website about their trips to the state capital. Each year the website gets remodeled, but those versions are kept online to serve as a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.760070600733161,
+     "lid": {
+      "chosen_probability": 0.9943616390228271,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9943616390228271
+     },
+     "asr_ms": 4605
+    },
+    {
+     "start": 31.47,
+     "end": 40.43,
+     "ok": true,
+     "error": null,
+     "text": " Due to the underwater topology, the return flow was concentrated at a few deeper sections and a chest current to deep water made from the air.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6380597715896945,
+     "lid": {
+      "chosen_probability": 0.9723769426345825,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9723769426345825
+     },
+     "asr_ms": 4350
+    },
+    {
+     "start": 44.37,
+     "end": 56.4,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish and a fish have become extinct, and two others have become endangered, including the humpback chocolate hatches.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6253753910141606,
+     "lid": {
+      "chosen_probability": 0.9322229027748108,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9322229027748108
+     },
+     "asr_ms": 4284
+    },
+    {
+     "start": 57.0,
+     "end": 67.73,
+     "ok": true,
+     "error": null,
+     "text": " Oliver Sacks and his papers in President's speech indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity at the point.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7156778749682613,
+     "lid": {
+      "chosen_probability": 0.986793577671051,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.986793577671051
+     },
+     "asr_ms": 4325
+    },
+    {
+     "start": 70.5,
+     "end": 81.23,
+     "ok": true,
+     "error": null,
+     "text": " As long as it's free to decline, the West government self-help law firms still are social support for the scientific and the public.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9051931182543437,
+     "lid": {
+      "chosen_probability": 0.8250702619552612,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.8250702619552612
+     },
+     "asr_ms": 4531
+    },
+    {
+     "start": 85.29,
+     "end": 91.67,
+     "ok": true,
+     "error": null,
+     "text": " Harder was decided by the people of the United States in the United States.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8274476108037763,
+     "lid": {
+      "chosen_probability": 0.8763359189033508,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.8763359189033508
+     },
+     "asr_ms": 4484
+    },
+    {
+     "start": 91.89,
+     "end": 103.92,
+     "ok": true,
+     "error": null,
+     "text": " The civilization is a singular culture shared by the people.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9364713063606849,
+     "lid": {
+      "chosen_probability": 0.9179368019104004,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9179368019104004
+     },
+     "asr_ms": 4354
+    },
+    {
+     "start": 104.01,
+     "end": 108.26,
+     "ok": true,
+     "error": null,
+     "text": " I can't marvel at people who live in work cooperatively based on science.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5433747598694431,
+     "lid": {
+      "chosen_probability": 0.9732382893562317,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9732382893562317
+     },
+     "asr_ms": 4277
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 1,
+   "condition": "pink5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 44.6,
+   "reference_utterances": 8,
+   "segments": 10,
+   "detected_utterances": 4,
+   "missed_speech_s": 6.725,
+   "speech_s": 81.13,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 18.229,
+   "capped_segments": 0,
+   "duration_s": 110.729,
+   "word_errors": 33,
+   "reference_words": 192,
+   "character_errors": 78,
+   "reference_characters": 930,
+   "stored": 10,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " und August.  In 2015, 1944, the Allies invaded southern France, and the invasions was called Operation Pregnant.  For example, each year students from Bennett School in North Carolina design their website about their trips to the state capital. Each year the website gets be modeled, but those versions are kept on month as they're subscribed for.  Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.  As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.  Oliver Sacks and his papers with President's speech indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.  As knows of Greek decline, the West found itself cut off from this Greek philosophical and scientific roots.  The harbor was the site of an infamous  Naval standoff in 1889 and seven ships from Germany, US and Britain used to be the harbor.  A civilization is a singular culture shared by a significant large group of people who live and work cooperatively, a society.",
+   "reference": "On 15 August 1940, the Allies invaded southern France, the invasion was called \"Operation Dragoon\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. Due to the underwater topology the return flow is concentrated at a few deeper sections, and a fast current to deep water may form there. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub. Oliver Sacks, in his paper The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately. As knowledge of Greek declined, the West found itself cut off from its Greek philosophical and scientific roots. The harbor was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US, and Britain refused to leave the harbor. A civilization is a singular culture shared by a significant large group of people who live and work co-operatively, a society.",
+   "ram": {
+    "samples": 176,
+    "peak_sum_working_set_bytes": 180666368,
+    "peak_sum_private_bytes": 267001856,
+    "peak_voice_working_set_bytes": 12214272,
+    "peak_engine_working_set_bytes": 168468480,
+    "peak_engine_private_bytes": 260575232
+   },
+   "stored_observations": 10,
+   "asr_ms": [
+    4685,
+    4367,
+    4645,
+    4365,
+    4440,
+    4526,
+    4431,
+    4189,
+    4405,
+    4402
+   ],
+   "detected_languages": [
+    "de",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.91,
+     "end": 4.28,
+     "ok": true,
+     "error": null,
+     "text": " und August.",
+     "language": "de",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9651417255401611,
+     "lid": {
+      "chosen_probability": 0.7140790224075317,
+      "unrestricted": "de",
+      "unrestricted_probability": 0.7140790224075317
+     },
+     "asr_ms": 4685
+    },
+    {
+     "start": 4.92,
+     "end": 11.69,
+     "ok": true,
+     "error": null,
+     "text": " In 2015, 1944, the Allies invaded southern France, and the invasions was called Operation Pregnant.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6101793851703405,
+     "lid": {
+      "chosen_probability": 0.9547910094261169,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9547910094261169
+     },
+     "asr_ms": 4367
+    },
+    {
+     "start": 15.69,
+     "end": 26.75,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Bennett School in North Carolina design their website about their trips to the state capital. Each year the website gets be modeled, but those versions are kept on month as they're subscribed for.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7087802544464262,
+     "lid": {
+      "chosen_probability": 0.98420250415802,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.98420250415802
+     },
+     "asr_ms": 4645
+    },
+    {
+     "start": 30.15,
+     "end": 39.35,
+     "ok": true,
+     "error": null,
+     "text": " Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8876632776471877,
+     "lid": {
+      "chosen_probability": 0.9902147054672241,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9902147054672241
+     },
+     "asr_ms": 4365
+    },
+    {
+     "start": 41.85,
+     "end": 49.58,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7965405265299174,
+     "lid": {
+      "chosen_probability": 0.9762279391288757,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9762279391288757
+     },
+     "asr_ms": 4440
+    },
+    {
+     "start": 52.65,
+     "end": 63.41,
+     "ok": true,
+     "error": null,
+     "text": " Oliver Sacks and his papers with President's speech indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8106901723359312,
+     "lid": {
+      "chosen_probability": 0.9862198829650879,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9862198829650879
+     },
+     "asr_ms": 4526
+    },
+    {
+     "start": 67.59,
+     "end": 78.29,
+     "ok": true,
+     "error": null,
+     "text": " As knows of Greek decline, the West found itself cut off from this Greek philosophical and scientific roots.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7137951132926074,
+     "lid": {
+      "chosen_probability": 0.9666797518730164,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9666797518730164
+     },
+     "asr_ms": 4431
+    },
+    {
+     "start": 81.66,
+     "end": 85.67,
+     "ok": true,
+     "error": null,
+     "text": " The harbor was the site of an infamous",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7122959848493338,
+     "lid": {
+      "chosen_probability": 0.9472146034240723,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9472146034240723
+     },
+     "asr_ms": 4189
+    },
+    {
+     "start": 85.53,
+     "end": 94.01,
+     "ok": true,
+     "error": null,
+     "text": " Naval standoff in 1889 and seven ships from Germany, US and Britain used to be the harbor.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6876651393654554,
+     "lid": {
+      "chosen_probability": 0.9758917689323425,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9758917689323425
+     },
+     "asr_ms": 4405
+    },
+    {
+     "start": 96.48,
+     "end": 104.03,
+     "ok": true,
+     "error": null,
+     "text": " A civilization is a singular culture shared by a significant large group of people who live and work cooperatively, a society.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8701645012658376,
+     "lid": {
+      "chosen_probability": 0.9952455759048462,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9952455759048462
+     },
+     "asr_ms": 4402
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 1,
+   "condition": "fan5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 37.7,
+   "reference_utterances": 8,
+   "segments": 9,
+   "detected_utterances": 5,
+   "missed_speech_s": 5.997,
+   "speech_s": 81.13,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 20.213,
+   "capped_segments": 0,
+   "duration_s": 112.713,
+   "word_errors": 16,
+   "reference_words": 192,
+   "character_errors": 23,
+   "reference_characters": 930,
+   "stored": 9,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " On August 15, 1940, the Allies invaded southern France and the invasion was called Operation Dragun.  For example, each year students from Bennett School in North Carolina design a website about their trips to the state capital. Each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.  Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.  As a result, two fish species have become extinct and two others have become endangered, including  that hunt back, chub.  Oliver Sacks and his paper, The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.  As knowledge of Greek decline, the West found itself cut off from its Greek philosophical and scientific roots.  A harbour was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US and Britain refused to leave the harbour.  A civilization is a singular culture shared by a significant large group of people who live and work cooperatively a society.",
+   "reference": "On 15 August 1940, the Allies invaded southern France, the invasion was called \"Operation Dragoon\". For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook. Due to the underwater topology the return flow is concentrated at a few deeper sections, and a fast current to deep water may form there. As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub. Oliver Sacks, in his paper The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately. As knowledge of Greek declined, the West found itself cut off from its Greek philosophical and scientific roots. The harbor was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US, and Britain refused to leave the harbor. A civilization is a singular culture shared by a significant large group of people who live and work co-operatively, a society.",
+   "ram": {
+    "samples": 151,
+    "peak_sum_working_set_bytes": 179970048,
+    "peak_sum_private_bytes": 267071488,
+    "peak_voice_working_set_bytes": 11292672,
+    "peak_engine_working_set_bytes": 169168896,
+    "peak_engine_private_bytes": 261038080
+   },
+   "stored_observations": 9,
+   "asr_ms": [
+    4548,
+    4481,
+    4064,
+    4003,
+    3898,
+    4261,
+    4091,
+    4174,
+    4021
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.91,
+     "end": 11.69,
+     "ok": true,
+     "error": null,
+     "text": " On August 15, 1940, the Allies invaded southern France and the invasion was called Operation Dragun.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7817520509389314,
+     "lid": {
+      "chosen_probability": 0.9629917144775391,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9629917144775391
+     },
+     "asr_ms": 4548
+    },
+    {
+     "start": 13.89,
+     "end": 25.19,
+     "ok": true,
+     "error": null,
+     "text": " For example, each year students from Bennett School in North Carolina design a website about their trips to the state capital. Each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8202411744515506,
+     "lid": {
+      "chosen_probability": 0.9978147745132446,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9978147745132446
+     },
+     "asr_ms": 4481
+    },
+    {
+     "start": 29.85,
+     "end": 39.11,
+     "ok": true,
+     "error": null,
+     "text": " Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8901036451420477,
+     "lid": {
+      "chosen_probability": 0.997616171836853,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.997616171836853
+     },
+     "asr_ms": 4064
+    },
+    {
+     "start": 43.86,
+     "end": 49.7,
+     "ok": true,
+     "error": null,
+     "text": " As a result, two fish species have become extinct and two others have become endangered, including",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8171191636472941,
+     "lid": {
+      "chosen_probability": 0.9879584908485413,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9879584908485413
+     },
+     "asr_ms": 4003
+    },
+    {
+     "start": 49.53,
+     "end": 51.59,
+     "ok": true,
+     "error": null,
+     "text": " that hunt back, chub.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.49537890321678585,
+     "lid": {
+      "chosen_probability": 0.5398218035697937,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.5398218035697937
+     },
+     "asr_ms": 3898
+    },
+    {
+     "start": 54.99,
+     "end": 65.78,
+     "ok": true,
+     "error": null,
+     "text": " Oliver Sacks and his paper, The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8145034615252469,
+     "lid": {
+      "chosen_probability": 0.9939500093460083,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9939500093460083
+     },
+     "asr_ms": 4261
+    },
+    {
+     "start": 70.29,
+     "end": 80.99,
+     "ok": true,
+     "error": null,
+     "text": " As knowledge of Greek decline, the West found itself cut off from its Greek philosophical and scientific roots.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8062494163927825,
+     "lid": {
+      "chosen_probability": 0.9894387125968933,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9894387125968933
+     },
+     "asr_ms": 4091
+    },
+    {
+     "start": 83.1,
+     "end": 95.1,
+     "ok": true,
+     "error": null,
+     "text": " A harbour was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US and Britain refused to leave the harbour.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8150149283664567,
+     "lid": {
+      "chosen_probability": 0.9708251953125,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9708251953125
+     },
+     "asr_ms": 4174
+    },
+    {
+     "start": 98.22,
+     "end": 105.77,
+     "ok": true,
+     "error": null,
+     "text": " A civilization is a singular culture shared by a significant large group of people who live and work cooperatively a society.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8647037224471569,
+     "lid": {
+      "chosen_probability": 0.9984102249145508,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9984102249145508
+     },
+     "asr_ms": 4021
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 44.8,
+   "reference_utterances": 8,
+   "segments": 11,
+   "detected_utterances": 7,
+   "missed_speech_s": 1.7,
+   "speech_s": 76.29,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 4.017,
+   "nonspeech_s": 27.933,
+   "capped_segments": 0,
+   "duration_s": 116.943,
+   "word_errors": 24,
+   "reference_words": 191,
+   "character_errors": 40,
+   "reference_characters": 974,
+   "stored": 11,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " El uso adecuado de los blocs pueden poderar a los alumnos para que sean más analíticos y críticos a través de la respostativa a los contenidos de Internet, pueden definir sus posturas en el contexto.  todo los escritos de otros, además de establecer sus perspectivos sobre temas específicos.  Ahora ve que es 2002.  Carpaneo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles.  Hoy en día las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de siquiera próxima al sensacapuntas.  Los luchadores compañeros de Luna también le rindieron homenaje.  Se puede definir a una civilización como una cultura específica de que  forma parte un extenso grupo de personas que vive y trabaja en conjunto, es decir, una sociedad.  Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles Poutukawa, que ofrecen lugares de sombra  No ha podido tomarse medicamentos para libir el dolor porque está prohibido su uso en los juegos.  Agradego, aun así no es correcto que exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su novel de responsabilidad y sus capacidades.",
+   "reference": "El uso adecuado de los blogs «puede empoderar a los alumnos para que sean más analíticos y críticos, a través de la respuesta activa a los contenidos de internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos» (Oravec, 2002). Carpanedo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles. Hoy en día, las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de, siquiera, aproximarse a un sacapuntas. Los luchadores compañeros de Luna también le rindieron homenaje. Se puede definir a una civilización como una cultura específica de la que forma parte un extenso grupo de personas que viven y trabajan en conjunto; es decir, una sociedad. Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles pohutukawa que ofrecen lugares de sombra. No ha podido tomarse medicamentos para aliviar el dolor, porque está prohibido su uso en los Juegos. Agregó: «Aun así, no es correcto exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su nivel de responsabilidad y sus capacidades».",
+   "ram": {
+    "samples": 180,
+    "peak_sum_working_set_bytes": 179744768,
+    "peak_sum_private_bytes": 266780672,
+    "peak_voice_working_set_bytes": 12173312,
+    "peak_engine_working_set_bytes": 168890368,
+    "peak_engine_private_bytes": 259940352
+   },
+   "stored_observations": 11,
+   "asr_ms": [
+    4864,
+    4049,
+    3854,
+    3975,
+    4026,
+    3967,
+    4025,
+    3954,
+    4027,
+    3886,
+    4048
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.01,
+     "end": 14.97,
+     "ok": true,
+     "error": null,
+     "text": " El uso adecuado de los blocs pueden poderar a los alumnos para que sean más analíticos y críticos a través de la respostativa a los contenidos de Internet, pueden definir sus posturas en el contexto.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8171174432392474,
+     "lid": {
+      "chosen_probability": 0.9981161952018738,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9981161952018738
+     },
+     "asr_ms": 4864
+    },
+    {
+     "start": 14.79,
+     "end": 20.69,
+     "ok": true,
+     "error": null,
+     "text": " todo los escritos de otros, además de establecer sus perspectivos sobre temas específicos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8022025660389945,
+     "lid": {
+      "chosen_probability": 0.9952093958854675,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9952093958854675
+     },
+     "asr_ms": 4049
+    },
+    {
+     "start": 20.61,
+     "end": 22.49,
+     "ok": true,
+     "error": null,
+     "text": " Ahora ve que es 2002.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9777761474251747,
+     "lid": {
+      "chosen_probability": 0.9156674146652222,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9156674146652222
+     },
+     "asr_ms": 3854
+    },
+    {
+     "start": 26.55,
+     "end": 37.16,
+     "ok": true,
+     "error": null,
+     "text": " Carpaneo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8361728956302007,
+     "lid": {
+      "chosen_probability": 0.990955114364624,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.990955114364624
+     },
+     "asr_ms": 3975
+    },
+    {
+     "start": 38.94,
+     "end": 49.46,
+     "ok": true,
+     "error": null,
+     "text": " Hoy en día las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de siquiera próxima al sensacapuntas.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7428964309786495,
+     "lid": {
+      "chosen_probability": 0.983988344669342,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.983988344669342
+     },
+     "asr_ms": 4026
+    },
+    {
+     "start": 50.73,
+     "end": 55.58,
+     "ok": true,
+     "error": null,
+     "text": " Los luchadores compañeros de Luna también le rindieron homenaje.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.828179946659427,
+     "lid": {
+      "chosen_probability": 0.9768578410148621,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9768578410148621
+     },
+     "asr_ms": 3967
+    },
+    {
+     "start": 60.09,
+     "end": 66.53,
+     "ok": true,
+     "error": null,
+     "text": " Se puede definir a una civilización como una cultura específica de que",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8410757482051849,
+     "lid": {
+      "chosen_probability": 0.9397923350334167,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9397923350334167
+     },
+     "asr_ms": 4025
+    },
+    {
+     "start": 66.36,
+     "end": 72.83,
+     "ok": true,
+     "error": null,
+     "text": " forma parte un extenso grupo de personas que vive y trabaja en conjunto, es decir, una sociedad.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7712849792838097,
+     "lid": {
+      "chosen_probability": 0.9561547040939331,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9561547040939331
+     },
+     "asr_ms": 3954
+    },
+    {
+     "start": 75.48,
+     "end": 85.67,
+     "ok": true,
+     "error": null,
+     "text": " Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles Poutukawa, que ofrecen lugares de sombra",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8104875440207812,
+     "lid": {
+      "chosen_probability": 0.9830735325813293,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9830735325813293
+     },
+     "asr_ms": 4027
+    },
+    {
+     "start": 88.77,
+     "end": 94.55,
+     "ok": true,
+     "error": null,
+     "text": " No ha podido tomarse medicamentos para libir el dolor porque está prohibido su uso en los juegos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7680321834236383,
+     "lid": {
+      "chosen_probability": 0.990179717540741,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.990179717540741
+     },
+     "asr_ms": 3886
+    },
+    {
+     "start": 98.25,
+     "end": 110.25,
+     "ok": true,
+     "error": null,
+     "text": " Agradego, aun así no es correcto que exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su novel de responsabilidad y sus capacidades.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7375596387357246,
+     "lid": {
+      "chosen_probability": 0.9901484251022339,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9901484251022339
+     },
+     "asr_ms": 4048
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "white5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 64.7,
+   "reference_utterances": 8,
+   "segments": 15,
+   "detected_utterances": 6,
+   "missed_speech_s": 7.848,
+   "speech_s": 76.29,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 28.512,
+   "capped_segments": 0,
+   "duration_s": 117.522,
+   "word_errors": 114,
+   "reference_words": 191,
+   "character_errors": 279,
+   "reference_characters": 974,
+   "stored": 15,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " El uso de cuadro de los logs pueden poderar a los alumnos para que sean más analíticos y críticos  atravesme la resistencia a los contenidos de la Universidad de San Luis.  pueden decidir siestos duras en el contexto de los escritos de otros además de los escritos que he sido sobre temas específicos  Ahora ver, nos vemos bien.  Carpaneo participó en dos carreras individuales del campeonato a parte de la conpetencia al Nércoles.  Hoy en día las personas os piden mensajes en las pantallas de los computadores no tienen la necesidad de siquiera pero primero se hace a punto.  No me he estado ahora con panero en el mundo, también me he estado mirando.  se puede tener una civilización, como una colegura científica de aquí...  forma parte de un extenso grupo de personas que vivimos y trabajan en el tujito, una especie de...  las playas con casitos a la arena con lugares de duras para nadar en que una guerrilla tiene una vela.  Go into power  yo creo que el lugar es muy grande.  No ha podido tomarse en editamiento para liguir el dolor porque está prohibido si un solo puedo.  Abrego, aun así no es correcto si pierdes que asuman ovilaciones que se le pasan su fase de desarrollo.  de redes sociales y de catacidad.",
+   "reference": "El uso adecuado de los blogs «puede empoderar a los alumnos para que sean más analíticos y críticos, a través de la respuesta activa a los contenidos de internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos» (Oravec, 2002). Carpanedo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles. Hoy en día, las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de, siquiera, aproximarse a un sacapuntas. Los luchadores compañeros de Luna también le rindieron homenaje. Se puede definir a una civilización como una cultura específica de la que forma parte un extenso grupo de personas que viven y trabajan en conjunto; es decir, una sociedad. Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles pohutukawa que ofrecen lugares de sombra. No ha podido tomarse medicamentos para aliviar el dolor, porque está prohibido su uso en los Juegos. Agregó: «Aun así, no es correcto exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su nivel de responsabilidad y sus capacidades».",
+   "ram": {
+    "samples": 260,
+    "peak_sum_working_set_bytes": 178442240,
+    "peak_sum_private_bytes": 265625600,
+    "peak_voice_working_set_bytes": 10973184,
+    "peak_engine_working_set_bytes": 167927808,
+    "peak_engine_private_bytes": 258940928
+   },
+   "stored_observations": 15,
+   "asr_ms": [
+    4215,
+    3986,
+    3989,
+    3835,
+    4076,
+    4228,
+    4023,
+    4038,
+    4173,
+    4137,
+    3738,
+    6209,
+    4047,
+    4189,
+    5685
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "en",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.42,
+     "end": 9.5,
+     "ok": true,
+     "error": null,
+     "text": " El uso de cuadro de los logs pueden poderar a los alumnos para que sean más analíticos y críticos",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7607889024333822,
+     "lid": {
+      "chosen_probability": 0.996303915977478,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.996303915977478
+     },
+     "asr_ms": 4215
+    },
+    {
+     "start": 9.36,
+     "end": 12.71,
+     "ok": true,
+     "error": null,
+     "text": " atravesme la resistencia a los contenidos de la Universidad de San Luis.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8134270006674342,
+     "lid": {
+      "chosen_probability": 0.9500244855880737,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9500244855880737
+     },
+     "asr_ms": 3986
+    },
+    {
+     "start": 12.63,
+     "end": 20.39,
+     "ok": true,
+     "error": null,
+     "text": " pueden decidir siestos duras en el contexto de los escritos de otros además de los escritos que he sido sobre temas específicos",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5249021465424448,
+     "lid": {
+      "chosen_probability": 0.9714652299880981,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9714652299880981
+     },
+     "asr_ms": 3989
+    },
+    {
+     "start": 20.64,
+     "end": 22.4,
+     "ok": true,
+     "error": null,
+     "text": " Ahora ver, nos vemos bien.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.825660828087065,
+     "lid": {
+      "chosen_probability": 0.9217548370361328,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9217548370361328
+     },
+     "asr_ms": 3835
+    },
+    {
+     "start": 28.8,
+     "end": 34.64,
+     "ok": true,
+     "error": null,
+     "text": " Carpaneo participó en dos carreras individuales del campeonato a parte de la conpetencia al Nércoles.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6120770358510556,
+     "lid": {
+      "chosen_probability": 0.9666646718978882,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9666646718978882
+     },
+     "asr_ms": 4076
+    },
+    {
+     "start": 39.81,
+     "end": 47.75,
+     "ok": true,
+     "error": null,
+     "text": " Hoy en día las personas os piden mensajes en las pantallas de los computadores no tienen la necesidad de siquiera pero primero se hace a punto.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5865067574195564,
+     "lid": {
+      "chosen_probability": 0.9828609824180603,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9828609824180603
+     },
+     "asr_ms": 4228
+    },
+    {
+     "start": 51.9,
+     "end": 55.97,
+     "ok": true,
+     "error": null,
+     "text": " No me he estado ahora con panero en el mundo, también me he estado mirando.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9125148781708309,
+     "lid": {
+      "chosen_probability": 0.4875715970993042,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.4875715970993042
+     },
+     "asr_ms": 4023
+    },
+    {
+     "start": 61.77,
+     "end": 66.65,
+     "ok": true,
+     "error": null,
+     "text": " se puede tener una civilización, como una colegura científica de aquí...",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8830068880005887,
+     "lid": {
+      "chosen_probability": 0.2292620986700058,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.2292620986700058
+     },
+     "asr_ms": 4038
+    },
+    {
+     "start": 66.78,
+     "end": 73.01,
+     "ok": true,
+     "error": null,
+     "text": " forma parte de un extenso grupo de personas que vivimos y trabajan en el tujito, una especie de...",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8532706371375492,
+     "lid": {
+      "chosen_probability": 0.4352618157863617,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.4352618157863617
+     },
+     "asr_ms": 4173
+    },
+    {
+     "start": 76.32,
+     "end": 82.79,
+     "ok": true,
+     "error": null,
+     "text": " las playas con casitos a la arena con lugares de duras para nadar en que una guerrilla tiene una vela.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8746677080790202,
+     "lid": {
+      "chosen_probability": 0.856804370880127,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.856804370880127
+     },
+     "asr_ms": 4137
+    },
+    {
+     "start": 82.83,
+     "end": 84.47,
+     "ok": true,
+     "error": null,
+     "text": " Go into power",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5127019464969635,
+     "lid": {
+      "chosen_probability": 0.31083324551582336,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.31083324551582336
+     },
+     "asr_ms": 3738
+    },
+    {
+     "start": 84.33,
+     "end": 86.39,
+     "ok": true,
+     "error": null,
+     "text": " yo creo que el lugar es muy grande.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7241711027242921,
+     "lid": {
+      "chosen_probability": 0.5739331841468811,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.5739331841468811
+     },
+     "asr_ms": 6209
+    },
+    {
+     "start": 91.77,
+     "end": 97.34,
+     "ok": true,
+     "error": null,
+     "text": " No ha podido tomarse en editamiento para liguir el dolor porque está prohibido si un solo puedo.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5818359416723251,
+     "lid": {
+      "chosen_probability": 0.9674599766731262,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9674599766731262
+     },
+     "asr_ms": 4047
+    },
+    {
+     "start": 102.09,
+     "end": 108.83,
+     "ok": true,
+     "error": null,
+     "text": " Abrego, aun así no es correcto si pierdes que asuman ovilaciones que se le pasan su fase de desarrollo.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6366163750569667,
+     "lid": {
+      "chosen_probability": 0.989656388759613,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.989656388759613
+     },
+     "asr_ms": 4189
+    },
+    {
+     "start": 109.2,
+     "end": 112.28,
+     "ok": true,
+     "error": null,
+     "text": " de redes sociales y de catacidad.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6595565370199356,
+     "lid": {
+      "chosen_probability": 0.9502254724502563,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9502254724502563
+     },
+     "asr_ms": 5685
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "babble5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 59.8,
+   "reference_utterances": 8,
+   "segments": 13,
+   "detected_utterances": 6,
+   "missed_speech_s": 6.334,
+   "speech_s": 76.29,
+   "false_trigger_segments": 2,
+   "nonspeech_captured_s": 5.824,
+   "nonspeech_s": 25.604,
+   "capped_segments": 0,
+   "duration_s": 114.614,
+   "word_errors": 117,
+   "reference_words": 191,
+   "character_errors": 391,
+   "reference_characters": 974,
+   "stored": 9,
+   "failed": 4,
+   "errors": [
+    "no_speech_found"
+   ],
+   "hypothesis": " El uso de cuadro de los blocks pueden poderar los alumnos para que sean más analíticos y creativos.  A través de la red activa, los comentarios de esta tarde.  cuéntese en sus posturas en el contexto de los escritos de otros, además establecer sus perspectivos sobre temas específicos. Ahora ve, ¡dujundos!  Carpanido participó en dos carreras individuales del campeonato aparte de la competencia del miércoles.  y nos dan a estar todos. Hoy en día las personas se fie a ventajas en las mentais de su computadora. Nos enganen a necesidad que niquiera personas nunca conmigo.  Se puede finitar a unos íngles, con una cultura específica de tuita. Fue una parte de la oscura, con una bolsa de tuita. Vamos a ver.  enthalpy mezلا  No ha podido tomárseles medicamentos para liberar el dolor. No está prohibido si un solo juego.  Abrego, aún así no es correcto que se os pierne que asuma la obligación que sobrepasan su fase de desarrollo y que ensunoende de responsabilidad y su capacidad de ello.",
+   "reference": "El uso adecuado de los blogs «puede empoderar a los alumnos para que sean más analíticos y críticos, a través de la respuesta activa a los contenidos de internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos» (Oravec, 2002). Carpanedo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles. Hoy en día, las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de, siquiera, aproximarse a un sacapuntas. Los luchadores compañeros de Luna también le rindieron homenaje. Se puede definir a una civilización como una cultura específica de la que forma parte un extenso grupo de personas que viven y trabajan en conjunto; es decir, una sociedad. Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles pohutukawa que ofrecen lugares de sombra. No ha podido tomarse medicamentos para aliviar el dolor, porque está prohibido su uso en los Juegos. Agregó: «Aun así, no es correcto exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su nivel de responsabilidad y sus capacidades».",
+   "ram": {
+    "samples": 240,
+    "peak_sum_working_set_bytes": 180002816,
+    "peak_sum_private_bytes": 266518528,
+    "peak_voice_working_set_bytes": 12312576,
+    "peak_engine_working_set_bytes": 169172992,
+    "peak_engine_private_bytes": 259969024
+   },
+   "stored_observations": 9,
+   "asr_ms": [
+    4687,
+    4414,
+    4412,
+    3886,
+    3868,
+    4394,
+    3715,
+    4416,
+    10397,
+    3771,
+    3883,
+    3743,
+    4076
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    null,
+    "es",
+    "es",
+    null,
+    "es",
+    "ar",
+    null,
+    "es",
+    null,
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.42,
+     "end": 9.47,
+     "ok": true,
+     "error": null,
+     "text": " El uso de cuadro de los blocks pueden poderar los alumnos para que sean más analíticos y creativos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6816625642003836,
+     "lid": {
+      "chosen_probability": 0.9889187216758728,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9889187216758728
+     },
+     "asr_ms": 4687
+    },
+    {
+     "start": 9.36,
+     "end": 12.71,
+     "ok": true,
+     "error": null,
+     "text": " A través de la red activa, los comentarios de esta tarde.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8945587547495961,
+     "lid": {
+      "chosen_probability": 0.9796966910362244,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9796966910362244
+     },
+     "asr_ms": 4414
+    },
+    {
+     "start": 12.63,
+     "end": 23.03,
+     "ok": true,
+     "error": null,
+     "text": " cuéntese en sus posturas en el contexto de los escritos de otros, además establecer sus perspectivos sobre temas específicos. Ahora ve, ¡dujundos!",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5829216639806585,
+     "lid": {
+      "chosen_probability": 0.9647783041000366,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9647783041000366
+     },
+     "asr_ms": 4412
+    },
+    {
+     "start": 24.0,
+     "end": 25.16,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3886
+    },
+    {
+     "start": 25.32,
+     "end": 35.15,
+     "ok": true,
+     "error": null,
+     "text": " Carpanido participó en dos carreras individuales del campeonato aparte de la competencia del miércoles.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7246211605339214,
+     "lid": {
+      "chosen_probability": 0.9341579079627991,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9341579079627991
+     },
+     "asr_ms": 3868
+    },
+    {
+     "start": 39.69,
+     "end": 49.52,
+     "ok": true,
+     "error": null,
+     "text": " y nos dan a estar todos. Hoy en día las personas se fie a ventajas en las mentais de su computadora. Nos enganen a necesidad que niquiera personas nunca conmigo.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8510551057406701,
+     "lid": {
+      "chosen_probability": 0.7393836379051208,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.7393836379051208
+     },
+     "asr_ms": 4394
+    },
+    {
+     "start": 53.19,
+     "end": 56.78,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3715
+    },
+    {
+     "start": 61.47,
+     "end": 73.47,
+     "ok": true,
+     "error": null,
+     "text": " Se puede finitar a unos íngles, con una cultura específica de tuita. Fue una parte de la oscura, con una bolsa de tuita. Vamos a ver.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.831126748485134,
+     "lid": {
+      "chosen_probability": 0.8828515410423279,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.8828515410423279
+     },
+     "asr_ms": 4416
+    },
+    {
+     "start": 75.69,
+     "end": 80.57,
+     "ok": true,
+     "error": null,
+     "text": " enthalpy mezلا",
+     "language": "ar",
+     "provider": "whisper.cpp",
+     "token_probability": 0.15714662401406562,
+     "lid": {
+      "chosen_probability": 0.66154944896698,
+      "unrestricted": "ar",
+      "unrestricted_probability": 0.66154944896698
+     },
+     "asr_ms": 10397
+    },
+    {
+     "start": 82.23,
+     "end": 85.88,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3771
+    },
+    {
+     "start": 89.49,
+     "end": 94.97,
+     "ok": true,
+     "error": null,
+     "text": " No ha podido tomárseles medicamentos para liberar el dolor. No está prohibido si un solo juego.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5725891818957669,
+     "lid": {
+      "chosen_probability": 0.9199550151824951,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9199550151824951
+     },
+     "asr_ms": 3883
+    },
+    {
+     "start": 95.04,
+     "end": 96.71,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3743
+    },
+    {
+     "start": 100.35,
+     "end": 112.35,
+     "ok": true,
+     "error": null,
+     "text": " Abrego, aún así no es correcto que se os pierne que asuma la obligación que sobrepasan su fase de desarrollo y que ensunoende de responsabilidad y su capacidad de ello.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6305486039137063,
+     "lid": {
+      "chosen_probability": 0.9872516393661499,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9872516393661499
+     },
+     "asr_ms": 4076
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "pink5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 59.0,
+   "reference_utterances": 8,
+   "segments": 15,
+   "detected_utterances": 5,
+   "missed_speech_s": 8.12,
+   "speech_s": 76.29,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 29.056,
+   "capped_segments": 0,
+   "duration_s": 118.066,
+   "word_errors": 85,
+   "reference_words": 191,
+   "character_errors": 214,
+   "reference_characters": 974,
+   "stored": 15,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " el uso de cuadro en los locos pueden poderar a los valores para que sean más analíticos y críticos  A través de la mezcla activa a los contenidos de internet  pueden decidir sus seguros en el que han encontrado todos los estritos de otros a ver más establecer sus efectivos sobre el tema que se utiliza  Ahora ve, un poquito.  Perpaneo participó en dos carreras individuales del campeonato a parte de la competencia de almercis.  Hoy en día las personas escriben mensajes en las cantarines de los computadores, no tienen la necesidad de siquiera para la generación de catamérica.  Los luchadores compañeros de Luna también les vinieron homenaje.  se puede definir a una civilización, como una cultura específica de que  forma parte de un extenso grupo de personas que vienen y trabajan en tus eventos, es decir, en la sociedad.  Las playas son taxis de la arena con ligar el duro para nadar en su mayoría de los héroes.  com o totalo.  y os parece un lugar en el chau de la gente.  no ha podido tomarse medicamentos para liguir el dolor porque está prohibido su uso en los juegos  Abrego, aun así no es correcto exigirles de asumanovaciones que sobrepasan su pase de desarrollo.  Uno él le reconcebe y su capacidad.",
+   "reference": "El uso adecuado de los blogs «puede empoderar a los alumnos para que sean más analíticos y críticos, a través de la respuesta activa a los contenidos de internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos» (Oravec, 2002). Carpanedo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles. Hoy en día, las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de, siquiera, aproximarse a un sacapuntas. Los luchadores compañeros de Luna también le rindieron homenaje. Se puede definir a una civilización como una cultura específica de la que forma parte un extenso grupo de personas que viven y trabajan en conjunto; es decir, una sociedad. Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles pohutukawa que ofrecen lugares de sombra. No ha podido tomarse medicamentos para aliviar el dolor, porque está prohibido su uso en los Juegos. Agregó: «Aun así, no es correcto exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su nivel de responsabilidad y sus capacidades».",
+   "ram": {
+    "samples": 237,
+    "peak_sum_working_set_bytes": 178618368,
+    "peak_sum_private_bytes": 266027008,
+    "peak_voice_working_set_bytes": 11313152,
+    "peak_engine_working_set_bytes": 168841216,
+    "peak_engine_private_bytes": 259923968
+   },
+   "stored_observations": 15,
+   "asr_ms": [
+    4389,
+    2930,
+    4049,
+    3891,
+    3968,
+    4187,
+    4050,
+    3921,
+    3832,
+    4177,
+    3820,
+    3946,
+    3834,
+    3905,
+    4005
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "pt",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.42,
+     "end": 9.5,
+     "ok": true,
+     "error": null,
+     "text": " el uso de cuadro en los locos pueden poderar a los valores para que sean más analíticos y críticos",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5888939491576619,
+     "lid": {
+      "chosen_probability": 0.9808416366577148,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9808416366577148
+     },
+     "asr_ms": 4389
+    },
+    {
+     "start": 9.36,
+     "end": 12.71,
+     "ok": true,
+     "error": null,
+     "text": " A través de la mezcla activa a los contenidos de internet",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7129545725183561,
+     "lid": {
+      "chosen_probability": 0.9721046686172485,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9721046686172485
+     },
+     "asr_ms": 2930
+    },
+    {
+     "start": 12.63,
+     "end": 20.21,
+     "ok": true,
+     "error": null,
+     "text": " pueden decidir sus seguros en el que han encontrado todos los estritos de otros a ver más establecer sus efectivos sobre el tema que se utiliza",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.4776962274271581,
+     "lid": {
+      "chosen_probability": 0.9603999257087708,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9603999257087708
+     },
+     "asr_ms": 4049
+    },
+    {
+     "start": 20.64,
+     "end": 22.4,
+     "ok": true,
+     "error": null,
+     "text": " Ahora ve, un poquito.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8283997401595116,
+     "lid": {
+      "chosen_probability": 0.7056539058685303,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.7056539058685303
+     },
+     "asr_ms": 3891
+    },
+    {
+     "start": 27.81,
+     "end": 33.62,
+     "ok": true,
+     "error": null,
+     "text": " Perpaneo participó en dos carreras individuales del campeonato a parte de la competencia de almercis.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6289392394324144,
+     "lid": {
+      "chosen_probability": 0.9554046988487244,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9554046988487244
+     },
+     "asr_ms": 3968
+    },
+    {
+     "start": 39.99,
+     "end": 47.84,
+     "ok": true,
+     "error": null,
+     "text": " Hoy en día las personas escriben mensajes en las cantarines de los computadores, no tienen la necesidad de siquiera para la generación de catamérica.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.676310818348276,
+     "lid": {
+      "chosen_probability": 0.9643083214759827,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9643083214759827
+     },
+     "asr_ms": 4187
+    },
+    {
+     "start": 50.76,
+     "end": 55.07,
+     "ok": true,
+     "error": null,
+     "text": " Los luchadores compañeros de Luna también les vinieron homenaje.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.749497445507182,
+     "lid": {
+      "chosen_probability": 0.9718517065048218,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9718517065048218
+     },
+     "asr_ms": 4050
+    },
+    {
+     "start": 60.27,
+     "end": 65.15,
+     "ok": true,
+     "error": null,
+     "text": " se puede definir a una civilización, como una cultura específica de que",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8104179510329332,
+     "lid": {
+      "chosen_probability": 0.9544104337692261,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9544104337692261
+     },
+     "asr_ms": 3921
+    },
+    {
+     "start": 65.28,
+     "end": 71.51,
+     "ok": true,
+     "error": null,
+     "text": " forma parte de un extenso grupo de personas que vienen y trabajan en tus eventos, es decir, en la sociedad.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7076223051796356,
+     "lid": {
+      "chosen_probability": 0.9525715708732605,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9525715708732605
+     },
+     "asr_ms": 3832
+    },
+    {
+     "start": 75.63,
+     "end": 82.1,
+     "ok": true,
+     "error": null,
+     "text": " Las playas son taxis de la arena con ligar el duro para nadar en su mayoría de los héroes.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8485637302028721,
+     "lid": {
+      "chosen_probability": 0.7235164642333984,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.7235164642333984
+     },
+     "asr_ms": 4177
+    },
+    {
+     "start": 82.14,
+     "end": 83.78,
+     "ok": true,
+     "error": null,
+     "text": " com o totalo.",
+     "language": "pt",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7955297508410045,
+     "lid": {
+      "chosen_probability": 0.6018898487091064,
+      "unrestricted": "pt",
+      "unrestricted_probability": 0.6018898487091064
+     },
+     "asr_ms": 3820
+    },
+    {
+     "start": 83.64,
+     "end": 85.52,
+     "ok": true,
+     "error": null,
+     "text": " y os parece un lugar en el chau de la gente.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8360032151142757,
+     "lid": {
+      "chosen_probability": 0.4142639935016632,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.4142639935016632
+     },
+     "asr_ms": 3946
+    },
+    {
+     "start": 91.38,
+     "end": 96.98,
+     "ok": true,
+     "error": null,
+     "text": " no ha podido tomarse medicamentos para liguir el dolor porque está prohibido su uso en los juegos",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.708664346098279,
+     "lid": {
+      "chosen_probability": 0.986249566078186,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.986249566078186
+     },
+     "asr_ms": 3834
+    },
+    {
+     "start": 101.64,
+     "end": 108.41,
+     "ok": true,
+     "error": null,
+     "text": " Abrego, aun así no es correcto exigirles de asumanovaciones que sobrepasan su pase de desarrollo.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6339857673893372,
+     "lid": {
+      "chosen_probability": 0.9956626296043396,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9956626296043396
+     },
+     "asr_ms": 3905
+    },
+    {
+     "start": 108.36,
+     "end": 111.89,
+     "ok": true,
+     "error": null,
+     "text": " Uno él le reconcebe y su capacidad.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7286628683408102,
+     "lid": {
+      "chosen_probability": 0.9372615814208984,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9372615814208984
+     },
+     "asr_ms": 4005
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "fan5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 51.7,
+   "reference_utterances": 8,
+   "segments": 13,
+   "detected_utterances": 5,
+   "missed_speech_s": 7.16,
+   "speech_s": 76.29,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.218,
+   "nonspeech_s": 31.521,
+   "capped_segments": 0,
+   "duration_s": 120.531,
+   "word_errors": 27,
+   "reference_words": 191,
+   "character_errors": 48,
+   "reference_characters": 974,
+   "stored": 13,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " El uso de cuadro de los blocs pueden poderar a los alumnos para que sean más analíticos y críticos  a través de la respuesta activa a los contenidos de internet  pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos. Ahora veco 2002.  Carpaneo participó en dos carregas individuales del campeonato a parte de la competencia del miércoles.  Hoy en día las personas escriben mensajes en las pantallas de sus computadoras, no tienen la necesidad de siquiera para otra emalcencia capuntas.  Los luchadores compañeros de Luna también le rindieron homenaje  se puede definir a una civilización como una cultura específica de que  forma parte un extenso grupo de personas que vive y trabaja en conjunto, es decir, una sociedad.  Las playas son casi todas de arena con lugares seguros para nadar en su mayoría tienen árboles  pôducava.  que ofrece lugares de sombra  No ha podido tomárselo medicamentos para libir el dolor porque está prohibido su uso en los juegos.  Agradego, aun así no es correcto que sigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su novel de responsabilidad y sus capacidades.",
+   "reference": "El uso adecuado de los blogs «puede empoderar a los alumnos para que sean más analíticos y críticos, a través de la respuesta activa a los contenidos de internet, pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos» (Oravec, 2002). Carpanedo participó en dos carreras individuales del campeonato aparte de la competencia del miércoles. Hoy en día, las personas escriben mensajes en las pantallas de sus computadoras. No tienen la necesidad de, siquiera, aproximarse a un sacapuntas. Los luchadores compañeros de Luna también le rindieron homenaje. Se puede definir a una civilización como una cultura específica de la que forma parte un extenso grupo de personas que viven y trabajan en conjunto; es decir, una sociedad. Las playas son casi todas de arena con lugares seguros para nadar y en su mayoría tienen árboles pohutukawa que ofrecen lugares de sombra. No ha podido tomarse medicamentos para aliviar el dolor, porque está prohibido su uso en los Juegos. Agregó: «Aun así, no es correcto exigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su nivel de responsabilidad y sus capacidades».",
+   "ram": {
+    "samples": 207,
+    "peak_sum_working_set_bytes": 179204096,
+    "peak_sum_private_bytes": 265641984,
+    "peak_voice_working_set_bytes": 11214848,
+    "peak_engine_working_set_bytes": 168460288,
+    "peak_engine_private_bytes": 259403776
+   },
+   "stored_observations": 13,
+   "asr_ms": [
+    4139,
+    3918,
+    3676,
+    3779,
+    4186,
+    3896,
+    3944,
+    4124,
+    4120,
+    3890,
+    3888,
+    3638,
+    4380
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "pt",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.42,
+     "end": 9.5,
+     "ok": true,
+     "error": null,
+     "text": " El uso de cuadro de los blocs pueden poderar a los alumnos para que sean más analíticos y críticos",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8491322810628584,
+     "lid": {
+      "chosen_probability": 0.9991967678070068,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9991967678070068
+     },
+     "asr_ms": 4139
+    },
+    {
+     "start": 9.36,
+     "end": 12.71,
+     "ok": true,
+     "error": null,
+     "text": " a través de la respuesta activa a los contenidos de internet",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7792289222280184,
+     "lid": {
+      "chosen_probability": 0.9927420616149902,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9927420616149902
+     },
+     "asr_ms": 3918
+    },
+    {
+     "start": 12.63,
+     "end": 23.06,
+     "ok": true,
+     "error": null,
+     "text": " pueden definir sus posturas en el contexto de los escritos de otros, además de establecer sus perspectivas sobre temas específicos. Ahora veco 2002.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.77381288446486,
+     "lid": {
+      "chosen_probability": 0.9966275095939636,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9966275095939636
+     },
+     "asr_ms": 3676
+    },
+    {
+     "start": 28.8,
+     "end": 34.88,
+     "ok": true,
+     "error": null,
+     "text": " Carpaneo participó en dos carregas individuales del campeonato a parte de la competencia del miércoles.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8569095615417727,
+     "lid": {
+      "chosen_probability": 0.988111138343811,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.988111138343811
+     },
+     "asr_ms": 3779
+    },
+    {
+     "start": 42.21,
+     "end": 50.09,
+     "ok": true,
+     "error": null,
+     "text": " Hoy en día las personas escriben mensajes en las pantallas de sus computadoras, no tienen la necesidad de siquiera para otra emalcencia capuntas.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7348244717487922,
+     "lid": {
+      "chosen_probability": 0.9878641366958618,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9878641366958618
+     },
+     "asr_ms": 4186
+    },
+    {
+     "start": 54.0,
+     "end": 58.88,
+     "ok": true,
+     "error": null,
+     "text": " Los luchadores compañeros de Luna también le rindieron homenaje",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8373085139836702,
+     "lid": {
+      "chosen_probability": 0.9844922423362732,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9844922423362732
+     },
+     "asr_ms": 3896
+    },
+    {
+     "start": 62.25,
+     "end": 67.13,
+     "ok": true,
+     "error": null,
+     "text": " se puede definir a una civilización como una cultura específica de que",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8497967857538777,
+     "lid": {
+      "chosen_probability": 0.9479708671569824,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9479708671569824
+     },
+     "asr_ms": 3944
+    },
+    {
+     "start": 67.23,
+     "end": 73.49,
+     "ok": true,
+     "error": null,
+     "text": " forma parte un extenso grupo de personas que vive y trabaja en conjunto, es decir, una sociedad.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8104476502537727,
+     "lid": {
+      "chosen_probability": 0.9429686665534973,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9429686665534973
+     },
+     "asr_ms": 4124
+    },
+    {
+     "start": 77.58,
+     "end": 84.02,
+     "ok": true,
+     "error": null,
+     "text": " Las playas son casi todas de arena con lugares seguros para nadar en su mayoría tienen árboles",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8508496208426853,
+     "lid": {
+      "chosen_probability": 0.9856162667274475,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9856162667274475
+     },
+     "asr_ms": 4120
+    },
+    {
+     "start": 84.09,
+     "end": 85.7,
+     "ok": true,
+     "error": null,
+     "text": " pôducava.",
+     "language": "pt",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8338997736573219,
+     "lid": {
+      "chosen_probability": 0.35033392906188965,
+      "unrestricted": "pl",
+      "unrestricted_probability": 0.375455766916275
+     },
+     "asr_ms": 3890
+    },
+    {
+     "start": 85.59,
+     "end": 87.68,
+     "ok": true,
+     "error": null,
+     "text": " que ofrece lugares de sombra",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7597271410955323,
+     "lid": {
+      "chosen_probability": 0.7947455048561096,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.7947455048561096
+     },
+     "asr_ms": 3888
+    },
+    {
+     "start": 92.76,
+     "end": 98.33,
+     "ok": true,
+     "error": null,
+     "text": " No ha podido tomárselo medicamentos para libir el dolor porque está prohibido su uso en los juegos.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.728652441115291,
+     "lid": {
+      "chosen_probability": 0.9909629225730896,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9909629225730896
+     },
+     "asr_ms": 3638
+    },
+    {
+     "start": 103.62,
+     "end": 113.87,
+     "ok": true,
+     "error": null,
+     "text": " Agradego, aun así no es correcto que sigirles que asuman obligaciones que sobrepasan su fase de desarrollo, su novel de responsabilidad y sus capacidades.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7291733771562576,
+     "lid": {
+      "chosen_probability": 0.9940667748451233,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9940667748451233
+     },
+     "asr_ms": 4380
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 1,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 69.5,
+   "reference_utterances": 8,
+   "segments": 10,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.316,
+   "speech_s": 72.96,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 4.442,
+   "nonspeech_s": 34.042,
+   "capped_segments": 0,
+   "duration_s": 121.682,
+   "word_errors": 22,
+   "reference_words": 207,
+   "character_errors": 30,
+   "reference_characters": 976,
+   "stored": 10,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " Desde siempre, la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías. A la vez que...  interfiere con la capacidad del enemigo para hacerlo propio.  Los luchadores, compañeros de Oluna, también le ringuieron homenaje.  tienen extremidades escamadas y con garras ponen huevos y se desplazan sobre sus patas traceras al igual que el T-Rex  Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos, a través del movimiento del dispositivo por el aire.  Si unicamente se embarca durante excursiones a bordo, no es necesario contar con una visa por separado desde 2009.  El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candideterse como presidenta. Este es el mismo sitio donde inició su campaña para el Senado en el año 2005.  en representación de la provincia de Buenos Aires.  Al largo de la década 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pasifismo y el aislamiento.  Un \"H\" ha renunciado y el \"W\" MEP lo reemplazará en el gabinete. Se espera que Norman Lab MEP asuma el puesto de ministros de negocios que \"W\" deja vacante.",
+   "reference": "Desde siempre, la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías, a la vez que, interfiere con la capacidad del enemigo para hacer lo propio. Los luchadores compañeros de Luna también le rindieron homenaje. Tienen extremidades escamadas y con garras, ponen huevos y se desplazan sobre sus patas traseras al igual que el T-Rex. Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos, a través del movimiento del dispositivo por el aire. Si únicamente desembarca durante excursiones a bordo, no es necesario contar con una visa por separado (desde 2009). El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candidatearse como presidenta; este es el mismo sitio donde inició su campaña para el senado en el año 2005, en representación de la provincia de Buenos Aires. A lo largo de la década de 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pacifismo y el aislamiento. Huhne ha renunciado, y Ed Davey MP lo reemplazará en el gabinete. Se espera que Norman Lamb MP asuma el puesto de ministro de negocios que Davey deja vacante.",
+   "ram": {
+    "samples": 212,
+    "peak_sum_working_set_bytes": 181780480,
+    "peak_sum_private_bytes": 269041664,
+    "peak_voice_working_set_bytes": 13246464,
+    "peak_engine_working_set_bytes": 169263104,
+    "peak_engine_private_bytes": 260358144
+   },
+   "stored_observations": 10,
+   "asr_ms": [
+    3217,
+    3533,
+    4979,
+    11141,
+    6177,
+    6843,
+    5110,
+    4164,
+    11192,
+    12698
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.94,
+     "end": 13.04,
+     "ok": true,
+     "error": null,
+     "text": " Desde siempre, la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías. A la vez que...",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8156260969560771,
+     "lid": {
+      "chosen_probability": 0.9843016862869263,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9843016862869263
+     },
+     "asr_ms": 3217
+    },
+    {
+     "start": 12.87,
+     "end": 16.82,
+     "ok": true,
+     "error": null,
+     "text": " interfiere con la capacidad del enemigo para hacerlo propio.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7826128113748771,
+     "lid": {
+      "chosen_probability": 0.9860668182373047,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9860668182373047
+     },
+     "asr_ms": 3533
+    },
+    {
+     "start": 21.18,
+     "end": 25.73,
+     "ok": true,
+     "error": null,
+     "text": " Los luchadores, compañeros de Oluna, también le ringuieron homenaje.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8009092753583734,
+     "lid": {
+      "chosen_probability": 0.9955133199691772,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9955133199691772
+     },
+     "asr_ms": 4979
+    },
+    {
+     "start": 31.11,
+     "end": 38.93,
+     "ok": true,
+     "error": null,
+     "text": " tienen extremidades escamadas y con garras ponen huevos y se desplazan sobre sus patas traceras al igual que el T-Rex",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8251072244326535,
+     "lid": {
+      "chosen_probability": 0.9955222010612488,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9955222010612488
+     },
+     "asr_ms": 11141
+    },
+    {
+     "start": 41.64,
+     "end": 52.58,
+     "ok": true,
+     "error": null,
+     "text": " Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos, a través del movimiento del dispositivo por el aire.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8685286782888902,
+     "lid": {
+      "chosen_probability": 0.9941003918647766,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9941003918647766
+     },
+     "asr_ms": 6177
+    },
+    {
+     "start": 54.96,
+     "end": 64.82,
+     "ok": true,
+     "error": null,
+     "text": " Si unicamente se embarca durante excursiones a bordo, no es necesario contar con una visa por separado desde 2009.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7427866590519746,
+     "lid": {
+      "chosen_probability": 0.9932258129119873,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9932258129119873
+     },
+     "asr_ms": 6843
+    },
+    {
+     "start": 67.68,
+     "end": 81.42,
+     "ok": true,
+     "error": null,
+     "text": " El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candideterse como presidenta. Este es el mismo sitio donde inició su campaña para el Senado en el año 2005.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8591179326176643,
+     "lid": {
+      "chosen_probability": 0.9931772947311401,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9931772947311401
+     },
+     "asr_ms": 5110
+    },
+    {
+     "start": 81.54,
+     "end": 85.25,
+     "ok": true,
+     "error": null,
+     "text": " en representación de la provincia de Buenos Aires.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8486379893639913,
+     "lid": {
+      "chosen_probability": 0.9902457594871521,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9902457594871521
+     },
+     "asr_ms": 4164
+    },
+    {
+     "start": 88.05,
+     "end": 98.66,
+     "ok": true,
+     "error": null,
+     "text": " Al largo de la década 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pasifismo y el aislamiento.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8308894086983942,
+     "lid": {
+      "chosen_probability": 0.9978211522102356,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9978211522102356
+     },
+     "asr_ms": 11192
+    },
+    {
+     "start": 102.0,
+     "end": 115.23,
+     "ok": true,
+     "error": null,
+     "text": " Un \"H\" ha renunciado y el \"W\" MEP lo reemplazará en el gabinete. Se espera que Norman Lab MEP asuma el puesto de ministros de negocios que \"W\" deja vacante.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7281290628015995,
+     "lid": {
+      "chosen_probability": 0.9916736483573914,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9916736483573914
+     },
+     "asr_ms": 12698
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 1,
+   "condition": "white5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 71.4,
+   "reference_utterances": 8,
+   "segments": 14,
+   "detected_utterances": 7,
+   "missed_speech_s": 2.629,
+   "speech_s": 72.96,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 32.163,
+   "capped_segments": 0,
+   "duration_s": 119.803,
+   "word_errors": 103,
+   "reference_words": 207,
+   "character_errors": 275,
+   "reference_characters": 976,
+   "stored": 14,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " Bien, desde el centro, la atención de la Marina sigue para alcuchar. Pues sí que hay que ser en la cuenta de la atención de la verdad, a la atención y la atención.  Hallo, ich bin hier.  en el que quiero que la tapasquía de la unirota de la escena.  Los vizadores compañeros de olina también le vinieron en el ácido.  Y tienen la extremidad de secamada y con garras, con huevos y se desplazan sobre sus patas traceras al igual que el pire.  Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos a través del movimiento del dispositivo por el año.  y unicamente desembarca durante instituciones a bordo no es necesario contar con una vista por separados desde esos mil novellos  El Teatro Argentina fue el lugar donde la señora Kirchner anunció que intención de cambiarse como presidenta.  Este es el mismo sitio de un viso de campaña para el Senado de Nenayos 25.  en representación de la provincia de Buenos Aires.  Al largo de la década, en 1920, la actitud abosta por la mayor parte de los ciudades y de las misiones  que no hay pasasismo, no hay pasas miren.  Unes, arrenunciado y el DAV-MP lo reemplazará en el lado de la lute.  espera que Norman Lab MEP asuma el puesto del libro de Urbócio que la veis deja batando.",
+   "reference": "Desde siempre, la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías, a la vez que, interfiere con la capacidad del enemigo para hacer lo propio. Los luchadores compañeros de Luna también le rindieron homenaje. Tienen extremidades escamadas y con garras, ponen huevos y se desplazan sobre sus patas traseras al igual que el T-Rex. Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos, a través del movimiento del dispositivo por el aire. Si únicamente desembarca durante excursiones a bordo, no es necesario contar con una visa por separado (desde 2009). El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candidatearse como presidenta; este es el mismo sitio donde inició su campaña para el senado en el año 2005, en representación de la provincia de Buenos Aires. A lo largo de la década de 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pacifismo y el aislamiento. Huhne ha renunciado, y Ed Davey MP lo reemplazará en el gabinete. Se espera que Norman Lamb MP asuma el puesto de ministro de negocios que Davey deja vacante.",
+   "ram": {
+    "samples": 278,
+    "peak_sum_working_set_bytes": 177537024,
+    "peak_sum_private_bytes": 265879552,
+    "peak_voice_working_set_bytes": 10522624,
+    "peak_engine_working_set_bytes": 167862272,
+    "peak_engine_private_bytes": 260108288
+   },
+   "stored_observations": 14,
+   "asr_ms": [
+    16070,
+    4475,
+    5415,
+    6311,
+    6301,
+    3741,
+    3724,
+    3409,
+    3631,
+    3141,
+    3429,
+    5104,
+    3132,
+    3086
+   ],
+   "detected_languages": [
+    "es",
+    "de",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.33,
+     "end": 11.42,
+     "ok": true,
+     "error": null,
+     "text": " Bien, desde el centro, la atención de la Marina sigue para alcuchar. Pues sí que hay que ser en la cuenta de la atención de la verdad, a la atención y la atención.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8364948824394581,
+     "lid": {
+      "chosen_probability": 0.9449564814567566,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9449564814567566
+     },
+     "asr_ms": 16070
+    },
+    {
+     "start": 11.67,
+     "end": 12.92,
+     "ok": true,
+     "error": null,
+     "text": " Hallo, ich bin hier.",
+     "language": "de",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8645504284650087,
+     "lid": {
+      "chosen_probability": 0.21026186645030975,
+      "unrestricted": "de",
+      "unrestricted_probability": 0.21026186645030975
+     },
+     "asr_ms": 4475
+    },
+    {
+     "start": 13.08,
+     "end": 16.52,
+     "ok": true,
+     "error": null,
+     "text": " en el que quiero que la tapasquía de la unirota de la escena.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.802471152718433,
+     "lid": {
+      "chosen_probability": 0.3885955512523651,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.3885955512523651
+     },
+     "asr_ms": 5415
+    },
+    {
+     "start": 19.71,
+     "end": 23.9,
+     "ok": true,
+     "error": null,
+     "text": " Los vizadores compañeros de olina también le vinieron en el ácido.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8823845513164997,
+     "lid": {
+      "chosen_probability": 0.818903386592865,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.818903386592865
+     },
+     "asr_ms": 6311
+    },
+    {
+     "start": 29.04,
+     "end": 36.62,
+     "ok": true,
+     "error": null,
+     "text": " Y tienen la extremidad de secamada y con garras, con huevos y se desplazan sobre sus patas traceras al igual que el pire.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6501872513443232,
+     "lid": {
+      "chosen_probability": 0.9646922945976257,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9646922945976257
+     },
+     "asr_ms": 6301
+    },
+    {
+     "start": 43.56,
+     "end": 51.83,
+     "ok": true,
+     "error": null,
+     "text": " Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos a través del movimiento del dispositivo por el año.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8175061923555202,
+     "lid": {
+      "chosen_probability": 0.9866583347320557,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9866583347320557
+     },
+     "asr_ms": 3741
+    },
+    {
+     "start": 56.13,
+     "end": 63.23,
+     "ok": true,
+     "error": null,
+     "text": " y unicamente desembarca durante instituciones a bordo no es necesario contar con una vista por separados desde esos mil novellos",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6330668940208852,
+     "lid": {
+      "chosen_probability": 0.9781238436698914,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9781238436698914
+     },
+     "asr_ms": 3724
+    },
+    {
+     "start": 68.58,
+     "end": 76.22,
+     "ok": true,
+     "error": null,
+     "text": " El Teatro Argentina fue el lugar donde la señora Kirchner anunció que intención de cambiarse como presidenta.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6487456538059093,
+     "lid": {
+      "chosen_probability": 0.9858273267745972,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9858273267745972
+     },
+     "asr_ms": 3409
+    },
+    {
+     "start": 76.59,
+     "end": 81.08,
+     "ok": true,
+     "error": null,
+     "text": " Este es el mismo sitio de un viso de campaña para el Senado de Nenayos 25.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.554169510602951,
+     "lid": {
+      "chosen_probability": 0.9895366430282593,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9895366430282593
+     },
+     "asr_ms": 3631
+    },
+    {
+     "start": 81.09,
+     "end": 84.23,
+     "ok": true,
+     "error": null,
+     "text": " en representación de la provincia de Buenos Aires.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8019731913048488,
+     "lid": {
+      "chosen_probability": 0.9402673244476318,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9402673244476318
+     },
+     "asr_ms": 3141
+    },
+    {
+     "start": 87.75,
+     "end": 94.88,
+     "ok": true,
+     "error": null,
+     "text": " Al largo de la década, en 1920, la actitud abosta por la mayor parte de los ciudades y de las misiones",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6263770688204996,
+     "lid": {
+      "chosen_probability": 0.9200465679168701,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9200465679168701
+     },
+     "asr_ms": 3429
+    },
+    {
+     "start": 94.77,
+     "end": 97.34,
+     "ok": true,
+     "error": null,
+     "text": " que no hay pasasismo, no hay pasas miren.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7822115663439035,
+     "lid": {
+      "chosen_probability": 0.6636967658996582,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.6636967658996582
+     },
+     "asr_ms": 5104
+    },
+    {
+     "start": 101.97,
+     "end": 107.33,
+     "ok": true,
+     "error": null,
+     "text": " Unes, arrenunciado y el DAV-MP lo reemplazará en el lado de la lute.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5258277404154169,
+     "lid": {
+      "chosen_probability": 0.9515429735183716,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9515429735183716
+     },
+     "asr_ms": 3132
+    },
+    {
+     "start": 107.4,
+     "end": 113.84,
+     "ok": true,
+     "error": null,
+     "text": " espera que Norman Lab MEP asuma el puesto del libro de Urbócio que la veis deja batando.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5493679822043136,
+     "lid": {
+      "chosen_probability": 0.9565840363502502,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9565840363502502
+     },
+     "asr_ms": 3086
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 1,
+   "condition": "babble5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 45.5,
+   "reference_utterances": 8,
+   "segments": 12,
+   "detected_utterances": 7,
+   "missed_speech_s": 2.06,
+   "speech_s": 72.96,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 7.067,
+   "nonspeech_s": 32.153,
+   "capped_segments": 0,
+   "duration_s": 119.793,
+   "word_errors": 92,
+   "reference_words": 207,
+   "character_errors": 328,
+   "reference_characters": 976,
+   "stored": 9,
+   "failed": 3,
+   "errors": [
+    "invalid_request",
+    "no_speech_found"
+   ],
+   "hypothesis": " Y tienen extremidades de camas y con barras con huevos, se place por los batas traceras al igual que el TIRRX.  Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos a través del movimiento del dispositivo por el alercio.  Thank you very much. See you next time.  Si unicamente se embarca durante excursiones a bordo, no es necesario contar con una visa por separado desde 2009.  El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candideterse como presidenta.  Este es el mismo sitio donde hizo su campaña para el Senado en el año 2005, en representación de la provincia de Buenos Aires.  A lo largo de la década 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pacifismo y el aislamiento.  Un en, arrenunciado y el TAB MEP lo reemplazará en el gabinete.  se espera que Norman Lab M.P. asuma el puesto de balónico de negocio, si a dado ahí deja la tanto en la noche.",
+   "reference": "Desde siempre, la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías, a la vez que, interfiere con la capacidad del enemigo para hacer lo propio. Los luchadores compañeros de Luna también le rindieron homenaje. Tienen extremidades escamadas y con garras, ponen huevos y se desplazan sobre sus patas traseras al igual que el T-Rex. Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos, a través del movimiento del dispositivo por el aire. Si únicamente desembarca durante excursiones a bordo, no es necesario contar con una visa por separado (desde 2009). El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candidatearse como presidenta; este es el mismo sitio donde inició su campaña para el senado en el año 2005, en representación de la provincia de Buenos Aires. A lo largo de la década de 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pacifismo y el aislamiento. Huhne ha renunciado, y Ed Davey MP lo reemplazará en el gabinete. Se espera que Norman Lamb MP asuma el puesto de ministro de negocios que Davey deja vacante.",
+   "ram": {
+    "samples": 181,
+    "peak_sum_working_set_bytes": 180170752,
+    "peak_sum_private_bytes": 266444800,
+    "peak_voice_working_set_bytes": 12050432,
+    "peak_engine_working_set_bytes": 169078784,
+    "peak_engine_private_bytes": 260055040
+   },
+   "stored_observations": 9,
+   "asr_ms": [
+    7833,
+    3122,
+    3029,
+    3493,
+    3356,
+    3086,
+    3452,
+    3696,
+    3499,
+    3668,
+    3157,
+    4018
+   ],
+   "detected_languages": [
+    null,
+    null,
+    null,
+    "es",
+    "es",
+    "en",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.33,
+     "end": 11.66,
+     "ok": false,
+     "error": "invalid_request",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 7833
+    },
+    {
+     "start": 11.73,
+     "end": 17.15,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3122
+    },
+    {
+     "start": 20.88,
+     "end": 24.95,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3029
+    },
+    {
+     "start": 29.19,
+     "end": 39.53,
+     "ok": true,
+     "error": null,
+     "text": " Y tienen extremidades de camas y con barras con huevos, se place por los batas traceras al igual que el TIRRX.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8623396923972501,
+     "lid": {
+      "chosen_probability": 0.9753799438476562,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9753799438476562
+     },
+     "asr_ms": 3493
+    },
+    {
+     "start": 44.61,
+     "end": 52.79,
+     "ok": true,
+     "error": null,
+     "text": " Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos a través del movimiento del dispositivo por el alercio.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7604629461114344,
+     "lid": {
+      "chosen_probability": 0.9904422163963318,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9904422163963318
+     },
+     "asr_ms": 3356
+    },
+    {
+     "start": 53.04,
+     "end": 55.19,
+     "ok": true,
+     "error": null,
+     "text": " Thank you very much. See you next time.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5605894370147815,
+     "lid": {
+      "chosen_probability": 0.2806638777256012,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.2806638777256012
+     },
+     "asr_ms": 3086
+    },
+    {
+     "start": 56.79,
+     "end": 63.98,
+     "ok": true,
+     "error": null,
+     "text": " Si unicamente se embarca durante excursiones a bordo, no es necesario contar con una visa por separado desde 2009.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7479122921824455,
+     "lid": {
+      "chosen_probability": 0.9870398044586182,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9870398044586182
+     },
+     "asr_ms": 3452
+    },
+    {
+     "start": 69.12,
+     "end": 76.79,
+     "ok": true,
+     "error": null,
+     "text": " El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candideterse como presidenta.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7971849995354812,
+     "lid": {
+      "chosen_probability": 0.9958096742630005,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9958096742630005
+     },
+     "asr_ms": 3696
+    },
+    {
+     "start": 77.01,
+     "end": 87.8,
+     "ok": true,
+     "error": null,
+     "text": " Este es el mismo sitio donde hizo su campaña para el Senado en el año 2005, en representación de la provincia de Buenos Aires.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8368458778131753,
+     "lid": {
+      "chosen_probability": 0.9829869866371155,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9829869866371155
+     },
+     "asr_ms": 3499
+    },
+    {
+     "start": 88.86,
+     "end": 100.89,
+     "ok": true,
+     "error": null,
+     "text": " A lo largo de la década 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pacifismo y el aislamiento.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8401958192590364,
+     "lid": {
+      "chosen_probability": 0.9887300729751587,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9887300729751587
+     },
+     "asr_ms": 3668
+    },
+    {
+     "start": 102.39,
+     "end": 107.57,
+     "ok": true,
+     "error": null,
+     "text": " Un en, arrenunciado y el TAB MEP lo reemplazará en el gabinete.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5500968112968482,
+     "lid": {
+      "chosen_probability": 0.8761225342750549,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.8761225342750549
+     },
+     "asr_ms": 3157
+    },
+    {
+     "start": 107.82,
+     "end": 114.26,
+     "ok": true,
+     "error": null,
+     "text": " se espera que Norman Lab M.P. asuma el puesto de balónico de negocio, si a dado ahí deja la tanto en la noche.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8761017204207533,
+     "lid": {
+      "chosen_probability": 0.9003913998603821,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9003913998603821
+     },
+     "asr_ms": 4018
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 1,
+   "condition": "pink5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 45.5,
+   "reference_utterances": 8,
+   "segments": 13,
+   "detected_utterances": 7,
+   "missed_speech_s": 2.448,
+   "speech_s": 72.96,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 31.863,
+   "capped_segments": 0,
+   "duration_s": 119.503,
+   "word_errors": 53,
+   "reference_words": 207,
+   "character_errors": 84,
+   "reference_characters": 976,
+   "stored": 13,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " Desde siempre la función de la Marina ha sido garantizar que su país con ser de la pacientad de trasladar a su colación y mercancía.  Da ist die.  interciero con la capacidad del enemigo para hacer la propia  Los luchadores, compañeros de Oluna, también les denguieron un homenaje.  tienen extremidades escamadas y con garras con huevos y se desplazan sobre sus patas traseras al igual que el pírez  Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos a través del movimiento del dispositivo por el aire.  Si unís, camiente de se embarca durante excursiones a bordo, no es necesario contar con una visa por separado desde 2009.  El teatro argentino fue el lugar donde la señora Kirchner anunció su intención de candideterse como presidenta.  Este es el mismo sitio donde inició su campaña para el Senado en el año 2005 en representación de la provincia de Buenos Aires  Al largo de la beca 1920 la pituya adopta por la mayor parte de los ciudadanos y de las misiones  Puebla el pasiquismo y eláis la mía en tu.  Un \"A\" renunciado y el \"Dabel MP\" lo reemplazará en el gabinete.  y espera que Norman Lab MEP asuma el puesto del ministro de negocios, que da veis deja bastante.",
+   "reference": "Desde siempre, la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías, a la vez que, interfiere con la capacidad del enemigo para hacer lo propio. Los luchadores compañeros de Luna también le rindieron homenaje. Tienen extremidades escamadas y con garras, ponen huevos y se desplazan sobre sus patas traseras al igual que el T-Rex. Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos, a través del movimiento del dispositivo por el aire. Si únicamente desembarca durante excursiones a bordo, no es necesario contar con una visa por separado (desde 2009). El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candidatearse como presidenta; este es el mismo sitio donde inició su campaña para el senado en el año 2005, en representación de la provincia de Buenos Aires. A lo largo de la década de 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pacifismo y el aislamiento. Huhne ha renunciado, y Ed Davey MP lo reemplazará en el gabinete. Se espera que Norman Lamb MP asuma el puesto de ministro de negocios que Davey deja vacante.",
+   "ram": {
+    "samples": 181,
+    "peak_sum_working_set_bytes": 178851840,
+    "peak_sum_private_bytes": 265592832,
+    "peak_voice_working_set_bytes": 11194368,
+    "peak_engine_working_set_bytes": 167833600,
+    "peak_engine_private_bytes": 258826240
+   },
+   "stored_observations": 13,
+   "asr_ms": [
+    4041,
+    3421,
+    3455,
+    3570,
+    3481,
+    3285,
+    3584,
+    3429,
+    3080,
+    2351,
+    4035,
+    3725,
+    3875
+   ],
+   "detected_languages": [
+    "es",
+    "de",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.3,
+     "end": 11.57,
+     "ok": true,
+     "error": null,
+     "text": " Desde siempre la función de la Marina ha sido garantizar que su país con ser de la pacientad de trasladar a su colación y mercancía.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6133417595630964,
+     "lid": {
+      "chosen_probability": 0.9699608087539673,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9699608087539673
+     },
+     "asr_ms": 4041
+    },
+    {
+     "start": 11.49,
+     "end": 12.95,
+     "ok": true,
+     "error": null,
+     "text": " Da ist die.",
+     "language": "de",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7877494619848827,
+     "lid": {
+      "chosen_probability": 0.298168808221817,
+      "unrestricted": "de",
+      "unrestricted_probability": 0.298168808221817
+     },
+     "asr_ms": 3421
+    },
+    {
+     "start": 12.9,
+     "end": 16.52,
+     "ok": true,
+     "error": null,
+     "text": " interciero con la capacidad del enemigo para hacer la propia",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.564453155361116,
+     "lid": {
+      "chosen_probability": 0.9250247478485107,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9250247478485107
+     },
+     "asr_ms": 3455
+    },
+    {
+     "start": 21.78,
+     "end": 26.21,
+     "ok": true,
+     "error": null,
+     "text": " Los luchadores, compañeros de Oluna, también les denguieron un homenaje.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7049231334872867,
+     "lid": {
+      "chosen_probability": 0.9803440570831299,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9803440570831299
+     },
+     "asr_ms": 3570
+    },
+    {
+     "start": 30.57,
+     "end": 38.18,
+     "ok": true,
+     "error": null,
+     "text": " tienen extremidades escamadas y con garras con huevos y se desplazan sobre sus patas traseras al igual que el pírez",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7942492391381945,
+     "lid": {
+      "chosen_probability": 0.9850302338600159,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9850302338600159
+     },
+     "asr_ms": 3481
+    },
+    {
+     "start": 43.11,
+     "end": 51.32,
+     "ok": true,
+     "error": null,
+     "text": " Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos a través del movimiento del dispositivo por el aire.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8062298347552618,
+     "lid": {
+      "chosen_probability": 0.992939293384552,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.992939293384552
+     },
+     "asr_ms": 3285
+    },
+    {
+     "start": 57.03,
+     "end": 64.19,
+     "ok": true,
+     "error": null,
+     "text": " Si unís, camiente de se embarca durante excursiones a bordo, no es necesario contar con una visa por separado desde 2009.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6970923804875576,
+     "lid": {
+      "chosen_probability": 0.9938700795173645,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9938700795173645
+     },
+     "asr_ms": 3584
+    },
+    {
+     "start": 69.27,
+     "end": 76.94,
+     "ok": true,
+     "error": null,
+     "text": " El teatro argentino fue el lugar donde la señora Kirchner anunció su intención de candideterse como presidenta.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7860744276951099,
+     "lid": {
+      "chosen_probability": 0.9856126308441162,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9856126308441162
+     },
+     "asr_ms": 3429
+    },
+    {
+     "start": 77.13,
+     "end": 84.95,
+     "ok": true,
+     "error": null,
+     "text": " Este es el mismo sitio donde inició su campaña para el Senado en el año 2005 en representación de la provincia de Buenos Aires",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8046590326121077,
+     "lid": {
+      "chosen_probability": 0.9848434925079346,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9848434925079346
+     },
+     "asr_ms": 3080
+    },
+    {
+     "start": 88.68,
+     "end": 95.81,
+     "ok": true,
+     "error": null,
+     "text": " Al largo de la beca 1920 la pituya adopta por la mayor parte de los ciudadanos y de las misiones",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7124835677444935,
+     "lid": {
+      "chosen_probability": 0.9827109575271606,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9827109575271606
+     },
+     "asr_ms": 2351
+    },
+    {
+     "start": 95.7,
+     "end": 98.48,
+     "ok": true,
+     "error": null,
+     "text": " Puebla el pasiquismo y eláis la mía en tu.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8268385926882426,
+     "lid": {
+      "chosen_probability": 0.9812503457069397,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9812503457069397
+     },
+     "asr_ms": 4035
+    },
+    {
+     "start": 102.33,
+     "end": 107.72,
+     "ok": true,
+     "error": null,
+     "text": " Un \"A\" renunciado y el \"Dabel MP\" lo reemplazará en el gabinete.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6276000262134604,
+     "lid": {
+      "chosen_probability": 0.9765801429748535,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9765801429748535
+     },
+     "asr_ms": 3725
+    },
+    {
+     "start": 107.76,
+     "end": 114.41,
+     "ok": true,
+     "error": null,
+     "text": " y espera que Norman Lab MEP asuma el puesto del ministro de negocios, que da veis deja bastante.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5820489711394268,
+     "lid": {
+      "chosen_probability": 0.9794467091560364,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9794467091560364
+     },
+     "asr_ms": 3875
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 1,
+   "condition": "fan5",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 0.0,
+   "wall_s": 52.2,
+   "reference_utterances": 8,
+   "segments": 13,
+   "detected_utterances": 7,
+   "missed_speech_s": 2.465,
+   "speech_s": 72.96,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.0,
+   "nonspeech_s": 31.479,
+   "capped_segments": 0,
+   "duration_s": 119.119,
+   "word_errors": 22,
+   "reference_words": 207,
+   "character_errors": 21,
+   "reference_characters": 976,
+   "stored": 13,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " Desde siempre la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías.  a la vez que  interfiere con la capacidad del enemigo para hacerlo propio.  Los luchadores compañeros de Oluna también le rendieron homenaje.  tienen extremidades escamadas y con garras ponen huevos y se desplazan sobre sus patas traceras al igual que el T-Rex  Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos a través del movimiento del dispositivo por el aire.  Si unicamente se embarca durante excursiones a bordo, no es necesario contar con una visa por separado desde 2009.  El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candideterse como presidenta.  Este es el mismo sitio donde inició su campaña para el Senado en el año 2005 en representación de la provincia de Buenos Aires.  Al largo de la década 1920 la actitud adoptada por la mayor parte de los ciudadanos y de las naciones  fue la del pacifismo y el aislamiento.  un \"E\" ha renunciado y el \"davays\" \"M\"P lo reemplazará en el gabinete  Se espera que Norman Lab MEP asuma el puesto de ministros de negocios que David deja vacante.",
+   "reference": "Desde siempre, la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías, a la vez que, interfiere con la capacidad del enemigo para hacer lo propio. Los luchadores compañeros de Luna también le rindieron homenaje. Tienen extremidades escamadas y con garras, ponen huevos y se desplazan sobre sus patas traseras al igual que el T-Rex. Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos, a través del movimiento del dispositivo por el aire. Si únicamente desembarca durante excursiones a bordo, no es necesario contar con una visa por separado (desde 2009). El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candidatearse como presidenta; este es el mismo sitio donde inició su campaña para el senado en el año 2005, en representación de la provincia de Buenos Aires. A lo largo de la década de 1920, la actitud adoptada por la mayor parte de los ciudadanos y de las naciones fue la del pacifismo y el aislamiento. Huhne ha renunciado, y Ed Davey MP lo reemplazará en el gabinete. Se espera que Norman Lamb MP asuma el puesto de ministro de negocios que Davey deja vacante.",
+   "ram": {
+    "samples": 199,
+    "peak_sum_working_set_bytes": 178667520,
+    "peak_sum_private_bytes": 266096640,
+    "peak_voice_working_set_bytes": 11137024,
+    "peak_engine_working_set_bytes": 167944192,
+    "peak_engine_private_bytes": 260034560
+   },
+   "stored_observations": 13,
+   "asr_ms": [
+    5676,
+    3799,
+    4254,
+    4153,
+    4036,
+    3509,
+    4025,
+    3752,
+    3973,
+    4003,
+    3690,
+    3571,
+    3594
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 3.3,
+     "end": 11.57,
+     "ok": true,
+     "error": null,
+     "text": " Desde siempre la función de la marina ha sido garantizar que su país conserve la facultad de trasladar a su población y mercancías.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8274032419281346,
+     "lid": {
+      "chosen_probability": 0.9885126948356628,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9885126948356628
+     },
+     "asr_ms": 5676
+    },
+    {
+     "start": 11.49,
+     "end": 12.98,
+     "ok": true,
+     "error": null,
+     "text": " a la vez que",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6883565460642179,
+     "lid": {
+      "chosen_probability": 0.2812517583370209,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.2812517583370209
+     },
+     "asr_ms": 3799
+    },
+    {
+     "start": 12.9,
+     "end": 16.97,
+     "ok": true,
+     "error": null,
+     "text": " interfiere con la capacidad del enemigo para hacerlo propio.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7910894569275635,
+     "lid": {
+      "chosen_probability": 0.9888646602630615,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9888646602630615
+     },
+     "asr_ms": 4254
+    },
+    {
+     "start": 21.12,
+     "end": 25.55,
+     "ok": true,
+     "error": null,
+     "text": " Los luchadores compañeros de Oluna también le rendieron homenaje.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7969048699658168,
+     "lid": {
+      "chosen_probability": 0.9936541318893433,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9936541318893433
+     },
+     "asr_ms": 4153
+    },
+    {
+     "start": 29.31,
+     "end": 36.95,
+     "ok": true,
+     "error": null,
+     "text": " tienen extremidades escamadas y con garras ponen huevos y se desplazan sobre sus patas traceras al igual que el T-Rex",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8342229575899086,
+     "lid": {
+      "chosen_probability": 0.995718240737915,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.995718240737915
+     },
+     "asr_ms": 4036
+    },
+    {
+     "start": 42.54,
+     "end": 50.75,
+     "ok": true,
+     "error": null,
+     "text": " Esto permitirá a los jugadores controlar las acciones y los movimientos en los videojuegos a través del movimiento del dispositivo por el aire.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8851955006165164,
+     "lid": {
+      "chosen_probability": 0.9974325895309448,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9974325895309448
+     },
+     "asr_ms": 3509
+    },
+    {
+     "start": 56.7,
+     "end": 63.86,
+     "ok": true,
+     "error": null,
+     "text": " Si unicamente se embarca durante excursiones a bordo, no es necesario contar con una visa por separado desde 2009.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7695572800163565,
+     "lid": {
+      "chosen_probability": 0.9967970848083496,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9967970848083496
+     },
+     "asr_ms": 4025
+    },
+    {
+     "start": 68.46,
+     "end": 76.16,
+     "ok": true,
+     "error": null,
+     "text": " El Teatro Argentino fue el lugar donde la señora Kirchner anunció su intención de candideterse como presidenta.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7955012162183893,
+     "lid": {
+      "chosen_probability": 0.9969390630722046,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9969390630722046
+     },
+     "asr_ms": 3752
+    },
+    {
+     "start": 76.32,
+     "end": 84.2,
+     "ok": true,
+     "error": null,
+     "text": " Este es el mismo sitio donde inició su campaña para el Senado en el año 2005 en representación de la provincia de Buenos Aires.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8394011480338646,
+     "lid": {
+      "chosen_probability": 0.9930039644241333,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9930039644241333
+     },
+     "asr_ms": 3973
+    },
+    {
+     "start": 86.82,
+     "end": 93.98,
+     "ok": true,
+     "error": null,
+     "text": " Al largo de la década 1920 la actitud adoptada por la mayor parte de los ciudadanos y de las naciones",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.863290759069579,
+     "lid": {
+      "chosen_probability": 0.9936755895614624,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9936755895614624
+     },
+     "asr_ms": 4003
+    },
+    {
+     "start": 93.84,
+     "end": 96.56,
+     "ok": true,
+     "error": null,
+     "text": " fue la del pacifismo y el aislamiento.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7546221571309226,
+     "lid": {
+      "chosen_probability": 0.9907978773117065,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9907978773117065
+     },
+     "asr_ms": 3690
+    },
+    {
+     "start": 102.42,
+     "end": 107.78,
+     "ok": true,
+     "error": null,
+     "text": " un \"E\" ha renunciado y el \"davays\" \"M\"P lo reemplazará en el gabinete",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6021348561550821,
+     "lid": {
+      "chosen_probability": 0.9938451051712036,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9938451051712036
+     },
+     "asr_ms": 3571
+    },
+    {
+     "start": 107.67,
+     "end": 114.47,
+     "ok": true,
+     "error": null,
+     "text": " Se espera que Norman Lab MEP asuma el puesto de ministros de negocios que David deja vacante.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.710619308501482,
+     "lid": {
+      "chosen_probability": 0.9846101403236389,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9846101403236389
+     },
+     "asr_ms": 3594
+    }
+   ]
+  }
+ ]
+}

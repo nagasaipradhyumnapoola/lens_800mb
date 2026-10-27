@@ -1,0 +1,383 @@
+en clean adaptive WER=0.063 CER=0.023 segs=8 wall=29s
+en clean adaptive WER=0.132 CER=0.079 segs=9 wall=33s
+en clean adaptive WER=0.128 CER=0.062 segs=10 wall=38s
+en clean adaptive WER=0.013 CER=0.005 segs=4 wall=17s
+zh clean adaptive WER=1.000 CER=0.139 segs=9 wall=2111s
+zh clean adaptive WER=0.828 CER=0.085 segs=11 wall=57s
+zh clean adaptive WER=1.000 CER=0.113 segs=6 wall=27s
+es clean adaptive WER=0.104 CER=0.042 segs=9 wall=34s
+es clean adaptive WER=0.102 CER=0.037 segs=11 wall=40s
+es clean adaptive WER=0.145 CER=0.052 segs=10 wall=35s
+ar clean adaptive WER=0.511 CER=0.179 segs=10 wall=40s
+ar clean adaptive WER=0.517 CER=0.154 segs=8 wall=31s
+ar clean adaptive WER=0.576 CER=0.161 segs=9 wall=36s
+fr clean adaptive WER=0.313 CER=0.132 segs=9 wall=33s
+fr clean adaptive WER=0.266 CER=0.100 segs=11 wall=38s
+fr clean adaptive WER=0.202 CER=0.087 segs=10 wall=35s
+pt clean adaptive WER=0.211 CER=0.091 segs=13 wall=45s
+pt clean adaptive WER=0.136 CER=0.043 segs=10 wall=37s
+pt clean adaptive WER=0.131 CER=0.060 segs=12 wall=43s
+ru clean adaptive WER=0.196 CER=0.047 segs=14 wall=50s
+ru clean adaptive WER=0.265 CER=0.079 segs=10 wall=35s
+ru clean adaptive WER=0.251 CER=0.087 segs=12 wall=44s
+ru clean adaptive WER=0.181 CER=0.057 segs=10 wall=36s
+id clean adaptive WER=0.400 CER=0.146 segs=9 wall=34s
+id clean adaptive WER=0.383 CER=0.111 segs=10 wall=36s
+id clean adaptive WER=0.427 CER=0.161 segs=10 wall=38s
+id clean adaptive WER=0.207 CER=0.033 segs=6 wall=23s
+de clean adaptive WER=0.172 CER=0.054 segs=16 wall=55s
+de clean adaptive WER=0.191 CER=0.078 segs=12 wall=41s
+de clean adaptive WER=0.236 CER=0.104 segs=11 wall=35s
+de clean adaptive WER=0.256 CER=0.080 segs=6 wall=20s
+ja clean adaptive WER=1.000 CER=0.241 segs=10 wall=33s
+ja clean adaptive WER=0.893 CER=0.298 segs=8 wall=26s
+ja clean adaptive WER=0.964 CER=0.217 segs=10 wall=32s
+hi clean adaptive WER=0.083 CER=0.023 segs=8 wall=35s
+hi clean adaptive WER=0.328 CER=0.278 segs=13 wall=53s
+hi clean adaptive WER=0.433 CER=0.332 segs=12 wall=53s
+bn clean adaptive WER=0.971 CER=0.972 segs=11 wall=64s
+bn clean adaptive WER=1.041 CER=1.029 segs=12 wall=56s
+bn clean adaptive WER=1.000 CER=1.007 segs=11 wall=57s
+te clean adaptive WER=1.000 CER=1.000 segs=11 wall=76s
+te clean adaptive WER=1.151 CER=0.990 segs=11 wall=63s
+te clean adaptive WER=1.200 CER=1.000 segs=8 wall=40s
+te clean adaptive WER=1.086 CER=0.995 segs=8 wall=52s
+mr clean adaptive WER=1.000 CER=0.980 segs=10 wall=56s
+mr clean adaptive WER=1.151 CER=1.015 segs=14 wall=63s
+mr clean adaptive WER=1.000 CER=0.914 segs=11 wall=57s
+mr clean adaptive WER=1.088 CER=0.997 segs=8 wall=55s
+ta clean adaptive WER=1.007 CER=0.507 segs=12 wall=56s
+ta clean adaptive WER=0.905 CER=0.352 segs=11 wall=48s
+ta clean adaptive WER=0.894 CER=0.362 segs=7 wall=35s
+ur clean adaptive WER=0.956 CER=1.019 segs=8 wall=32s
+ur clean adaptive WER=0.722 CER=0.609 segs=8 wall=32s
+ur clean adaptive WER=0.807 CER=0.691 segs=8 wall=32s
+gu clean adaptive WER=1.000 CER=0.996 segs=10 wall=54s
+gu clean adaptive WER=1.000 CER=0.998 segs=9 wall=56s
+gu clean adaptive WER=1.021 CER=1.060 segs=8 wall=40s
+gu clean adaptive WER=1.000 CER=1.078 segs=5 wall=23s
+[
+ {
+  "language": "ar",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 27,
+  "stored": 27,
+  "failed": 0,
+  "wer": 0.5317,
+  "cer": 0.1662,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0057,
+  "nonspeech_captured": 0.207,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 182398976,
+  "p95_asr_ms": 4524
+ },
+ {
+  "language": "bn",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 34,
+  "stored": 32,
+  "failed": 2,
+  "wer": 1.0039,
+  "cer": 1.0036,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0162,
+  "nonspeech_captured": 0.0344,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 366936064,
+  "p95_asr_ms": 10004
+ },
+ {
+  "language": "de",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 4,
+  "utterances": 29,
+  "segments": 45,
+  "stored": 44,
+  "failed": 1,
+  "wer": 0.2097,
+  "cer": 0.0772,
+  "utterance_recall": 0.8276,
+  "missed_speech": 0.0568,
+  "nonspeech_captured": 0.0314,
+  "false_triggers_per_10min": 1.265,
+  "peak_sum_working_set_bytes": 180850688,
+  "p95_asr_ms": 3729
+ },
+ {
+  "language": "en",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 4,
+  "utterances": 28,
+  "segments": 31,
+  "stored": 31,
+  "failed": 0,
+  "wer": 0.0955,
+  "cer": 0.0484,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0003,
+  "nonspeech_captured": 0.0363,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 181399552,
+  "p95_asr_ms": 4247
+ },
+ {
+  "language": "es",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 30,
+  "stored": 30,
+  "failed": 0,
+  "wer": 0.1174,
+  "cer": 0.0435,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0101,
+  "nonspeech_captured": 0.0954,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 180641792,
+  "p95_asr_ms": 4190
+ },
+ {
+  "language": "fr",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 30,
+  "stored": 26,
+  "failed": 4,
+  "wer": 0.2626,
+  "cer": 0.1066,
+  "utterance_recall": 0.9583,
+  "missed_speech": 0.0095,
+  "nonspeech_captured": 0.1193,
+  "false_triggers_per_10min": 4.993,
+  "peak_sum_working_set_bytes": 180736000,
+  "p95_asr_ms": 3924
+ },
+ {
+  "language": "gu",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 4,
+  "utterances": 28,
+  "segments": 32,
+  "stored": 32,
+  "failed": 0,
+  "wer": 1.0052,
+  "cer": 1.0259,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0004,
+  "nonspeech_captured": 0.1396,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 369111040,
+  "p95_asr_ms": 11060
+ },
+ {
+  "language": "hi",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 33,
+  "stored": 32,
+  "failed": 1,
+  "wer": 0.2932,
+  "cer": 0.2207,
+  "utterance_recall": 0.9583,
+  "missed_speech": 0.0146,
+  "nonspeech_captured": 0.0553,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 425717760,
+  "p95_asr_ms": 5900
+ },
+ {
+  "language": "id",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 4,
+  "utterances": 29,
+  "segments": 35,
+  "stored": 35,
+  "failed": 0,
+  "wer": 0.3709,
+  "cer": 0.1204,
+  "utterance_recall": 0.931,
+  "missed_speech": 0.0241,
+  "nonspeech_captured": 0.0319,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 182099968,
+  "p95_asr_ms": 4166
+ },
+ {
+  "language": "ja",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 28,
+  "stored": 28,
+  "failed": 0,
+  "wer": 0.9494,
+  "cer": 0.2498,
+  "utterance_recall": 0.875,
+  "missed_speech": 0.0346,
+  "nonspeech_captured": 0.0879,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 182640640,
+  "p95_asr_ms": 3641
+ },
+ {
+  "language": "mr",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 4,
+  "utterances": 29,
+  "segments": 43,
+  "stored": 42,
+  "failed": 1,
+  "wer": 1.0623,
+  "cer": 0.977,
+  "utterance_recall": 0.9655,
+  "missed_speech": 0.0182,
+  "nonspeech_captured": 0.0443,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 394129408,
+  "p95_asr_ms": 10776
+ },
+ {
+  "language": "pt",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 35,
+  "stored": 34,
+  "failed": 1,
+  "wer": 0.16,
+  "cer": 0.0653,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0134,
+  "nonspeech_captured": 0.1663,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 180920320,
+  "p95_asr_ms": 4280
+ },
+ {
+  "language": "ru",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 4,
+  "utterances": 32,
+  "segments": 46,
+  "stored": 45,
+  "failed": 1,
+  "wer": 0.2229,
+  "cer": 0.0675,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0057,
+  "nonspeech_captured": 0.0803,
+  "false_triggers_per_10min": 1.186,
+  "peak_sum_working_set_bytes": 181059584,
+  "p95_asr_ms": 3908
+ },
+ {
+  "language": "ta",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 22,
+  "segments": 30,
+  "stored": 30,
+  "failed": 0,
+  "wer": 0.9406,
+  "cer": 0.4128,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.011,
+  "nonspeech_captured": 0.1213,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 182231040,
+  "p95_asr_ms": 6911
+ },
+ {
+  "language": "te",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 4,
+  "utterances": 30,
+  "segments": 38,
+  "stored": 37,
+  "failed": 1,
+  "wer": 1.1085,
+  "cer": 0.9962,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0047,
+  "nonspeech_captured": 0.0081,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 369909760,
+  "p95_asr_ms": 11067
+ },
+ {
+  "language": "ur",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 24,
+  "stored": 24,
+  "failed": 0,
+  "wer": 0.8279,
+  "cer": 0.7772,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.005,
+  "nonspeech_captured": 0.0012,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 388517888,
+  "p95_asr_ms": 4355
+ },
+ {
+  "language": "zh",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 3,
+  "utterances": 21,
+  "segments": 26,
+  "stored": 26,
+  "failed": 0,
+  "wer": 0.9315,
+  "cer": 0.1143,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0004,
+  "nonspeech_captured": 0.2157,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 532189184,
+  "p95_asr_ms": 9346
+ }
+]

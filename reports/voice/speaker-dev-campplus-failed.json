@@ -1,0 +1,4990 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "209bb216c510dee0fe4809327643ce222ebd9ea9de66889c60380598e46f25e7",
+  "lens_engine_sha256": "a8b17424b74b19edd60aaf1932e189a9de0432a946ab2fb537d60d1cfe99e980",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-27T19:45:54",
+  "git_head": "b28dacc644b18668d89842eb446825a4ee3d5926",
+  "speaker_model": "wespeaker_en_voxceleb_CAM++.onnx sha256 c46fad10b5f81e1aa4a60c162714208577093655076c5450f8c469e522ec54ef",
+  "speaker_data": "LibriSpeech test-clean (openslr 12, CC BY 4.0, md5 32fa31d27d2e1cad72775fee3f4849a9) + FLEURS impostors"
+ },
+ "split": "dev",
+ "gate_threshold": -1.0,
+ "conditions": [
+  "clean",
+  "pink10",
+  "babble10"
+ ],
+ "sweep": [
+  {
+   "threshold": 0.0,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.02,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.04,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.06,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.08,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.1,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.12,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.14,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.16,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.18,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.2,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 1.0,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.22,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 0.996,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.24,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0,
+   "far": 0.9921,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.26,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.004,
+   "far": 0.9881,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.28,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0119,
+   "far": 0.9802,
+   "far_fleurs": 1.0
+  },
+  {
+   "threshold": 0.3,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0159,
+   "far": 0.9643,
+   "far_fleurs": 0.9762
+  },
+  {
+   "threshold": 0.32,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0278,
+   "far": 0.9484,
+   "far_fleurs": 0.9643
+  },
+  {
+   "threshold": 0.34,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0437,
+   "far": 0.9286,
+   "far_fleurs": 0.9524
+  },
+  {
+   "threshold": 0.36,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0635,
+   "far": 0.9087,
+   "far_fleurs": 0.9405
+  },
+  {
+   "threshold": 0.38,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.0675,
+   "far": 0.8849,
+   "far_fleurs": 0.9048
+  },
+  {
+   "threshold": 0.4,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.1032,
+   "far": 0.8333,
+   "far_fleurs": 0.8571
+  },
+  {
+   "threshold": 0.42,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.1468,
+   "far": 0.8016,
+   "far_fleurs": 0.8095
+  },
+  {
+   "threshold": 0.44,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.1667,
+   "far": 0.7579,
+   "far_fleurs": 0.75
+  },
+  {
+   "threshold": 0.46,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.2024,
+   "far": 0.7302,
+   "far_fleurs": 0.7262
+  },
+  {
+   "threshold": 0.48,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.2381,
+   "far": 0.6905,
+   "far_fleurs": 0.6667
+  },
+  {
+   "threshold": 0.5,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.2738,
+   "far": 0.6389,
+   "far_fleurs": 0.619
+  },
+  {
+   "threshold": 0.52,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.2897,
+   "far": 0.6032,
+   "far_fleurs": 0.5833
+  },
+  {
+   "threshold": 0.54,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.3413,
+   "far": 0.5635,
+   "far_fleurs": 0.5476
+  },
+  {
+   "threshold": 0.56,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.381,
+   "far": 0.5317,
+   "far_fleurs": 0.5238
+  },
+  {
+   "threshold": 0.58,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.4325,
+   "far": 0.4921,
+   "far_fleurs": 0.4762
+  },
+  {
+   "threshold": 0.6,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.4722,
+   "far": 0.4444,
+   "far_fleurs": 0.4048
+  },
+  {
+   "threshold": 0.62,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.4881,
+   "far": 0.4048,
+   "far_fleurs": 0.369
+  },
+  {
+   "threshold": 0.64,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.5397,
+   "far": 0.3611,
+   "far_fleurs": 0.3333
+  },
+  {
+   "threshold": 0.66,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.5794,
+   "far": 0.3294,
+   "far_fleurs": 0.2976
+  },
+  {
+   "threshold": 0.68,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.6071,
+   "far": 0.2738,
+   "far_fleurs": 0.2619
+  },
+  {
+   "threshold": 0.7,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.6389,
+   "far": 0.2341,
+   "far_fleurs": 0.2143
+  },
+  {
+   "threshold": 0.72,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.6746,
+   "far": 0.1706,
+   "far_fleurs": 0.1071
+  },
+  {
+   "threshold": 0.74,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.7063,
+   "far": 0.1349,
+   "far_fleurs": 0.0833
+  },
+  {
+   "threshold": 0.76,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.746,
+   "far": 0.1151,
+   "far_fleurs": 0.0595
+  },
+  {
+   "threshold": 0.78,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.7698,
+   "far": 0.0754,
+   "far_fleurs": 0.0476
+  },
+  {
+   "threshold": 0.8,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.8016,
+   "far": 0.0516,
+   "far_fleurs": 0.0238
+  },
+  {
+   "threshold": 0.82,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.8333,
+   "far": 0.0357,
+   "far_fleurs": 0.0238
+  },
+  {
+   "threshold": 0.84,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.873,
+   "far": 0.0238,
+   "far_fleurs": 0.0238
+  },
+  {
+   "threshold": 0.86,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.8968,
+   "far": 0.0119,
+   "far_fleurs": 0.0238
+  },
+  {
+   "threshold": 0.88,
+   "targets": 252,
+   "impostors": 252,
+   "frr": 0.9286,
+   "far": 0.0079,
+   "far_fleurs": 0.0238
+  }
+ ],
+ "at_gate": null,
+ "by_condition": {
+  "clean": {
+   "threshold": 0.5,
+   "targets": 84,
+   "impostors": 84,
+   "frr": 0.0833,
+   "far": 0.7738,
+   "far_fleurs": 0.75
+  },
+  "pink10": {
+   "threshold": 0.5,
+   "targets": 84,
+   "impostors": 84,
+   "frr": 0.5,
+   "far": 0.4286,
+   "far_fleurs": 0.3571
+  },
+  "babble10": {
+   "threshold": 0.5,
+   "targets": 84,
+   "impostors": 84,
+   "frr": 0.2381,
+   "far": 0.7143,
+   "far_fleurs": 0.75
+  }
+ },
+ "voice_peak_working_set_bytes": 149729280,
+ "rows": [
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1808-11463857809681844078.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.627,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "1221-135766-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.59,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "1221-135766-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.72,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "672-122797-0025",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.816,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "3570-5694-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.548,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "1221-135766-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.837,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "fleurs-en_us-1729-10383288285905292158.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.349,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "3570-5694-0013",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.589,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "4992-41797-0017",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.576,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "1221-135766-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.656,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "1221-135766-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.984,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "clean",
+   "utterance": "1221-135766-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.598,
+   "kept": true,
+   "voice_peak_ws": 117874688
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1808-11463857809681844078.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.731,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "1221-135766-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.733,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "1221-135766-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.823,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "672-122797-0025",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.778,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "3570-5694-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.48,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "1221-135766-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.572,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "fleurs-en_us-1729-10383288285905292158.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.591,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "3570-5694-0013",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.5,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "4992-41797-0017",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.733,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "1221-135766-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.866,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "1221-135766-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.822,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "pink10",
+   "utterance": "1221-135766-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.622,
+   "kept": true,
+   "voice_peak_ws": 138878976
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1808-11463857809681844078.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.41,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "1221-135766-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.946,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "1221-135766-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.856,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "672-122797-0025",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.659,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "3570-5694-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.447,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "1221-135766-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.938,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "fleurs-en_us-1729-10383288285905292158.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.562,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "3570-5694-0013",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.707,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "4992-41797-0017",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.635,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "1221-135766-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.893,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "1221-135766-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.745,
+   "kept": true
+  },
+  {
+   "owner": "1221",
+   "condition": "babble10",
+   "utterance": "1221-135766-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.837,
+   "kept": true,
+   "voice_peak_ws": 142557184
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "fleurs-hi_in-1978-11550052516777641495.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.747,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "2300-131720-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.784,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "2300-131720-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.808,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "2300-131720-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.711,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "2300-131720-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.797,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "4507-16021-0057",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.674,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "3570-5695-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.499,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "fleurs-en_us-1890-11525263464519603482.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.471,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "4992-41806-0004",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.592,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "2300-131720-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.838,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "2300-131720-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.87,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "clean",
+   "utterance": "4077-13754-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.633,
+   "kept": true,
+   "voice_peak_ws": 115138560
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "fleurs-hi_in-1978-11550052516777641495.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.461,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "2300-131720-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.559,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "2300-131720-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.452,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "2300-131720-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.468,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "2300-131720-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.569,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "4507-16021-0057",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.603,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "3570-5695-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.47,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "fleurs-en_us-1890-11525263464519603482.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.58,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "4992-41806-0004",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.431,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "2300-131720-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.511,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "2300-131720-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.487,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "pink10",
+   "utterance": "4077-13754-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.547,
+   "kept": true,
+   "voice_peak_ws": 113283072
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "fleurs-hi_in-1978-11550052516777641495.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.563,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "2300-131720-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.724,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "2300-131720-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.724,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "2300-131720-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.753,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "2300-131720-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.638,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "4507-16021-0057",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.675,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "3570-5695-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.681,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "fleurs-en_us-1890-11525263464519603482.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.625,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "4992-41806-0004",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.625,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "2300-131720-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.706,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "2300-131720-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.58,
+   "kept": true
+  },
+  {
+   "owner": "2300",
+   "condition": "babble10",
+   "utterance": "4077-13754-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.636,
+   "kept": true,
+   "voice_peak_ws": 138063872
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "2961-960-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.888,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "672-122797-0046",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.758,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "2961-960-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.871,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "2961-960-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.748,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "5142-33396-0018",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.606,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "fleurs-en_us-1750-12596201646041937807.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.666,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "fleurs-cmn_hans_cn-1840-11545158540803261075.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.704,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "2961-960-0001",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.881,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "2961-960-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.713,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "7729-102255-0034",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.6,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "4992-41797-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.722,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "clean",
+   "utterance": "2961-960-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.879,
+   "kept": true,
+   "voice_peak_ws": 115392512
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "2961-960-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.673,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "672-122797-0046",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.79,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "2961-960-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.646,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "2961-960-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.728,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "5142-33396-0018",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.52,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "fleurs-en_us-1750-12596201646041937807.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.603,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "fleurs-cmn_hans_cn-1840-11545158540803261075.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.698,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "2961-960-0001",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.543,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "2961-960-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.63,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "7729-102255-0034",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.545,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "4992-41797-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.725,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "pink10",
+   "utterance": "2961-960-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.767,
+   "kept": true,
+   "voice_peak_ws": 111054848
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "2961-960-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.736,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "672-122797-0046",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.809,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "2961-960-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.538,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "2961-960-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.675,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "5142-33396-0018",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.802,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "fleurs-en_us-1750-12596201646041937807.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.675,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "fleurs-cmn_hans_cn-1840-11545158540803261075.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.532,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "2961-960-0001",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.604,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "2961-960-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.795,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "7729-102255-0034",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.654,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "4992-41797-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.863,
+   "kept": true
+  },
+  {
+   "owner": "2961",
+   "condition": "babble10",
+   "utterance": "2961-960-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.756,
+   "kept": true,
+   "voice_peak_ws": 138186752
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "3570-5694-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.788,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "3570-5694-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.814,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "2961-961-0005",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.534,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "4507-16021-0050",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.534,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "3570-5694-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.823,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "fleurs-en_us-1896-12230326991067783666.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.706,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "3575-170457-0051",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.743,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "3570-5694-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.654,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "fleurs-cmn_hans_cn-1698-10544065594858743613.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.545,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "3570-5694-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.524,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "3729-6852-0041",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.776,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "clean",
+   "utterance": "3570-5694-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.886,
+   "kept": true,
+   "voice_peak_ws": 117207040
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "3570-5694-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.5,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "3570-5694-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.476,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "2961-961-0005",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.368,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "4507-16021-0050",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.323,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "3570-5694-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.527,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "fleurs-en_us-1896-12230326991067783666.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.478,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "3575-170457-0051",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.393,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "3570-5694-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.47,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "fleurs-cmn_hans_cn-1698-10544065594858743613.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.383,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "3570-5694-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.419,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "3729-6852-0041",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.444,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "pink10",
+   "utterance": "3570-5694-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.386,
+   "kept": true,
+   "voice_peak_ws": 116834304
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "3570-5694-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.564,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "3570-5694-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.621,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "2961-961-0005",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.438,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "4507-16021-0050",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.307,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "3570-5694-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.634,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "fleurs-en_us-1896-12230326991067783666.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.531,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "3575-170457-0051",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.51,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "3570-5694-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.342,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "fleurs-cmn_hans_cn-1698-10544065594858743613.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.57,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "3570-5694-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.521,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "3729-6852-0041",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.567,
+   "kept": true
+  },
+  {
+   "owner": "3570",
+   "condition": "babble10",
+   "utterance": "3570-5694-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.566,
+   "kept": true,
+   "voice_peak_ws": 115052544
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "3575-170457-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.698,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "7021-79740-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.505,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "1221-135766-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.853,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "3575-170457-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.832,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "3575-170457-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.809,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "4077-13751-0002",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.807,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "fleurs-hi_in-1847-11099457867420986000.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.612,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1663-11366613032038636511.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.797,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "3575-170457-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.754,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "3575-170457-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.813,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "2961-961-0013",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.774,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "clean",
+   "utterance": "3575-170457-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.562,
+   "kept": true,
+   "voice_peak_ws": 122376192
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "3575-170457-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.53,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "7021-79740-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.335,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "1221-135766-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.251,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "3575-170457-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.582,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "3575-170457-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.679,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "4077-13751-0002",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.27,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "fleurs-hi_in-1847-11099457867420986000.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.365,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1663-11366613032038636511.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.459,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "3575-170457-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.581,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "3575-170457-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.247,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "2961-961-0013",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.566,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "pink10",
+   "utterance": "3575-170457-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.405,
+   "kept": true,
+   "voice_peak_ws": 118018048
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "3575-170457-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.279,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "7021-79740-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.279,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "1221-135766-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.625,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "3575-170457-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.575,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "3575-170457-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.454,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "4077-13751-0002",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.329,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "fleurs-hi_in-1847-11099457867420986000.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.709,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1663-11366613032038636511.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.598,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "3575-170457-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.625,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "3575-170457-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.359,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "2961-961-0013",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.781,
+   "kept": true
+  },
+  {
+   "owner": "3575",
+   "condition": "babble10",
+   "utterance": "3575-170457-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.692,
+   "kept": true,
+   "voice_peak_ws": 116346880
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1702-11421541820976215987.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.719,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "3570-5694-0001",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.724,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "672-122797-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.524,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "fleurs-en_us-1728-10197164397713068203.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.405,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "3729-6852-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.618,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "3729-6852-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.874,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "3729-6852-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.719,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "3729-6852-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.632,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "4992-41797-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.392,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "3729-6852-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.692,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "2300-131720-0026",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.5,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "clean",
+   "utterance": "3729-6852-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.666,
+   "kept": true,
+   "voice_peak_ws": 117477376
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1702-11421541820976215987.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.335,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "3570-5694-0001",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.414,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "672-122797-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.213,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "fleurs-en_us-1728-10197164397713068203.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.436,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "3729-6852-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.441,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "3729-6852-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.446,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "3729-6852-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.393,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "3729-6852-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.465,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "4992-41797-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.39,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "3729-6852-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.415,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "2300-131720-0026",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.301,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "pink10",
+   "utterance": "3729-6852-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.436,
+   "kept": true,
+   "voice_peak_ws": 117882880
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1702-11421541820976215987.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.549,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "3570-5694-0001",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.712,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "672-122797-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.442,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "fleurs-en_us-1728-10197164397713068203.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.695,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "3729-6852-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.493,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "3729-6852-0002",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.551,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "3729-6852-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.569,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "3729-6852-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.745,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "4992-41797-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.609,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "3729-6852-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.591,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "2300-131720-0026",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.425,
+   "kept": true
+  },
+  {
+   "owner": "3729",
+   "condition": "babble10",
+   "utterance": "3729-6852-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.56,
+   "kept": true,
+   "voice_peak_ws": 117862400
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "4077-13751-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.839,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1837-10326364514449199568.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.65,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1952-10759290748382912235.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.437,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "4077-13751-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.867,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "5683-32865-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.838,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "4077-13751-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.783,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "4992-41806-0014",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.767,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "4077-13751-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.91,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "4077-13751-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.862,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "672-122797-0029",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.741,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "4077-13751-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.907,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "clean",
+   "utterance": "3570-5694-0015",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.676,
+   "kept": true,
+   "voice_peak_ws": 143060992
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "4077-13751-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.629,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1837-10326364514449199568.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.671,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1952-10759290748382912235.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.452,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "4077-13751-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.362,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "5683-32865-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.592,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "4077-13751-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.348,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "4992-41806-0014",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.408,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "4077-13751-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.593,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "4077-13751-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.537,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "672-122797-0029",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.432,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "4077-13751-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.552,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "pink10",
+   "utterance": "3570-5694-0015",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.459,
+   "kept": true,
+   "voice_peak_ws": 111140864
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "4077-13751-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.765,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1837-10326364514449199568.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.599,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1952-10759290748382912235.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.412,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "4077-13751-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.454,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "5683-32865-0012",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.771,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "4077-13751-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.488,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "4992-41806-0014",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.795,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "4077-13751-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.646,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "4077-13751-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.823,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "672-122797-0029",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.623,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "4077-13751-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.655,
+   "kept": true
+  },
+  {
+   "owner": "4077",
+   "condition": "babble10",
+   "utterance": "3570-5694-0015",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.301,
+   "kept": true,
+   "voice_peak_ws": 114118656
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "3729-6852-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.569,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "4992-41806-0006",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.763,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "4507-16021-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.531,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "4507-16021-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.46,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "4507-16021-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.441,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1730-10499606678746249193.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.75,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "7729-102255-0001",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.492,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "4507-16021-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.655,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "fleurs-te_in-1908-10085601229183142282.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.606,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "4507-16021-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.336,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "4507-16021-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.409,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "clean",
+   "utterance": "3729-6852-0035",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.768,
+   "kept": true,
+   "voice_peak_ws": 113336320
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "3729-6852-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.471,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "4992-41806-0006",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.515,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "4507-16021-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.476,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "4507-16021-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.402,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "4507-16021-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.444,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1730-10499606678746249193.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.515,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "7729-102255-0001",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.392,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "4507-16021-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.524,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "fleurs-te_in-1908-10085601229183142282.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.394,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "4507-16021-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.434,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "4507-16021-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.484,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "pink10",
+   "utterance": "3729-6852-0035",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.454,
+   "kept": true,
+   "voice_peak_ws": 99086336
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "3729-6852-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.48,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "4992-41806-0006",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.677,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "4507-16021-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.501,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "4507-16021-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.524,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "4507-16021-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.63,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1730-10499606678746249193.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.682,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "7729-102255-0001",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.663,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "4507-16021-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.567,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "fleurs-te_in-1908-10085601229183142282.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.423,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "4507-16021-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.463,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "4507-16021-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.52,
+   "kept": true
+  },
+  {
+   "owner": "4507",
+   "condition": "babble10",
+   "utterance": "3729-6852-0035",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.572,
+   "kept": true,
+   "voice_peak_ws": 114483200
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "4992-23283-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.79,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "fleurs-en_us-1893-11593450817032542587.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.491,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "4992-23283-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.911,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "4992-23283-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.883,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "4992-23283-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.892,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1848-11449333388417771996.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.657,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "4992-23283-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.692,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "7021-85628-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.676,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "4992-23283-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.687,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "7021-79740-0006",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.395,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "5683-32866-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.667,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "clean",
+   "utterance": "5683-32865-0003",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.65,
+   "kept": true,
+   "voice_peak_ws": 121229312
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "4992-23283-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.641,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "fleurs-en_us-1893-11593450817032542587.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.565,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "4992-23283-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.523,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "4992-23283-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.701,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "4992-23283-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.556,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1848-11449333388417771996.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.499,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "4992-23283-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.635,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "7021-85628-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.688,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "4992-23283-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.407,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "7021-79740-0006",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.39,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "5683-32866-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.725,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "pink10",
+   "utterance": "5683-32865-0003",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.542,
+   "kept": true,
+   "voice_peak_ws": 119631872
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "4992-23283-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.558,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "fleurs-en_us-1893-11593450817032542587.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.723,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "4992-23283-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.641,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "4992-23283-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.536,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "4992-23283-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.767,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1848-11449333388417771996.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.648,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "4992-23283-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.577,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "7021-85628-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.586,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "4992-23283-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.489,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "7021-79740-0006",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.533,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "5683-32866-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.467,
+   "kept": true
+  },
+  {
+   "owner": "4992",
+   "condition": "babble10",
+   "utterance": "5683-32865-0003",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.772,
+   "kept": true,
+   "voice_peak_ws": 121376768
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "2300-131720-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.465,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "5142-33396-0012",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.809,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "fleurs-en_us-1667-11554335886429174193.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.407,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "fleurs-en_us-1893-11536232800365538941.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.703,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "1221-135767-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.338,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "5683-32865-0003",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.238,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "5142-33396-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.388,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "5142-33396-0011",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.359,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "5142-33396-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.841,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "5142-33396-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.799,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "3729-6852-0015",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.637,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "clean",
+   "utterance": "5142-33396-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.398,
+   "kept": true,
+   "voice_peak_ws": 111185920
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "2300-131720-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.501,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "5142-33396-0012",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.616,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "fleurs-en_us-1667-11554335886429174193.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.622,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "fleurs-en_us-1893-11536232800365538941.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.472,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "1221-135767-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.656,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "5683-32865-0003",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.385,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "5142-33396-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.401,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "5142-33396-0011",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.318,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "5142-33396-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.765,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "5142-33396-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.489,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "3729-6852-0015",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.72,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "pink10",
+   "utterance": "5142-33396-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.309,
+   "kept": true,
+   "voice_peak_ws": 108228608
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "2300-131720-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.701,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "5142-33396-0012",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.701,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "fleurs-en_us-1667-11554335886429174193.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.706,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "fleurs-en_us-1893-11536232800365538941.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.435,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "1221-135767-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.619,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "5683-32865-0003",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.407,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "5142-33396-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.407,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "5142-33396-0011",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.383,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "5142-33396-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.667,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "5142-33396-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.757,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "3729-6852-0015",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.396,
+   "kept": true
+  },
+  {
+   "owner": "5142",
+   "condition": "babble10",
+   "utterance": "5142-33396-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.396,
+   "kept": true,
+   "voice_peak_ws": 110706688
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "1221-135766-0004",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.832,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "5683-32865-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.858,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "fleurs-hi_in-1769-11483002217487175688.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.701,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "3570-5696-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.298,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "fleurs-cmn_hans_cn-1884-10400579561005332584.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.89,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "5683-32865-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.903,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "5683-32865-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.723,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "4992-41806-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.837,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "3729-6852-0028",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.587,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "5683-32865-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.881,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "5683-32865-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.639,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "clean",
+   "utterance": "5683-32865-0011",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.881,
+   "kept": true,
+   "voice_peak_ws": 117022720
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "1221-135766-0004",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.528,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "5683-32865-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.464,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "fleurs-hi_in-1769-11483002217487175688.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.295,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "3570-5696-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.346,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "fleurs-cmn_hans_cn-1884-10400579561005332584.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.29,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "5683-32865-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.49,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "5683-32865-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.412,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "4992-41806-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.52,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "3729-6852-0028",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.488,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "5683-32865-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.295,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "5683-32865-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.268,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "pink10",
+   "utterance": "5683-32865-0011",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.588,
+   "kept": true,
+   "voice_peak_ws": 112533504
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "1221-135766-0004",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.486,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "5683-32865-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.534,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "fleurs-hi_in-1769-11483002217487175688.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.376,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "3570-5696-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.416,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "fleurs-cmn_hans_cn-1884-10400579561005332584.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.884,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "5683-32865-0010",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.446,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "5683-32865-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.64,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "4992-41806-0016",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.665,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "3729-6852-0028",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.477,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "5683-32865-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.43,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "5683-32865-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.382,
+   "kept": true
+  },
+  {
+   "owner": "5683",
+   "condition": "babble10",
+   "utterance": "5683-32865-0011",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.748,
+   "kept": true,
+   "voice_peak_ws": 116256768
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "672-122797-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.542,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "2961-960-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.773,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "672-122797-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.846,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "fleurs-hi_in-1974-12211625880636332335.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.709,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "2300-131720-0021",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.843,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "7021-85628-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.713,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "672-122797-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.696,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "2300-131720-0018",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.434,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "672-122797-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.801,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1708-10975282397110463233.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.795,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "672-122797-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.923,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "clean",
+   "utterance": "672-122797-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.902,
+   "kept": true,
+   "voice_peak_ws": 149729280
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "672-122797-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.552,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "2961-960-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.697,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "672-122797-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.565,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "fleurs-hi_in-1974-12211625880636332335.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.434,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "2300-131720-0021",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.553,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "7021-85628-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.612,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "672-122797-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.321,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "2300-131720-0018",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.371,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "672-122797-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.436,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1708-10975282397110463233.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.492,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "672-122797-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.565,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "pink10",
+   "utterance": "672-122797-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.711,
+   "kept": true,
+   "voice_peak_ws": 120344576
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "672-122797-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.704,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "2961-960-0000",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.652,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "672-122797-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.418,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "fleurs-hi_in-1974-12211625880636332335.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.581,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "2300-131720-0021",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.436,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "7021-85628-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.848,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "672-122797-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.483,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "2300-131720-0018",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.575,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "672-122797-0003",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.62,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1708-10975282397110463233.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.503,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "672-122797-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.688,
+   "kept": true
+  },
+  {
+   "owner": "672",
+   "condition": "babble10",
+   "utterance": "672-122797-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.767,
+   "kept": true,
+   "voice_peak_ws": 145629184
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "5142-33396-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.626,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "7021-79730-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.591,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "7021-79730-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.81,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "fleurs-cmn_hans_cn-1665-11220805329666166649.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.499,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "fleurs-hi_in-1836-10128382631186456345.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.714,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "5683-32866-0030",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.717,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "7021-79730-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.702,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "7021-79730-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.886,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "5142-36377-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.736,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "7021-79730-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.814,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "3729-6852-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.78,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "clean",
+   "utterance": "7021-79730-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.765,
+   "kept": true,
+   "voice_peak_ws": 148385792
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "5142-33396-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.709,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "7021-79730-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.352,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "7021-79730-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.449,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "fleurs-cmn_hans_cn-1665-11220805329666166649.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.39,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "fleurs-hi_in-1836-10128382631186456345.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.478,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "5683-32866-0030",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.586,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "7021-79730-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.54,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "7021-79730-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.542,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "5142-36377-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.491,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "7021-79730-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.511,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "3729-6852-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.395,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "pink10",
+   "utterance": "7021-79730-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.392,
+   "kept": true,
+   "voice_peak_ws": 147353600
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "5142-33396-0008",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.48,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "7021-79730-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.628,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "7021-79730-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.693,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "fleurs-cmn_hans_cn-1665-11220805329666166649.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.305,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "fleurs-hi_in-1836-10128382631186456345.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.595,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "5683-32866-0030",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.713,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "7021-79730-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.48,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "7021-79730-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.6,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "5142-36377-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.69,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "7021-79730-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.649,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "3729-6852-0020",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.688,
+   "kept": true
+  },
+  {
+   "owner": "7021",
+   "condition": "babble10",
+   "utterance": "7021-79730-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.729,
+   "kept": true,
+   "voice_peak_ws": 147386368
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "5142-33396-0011",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.282,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "5142-33396-0062",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.494,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1705-10333693975325005728.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.767,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "fleurs-es_419-1890-10730081657308612914.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.687,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "7729-102255-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.821,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "7729-102255-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.792,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "7729-102255-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.845,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "7729-102255-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.841,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "7729-102255-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.758,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "7729-102255-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.874,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "5142-33396-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.349,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "clean",
+   "utterance": "1221-135767-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.548,
+   "kept": true,
+   "voice_peak_ws": 123662336
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "5142-33396-0011",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.346,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "5142-33396-0062",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.348,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1705-10333693975325005728.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.51,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "fleurs-es_419-1890-10730081657308612914.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.392,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "7729-102255-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.382,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "7729-102255-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.338,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "7729-102255-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.434,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "7729-102255-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.309,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "7729-102255-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.339,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "7729-102255-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.568,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "5142-33396-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.36,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "pink10",
+   "utterance": "1221-135767-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.602,
+   "kept": true,
+   "voice_peak_ws": 138608640
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "5142-33396-0011",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.679,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "5142-33396-0062",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.679,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1705-10333693975325005728.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.521,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "fleurs-es_419-1890-10730081657308612914.wav",
+   "target": false,
+   "impostor_source": "fleurs",
+   "similarity": 0.36,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "7729-102255-0005",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.4,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "7729-102255-0007",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.597,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "7729-102255-0004",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.743,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "7729-102255-0009",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.677,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "7729-102255-0006",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.478,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "7729-102255-0008",
+   "target": true,
+   "impostor_source": null,
+   "similarity": 0.66,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "5142-33396-0010",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.692,
+   "kept": true
+  },
+  {
+   "owner": "7729",
+   "condition": "babble10",
+   "utterance": "1221-135767-0009",
+   "target": false,
+   "impostor_source": "librispeech",
+   "similarity": 0.666,
+   "kept": true,
+   "voice_peak_ws": 143032320
+  }
+ ]
+}

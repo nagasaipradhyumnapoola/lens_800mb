@@ -1,0 +1,212 @@
+en clean adaptive WER=0.124 CER=0.059 segs=8 wall=35s
+en white5 adaptive WER=0.353 CER=0.190 segs=11 wall=38s
+en babble5 adaptive WER=0.406 CER=0.243 segs=11 wall=61s
+en pink5 adaptive WER=0.324 CER=0.159 segs=13 wall=63s
+en fan5 adaptive WER=0.153 CER=0.074 segs=10 wall=53s
+en clean adaptive WER=0.057 CER=0.017 segs=8 wall=41s
+en white5 adaptive WER=0.359 CER=0.205 segs=11 wall=57s
+en babble5 adaptive WER=0.411 CER=0.257 segs=9 wall=41s
+en pink5 adaptive WER=0.172 CER=0.084 segs=10 wall=45s
+en fan5 adaptive WER=0.083 CER=0.025 segs=9 wall=38s
+es clean adaptive WER=0.126 CER=0.041 segs=11 wall=45s
+es white5 adaptive WER=0.597 CER=0.286 segs=15 wall=65s
+es babble5 adaptive WER=0.613 CER=0.401 segs=13 wall=60s
+es pink5 adaptive WER=0.445 CER=0.220 segs=15 wall=59s
+es fan5 adaptive WER=0.141 CER=0.049 segs=13 wall=52s
+es clean adaptive WER=0.106 CER=0.031 segs=10 wall=69s
+es white5 adaptive WER=0.498 CER=0.282 segs=14 wall=71s
+es babble5 adaptive WER=0.444 CER=0.336 segs=12 wall=46s
+es pink5 adaptive WER=0.256 CER=0.086 segs=13 wall=45s
+es fan5 adaptive WER=0.106 CER=0.022 segs=13 wall=52s
+[
+ {
+  "language": "en",
+  "condition": "babble5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 20,
+  "stored": 20,
+  "failed": 0,
+  "wer": 0.4088,
+  "cer": 0.2501,
+  "utterance_recall": 0.6875,
+  "missed_speech": 0.0741,
+  "nonspeech_captured": 0.2777,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 181063680,
+  "p95_asr_ms": 6326
+ },
+ {
+  "language": "en",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 16,
+  "stored": 16,
+  "failed": 0,
+  "wer": 0.0884,
+  "cer": 0.0373,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0044,
+  "nonspeech_captured": 0.0113,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 180662272,
+  "p95_asr_ms": 6368
+ },
+ {
+  "language": "en",
+  "condition": "fan5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 19,
+  "stored": 19,
+  "failed": 0,
+  "wer": 0.116,
+  "cer": 0.048,
+  "utterance_recall": 0.625,
+  "missed_speech": 0.083,
+  "nonspeech_captured": 0.0,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 179970048,
+  "p95_asr_ms": 6222
+ },
+ {
+  "language": "en",
+  "condition": "pink5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 23,
+  "stored": 23,
+  "failed": 0,
+  "wer": 0.2431,
+  "cer": 0.1197,
+  "utterance_recall": 0.5625,
+  "missed_speech": 0.089,
+  "nonspeech_captured": 0.0,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 180666368,
+  "p95_asr_ms": 5461
+ },
+ {
+  "language": "en",
+  "condition": "white5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 22,
+  "stored": 22,
+  "failed": 0,
+  "wer": 0.3564,
+  "cer": 0.1982,
+  "utterance_recall": 0.5,
+  "missed_speech": 0.0962,
+  "nonspeech_captured": 0.0,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 180215808,
+  "p95_asr_ms": 6031
+ },
+ {
+  "language": "es",
+  "condition": "babble5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 25,
+  "stored": 18,
+  "failed": 7,
+  "wer": 0.5251,
+  "cer": 0.3687,
+  "utterance_recall": 0.8125,
+  "missed_speech": 0.0562,
+  "nonspeech_captured": 0.2232,
+  "false_triggers_per_10min": 5.119,
+  "peak_sum_working_set_bytes": 180170752,
+  "p95_asr_ms": 7833
+ },
+ {
+  "language": "es",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 21,
+  "stored": 21,
+  "failed": 0,
+  "wer": 0.1156,
+  "cer": 0.0359,
+  "utterance_recall": 0.9375,
+  "missed_speech": 0.0135,
+  "nonspeech_captured": 0.1365,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 181780480,
+  "p95_asr_ms": 11192
+ },
+ {
+  "language": "es",
+  "condition": "fan5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 26,
+  "stored": 26,
+  "failed": 0,
+  "wer": 0.1231,
+  "cer": 0.0354,
+  "utterance_recall": 0.75,
+  "missed_speech": 0.0645,
+  "nonspeech_captured": 0.0035,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 179204096,
+  "p95_asr_ms": 4380
+ },
+ {
+  "language": "es",
+  "condition": "pink5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 28,
+  "stored": 28,
+  "failed": 0,
+  "wer": 0.3467,
+  "cer": 0.1528,
+  "utterance_recall": 0.75,
+  "missed_speech": 0.0708,
+  "nonspeech_captured": 0.0,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 178851840,
+  "p95_asr_ms": 4187
+ },
+ {
+  "language": "es",
+  "condition": "white5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 2,
+  "utterances": 16,
+  "segments": 29,
+  "stored": 29,
+  "failed": 0,
+  "wer": 0.5452,
+  "cer": 0.2841,
+  "utterance_recall": 0.8125,
+  "missed_speech": 0.0702,
+  "nonspeech_captured": 0.0,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 178442240,
+  "p95_asr_ms": 6311
+ }
+]

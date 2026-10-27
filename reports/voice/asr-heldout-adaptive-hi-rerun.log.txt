@@ -1,0 +1,62 @@
+hi white5 adaptive WER=0.995 CER=0.962 segs=12 wall=59s
+hi fan5 adaptive WER=1.000 CER=0.998 segs=10 wall=33s
+hi babble5 adaptive WER=0.995 CER=0.958 segs=9 wall=53s
+[
+ {
+  "language": "hi",
+  "condition": "babble5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 1,
+  "utterances": 8,
+  "segments": 9,
+  "stored": 9,
+  "failed": 0,
+  "wer": 0.9951,
+  "cer": 0.9584,
+  "utterance_recall": 0.625,
+  "missed_speech": 0.1051,
+  "nonspeech_captured": 0.2182,
+  "false_triggers_per_10min": 5.317,
+  "peak_sum_working_set_bytes": 182149120,
+  "p95_asr_ms": 10895
+ },
+ {
+  "language": "hi",
+  "condition": "fan5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 1,
+  "utterances": 8,
+  "segments": 10,
+  "stored": 10,
+  "failed": 0,
+  "wer": 1.0,
+  "cer": 0.9976,
+  "utterance_recall": 0.875,
+  "missed_speech": 0.0317,
+  "nonspeech_captured": 0.0,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 181055488,
+  "p95_asr_ms": 6203
+ },
+ {
+  "language": "hi",
+  "condition": "white5",
+  "vad": "adaptive",
+  "mode": "product",
+  "sessions": 1,
+  "utterances": 8,
+  "segments": 12,
+  "stored": 12,
+  "failed": 0,
+  "wer": 0.9951,
+  "cer": 0.962,
+  "utterance_recall": 0.625,
+  "missed_speech": 0.1177,
+  "nonspeech_captured": 0.0,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 181792768,
+  "p95_asr_ms": 9091
+ }
+]

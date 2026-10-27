@@ -1,0 +1,17 @@
+en_us 40
+cmn_hans_cn 40
+es_419 40
+ar_eg 40
+fr_fr 40
+pt_br 40
+ru_ru 40
+id_id 40
+de_de 40
+ja_jp 40
+hi_in 40
+bn_in 40
+te_in 40
+mr_in 40
+ta_in 40
+ur_pk 40
+gu_in 40
