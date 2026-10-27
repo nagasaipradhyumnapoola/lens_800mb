@@ -1,0 +1,26 @@
+progress stage=import done=128/10000 rate=418.2/s elapsed=0s eta=24s engine_wset_mb=11 last_batch=0
+progress stage=index done=4096/10000 rate=129.9/s elapsed=32s eta=45s engine_wset_mb=185 chunks=4096
+progress stage=index done=8192/10000 rate=129.6/s elapsed=63s eta=14s engine_wset_mb=185 chunks=8192
+progress stage=index done=10000/10000 rate=132.7/s elapsed=75s eta=0s engine_wset_mb=185 chunks=10000
+progress stage=query done=0/480 rate=0.0/s elapsed=0s eta=nans engine_wset_mb=185 modes=9
+progress stage=query done=25/480 rate=1.3/s elapsed=19s eta=350s engine_wset_mb=334 modes=9
+progress stage=query done=50/480 rate=1.4/s elapsed=36s eta=311s engine_wset_mb=334 modes=9
+progress stage=query done=75/480 rate=1.4/s elapsed=53s eta=286s engine_wset_mb=334 modes=9
+progress stage=query done=100/480 rate=1.4/s elapsed=70s eta=267s engine_wset_mb=334 modes=9
+progress stage=query done=125/480 rate=1.4/s elapsed=87s eta=247s engine_wset_mb=335 modes=9
+progress stage=query done=150/480 rate=1.5/s elapsed=103s eta=226s engine_wset_mb=334 modes=9
+progress stage=query done=175/480 rate=1.5/s elapsed=120s eta=209s engine_wset_mb=335 modes=9
+progress stage=query done=200/480 rate=1.5/s elapsed=136s eta=190s engine_wset_mb=335 modes=9
+progress stage=query done=225/480 rate=1.5/s elapsed=152s eta=173s engine_wset_mb=335 modes=9
+progress stage=query done=250/480 rate=1.5/s elapsed=169s eta=156s engine_wset_mb=335 modes=9
+progress stage=query done=275/480 rate=1.5/s elapsed=186s eta=138s engine_wset_mb=335 modes=9
+progress stage=query done=300/480 rate=1.5/s elapsed=203s eta=122s engine_wset_mb=335 modes=9
+progress stage=query done=325/480 rate=1.5/s elapsed=223s eta=106s engine_wset_mb=335 modes=9
+progress stage=query done=350/480 rate=1.4/s elapsed=242s eta=90s engine_wset_mb=335 modes=9
+progress stage=query done=375/480 rate=1.4/s elapsed=261s eta=73s engine_wset_mb=335 modes=9
+progress stage=query done=400/480 rate=1.4/s elapsed=277s eta=55s engine_wset_mb=335 modes=9
+progress stage=query done=425/480 rate=1.4/s elapsed=296s eta=38s engine_wset_mb=335 modes=9
+progress stage=query done=450/480 rate=1.4/s elapsed=315s eta=21s engine_wset_mb=335 modes=9
+progress stage=query done=475/480 rate=1.4/s elapsed=335s eta=4s engine_wset_mb=335 modes=9
+10000 {"legacy_search": {"recall@1": 0.272108843537415, "recall@10": 0.272108843537415, "mrr@10": 0.272108843537415, "abstain_ok": 1.0}, "legacy_context": {"recall@1": 0.272108843537415, "recall@10": 0.272108843537415, "mrr@10": 0.272108843537415, "abstain_ok": 1.0}, "keyword": {"recall@1": 0.4489795918367347, "recall@10": 0.46938775510204084, "mrr@10": 0.457312925170068, "abstain_ok": 1.0}, "semantic": {"recall@1": 0.7414965986394558, "recall@10": 0.8673469387755102, "mrr@10": 0.7881897203325775, "abstain_ok": 0.8333333333333334}, "hybrid": {"recall@1": 0.7585034013605442, "recall@10": 0.8843537414965986, "mrr@10": 0.8073507180650038, "abstain_ok": 0.8333333333333334}, "hybrid_rerank": {"recall@1": 0.8231292517006803, "recall@10": 0.8775510204081632, "mrr@10": 0.8427194687398769, "abstain_ok": 0.8809523809523809}, "semantic_c": {"recall@1": 0.8469387755102041, "recall@10": 0.9659863945578231, "mrr@10": 0.8899133462908972, "abstain_ok": 0.8333333333333334}, "hybrid_c": {"recall@1": 0.8503401360544217, "recall@10": 0.9625850340136054, "mrr@10": 0.8906503077421445, "abstain_ok": 0.9523809523809523}, "hybrid_rerank_c": {"recall@1": 0.8401360544217688, "recall@10": 0.9693877551020408, "mrr@10": 0.8846182917611489, "abstain_ok": 1.0}} {"semantic": {"threshold": 0.8309, "dev_balanced_accuracy": 0.7585034013605443}, "hybrid": {"threshold": 0.8309, "dev_balanced_accuracy": 0.8012820512820513}, "hybrid_rerank": {"threshold": -1.8282, "dev_balanced_accuracy": 0.9714285714285714}, "semantic_c": {"threshold": 0.332, "dev_balanced_accuracy": 0.8660275319567354}, "hybrid_c": {"threshold": 0.3661, "dev_balanced_accuracy": 0.9078947368421053}, "hybrid_rerank_c": {"threshold": 1.7325, "dev_balanced_accuracy": 0.9130434782608696}}
+exit=0

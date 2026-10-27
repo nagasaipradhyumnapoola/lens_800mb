@@ -1,0 +1,17 @@
+{
+  "history_records": 10000,
+  "query_count": 100,
+  "recall_at_5": 1.0,
+  "unanswerable_queries": 20,
+  "correct_not_found": 20,
+  "insert_failure_count": 0,
+  "failures": [],
+  "elapsed_s": 18.85351790000277,
+  "dataset_kind": "Lens-authored synthetic anchor/substring retrieval; natural questions not validated",
+  "by_language": {
+    "en": 1.0,
+    "zh": 1.0,
+    "es": 1.0,
+    "hi": 1.0
+  }
+}

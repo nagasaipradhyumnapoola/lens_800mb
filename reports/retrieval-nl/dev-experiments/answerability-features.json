@@ -1,0 +1,171 @@
+{
+ "mode": "hybrid_rerank_rrf_c",
+ "rows": 614,
+ "groups": 233,
+ "target_false_answer_rate": 0.05,
+ "features": [
+  "rerank",
+  "rerank_margin",
+  "cosine",
+  "cosine_margin",
+  "keyword_coverage",
+  "units",
+  "same_language",
+  "full_match"
+ ],
+ "cv_thresholds": [
+  0.8210000000000001,
+  0.836,
+  0.798,
+  0.882,
+  0.833
+ ],
+ "out_of_fold": {
+  "dev": {
+   "answerable": 126,
+   "unanswerable": 18,
+   "near_miss": 0,
+   "top1_correct_and_answered": 0.47619047619047616,
+   "false_rejection_of_correct_evidence": 0.3877551020408163,
+   "wrong_evidence_answered": 0.007936507936507936,
+   "unanswerable_rejected": 1.0,
+   "near_miss_rejected": null
+  },
+  "expansion": {
+   "answerable": 30,
+   "unanswerable": 32,
+   "near_miss": 25,
+   "top1_correct_and_answered": 0.3333333333333333,
+   "false_rejection_of_correct_evidence": 0.6551724137931034,
+   "wrong_evidence_answered": 0.0,
+   "unanswerable_rejected": 0.96875,
+   "near_miss_rejected": 0.96
+  },
+  "nearmiss": {
+   "answerable": 0,
+   "unanswerable": 72,
+   "near_miss": 0,
+   "top1_correct_and_answered": null,
+   "false_rejection_of_correct_evidence": null,
+   "wrong_evidence_answered": null,
+   "unanswerable_rejected": 0.9027777777777778,
+   "near_miss_rejected": null
+  },
+  "test": {
+   "answerable": 294,
+   "unanswerable": 42,
+   "near_miss": 0,
+   "top1_correct_and_answered": 0.5374149659863946,
+   "false_rejection_of_correct_evidence": 0.3875968992248062,
+   "wrong_evidence_answered": 0.017006802721088437,
+   "unanswerable_rejected": 1.0,
+   "near_miss_rejected": null
+  },
+  "all": {
+   "answerable": 450,
+   "unanswerable": 164,
+   "near_miss": 25,
+   "top1_correct_and_answered": 0.5066666666666667,
+   "false_rejection_of_correct_evidence": 0.4077922077922078,
+   "wrong_evidence_answered": 0.013333333333333334,
+   "unanswerable_rejected": 0.9512195121951219,
+   "near_miss_rejected": 0.96
+  }
+ },
+ "baseline_fixed_rule": {
+  "dev": {
+   "answerable": 126,
+   "unanswerable": 18,
+   "near_miss": 0,
+   "top1_correct_and_answered": 0.746031746031746,
+   "false_rejection_of_correct_evidence": 0.04081632653061224,
+   "wrong_evidence_answered": 0.15079365079365079,
+   "unanswerable_rejected": 0.8888888888888888,
+   "near_miss_rejected": null
+  },
+  "expansion": {
+   "answerable": 30,
+   "unanswerable": 32,
+   "near_miss": 25,
+   "top1_correct_and_answered": 0.9333333333333333,
+   "false_rejection_of_correct_evidence": 0.034482758620689655,
+   "wrong_evidence_answered": 0.03333333333333333,
+   "unanswerable_rejected": 0.46875,
+   "near_miss_rejected": 0.31999999999999995
+  },
+  "nearmiss": {
+   "answerable": 0,
+   "unanswerable": 72,
+   "near_miss": 0,
+   "top1_correct_and_answered": null,
+   "false_rejection_of_correct_evidence": null,
+   "wrong_evidence_answered": null,
+   "unanswerable_rejected": 0.11111111111111116,
+   "near_miss_rejected": null
+  },
+  "test": {
+   "answerable": 294,
+   "unanswerable": 42,
+   "near_miss": 0,
+   "top1_correct_and_answered": 0.8299319727891157,
+   "false_rejection_of_correct_evidence": 0.05426356589147287,
+   "wrong_evidence_answered": 0.08843537414965986,
+   "unanswerable_rejected": 0.9761904761904762,
+   "near_miss_rejected": null
+  },
+  "all": {
+   "answerable": 450,
+   "unanswerable": 164,
+   "near_miss": 25,
+   "top1_correct_and_answered": 0.8133333333333334,
+   "false_rejection_of_correct_evidence": 0.04935064935064935,
+   "wrong_evidence_answered": 0.10222222222222223,
+   "unanswerable_rejected": 0.4878048780487805,
+   "near_miss_rejected": 0.31999999999999995
+  }
+ },
+ "final_model": {
+  "mean": [
+   1.6148912465163425,
+   3.5303666111664294,
+   0.4116587535335239,
+   0.10218607741157534,
+   0.32902699905957244,
+   0.41775244299674275,
+   0.5635179153094463,
+   0.1986970684039088
+  ],
+  "std": [
+   3.9150502765874484,
+   3.918911253540362,
+   0.11386031764014291,
+   0.10622562774121268,
+   0.39715476395347593,
+   0.21296150740583855,
+   0.495949065355142,
+   0.39901947848399966
+  ],
+  "weights": [
+   1.1510553859933157,
+   0.1349220320187114,
+   0.4939389152275891,
+   0.41403101971465506,
+   -1.8910423387737227,
+   -0.2762574042445934,
+   0.2421395919622583,
+   2.6613744199246296,
+   1.1190726143482812
+  ],
+  "threshold": 0.8290000000000001,
+  "in_sample": {
+   "answerable": 450,
+   "unanswerable": 164,
+   "near_miss": 25,
+   "top1_correct_and_answered": 0.5222222222222223,
+   "false_rejection_of_correct_evidence": 0.38961038961038963,
+   "wrong_evidence_answered": 0.013333333333333334,
+   "unanswerable_rejected": 0.9512195121951219,
+   "near_miss_rejected": 0.96
+  }
+ }
+}

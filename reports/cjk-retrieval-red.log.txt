@@ -1,0 +1,22 @@
+test_consent_and_wrong_key_fail_closed (test_engine_integration.EngineIntegration.test_consent_and_wrong_key_fail_closed) ... ok
+test_derived_record_requires_source_and_deletion_removes_search (test_engine_integration.EngineIntegration.test_derived_record_requires_source_and_deletion_removes_search) ... ok
+test_encrypted_reopen_dedup_immutability_and_source_search (test_engine_integration.EngineIntegration.test_encrypted_reopen_dedup_immutability_and_source_search) ... ok
+test_native_audio_import_and_retrieval (test_engine_integration.EngineIntegration.test_native_audio_import_and_retrieval) ... ok
+test_sensitive_fields_are_excluded_by_default (test_engine_integration.EngineIntegration.test_sensitive_fields_are_excluded_by_default) ... ok
+test_token_match_does_not_hide_chinese_substring_sources (test_engine_integration.EngineIntegration.test_token_match_does_not_hide_chinese_substring_sources) ... FAIL
+test_unicode_and_literal_query (test_engine_integration.EngineIntegration.test_unicode_and_literal_query) ... ok
+test_wal_contains_no_plaintext_and_recovers_after_process_crash (test_engine_integration.EngineIntegration.test_wal_contains_no_plaintext_and_recovers_after_process_crash) ... ok
+
+======================================================================
+FAIL: test_token_match_does_not_hide_chinese_substring_sources (test_engine_integration.EngineIntegration.test_token_match_does_not_hide_chinese_substring_sources)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\Lens\tests\test_engine_integration.py", line 133, in test_token_match_does_not_hide_chinese_substring_sources
+    self.assertEqual({x['id'] for x in rows[2]['sources']},{'standalone','embedded'})
+AssertionError: Items in the second set but not the first:
+'embedded'
+
+----------------------------------------------------------------------
+Ran 8 tests in 4.365s
+
+FAILED (failures=1)

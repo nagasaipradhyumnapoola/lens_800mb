@@ -1,0 +1,32 @@
+{
+ "created_utc": "20261026T165918Z",
+ "verifier": "deepset/xlm-roberta-base-squad2-distilled INT8 (onnx-community 484112f)",
+ "qa_load_seconds": 1.610772400003043,
+ "qa_load_rss_bytes": 554536960,
+ "process_peak_rss_bytes": 625041408,
+ "qa_latency_ms": {
+  "p50": 15.57140000659274,
+  "p95": 19.702885003061965,
+  "p99": 21.599705995904515
+ },
+ "target_false_answer_rate": 0.05
+}
+== qa_only
+  dev        {'answerable': 126, 'unanswerable': 18, 'near_miss': 0, 'top1_correct_and_answered': np.float64(0.198), 'false_rejection_of_correct_evidence': np.float64(0.74), 'wrong_evidence_answered': np.float64(0.032), 'unanswerable_rejected': np.float64(1.0)}
+  expansion  {'answerable': 30, 'unanswerable': 32, 'near_miss': 25, 'top1_correct_and_answered': np.float64(0.467), 'false_rejection_of_correct_evidence': np.float64(0.517), 'wrong_evidence_answered': np.float64(0.0), 'unanswerable_rejected': np.float64(0.938), 'near_miss_rejected': np.float64(0.92)}
+  nearmiss   {'answerable': 0, 'unanswerable': 72, 'near_miss': 0, 'unanswerable_rejected': np.float64(0.958)}
+  test       {'answerable': 294, 'unanswerable': 42, 'near_miss': 0, 'top1_correct_and_answered': np.float64(0.19), 'false_rejection_of_correct_evidence': np.float64(0.773), 'wrong_evidence_answered': np.float64(0.01), 'unanswerable_rejected': np.float64(0.952)}
+  all        {'answerable': 450, 'unanswerable': 164, 'near_miss': 25, 'top1_correct_and_answered': np.float64(0.211), 'false_rejection_of_correct_evidence': np.float64(0.745), 'wrong_evidence_answered': np.float64(0.016), 'unanswerable_rejected': np.float64(0.957), 'near_miss_rejected': np.float64(0.92)}
+== qa+rerank+cosine+literal
+  dev        {'answerable': 126, 'unanswerable': 18, 'near_miss': 0, 'top1_correct_and_answered': np.float64(0.54), 'false_rejection_of_correct_evidence': np.float64(0.292), 'wrong_evidence_answered': np.float64(0.024), 'unanswerable_rejected': np.float64(1.0)}
+  expansion  {'answerable': 30, 'unanswerable': 32, 'near_miss': 25, 'top1_correct_and_answered': np.float64(0.567), 'false_rejection_of_correct_evidence': np.float64(0.414), 'wrong_evidence_answered': np.float64(0.0), 'unanswerable_rejected': np.float64(0.969), 'near_miss_rejected': np.float64(0.96)}
+  nearmiss   {'answerable': 0, 'unanswerable': 72, 'near_miss': 0, 'unanswerable_rejected': np.float64(0.903)}
+  test       {'answerable': 294, 'unanswerable': 42, 'near_miss': 0, 'top1_correct_and_answered': np.float64(0.565), 'false_rejection_of_correct_evidence': np.float64(0.328), 'wrong_evidence_answered': np.float64(0.02), 'unanswerable_rejected': np.float64(1.0)}
+  all        {'answerable': 450, 'unanswerable': 164, 'near_miss': 25, 'top1_correct_and_answered': np.float64(0.558), 'false_rejection_of_correct_evidence': np.float64(0.325), 'wrong_evidence_answered': np.float64(0.02), 'unanswerable_rejected': np.float64(0.951), 'near_miss_rejected': np.float64(0.96)}
+== rerank+cosine+literal (no QA)
+  dev        {'answerable': 126, 'unanswerable': 18, 'near_miss': 0, 'top1_correct_and_answered': np.float64(0.437), 'false_rejection_of_correct_evidence': np.float64(0.427), 'wrong_evidence_answered': np.float64(0.008), 'unanswerable_rejected': np.float64(1.0)}
+  expansion  {'answerable': 30, 'unanswerable': 32, 'near_miss': 25, 'top1_correct_and_answered': np.float64(0.267), 'false_rejection_of_correct_evidence': np.float64(0.724), 'wrong_evidence_answered': np.float64(0.0), 'unanswerable_rejected': np.float64(1.0), 'near_miss_rejected': np.float64(1.0)}
+  nearmiss   {'answerable': 0, 'unanswerable': 72, 'near_miss': 0, 'unanswerable_rejected': np.float64(0.875)}
+  test       {'answerable': 294, 'unanswerable': 42, 'near_miss': 0, 'top1_correct_and_answered': np.float64(0.429), 'false_rejection_of_correct_evidence': np.float64(0.49), 'wrong_evidence_answered': np.float64(0.017), 'unanswerable_rejected': np.float64(1.0)}
+  all        {'answerable': 450, 'unanswerable': 164, 'near_miss': 25, 'top1_correct_and_answered': np.float64(0.42), 'false_rejection_of_correct_evidence': np.float64(0.492), 'wrong_evidence_answered': np.float64(0.013), 'unanswerable_rejected': np.float64(0.945), 'near_miss_rejected': np.float64(1.0)}
+exit=0

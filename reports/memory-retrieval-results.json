@@ -1,0 +1,619 @@
+{
+  "history_records": 10000,
+  "query_count": 100,
+  "recall_at_5": 1.0,
+  "unanswerable_queries": 20,
+  "correct_not_found": 20,
+  "insert_failure_count": 0,
+  "failures": [],
+  "elapsed_s": 18.85351790000277,
+  "dataset_kind": "Lens-authored synthetic anchor/substring retrieval; natural questions not validated",
+  "by_language": {
+    "en": 1.0,
+    "zh": 1.0,
+    "es": 1.0,
+    "hi": 1.0
+  },
+  "queries": [
+    {
+      "query": "AnchorMemory0",
+      "expected_id": "synthetic-0",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆1",
+      "expected_id": "synthetic-1",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico2",
+      "expected_id": "synthetic-2",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति3",
+      "expected_id": "synthetic-3",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory4",
+      "expected_id": "synthetic-4",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆5",
+      "expected_id": "synthetic-5",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico6",
+      "expected_id": "synthetic-6",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति7",
+      "expected_id": "synthetic-7",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory8",
+      "expected_id": "synthetic-8",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆9",
+      "expected_id": "synthetic-9",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico10",
+      "expected_id": "synthetic-10",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति11",
+      "expected_id": "synthetic-11",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory12",
+      "expected_id": "synthetic-12",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆13",
+      "expected_id": "synthetic-13",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico14",
+      "expected_id": "synthetic-14",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति15",
+      "expected_id": "synthetic-15",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory16",
+      "expected_id": "synthetic-16",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆17",
+      "expected_id": "synthetic-17",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico18",
+      "expected_id": "synthetic-18",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति19",
+      "expected_id": "synthetic-19",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory20",
+      "expected_id": "synthetic-20",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆21",
+      "expected_id": "synthetic-21",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico22",
+      "expected_id": "synthetic-22",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति23",
+      "expected_id": "synthetic-23",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory24",
+      "expected_id": "synthetic-24",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆25",
+      "expected_id": "synthetic-25",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico26",
+      "expected_id": "synthetic-26",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति27",
+      "expected_id": "synthetic-27",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory28",
+      "expected_id": "synthetic-28",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆29",
+      "expected_id": "synthetic-29",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico30",
+      "expected_id": "synthetic-30",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति31",
+      "expected_id": "synthetic-31",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory32",
+      "expected_id": "synthetic-32",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆33",
+      "expected_id": "synthetic-33",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico34",
+      "expected_id": "synthetic-34",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति35",
+      "expected_id": "synthetic-35",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory36",
+      "expected_id": "synthetic-36",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆37",
+      "expected_id": "synthetic-37",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico38",
+      "expected_id": "synthetic-38",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति39",
+      "expected_id": "synthetic-39",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory40",
+      "expected_id": "synthetic-40",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆41",
+      "expected_id": "synthetic-41",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico42",
+      "expected_id": "synthetic-42",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति43",
+      "expected_id": "synthetic-43",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory44",
+      "expected_id": "synthetic-44",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆45",
+      "expected_id": "synthetic-45",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico46",
+      "expected_id": "synthetic-46",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति47",
+      "expected_id": "synthetic-47",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory48",
+      "expected_id": "synthetic-48",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆49",
+      "expected_id": "synthetic-49",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico50",
+      "expected_id": "synthetic-50",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति51",
+      "expected_id": "synthetic-51",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory52",
+      "expected_id": "synthetic-52",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆53",
+      "expected_id": "synthetic-53",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico54",
+      "expected_id": "synthetic-54",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति55",
+      "expected_id": "synthetic-55",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory56",
+      "expected_id": "synthetic-56",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆57",
+      "expected_id": "synthetic-57",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico58",
+      "expected_id": "synthetic-58",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति59",
+      "expected_id": "synthetic-59",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory60",
+      "expected_id": "synthetic-60",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆61",
+      "expected_id": "synthetic-61",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico62",
+      "expected_id": "synthetic-62",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति63",
+      "expected_id": "synthetic-63",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory64",
+      "expected_id": "synthetic-64",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆65",
+      "expected_id": "synthetic-65",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico66",
+      "expected_id": "synthetic-66",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति67",
+      "expected_id": "synthetic-67",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory68",
+      "expected_id": "synthetic-68",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆69",
+      "expected_id": "synthetic-69",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico70",
+      "expected_id": "synthetic-70",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति71",
+      "expected_id": "synthetic-71",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory72",
+      "expected_id": "synthetic-72",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆73",
+      "expected_id": "synthetic-73",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico74",
+      "expected_id": "synthetic-74",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति75",
+      "expected_id": "synthetic-75",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory76",
+      "expected_id": "synthetic-76",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆77",
+      "expected_id": "synthetic-77",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico78",
+      "expected_id": "synthetic-78",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति79",
+      "expected_id": "synthetic-79",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory80",
+      "expected_id": "synthetic-80",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆81",
+      "expected_id": "synthetic-81",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico82",
+      "expected_id": "synthetic-82",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति83",
+      "expected_id": "synthetic-83",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory84",
+      "expected_id": "synthetic-84",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆85",
+      "expected_id": "synthetic-85",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico86",
+      "expected_id": "synthetic-86",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति87",
+      "expected_id": "synthetic-87",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory88",
+      "expected_id": "synthetic-88",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆89",
+      "expected_id": "synthetic-89",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico90",
+      "expected_id": "synthetic-90",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति91",
+      "expected_id": "synthetic-91",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory92",
+      "expected_id": "synthetic-92",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆93",
+      "expected_id": "synthetic-93",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico94",
+      "expected_id": "synthetic-94",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति95",
+      "expected_id": "synthetic-95",
+      "language": "hi",
+      "hit_at_5": true
+    },
+    {
+      "query": "AnchorMemory96",
+      "expected_id": "synthetic-96",
+      "language": "en",
+      "hit_at_5": true
+    },
+    {
+      "query": "北京记忆97",
+      "expected_id": "synthetic-97",
+      "language": "zh",
+      "hit_at_5": true
+    },
+    {
+      "query": "RecuerdoÚnico98",
+      "expected_id": "synthetic-98",
+      "language": "es",
+      "hit_at_5": true
+    },
+    {
+      "query": "दिल्लीस्मृति99",
+      "expected_id": "synthetic-99",
+      "language": "hi",
+      "hit_at_5": true
+    }
+  ]
+}
