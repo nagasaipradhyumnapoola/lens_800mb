@@ -9,7 +9,8 @@ Script routing: `oracle` uses the language's recogniser; `auto` runs the multili
 retries the Indic recognisers when its confidence is below --auto-threshold, keeping the most confident result.
 Metrics per screen: page CER (lines joined in reading order), mean best-match line CER, line accuracy (CER <= 0.05),
 detection/recognition latency, and the process peak working set.
-Usage: .venv\\Scripts\\python.exe scripts/ocr_reference.py [--det v5|v6] [--route oracle|auto] [--threads 4]
+Sets/languages: --set dev|heldout, --only <langs>; arabic_* output goes through upstream pred_reverse.
+Usage: .venv\\Scripts\\python.exe scripts/ocr_reference.py [--set dev|heldout] [--det v5|v6] [--route oracle|auto] [--threads 4]
 """
 import argparse
 from datetime import datetime,timezone
@@ -22,12 +23,18 @@ import numpy as np
 import onnxruntime as ort
 import psutil
 import pyclipper
+import re
+import unicodedata
 ROOT=Path(__file__).resolve().parents[1]
 M=ROOT/'models'
 DET={'v5':(M/'PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx',0.3,0.6,1.5),'v6':(M/'PaddlePaddle--PP-OCRv6_tiny_det/inference.onnx',0.2,0.4,1.4)}
 REC={'general':M/'PaddlePaddle--PP-OCRv6_tiny_rec','hi':M/'PaddlePaddle--devanagari_PP-OCRv5_mobile_rec',
-     'ta':M/'PaddlePaddle--ta_PP-OCRv5_mobile_rec','te':M/'PaddlePaddle--te_PP-OCRv5_mobile_rec'}
-ORACLE={'en':'general','es':'general','zh':'general','hi':'hi','ta':'ta','te':'te'}
+     'ta':M/'PaddlePaddle--ta_PP-OCRv5_mobile_rec','te':M/'PaddlePaddle--te_PP-OCRv5_mobile_rec','ja':M/'PaddlePaddle--PP-OCRv5_mobile_rec',
+     'ar':M/'PaddlePaddle--arabic_PP-OCRv5_mobile_rec','ru':M/'PaddlePaddle--cyrillic_PP-OCRv5_mobile_rec'}
+SETS={'dev':ROOT/'artifacts/ocr-screens/v1/manifest.json','heldout':ROOT/'artifacts/ocr-screens/heldout-v1/manifest.json'}
+ORACLE={'en':'general','es':'general','zh':'general','hi':'hi','ta':'ta','te':'te',
+        'fr':'general','pt':'general','de':'general','id':'general','ja':'ja','ru':'ru','ar':'ar','ur':'ar','mr':'hi'}
+# bn, gu: no PaddleOCR recogniser exists for Bengali or Gujarati script (checked 2026-10-27); they run auto
 
 
 def session(path,threads):
@@ -101,9 +108,22 @@ def crop(img,box):
     return np.rot90(c) if c.shape[0]/max(c.shape[1],1)>=1.5 else c
 
 
+def pred_reverse(pred):
+    """PaddleOCR BaseRecLabelDecode.pred_reverse (applied to arabic_* dictionaries upstream)."""
+    out=[];cur=''
+    for c in pred:
+        if not re.search('[a-zA-Z0-9 :*./%+-]',c):
+            if cur:out.append(cur)
+            out.append(c);cur=''
+        else:cur+=c
+    if cur:out.append(cur)
+    return ''.join(out[::-1])
+
+
 class Recognizer:
     def __init__(self,folder,threads):
         self.s=session(folder/'inference.onnx',threads);self.d=json.loads((folder/'ctc-dictionary.json').read_text(encoding='utf-8'))
+        self.rtl='arabic' in folder.name
 
     def __call__(self,c):
         h,w=c.shape[:2];W=int(min(3200,max(320,48*w/h)));rw=min(W,int(math.ceil(48*w/h)))
@@ -112,7 +132,7 @@ class Recognizer:
         for t,k in enumerate(idx):
             if k and k!=prev:text+=self.d[k];conf.append(p[t,k])
             prev=k
-        return text,float(np.mean(conf)) if conf else 0.0
+        return pred_reverse(text) if self.rtl else text,float(np.mean(conf)) if conf else 0.0
 
 
 def edit(a,b):
@@ -127,25 +147,32 @@ def edit(a,b):
 def norm(s):return ' '.join(s.split())
 
 
+def metric_text(s):return unicodedata.normalize('NFC',norm(s.replace('‌','').replace('‍','')))
+
+
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--det',choices=['v5','v6'],default='v5');ap.add_argument('--route',choices=['oracle','auto'],default='auto')
-    ap.add_argument('--auto-threshold',type=float,default=0.90);ap.add_argument('--threads',type=int,default=4);args=ap.parse_args()
-    manifest=json.loads((ROOT/'artifacts/ocr-screens/v1/manifest.json').read_text(encoding='utf-8'))
-    det=Detector(args.det,args.threads);rec={k:Recognizer(v,args.threads) for k,v in REC.items()};proc=psutil.Process();rows=[]
+    ap.add_argument('--auto-threshold',type=float,default=0.90);ap.add_argument('--threads',type=int,default=4)
+    ap.add_argument('--set',choices=list(SETS),default='dev');ap.add_argument('--only',help='comma-separated languages');args=ap.parse_args()
+    manifest=json.loads(SETS[args.set].read_text(encoding='utf-8'))
+    det=Detector(args.det,args.threads);proc=psutil.Process();rows=[];loaded={}
+    rec=lambda k:loaded.setdefault(k,Recognizer(REC[k],args.threads)) if k not in loaded else loaded[k]
     for sc in manifest['scenarios']:
+        if args.only and sc['language'] not in args.only.split(','):continue
         img=cv2.imdecode(np.fromfile(str(ROOT/sc['image']),np.uint8),cv2.IMREAD_COLOR)
         t0=time.perf_counter();boxes=reading_order(det(img));t1=time.perf_counter();lines=[]
         for b in boxes:
             c=crop(img,b)
-            if args.route=='oracle' and sc['language']!='mixed':text,conf=rec[ORACLE[sc['language']]](c)
+            if args.route=='oracle' and sc['language'] in ORACLE:text,conf=rec(ORACLE[sc['language']])(c)
             else:
-                text,conf=rec['general'](c)
+                text,conf=rec('general')(c)
                 if conf<args.auto_threshold:
-                    for k in ('hi','ta','te'):
-                        t2,c2=rec[k](c)
+                    for k in REC:
+                        if k=='general':continue
+                        t2,c2=rec(k)(c)
                         if c2>conf:text,conf=t2,c2
-            if text.strip():lines.append(norm(text))
-        t2=time.perf_counter();gt=[norm(l) for l in sc['lines']]
+            if text.strip():lines.append(metric_text(text))
+        t2=time.perf_counter();gt=[metric_text(l) for l in sc['lines']]
         line_cer=[min((edit(g,p)/max(1,len(g)) for p in lines),default=1.0) for g in gt]
         page=edit('\n'.join(gt),'\n'.join(lines))/max(1,len('\n'.join(gt)))
         rows.append({'name':sc['name'],'language':sc['language'],'boxes':len(boxes),'page_cer':page,'line_cer':float(np.mean(line_cer)),
@@ -155,11 +182,12 @@ def main():
     for r in rows:by.setdefault(r['language'],[]).append(r)
     summary={k:{'page_cer':float(np.mean([r['page_cer'] for r in v])),'line_accuracy':float(np.mean([r['line_accuracy'] for r in v])),
                 'det_ms_p50':float(np.median([r['det_ms'] for r in v])),'total_ms_p50':float(np.median([r['det_ms']+r['rec_ms'] for r in v]))} for k,v in by.items()}
-    report={'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'det':args.det,'route':args.route,'auto_threshold':args.auto_threshold,
+    report={'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'set':args.set,'only':args.only,'det':args.det,'route':args.route,
+            'metric':'page CER on NFC text, ZWNJ/ZWJ removed (as scripts/benchmark_ocr_native.py)','auto_threshold':args.auto_threshold,
             'threads':args.threads,'peak_working_set_bytes':proc.memory_info().peak_wset,'edge_version':manifest['edge_version'],
             'summary':summary,'rows':rows}
     out=ROOT/'reports/ocr-screens';out.mkdir(parents=True,exist_ok=True)
-    path=out/f"ocr-reference-{args.det}-{args.route}-{report['created_utc']}.json";path.write_text(json.dumps(report,ensure_ascii=False,indent=1),encoding='utf-8')
+    path=out/f"ocr-reference-{args.set}-{args.det}-{args.route}-{report['created_utc']}.json";path.write_text(json.dumps(report,ensure_ascii=False,indent=1),encoding='utf-8')
     for k,v in summary.items():print(k,{a:round(b,3) for a,b in v.items()})
     print('peak working set MB',report['peak_working_set_bytes']/1e6,path)
 

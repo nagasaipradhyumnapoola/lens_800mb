@@ -1,0 +1,84 @@
+{
+ "created_utc": "20261027T044823Z",
+ "screen": [
+  2561,
+  1601
+ ],
+ "device_scale": 1.5,
+ "threads": 2,
+ "te_recognizer": "PaddlePaddle--te_PP-OCRv5_mobile_rec",
+ "steps": [
+  {
+   "step": "started",
+   "working_set_mb": 7.266304,
+   "private_mb": 1.298432,
+   "peak_working_set_mb": 7.266304
+  },
+  {
+   "step": "full_1",
+   "working_set_mb": 50.532352,
+   "private_mb": 33.435648,
+   "peak_working_set_mb": 203.624448,
+   "ok": true,
+   "lines": 36,
+   "timing_ms": {
+    "detect": 6946.8797,
+    "detector_load": 288.3804,
+    "recognize": 9912.9054,
+    "recognizer_load": 1658.9937
+   },
+   "recognizers": [
+    "general",
+    "hi",
+    "ta",
+    "te"
+   ]
+  },
+  {
+   "step": "band",
+   "working_set_mb": 51.073024,
+   "private_mb": 34.668544,
+   "peak_working_set_mb": 203.624448,
+   "ok": true,
+   "lines": 6,
+   "timing_ms": {
+    "detect": 843.887,
+    "detector_load": 0.0,
+    "recognize": 1413.9075,
+    "recognizer_load": 920.0064
+   },
+   "recognizers": [
+    "general",
+    "hi",
+    "ta"
+   ]
+  },
+  {
+   "step": "full_2",
+   "working_set_mb": 51.212288,
+   "private_mb": 33.918976,
+   "peak_working_set_mb": 214.556672,
+   "ok": true,
+   "lines": 36,
+   "timing_ms": {
+    "detect": 6045.0549,
+    "detector_load": 0.0,
+    "recognize": 10562.4718,
+    "recognizer_load": 1159.5246000000002
+   },
+   "recognizers": [
+    "general",
+    "hi",
+    "ta",
+    "te"
+   ]
+  },
+  {
+   "step": "idle_3s",
+   "working_set_mb": 51.212288,
+   "private_mb": 33.918976,
+   "peak_working_set_mb": 214.556672
+  }
+ ],
+ "peak_working_set_mb": 214.556672
+}

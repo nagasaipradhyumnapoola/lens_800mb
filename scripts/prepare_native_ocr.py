@@ -57,9 +57,11 @@ def main():
                             'sha256':sha(artifact.read_bytes()),'source_config_sha256':sha((folder/'inference.yml').read_bytes()),
                             'source_weights_sha256':sha((folder/'inference.pdiparams').read_bytes()),
                             'exporter':'paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None'})
-    (ROOT/'third_party/ocr-runtime-lock.json').write_text(json.dumps({'onnxruntime_version':'1.24.4',
+    lock=ROOT/'third_party/ocr-runtime-lock.json'
+    derived=json.loads(lock.read_text(encoding='utf-8')).get('derived',[]) if lock.exists() else []  # fine-tunes, pinned by their scripts
+    lock.write_text(json.dumps({'onnxruntime_version':'1.24.4',
         'source_commit':ORT_COMMIT,'wheel_url':wheel['url'],'wheel_sha256':wheel['digests']['sha256'],
-        'runtime_artifacts':records,'exports':exports},indent=2),encoding='utf-8')
+        'runtime_artifacts':records,'exports':exports,'derived':derived},indent=2),encoding='utf-8')
     print('Pinned native OCR runtime and model exports',flush=True)
 
 

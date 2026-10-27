@@ -1,0 +1,2661 @@
+{
+ "created_utc": "20261027T140931Z",
+ "worker": "lens-ocr.exe mode=screen",
+ "set": "dev",
+ "manifest_sha256": "bff03c92ad7c453ebc3330a6b37564abca64b137b4ce38f2198b1b3d6651ffe5",
+ "det": "v5",
+ "det_pixels": 409600,
+ "only": "fr,pt,de,id,ru,ja,ar,ur,bn,mr,gu",
+ "route": "oracle",
+ "threads": 2,
+ "te_recognizer": "PaddlePaddle--te_PP-OCRv5_mobile_rec",
+ "te_onnx_sha256": "636f40684474dc5a9d5aa321018d9a591deff5f9d7eec6230b1576482637a48b",
+ "metric": "page CER on NFC text, ZWNJ/ZWJ removed, whitespace collapsed (page_cer_raw: without NFC/ZW removal)",
+ "edge_version": "156.0.4314.42",
+ "summary": {
+  "fr": {
+   "page_cer": 0.006349206349206349,
+   "page_cer_raw": 0.006349206349206349,
+   "line_accuracy": 1.0
+  },
+  "pt": {
+   "page_cer": 0.00125,
+   "page_cer_raw": 0.00125,
+   "line_accuracy": 1.0
+  },
+  "de": {
+   "page_cer": 0.002622950819672131,
+   "page_cer_raw": 0.002622950819672131,
+   "line_accuracy": 1.0
+  },
+  "id": {
+   "page_cer": 0.0006369426751592357,
+   "page_cer_raw": 0.0006369426751592357,
+   "line_accuracy": 1.0
+  },
+  "ru": {
+   "page_cer": 0.003424657534246575,
+   "page_cer_raw": 0.003424657534246575,
+   "line_accuracy": 1.0
+  },
+  "ja": {
+   "page_cer": 0.006015037593984962,
+   "page_cer_raw": 0.006015037593984962,
+   "line_accuracy": 0.9333333333333333
+  },
+  "ar": {
+   "page_cer": 0.0671875,
+   "page_cer_raw": 0.0671875,
+   "line_accuracy": 0.5666666666666667
+  },
+  "ur": {
+   "page_cer": 0.18007968127490043,
+   "page_cer_raw": 0.18007968127490043,
+   "line_accuracy": 0.16666666666666666
+  },
+  "bn": {
+   "page_cer": 0.8484848484848484,
+   "page_cer_raw": 0.8484848484848484,
+   "line_accuracy": 0.0
+  },
+  "mr": {
+   "page_cer": 0.04202334630350194,
+   "page_cer_raw": 0.04202334630350194,
+   "line_accuracy": 0.7666666666666667
+  },
+  "gu": {
+   "page_cer": 0.8,
+   "page_cer_raw": 0.8,
+   "line_accuracy": 0.0
+  },
+  "latency_ms": {
+   "full_compute_p50": 2485.1823999999997,
+   "full_compute_p95": 4546.954659999999,
+   "region_compute_p50": 166.78710000000004,
+   "region_compute_p95": 1801.085589999999,
+   "region_wall_p50": 1025.8379000006244,
+   "full_wall_p50": 3466.759400002047
+  },
+  "peak_working_set_mb_max": 102.506496
+ },
+ "rows": [
+  {
+   "name": "fr-light",
+   "language": "fr",
+   "page_cer": 0.0031746031746031746,
+   "page_cer_raw": 0.0031746031746031746,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 958.083,
+     "detector_load": 335.9331,
+     "recognize": 188.1443,
+     "recognizer_load": 80.1173
+    },
+    "wall_ms": 2005.892599998333,
+    "peak_working_set_bytes": 102359040,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     539,
+     46
+    ],
+    "timing_ms": {
+     "detect": 24.0568,
+     "detector_load": 232.7349,
+     "recognize": 47.3146,
+     "recognizer_load": 70.0121
+    },
+    "wall_ms": 550.8655999983603,
+    "peak_working_set_bytes": 59625472,
+    "text": [
+     "Le renouvellement du contrat fournisseur est dů le 14 novembre."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dû le 14 novembre.",
+    "Priya partagera le budget révisé d’ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour : 48 250 €"
+   ]
+  },
+  {
+   "name": "fr-dark",
+   "language": "fr",
+   "page_cer": 0.009523809523809525,
+   "page_cer_raw": 0.009523809523809525,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 941.9707,
+     "detector_load": 359.9372,
+     "recognize": 330.1622,
+     "recognizer_load": 132.2233
+    },
+    "wall_ms": 2043.3090000005905,
+    "peak_working_set_bytes": 101257216,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     542,
+     46
+    ],
+    "timing_ms": {
+     "detect": 41.5567,
+     "detector_load": 383.3943,
+     "recognize": 71.4426,
+     "recognizer_load": 171.9485
+    },
+    "wall_ms": 963.2011000030616,
+    "peak_working_set_bytes": 58155008,
+    "text": [
+     "Le renouvellement du contrat fournisseur est dû le 14 novembre."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dú le 14 novembre.",
+    "Priya partagera le budget révisé d’ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour: 48 250 €"
+   ]
+  },
+  {
+   "name": "fr-small",
+   "language": "fr",
+   "page_cer": 0.006349206349206349,
+   "page_cer_raw": 0.006349206349206349,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1237.7411,
+     "detector_load": 362.8111,
+     "recognize": 166.14610000000002,
+     "recognizer_load": 104.9136
+    },
+    "wall_ms": 2123.338800000056,
+    "peak_working_set_bytes": 102277120,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     372,
+     42
+    ],
+    "timing_ms": {
+     "detect": 27.7101,
+     "detector_load": 317.2249,
+     "recognize": 44.07060000000001,
+     "recognizer_load": 116.9178
+    },
+    "wall_ms": 776.8939999987197,
+    "peak_working_set_bytes": 58449920,
+    "text": [
+     "Le renouvellement du contrat fournisseur est dù le 14 novembre."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dü le 14 novembre.",
+    "Priya partagera le budget révisé d’ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour : 48 250 €"
+   ]
+  },
+  {
+   "name": "fr-chat",
+   "language": "fr",
+   "page_cer": 0.006349206349206349,
+   "page_cer_raw": 0.006349206349206349,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1652.8569,
+     "detector_load": 481.1521,
+     "recognize": 260.43590000000006,
+     "recognizer_load": 149.629
+    },
+    "wall_ms": 2830.6945000003907,
+    "peak_working_set_bytes": 101146624,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     492,
+     52
+    ],
+    "timing_ms": {
+     "detect": 25.2696,
+     "detector_load": 304.0438,
+     "recognize": 61.29930000000002,
+     "recognizer_load": 105.7986
+    },
+    "wall_ms": 709.0357000015501,
+    "peak_working_set_bytes": 61927424,
+    "text": [
+     "Le renouvellement du contrat fournisseur est dû le 14 novembre."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dù le 14 novembre.",
+    "Priya partagera le budget révisé d’ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour : 48 250 €"
+   ]
+  },
+  {
+   "name": "fr-table",
+   "language": "fr",
+   "page_cer": 0.006349206349206349,
+   "page_cer_raw": 0.006349206349206349,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1084.8527,
+     "detector_load": 281.6733,
+     "recognize": 157.6242,
+     "recognizer_load": 92.85
+    },
+    "wall_ms": 1774.3988000001991,
+    "peak_working_set_bytes": 102326272,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     485,
+     46
+    ],
+    "timing_ms": {
+     "detect": 42.4215,
+     "detector_load": 388.8835,
+     "recognize": 64.68390000000001,
+     "recognizer_load": 120.3684
+    },
+    "wall_ms": 826.3976000016555,
+    "peak_working_set_bytes": 57155584,
+    "text": [
+     "Le renouvellement du contrat fournisseur est dů le 14 novembre."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dù le 14 novembre.",
+    "Priya partagera le budget révisé d’ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour : 48 250 €"
+   ]
+  },
+  {
+   "name": "pt-light",
+   "language": "pt",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1167.6978,
+     "detector_load": 390.8945,
+     "recognize": 210.94830000000002,
+     "recognizer_load": 95.4215
+    },
+    "wall_ms": 2080.035199996928,
+    "peak_working_set_bytes": 102432768,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     592,
+     46
+    ],
+    "timing_ms": {
+     "detect": 36.464,
+     "detector_load": 271.5323,
+     "recognize": 87.05430000000001,
+     "recognizer_load": 175.0962
+    },
+    "wall_ms": 779.13880000051,
+    "peak_working_set_bytes": 58867712,
+    "text": [
+     "A renovação do contrato com o fornecedor vence em 14 de novembro."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: R$ 48.250"
+   ]
+  },
+  {
+   "name": "pt-dark",
+   "language": "pt",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1448.9252,
+     "detector_load": 474.3921,
+     "recognize": 227.0054,
+     "recognizer_load": 112.5262
+    },
+    "wall_ms": 2556.226400000014,
+    "peak_working_set_bytes": 102330368,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     594,
+     46
+    ],
+    "timing_ms": {
+     "detect": 36.4303,
+     "detector_load": 306.5367,
+     "recognize": 35.7727,
+     "recognizer_load": 99.9448
+    },
+    "wall_ms": 651.5919000012218,
+    "peak_working_set_bytes": 58236928,
+    "text": [
+     "A renovação do contrato com o fornecedor vence em 14 de novembro."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: R$ 48.250"
+   ]
+  },
+  {
+   "name": "pt-small",
+   "language": "pt",
+   "page_cer": 0.00625,
+   "page_cer_raw": 0.00625,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 885.2161,
+     "detector_load": 236.4563,
+     "recognize": 247.86440000000002,
+     "recognizer_load": 94.811
+    },
+    "wall_ms": 1662.5261000008322,
+    "peak_working_set_bytes": 101171200,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     404,
+     43
+    ],
+    "timing_ms": {
+     "detect": 40.9766,
+     "detector_load": 433.667,
+     "recognize": 170.9978,
+     "recognizer_load": 137.133
+    },
+    "wall_ms": 1059.5365000008314,
+    "peak_working_set_bytes": 61628416,
+    "text": [
+     "4OL65CleD1dIIeGTmeTT0OLT",
+     "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+     "Drn"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o formecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: RS 48.250"
+   ]
+  },
+  {
+   "name": "pt-chat",
+   "language": "pt",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1116.9561,
+     "detector_load": 457.9069,
+     "recognize": 146.85,
+     "recognizer_load": 77.5841
+    },
+    "wall_ms": 2046.696699999302,
+    "peak_working_set_bytes": 102400000,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     537,
+     52
+    ],
+    "timing_ms": {
+     "detect": 24.2186,
+     "detector_load": 259.18,
+     "recognize": 50.271,
+     "recognizer_load": 100.7016
+    },
+    "wall_ms": 591.4058999987901,
+    "peak_working_set_bytes": 57675776,
+    "text": [
+     "A renovação do contrato com o fornecedor vence em 14 de novembro."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: R$ 48.250"
+   ]
+  },
+  {
+   "name": "pt-table",
+   "language": "pt",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1124.1695,
+     "detector_load": 290.1018,
+     "recognize": 259.6432,
+     "recognizer_load": 148.6041
+    },
+    "wall_ms": 2004.2045999980473,
+    "peak_working_set_bytes": 101138432,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     531,
+     46
+    ],
+    "timing_ms": {
+     "detect": 33.6526,
+     "detector_load": 250.4919,
+     "recognize": 47.731899999999996,
+     "recognizer_load": 110.5623
+    },
+    "wall_ms": 627.4140999994415,
+    "peak_working_set_bytes": 57167872,
+    "text": [
+     "A renovação do contrato com o fornecedor vence em 14 de novembro."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: R$ 48.250"
+   ]
+  },
+  {
+   "name": "de-light",
+   "language": "de",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1573.0203,
+     "detector_load": 411.6029,
+     "recognize": 201.92870000000002,
+     "recognizer_load": 170.9981
+    },
+    "wall_ms": 2533.6250999971526,
+    "peak_working_set_bytes": 102346752,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     575,
+     52
+    ],
+    "timing_ms": {
+     "detect": 31.5659,
+     "detector_load": 258.9064,
+     "recognize": 45.608000000000004,
+     "recognizer_load": 98.9778
+    },
+    "wall_ms": 603.305000000546,
+    "peak_working_set_bytes": 58621952,
+    "text": [
+     "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+    "Priya teilt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "de-dark",
+   "language": "de",
+   "page_cer": 0.003278688524590164,
+   "page_cer_raw": 0.003278688524590164,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 971.9641,
+     "detector_load": 235.2665,
+     "recognize": 189.2223,
+     "recognizer_load": 91.2442
+    },
+    "wall_ms": 1648.8571999980195,
+    "peak_working_set_bytes": 102408192,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     575,
+     52
+    ],
+    "timing_ms": {
+     "detect": 30.3592,
+     "detector_load": 269.0377,
+     "recognize": 72.06070000000001,
+     "recognizer_load": 110.2023
+    },
+    "wall_ms": 677.9371000011452,
+    "peak_working_set_bytes": 56872960,
+    "text": [
+     "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fallig.",
+    "Priya teilt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "de-small",
+   "language": "de",
+   "page_cer": 0.006557377049180328,
+   "page_cer_raw": 0.006557377049180328,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1481.1898,
+     "detector_load": 442.1932,
+     "recognize": 150.0055,
+     "recognizer_load": 101.0214
+    },
+    "wall_ms": 2445.604099997581,
+    "peak_working_set_bytes": 102375424,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     391,
+     43
+    ],
+    "timing_ms": {
+     "detect": 25.6054,
+     "detector_load": 252.4886,
+     "recognize": 93.98270000000001,
+     "recognizer_load": 91.0371
+    },
+    "wall_ms": 619.1468000033638,
+    "peak_working_set_bytes": 56979456,
+    "text": [
+     "V0ti2e11 20T Qdar ta1sp1aioig",
+     "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+     "Drnr"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fallig.",
+    "Priya telt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "de-chat",
+   "language": "de",
+   "page_cer": 0.003278688524590164,
+   "page_cer_raw": 0.003278688524590164,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1024.4283,
+     "detector_load": 304.4794,
+     "recognize": 235.44410000000002,
+     "recognizer_load": 145.641
+    },
+    "wall_ms": 1944.9548000011418,
+    "peak_working_set_bytes": 102506496,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     518,
+     53
+    ],
+    "timing_ms": {
+     "detect": 49.1897,
+     "detector_load": 472.2961,
+     "recognize": 66.9591,
+     "recognizer_load": 174.3329
+    },
+    "wall_ms": 1062.355199999729,
+    "peak_working_set_bytes": 55738368,
+    "text": [
+     "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+    "Priya telt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "de-table",
+   "language": "de",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1278.0968,
+     "detector_load": 443.6172,
+     "recognize": 232.00119999999998,
+     "recognizer_load": 119.9955
+    },
+    "wall_ms": 2358.370300000388,
+    "peak_working_set_bytes": 102256640,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     513,
+     49
+    ],
+    "timing_ms": {
+     "detect": 30.3429,
+     "detector_load": 284.4078,
+     "recognize": 41.29169999999999,
+     "recognizer_load": 114.5788
+    },
+    "wall_ms": 727.4767000017164,
+    "peak_working_set_bytes": 55832576,
+    "text": [
+     "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+    "Priya teilt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "id-light",
+   "language": "id",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1608.5352,
+     "detector_load": 310.0076,
+     "recognize": 312.8259,
+     "recognizer_load": 151.7493
+    },
+    "wall_ms": 2627.7102999993076,
+    "peak_working_set_bytes": 101167104,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     541,
+     46
+    ],
+    "timing_ms": {
+     "detect": 59.4027,
+     "detector_load": 440.4293,
+     "recognize": 43.26169999999999,
+     "recognizer_load": 117.8091
+    },
+    "wall_ms": 925.7246000015584,
+    "peak_working_set_bytes": 60059648,
+    "text": [
+     "Perpanjangan kontrak pemasok jatuh tempo pada 14 November."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "id-dark",
+   "language": "id",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1043.3761,
+     "detector_load": 372.828,
+     "recognize": 221.6296,
+     "recognizer_load": 125.2562
+    },
+    "wall_ms": 1999.0649999999732,
+    "peak_working_set_bytes": 102354944,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     546,
+     49
+    ],
+    "timing_ms": {
+     "detect": 30.4034,
+     "detector_load": 290.2076,
+     "recognize": 43.608299999999986,
+     "recognizer_load": 95.6663
+    },
+    "wall_ms": 617.8153000000748,
+    "peak_working_set_bytes": 56987648,
+    "text": [
+     "Perpanjangan kontrak pemasok jatuh tempo pada 14 November."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "id-small",
+   "language": "id",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1038.045,
+     "detector_load": 254.6483,
+     "recognize": 244.9825,
+     "recognizer_load": 100.1378
+    },
+    "wall_ms": 1862.4951000019792,
+    "peak_working_set_bytes": 101044224,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     372,
+     42
+    ],
+    "timing_ms": {
+     "detect": 26.4281,
+     "detector_load": 504.7613,
+     "recognize": 72.70750000000001,
+     "recognizer_load": 155.655
+    },
+    "wall_ms": 1072.968000000401,
+    "peak_working_set_bytes": 57774080,
+    "text": [
+     "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+     "Dri"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "id-chat",
+   "language": "id",
+   "page_cer": 0.0031847133757961785,
+   "page_cer_raw": 0.0031847133757961785,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1201.4536,
+     "detector_load": 249.401,
+     "recognize": 177.7065,
+     "recognizer_load": 99.5326
+    },
+    "wall_ms": 2010.497100000066,
+    "peak_working_set_bytes": 102346752,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     493,
+     53
+    ],
+    "timing_ms": {
+     "detect": 35.1198,
+     "detector_load": 431.5081,
+     "recognize": 34.219600000000014,
+     "recognizer_load": 115.6609
+    },
+    "wall_ms": 882.7664999989793,
+    "peak_working_set_bytes": 55287808,
+    "text": [
+     "Perpanjangan kontrak pemasok jatuh tempo pada 14 November."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisì paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "id-table",
+   "language": "id",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1569.1713,
+     "detector_load": 297.2824,
+     "recognize": 289.45140000000004,
+     "recognizer_load": 184.8839
+    },
+    "wall_ms": 2562.006100000872,
+    "peak_working_set_bytes": 102309888,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     487,
+     49
+    ],
+    "timing_ms": {
+     "detect": 42.088,
+     "detector_load": 499.2342,
+     "recognize": 30.519200000000012,
+     "recognizer_load": 129.8002
+    },
+    "wall_ms": 965.4085000001942,
+    "peak_working_set_bytes": 59019264,
+    "text": [
+     "Perpanjangan kontrak pemasok jatuh tempo pada 14 November."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "ru-light",
+   "language": "ru",
+   "page_cer": 0.003424657534246575,
+   "page_cer_raw": 0.003424657534246575,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1195.9307,
+     "detector_load": 302.2373,
+     "recognize": 1632.0379,
+     "recognizer_load": 470.4785
+    },
+    "wall_ms": 3844.0306999982568,
+    "peak_working_set_bytes": 102338560,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     600,
+     49
+    ],
+    "timing_ms": {
+     "detect": 63.174,
+     "detector_load": 508.7475,
+     "recognize": 395.9347,
+     "recognizer_load": 509.9421
+    },
+    "wall_ms": 1768.5143999988213,
+    "peak_working_set_bytes": 69074944,
+    "text": [
+     "Продление договора с поставщиком нужно оформить до 14 ноября."
+    ]
+   },
+   "recognizers": [
+    "ru"
+   ],
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната В12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ru-dark",
+   "language": "ru",
+   "page_cer": 0.003424657534246575,
+   "page_cer_raw": 0.003424657534246575,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1070.3273,
+     "detector_load": 295.9992,
+     "recognize": 2114.9386,
+     "recognizer_load": 315.7996
+    },
+    "wall_ms": 3983.2021000001987,
+    "peak_working_set_bytes": 101122048,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     603,
+     49
+    ],
+    "timing_ms": {
+     "detect": 35.3204,
+     "detector_load": 238.5698,
+     "recognize": 253.26430000000005,
+     "recognizer_load": 282.6654
+    },
+    "wall_ms": 971.8198000009579,
+    "peak_working_set_bytes": 65343488,
+    "text": [
+     "Продление договора с поставщиком н",
+     "нужно оформить до 14 ноября."
+    ]
+   },
+   "recognizers": [
+    "ru"
+   ],
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната В12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ru-small",
+   "language": "ru",
+   "page_cer": 0.003424657534246575,
+   "page_cer_raw": 0.003424657534246575,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1493.5207,
+     "detector_load": 394.9687,
+     "recognize": 1101.4882,
+     "recognizer_load": 377.3925
+    },
+    "wall_ms": 3523.770499999955,
+    "peak_working_set_bytes": 102277120,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     411,
+     42
+    ],
+    "timing_ms": {
+     "detect": 27.1072,
+     "detector_load": 243.995,
+     "recognize": 419.76880000000006,
+     "recognizer_load": 297.89
+    },
+    "wall_ms": 1212.7856999977666,
+    "peak_working_set_bytes": 65785856,
+    "text": [
+     "Продление договора с поставщиком нужно оформить до 14 ноября."
+    ]
+   },
+   "recognizers": [
+    "ru"
+   ],
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната В12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ru-chat",
+   "language": "ru",
+   "page_cer": 0.003424657534246575,
+   "page_cer_raw": 0.003424657534246575,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1202.3039,
+     "detector_load": 372.7763,
+     "recognize": 1163.4237,
+     "recognizer_load": 315.8245
+    },
+    "wall_ms": 3327.352799999062,
+    "peak_working_set_bytes": 101068800,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     542,
+     52
+    ],
+    "timing_ms": {
+     "detect": 33.2242,
+     "detector_load": 461.7785,
+     "recognize": 283.6523000000001,
+     "recognizer_load": 520.3498
+    },
+    "wall_ms": 1499.5976999998675,
+    "peak_working_set_bytes": 65368064,
+    "text": [
+     "Продление договора с поставщиком нужно оформить до 14 ноября."
+    ]
+   },
+   "recognizers": [
+    "ru"
+   ],
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната В12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ru-table",
+   "language": "ru",
+   "page_cer": 0.003424657534246575,
+   "page_cer_raw": 0.003424657534246575,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1666.853,
+     "detector_load": 306.2079,
+     "recognize": 1286.1058,
+     "recognizer_load": 522.5443
+    },
+    "wall_ms": 3980.2036000000953,
+    "peak_working_set_bytes": 102326272,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     539,
+     49
+    ],
+    "timing_ms": {
+     "detect": 30.501,
+     "detector_load": 274.899,
+     "recognize": 277.2872,
+     "recognizer_load": 395.6372
+    },
+    "wall_ms": 1164.6559000000707,
+    "peak_working_set_bytes": 66260992,
+    "text": [
+     "Продление договора с поставщиком нужно оформить до 14 ноября."
+    ]
+   },
+   "recognizers": [
+    "ru"
+   ],
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната В12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ja-light",
+   "language": "ja",
+   "page_cer": 0.007518796992481203,
+   "page_cer_raw": 0.007518796992481203,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1415.4449,
+     "detector_load": 490.1504,
+     "recognize": 1964.228,
+     "recognizer_load": 762.3334
+    },
+    "wall_ms": 4880.256799999188,
+    "peak_working_set_bytes": 101031936,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     356,
+     43
+    ],
+    "timing_ms": {
+     "detect": 22.6153,
+     "detector_load": 245.6856,
+     "recognize": 250.41360000000003,
+     "recognizer_load": 382.7968
+    },
+    "wall_ms": 1087.493799997901,
+    "peak_working_set_bytes": 81817600,
+    "text": [
+     "仕入先との契約更新の期限は11月14日です。"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "四半期計画メモ",
+    "仕入先との契約更新の期限は11月14日です。",
+    "プリヤさんが金曜日までに修正した予算を共有します。",
+    "会議は木曜日の午後4時30分、B12会議室に変更になりました。",
+    "やること：ロ-ドマップを更新し、採用計画を確認する。",
+    "これまでの支出合計：48,250円"
+   ]
+  },
+  {
+   "name": "ja-dark",
+   "language": "ja",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1699.3673,
+     "detector_load": 273.6766,
+     "recognize": 1195.9108,
+     "recognizer_load": 633.2957
+    },
+    "wall_ms": 3989.0023000007204,
+    "peak_working_set_bytes": 101199872,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     360,
+     49
+    ],
+    "timing_ms": {
+     "detect": 22.1649,
+     "detector_load": 317.5578,
+     "recognize": 188.69670000000002,
+     "recognizer_load": 390.3771
+    },
+    "wall_ms": 1112.9876999984845,
+    "peak_working_set_bytes": 76365824,
+    "text": [
+     "仕入先との契約更新の期限は11月14日です。"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "四半期計画メモ",
+    "仕入先との契約更新の期限は11月14日です。",
+    "プリヤさんが金曜日までに修正した予算を共有します。",
+    "会議は木曜日の午後4時30分、B12会議室に変更になりました。",
+    "やること：ロードマップを更新し、採用計画を確認する。",
+    "これまでの支出合計：48,250円"
+   ]
+  },
+  {
+   "name": "ja-small",
+   "language": "ja",
+   "page_cer": 0.007518796992481203,
+   "page_cer_raw": 0.007518796992481203,
+   "line_accuracy": 0.8333333333333334,
+   "full": {
+    "timing_ms": {
+     "detect": 1448.9046,
+     "detector_load": 519.1751,
+     "recognize": 1156.4935,
+     "recognizer_load": 546.0851
+    },
+    "wall_ms": 3987.94789999738,
+    "peak_working_set_bytes": 101269504,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     249,
+     42
+    ],
+    "timing_ms": {
+     "detect": 17.0217,
+     "detector_load": 353.1119,
+     "recognize": 505.3025,
+     "recognizer_load": 372.1336
+    },
+    "wall_ms": 1450.4152000008617,
+    "peak_working_set_bytes": 83542016,
+    "text": [
+     "仕入先との契約更新の期限は11月14日です。",
+     "Pu+"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "四半期計画Xモ",
+    "仕入先との契約更新の期限は11月14日です。",
+    "プリヤさんが金曜日までに修正した予算を共有します。",
+    "会議は木曜日の午後4時30分、B12会議室に変更になりました。",
+    "やること：ロードマップを更新し、採用計画を確認する。",
+    "これまでの支出合計：48,250円"
+   ]
+  },
+  {
+   "name": "ja-chat",
+   "language": "ja",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1555.315,
+     "detector_load": 249.0951,
+     "recognize": 1498.0049,
+     "recognizer_load": 656.5846
+    },
+    "wall_ms": 4126.264500002435,
+    "peak_working_set_bytes": 102346752,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     324,
+     46
+    ],
+    "timing_ms": {
+     "detect": 19.889,
+     "detector_load": 263.025,
+     "recognize": 194.92560000000003,
+     "recognizer_load": 350.7409
+    },
+    "wall_ms": 1017.259299998841,
+    "peak_working_set_bytes": 81014784,
+    "text": [
+     "仕入先との契約更新の期限は11月14日です。"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "四半期計画メモ",
+    "仕入先との契約更新の期限は11月14日です。",
+    "プリヤさんが金曜日までに修正した予算を共有します。",
+    "会議は木曜日の午後4時30分、B12会議室に変更になりました。",
+    "やること：ロードマップを更新し、採用計画を確認する。",
+    "これまでの支出合計：48,250円"
+   ]
+  },
+  {
+   "name": "ja-table",
+   "language": "ja",
+   "page_cer": 0.015037593984962405,
+   "page_cer_raw": 0.015037593984962405,
+   "line_accuracy": 0.8333333333333334,
+   "full": {
+    "timing_ms": {
+     "detect": 1104.1696,
+     "detector_load": 389.306,
+     "recognize": 1468.4141,
+     "recognizer_load": 348.1487
+    },
+    "wall_ms": 3512.848300000769,
+    "peak_working_set_bytes": 102440960,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     320,
+     43
+    ],
+    "timing_ms": {
+     "detect": 22.3464,
+     "detector_load": 232.8773,
+     "recognize": 194.57660000000004,
+     "recognizer_load": 310.4521
+    },
+    "wall_ms": 917.0159000022977,
+    "peak_working_set_bytes": 77516800,
+    "text": [
+     "仕入先との契約更新の期限は11月14日です。"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "四半期計画メモ",
+    "仕入先との契約更新の期限は11月14日です。",
+    "プリヤさんが金曜日までに修正した予算を共有します。",
+    "会議は木曜日の午後4時30分、B12会議室に変更になりました。",
+    "やること：-ドマップを更新し、採用計画を確認する。",
+    "これまでの支出合計：48,250円"
+   ]
+  },
+  {
+   "name": "ar-light",
+   "language": "ar",
+   "page_cer": 0.04296875,
+   "page_cer_raw": 0.04296875,
+   "line_accuracy": 0.8333333333333334,
+   "full": {
+    "timing_ms": {
+     "detect": 1156.8566,
+     "detector_load": 311.0177,
+     "recognize": 1468.5172,
+     "recognizer_load": 337.1677
+    },
+    "wall_ms": 3466.759400002047,
+    "peak_working_set_bytes": 102293504,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     325,
+     53
+    ],
+    "timing_ms": {
+     "detect": 13.4672,
+     "detector_load": 269.7844,
+     "recognize": 107.99599999999998,
+     "recognizer_load": 313.2246
+    },
+    "wall_ms": 947.0125999978336,
+    "peak_working_set_bytes": 64294912,
+    "text": [
+     "تجديد عقد المورد مستحق في 14 نوفمبر"
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 نوفمبر.",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة.",
+    "تم نقل الاجتماع إلى يوم الخميس الساعة 4:30 مساء في الغرفة.B12",
+    "المهام تحديث خارطة الطريق ومراجعة خطة التوظيف.",
+    "إجمالي الإنفاق حتى الآن250:, 48دولار"
+   ]
+  },
+  {
+   "name": "ar-dark",
+   "language": "ar",
+   "page_cer": 0.05859375,
+   "page_cer_raw": 0.05859375,
+   "line_accuracy": 0.6666666666666666,
+   "full": {
+    "timing_ms": {
+     "detect": 1266.1735,
+     "detector_load": 285.5663,
+     "recognize": 1886.5582999999997,
+     "recognizer_load": 548.0938
+    },
+    "wall_ms": 4192.609699999593,
+    "peak_working_set_bytes": 102391808,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     327,
+     53
+    ],
+    "timing_ms": {
+     "detect": 17.1027,
+     "detector_load": 428.4335,
+     "recognize": 97.73520000000002,
+     "recognizer_load": 371.3136
+    },
+    "wall_ms": 1177.2870000022522,
+    "peak_working_set_bytes": 63578112,
+    "text": [
+     "تجديد عقد المورد مستحق في 14 نوفمبر."
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 نوفمبر.",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة",
+    "تم نقل الاجتماع إلى يوم الخميس الساعة 4:0 مساء في الغرفة.12",
+    "المهام تحديث خارطة الطريق ومراجعة خطة التوظيف",
+    "إجمالي الإنفاق حتى الآن250:, 48دولار"
+   ]
+  },
+  {
+   "name": "ar-small",
+   "language": "ar",
+   "page_cer": 0.09375,
+   "page_cer_raw": 0.09375,
+   "line_accuracy": 0.5,
+   "full": {
+    "timing_ms": {
+     "detect": 1089.8236,
+     "detector_load": 241.3178,
+     "recognize": 1102.1855,
+     "recognizer_load": 656.4209
+    },
+    "wall_ms": 3271.9246999986353,
+    "peak_working_set_bytes": 101117952,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     225,
+     42
+    ],
+    "timing_ms": {
+     "detect": 13.1562,
+     "detector_load": 276.4537,
+     "recognize": 221.06650000000002,
+     "recognizer_load": 292.879
+    },
+    "wall_ms": 1002.8136000000814,
+    "peak_working_set_bytes": 63393792,
+    "text": [
+     "تجديد عقد المورد مستحق في  نوفمبر",
+     "a",
+     ".,",
+     ":."
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في نوفمبر",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة،",
+    "تم نقل الاجتماع إلى يوم الخميس الساعة مساء في الغرفة",
+    "المهام تحديث خارطة الطريق ومراجعة خطة التوظيف",
+    "إجمالي الإنفاق حتى الآن2, 48دولار"
+   ]
+  },
+  {
+   "name": "ar-chat",
+   "language": "ar",
+   "page_cer": 0.0703125,
+   "page_cer_raw": 0.0703125,
+   "line_accuracy": 0.3333333333333333,
+   "full": {
+    "timing_ms": {
+     "detect": 1505.0337,
+     "detector_load": 290.0765,
+     "recognize": 864.2105999999999,
+     "recognizer_load": 474.3975
+    },
+    "wall_ms": 3315.452800001367,
+    "peak_working_set_bytes": 101163008,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     299,
+     56
+    ],
+    "timing_ms": {
+     "detect": 15.2608,
+     "detector_load": 348.1034,
+     "recognize": 118.33859999999999,
+     "recognizer_load": 495.0369
+    },
+    "wall_ms": 1190.9255999999004,
+    "peak_working_set_bytes": 64348160,
+    "text": [
+     "تجديد عقد المورد مستحق في 14 نوفمبږ"
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 نوفمبږ",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة",
+    "تم نقل الاجتماع إلى يوم الخميس الساعة 4:0 مساء في الغرفة.12",
+    "المهامتحديث خارطة الطريق ومراجعة خطة التوظيف",
+    "إجمالي الإنفاق حتى الآن250 , 48دولار"
+   ]
+  },
+  {
+   "name": "ar-table",
+   "language": "ar",
+   "page_cer": 0.0703125,
+   "page_cer_raw": 0.0703125,
+   "line_accuracy": 0.5,
+   "full": {
+    "timing_ms": {
+     "detect": 1639.0968,
+     "detector_load": 334.6259,
+     "recognize": 1298.8747,
+     "recognizer_load": 636.8804
+    },
+    "wall_ms": 4143.2825999982015,
+    "peak_working_set_bytes": 102391808,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     293,
+     50
+    ],
+    "timing_ms": {
+     "detect": 17.3692,
+     "detector_load": 279.0003,
+     "recognize": 103.74619999999999,
+     "recognizer_load": 396.9839
+    },
+    "wall_ms": 983.9473000029102,
+    "peak_working_set_bytes": 63651840,
+    "text": [
+     "تجديد عقد المورد مستحق في 14 نوفمبر۔"
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 نوفمبر،",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة",
+    "تم نقل الاجتماع إلى يوم الخميس الساعة 40 مساء في الغرفة.12",
+    "المهامتحديث خارطة الطريق ومراجعة خطة التوظيف",
+    "إجمالي الإنفاق حتى الآن250 , 48دولار"
+   ]
+  },
+  {
+   "name": "ur-light",
+   "language": "ur",
+   "page_cer": 0.10756972111553785,
+   "page_cer_raw": 0.10756972111553785,
+   "line_accuracy": 0.3333333333333333,
+   "full": {
+    "timing_ms": {
+     "detect": 1323.7732,
+     "detector_load": 310.5095,
+     "recognize": 1542.8004999999998,
+     "recognizer_load": 437.352
+    },
+    "wall_ms": 3849.1775000002235,
+    "peak_working_set_bytes": 101253120,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     400,
+     56
+    ],
+    "timing_ms": {
+     "detect": 16.7141,
+     "detector_load": 267.5396,
+     "recognize": 155.48309999999998,
+     "recognizer_load": 320.7142
+    },
+    "wall_ms": 957.2184999997262,
+    "peak_working_set_bytes": 64278528,
+    "text": [
+     "سپلائر ک معاہدء کی تجدید 14 نومبر تک پونی ہے۔"
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "للے ماہی منصوبے بندی ک نوٹس",
+    "سپلائرک معاہد cکی تجدید 14 نومبر تک پونی ہے۔",
+    "پریا جمعم تک نظرثانی شده بجٹ شیئر کرے گی۔",
+    "میٹنگ جمعرات شام 4:30 بجے کمره B12 میں منتقل کر دی گئی ہے۔",
+    "کام :روڈ میپ اپ ڈیٹ کریں۔ بھرتی کا منصوبم دیکھیں۔",
+    "اب تک کل خرچ250 :, 48روہے"
+   ]
+  },
+  {
+   "name": "ur-dark",
+   "language": "ur",
+   "page_cer": 0.3147410358565737,
+   "page_cer_raw": 0.3147410358565737,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1446.1329,
+     "detector_load": 387.0647,
+     "recognize": 1878.5394,
+     "recognizer_load": 559.8099
+    },
+    "wall_ms": 4508.908200001315,
+    "peak_working_set_bytes": 102330368,
+    "boxes": 15
+   },
+   "region": {
+    "size": [
+     222,
+     50
+    ],
+    "timing_ms": {
+     "detect": 15.2372,
+     "detector_load": 329.9421,
+     "recognize": 151.54990000000004,
+     "recognizer_load": 321.5954
+    },
+    "wall_ms": 1189.3066999982693,
+    "peak_working_set_bytes": 63721472,
+    "text": [
+     "y",
+     "للے ماہی منصوبی بندک ك"
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "نوٹس",
+    "للے ماہی منصوبی بندک ك",
+    "ہونی ہے۔",
+    "سپلائرک معاہدے کی تجدید 14 نومبر تک",
+    "گی۔",
+    "كر۔",
+    "پریا جمعم تک نظرثانی شده بجٹ شیئر",
+    "گئی",
+    "دک",
+    "میٹنگ جمعرات شام 4:30 بجے کمره B12 میں منتقل کر د",
+    "2",
+    "ا منصوبی دیکهیں",
+    "کام :روڈ میپ اپ ڈیٹ کریں۔ بھرتی کا",
+    "روہے",
+    "اب تک کل خرچ250 :,48"
+   ]
+  },
+  {
+   "name": "ur-small",
+   "language": "ur",
+   "page_cer": 0.2350597609561753,
+   "page_cer_raw": 0.2350597609561753,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1708.1064,
+     "detector_load": 400.0334,
+     "recognize": 777.076,
+     "recognizer_load": 383.6696
+    },
+    "wall_ms": 3610.7822000012675,
+    "peak_working_set_bytes": 101105664,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     276,
+     49
+    ],
+    "timing_ms": {
+     "detect": 20.0743,
+     "detector_load": 460.2104,
+     "recognize": 557.6221000000002,
+     "recognizer_load": 575.7289
+    },
+    "wall_ms": 1919.7501999988162,
+    "peak_working_set_bytes": 64786432,
+    "text": [
+     "سه مابى ملصوب بندى ي لولس",
+     "سلائرك معابده كی تجديد  نومبر تك بونی ے۔",
+     "بربا جمعمتك نظرثانی شده بجث شيئر كرك"
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "سم مابى منصوب بندى ك نوثس",
+    "سپلائرك معایده کی تجدید 14 نومبرتک پونی ہے۔",
+    "پريا جمعه تك نظرثانی شده بجث شيئر كر گی",
+    "میئنگ جمعرات شامبجے کمره میں متقل كر دی گئی ہے۔",
+    "كام روڈ میب اب ڈیث كریں، بهرتی کا منصوب دیکهی",
+    "اب تک کل خرچ250 :, 48رویے"
+   ]
+  },
+  {
+   "name": "ur-chat",
+   "language": "ur",
+   "page_cer": 0.12350597609561753,
+   "page_cer_raw": 0.12350597609561753,
+   "line_accuracy": 0.16666666666666666,
+   "full": {
+    "timing_ms": {
+     "detect": 918.347,
+     "detector_load": 243.7541,
+     "recognize": 863.9355,
+     "recognizer_load": 379.0663
+    },
+    "wall_ms": 2577.552899998409,
+    "peak_working_set_bytes": 101240832,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     368,
+     56
+    ],
+    "timing_ms": {
+     "detect": 12.5657,
+     "detector_load": 242.0936,
+     "recognize": 209.07619999999997,
+     "recognizer_load": 400.3808
+    },
+    "wall_ms": 1123.9827000026708,
+    "peak_working_set_bytes": 63279104,
+    "text": [
+     "سپلائرک معاہدے کی تجدید 14 نومبر تک پونی ہے۔"
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "للے ماہی منصوبے بندی ڪ نوٹس",
+    "سیلائر≤ معاہدے کی تجدید 14 نومبر تک پونی ہے۔",
+    "پریا جمعم تک نظرثانی شده بجٹ شیئر کرے گی۔",
+    "میٹنگ جمعرات شام4:30 بجے کمره B12 میں منتقل کر دی گئی ے۔",
+    "کام :روڈ میب اب ڈیٹ کریں۔ بھرتی کا منصوبے دیکھیں۔",
+    "اب تک کل خرچ250 , 48رویے"
+   ]
+  },
+  {
+   "name": "ur-table",
+   "language": "ur",
+   "page_cer": 0.11952191235059761,
+   "page_cer_raw": 0.11952191235059761,
+   "line_accuracy": 0.3333333333333333,
+   "full": {
+    "timing_ms": {
+     "detect": 1346.1285,
+     "detector_load": 394.8655,
+     "recognize": 686.7458,
+     "recognizer_load": 313.0448
+    },
+    "wall_ms": 3015.8665999988443,
+    "peak_working_set_bytes": 102375424,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     361,
+     56
+    ],
+    "timing_ms": {
+     "detect": 17.1287,
+     "detector_load": 259.9061,
+     "recognize": 125.51100000000002,
+     "recognizer_load": 306.5077
+    },
+    "wall_ms": 886.7098000009719,
+    "peak_working_set_bytes": 63803392,
+    "text": [
+     "سیلائرڪ معاہدے کی تجدید 14 نومبر تک پونی ہے۔"
+    ]
+   },
+   "recognizers": [
+    "ar"
+   ],
+   "pred": [
+    "للم مابی منصوبم بندی ڪ نوٹس",
+    "سپلائر ک معاہد cکی تجدید 14 نومبر تک پونی ہے۔",
+    "پریا جمعم تک نظرثانی شده بجٹ شیئر کرے گی۔",
+    "میٹنگ جمعرات شام 4:30 بجے کمره B12 میں منتقل کر دی گئی ہے۔",
+    "کام :روڈ میب اب ڈیٹ کریں۔ بھرتی کا منصوبے دیکھیں۔",
+    "اب تک کل خرچ250 :, 48رویے"
+   ]
+  },
+  {
+   "name": "bn-light",
+   "language": "bn",
+   "page_cer": 0.8560606060606061,
+   "page_cer_raw": 0.8560606060606061,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1485.7035,
+     "detector_load": 281.8219,
+     "recognize": 3035.8953999999994,
+     "recognizer_load": 5299.4308
+    },
+    "wall_ms": 10301.420700001472,
+    "peak_working_set_bytes": 102322176,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     435,
+     52
+    ],
+    "timing_ms": {
+     "detect": 24.5838,
+     "detector_load": 534.046,
+     "recognize": 1557.7822,
+     "recognizer_load": 2843.0986
+    },
+    "wall_ms": 5308.444899997994,
+    "peak_working_set_bytes": 93532160,
+    "text": [
+     "14"
+    ]
+   },
+   "recognizers": [
+    "ar",
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "ट्ाजिक तिकब्रनात (नार्े",
+    "जबत्ाशकातीत् मूछ नवा्रनत (ष जाबिथ 14 नछशन।",
+    "fEI③PAN北THTfGIGtHNAI",
+    "FGA 4:30-A PI B12-9 M",
+    "G: (TGITTG元~,引 小到N(7NI",
+    "时(元6: 48,250可"
+   ]
+  },
+  {
+   "name": "bn-dark",
+   "language": "bn",
+   "page_cer": 0.8560606060606061,
+   "page_cer_raw": 0.8560606060606061,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1280.9564,
+     "detector_load": 313.1685,
+     "recognize": 3691.2566000000006,
+     "recognizer_load": 6619.2577
+    },
+    "wall_ms": 12114.747300001909,
+    "peak_working_set_bytes": 101269504,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     435,
+     49
+    ],
+    "timing_ms": {
+     "detect": 25.198,
+     "detector_load": 237.9213,
+     "recognize": 1966.7287999999999,
+     "recognizer_load": 2786.8352999999997
+    },
+    "wall_ms": 5227.215699997032,
+    "peak_working_set_bytes": 94760960,
+    "text": [
+     "14"
+    ]
+   },
+   "recognizers": [
+    "ar",
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "टवगाजिक न्िकब्रनात (नार्े",
+    "मबबब्राशका्लीतर पूछि नवाग्रनत् (\"मय छातिथ 14 नछयब।",
+    "fEI3PTTfICGt(CI",
+    "f TGA f 4:30-A T B12-I TAICT Q",
+    "G: (IGI9可91G本,19R本I(7TI",
+    "9可(6: 48,250利"
+   ]
+  },
+  {
+   "name": "bn-small",
+   "language": "bn",
+   "page_cer": 0.8446969696969697,
+   "page_cer_raw": 0.8446969696969697,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1126.942,
+     "detector_load": 451.7204,
+     "recognize": 3401.120999999999,
+     "recognizer_load": 6023.7127
+    },
+    "wall_ms": 11324.215199998434,
+    "peak_working_set_bytes": 101036032,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     298,
+     43
+    ],
+    "timing_ms": {
+     "detect": 25.1288,
+     "detector_load": 341.3098,
+     "recognize": 4836.3309,
+     "recognizer_load": 6271.9430999999995
+    },
+    "wall_ms": 11768.130699998437,
+    "peak_working_set_bytes": 105664512,
+    "text": [
+     "езпмпячямя се",
+     "जव्ाशकातीतर पछि नवाशनत (\"ष जा्िथ 14 नएछश्।",
+     "Gm"
+    ]
+   },
+   "recognizers": [
+    "ar",
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "टवाजिक शब्िकद्वनात् लनाे",
+    "मव्ाशकातीब मूछि नवानत ल\"ब जाबिथ 14 नउथब।",
+    "2 t 6 P4",
+    "126A 4:30-9 P B12-9 A 2",
+    "可: (G可G网, 向1惊和到 (7",
+    "250 ,4 C 48"
+   ]
+  },
+  {
+   "name": "bn-chat",
+   "language": "bn",
+   "page_cer": 0.8446969696969697,
+   "page_cer_raw": 0.8446969696969697,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1116.6091,
+     "detector_load": 298.9764,
+     "recognize": 2712.876800000001,
+     "recognizer_load": 6148.577199999999
+    },
+    "wall_ms": 10534.518500000559,
+    "peak_working_set_bytes": 102293504,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     392,
+     51
+    ],
+    "timing_ms": {
+     "detect": 25.3575,
+     "detector_load": 358.7704,
+     "recognize": 1219.1424000000002,
+     "recognizer_load": 2790.4784
+    },
+    "wall_ms": 4893.994099998963,
+    "peak_working_set_bytes": 95985664,
+    "text": [
+     "मबबाशकातील तुकछि नवायानव (म जातिथ 14 नछशन।"
+    ]
+   },
+   "recognizers": [
+    "ar",
+    "general",
+    "hi",
+    "te"
+   ],
+   "pred": [
+    "टवयाजिक शब्िक्नाव लनारे",
+    "14",
+    "f AA TT AOt TA",
+    "21(FIb T-641 RLp 4:30-I PI B12-I YAILT 2t3",
+    "MI( AIS HA ,PIS: IGT ITG PA",
+    "河(亦5: 48,250兩"
+   ]
+  },
+  {
+   "name": "bn-table",
+   "language": "bn",
+   "page_cer": 0.8409090909090909,
+   "page_cer_raw": 0.8409090909090909,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1400.46,
+     "detector_load": 315.5109,
+     "recognize": 3190.5751999999993,
+     "recognizer_load": 6521.7647000000015
+    },
+    "wall_ms": 12812.916099999711,
+    "peak_working_set_bytes": 101167104,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     388,
+     46
+    ],
+    "timing_ms": {
+     "detect": 94.3032,
+     "detector_load": 460.2209,
+     "recognize": 1376.7151000000003,
+     "recognizer_load": 2698.0269999999996
+    },
+    "wall_ms": 4924.73130000144,
+    "peak_working_set_bytes": 93954048,
+    "text": [
+     "14"
+    ]
+   },
+   "recognizers": [
+    "ar",
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "टयाजिक शबिकब्नात (नार्",
+    "मबव्राशकातीत मूकि नवाग्रनत (मय जातिथ 14 नछश्।",
+    "A TI T TA",
+    "F T2A 4:30-A PT B12-G I 2",
+    "P T A M",
+    "时(元6: 48,250可"
+   ]
+  },
+  {
+   "name": "mr-light",
+   "language": "mr",
+   "page_cer": 0.0311284046692607,
+   "page_cer_raw": 0.0311284046692607,
+   "line_accuracy": 0.8333333333333334,
+   "full": {
+    "timing_ms": {
+     "detect": 1394.8566,
+     "detector_load": 304.5048,
+     "recognize": 1112.1912,
+     "recognizer_load": 432.5916
+    },
+    "wall_ms": 3459.5310000004247,
+    "peak_working_set_bytes": 101183488,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     454,
+     56
+    ],
+    "timing_ms": {
+     "detect": 23.0511,
+     "detector_load": 285.7954,
+     "recognize": 123.44799999999998,
+     "recognizer_load": 351.4726
+    },
+    "wall_ms": 1019.8878000010154,
+    "peak_working_set_bytes": 63909888,
+    "text": [
+     "पुरवठादार कराराचे नूतनीकरण 14 नोव्ेंबरपर्यत करायचे आहे"
+    ]
+   },
+   "recognizers": [
+    "hi"
+   ],
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोव्हेबरपर्यत करायचे आहे.",
+    "प्रिया शुक्रवारपर्यत सुधारित बजेट शेअर करेल",
+    "बैठक गुरुवारी दुपारी 4:30 वाजता खोली B12 मध्ये हलवली आहे.",
+    "कामे: रोडमेंप अपडेट करा, भरती योजना तपासा",
+    "आतापर्यत एकूण खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "mr-dark",
+   "language": "mr",
+   "page_cer": 0.0311284046692607,
+   "page_cer_raw": 0.0311284046692607,
+   "line_accuracy": 0.8333333333333334,
+   "full": {
+    "timing_ms": {
+     "detect": 1671.5323,
+     "detector_load": 277.5111,
+     "recognize": 1290.7152,
+     "recognizer_load": 568.5004
+    },
+    "wall_ms": 4018.607499998325,
+    "peak_working_set_bytes": 102342656,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     454,
+     56
+    ],
+    "timing_ms": {
+     "detect": 31.8828,
+     "detector_load": 365.3179,
+     "recognize": 230.21589999999992,
+     "recognizer_load": 515.0913
+    },
+    "wall_ms": 1547.9723999997077,
+    "peak_working_set_bytes": 66011136,
+    "text": [
+     "पुरवठादार कराराचे नूतनीकरण 14 नोव्हंबरपर्यत करायचे आहे"
+    ]
+   },
+   "recognizers": [
+    "hi"
+   ],
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोव्हेंबरपर्यत करायचे आहे.",
+    "प्रिया शुक्रवारपर्यत सुधारित बजेट शेअर करेल",
+    "बैठक गुरुवारी दुपारी 4:30 वाजता खोली B12 मध्ये हलवली आहे",
+    "कामे: रोडमेंप अपडेट करा, भरती योजना तपासा",
+    "आतापर्यत एकूण खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "mr-small",
+   "language": "mr",
+   "page_cer": 0.038910505836575876,
+   "page_cer_raw": 0.038910505836575876,
+   "line_accuracy": 0.6666666666666666,
+   "full": {
+    "timing_ms": {
+     "detect": 1606.6096,
+     "detector_load": 303.186,
+     "recognize": 822.5165999999999,
+     "recognizer_load": 545.8397
+    },
+    "wall_ms": 3579.4901000008394,
+    "peak_working_set_bytes": 101154816,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     310,
+     43
+    ],
+    "timing_ms": {
+     "detect": 18.3917,
+     "detector_load": 293.4495,
+     "recognize": 411.3896,
+     "recognizer_load": 349.2594
+    },
+    "wall_ms": 1252.1560000022873,
+    "peak_working_set_bytes": 68493312,
+    "text": [
+     "Tा29oC",
+     "पुरवठादार कराराचे नूतनीकरण 14 नोव्हंबरपर्यत करायचे आहे",
+     "-"
+    ]
+   },
+   "recognizers": [
+    "hi"
+   ],
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोवळहेंबरपर्यत करायचे आहे",
+    "प्रिया शुक्रवारपर्यत सुधारित बजेट शेअर करेल.",
+    "बेठक गुरुवारी दुपारी 4:30 वाजता खोली B12 मध्य हलवली आहे",
+    "कामे: रोडमेंप अपडेट करा, भरती योजना तपासा.",
+    "आतापर्यत एकूण खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "mr-chat",
+   "language": "mr",
+   "page_cer": 0.07392996108949416,
+   "page_cer_raw": 0.07392996108949416,
+   "line_accuracy": 0.6666666666666666,
+   "full": {
+    "timing_ms": {
+     "detect": 1582.461,
+     "detector_load": 560.8312,
+     "recognize": 603.5764,
+     "recognizer_load": 374.1644
+    },
+    "wall_ms": 3324.0996999993513,
+    "peak_working_set_bytes": 101089280,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     415,
+     59
+    ],
+    "timing_ms": {
+     "detect": 16.9844,
+     "detector_load": 268.0007,
+     "recognize": 117.83860000000004,
+     "recognizer_load": 301.4924
+    },
+    "wall_ms": 876.4074999999139,
+    "peak_working_set_bytes": 64724992,
+    "text": [
+     "पुरवठादार करारचे नूतनीकरण 14 नोळहंबरपर्यत करायचे आहे"
+    ]
+   },
+   "recognizers": [
+    "hi"
+   ],
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नतनीकरण 14 नोळहेबरप्यत करायचे आहे.",
+    "प्रिया शु्रवारपर्यत सुधारित बजेट शेअर करेल.",
+    "बैठक गुरुवारी दुपारी 4:30 वाजता खोली B12 मध्े हलवली आहे",
+    "कामे: रोडमेंप अपडेट करा, भरती योजना तपासा.",
+    "आताप्त एकूणखरच ४8,250 रुपये"
+   ]
+  },
+  {
+   "name": "mr-table",
+   "language": "mr",
+   "page_cer": 0.03501945525291829,
+   "page_cer_raw": 0.03501945525291829,
+   "line_accuracy": 0.8333333333333334,
+   "full": {
+    "timing_ms": {
+     "detect": 1855.0808,
+     "detector_load": 284.8134,
+     "recognize": 1117.0626,
+     "recognizer_load": 592.9411
+    },
+    "wall_ms": 4035.385800001677,
+    "peak_working_set_bytes": 102309888,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     406,
+     53
+    ],
+    "timing_ms": {
+     "detect": 21.6248,
+     "detector_load": 309.1065,
+     "recognize": 133.95930000000004,
+     "recognizer_load": 359.9285
+    },
+    "wall_ms": 1025.8379000006244,
+    "peak_working_set_bytes": 63537152,
+    "text": [
+     "पुरवठादार कराराचे नूतनीकरण 14 नोव्ेंबरपर्यत करायचे आहे."
+    ]
+   },
+   "recognizers": [
+    "hi"
+   ],
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोव्हेबरपर्यत करायचे आहे.",
+    "प्रिया शुक्रवारपर्यत सुधारित बजेट शेअर करेल",
+    "बैठक गुरुवारी दुपारी 4:30 वाजता खोली B12 मध्े हलवली आहे.",
+    "कामे: रोडमेँप अपडेट करा, भरती योजना तपासा",
+    "आतापर्यत एकूण खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "gu-light",
+   "language": "gu",
+   "page_cer": 0.7865168539325843,
+   "page_cer_raw": 0.7865168539325843,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 950.5303,
+     "detector_load": 265.0376,
+     "recognize": 2733.7654999999986,
+     "recognizer_load": 5526.827700000001
+    },
+    "wall_ms": 9667.496300000494,
+    "peak_working_set_bytes": 101056512,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     425,
+     49
+    ],
+    "timing_ms": {
+     "detect": 20.8368,
+     "detector_load": 282.8179,
+     "recognize": 1330.9913000000001,
+     "recognizer_load": 2332.8695
+    },
+    "wall_ms": 4164.35730000012,
+    "peak_working_set_bytes": 94576640,
+    "text": [
+     "सप्धायर 5ररनु नवीs२ए 14 नवेभ्५२ सुघीभं sरवानु छ"
+    ]
+   },
+   "recognizers": [
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "त्रिभासि5 थायो%न नोघो",
+    "सप्धायर s२रनु नवीs२ए 14 नवेभ्५२ सुघीभं s२वानु छ",
+    "fü4l 1sqlRylui 44iRq 82 λ s2a.",
+    "ilã1 28qlR i8 4:30 qpa 2oH B12Hi 4AsqHi 24lcil 8.",
+    "sH: lsã4 4432 s2l, eHRdl lroll d4zl.",
+    "2424lR 4elol gq 4²I: 48,250 of44l"
+   ]
+  },
+  {
+   "name": "gu-dark",
+   "language": "gu",
+   "page_cer": 0.7940074906367042,
+   "page_cer_raw": 0.7940074906367042,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1134.7864,
+     "detector_load": 259.4836,
+     "recognize": 2452.2804000000006,
+     "recognizer_load": 5900.6925
+    },
+    "wall_ms": 9921.497999999701,
+    "peak_working_set_bytes": 102313984,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     427,
+     52
+    ],
+    "timing_ms": {
+     "detect": 22.6784,
+     "detector_load": 253.8047,
+     "recognize": 1696.6180999999997,
+     "recognizer_load": 2671.0524000000005
+    },
+    "wall_ms": 4796.704799999134,
+    "peak_working_set_bytes": 90161152,
+    "text": [
+     "सप्वाथर sररनु नवीs२ए 14 नवेमभ्५र सुधीभं sरवानु छ"
+    ]
+   },
+   "recognizers": [
+    "ar",
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "त्रभासि5 थायो%न नोघो",
+    "सप्ायर ररनु नवीड२ए 14 नवेभ्५र सुघीभं ऋरपानु छ",
+    "fü4l 4sqlR yelui y4iRg 482 λ 522.",
+    "ilfã ooqiR ai8 4:30 qp4 2oH B12 Hi 4Asqi 4lil 8.",
+    "sH: 2lsã4 4432 s2l, Rdl r-ll d4e.",
+    "250 tl,u yl q u: 48"
+   ]
+  },
+  {
+   "name": "gu-small",
+   "language": "gu",
+   "page_cer": 0.8164794007490637,
+   "page_cer_raw": 0.8164794007490637,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1799.0419,
+     "detector_load": 277.9301,
+     "recognize": 2521.4632999999994,
+     "recognizer_load": 5990.4985
+    },
+    "wall_ms": 10799.740000002203,
+    "peak_working_set_bytes": 102342656,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     293,
+     43
+    ],
+    "timing_ms": {
+     "detect": 37.669,
+     "detector_load": 518.7376,
+     "recognize": 3658.231599999999,
+     "recognizer_load": 6188.2711
+    },
+    "wall_ms": 10685.697600001731,
+    "peak_working_set_bytes": 98672640,
+    "text": [
+     "14LlA5 04t4180L0L140",
+     "सप्वाथर 5शरनु नवो६२ए 14 नवेभ्५२ सुधोभां ह२वानु छे",
+     "Ga",
+     "lui uu3di",
+     ";",
+     "20("
+    ]
+   },
+   "recognizers": [
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "तिभासिष थआायोषन नोधो",
+    "सप्धाथर 5२रनु नवोह२ए १4 नवेभ्५२ सुधोभं ह२वानु छे.",
+    "ifã0 oqi2 2io8 4:30 aì B12Hi wlsaHi 21al 8.",
+    "514: 2lsìu 4u32 52., e2cdl zlrll d41zl.",
+    "4c412 yeilol gq ²: 48,250 4241"
+   ]
+  },
+  {
+   "name": "gu-chat",
+   "language": "gu",
+   "page_cer": 0.8164794007490637,
+   "page_cer_raw": 0.8164794007490637,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 986.4472,
+     "detector_load": 443.7047,
+     "recognize": 2975.9405000000006,
+     "recognizer_load": 5348.7474999999995
+    },
+    "wall_ms": 10190.587699999014,
+    "peak_working_set_bytes": 101203968,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     388,
+     53
+    ],
+    "timing_ms": {
+     "detect": 75.7284,
+     "detector_load": 1522.1507,
+     "recognize": 1255.6167000000005,
+     "recognizer_load": 2700.3961999999997
+    },
+    "wall_ms": 7340.914899999916,
+    "peak_working_set_bytes": 92839936,
+    "text": [
+     "सप्धाय२ Sररनु नवीs२ए 14 नवेभ्५र सुधीभं s२वानु छ."
+    ]
+   },
+   "recognizers": [
+    "ar",
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "श्रमासिष आायो%न नोघो",
+    "सप्धायर sररनु नवोs२ए 14 नवेभ्यर सुधोभं s२वानु छ.",
+    "ü41 Js4lR alμi 42g 482 R 522.",
+    "H1 JpqR H18 4:30 9p2 H B12 Hi 4AsqHi 34lal 8.",
+    "ca al d.,Sl: d 2 s2l",
+    "41[250 2a,: 48[34 ydlal q u2"
+   ]
+  },
+  {
+   "name": "gu-table",
+   "language": "gu",
+   "page_cer": 0.7865168539325843,
+   "page_cer_raw": 0.7865168539325843,
+   "line_accuracy": 0.0,
+   "full": {
+    "timing_ms": {
+     "detect": 2053.0333,
+     "detector_load": 268.5191,
+     "recognize": 3279.8189,
+     "recognizer_load": 6185.540999999999
+    },
+    "wall_ms": 11979.530200002046,
+    "peak_working_set_bytes": 101597184,
+    "boxes": 6
+   },
+   "region": {
+    "size": [
+     381,
+     46
+    ],
+    "timing_ms": {
+     "detect": 23.4171,
+     "detector_load": 283.1396,
+     "recognize": 1330.5064000000002,
+     "recognizer_load": 2590.7421
+    },
+    "wall_ms": 4436.537500001577,
+    "peak_working_set_bytes": 92966912,
+    "text": [
+     "सप्वाय२ 5ररनु नवीs२ए 14 नवेभ्यर सुधीभं 5२वानु छ."
+    ]
+   },
+   "recognizers": [
+    "general",
+    "hi"
+   ],
+   "pred": [
+    "त्रिभासि5 यायो%न नोधो",
+    "सप्धाय२ 5ररनु नवीs२ए १4 नवेभ्२ सुधीभां s२वानु छ",
+    "ül gsqlR ytlui y4lRg 482 R s22.",
+    "ã Jeal2 H18 4:30 ap2 H B12Hi 4AsqHi 34ll 8.",
+    "sH: 2λsh4u32 s2l, cedl 24oll cdlen.",
+    "424lR gilol ga 4²I: 48,250 fu²41"
+   ]
+  }
+ ]
+}
