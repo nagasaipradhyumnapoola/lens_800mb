@@ -1,6 +1,6 @@
 {
  "schema_version": 1,
- "policy": "Only licensed public data; no personal data; held-out splits never trained on. docs/LENS_MODEL.md section 5.",
+ "policy": "Only licensed public data; no personal data; held-out splits never trained on. docs/LENS_MODEL.md section 5. Global scope (spec §1a): balanced across 17 languages; non-commercial sets evaluation only; gated sets need the owner.",
  "datasets": [
   {
    "name": "squad_v2",
@@ -85,6 +85,567 @@
      "path": "data/external/xquad/xquad.hi.parquet",
      "sha256": "e6c7be8500401994d4812db12380239b4ca844c21b650ebdd393d4aba045177e",
      "bytes": 322083
+    }
+   ]
+  },
+  {
+   "name": "mlqa",
+   "repository": "facebook/mlqa",
+   "revision": "0d43d0f635e3d5768fcc252c97bf59cff847859e",
+   "license": "CC-BY-SA-3.0",
+   "note": "7 languages + cross-lingual; test = benchmark only (never trained); validation = distillation pool (0 shared paragraphs with test)",
+   "files": [
+    {
+     "path": "data/external/mlqa/mlqa.ar.ar.test.parquet",
+     "sha256": "7369aef7f1d85610193ca104bfd4c5c7ec530bcfad333c572eb4bf9225709cc1",
+     "bytes": 3640597
+    },
+    {
+     "path": "data/external/mlqa/mlqa.ar.ar.validation.parquet",
+     "sha256": "16f01e60ae4f67603939fae4245f8a055050850508d01929a53fdfae5eeca1f3",
+     "bytes": 350989
+    },
+    {
+     "path": "data/external/mlqa/mlqa.de.de.test.parquet",
+     "sha256": "bd04f76d178a39f8f3bb8560b8f05f7775ca00aa812a4931a94d3b511dc35bd0",
+     "bytes": 2462184
+    },
+    {
+     "path": "data/external/mlqa/mlqa.de.de.validation.parquet",
+     "sha256": "07143746ac5e3910ee500b4f4001dd26f4df6b487bf3230941b1df41478dd2c6",
+     "bytes": 279733
+    },
+    {
+     "path": "data/external/mlqa/mlqa.en.en.test.parquet",
+     "sha256": "78e612ddce0503ebd583b02a807d0d218992daf7f53c027a2edf11bf4564f1cf",
+     "bytes": 7394618
+    },
+    {
+     "path": "data/external/mlqa/mlqa.en.en.validation.parquet",
+     "sha256": "0f6d63f190339874d099fc22b29fff12141ee87a09e77d89988d064b3055d748",
+     "bytes": 712750
+    },
+    {
+     "path": "data/external/mlqa/mlqa.en.es.test.parquet",
+     "sha256": "89ab73e0b92b614589a2ac9c8cbc33a314c4a5a168a5b24d6b24047973e72b37",
+     "bytes": 3407240
+    },
+    {
+     "path": "data/external/mlqa/mlqa.en.es.validation.parquet",
+     "sha256": "f3fe63353aa75e638f36ee2ee85a783cd7899c19118fb717975f1ccfa9f5769c",
+     "bytes": 314019
+    },
+    {
+     "path": "data/external/mlqa/mlqa.en.hi.test.parquet",
+     "sha256": "e0e49e2b9dea15c89e8129311529d33ca4f463d4b91e6789a36a6e452063a408",
+     "bytes": 3155471
+    },
+    {
+     "path": "data/external/mlqa/mlqa.en.hi.validation.parquet",
+     "sha256": "0f82e5d56927ea9bfc251945317efd1a6dbbb3572ad1abae4d8af48f21dbabf1",
+     "bytes": 318719
+    },
+    {
+     "path": "data/external/mlqa/mlqa.en.zh.test.parquet",
+     "sha256": "286b59245e2232ae7e217c9bdeb177fad2dae184ff42d6e1c55b7ca47be9b445",
+     "bytes": 3545128
+    },
+    {
+     "path": "data/external/mlqa/mlqa.en.zh.validation.parquet",
+     "sha256": "dc0f7063a937364b6d7fda7fc61fbb3e6c3abfd05f0f6b97e71d576b72b0f444",
+     "bytes": 329836
+    },
+    {
+     "path": "data/external/mlqa/mlqa.es.en.test.parquet",
+     "sha256": "1cfb32b295f393cb782dc0cc0240919bf9c5abc936a9fc7ee3612e2a2738da69",
+     "bytes": 2533051
+    },
+    {
+     "path": "data/external/mlqa/mlqa.es.en.validation.parquet",
+     "sha256": "34c85e7cbefbc414cd1d4615b19a24a66efe65eba4104679322c4e8bfc454d05",
+     "bytes": 251485
+    },
+    {
+     "path": "data/external/mlqa/mlqa.es.es.test.parquet",
+     "sha256": "50ac23b5ddf27ad056fc90d143984c7d89b78e49341866354140438a7f82ae30",
+     "bytes": 2545856
+    },
+    {
+     "path": "data/external/mlqa/mlqa.es.es.validation.parquet",
+     "sha256": "474287c593407f176c1c7e82b9c0cc280a68a46ad52ec0da81024625e7614f34",
+     "bytes": 253126
+    },
+    {
+     "path": "data/external/mlqa/mlqa.hi.en.test.parquet",
+     "sha256": "b998023ad30b33ab5cc2838cdcff46bad9b6dcbe6f47684db9f42705afada77b",
+     "bytes": 3712147
+    },
+    {
+     "path": "data/external/mlqa/mlqa.hi.en.validation.parquet",
+     "sha256": "bbe4bd4216909bdaeb2001846f11967135eeb45edab940e62a494d8f7f93f497",
+     "bytes": 360299
+    },
+    {
+     "path": "data/external/mlqa/mlqa.hi.hi.test.parquet",
+     "sha256": "aa529de8907aa4c3cf079bf15ad304b57a2516f1b5b62254a7eb9eb99dc8404d",
+     "bytes": 3807388
+    },
+    {
+     "path": "data/external/mlqa/mlqa.hi.hi.validation.parquet",
+     "sha256": "56ff430a0c4e03afa4b046d21efcb6fa5491aef2f734e283931f93afbd7ff17e",
+     "bytes": 370299
+    },
+    {
+     "path": "data/external/mlqa/mlqa.vi.vi.test.parquet",
+     "sha256": "e8538e64ace62d038ba73572e17aef852538d1d7e060dce5da2d7488dbf225ec",
+     "bytes": 3703194
+    },
+    {
+     "path": "data/external/mlqa/mlqa.vi.vi.validation.parquet",
+     "sha256": "0352bf538d0b4b5cf96cd3f9d86bef3fec1db1569900a1e4efabb8032c7a9f3b",
+     "bytes": 345337
+    },
+    {
+     "path": "data/external/mlqa/mlqa.zh.en.test.parquet",
+     "sha256": "e20d621acf6bbc98e2ba2a08581ee99ddf0bba47e36ce2d1b1494b6a70a44faa",
+     "bytes": 2780448
+    },
+    {
+     "path": "data/external/mlqa/mlqa.zh.en.validation.parquet",
+     "sha256": "1d03671c62d58d5404dc5b8598ea64b32cb34ba68d488145dbeec320426cbe66",
+     "bytes": 272661
+    },
+    {
+     "path": "data/external/mlqa/mlqa.zh.zh.test.parquet",
+     "sha256": "6a7e08ae9d827a584302c9745575cd084ff717cbc45dd1461f32d9365b31f3ae",
+     "bytes": 2777806
+    },
+    {
+     "path": "data/external/mlqa/mlqa.zh.zh.validation.parquet",
+     "sha256": "65edc003ca1e44acff33b6347bba95ed321bbd6622f4120dd19938d5ae43b871",
+     "bytes": 272041
+    }
+   ]
+  },
+  {
+   "name": "belebele",
+   "repository": "facebook/belebele",
+   "revision": "7899cdfa4e1e0d733fd77c848e2c273cb1d32be2",
+   "license": "CC-BY-SA-4.0",
+   "note": "parallel reading comprehension in all 17 spec §1a languages + romanized hi/bn/ur; benchmark only",
+   "files": [
+    {
+     "path": "data/external/belebele/arb_Arab.jsonl",
+     "sha256": "a2282b0974826172b1ce76a5d9e362091cfc8a7a25023df2d011f88f588b56e0",
+     "bytes": 2847724
+    },
+    {
+     "path": "data/external/belebele/ben_Beng.jsonl",
+     "sha256": "cd8be5c2a52d0d3847ff0c2837f3186bbc32f9d19439acd17304cc8c94665896",
+     "bytes": 3235932
+    },
+    {
+     "path": "data/external/belebele/ben_Latn.jsonl",
+     "sha256": "2a27a5a3aa2e9918d2626dc2e73665daf210b1bbd90e72462a53e7686c6eb12e",
+     "bytes": 884771
+    },
+    {
+     "path": "data/external/belebele/deu_Latn.jsonl",
+     "sha256": "ca04cfec5a865a803dfe70636b6f6c4696efbbfa66f4eb5e8cf89c86b0a74f09",
+     "bytes": 965468
+    },
+    {
+     "path": "data/external/belebele/eng_Latn.jsonl",
+     "sha256": "15af884c2b5994fdc71199e79d553a1864b08ce1b31894aa87f6be925a064a31",
+     "bytes": 836071
+    },
+    {
+     "path": "data/external/belebele/fra_Latn.jsonl",
+     "sha256": "11c3cd50907631642e6dca8396974e4d0dfbf6603e0f6e35d6c1e64eed662060",
+     "bytes": 1084944
+    },
+    {
+     "path": "data/external/belebele/guj_Gujr.jsonl",
+     "sha256": "36799a073817b5c756a284152eb41c7853a5436c3ac8361a1df6a5ca7f4a3bf4",
+     "bytes": 3051820
+    },
+    {
+     "path": "data/external/belebele/hin_Deva.jsonl",
+     "sha256": "41d34aab7f8fc4d57dc5d61fb36c3ce6ce230fe8e1c156c4d3cff0ba4710ed8f",
+     "bytes": 3124631
+    },
+    {
+     "path": "data/external/belebele/hin_Latn.jsonl",
+     "sha256": "f93c3c827f387644c9f176ad8d715367e1a4cc8ccd37c64c20a489e8f7432ce6",
+     "bytes": 895526
+    },
+    {
+     "path": "data/external/belebele/ind_Latn.jsonl",
+     "sha256": "14b16460324ca9b70f0fba56068a9860b1b5db00b6791acc4069aad69d8ab641",
+     "bytes": 880428
+    },
+    {
+     "path": "data/external/belebele/jpn_Jpan.jsonl",
+     "sha256": "c5cc2184b7468196ea8a1c37382ab9e80640edd410266a381a42a05cbc0d2605",
+     "bytes": 1716297
+    },
+    {
+     "path": "data/external/belebele/mar_Deva.jsonl",
+     "sha256": "b6f55f4be685d01dc9b57eb14cc7cab272073a2cc5713de4a2f28da48ca9633d",
+     "bytes": 3269717
+    },
+    {
+     "path": "data/external/belebele/por_Latn.jsonl",
+     "sha256": "da63cd6215d550f0ad3df5562567096e8e7731a04322f90e801c554b1c43b431",
+     "bytes": 971069
+    },
+    {
+     "path": "data/external/belebele/rus_Cyrl.jsonl",
+     "sha256": "e8b81853605b97e993af07a34ad2c0a48ccd8dab80956b0650a161e8fea00de5",
+     "bytes": 3574715
+    },
+    {
+     "path": "data/external/belebele/spa_Latn.jsonl",
+     "sha256": "04741f3bc179d9d21a71d5fc0fa3eb1873986d0bef1ad47fbbbb3f710428a5b9",
+     "bytes": 1000865
+    },
+    {
+     "path": "data/external/belebele/tam_Taml.jsonl",
+     "sha256": "f950eb23a6e7001087d0dbc3ebc892f1b92a99cfc35b929b4cdfb07288037044",
+     "bytes": 3893367
+    },
+    {
+     "path": "data/external/belebele/tel_Telu.jsonl",
+     "sha256": "10403c5d76edf5112b0703217836e15857119a58f431052eb47b7874d9fc419e",
+     "bytes": 3331996
+    },
+    {
+     "path": "data/external/belebele/urd_Arab.jsonl",
+     "sha256": "68aa20692ec92883e0b1cfa8e4a720da1c02a773305fe6334472505152276c22",
+     "bytes": 3075650
+    },
+    {
+     "path": "data/external/belebele/urd_Latn.jsonl",
+     "sha256": "19028cfb8e439fb66c23b6685aedf404e2a026a5586327bb096ec3ce7627fedd",
+     "bytes": 965677
+    },
+    {
+     "path": "data/external/belebele/zho_Hans.jsonl",
+     "sha256": "f3b7915eaa27e44225979ffd38708c5beee63d28bea27a91253e5fe68e2fa147",
+     "bytes": 1285910
+    }
+   ]
+  },
+  {
+   "name": "xquad_world",
+   "repository": "google/xquad",
+   "revision": "51adfef1c1287aab1d2d91b5bead9bcfb9c68583",
+   "license": "CC-BY-SA-4.0",
+   "note": "ru/ar/de; benchmark only",
+   "files": [
+    {
+     "path": "data/external/xquad/xquad.ar.parquet",
+     "sha256": "5af9e1a441be52d406aa2cf095aadd319fb4173463f363ee79ff3049ce037d0f",
+     "bytes": 263002
+    },
+    {
+     "path": "data/external/xquad/xquad.de.parquet",
+     "sha256": "b52b5c144d88c0dc44096c26ecbc5a9b799416456a86e5aaa272171fb529c145",
+     "bytes": 241957
+    },
+    {
+     "path": "data/external/xquad/xquad.ru.parquet",
+     "sha256": "90034e23fcdf29dbfc589951a160240cbf8e82afcb10995cfaf7e4ea98d10232",
+     "bytes": 321728
+    }
+   ]
+  },
+  {
+   "name": "indicqa_more",
+   "repository": "ai4bharat/IndicQA",
+   "revision": "d7e91454f5c8a85b82e2549453521a2b7a185c44",
+   "license": "CC-BY-4.0",
+   "note": "bn/mr/gu; 150 questions per language benchmark, the rest distillation pool",
+   "files": [
+    {
+     "path": "data/external/indicqa/indicqa.bn.json",
+     "sha256": "a0e65c5b28e90d1912c0ec114eba5fa81aa39cbcf76ec968412c7d77900d666b",
+     "bytes": 2592245
+    },
+    {
+     "path": "data/external/indicqa/indicqa.gu.json",
+     "sha256": "0964fbdb056c1d21942a4332da31a2c70eba7387c327ee604bcae8785b32569f",
+     "bytes": 1901951
+    },
+    {
+     "path": "data/external/indicqa/indicqa.mr.json",
+     "sha256": "03c14357ce3e54bb02f9d0b4a0e531ad687c70f68416cc46400216a3376d9d52",
+     "bytes": 2177201
+    }
+   ]
+  },
+  {
+   "name": "jaquad",
+   "repository": "SkelterLabsInc/JaQuAD",
+   "revision": "05600ff310a0970823e70f82f428893b85c71ffe",
+   "license": "CC-BY-SA-3.0",
+   "note": "ja train = distillation pool",
+   "files": [
+    {
+     "path": "data/external/jaquad/data/dev/jaquad_dev_0000.json",
+     "sha256": "8712bc34623c6fec856f170ff0b8566421c3c261752b1797b94938f48c1f7bc4",
+     "bytes": 855457
+    },
+    {
+     "path": "data/external/jaquad/data/dev/jaquad_dev_0001.json",
+     "sha256": "6d777275f61b0250eb2d8f595bf6c602afecb7b7406e7c0c9c3b9d763027068d",
+     "bytes": 800689
+    },
+    {
+     "path": "data/external/jaquad/data/dev/jaquad_dev_0002.json",
+     "sha256": "b9c6cc23e5ae647eba6286189bac293a16a28b01ca707e1dc956bfcb13a04389",
+     "bytes": 745518
+    },
+    {
+     "path": "data/external/jaquad/data/dev/jaquad_dev_0003.json",
+     "sha256": "041fe1fdcb32d95974afaae0fb151aed8ee9394889349bb0b5a1c921391cb1d0",
+     "bytes": 620520
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0000.json",
+     "sha256": "7c76df56ad78b2e083eddfa79d0d2af216b9ef6f7d8d5f9cf58104319cbdbabd",
+     "bytes": 790020
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0001.json",
+     "sha256": "e1228d84518af8d818eb904a4b24ac1469859b966d6ef1ad531c327da016be55",
+     "bytes": 814618
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0002.json",
+     "sha256": "fb6184f5e935f56176de4ee5d8fd8792eca857fdcf60307d8a547a868bd215bd",
+     "bytes": 843609
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0003.json",
+     "sha256": "7671092aa3ff751757ed98fb702c2c2a16453d70ff309e21d5314a3e84c83f61",
+     "bytes": 658016
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0004.json",
+     "sha256": "c62b1b1a1fb074aff496db6005a5b7786bb52509765d9ad20c6478d8d14a8bb3",
+     "bytes": 790560
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0005.json",
+     "sha256": "ec9e0d43eb689581e081248ee9ac231900b517a77950ec4a36705e6f981f9618",
+     "bytes": 775597
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0006.json",
+     "sha256": "d88329741cf61424795b9a29a1cce891a2db53c4336a2cfbb6fc8f03da6a602f",
+     "bytes": 717697
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0007.json",
+     "sha256": "f12f859043a9c83b1079ff82922b7e3b1a329022524f39a123519f45c8fe7a25",
+     "bytes": 800496
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0008.json",
+     "sha256": "2a302ed2cb0ed592530b9ea7875cdee66025086ec86fe60d7aa7ae3426230b39",
+     "bytes": 752172
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0009.json",
+     "sha256": "4531612d3164d72f3c0f9ad935157f3e4ff79ef7647268c80b615a9a8b0a3ff7",
+     "bytes": 796964
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0010.json",
+     "sha256": "dec81ba04ff3fe719e51f8fb4fd9d0eec276963a639e38de3007ad47fc7c1947",
+     "bytes": 797173
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0011.json",
+     "sha256": "1af7da9c0643e29360f0611ff42e74ec7bb477110c891a833e7ea8fb876d9892",
+     "bytes": 785342
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0012.json",
+     "sha256": "9af2a3a32100323d5fcb71183d4b0c31600e36d4bfca278f29764d40a881b853",
+     "bytes": 579524
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0013.json",
+     "sha256": "9ef3c3c8b2af358edaa59a909224a68b9ad7548d07190f2298c137d075601365",
+     "bytes": 742690
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0014.json",
+     "sha256": "4b2ed95653f64b724879c091710360b72e9c93b40c71b4281d64e7a56a3ae3f7",
+     "bytes": 728197
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0015.json",
+     "sha256": "0ac78419e6196fb9fd0cfb690a6fb9cf5ab7c95ceb509cbdc02947d926952a60",
+     "bytes": 757375
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0016.json",
+     "sha256": "a64b45cf5b2c080dbd6ecbc6c9e8f41ddeb5411f1b1b690cce4b8537a1003819",
+     "bytes": 762747
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0017.json",
+     "sha256": "b4cd902d2c85417369e83990f48d87f60191c2444b9747160f9f89d3a2943c96",
+     "bytes": 771769
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0018.json",
+     "sha256": "5c9b12ec323ecd5156bab3babc2538db9d822ab58d08ad30a35833f1e3052aab",
+     "bytes": 807423
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0019.json",
+     "sha256": "c034bf47fab11ac6619f6778416d93397b25492691d2b81872159e7431ff123d",
+     "bytes": 795900
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0020.json",
+     "sha256": "72b68f6eb8a6ca80ee0d9b8c55577720c8b105249764b1307222caea84bcaf20",
+     "bytes": 775251
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0021.json",
+     "sha256": "be072517a36dbf5ccce7d47960e577ca64f4687de5a8f1a075f033c551fe3c39",
+     "bytes": 803654
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0022.json",
+     "sha256": "9ca6aa5628dc299f9f4071779051f3218aba896f6c5f4688d2a1770f8997813e",
+     "bytes": 855399
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0023.json",
+     "sha256": "a32c64bdd7860dd47a2aef47316443cf5d3b0c5e2fd472c4ef1058f70ebdd968",
+     "bytes": 745120
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0024.json",
+     "sha256": "25051484c69c99bcd8eb2ce4687599a40d070e544a672231b935cdeb048d6b4d",
+     "bytes": 770649
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0025.json",
+     "sha256": "98b5c1320d3626eef8a312186b04695fce476a73f90877ffdaccf66d22cf9b8a",
+     "bytes": 778422
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0026.json",
+     "sha256": "fa3f3207aa6835b80ed60f0c82a1ab610e91d318bb722460a99d38cf872b73b4",
+     "bytes": 763484
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0027.json",
+     "sha256": "10eb3445245974b2eb667ece0aeae7a3d60430c179bc5517b2988eb71ae8e3c4",
+     "bytes": 762216
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0028.json",
+     "sha256": "c814d1818ded64be1489982d06860bd1f530b6a5d33341895d93645762758908",
+     "bytes": 945484
+    },
+    {
+     "path": "data/external/jaquad/data/train/jaquad_train_0029.json",
+     "sha256": "ec85984d650271cd2ca697058ec8c26fca306dfab2249b505efd727c5e959232",
+     "bytes": 245699
+    }
+   ]
+  },
+  {
+   "name": "uqa",
+   "repository": "uqa/UQA",
+   "revision": "92455d5936280a83aa750edb12753f4a95488b7c",
+   "license": "CC-BY-4.0",
+   "note": "ur, SQuAD 2.0-style with unanswerables; train = distillation pool",
+   "files": [
+    {
+     "path": "data/external/uqa/data/train-00000-of-00001-bac007e8ca719235.parquet",
+     "sha256": "4f89eaf03e31c7a02ce5274b16e05c2df7b390f664d5a801e2a091ba1b09d0d5",
+     "bytes": 30200933
+    },
+    {
+     "path": "data/external/uqa/data/validation-00000-of-00001-cf8a6960dcbb53ee.parquet",
+     "sha256": "2aa44e03937dc60ce104c503328f9006accce1342966e6359cdb8a62585b0f67",
+     "bytes": 2924194
+    }
+   ]
+  },
+  {
+   "name": "dakshina",
+   "repository": "google-research-datasets/dakshina",
+   "revision": "v1.0 (storage.googleapis.com/gresearch/dakshina)",
+   "license": "CC-BY-SA-4.0",
+   "note": "native + romanized text, 12 Indian languages; romanized/code-mixed training text",
+   "files": [
+    {
+     "path": "data/external/dakshina/dakshina_dataset_v1.0.tar",
+     "sha256": "83530bec211893d9df429298f42e63c350c25ad56f9f5172f85edb0575ee5b03",
+     "bytes": 2008340480
+    }
+   ]
+  },
+  {
+   "name": "aksharantar",
+   "repository": "ai4bharat/Aksharantar",
+   "revision": "e418c1fc928d9f5393af33268472cf20c1891be8",
+   "license": "CC-BY-4.0 (manual) / CC0 (mined)",
+   "note": "hi/ta/te transliteration pairs",
+   "files": [
+    {
+     "path": "data/external/aksharantar/hin.zip",
+     "sha256": "208c2d1b128234e6dc777b750779b4f5e6214ab43244039349b530bf9868bdaf",
+     "bytes": 33100386
+    },
+    {
+     "path": "data/external/aksharantar/tam.zip",
+     "sha256": "d019cffcdc2264870a96b8ffaea0b66a3b175c8c7d56c095d9f6dd4bbeb313a2",
+     "bytes": 97129851
+    },
+    {
+     "path": "data/external/aksharantar/tel.zip",
+     "sha256": "08f1c2841f4d02fcc2a56362f7760ec16fc52d8a199029c68d44024ab0d22c1a",
+     "bytes": 72402915
+    }
+   ]
+  },
+  {
+   "name": "go_emotions",
+   "repository": "google-research-datasets/go_emotions",
+   "revision": "add492243ff905527e67aeb8b80c082af02207c3",
+   "license": "Apache-2.0",
+   "note": "English emotion-labelled text",
+   "files": [
+    {
+     "path": "data/external/go_emotions/raw/train-00000-of-00001.parquet",
+     "sha256": "5de61486d0b557920f960cbe8b7579f51cdea2d80e74cf647b583967a3642a68",
+     "bytes": 24828322
+    },
+    {
+     "path": "data/external/go_emotions/simplified/test-00000-of-00001.parquet",
+     "sha256": "fd0953e535ba2569edc6a1daaa1133f8e4b9071691d540c9bab812fda132bc26",
+     "bytes": 346630
+    },
+    {
+     "path": "data/external/go_emotions/simplified/train-00000-of-00001.parquet",
+     "sha256": "b7d74279616ae7c9b8374ab62ea9f9d6504d36a577bb17f745d720dc2b0d4e76",
+     "bytes": 2767678
+    },
+    {
+     "path": "data/external/go_emotions/simplified/validation-00000-of-00001.parquet",
+     "sha256": "d46ad5633c4fa41829d22d549743a7bf858d94129536a02af7280c281db5e63a",
+     "bytes": 350063
     }
    ]
   }

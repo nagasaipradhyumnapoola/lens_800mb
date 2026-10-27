@@ -29,7 +29,12 @@ REPORTS=ROOT/'reports/lens-model/benchmark'
 BASE=ROOT/'models/baselines'
 CKPT=ROOT/'artifacts/lens-model/checkpoints'
 ONNX=ROOT/'artifacts/lens-model/onnx'
-SETS=['mlqa_mono','mlqa_cross','xquad_heldout','indicqa_heldout','squad2_dev','tydi_dev','lens_harness']
+SETS=['mlqa_mono','mlqa_cross','xquad_heldout','indicqa_heldout','belebele_global','belebele_cross','xquad_world','indicqa_more',
+      'squad2_dev','tydi_dev','lens_harness']
+CLEAN=['mlqa_mono','mlqa_cross','xquad_heldout','indicqa_heldout','belebele_global','belebele_cross','xquad_world','indicqa_more']
+# spec §1a quality-critical languages: every one counts equally in the language macro
+LANGS=['en','zh','es','ar','fr','pt','ru','id','de','ja','hi','bn','te','mr','ta','ur','gu']
+MAXLEN=384  # cross-encoders: room for Belebele's full passages; the same for every encoder judge
 THREADS=8
 TASK='Given a question, judge whether the document contains the answer to the question'
 JUDGE_PROMPT=('Read the passage and decide whether it contains the answer to the question.\n\nPassage: {e}\n\nQuestion: {q}\n\n'
@@ -111,13 +116,13 @@ class TorchYesNo:
 def make(name):
     qa_dir=ROOT/'models/onnx-community--xlm-roberta-base-squad2-distilled-ONNX';mm=ROOT/'models/cross-encoder--mmarco-mMiniLMv2-L12-H384-v1'
     table={
-        'lens-v0-int8':lambda:OnnxCrossEncoder(ONNX/'answerability-v0/model_int8.onnx',ONNX/'answerability-v0/tokenizer.json',192),
-        'lens-v1-int8':lambda:OnnxCrossEncoder(ONNX/'answerability-v1/model_int8.onnx',ONNX/'answerability-v1/tokenizer.json',192),
-        'mmarco-int8':lambda:OnnxCrossEncoder(mm/'onnx/model_qint8_avx512_vnni.onnx',mm/'tokenizer.json',192),
+        'lens-v0-int8':lambda:OnnxCrossEncoder(ONNX/'answerability-v0/model_int8.onnx',ONNX/'answerability-v0/tokenizer.json',MAXLEN),
+        'lens-v1-int8':lambda:OnnxCrossEncoder(ONNX/'answerability-v1/model_int8.onnx',ONNX/'answerability-v1/tokenizer.json',MAXLEN),
+        'mmarco-int8':lambda:OnnxCrossEncoder(mm/'onnx/model_qint8_avx512_vnni.onnx',mm/'tokenizer.json',MAXLEN),
         'qa-xlmr-int8':lambda:OnnxCrossEncoder(qa_dir/'onnx/model_int8.onnx',qa_dir/'tokenizer.json',384,qa=True),
-        'lens-v0':lambda:TorchCrossEncoder(CKPT/'answerability-v0',192),
-        'lens-v1':lambda:TorchCrossEncoder(CKPT/'answerability-v1',192),
-        'mmarco':lambda:TorchCrossEncoder(mm,192),
+        'lens-v0':lambda:TorchCrossEncoder(CKPT/'answerability-v0',MAXLEN),
+        'lens-v1':lambda:TorchCrossEncoder(CKPT/'answerability-v1',MAXLEN),
+        'mmarco':lambda:TorchCrossEncoder(mm,MAXLEN),
         'bge-reranker-v2-m3':lambda:TorchCrossEncoder(BASE/'BAAI--bge-reranker-v2-m3',512),
         'qwen3-reranker-0.6b':lambda:TorchYesNo(BASE/'Qwen--Qwen3-Reranker-0.6B',True),
         'qwen3-reranker-4b':lambda:TorchYesNo(BASE/'Qwen--Qwen3-Reranker-4B',True),
@@ -179,13 +184,20 @@ def run(name,limit):
         if not m.any():continue
         res[s]=metrics(y[m],scores[m])|{'by_lang':{l:metrics(y[m&ln],scores[m&ln]) for l in sorted({r['lang'] for r in rows if r['set']==s})
                                                      for ln in [np.array([r['lang']==l for r in rows])]}}
+    cl=np.array([r['set'] in CLEAN for r in rows]);lang_m={}
+    for l in LANGS:
+        m=cl&np.array([r['lang']==l for r in rows])
+        if m.any() and len(set(y[m]))==2:lang_m[l]=metrics(y[m],scores[m])
+    res['by_language_clean']=lang_m
     rep={'judge':name,'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'pairs':len(rows),'limit':limit,'threads':THREADS,
          'weights_mb':judge.weights_mb,'dtype':getattr(judge,'dtype','float32' if not name.endswith('int8') else 'int8'),'load_seconds':load_s,'load_rss_mb':load_rss/2**20,'peak_working_set_mb':proc.memory_info().peak_wset/2**20,
          'latency_ms_batch1':{'p50':float(np.percentile(lat,50)),'p95':float(np.percentile(lat,95))},'throughput_pairs_per_s':len(rows)/total_s,'sets':res}
     if not limit:
         REPORTS.mkdir(parents=True,exist_ok=True);(REPORTS/f'{name}.json').write_text(json.dumps(rep,indent=1),encoding='utf-8')
     print(json.dumps({k:v for k,v in rep.items() if k!='sets'},indent=1))
-    for s,m in res.items():print(f"  {s:16s} auc {m['auc']:.3f}  ap {m['ap']:.3f}  tpr@5fpr {m['tpr@5fpr']:.3f}")
+    for s,m in res.items():
+        if s=='by_language_clean':print('  17-language macro AUC',round(float(np.mean([v['auc'] for v in m.values()])),3) if m else None,len(m),'languages');continue
+        print(f"  {s:16s} auc {m['auc']:.3f}  ap {m['ap']:.3f}  tpr@5fpr {m['tpr@5fpr']:.3f}")
 
 
 def summary():
@@ -193,23 +205,26 @@ def summary():
     harness={}
     for p in REPORTS.glob('*.harness.json'):harness[p.name.split('.harness')[0]]=json.loads(p.read_text(encoding='utf-8'))
     reps={k:v for k,v in reps.items() if 'sets' in v}
-    clean=['mlqa_mono','mlqa_cross','xquad_heldout','indicqa_heldout'];table=[]
+    clean=CLEAN;table=[]
     for name,r in reps.items():
         row={'judge':name,'weights_mb':round(r['weights_mb']),'peak_ws_mb':round(r['peak_working_set_mb']),'p50_ms':round(r['latency_ms_batch1']['p50'],1)}
         for s in SETS:
             if s in r['sets']:row[s]={k:r['sets'][s][k] for k in ('auc','tpr@5fpr')}
         row['heldout_macro_auc']=float(np.mean([r['sets'][s]['auc'] for s in clean if s in r['sets']]))
         row['heldout_macro_tpr@5fpr']=float(np.mean([r['sets'][s]['tpr@5fpr'] for s in clean if s in r['sets']]))
+        bl=r['sets'].get('by_language_clean',{})
+        row['language_macro_auc']=float(np.mean([bl[l]['auc'] for l in LANGS if l in bl])) if bl else None
+        row['languages_covered']=len(bl);row['by_language_auc']={l:round(bl[l]['auc'],3) for l in LANGS if l in bl}
         if name in harness:row['lens_harness_answered@5%false']=harness[name]
         table.append(row)
-    table.sort(key=lambda r:-r['heldout_macro_auc'])
+    table.sort(key=lambda r:-(r.get('language_macro_auc') or r['heldout_macro_auc']))
     (REPORTS/'answerability-comparison.json').write_text(json.dumps(table,indent=1),encoding='utf-8')
-    head='| judge | weights MB | peak RAM MB | p50 ms | '+' | '.join(SETS)+' | held-out macro AUC | held-out macro TPR@5%FPR |'
-    lines=[head,'|'+'---|'*(6+len(SETS))]
+    head='| judge | weights MB | peak RAM MB | p50 ms | '+' | '.join(SETS)+' | held-out macro AUC | held-out macro TPR@5%FPR | 17-language macro AUC |'
+    lines=[head,'|'+'---|'*(7+len(SETS))]
     for r in table:
         cells=[f"{r[s]['auc']:.3f} / {r[s]['tpr@5fpr']:.3f}" if s in r else '—' for s in SETS]
-        lines.append(f"| {r['judge']} | {r['weights_mb']} | {r['peak_ws_mb']} | {r['p50_ms']} | "+' | '.join(cells)+f" | {r['heldout_macro_auc']:.3f} | {r['heldout_macro_tpr@5fpr']:.3f} |")
-    md='Cells: ROC AUC / recall of supported pairs at 5% false support. Held-out macro = mlqa_mono, mlqa_cross, xquad_heldout, indicqa_heldout.\n\n'+'\n'.join(lines)+'\n'
+        lines.append(f"| {r['judge']} | {r['weights_mb']} | {r['peak_ws_mb']} | {r['p50_ms']} | "+' | '.join(cells)+f" | {r['heldout_macro_auc']:.3f} | {r['heldout_macro_tpr@5fpr']:.3f} | {(r['language_macro_auc'] or 0):.3f} ({r['languages_covered']}) |")
+    md='Cells: ROC AUC / recall of supported pairs at 5% false support. Held-out macro = mean over the never-trained sets ('+', '.join(CLEAN)+'). 17-language macro = mean AUC over the spec §1a languages on those sets (each language equal).\n\n'+'\n'.join(lines)+'\n'
     (REPORTS/'answerability-comparison.md').write_text(md,encoding='utf-8');print(md)
 
 

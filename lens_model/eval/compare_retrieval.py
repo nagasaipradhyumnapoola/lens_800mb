@@ -87,6 +87,27 @@ def lens_nl():
     return [m['text'] for m in corpus],[q['query'] for q in qs],rel,[f"{q['type']}" for q in qs],[q['query_language'] for q in qs]
 
 
+BELE={'eng_Latn':'en','zho_Hans':'zh','spa_Latn':'es','arb_Arab':'ar','fra_Latn':'fr','por_Latn':'pt','rus_Cyrl':'ru','ind_Latn':'id',
+      'deu_Latn':'de','jpn_Jpan':'ja','hin_Deva':'hi','ben_Beng':'bn','tel_Telu':'te','mar_Deva':'mr','tam_Taml':'ta','urd_Arab':'ur',
+      'guj_Gujr':'gu','hin_Latn':'hi-Latn','ben_Latn':'bn-Latn','urd_Latn':'ur-Latn'}
+TARGET=['en','zh','es','ar','fr','pt','ru','id','de','ja','hi','bn','te','mr','ta','ur','gu']  # spec §1a
+
+
+def belebele_sets(rng,n=200):
+    """Belebele (CC BY-SA 4.0) passage retrieval: 200 questions per language against all 488 FLORES passages of that
+    language; cross = the language's questions against the English passages. Same question sample in every language."""
+    load=lambda c:[json.loads(l) for l in (EXT/f'belebele/{c}.jsonl').open(encoding='utf-8')]
+    en=load('eng_Latn');pick=rng.sample(range(len(en)),n);keys=[(r['link'],r['question_number']) for r in en];out={}
+    def build(qrows,prows):
+        ps=list(dict.fromkeys(r['flores_passage'] for r in prows));idx={p:i for i,p in enumerate(ps)}
+        return ps,[qrows[i]['question'] for i in pick],[{idx[prows[i]['flores_passage']]} for i in pick]
+    for cfg,lang in BELE.items():
+        by={(r['link'],r['question_number']):r for r in load(cfg)};rows=[by[k] for k in keys]
+        out[lang]=build(rows,rows)
+        if lang in ('zh','ar','ru','ja','hi','bn','te','fr','pt','ur'):out[f'{lang}>en']=build(rows,en)
+    return out
+
+
 def mlqa(cfg,rng):
     rows=pq.read_table(EXT/f'mlqa/{cfg}.test.parquet').to_pylist();rng.shuffle(rows);pick=rows[:200]
     ctx=list(dict.fromkeys([r['context'] for r in pick]+[r['context'] for r in rows]))[:1500];index={c:i for i,c in enumerate(ctx)}
@@ -113,6 +134,15 @@ def run(name):
     avg=lambda cfgs,k:float(np.mean([ml[c][k] for c in cfgs]))
     ml['mono_macro']={k:avg(MLQA_MONO,k) for k in ('r@1','r@10','mrr@10')};ml['cross_macro']={k:avg(MLQA_CROSS,k) for k in ('r@1','r@10','mrr@10')}
     rep['benchmarks']['mlqa_ret']=ml
+    bl={}
+    for key,(ctx,qs,rl) in belebele_sets(random.Random(20261028)).items():
+        t=time.perf_counter();D=emb.encode(ctx,False);docs_s+=time.perf_counter()-t;docs_n+=len(ctx)
+        t=time.perf_counter();Q=emb.encode(qs,True);q_s+=time.perf_counter()-t;q_n+=len(qs)
+        bl[key]=metrics(ranks(Q,D,rl));print(name,'belebele',key,{k:round(v,3) for k,v in bl[key].items()},flush=True)
+    mono=[l for l in TARGET if l in bl];cross=[k for k in bl if '>' in k];roman=[k for k in bl if k.endswith('-Latn')]
+    for tag,keys in (('language_macro',mono),('cross_macro',cross),('romanized_macro',roman)):
+        bl[tag]={k:float(np.mean([bl[x][k] for x in keys])) for k in ('r@1','r@10','mrr@10')}
+    rep['benchmarks']['belebele_ret']=bl
     rep|={'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'threads':THREADS,'docs_per_s':docs_n/docs_s,'queries_per_s':q_n/q_s,
           'peak_working_set_mb':proc.memory_info().peak_wset/2**20}
     REPORTS.mkdir(parents=True,exist_ok=True);(REPORTS/f'retrieval-{name}.json').write_text(json.dumps(rep,indent=1),encoding='utf-8')
@@ -126,12 +156,14 @@ def summary():
         r=json.loads(p.read_text(encoding='utf-8'));b=r['benchmarks']
         rows.append({'model':r['model'],'weights_mb':round(r['weights_mb']),'peak_ws_mb':round(r['peak_working_set_mb']),'docs_per_s':round(r['docs_per_s'],1),
                      'lens_nl':b['lens_nl']['all'],'lens_cross_language':b['lens_nl'].get('type:cross_language'),'lens_code_switch':b['lens_nl'].get('type:code_switch'),
-                     'mlqa_mono':b['mlqa_ret']['mono_macro'],'mlqa_cross':b['mlqa_ret']['cross_macro']})
-    rows.sort(key=lambda r:-(r['lens_nl']['mrr@10']+r['mlqa_mono']['mrr@10']+r['mlqa_cross']['mrr@10']))
+                     'mlqa_mono':b['mlqa_ret']['mono_macro'],'mlqa_cross':b['mlqa_ret']['cross_macro'],
+                     'global17':b.get('belebele_ret',{}).get('language_macro'),'global_cross':b.get('belebele_ret',{}).get('cross_macro'),
+                     'romanized':b.get('belebele_ret',{}).get('romanized_macro')})
+    rows.sort(key=lambda r:-(r['lens_nl']['mrr@10']+r['mlqa_mono']['mrr@10']+r['mlqa_cross']['mrr@10']+((r['global17'] or {}).get('mrr@10',0))))
     (REPORTS/'retrieval-comparison.json').write_text(json.dumps(rows,indent=1),encoding='utf-8')
     f=lambda m:f"{m['r@1']:.3f} / {m['r@10']:.3f} / {m['mrr@10']:.3f}" if m else '—'
-    lines=['| model | weights MB | peak RAM MB | docs/s | Lens NL | Lens cross-language | Lens code-switch | MLQA mono | MLQA cross |','|---|---|---|---|---|---|---|---|---|']
-    for r in rows:lines.append(f"| {r['model']} | {r['weights_mb']} | {r['peak_ws_mb']} | {r['docs_per_s']} | {f(r['lens_nl'])} | {f(r['lens_cross_language'])} | {f(r['lens_code_switch'])} | {f(r['mlqa_mono'])} | {f(r['mlqa_cross'])} |")
+    lines=['| model | weights MB | peak RAM MB | docs/s | Lens NL | Lens cross-language | Lens code-switch | MLQA mono | MLQA cross | 17-language (Belebele) | cross→en (Belebele) | romanized hi/bn/ur |','|---|---|---|---|---|---|---|---|---|---|---|---|']
+    for r in rows:lines.append(f"| {r['model']} | {r['weights_mb']} | {r['peak_ws_mb']} | {r['docs_per_s']} | {f(r['lens_nl'])} | {f(r['lens_cross_language'])} | {f(r['lens_code_switch'])} | {f(r['mlqa_mono'])} | {f(r['mlqa_cross'])} | {f(r['global17'])} | {f(r['global_cross'])} | {f(r['romanized'])} |")
     md='Cells: R@1 / R@10 / MRR@10. Exact dense search, FP32, CPU.\n\n'+'\n'.join(lines)+'\n'
     (REPORTS/'retrieval-comparison.md').write_text(md,encoding='utf-8');print(md)
 

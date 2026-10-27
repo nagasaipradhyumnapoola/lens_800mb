@@ -4,9 +4,14 @@ A stronger public model (the leader of lens_model/eval/compare_answerability.py,
 scores public training pairs; its scores are Platt-calibrated against the gold labels on the same pool and blended
 into soft targets: y_soft = alpha * y_gold + (1 - alpha) * p_teacher. The student (Lens answerability head) trains
 on y_soft with BCE, keeping its 118M-parameter / ~124 MB INT8 size inside the 800 MB system ceiling.
-Pool (never a benchmark test split, never Lens fixtures, never personal data):
-- a sample of v1 training pairs (SQuAD 2.0 train, TyDi train, IndicQA/XQuAD training splits, v1 synthetic kinds);
-- MLQA validation (13 configs incl. de/ar/vi and cross-lingual; 0 paragraphs shared with MLQA test — checked).
+Pool (never a benchmark test split, never Lens fixtures, never personal data), language-balanced per spec §1a
+(temperature sampling, no language above 20%, Indian group at most 40%):
+- v0 training pairs (SQuAD 2.0 train, TyDi train in 11 languages, IndicQA/XQuAD training splits) and v1's hard kinds
+  (substitution near-misses, keyword lookups, cross-lingual XQuAD);
+- MLQA validation (13 configs incl. de/ar/vi and cross-lingual; 0 paragraphs shared with MLQA test — checked);
+- JaQuAD train (ja), UQA train (ur, with unanswerables), IndicQA bn/mr/gu minus every benchmark question.
+fr/pt have no permissively licensed QA training data here: they rely on cross-lingual transfer and are measured on
+Belebele.
 Teacher scores are cached incrementally (resume after interruption).
 Output: artifacts/lens-model/answerability-v2/train.jsonl (+ build-report.json)
 Usage: .venv-train\\Scripts\\python.exe lens_model/data/build_distill.py --teacher qwen3-reranker-4b [--v1-sample 40000]
@@ -45,6 +50,68 @@ def mlqa_validation(rng):
     return out
 
 
+V0=ROOT/'artifacts/lens-model/answerability-v0'
+BENCH=ROOT/'artifacts/lens-model/bench'
+INDIC={'hi','bn','te','mr','ta','ur','gu','kn','ml','pa','or','as'}
+TARGET={'en','zh','es','ar','fr','pt','ru','id','de','ja','hi','bn','te','mr','ta','ur','gu'}  # spec §1a; others count half
+
+
+def jaquad(rng,limit):
+    """JaQuAD train (ja, CC BY-SA 3.0; SQuAD-style)."""
+    out=[]
+    for f in sorted((EXT/'jaquad/data/train').glob('*.json')):
+        for art in json.loads(f.read_text(encoding='utf-8'))['data']:
+            for para in art['paragraphs']:
+                for qa in para['qas']:
+                    if qa.get('answers'):out.append((qa,para['context'],art.get('title','')))
+    rng.shuffle(out);rows=[]
+    for qa,ctx,title in out[:limit]:
+        a=qa['answers'][0];rows+=pairs(qa['question'],ctx,a['answer_start'],a['text'],'ja','jaquad','jaquad:'+title,True,rng)
+    return rows
+
+
+def uqa(rng,limit):
+    """UQA train (ur, CC BY 4.0; SQuAD 2.0-style with unanswerable questions)."""
+    t=[r for f in sorted((EXT/'uqa/data').glob('train*.parquet')) for r in pq.read_table(f).to_pylist()];rng.shuffle(t);rows=[]
+    for r in t[:limit]:
+        ok=not r['is_impossible'] and bool(r['answer']) and r['answer_start'] is not None and r['answer_start']>=0
+        rows+=pairs(r['question'],r['context'],r['answer_start'] if ok else 0,r['answer'] if ok else '','ur','uqa','uqa:'+str(r['title']),ok,rng)
+    return rows
+
+
+def indicqa_train(rng,langs=('bn','mr','gu')):
+    """IndicQA bn/mr/gu minus every question in the indicqa_more benchmark (CC BY 4.0)."""
+    held={json.loads(l)['id'] for l in (BENCH/'indicqa_more.jsonl').open(encoding='utf-8')};rows=[]
+    for lang in langs:
+        for art in json.loads((EXT/f'indicqa/indicqa.{lang}.json').read_text(encoding='utf-8'))['data']:
+            for para in art['paragraphs']:
+                for qa in para['qas']:
+                    if str(qa.get('id')) in held:continue
+                    a=qa['answers'][0] if qa['answers'] else {'text':'','answer_start':None};ok=bool(a['text'].strip()) and a['answer_start'] is not None
+                    rows+=pairs(qa['question'],para['context'],a['answer_start'] or 0,a['text'],lang,'indicqa','indicqa-t:'+str(qa.get('id')),ok,rng)
+    return rows
+
+
+def balance(rows,total,rng,alpha=0.5,cap=0.20,indic_cap=0.40):
+    """Temperature-sampled per-language quotas (n^alpha), no language above `cap`, Indian group at most `indic_cap`
+    of the mix (spec §1a). Cross-lingual pairs ('xx>yy') form their own bucket; questions keep their pairs together."""
+    by=collections.defaultdict(lambda:collections.defaultdict(list))
+    for r in rows:by[r['lang'] if '>' not in r['lang'] else 'cross'][r['group']+'|'+r['q']].append(r)
+    size={l:sum(len(v) for v in g.values()) for l,g in by.items()};w={l:n**alpha*(1 if l in TARGET or l=='cross' else 0.5) for l,n in size.items()};z=sum(w.values())
+    quota={l:min(size[l],cap*total,total*w[l]/z) for l in by}
+    ind=sum(q for l,q in quota.items() if l in INDIC)
+    if ind>indic_cap*total:
+        for l in quota:
+            if l in INDIC:quota[l]*=indic_cap*total/ind
+    out=[]
+    for l,groups in sorted(by.items()):
+        keys=sorted(groups);rng.shuffle(keys);n=0
+        for k in keys:
+            if n>=quota[l]:break
+            out+=groups[k];n+=len(groups[k])
+    rng.shuffle(out);return out
+
+
 def platt(s,y,iters=500):
     a,b=1.0,0.0
     for _ in range(iters):  # Newton steps on logistic loss of sigmoid(a*s+b)
@@ -55,11 +122,13 @@ def platt(s,y,iters=500):
 
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--teacher',required=True);ap.add_argument('--v1-sample',type=int,default=40000)
+    ap=argparse.ArgumentParser();ap.add_argument('--teacher',required=True);ap.add_argument('--pool-size',type=int,default=48000)
     ap.add_argument('--alpha',type=float,default=0.5);ap.add_argument('--batch',type=int,default=8);a=ap.parse_args()
     rng=random.Random(20261027);OUT.mkdir(parents=True,exist_ok=True)
-    v1=[json.loads(l) for l in (V1/'train.jsonl').open(encoding='utf-8')];rng.shuffle(v1)
-    pool=v1[:a.v1_sample]+mlqa_validation(rng)
+    v0=[json.loads(l) for l in (V0/'train.jsonl').open(encoding='utf-8')]  # SQuAD 2.0, TyDi (11 langs), IndicQA/XQuAD train splits
+    v1=[r for r in map(json.loads,(V1/'train.jsonl').open(encoding='utf-8')) if r['kind'] in ('substitution_near_miss','keyword_present','keyword_absent') or r['src']=='xquad-cross']
+    cands=v0+v1+mlqa_validation(rng)+jaquad(rng,12000)+uqa(rng,12000)+indicqa_train(rng)
+    pool=balance(cands,a.pool_size,rng)
     for i,r in enumerate(pool):r['pid']=i
     cache=OUT/f'teacher-{a.teacher}.jsonl';done={}
     if cache.exists():
@@ -80,7 +149,7 @@ def main():
     with (OUT/'train.jsonl').open('w',encoding='utf-8') as f:
         for r in pool:f.write(json.dumps({k:v for k,v in r.items() if k!='pid'},ensure_ascii=False)+'\n')
     disagree=[r for r in pool if abs(r['y_gold']-r['p_teacher'])>0.9]
-    rep={'teacher':a.teacher,'alpha':a.alpha,'platt':{'a':A,'b':B},'pool':len(pool),'v1_sample':a.v1_sample,
+    rep={'teacher':a.teacher,'alpha':a.alpha,'platt':{'a':A,'b':B},'pool':len(pool),'by_lang':dict(collections.Counter(r['lang'] if '>' not in r['lang'] else 'cross' for r in pool)),
          'by_src':dict(collections.Counter(r['src'] for r in pool)),'teacher_gold_disagreement_over_0.9':len(disagree),
          'disagreement_samples':[{k:r[k] for k in ('q','e','y_gold','p_teacher','kind','lang')} for r in disagree[:20]]}
     (OUT/'build-report.json').write_text(json.dumps(rep,indent=1,ensure_ascii=False),encoding='utf-8')

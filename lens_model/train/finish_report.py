@@ -23,7 +23,7 @@ def main():
     dev=ta.load('dev');held={n:ta.load(n) for n in ('indicqa_heldout','xquad_heldout')}
     final={'dev':ta.report(dev,ta.scores(model,tok,dev,a.max_len))}|{n:ta.report(r,ta.scores(model,tok,r,a.max_len)) for n,r in held.items()}
     text=a.log.read_text(encoding='utf-8',errors='replace')
-    log=[{'step':int(m[1]),'loss':float(m[2]),'s_per_step':float(m[3]),'rss_mb':float(m[4])} for m in re.findall(r'step (\d+)/\d+ loss ([\d.]+) ([\d.]+)s/step eta \d+ min rss (\d+) MB',text)]
+    log=[{'step':int(m[0]),'loss':float(m[1]),'s_per_step':float(m[2]),'rss_mb':float(m[3])} for m in re.findall(r'step (\d+)/\d+ loss ([\d.]+) ([\d.]+)s/step eta \d+ min rss (\d+) MB',text)]
     init=re.search(r'init dev auc (\{.*\})',text)
     meta={'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'recovered':True,'log_file':str(a.log),'init_dev_2000':init.group(1) if init else None,
           'steps':log[-1]['step'] if log else None,'final':final,'log':log,'torch':torch.__version__}
