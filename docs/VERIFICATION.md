@@ -644,7 +644,7 @@ Query interpretation (applications in 6 languages, action trace, relax-on-no-evi
 - Not yet: running the real tray icon by hand, accessibility audit of onboarding, WebView2 runtime bootstrap, clean-machine
   install on H1–H3, upgrade path, usability testing with people.
 
-## Voice capture quality under noise — file-driven (2026-10-27) — PARTIAL (VAD fixed and measured; zh/hi ASR fails; latency/soak pending)
+## Voice capture quality under noise — file-driven (2026-10-27) — PARTIAL (VAD fixed and measured; zh/hi superseded 2026-10-28)
 
 No microphone was opened. scripts/benchmark_voice.py builds sessions from public FLEURS test clips (CC BY 4.0,
 revision 70bb2e84) with 1.2-4 s gaps, mixes white/pink/babble (FLEURS clips of non-evaluated languages)/fan+mains hum
@@ -669,8 +669,60 @@ dev); VAD parameters were chosen on dev only (reports/voice/vad-tuning-dev*.json
 - RAM (sampled, lens-voice + lens-engine, no embeddings): peak sum working set ~180-220 MB; lens-voice ~12 MB.
   Engine reloads whisper per request. Unit tests: tests/test_voice.py 10/10 (noise, hum/clicks, 48 kHz stereo,
   clipping, pacing, 12-min file under 40 MB, legacy comparison).
-- Pending at time of writing (running): configured-language zh/hi/es, paced (1.0x) latency speech-end to stored,
-  32-minute paced soak with RSS sampling (reports/voice/latency-*.json, soak.json). Live microphone NOT VERIFIED.
+- Superseded for zh/hi and segment lengths by the 2026-10-28 section below (routing, 12/20 s segments).
+
+## Voice: 17-language routing, hallucination filter, owner-only capture (2026-10-28) — PARTIAL (file-driven; ur/gu fail; live mic NOT VERIFIED)
+
+Fixes for the owner-consented live-mic findings, all measured file-driven on public data (no microphone opened).
+- Language ID restricted to the user's languages (default: the 17 spec §1a languages, `lens-voice --languages`):
+  whisper's language probabilities, best among the allowed set (engine/asr.cpp). Held-out FLEURS: LID accuracy
+  0.94-1.00 for 13 languages; mr 0.68 (some → bn), **ur 0.33 (→ hi) and gu 0.32 (→ mr)**.
+- Routing (lens-voice discovers installed models; lens-engine frees whisper, then runs lens-sherpa as a child with
+  the audio over a pipe): zh → Dolphin small CTC; hi/bn/te/mr/ta/ur/gu → IndicConformer 120M int8 (pinned revision
+  9721eb71, hashes in reports/voice/model-downloads-lock.json); every other language → whisper base q5_1.
+  Bug found and fixed: a forward-slash DLL path made Windows load System32's onnxruntime 1.17 ("API version 28 not
+  available"); lens-sherpa now loads its library by fully qualified path.
+- Held-out FLEURS, clean, 40 clips/language, ~21-32 utterances each through lens-voice → engine
+  (asr-heldout-adaptive-product-global17{,-final}.json). WER (CER) before routing → after; Whisper paper Table 13
+  FLEURS WER for base / small in brackets (their normaliser, not comparable digit-for-digit):
+  en 9.5% → 9.5% [8.9/6.1]; es 11.7 → 11.9 [9.9/5.6]; ar 53.2 [48.8/30.6]; fr 26.3 [28.5/15.0]; pt 15.8 [13.0/7.3];
+  ru 22.3 [20.5/11.4]; id 37.1 [33.1/16.3]; de 21.0 [17.9/10.2]; ja CER 25.3% [WER 22.8/12.0]; zh CER 11.4%
+  (Dolphin) [WER-as-printed 34.1/20.8]; hi 29.3 → 26.6 (CER 17.7) [101.1/38.4]; **bn 100.4 → 14.8** [100.6/104.4];
+  **te 110.8 → 34.4** [105.2/98.2]; **mr 106.2 → 44.3** [100.3/60.2]; **ta 94.1 → 29.7** [58.7/35.2];
+  ur 82.8 → 68.1 [52.0/37.3]; gu 100.5 → 73.4 [101.4/106.4]. ur/gu FAIL with automatic LID because it sends them
+  to the hi/mr model; with the language configured (`--language ur|gu`, same held-out clips) ur WER 18.1% (CER 7.0%)
+  and gu WER 24.5% (CER 9.4%) (asr-heldout-adaptive-configured-configured-urgu.json) — the models work, LID is the gap.
+- Hallucination filter (engine/asr.cpp): whisper annotations ([BLANK_AUDIO], (music), ♪…) stripped, punctuation-only
+  text → no_speech_found, repetition loops (3× covering 80%, 4× covering half, or 8×) → repetition_rejected, invalid
+  UTF-8 from split tokens dropped (it had produced an `invalid_request`). Token probability turned out to be a weak
+  signal on dev (0.52 drops 1.2% of good segments but only 15% of garbage: garbage is short and confident), so the
+  default rule is instead: segment < 2.5 s and restricted-LID probability < 0.7 → uncertain_short_segment
+  (dev: 70% of garbage rejected, 1.2% of good segments; only 20 garbage examples — reports/voice/confidence-dev.json).
+  `--min-confidence` stays available (default 0).
+- Shorter segments: soft split at the first pause after 12 s, hard cap 20 s (dev: 8/15 s cost +2.2 WER points;
+  20/30 s allowed 18.7 s segments). Fixed a 10 ms overshoot at the cap (test_segments_never_exceed_twenty_seconds).
+- Latency, paced 1.0x, final build, 80 held-out utterances (en/es/zh/hi/ta × clean/babble10, CPU shared with other
+  sessions): speech end → stored p50 4.6 s, p95 7.4 s, max 10.8 s (latency-heldout-adaptive-product-final.json);
+  before: p50 4.2, p95 7.5, max 13.2 s; live test: p90 19.6 s.
+- RAM (lens-voice + lens-engine + lens-sherpa child, sampled 200 ms): whisper path ~175 MB; IndicConformer 375-415 MB;
+  Dolphin 483-532 MB peak. Whole-system total with agent/observer/app not measured in this run.
+- Owner-only capture (lens-voice `--enroll <profile>`, `--speaker-profile <profile>`, `--require-owner`): NeMo
+  TitaNet-small speaker embeddings (4 s windows, mean), profile DPAPI-encrypted; segments below the threshold are
+  dropped inside lens-voice (never emitted). LibriSpeech test-clean (CC BY 4.0) speakers split by hash: dev 14 owners
+  chose 0.46 (FAR 0.4%, FRR 4.8%); held-out 26 owners at 0.46: FAR 1.5%, FRR 5.3% (clean 0.6%/0%, pink 10 dB
+  0.6%/0%, babble 10 dB 3.2%/16.0%); FLEURS other-language impostors accepted: 0. Two CAM++ exports separated
+  speakers poorly in this runtime and were rejected (speaker-dev-campplus-failed.json). lens-voice peaks ~185-190 MB
+  with the speaker model. Not verified: the owner's own voice, cross-language enrolment (enrol in English, speak
+  Telugu), children/elderly voices, overlapping speakers within one segment (decision is per segment).
+- Tests: tests/test_voice.py 16/16 (adds routing hi/zh, allowed-set LID regression on FLEURS ta/te/hi, noise never
+  stored, owner-only emission with an encrypted profile, refusal without a profile, 20 s cap).
+- Emotion/expression and spoken replies: NOT IMPLEMENTED; options and costs in reports/voice/emotion-and-speech-feasibility.md.
+- 30-minute soak, final build (reports/voice/soak.json): 1945.9 s of English FLEURS sessions streamed at 1.0x with
+  the noise changing every block (clean, pink 20/5, fan 20/10, babble 10, white 10) plus 2-minute noise-only
+  stretches: exit 0, no overrun, 143 segments, 138 stored / 5 rejected (no_speech_found, repetition_rejected,
+  uncertain_short_segment), WER 19.3% (dev and held-out clips mixed — not a tuning set), latency p50 3.4 s,
+  p95 4.9 s, max 7.6 s; lens-voice working set ≤ 7 MB with a second-half slope of 14 KB/min (no leak); pair peak
+  174 MB; engine idle 8 → 21 MB after 138 stored memories.
 
 ## Windows app: remaining views, accessibility, languages (2026-10-27) — PARTIAL (H0; hidden-window measurements; not usability-tested)
 
@@ -724,8 +776,262 @@ dev); VAD parameters were chosen on dev only (reports/voice/vad-tuning-dev*.json
   - test_app 15/15 OK, including XSS payloads in every view (0 injected elements, no script execution), the agent
     import/diagnostics tests, and AppHost's self-test loading all 9 views against a real agent with 0 errors.
   - test_installer 4/4 OK.
-  - Measured on H0: lens-app time to interactive 2.72–2.78 s from process start (UI ready at 2.1 s). lens-app idle
+  - Measured on H0: lens-app time to interactive 2.72–2.78 s from process start (UI ready at 2.1 s). A rerun on
+    2026-10-28 (HEAD 2fcc6f0, other sessions' jobs running) took 3.05–4.19 s (UI ready at 2.2 s); app idle 338 MB working set. lens-app idle
     with the hidden window, 7 processes including WebView2: 339 MB working set, 131 MB private. Background agent tree
     23 MB, so app plus agent is about 362 MB, under 800 MB.
   - The app runs only while its window is open. The visible window's RAM, low-end tiers and usability with people are
     not measured.
+
+## Milestone 4 — screen OCR: Telugu, bounded worker RAM, 10 scripts, held-out set (2026-10-27/28) — PARTIAL (Telugu PASS; Arabic/Urdu weak; Bengali/Gujarati have no recogniser)
+
+- Metric (scripts/benchmark_ocr_native.py): page CER on NFC text with ZWNJ/ZWJ removed (invisible, so no recogniser
+  can emit them); the unnormalised figure is kept as `page_cer_raw`. Process per request, CPU only, 2 threads, H0 with
+  other sessions' CPU jobs running (CPU load 90–100% during most runs, so latencies are upper bounds).
+- Sets. Dev (artifacts/ocr-screens/v1, scripts/make_ocr_screens.py): 87 screens = the original 32 (unchanged, sha256
+  checked) + fr, pt, de, id, ru, ja, ar, ur, bn, mr, gu × 5 styles; fonts Segoe UI / Yu Gothic UI / Nirmala UI.
+  HELD-OUT (artifacts/ocr-screens/heldout-v1, scripts/make_ocr_screens_heldout.py): 89 screens, all 17 languages,
+  newly authored text, other fonts (Georgia, Verdana, Calibri, Tahoma, Trebuchet MS, SimSun, Microsoft YaHei Light,
+  MS (P)Gothic, Yu Gothic, Times New Roman, Arial, Nirmala Text — none used in dev or training), other layouts (mail
+  list, dark notes, cards, heading + body, compact 13 px), new seeds. Never used for tuning, training or rule design;
+  its images were only checked for correct rendering before the first evaluation.
+- Telugu diagnosis (dev): Nirmala UI draws the ra-vattu (్ర) as a hook left of the consonant; te_PP-OCRv5_mobile_rec
+  reads it as "[", "(" or a separate ర, or drops it. Crop padding (+10/20%, −5%) and 2× upscaling do not help
+  (8.7% → 8.7–10.9%); te_PP-OCRv3_mobile_rec: 39.8%; the PP-OCRv6 recognisers have no Indic characters.
+- Telugu fix: scripts/make_ocr_te_train.py renders 20,495 synthetic lines (programmatic Telugu orthography with
+  ra-vattu weighted up, digits, Latin tokens, genuine brackets; 400 pages; Nirmala UI Regular/Semilight/Bold and Noto
+  Sans Telugu (OFL, training only); headless Edge over DevTools; crops from the shipped detector's boxes) and
+  scripts/train_ocr_te_screen.py fine-tunes only the EncoderWithSVTR neck and CTC head (632k parameters; backbone and
+  BatchNorm statistics frozen; ONNX Runtime backbone + Paddle dygraph neck, parity with the export 3.4e-6 before and
+  3.6e-6 after) for 1,200 steps (batch 32, AdamW 4e-4 cosine, 9,228 s CPU). Synthetic validation CER 22.8% → 5.1%.
+  Output models/Lens--te_PP-OCRv5_mobile_rec_screen (Apache-2.0 derivative: same graph, new constants), pinned under
+  `derived` in third_party/ocr-runtime-lock.json (inference.onnx sha256 6d74dea8…). Training text is synthetic
+  syllables, not real vocabulary.
+  Telugu page CER: dev 8.37% → 1.37% (line accuracy 0.27 → 0.93); **held-out 1.65% — gate ≤ 3% PASS**
+  (PaddleOCR-as-published on the same held-out screens: 5.18%).
+- Worker memory (scripts/benchmark_ocr_memory.py; `lens-ocr --serve`; Edge-rendered synthetic page at device scale 1.5).
+  Before: 2560×1600 held 808 MB after one request and 1,446 MB working set / 2,315 MB private after two (ONNX Runtime
+  CPU arena and memory patterns keep every new shape; whole-screen detection). After: arena and memory patterns off;
+  detector runs in full-width bands of ≤ 409,600 px (`det_pixels`), each resized on the fly; 16-bit probability map and
+  1-byte visited map; at most 2 recognisers loaded per request (LRU) and 1 kept between requests.
+  **2560×1600 peak 119 MB, 3840×2160 peak 141 MB, idle 18–36 MB** (target ≤ ~150 MB: PASS on H0); dev/held-out
+  per-request peak 111/115 MB. Cost: banded detection is close to, not bit-identical with, a whole-screen run (the
+  detector pools globally); on the original dev screens en 0.07 → 0.33% before line merging (one code line split).
+- Recognition changes: routing tries the previous screen's recogniser first, then general, then the rest (most recent
+  success first; full probing stops after 2 lines no recogniser reads confidently); Arabic-script output is converted
+  from visual to logical order keeping left-to-right runs ("48,250", "4:30", "B12") and mirroring brackets
+  (PaddleOCR's pred_reverse splits numbers at "," and ":"; Arabic dev 6.7% → 3.7%); same-row segments the detector
+  split at wide gaps are merged (gap ≤ 2 line heights; right-to-left order for Arabic script; Urdu dev 14.2% → 10.6%).
+- Recognisers (Apache-2.0, fetched at pinned revisions with LFS sha256 checks by scripts/fetch_ocr_models.py, exported
+  with the pinned paddle2onnx 2.1.0): general PP-OCRv6_tiny_rec (en, es, fr, pt, de, id, zh), PP-OCRv5_mobile_rec (ja),
+  arabic_PP-OCRv5_mobile_rec (ar, ur), cyrillic_PP-OCRv5_mobile_rec (ru), devanagari_PP-OCRv5_mobile_rec (hi, mr),
+  ta_PP-OCRv5_mobile_rec, the Lens Telugu fine-tune. **No PaddleOCR recogniser exists for Bengali or Gujarati script**
+  (Hugging Face PaddlePaddle catalogue, 2026-10-27). Urdu renders in Naskh: no Nastaliq font is installed.
+- Page CER, auto routing (dev: reports/ocr-screens/ocr-native-dev-v5-auto-20261027T160513Z.json; held-out:
+  ocr-native-heldout-v5-auto-20261027T205613Z.json). PaddleOCR-as-published = scripts/ocr_reference.py (official DB
+  post-processing with quad crops, upstream models, oracle routing, pred_reverse; ocr-reference-heldout-v5-oracle-*):
+
+  | Script / language | Lens dev | Lens held-out | PaddleOCR-as-published held-out |
+  |---|---:|---:|---:|
+  | Latin en / es / fr / pt / de / id | 0.13 / 0.07 / 0.63 / 0.12 / 0.26 / 0.06% | 0.00 / 0.11 / 0.29 / 0.20 / 0.16 / 0.11% | 0.18 / 0.57 / 0.44 / 0.30 / 0.37 / 0.49% |
+  | Han zh | 0.21% | 0.00% | 0.34% |
+  | Japanese ja | 0.75% | 0.76% | 1.08% |
+  | Cyrillic ru | 0.34% | 3.05% (oracle routing 0.00%) | 0.00% |
+  | Devanagari hi / mr | 2.65 / 4.20% | 2.35 / 5.37% (mr oracle 3.69%) | 2.35 / 2.98% |
+  | Tamil ta | 0.21% | 0.71% | 0.91% |
+  | Telugu te | 1.37% | **1.65%** | 5.18% |
+  | Arabic ar / Urdu ur | 3.67 / 10.6% | **21.2 / 30.1%** (oracle 19.9 / 28.5%) | 15.9 / 30.5% |
+  | Bengali bn / Gujarati gu (no recogniser) | 84.7 / 80.1% | 88.1 / 77.9% | 83.6 / 79.2% |
+
+  Losses: Arabic and Urdu do not generalise to the held-out fonts (Tahoma, Times New Roman, Arial), and Lens is worse
+  than PaddleOCR-as-published on held-out Arabic (21.2 vs 15.9%). Under held-out fonts the correct recogniser's
+  confidence can fall below 0.9 and routing picks a wrong script (ru 3.05% vs 0.00% with oracle routing; mr 5.4 vs
+  3.7%). Dev routing equals oracle on every screen, so these were found only on held-out and are NOT fixed here (no
+  tuning on held-out). Bengali and Gujarati fail for want of any recogniser.
+- Strongest openly licensed CPU recognisers on the same held-out images (oracle routing, Lens worker; dev in the
+  reports ocr-native-*-oracle-PP-OCRv*): PP-OCRv6_small_rec en/zh/es/fr/pt/de/id 0.00/0.17/0.00/0.05/0.10/0.00/0.05% —
+  slightly better than the shipped tiny model at the same 102 MB peak, but region compute p50 326 ms vs 86 ms (dev),
+  over the 150 ms target, so tiny stays; PP-OCRv6_medium_rec similar CER at 201 MB peak; PP-OCRv5_server_rec 13–19% on
+  Latin (garbles screen crops in this pipeline) at 250 MB peak. The PaddleOCR-as-published Python pipeline peaks at
+  472–519 MB vs the Lens worker's 115 MB. Tesseract 5.4 (Apache-2.0; tessdata_best covers Bengali and Gujarati) was
+  downloaded, but running the downloaded binary was refused by this environment's permission policy, and EasyOCR was
+  not attempted for the same reason: both NOT MEASURED, owner approval needed.
+- Latency (dev, process per request, compute inside the worker, contended CPU): Lens region p50 86 ms / p95 275 ms on
+  the Latin/Han/Japanese subset; full 87-screen auto run region p50 392 ms at 100% CPU load. Serve-mode warm band
+  requests (scripts/benchmark_ocr_latency.py, original 6 languages, CPU 96%): p50 260 ms, p95 900 ms. A quiet
+  re-measurement is needed before the < 150 ms median gate can be called.
+- Tests: tests/test_native_ocr.py 14/14 OK (new: a 2560×1600 screen keeps the serve worker < 200 MB peak and < 100 MB
+  after requests with all 24 rows read; Arabic numbers keep left-to-right order; split segments merge; the Telugu
+  fine-tune is pinned; the Nirmala ra-vattu is read as a conjunct; metric normalisation).
+- Not yet: Bengali and Gujarati recognisers (no PaddleOCR model — fine-tune a new CTC head on Dakshina-vocabulary
+  renders, or Tesseract with owner approval); Arabic-script robustness to unseen fonts; script-consistency routing
+  validated on a fresh font set; real-vocabulary (Dakshina) training text; the agent's default OCR config and
+  packaging of the new recognisers (engine/agent, scripts/package_lens.py); a quiet latency re-measurement.
+
+## Observer real-screen fixes (2026-10-28) — PARTIAL (synthetic verification; second real-screen run pending owner consent)
+
+Fixes for the failures of the owner-consented real-screen run (reports/perf/real-screen-20261027T041404Z.json, aggregate
+numbers only): whole scroll-back captured (median 15,528 chars), the same transcript re-stored every ~4 s, 179% CPU,
+every observation `und-Latn`. All changes are in engine/observer/; the engine `add` contract is unchanged (new fields
+travel in `metadata`).
+- Visible text only (uia_text.cpp): an element is read only if its UIA bounding rectangle intersects the visible area
+  (window ∩ virtual screen, narrowed by every native child window and scroll container); subtrees fully outside are
+  not walked. Edit/document TextPattern contributes `GetVisibleRanges` only (never `DocumentRange`) and its subtree is not
+  walked again. Native multi-line Edit controls without visible ranges are read line by line from the first visible line
+  to the client bottom (EM_GETFIRSTVISIBLELINE / EM_POSFROMCHAR / EM_GETLINE, 200 ms timeouts) — found because the Win32
+  proxy truncates Value at 4,096 characters and exposes no visible ranges. Stored text capped at 4,000 bytes per
+  observation (`metadata.truncated` records a cut). A walk stopped by the time budget is retried with a doubled budget
+  (300 ms → 2 s); after three in a row the partial text is used and marked truncated.
+- Settle/debounce: changed content is stored once it has been unchanged for `settle_ms` (2 s), or after `max_settle_ms`
+  (12 s) at the latest; each consecutive forced capture of the same window doubles that bound (up to 8×) and slows the
+  settle polling.
+- Delta storage (capture_delta.hpp): per window a bounded fingerprint of 64-bit line hashes (no text). The first capture,
+  a document (title) change and every 10 minutes give a full `snapshot`; otherwise only lines not yet stored are
+  emitted as a `delta` with `window_key`, `previous_capture` and `base_snapshot` links. Not stored: deltas under 4
+  characters, and re-renders with ≥ 90% line overlap and < 24 new characters (clock ticks, counters).
+- Language identification (language_id.hpp, lens-lid-ngram-v1): script detection for every §1a language (kana share
+  ja/zh, Urdu letters ur/ar, Ukrainian letters uk/ru; danda and native digits are not letters), plus a character
+  1–4-gram + word Naive Bayes for Latin script (en, es, fr, pt, de, id, hi-Latn, ta-Latn, te-Latn) and Devanagari
+  (hi, mr). The tables (lid_model_data.hpp, 288 KB, generated by scripts/train_observer_lid.py, report
+  reports/observer/lid-train-20261027T205602Z.json, sha256 7f68cb8f…20be) are trained on balanced text (54k
+  characters per Latin class, 62k per Devanagari class): Belebele authored questions/answers (CC BY-SA 4.0; FLORES
+  passages never read) and Belebele native questions transliterated with Aksharantar pairs (CC-BY 4.0 / CC0; pairs
+  sourced from Dakshina excluded). The table is a CC BY-SA 4.0 derivative (stated in the header). Code-switching:
+  a second script with ≥ 20% of the words, or English plus another Latin-script language each winning ≥ 25% of
+  three-word windows → `mixed` with both components. `language_detail` carries script, confidence and method.
+- CPU: below-normal priority (the OCR worker inherits it); polling stretched so the observer's own CPU per check stays
+  under ~5% duty (thread CPU time, not UIA wall time, which is mostly waiting on the target app); a throttle doubles
+  every interval (up to 16×) while the observer's CPU over 5 s exceeds `cpu_budget_percent` (5% of one core).
+- Tests (tests/test_observer.py, 27 tests, invisible synthetic window only; test app extended with `fill`/`append`/
+  `offscreen`/`panel` commands for scroll-back, streaming, off-screen and clipped elements): 26/26 OK in one full run
+  plus the new throttle test OK on its own — of 400 lines in a scrolled edit box only the ~10 visible ones are
+  captured; off-screen and panel-clipped labels not captured; cap + truncation flag; streaming text stored once after
+  it settles; never-settling text captured within the bound with back-off (forced_captures ≥ 1, ≤ 4 records in 12 s);
+  delta holds only the new line and links to the snapshot; near-duplicate re-render not stored; title change →
+  snapshot; language labels es/en and `--identify-language` over 20 languages, mixed text and und; throttle engages
+  under a tiny budget; observer CPU on a streaming window 0.9–1.5% of one core (budget < 10%). Earlier runs were flaky
+  on this machine (CPU 100%, RAM 96% from other jobs: observer start up to 7 s, single UIA calls up to 3.7 s); positive
+  waits were made condition-based (up to 25–40 s) and three test expectations were corrected where the observer was
+  right (lines scrolled out of view are no longer captured).
+- Language-identification benchmark (scripts/benchmark_observer_lid.py; held-out test split, never used for tuning;
+  reports/observer/lid-benchmark-test-20261027T211026Z.json): 7,536 strings, balanced per language and bucket —
+  FLEURS test transcriptions (CC-BY-4.0) for the 17 §1a languages, Dakshina romanized test sentences (CC BY-SA 4.0)
+  for hi/ta/te, synthetic English + Indic code-switched concatenations; buckets short (5–40 characters, screen-like),
+  sentence, paragraph. Reference: fastText lid.176.ftz (938 KB, CC BY-SA 3.0, evaluation only, isolated venv
+  .tools/lid-eval), same strings.
+
+  | Set (accuracy) | Lens lens-lid-ngram-v1 | fastText lid.176 |
+  |---|---|---|
+  | 17 languages, all buckets | 99.1% | 98.4% |
+  | 17 languages, short 5–40 chars | 98.0% | 95.6% |
+  | 17 languages, sentence / paragraph | 99.5% / 99.9% | 99.5% / 100% |
+  | romanized hi/ta/te (exact tag) | 92.6% (short 87.3%) | 0% (no such labels) |
+  | code-switched, both components named | 62.7% | 0% (single label) |
+  | code-switched, either component | 97.0% | 93.0% |
+
+  Weakest: short es (93.3%, confused with pt), en short (94.7%), te-Latn (short 84.7%; confused with hi-Latn/id),
+  en+ta-Latn / en+te-Latn mixing (48–51%). Throughput 0.09 ms per string including process start and JSON I/O
+  (fastText 0.12 ms, Python binding). Development history (dev split only): hand-written lexicons lens-lid-rules-v1
+  reached 95.5% (17 languages), 33.8% (romanized) and 22.5% (code-switch) on dev
+  (lid-benchmark-dev-20261027T204823Z.json), so they were replaced by the n-gram tables; the code-switch thresholds
+  were then chosen on dev (lid-benchmark-dev-20261027T210936Z.json). Caveats: FLEURS sentences are read-speech
+  transcripts of formal text, not UI chrome; romanized ta/te training text is machine-transliterated; the code-switch
+  set is synthetic; stronger open identifiers (GlotLID, OpenLID) were not compared.
+- Synthetic sustained run, 30 minutes, after the fixes (scripts/sustained_run.py --snapshot: binaries copied to a temp
+  folder so other work's builds are not blocked; invisible windows changing every 3–8 s, alternating 5-minute UIA and
+  OCR phases, recall every 30 s; other sessions' jobs loading the laptop):
+  - reports/perf/sustained-20261027T215134Z.json (final build): 0 crashes, 346 samples; whole-tree peak 401 MB working
+    set / 366 MB private (≤ 800 MB: PASS; per process peak engine 323, OCR worker 49, observer 23.5, agent 11 MB);
+    mean CPU 8.6% of one core (observer 0.97%, OCR worker 2.47%, engine 4.94%, agent 0.26%; UIA phases 6.3%, OCR phases
+    10.8%); 57/57 recalls OK, p50 294 ms, p95 3.5 s; 233 memories stored, 127 embedded at the end.
+  - reports/perf/sustained-20261027T211445Z.json (before the OCR worker's CPU counted towards the observer's budget):
+    peak 401 / 364 MB, mean CPU 12.0% of one core (OCR worker 4.75%).
+  - Measurement fix: sustained_run.py previously read the tree's cumulative CPU, which resets whenever the agent
+    restarts at a phase switch, so the 1.7% reported for reports/perf/sustained-20261027T000528Z.json (Milestone 15)
+    covers only the last phase and is an undercount. CPU is now accumulated per process across restarts
+    (real_screen_run.py likewise, so exiting OCR workers keep their CPU).
+  - Open: idle after load shows 23 MB working set but 318 MB private (the 2026-10-27 run: 21 MB private). The idle
+    sample had no per-process private bytes, so the owner of the commit is not identified; both scripts now record
+    private bytes per process. Engine-side work (embedding, consolidation) is the largest CPU share and is outside the
+    observer.
+- Not yet: a second owner-consented real-screen run (the decisive test of these fixes on real applications, incl. the
+  Electron chat app); real-application UIA coverage beyond the synthetic window; low-end hardware tiers.
+
+## Memory lifecycle L9, user memory §12 and history import §11 — schema v9 (2026-10-28) — PARTIAL (synthetic data; 100k import measured under contention)
+
+- Built: engine/lifecycle.{hpp,cpp}, engine/user_memory.{hpp,cpp}, recovery in engine/store.cpp, DPAPI helpers in
+  adapters/windows/key_store.*. Schema v9 adds `pins`, `recall_feedback` (keyed by a SHA-256 of the normalised question;
+  question text is never stored), `user_facts`, `fact_status`, `retention_rules`; migration is CREATE IF NOT EXISTS only.
+- Backup / restore (`backup`, `restore`): a SQLCipher export written page-encrypted (no plaintext copy on disk) with a
+  random key DPAPI-wrapped beside it, or the user's passphrase (≥ 12 characters, SQLCipher's KDF; passphrases only in JSON
+  on stdin). A manifest records format, schema, key mode, source count, size and SHA-256 (no content). Before anything is
+  written, restore checks the manifest hash, SQLCipher's per-page HMAC (`cipher_integrity_check`), SQLite's
+  `integrity_check` and the source count. It then builds the copy as `<target>.restoring`, verifies it the same way, and
+  moves the database into place, then its key. An engine start completes a key move that a crash interrupted. Refused:
+  tampered file (`backup_integrity_failed`), wrong passphrase (`backup_key_invalid`), existing or relative target; no
+  files are left behind. DPAPI-mode backups restore only for the same Windows user; use passphrase mode to move machines.
+- Key rotation (`rotate_key`): export under a new key to `<db>.next` + `<db>.key.next`, verify, then atomic
+  write-through swaps (database, then key). At start, the engine resolves an interrupted rotation: exactly one key opens
+  the file, and leftovers are removed.
+- Deletion (`delete` and `delete_sources` with scope all | source_ids | application | kind | start/end | import):
+  everything derived from the deleted sources goes too: vectors, FTS terms, mentions, facts, projects, episode bounds,
+  pins and feedback. Derived names and keys are refreshed, the FTS index is merged so no deleted term survives in old
+  segments, and the WAL is truncated (`secure_delete` zeroes freed pages). Delete-all also removes user corrections and
+  the trained zstd dictionaries and compacts (VACUUM).
+  NOT covered: a partial delete leaves trained dictionaries, which may contain fragments of the deleted text, in place.
+- Export (`export`, consent required): JSONL `lens-history/1` with full provenance; it re-imports through the LensJsonl
+  importer, and the round trip is tested. The file is plaintext by the user's choice and the response says so.
+- Retention (`retention_set/list/remove`): rules by kind and/or application with a maximum age (1–36,500 days), applied
+  at the start of `consolidate` by the same purge; pinned sources never expire.
+- Corrections (`correct_fact`: correct | reject | confirm): the original derived fact stays with its sources, marked
+  `superseded` or `rejected`. The correction is a user fact (`status: user_stated`) with provenance
+  `{kind: user_correction, supersedes, supersedes_sources}`. A corrected date must be a date.
+  L6 latest vs superseded: among deadline/meeting/amount facts about one subject, the most recently evidenced is
+  `current` and the others carry `superseded_by_later`; `facts` takes `current_only`. Evaluated within the returned set.
+- Pins (`pin/unpin/pins`) and relevance feedback (`feedback`): recall orders positive feedback for the same
+  question first, then pinned sources, then the rest, then negative feedback (`user_signals`, default on; results carry
+  `pinned` and `feedback`).
+- History import (scripts/import-history.ps1, PowerShell 7):
+  - New formats: Mbox (streamed, mboxo/mboxrd), Eml, Ics (TZID/UTC/all-day; floating times need -SourceTimeZone;
+    RRULE recorded, not expanded), Vcf (2.1 QP, 3.0; REV or import time), BrowserHistory (Google Takeout JSON or CSV;
+    query strings, fragments and user-info are removed from URLs) and Pdf (literal-string text operators,
+    FlateDecode; scanned or CID/hex-font PDFs are refused as `pdf_text_unavailable`, not OCR'd).
+  - Options: `-Preview` (counts, skips by reason, in-file duplicates, time range, 3-item sample; writes nothing),
+    `-Progress` (progress lines before the result), `-CancelPath` (checked at every chunk; rolls back), `-EnginePath`
+    (installed builds).
+  - One engine transaction per import. Parse errors, cancellation or a rejected record roll everything back; the
+    result's `export_sha256` drives `imports` / `delete_sources {scope:{import}}`.
+  - Diagnostics carry error codes only: no paths, no content.
+  - MIME/mbox parsing is compiled in memory with Add-Type; no file is written.
+- Tests (synthetic, temp dirs):
+  - tests/test_lifecycle.py, 12 tests: DPAPI and passphrase backup/restore, tamper and wrong key, crash at both restore
+    steps followed by integrity-checked reopen, export round trip, scoped and delete-all deletion with sentinel scans,
+    retention with pin exemption, rotation and a crash at both rotation steps, corrections, latest-vs-superseded,
+    pins/feedback, and 300 hostile requests with no stray files.
+  - Sentinel scans: before deletion, a decrypted logical copy of every table (FTS shadow tables included) contains the
+    sentinel (positive control). After deletion, neither that copy nor the raw DB, WAL and SHM bytes (UTF-8 and
+    UTF-16) contain it, and the WAL is empty.
+  - tests/test_history_import.py, 19 tests: 12 existing plus 7 new ones covering MIME (QP, base64, encoded words,
+    ISO-8859-1 HTML), dedup and skips, preview, ICS zones, vCard, browser-history token removal, PDF text and refusal,
+    and a mid-stream cancel after a chunk was already written inside the open transaction (nothing is kept),
+    followed by delete-by-import.
+  - Also passing: test_unicode_privacy 6, test_memory_layers, test_memory_v2, test_episodes, test_text_compression,
+    test_security.
+- Import throughput and RAM (H0, other sessions' model evaluation, OCR benchmark and tests running throughout;
+  scripts/benchmark_history_import.py, synthetic mailbox with plain/QP/base64/HTML parts in six languages):
+  - 10,000 e-mails with the first PowerShell parser: 37.5 then 29.3 e-mails/s; peak tree 172–179 MB working set /
+    86–91 MB private (pwsh ~155 MB, engine ~16 MB); 2.9 KB per e-mail in the database; delete-by-import of 10,000 in
+    5.3–8.0 s.
+  - Profiling showed parsing at ~25 ms per message, so MIME/mbox parsing moved to the in-memory C# helper: 2,000
+    e-mails preview in 12 s (6 ms/message) and import in 23 s (≈ 88 e-mails/s).
+  - 100,000 e-mails: 1,301.6 s (21.7 min, 76.8 e-mails/s); all 100,000 imported in one transaction across 782 chunks with 782
+    progress lines; peak tree 240.3 MB working set / 153.1 MB private (pwsh 218.5 MB, engine 16.6 MB, under the 800 MB
+    ceiling); 236.5 MB mailbox became a 287.3 MB database (2.87 KB per e-mail); delete-by-import of all 100,000 in
+    130.3 s. Report: reports/history-import/ (mbox-100000-*.json). Measured under contention, so idle-machine and
+    low-end-tier throughput is NOT VERIFIED. E-mail dates, headers and MIME follow the English RFC 5322 formats
+    first (spec §1a); other date layouts are skipped and counted, never guessed.
+- Read-only ops for the mesh: `imports`, `pins`, `retention_list`.
+- Not done: restoring DPAPI backups on another account, real mail archives (only synthetic), attachment text, ICS
+  recurrence expansion, cross-file e-mail dedup (same file re-import is deduplicated), dictionary re-training after
+  partial deletes, and an agent-side import lock. The desktop app keeps its own C++ parser until it can run this script
+  (needs PowerShell 7 in the package).
