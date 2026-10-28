@@ -1,0 +1,491 @@
+{
+  "benchmark": "lens-retrieval-nl v1",
+  "created_utc": "20261026T165012Z",
+  "scale": 10000,
+  "engine_sha256": "e4ffadc8c910fd1be49c686f77d61a0995cfb08bc0dfb0035caf5b4c7ea69d6b",
+  "model_id": "intfloat/multilingual-e5-small@614241f622f5/onnx/model_qint8_avx512_vnni.onnx#sha256:dd476dd0c2514e9b",
+  "fixture": "expansion",
+  "fixture_sha256": "b6bdd8f0791f9a6dbe948ac780033dbd5088c1eac58f157db94246ef5a28b061",
+  "queries_total": 62,
+  "queries_test": 0,
+  "calibration_split": "dev",
+  "threshold_applied": {
+    "semantic": 0.8309,
+    "hybrid": 0.8309,
+    "hybrid_rerank": -1.8282,
+    "semantic_c": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+    "hybrid_c": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+    "hybrid_rerank_c": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+    "hybrid_rerank_rrf_c": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}"
+  },
+  "calibration": "none (sealed holdout; fixed thresholds)",
+  "stored_events": 10000,
+  "import_s": 7.820711199994548,
+  "index_s": 75.45685400000366,
+  "index_ms_per_source": 7.545685400000366,
+  "vector_chunks": 10000,
+  "index_peak_wset_bytes": 280358912,
+  "index_peak_private_bytes": 280932352,
+  "query_peak_wset_bytes": 416296960,
+  "query_peak_private_bytes": 417755136,
+  "latency_ms": {
+    "hybrid_c": {
+      "p50": 51.79045000113547,
+      "p95": 85.15430000261404,
+      "p99": 152.45609999692533,
+      "max": 253.11469999724068
+    },
+    "hybrid_rerank_c": {
+      "p50": 212.6743000044371,
+      "p95": 265.7767999917269,
+      "p99": 324.4725999975344,
+      "max": 1365.0834000000032
+    },
+    "hybrid_rerank_rrf_c": {
+      "p50": 219.59844999946654,
+      "p95": 267.48150000639725,
+      "p99": 334.4045999983791,
+      "max": 402.34119999513496
+    }
+  },
+  "db_bytes": 17023280,
+  "stats": {
+    "api_version": 1,
+    "cipher_version": "4.19.0 community",
+    "derived_count": 0,
+    "embedded_sources": 10000,
+    "embedding_model": "intfloat/multilingual-e5-small@614241f622f5/onnx/model_qint8_avx512_vnni.onnx#sha256:dd476dd0c2514e9b",
+    "engine_version": "0.2.0-dev",
+    "models_loaded": true,
+    "ok": true,
+    "reranker_configured": true,
+    "schema_version": 5,
+    "source_count": 10000,
+    "vector_chunks": 10000
+  },
+  "engine_default_matches_simulation": true,
+  "test_results": {
+    "hybrid_c": {
+      "all_answerable": {
+        "answerable": 30,
+        "recall@1": 0.9666666666666667,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.9833333333333333,
+        "ndcg@10": 0.9876976584523819
+      },
+      "type:exact": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact_ambiguous": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:paraphrase": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_language": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:code_switch": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_app": {
+        "answerable": 16,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "type:timeline": {
+        "answerable": 8,
+        "recall@1": 0.875,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.9375,
+        "ndcg@10": 0.9538662191964322
+      },
+      "type:mixed": {
+        "answerable": 6,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:en": {
+        "answerable": 14,
+        "recall@1": 0.9285714285714286,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.9642857142857143,
+        "ndcg@10": 0.9736378395408184
+      },
+      "language:zh": {
+        "answerable": 3,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:es": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:hi": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:ta": {
+        "answerable": 1,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:te": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "abstention": {
+        "threshold": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+        "unanswerable": 32,
+        "near_miss": 25,
+        "near_miss_correct_not_found_rate": 0.2,
+        "correct_not_found_rate": 0.34375,
+        "answerable_wrongly_abstained_rate": 0.13333333333333333,
+        "by_language": {
+          "en": 0.08333333333333333,
+          "zh": 0.25,
+          "es": 0.25,
+          "hi": 0.5,
+          "ta": 0.6666666666666666,
+          "te": 0.6666666666666666
+        }
+      },
+      "top1_correct_evidence_after_abstention": 0.8333333333333334,
+      "errors": 0
+    },
+    "hybrid_rerank_c": {
+      "all_answerable": {
+        "answerable": 30,
+        "recall@1": 0.9666666666666667,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.9833333333333333,
+        "ndcg@10": 0.9876976584523819
+      },
+      "type:exact": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact_ambiguous": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:paraphrase": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_language": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:code_switch": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_app": {
+        "answerable": 16,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "type:timeline": {
+        "answerable": 8,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "type:mixed": {
+        "answerable": 6,
+        "recall@1": 0.8333333333333334,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.9166666666666666,
+        "ndcg@10": 0.9384882922619097
+      },
+      "language:en": {
+        "answerable": 14,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:zh": {
+        "answerable": 3,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:es": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:hi": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:ta": {
+        "answerable": 1,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:te": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "abstention": {
+        "threshold": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+        "unanswerable": 32,
+        "near_miss": 25,
+        "near_miss_correct_not_found_rate": 0.32,
+        "correct_not_found_rate": 0.46875,
+        "answerable_wrongly_abstained_rate": 0.03333333333333333,
+        "by_language": {
+          "en": 0.16666666666666666,
+          "zh": 0.25,
+          "es": 0.75,
+          "hi": 0.5,
+          "ta": 0.6666666666666666,
+          "te": 1.0
+        }
+      },
+      "top1_correct_evidence_after_abstention": 0.9666666666666667,
+      "errors": 0
+    },
+    "hybrid_rerank_rrf_c": {
+      "all_answerable": {
+        "answerable": 30,
+        "recall@1": 0.9666666666666667,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.9833333333333333,
+        "ndcg@10": 0.9876976584523819
+      },
+      "type:exact": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact_ambiguous": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:paraphrase": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_language": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:code_switch": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_app": {
+        "answerable": 16,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "type:timeline": {
+        "answerable": 8,
+        "recall@1": 0.875,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.9375,
+        "ndcg@10": 0.9538662191964322
+      },
+      "type:mixed": {
+        "answerable": 6,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:en": {
+        "answerable": 14,
+        "recall@1": 0.9285714285714286,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.9642857142857143,
+        "ndcg@10": 0.9736378395408184
+      },
+      "language:zh": {
+        "answerable": 3,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:es": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:hi": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:ta": {
+        "answerable": 1,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "language:te": {
+        "answerable": 2,
+        "recall@1": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 1.0,
+        "ndcg@10": 1.0
+      },
+      "abstention": {
+        "threshold": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+        "unanswerable": 32,
+        "near_miss": 25,
+        "near_miss_correct_not_found_rate": 0.32,
+        "correct_not_found_rate": 0.46875,
+        "answerable_wrongly_abstained_rate": 0.03333333333333333,
+        "by_language": {
+          "en": 0.16666666666666666,
+          "zh": 0.25,
+          "es": 0.75,
+          "hi": 0.5,
+          "ta": 0.6666666666666666,
+          "te": 1.0
+        }
+      },
+      "top1_correct_evidence_after_abstention": 0.9333333333333333,
+      "errors": 0
+    }
+  },
+  "scored_split": "expansion",
+  "notes": "legacy_* ops return at most 5 sources, so their recall@10 equals recall@5. Abstention thresholds fitted on dev only. type:exact covers exact strings unique in the stored corpus; non-unique ones are type:exact_ambiguous."
+}

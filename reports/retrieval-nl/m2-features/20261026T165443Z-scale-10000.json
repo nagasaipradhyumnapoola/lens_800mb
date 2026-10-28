@@ -1,0 +1,491 @@
+{
+  "benchmark": "lens-retrieval-nl v1",
+  "created_utc": "20261026T165443Z",
+  "scale": 10000,
+  "engine_sha256": "e4ffadc8c910fd1be49c686f77d61a0995cfb08bc0dfb0035caf5b4c7ea69d6b",
+  "model_id": "intfloat/multilingual-e5-small@614241f622f5/onnx/model_qint8_avx512_vnni.onnx#sha256:dd476dd0c2514e9b",
+  "fixture": "nearmiss",
+  "fixture_sha256": "8d33d2b2db20ecd0eaa332a5e1bb8e64e34393e94bc7405d1dace400fe1e5cef",
+  "queries_total": 72,
+  "queries_test": 0,
+  "calibration_split": "dev",
+  "threshold_applied": {
+    "semantic": 0.8309,
+    "hybrid": 0.8309,
+    "hybrid_rerank": -1.8282,
+    "semantic_c": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+    "hybrid_c": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+    "hybrid_rerank_c": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+    "hybrid_rerank_rrf_c": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}"
+  },
+  "calibration": "none (sealed holdout; fixed thresholds)",
+  "stored_events": 10000,
+  "import_s": 6.884989500002121,
+  "index_s": 72.79370529999142,
+  "index_ms_per_source": 7.279370529999142,
+  "vector_chunks": 10000,
+  "index_peak_wset_bytes": 280387584,
+  "index_peak_private_bytes": 281022464,
+  "query_peak_wset_bytes": 415956992,
+  "query_peak_private_bytes": 417533952,
+  "latency_ms": {
+    "hybrid_c": {
+      "p50": 65.41859999560984,
+      "p95": 94.27210000285413,
+      "p99": 99.3358999985503,
+      "max": 155.0652000005357
+    },
+    "hybrid_rerank_c": {
+      "p50": 247.2401999984868,
+      "p95": 302.6738999906229,
+      "p99": 384.15070000337437,
+      "max": 1895.5923000030452
+    },
+    "hybrid_rerank_rrf_c": {
+      "p50": 244.29735000012442,
+      "p95": 282.6313000114169,
+      "p99": 312.95890000183135,
+      "max": 319.82869999774266
+    }
+  },
+  "db_bytes": 17015088,
+  "stats": {
+    "api_version": 1,
+    "cipher_version": "4.19.0 community",
+    "derived_count": 0,
+    "embedded_sources": 10000,
+    "embedding_model": "intfloat/multilingual-e5-small@614241f622f5/onnx/model_qint8_avx512_vnni.onnx#sha256:dd476dd0c2514e9b",
+    "engine_version": "0.2.0-dev",
+    "models_loaded": true,
+    "ok": true,
+    "reranker_configured": true,
+    "schema_version": 5,
+    "source_count": 10000,
+    "vector_chunks": 10000
+  },
+  "engine_default_matches_simulation": true,
+  "test_results": {
+    "hybrid_c": {
+      "all_answerable": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact_ambiguous": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:paraphrase": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_language": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:code_switch": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_app": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:timeline": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:mixed": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:en": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:zh": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:es": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:hi": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:ta": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:te": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "abstention": {
+        "threshold": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+        "unanswerable": 72,
+        "near_miss": 72,
+        "near_miss_correct_not_found_rate": 0.08333333333333333,
+        "correct_not_found_rate": 0.08333333333333333,
+        "answerable_wrongly_abstained_rate": null,
+        "by_language": {
+          "en": 0.0,
+          "zh": 0.0,
+          "es": 0.0,
+          "hi": 0.08333333333333333,
+          "ta": 0.25,
+          "te": 0.16666666666666666
+        }
+      },
+      "top1_correct_evidence_after_abstention": null,
+      "errors": 0
+    },
+    "hybrid_rerank_c": {
+      "all_answerable": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact_ambiguous": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:paraphrase": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_language": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:code_switch": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_app": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:timeline": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:mixed": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:en": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:zh": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:es": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:hi": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:ta": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:te": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "abstention": {
+        "threshold": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+        "unanswerable": 72,
+        "near_miss": 72,
+        "near_miss_correct_not_found_rate": 0.1111111111111111,
+        "correct_not_found_rate": 0.1111111111111111,
+        "answerable_wrongly_abstained_rate": null,
+        "by_language": {
+          "en": 0.0,
+          "zh": 0.0,
+          "es": 0.0,
+          "hi": 0.16666666666666666,
+          "ta": 0.3333333333333333,
+          "te": 0.16666666666666666
+        }
+      },
+      "top1_correct_evidence_after_abstention": null,
+      "errors": 0
+    },
+    "hybrid_rerank_rrf_c": {
+      "all_answerable": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:exact_ambiguous": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:paraphrase": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_language": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:code_switch": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:cross_app": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:timeline": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "type:mixed": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:en": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:zh": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:es": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:hi": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:ta": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "language:te": {
+        "answerable": 0,
+        "recall@1": null,
+        "recall@5": null,
+        "recall@10": null,
+        "mrr@10": null,
+        "ndcg@10": null
+      },
+      "abstention": {
+        "threshold": "engine default rule {\"rerank\": 0.4, \"cosine\": 0.37, \"cosine_no_rerank\": 0.35}",
+        "unanswerable": 72,
+        "near_miss": 72,
+        "near_miss_correct_not_found_rate": 0.1111111111111111,
+        "correct_not_found_rate": 0.1111111111111111,
+        "answerable_wrongly_abstained_rate": null,
+        "by_language": {
+          "en": 0.0,
+          "zh": 0.0,
+          "es": 0.0,
+          "hi": 0.16666666666666666,
+          "ta": 0.3333333333333333,
+          "te": 0.16666666666666666
+        }
+      },
+      "top1_correct_evidence_after_abstention": null,
+      "errors": 0
+    }
+  },
+  "scored_split": "nearmiss",
+  "notes": "legacy_* ops return at most 5 sources, so their recall@10 equals recall@5. Abstention thresholds fitted on dev only. type:exact covers exact strings unique in the stored corpus; non-unique ones are type:exact_ambiguous."
+}

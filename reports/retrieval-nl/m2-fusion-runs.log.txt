@@ -1,0 +1,37 @@
+== v1 10k fusion
+progress stage=import done=128/10000 rate=460.1/s elapsed=0s eta=21s engine_wset_mb=11 last_batch=0
+progress stage=index done=4096/10000 rate=149.3/s elapsed=27s eta=40s engine_wset_mb=185 chunks=4096
+progress stage=index done=8192/10000 rate=151.7/s elapsed=54s eta=12s engine_wset_mb=185 chunks=8192
+progress stage=index done=10000/10000 rate=152.6/s elapsed=66s eta=0s engine_wset_mb=185 chunks=10000
+progress stage=query done=0/480 rate=0.0/s elapsed=0s eta=nans engine_wset_mb=185 modes=10
+progress stage=query done=25/480 rate=1.0/s elapsed=25s eta=446s engine_wset_mb=334 modes=10
+progress stage=query done=50/480 rate=1.0/s elapsed=51s eta=439s engine_wset_mb=334 modes=10
+progress stage=query done=75/480 rate=1.0/s elapsed=76s eta=409s engine_wset_mb=334 modes=10
+progress stage=query done=100/480 rate=1.0/s elapsed=102s eta=388s engine_wset_mb=334 modes=10
+progress stage=query done=125/480 rate=1.0/s elapsed=129s eta=368s engine_wset_mb=334 modes=10
+progress stage=query done=150/480 rate=1.0/s elapsed=155s eta=340s engine_wset_mb=334 modes=10
+progress stage=query done=175/480 rate=1.0/s elapsed=176s eta=307s engine_wset_mb=334 modes=10
+progress stage=query done=200/480 rate=1.0/s elapsed=197s eta=275s engine_wset_mb=334 modes=10
+progress stage=query done=225/480 rate=1.0/s elapsed=217s eta=246s engine_wset_mb=334 modes=10
+progress stage=query done=250/480 rate=1.0/s elapsed=239s eta=219s engine_wset_mb=334 modes=10
+progress stage=query done=275/480 rate=1.1/s elapsed=260s eta=194s engine_wset_mb=334 modes=10
+progress stage=query done=300/480 rate=1.1/s elapsed=281s eta=168s engine_wset_mb=335 modes=10
+progress stage=query done=325/480 rate=1.1/s elapsed=302s eta=144s engine_wset_mb=335 modes=10
+progress stage=query done=350/480 rate=1.1/s elapsed=322s eta=120s engine_wset_mb=335 modes=10
+progress stage=query done=375/480 rate=1.1/s elapsed=343s eta=96s engine_wset_mb=335 modes=10
+progress stage=query done=400/480 rate=1.1/s elapsed=364s eta=73s engine_wset_mb=335 modes=10
+progress stage=query done=425/480 rate=1.1/s elapsed=383s eta=50s engine_wset_mb=335 modes=10
+progress stage=query done=450/480 rate=1.1/s elapsed=405s eta=27s engine_wset_mb=335 modes=10
+progress stage=query done=475/480 rate=1.1/s elapsed=429s eta=5s engine_wset_mb=335 modes=10
+10000 {"legacy_search": {"recall@1": 0.272108843537415, "recall@10": 0.272108843537415, "mrr@10": 0.272108843537415, "abstain_ok": 1.0}, "legacy_context": {"recall@1": 0.272108843537415, "recall@10": 0.272108843537415, "mrr@10": 0.272108843537415, "abstain_ok": 1.0}, "keyword": {"recall@1": 0.4489795918367347, "recall@10": 0.46938775510204084, "mrr@10": 0.457312925170068, "abstain_ok": 1.0}, "semantic": {"recall@1": 0.7414965986394558, "recall@10": 0.8673469387755102, "mrr@10": 0.7881897203325775, "abstain_ok": 0.8333333333333334}, "hybrid": {"recall@1": 0.7585034013605442, "recall@10": 0.8843537414965986, "mrr@10": 0.8073507180650038, "abstain_ok": 0.8333333333333334}, "hybrid_rerank": {"recall@1": 0.8231292517006803, "recall@10": 0.8775510204081632, "mrr@10": 0.8427194687398769, "abstain_ok": 0.8809523809523809}, "semantic_c": {"recall@1": 0.8469387755102041, "recall@10": 0.9659863945578231, "mrr@10": 0.8899133462908972, "abstain_ok": 0.9523809523809523}, "hybrid_c": {"recall@1": 0.8503401360544217, "recall@10": 0.9625850340136054, "mrr@10": 0.8906503077421445, "abstain_ok": 0.9523809523809523}, "hybrid_rerank_c": {"recall@1": 0.8401360544217688, "recall@10": 0.9693877551020408, "mrr@10": 0.8846182917611489, "abstain_ok": 0.9761904761904762}, "hybrid_rerank_rrf_c": {"recall@1": 0.8775510204081632, "recall@10": 0.9761904761904762, "mrr@10": 0.9135109599395312, "abstain_ok": 0.9761904761904762}} {"semantic": {"threshold": 0.8309, "dev_balanced_accuracy": 0.7585034013605443}, "hybrid": {"threshold": 0.8309, "dev_balanced_accuracy": 0.8012820512820513}, "hybrid_rerank": {"threshold": -1.8282, "dev_balanced_accuracy": 0.9714285714285714}}
+v1_exit=0
+== expansion 10k
+progress stage=import done=128/10000 rate=443.2/s elapsed=0s eta=22s engine_wset_mb=11 last_batch=0
+progress stage=index done=4096/10000 rate=144.1/s elapsed=28s eta=41s engine_wset_mb=184 chunks=4096
+progress stage=index done=8192/10000 rate=146.7/s elapsed=56s eta=12s engine_wset_mb=184 chunks=8192
+progress stage=index done=10000/10000 rate=143.7/s elapsed=70s eta=0s engine_wset_mb=184 chunks=10000
+progress stage=query done=0/62 rate=0.0/s elapsed=0s eta=nans engine_wset_mb=184 modes=10
+progress stage=query done=25/62 rate=1.0/s elapsed=25s eta=37s engine_wset_mb=333 modes=10
+progress stage=query done=50/62 rate=1.0/s elapsed=48s eta=11s engine_wset_mb=333 modes=10
+10000 {"legacy_search": {"recall@1": 0.0, "recall@10": 0.0, "mrr@10": 0.0, "abstain_ok": 1.0}, "legacy_context": {"recall@1": 0.1, "recall@10": 0.1, "mrr@10": 0.1, "abstain_ok": 1.0}, "keyword": {"recall@1": 0.7666666666666667, "recall@10": 0.7666666666666667, "mrr@10": 0.7666666666666667, "abstain_ok": 1.0}, "semantic": {"recall@1": 0.9333333333333333, "recall@10": 1.0, "mrr@10": 0.961111111111111, "abstain_ok": 0.53125}, "hybrid": {"recall@1": 0.9333333333333333, "recall@10": 1.0, "mrr@10": 0.961111111111111, "abstain_ok": 0.53125}, "hybrid_rerank": {"recall@1": 1.0, "recall@10": 1.0, "mrr@10": 1.0, "abstain_ok": 0.4375}, "semantic_c": {"recall@1": 0.9666666666666667, "recall@10": 1.0, "mrr@10": 0.9833333333333333, "abstain_ok": 0.34375}, "hybrid_c": {"recall@1": 0.9666666666666667, "recall@10": 1.0, "mrr@10": 0.9833333333333333, "abstain_ok": 0.34375}, "hybrid_rerank_c": {"recall@1": 0.9666666666666667, "recall@10": 1.0, "mrr@10": 0.9833333333333333, "abstain_ok": 0.46875}, "hybrid_rerank_rrf_c": {"recall@1": 0.9666666666666667, "recall@10": 1.0, "mrr@10": 0.9833333333333333, "abstain_ok": 0.46875}} "none (sealed holdout; fixed thresholds)"
+exp_exit=0
