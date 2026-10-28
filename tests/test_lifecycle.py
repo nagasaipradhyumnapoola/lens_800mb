@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import random
+import sqlite3
 import subprocess
 import sys
 import tempfile
@@ -163,6 +164,40 @@ class ExportAndDeletion(unittest.TestCase):
             r2=ask(db,{'op':'delete_sources','consent':True,'scope':{'all':True}},{'op':'stats'},{'op':'facts'})
             self.assertEqual((r2[1]['source_count'],r2[1]['user_fact_count'],r2[1]['entity_count'],r2[1]['fact_count']),(0,0,0,0))
             self.assert_no_sentinel(db,tmp,r2)
+
+    def test_partial_delete_retires_trained_dictionaries(self):
+        # A trained zstd dictionary is built from stored text, so it can hold fragments of sources a partial delete
+        # removes. After the delete no dictionary may remain, every surviving memory must read back exactly, and a
+        # memory written afterwards must still decode in a new process (no reference to a retired dictionary).
+        plain_text=lambda i:(f'Weekly planning note {i}: the Orion team reviewed roadmap, budget, hiring and the release '
+                              f'checklist for sprint {i%7}; action items were recorded for the design and platform groups. ')*2
+        secret_text=lambda i:(f'{SENTINEL} vault record {i}: the {SENTINEL} archive codename {SENTINEL}-{i%5} stays '
+                              f'confidential and the {SENTINEL} owners reviewed it again. ')*3
+        kept=[add(f'p{i}',plain_text(i)) for i in range(90)]
+        secret=[add(f'x{i}',secret_text(i),app='SecretApp') for i in range(40)]
+        later=[add(f'q{i}',plain_text(100+i)) for i in range(10)]
+        with tempfile.TemporaryDirectory() as tmp:
+            db=Path(tmp)/'m.db'
+            ask(db,*kept,*secret)
+            r=ask(db,{'op':'train_text_dictionary','samples':2000,'dictionary_bytes':8192},*later,{'op':'stats'})
+            self.assertTrue(r[0]['ok'],r[0]);self.assertEqual(r[-1]['text_dictionaries'],1);self.assertGreater(r[-1]['compressed_sources'],0)
+            copy=Path(tmp)/'dict-scan.db';copy.write_bytes(plaintext_copy(db,tmp))
+            c=sqlite3.connect(copy)
+            try:blobs=[row[0] for row in c.execute('SELECT data FROM text_dictionaries')]
+            finally:c.close()
+            copy.unlink()
+            self.assertTrue(any(SENTINEL.encode() in b.lower() for b in blobs))  # positive control: the dictionary holds it
+            r=ask(db,{'op':'delete_sources','consent':True,'scope':{'application':'SecretApp'}},{'op':'stats'},
+                  {'op':'export','consent':True,'path':str(Path(tmp)/'left.jsonl')})
+            self.assertEqual(r[0]['deleted'],40);self.assertEqual(r[1]['source_count'],100);self.assertEqual(r[1]['text_dictionaries'],0)
+            rows=[json.loads(l) for l in (Path(tmp)/'left.jsonl').read_text(encoding='utf-8').splitlines()[1:]]
+            self.assertEqual({x['id']:x['text'] for x in rows},{a['id']:a['text'] for a in kept+later})  # lossless
+            self.assertNotIn(SENTINEL.encode(),plaintext_copy(db,tmp).lower())
+            for name,data in raw_files(db).items():self.assertNotIn(SENTINEL.encode(),data.lower(),name)
+            ask(db,add('fresh',plain_text(500)))
+            r=ask(db,{'op':'find_source','id':'fresh'},{'op':'find_source','id':'p3'})  # a new process decodes both
+            src=lambda x:x.get('source') or x.get('sources',[None])[0]
+            self.assertEqual(src(r[0])['text'],plain_text(500));self.assertEqual(src(r[1])['text'],plain_text(3))
 
     def test_delete_all_by_time_range_and_ids(self):
         with tempfile.TemporaryDirectory() as tmp:

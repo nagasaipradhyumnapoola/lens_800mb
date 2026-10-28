@@ -16,16 +16,18 @@ void create_lifecycle_schema(sqlite3* db);  // v9: pins, recall_feedback, user_f
 // Source ids matching a deletion/export scope: {"all":true} | any of source_ids, application, kind, start, end,
 // import (the export SHA-256 of a history import). Unknown or empty scopes are rejected.
 std::vector<std::string> select_sources(sqlite3* db,const nlohmann::json& scope);
+class TextCodec;
 // Deletes the sources and everything derived from them (vectors, FTS terms, mentions, facts, projects, episodes,
-// pins, feedback), refreshes derived names, and merges the FTS index so no deleted term survives. Inside a transaction.
-long long purge_sources(sqlite3* db,const std::vector<std::string>& ids);
+// pins, feedback, trained compression dictionaries), refreshes derived names, and merges the FTS index so no deleted
+// term survives. Inside a transaction.
+long long purge_sources(sqlite3* db,const std::vector<std::string>& ids,TextCodec& codec);
 void checkpoint(sqlite3* db,bool vacuum);  // outside any transaction: WAL truncate (+ VACUUM)
 nlohmann::json list_imports(sqlite3* db,const nlohmann::json& request);  // op "imports": history imports by export SHA-256
 nlohmann::json export_sources(sqlite3* db,const nlohmann::json& request);
 nlohmann::json backup_database(sqlite3* db,const nlohmann::json& request);
 nlohmann::json restore_database(sqlite3* db,const nlohmann::json& request);
 nlohmann::json retention_op(sqlite3* db,const std::string& op,const nlohmann::json& request);  // retention_set/list/remove
-nlohmann::json apply_retention(sqlite3* db);  // consolidate; pinned sources are never expired
+nlohmann::json apply_retention(sqlite3* db,TextCodec& codec);  // consolidate; pinned sources are never expired
 // File helpers for key rotation (engine/store.cpp).
 bool database_opens_with(const std::filesystem::path& path,const std::array<std::uint8_t,32>& key);
 void replace_file(const std::filesystem::path& from,const std::filesystem::path& to);  // atomic, write-through

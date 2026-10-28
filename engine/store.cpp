@@ -289,7 +289,7 @@ json Store::dispatch(const json& j) {
     }
     if(op=="consolidate"){  // L3 episodes, then L4/L5 incrementally (projects group episodes, so episodes come first)
         json retention;
-        {Transaction tx(db_);retention=apply_retention(db_);tx.commit();}  // expired sources go before anything is derived from them
+        {Transaction tx(db_);retention=apply_retention(db_,*codec_);tx.commit();}  // expired sources go before anything is derived from them
         if(retention.at("deleted").get<long long>())after_purge();
         Transaction tx(db_);auto result=consolidate_episodes(db_,j);result["memory"]=consolidate_memory_layers(db_,j);tx.commit();
         result["retention"]=retention;return result;
@@ -367,7 +367,7 @@ json Store::dispatch(const json& j) {
     if(op=="delete") {
         if(!j.value("consent",false))throw Error("consent_required");
         const auto id=required(j,"id");long long deleted=0;
-        {Transaction tx(db_);deleted=purge_sources(db_,{id});tx.commit();}  // everything derived from it goes too
+        {Transaction tx(db_);deleted=purge_sources(db_,{id},*codec_);tx.commit();}  // everything derived from it goes too
         if(deleted)after_purge();
         return {{"ok",true},{"deleted",deleted}};
     }
@@ -375,7 +375,7 @@ json Store::dispatch(const json& j) {
         if(!j.value("consent",false))throw Error("consent_required");
         if(!j.contains("scope"))throw Error("invalid_scope");
         long long deleted=0;const bool all=j["scope"].is_object()&&j["scope"].contains("all");
-        {Transaction tx(db_);deleted=purge_sources(db_,select_sources(db_,j["scope"]));tx.commit();}
+        {Transaction tx(db_);deleted=purge_sources(db_,select_sources(db_,j["scope"]),*codec_);tx.commit();}
         after_purge();
         const bool vacuum=j.contains("compact")?j.at("compact").get<bool>():all;
         if(vacuum)checkpoint(db_,true);

@@ -89,4 +89,33 @@ int TextCodec::train(sqlite3* db,int samples,int dictionary_bytes) {
     const int id=static_cast<int>(sqlite3_last_insert_rowid(db));
     load_dictionaries(db);return id;
 }
+
+long long TextCodec::retire_dictionaries(sqlite3* db) {
+    {sql::Statement any(db,"SELECT count(*) FROM text_dictionaries;");any.step();if(sqlite3_column_int64(any.p,0)==0)return 0;}
+    {std::lock_guard g(lock_);latest_=0;}
+    // Originals are immutable (trigger observations_immutable). This storage-only rewrite is the one exception: it runs
+    // inside the deleting transaction and writes a new encoding only after it decodes to exactly the stored text.
+    sql::exec(db,"DROP TRIGGER observations_immutable;");
+    long long moved=0;
+    sql::Statement up(db,"UPDATE observations SET text=?,text_codec=?,text_zstd=? WHERE rowid=?;");
+    for(;;) {  // bounded batches keep memory flat however many rows used a dictionary
+        std::vector<std::pair<long long,std::string>> batch;
+        {sql::Statement s(db,"SELECT rowid,lens_text(text,text_codec,text_zstd) FROM observations WHERE text_codec>0 LIMIT 256;");
+         while(s.step()==SQLITE_ROW){const auto* t=reinterpret_cast<const char*>(sqlite3_column_text(s.p,1));
+             batch.emplace_back(sqlite3_column_int64(s.p,0),std::string(t?t:"",static_cast<size_t>(sqlite3_column_bytes(s.p,1))));}}
+        if(batch.empty())break;
+        for(const auto& [rowid,text]:batch) {
+            sqlite3_reset(up.p);
+            if(const auto e=encode(text)) {
+                if(e->codec!=0||decode(0,e->blob.data(),e->blob.size())!=text)throw Error("text_reencode_failed");
+                up.text(1,std::string());sql::check(sqlite3_bind_int(up.p,2,0));
+                sql::check(sqlite3_bind_blob(up.p,3,e->blob.data(),static_cast<int>(e->blob.size()),SQLITE_TRANSIENT));
+            } else {up.text(1,text);sql::check(sqlite3_bind_null(up.p,2));sql::check(sqlite3_bind_null(up.p,3));}
+            sql::check(sqlite3_bind_int64(up.p,4,rowid));up.step();++moved;
+        }
+    }
+    sql::exec(db,"CREATE TRIGGER observations_immutable BEFORE UPDATE ON observations BEGIN SELECT RAISE(ABORT,'immutable'); END;"
+                 "DELETE FROM text_dictionaries;");
+    return moved;
+}
 }

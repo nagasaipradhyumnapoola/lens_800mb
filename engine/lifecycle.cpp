@@ -2,6 +2,7 @@
 #include "memory_layers.hpp"
 #include "sql.hpp"
 #include "temporal.hpp"
+#include "text_codec.hpp"
 #include "../adapters/windows/key_store.hpp"
 #include <windows.h>
 #include <openssl/crypto.h>
@@ -151,7 +152,7 @@ std::vector<std::string> select_sources(sqlite3* db,const json& scope) {
     return ids;
 }
 
-long long purge_sources(sqlite3* db,const std::vector<std::string>& ids) {
+long long purge_sources(sqlite3* db,const std::vector<std::string>& ids,TextCodec& codec) {
     if(ids.empty())return 0;
     exec(db,"CREATE TEMP TABLE IF NOT EXISTS purge_ids(id TEXT PRIMARY KEY); CREATE TEMP TABLE IF NOT EXISTS purge_episodes(id TEXT PRIMARY KEY);"
             "DELETE FROM temp.purge_ids; DELETE FROM temp.purge_episodes;");
@@ -176,11 +177,14 @@ UPDATE episodes SET
  WHERE id IN (SELECT id FROM temp.purge_episodes);
 DELETE FROM temp.purge_ids; DELETE FROM temp.purge_episodes;
 )sql");
-    // FTS5 keeps deleted terms in old segments until they are merged; merging rewrites them away (secure_delete zeroes
-    // the freed pages). With no sources left, user corrections and trained dictionaries (built from text) go too.
+    // Trained compression dictionaries are built from stored text and may hold fragments of what was just deleted, so
+    // any delete retires them (surviving rows are re-encoded without one). FTS5 keeps deleted terms in old segments
+    // until they are merged; merging rewrites them away (secure_delete zeroes the freed pages). With no sources left,
+    // user corrections go too.
+    if(deleted)codec.retire_dictionaries(db);
     exec(db,"INSERT INTO memory_fts(memory_fts) VALUES('optimize');");
     {Statement left(db,"SELECT count(*) FROM observations;");left.step();
-     if(!sqlite3_column_int64(left.p,0))exec(db,"DELETE FROM fact_status; DELETE FROM user_facts; DELETE FROM text_dictionaries; DELETE FROM episodes;");}
+     if(!sqlite3_column_int64(left.p,0))exec(db,"DELETE FROM fact_status; DELETE FROM user_facts; DELETE FROM episodes;");}
     return deleted;
 }
 
@@ -333,7 +337,7 @@ json retention_op(sqlite3* db,const std::string& op,const json& j) {
     return {{"ok",true},{"rules",rules}};
 }
 
-json apply_retention(sqlite3* db) {
+json apply_retention(sqlite3* db,TextCodec& codec) {
     const long long now=std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     struct Rule {long long id,days;json kind,app;};std::vector<Rule> rules;
     {Statement s(db,"SELECT id,max_age_days,kind,application FROM retention_rules ORDER BY id;");
@@ -346,7 +350,7 @@ json apply_retention(sqlite3* db) {
         Statement s(db,(sql+";").c_str());check(sqlite3_bind_int64(s.p,1,now-r.days*86400));int k=2;
         if(!r.kind.is_null())s.text(k++,r.kind.get<std::string>());if(!r.app.is_null())s.text(k++,r.app.get<std::string>());
         std::vector<std::string> ids;while(s.step()==SQLITE_ROW)ids.push_back(s.text(0));
-        const auto n=purge_sources(db,ids);total+=n;applied.push_back({{"rule",r.id},{"deleted",n}});
+        const auto n=purge_sources(db,ids,codec);total+=n;applied.push_back({{"rule",r.id},{"deleted",n}});
     }
     return {{"deleted",total},{"rules",applied}};
 }

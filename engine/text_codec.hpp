@@ -23,6 +23,12 @@ public:
     std::optional<Encoded> encode(const std::string& text) const;
     std::string decode(int codec,const void* data,size_t size) const;
     int train(sqlite3* db,int samples,int dictionary_bytes);  // returns the new dictionary id
+    // After a partial delete (docs/LENS_V1_SPEC.md §17): a trained dictionary is built from stored text and may hold
+    // fragments of the deleted sources. Re-encodes every dictionary-coded row as a plain zstd frame (or plain text when
+    // that no longer saves 15%), each checked to decode to the identical text, then deletes all dictionaries. Runs in
+    // the caller's transaction; new rows stop using dictionaries at once, and decoders stay loaded in case of rollback.
+    // Returns the number of rows re-encoded.
+    long long retire_dictionaries(sqlite3* db);
 private:
     mutable std::mutex lock_;
     std::map<int,ZSTD_CDict_s*> cdicts_;std::map<int,ZSTD_DDict_s*> ddicts_;int latest_=0;
