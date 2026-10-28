@@ -60,9 +60,18 @@ void recover_rotation(const std::filesystem::path& db) {
     replace_file(next_key,key_path);  // the database was swapped; finish by promoting its key
 }
 }
+// A restore moves the verified database into place, then its key; a crash between the two leaves the key staged.
+void recover_restore(const std::filesystem::path& db) {
+    const auto key_path=suffixed(db,L".key"),staged_key=suffixed(db,L".restoring.key");std::error_code ec;
+    if(std::filesystem::exists(key_path,ec)||!std::filesystem::exists(staged_key,ec)||!std::filesystem::exists(db,ec))return;
+    auto k=unwrap_key_file(staged_key);const bool ok=database_opens_with(db,k);OPENSSL_cleanse(k.data(),k.size());
+    if(!ok)throw Error("key_unavailable");
+    replace_file(staged_key,key_path);
+}
 void Store::open() {
     const auto& path=path_;
     recover_rotation(path);
+    recover_restore(path);
     const bool exists=std::filesystem::exists(path);
     auto key_path=path;key_path+=L".key";
     auto key=load_or_create_key(key_path,exists);

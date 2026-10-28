@@ -97,6 +97,26 @@ class BackupRestore(unittest.TestCase):
             r=ask(db,{'op':'restore','backup_path':str(backup),'target_path':str(t4),'passphrase':'correct horse battery staple'})[0]
             self.assertEqual(r['error'],'backup_integrity_failed');self.assertFalse(t4.exists());self.assertFalse(Path(str(t4)+'.key').exists())
 
+    def test_a_crash_during_restore_never_leaves_a_half_restored_database(self):
+        for point in ('restore_after_export','restore_after_db_swap'):
+            with self.subTest(point=point),tempfile.TemporaryDirectory() as tmp:
+                db,backup,target=Path(tmp)/'m.db',Path(tmp)/'b.lensbackup',Path(tmp)/'r.db'
+                ask(db,*CORPUS,{'op':'consolidate'},{'op':'backup','path':str(backup)})
+                out,code=run(db,[{'op':'restore','backup_path':str(backup),'target_path':str(target)}],
+                             env=dict(os.environ,LENS_FAULT_INJECTION=point),check=False)
+                self.assertEqual((code,out),(3,[]))  # the process died mid-restore
+                if point=='restore_after_export':
+                    self.assertFalse(target.exists())  # only the staged copy exists; the target name was never used
+                    r=ask(db,{'op':'restore','backup_path':str(backup),'target_path':str(target)})[0];self.assertTrue(r['ok'],r)
+                else:
+                    self.assertTrue(target.exists());self.assertFalse(Path(str(target)+'.key').exists())
+                # Either way the target opens complete and passes SQLCipher's HMAC and SQLite's integrity checks.
+                r=ask(target,{'op':'stats'},{'op':'search','query':'Orion'},{'op':'facts','entity':'Orion','type':'deadline'})
+                self.assertEqual(r[0]['source_count'],4);self.assertEqual(len(r[1]['sources']),3);self.assertTrue(r[2]['facts'])
+                self.assertEqual(sorted(p.name for p in Path(tmp).iterdir() if p.name.startswith('r.db')),['r.db','r.db.key'])
+                check=Path(tmp)/'check.lensbackup'  # a backup of the restored database re-runs the integrity checks
+                self.assertTrue(ask(target,{'op':'backup','path':str(check)})[0]['ok'])
+
 
 class ExportAndDeletion(unittest.TestCase):
     def test_export_round_trips_through_the_history_importer(self):

@@ -264,6 +264,7 @@ json backup_database(sqlite3* db,const json& j) {
 json restore_database(sqlite3* db,const json& j) {
     if(!sqlite3_get_autocommit(db))throw Error("transaction_open");
     const auto backup=existing_file(j,"backup_path");const auto target=new_file(j,"target_path");const auto target_key=with_suffix(target,L".key");
+    const auto staging=with_suffix(target,L".restoring"),staging_key=with_suffix(staging,L".key");
     std::error_code ec;if(std::filesystem::exists(target_key,ec))throw Error("invalid_path");
     json manifest;
     try{const auto bytes=read_file(with_suffix(backup,L".manifest.json"),65536);manifest=json::parse(std::string(bytes.begin(),bytes.end()));}
@@ -288,20 +289,27 @@ json restore_database(sqlite3* db,const json& j) {
         verify(db,"lens_restore_src","backup_integrity_failed");
         const auto expected=count_sources(db,"lens_restore_src");
         if(manifest.contains("source_count")&&manifest["source_count"]!=expected)throw Error("backup_integrity_failed");
-        auto new_key=create_key_file(target_key);
-        attach(db,target,"lens_restore_dst",new_key.data(),static_cast<int>(new_key.size()),false);OPENSSL_cleanse(new_key.data(),new_key.size());
+        // Crash safety: the copy is built and verified under <target>.restoring, then moved into place (database first,
+        // key second; a database whose key move was interrupted gets it on its next open, engine/store.cpp).
+        remove_database_files(staging);remove_quietly(staging_key);  // leftovers of an interrupted restore to this target
+        auto new_key=create_key_file(staging_key);
+        attach(db,staging,"lens_restore_dst",new_key.data(),static_cast<int>(new_key.size()),false);OPENSSL_cleanse(new_key.data(),new_key.size());
         try {
             Statement e(db,"SELECT sqlcipher_export('lens_restore_dst','lens_restore_src');");e.step();
             exec(db,("PRAGMA lens_restore_dst.user_version="+std::to_string(user_version(db,"lens_restore_src"))+";").c_str());
             verify(db,"lens_restore_dst","restore_verification_failed");
             if(count_sources(db,"lens_restore_dst")!=expected)throw Error("restore_verification_failed");
         } catch(...){detach(db,"lens_restore_dst");throw;}
-        detach(db,"lens_restore_dst");detach(db,"lens_restore_src");
+        detach(db,"lens_restore_dst");detach(db,"lens_restore_src");src_attached=false;
+        fault_point("restore_after_export");
+        replace_file(staging,target);
+        fault_point("restore_after_db_swap");
+        replace_file(staging_key,target_key);
         return {{"ok",true},{"restored_sources",expected},{"schema_version",manifest.value("schema_version",0)},{"verified",true}};
     } catch(...) {
         OPENSSL_cleanse(passphrase.data(),passphrase.size());OPENSSL_cleanse(key.data(),key.size());
         if(src_attached)detach(db,"lens_restore_src");
-        remove_database_files(target);remove_quietly(target_key);throw;
+        remove_database_files(staging);remove_quietly(staging_key);throw;
     }
 }
 

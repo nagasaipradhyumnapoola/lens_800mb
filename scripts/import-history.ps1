@@ -142,6 +142,10 @@ function CheckRecord($record) {
   foreach($field in @('provenance','source_locator')) { $null=RequiredString $record $field 8192 }
   if($record['metadata'] -isnot [Collections.IDictionary] -or $record['consent_context'] -isnot [Collections.IDictionary]) { FailImport 'invalid_record' }
   $null=RequiredString $record['consent_context'] 'mode' 128
+}
+# Records are serialized once; the metadata and consent size limits are checked exactly only when the whole record could exceed them.
+function CheckSizes($record,[int]$recordBytes) {
+  if($recordBytes -le 8192) { return }
   if($utf8.GetByteCount(($record['metadata'] | ConvertTo-Json -Depth 30 -Compress)) -gt 65536 -or
      $utf8.GetByteCount(($record['consent_context'] | ConvertTo-Json -Depth 30 -Compress)) -gt 8192) { FailImport 'invalid_record' }
 }
@@ -192,7 +196,7 @@ function ReportProgress {
 }
 function SendChunk($records) {
   CheckCancel
-  $wire=@{op='import_batch';consent=$true;records=$records} | ConvertTo-Json -Depth 30 -Compress
+  $wire='{"op":"import_batch","consent":true,"records":['+($records -join ',')+']}'  # records are already JSON
   if($utf8.GetByteCount($wire)+1 -gt 2*1024*1024) { FailImport 'native_request_size_limit' }
   if($null -eq $script:native) { StartNative }
   $result=Exchange $wire
@@ -219,14 +223,15 @@ function Emit($record) {
     if($Progress -and $script:previewCount % 1000 -eq 0) { ReportProgress; CheckCancel }
     return
   }
-  $single=@{op='import_batch';consent=$true;records=@($record)} | ConvertTo-Json -Depth 30 -Compress
-  $recordBytes=$utf8.GetByteCount($single)
-  if($recordBytes+1 -gt 2*1024*1024) { FailImport 'native_request_size_limit' }
-  if($script:batch.Count -eq 128 -or ($script:batch.Count -and $script:batchBytes+$recordBytes+1 -gt 2*1024*1024)) {
+  $json=$record | ConvertTo-Json -Depth 30 -Compress
+  $recordBytes=$utf8.GetByteCount($json)+1
+  CheckSizes $record $recordBytes
+  if($recordBytes+48 -gt 2*1024*1024) { FailImport 'native_request_size_limit' }
+  if($script:batch.Count -eq 128 -or ($script:batch.Count -and $script:batchBytes+$recordBytes+48 -gt 2*1024*1024)) {
     if($script:streaming) { SendChunk $script:batch.ToArray() } else { $script:chunks.Add($script:batch.ToArray()) }
     $script:batch=[Collections.Generic.List[object]]::new(); $script:batchBytes=0
   }
-  $script:batch.Add($record); $script:batchBytes+=$recordBytes
+  $script:batch.Add($json); $script:batchBytes+=$recordBytes
 }
 function Unique([string]$key) {
   if(!$script:seen.Add($key)) { $script:duplicates++; return $false }
@@ -234,123 +239,153 @@ function Unique([string]$key) {
 }
 
 # ---------------------------------------------------------------- e-mail (RFC 5322 / MIME)
-$mailFormats=[string[]]@('ddd, d MMM yyyy HH:mm:ss zzz','d MMM yyyy HH:mm:ss zzz','ddd, d MMM yyyy HH:mm zzz','d MMM yyyy HH:mm zzz',
-  'ddd, dd MMM yyyy HH:mm:ss zzz','dd MMM yyyy HH:mm:ss zzz')
-$namedZones=@{EST='-05:00';EDT='-04:00';CST='-06:00';CDT='-05:00';MST='-07:00';MDT='-06:00';PST='-08:00';PDT='-07:00';GMT='+00:00';UT='+00:00';UTC='+00:00';Z='+00:00';IST='+05:30'}
-function MailDate([string]$value) {
-  if(!$value) { return $null }
-  $v=[regex]::Replace($value,'\s*\([^)]*\)\s*$','').Trim()
-  $m=[regex]::Match($v,'\s([A-Z]{1,3})$')
-  if($m.Success -and $namedZones.ContainsKey($m.Groups[1].Value)) { $v=$v.Substring(0,$m.Index)+' '+$namedZones[$m.Groups[1].Value] }
-  $v=[regex]::Replace($v,'([+-])(\d{2})(\d{2})$','$1$2:$3')
-  $parsed=[DateTimeOffset]::MinValue
-  if([DateTimeOffset]::TryParseExact($v,$mailFormats,[Globalization.CultureInfo]::InvariantCulture,[Globalization.DateTimeStyles]::AllowWhiteSpaces,[ref]$parsed)) { return $parsed }
-  return $null
-}
-function EightBit([string]$value) {  # raw header bytes may be UTF-8
-  if($value -notmatch '[\u0080-\u00ff]') { return $value }
-  try { return $utf8.GetString($latin1.GetBytes($value)) } catch { return $value }
-}
-function CharsetText([byte[]]$bytes,[string]$charset) {
-  $name=if($charset){$charset.Trim('"',' ').ToLowerInvariant()}else{'utf-8'}
-  if($name -in @('utf-8','utf8','us-ascii','ascii','')) { return $lenient.GetString($bytes) }
-  try { return [Text.Encoding]::GetEncoding($name).GetString($bytes) } catch { return $lenient.GetString($bytes) }
-}
-function QpBytes([string]$value) {
-  $v=[regex]::Replace($value,'=\r?\n','')
-  $v=[regex]::Replace($v,'=([0-9A-Fa-f]{2})',{ param($m) [string][char][Convert]::ToInt32($m.Groups[1].Value,16) })
-  return $latin1.GetBytes($v)
-}
-function DecodeWords([string]$value) {
-  if(!$value) { return '' }
-  $v=EightBit $value
-  $v=[regex]::Replace($v,'(\?=)\s+(=\?)','$1$2')
-  return [regex]::Replace($v,'=\?([^?\s]+)\?([BbQq])\?([^?\s]*)\?=',{
-    param($m)
-    try {
-      $bytes=if($m.Groups[2].Value -in 'B','b'){[Convert]::FromBase64String($m.Groups[3].Value)}else{QpBytes ($m.Groups[3].Value.Replace('_',' '))}
-      return CharsetText $bytes $m.Groups[1].Value
-    } catch { return $m.Value }
-  })
-}
-function HeaderParam([string]$header,[string]$name) {
-  $m=[regex]::Match($header,"(?i);\s*$name\s*=\s*(?:""([^""]*)""|([^;\s]+))")
-  if(!$m.Success) { return '' }
-  if($m.Groups[1].Success) { return $m.Groups[1].Value }; return $m.Groups[2].Value
-}
-function SplitMessage([string]$message) {
-  $m=[regex]::Match($message,'\r?\n\r?\n')
-  $head=if($m.Success){$message.Substring(0,$m.Index)}else{$message}
-  $body=if($m.Success){$message.Substring($m.Index+$m.Length)}else{''}
-  $headers=@{}
-  foreach($line in [regex]::Split([regex]::Replace($head,'\r?\n[ \t]+',' '),'\r?\n')) {
-    $h=[regex]::Match($line,'^([!-9;-~]+):[ \t]*(.*)$')
-    if($h.Success) { $name=$h.Groups[1].Value.ToLowerInvariant(); if(!$headers.ContainsKey($name)) { $headers[$name]=$h.Groups[2].Value } }
-  }
-  return @{headers=$headers;body=$body}
-}
-function HtmlText([string]$html) {
-  $t=[regex]::Replace($html,'(?is)<(script|style)[^>]*>.*?</\1>','')
-  $t=[regex]::Replace($t,'(?i)<br\s*/?>|</(p|div|li|tr|h\d)>',"`n")
-  $t=[regex]::Replace($t,'<[^>]+>','')
-  $t=[Net.WebUtility]::HtmlDecode($t)
-  return [regex]::Replace($t,'\n{3,}',"`n`n").Trim()
-}
-function MimeText($part,[int]$depth,$state) {
-  $type=if($part.headers.ContainsKey('content-type')){$part.headers['content-type']}else{'text/plain'}
-  $mime=$type.Split(';')[0].Trim().ToLowerInvariant()
-  $disposition=if($part.headers.ContainsKey('content-disposition')){$part.headers['content-disposition'].ToLowerInvariant()}else{''}
-  if($mime.StartsWith('multipart/') -and $depth -lt 6) {
-    $boundary=HeaderParam $type 'boundary'
-    if(!$boundary) { return }
-    $pieces=[regex]::Split($part.body,'(?m)^--'+[regex]::Escape($boundary)+'(?:--)?[ \t]*\r?$')
-    for($i=1;$i -lt $pieces.Length;$i++) {
-      $piece=$pieces[$i] -replace '^\r?\n',''
-      if(!$piece.Trim()) { continue }
-      MimeText (SplitMessage $piece) ($depth+1) $state
+# Parsing runs once per message and per byte; PowerShell function calls and regex callbacks cost tens of milliseconds per
+# message, so the MIME and mbox parser is compiled in memory (no file is written) the first time an e-mail format needs it.
+function LoadMailParser {
+  if('LensMail' -as [type]) { return }
+  Add-Type -TypeDefinition @'
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+public sealed class LensMboxState { public bool Started; public bool Invalid; public long CharsRead; }
+public sealed class LensMail {
+  public string Subject="",From="",To="",Cc="",MessageId="",Body="",Sender="";
+  public DateTimeOffset? Date; public int Attachments; public bool Truncated;
+  static readonly Encoding Latin1=Encoding.Latin1, Utf8Lenient=new UTF8Encoding(false,false), Utf8Strict=new UTF8Encoding(false,true);
+  static readonly string[] Formats={"ddd, d MMM yyyy HH:mm:ss zzz","d MMM yyyy HH:mm:ss zzz","ddd, d MMM yyyy HH:mm zzz","d MMM yyyy HH:mm zzz",
+    "ddd, dd MMM yyyy HH:mm:ss zzz","dd MMM yyyy HH:mm:ss zzz"};
+  static readonly Dictionary<string,string> Zones=new Dictionary<string,string>{{"EST","-05:00"},{"EDT","-04:00"},{"CST","-06:00"},{"CDT","-05:00"},
+    {"MST","-07:00"},{"MDT","-06:00"},{"PST","-08:00"},{"PDT","-07:00"},{"GMT","+00:00"},{"UT","+00:00"},{"UTC","+00:00"},{"Z","+00:00"},{"IST","+05:30"}};
+  static readonly Regex Blank=new Regex(@"\r?\n\r?\n"), Fold=new Regex(@"\r?\n[ \t]+"), Line=new Regex(@"\r?\n"),
+    Header=new Regex(@"^([!-9;-~]+):[ \t]*(.*)$"), Comment=new Regex(@"\s*\([^)]*\)\s*$"), Zone=new Regex(@"\s([A-Z]{1,3})$"),
+    Offset=new Regex(@"([+-])(\d{2})(\d{2})$"), Words=new Regex(@"=\?([^?\s]+)\?([BbQq])\?([^?\s]*)\?="), Adjacent=new Regex(@"(\?=)\s+(=\?)"),
+    Script=new Regex(@"(?is)<(script|style)[^>]*>.*?</\1>"), Breaks=new Regex(@"(?i)<br\s*/?>|</(p|div|li|tr|h\d)>"), Tags=new Regex(@"<[^>]+>"),
+    Gaps=new Regex(@"\n{3,}"), Display=new Regex("^\\s*\"?([^\"<]+?)\"?\\s*<[^>]*>\\s*$");
+  static LensMail(){ try{ Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); }catch{} }
+  public static IEnumerable<string> Mbox(TextReader reader, LensMboxState state) {
+    var message=new StringBuilder(); bool previousBlank=true; string line;
+    while((line=reader.ReadLine())!=null) {
+      state.CharsRead+=line.Length+1;
+      if(line.StartsWith("From ",StringComparison.Ordinal)&&previousBlank) {
+        if(state.Started) yield return message.ToString();
+        message.Clear(); state.Started=true; previousBlank=false; continue;
+      }
+      if(!state.Started) { if(line.Trim().Length>0) { state.Invalid=true; yield break; } continue; }
+      if(line.StartsWith(">",StringComparison.Ordinal)) { int i=0; while(i<line.Length&&line[i]=='>') i++; if(string.CompareOrdinal(line,i,"From ",0,5)==0) line=line.Substring(1); }
+      message.Append(line).Append('\n'); previousBlank=line.Length==0;
     }
-    return
+    if(state.Started) yield return message.ToString();
   }
-  if($disposition.StartsWith('attachment') -or !($mime -in @('text/plain','text/html'))) { $state.attachments++; return }
-  $encoding=if($part.headers.ContainsKey('content-transfer-encoding')){$part.headers['content-transfer-encoding'].Trim().ToLowerInvariant()}else{''}
-  $bytes=$null
-  if($encoding -eq 'base64') { try { $bytes=[Convert]::FromBase64String(($part.body -replace '\s','')) } catch { $state.attachments++; return } }
-  elseif($encoding -eq 'quoted-printable') { $bytes=QpBytes $part.body }
-  else { $bytes=$latin1.GetBytes($part.body) }
-  $text=CharsetText $bytes (HeaderParam $type 'charset')
-  if($mime -eq 'text/plain' -and $null -eq $state.plain) { $state.plain=$text }
-  elseif($mime -eq 'text/html' -and $null -eq $state.html) { $state.html=$text }
+  public static byte[] QuotedPrintable(string s) {
+    var o=new MemoryStream(s.Length);
+    for(int i=0;i<s.Length;i++) {
+      char c=s[i];
+      if(c=='=') {
+        if(i+1<s.Length&&s[i+1]=='\n'){i+=1;continue;}
+        if(i+2<s.Length&&s[i+1]=='\r'&&s[i+2]=='\n'){i+=2;continue;}
+        if(i+2<s.Length){int h=Hex(s[i+1]),l=Hex(s[i+2]);if(h>=0&&l>=0){o.WriteByte((byte)(h*16+l));i+=2;continue;}}
+      }
+      o.WriteByte(c<256?(byte)c:(byte)'?');
+    }
+    return o.ToArray();
+  }
+  static int Hex(char c){ if(c>='0'&&c<='9')return c-'0'; if(c>='A'&&c<='F')return c-'A'+10; if(c>='a'&&c<='f')return c-'a'+10; return -1; }
+  public static string CharsetText(byte[] bytes,string charset) {
+    var name=(charset??"").Trim('"',' ').ToLowerInvariant();
+    if(name.Length==0||name=="utf-8"||name=="utf8"||name=="us-ascii"||name=="ascii") return Utf8Lenient.GetString(bytes);
+    try { return Encoding.GetEncoding(name).GetString(bytes); } catch { return Utf8Lenient.GetString(bytes); }
+  }
+  static string EightBit(string v) {  // raw header bytes may be UTF-8
+    foreach(var ch in v) if(ch>=0x80) { try { return Utf8Strict.GetString(Latin1.GetBytes(v)); } catch { return v; } }
+    return v;
+  }
+  public static string DecodeWords(string value) {
+    if(string.IsNullOrEmpty(value)) return "";
+    var v=Adjacent.Replace(EightBit(value),"$1$2");
+    return Words.Replace(v,m=>{ try {
+      var data=m.Groups[2].Value=="B"||m.Groups[2].Value=="b"?Convert.FromBase64String(m.Groups[3].Value):QuotedPrintable(m.Groups[3].Value.Replace('_',' '));
+      return CharsetText(data,m.Groups[1].Value); } catch { return m.Value; } });
+  }
+  public static DateTimeOffset? MailDate(string value) {
+    if(string.IsNullOrWhiteSpace(value)) return null;
+    var v=Comment.Replace(value,"").Trim();
+    var z=Zone.Match(v); if(z.Success&&Zones.TryGetValue(z.Groups[1].Value,out var off)) v=v.Substring(0,z.Index)+" "+off;
+    v=Offset.Replace(v,"$1$2:$3");
+    return DateTimeOffset.TryParseExact(v,Formats,CultureInfo.InvariantCulture,DateTimeStyles.AllowWhiteSpaces,out var d)?d:(DateTimeOffset?)null;
+  }
+  static string Param(string header,string name) {
+    var m=Regex.Match(header,@"(?i);\s*"+name+@"\s*=\s*(?:""([^""]*)""|([^;\s]+))");
+    return !m.Success?"":m.Groups[1].Success?m.Groups[1].Value:m.Groups[2].Value;
+  }
+  static Dictionary<string,string> Headers(string message,out string body) {
+    var m=Blank.Match(message);
+    var head=m.Success?message.Substring(0,m.Index):message; body=m.Success?message.Substring(m.Index+m.Length):"";
+    var h=new Dictionary<string,string>();
+    foreach(var line in Line.Split(Fold.Replace(head," "))) { var x=Header.Match(line); if(x.Success) { var n=x.Groups[1].Value.ToLowerInvariant(); if(!h.ContainsKey(n)) h[n]=x.Groups[2].Value; } }
+    return h;
+  }
+  string plain, html;
+  void Part(Dictionary<string,string> h,string body,int depth) {
+    var type=h.TryGetValue("content-type",out var t)?t:"text/plain";
+    var mime=type.Split(';')[0].Trim().ToLowerInvariant();
+    var disposition=h.TryGetValue("content-disposition",out var d)?d.ToLowerInvariant():"";
+    if(mime.StartsWith("multipart/")&&depth<6) {
+      var boundary=Param(type,"boundary"); if(boundary.Length==0) return;
+      var pieces=Regex.Split(body,"(?m)^--"+Regex.Escape(boundary)+@"(?:--)?[ \t]*\r?$");
+      for(int i=1;i<pieces.Length;i++) {
+        var piece=Regex.Replace(pieces[i],@"^\r?\n","");
+        if(piece.Trim().Length==0) continue;
+        var ph=Headers(piece,out var pb); Part(ph,pb,depth+1);
+      }
+      return;
+    }
+    if(disposition.StartsWith("attachment")||(mime!="text/plain"&&mime!="text/html")) { Attachments++; return; }
+    var encoding=h.TryGetValue("content-transfer-encoding",out var e)?e.Trim().ToLowerInvariant():"";
+    byte[] bytes;
+    if(encoding=="base64") { try { bytes=Convert.FromBase64String(Regex.Replace(body,@"\s","")); } catch { Attachments++; return; } }
+    else if(encoding=="quoted-printable") bytes=QuotedPrintable(body);
+    else bytes=Latin1.GetBytes(body);
+    var text=CharsetText(bytes,Param(type,"charset"));
+    if(mime=="text/plain"&&plain==null) plain=text; else if(mime=="text/html"&&html==null) html=text;
+  }
+  static string HtmlText(string html) {
+    var t=Script.Replace(html,""); t=Breaks.Replace(t,"\n"); t=Tags.Replace(t,""); t=System.Net.WebUtility.HtmlDecode(t);
+    return Gaps.Replace(t,"\n\n").Trim();
+  }
+  public static LensMail Parse(string latin1) {
+    var m=new LensMail();
+    var h=Headers(latin1,out var body);
+    m.Date=h.TryGetValue("date",out var date)?MailDate(date):null;
+    m.MessageId=h.TryGetValue("message-id",out var id)?id.Trim().ToLowerInvariant():"";
+    m.Part(h,body,0);
+    var text=m.plain??(m.html!=null?HtmlText(m.html):"");
+    text=text.Replace("\r\n","\n");
+    if(text.Length>900000) { text=text.Substring(0,900000); m.Truncated=true; }
+    m.Body=text;
+    m.Subject=DecodeWords(h.TryGetValue("subject",out var s)?s:""); m.From=DecodeWords(h.TryGetValue("from",out var f)?f:"");
+    m.To=DecodeWords(h.TryGetValue("to",out var to)?to:""); m.Cc=DecodeWords(h.TryGetValue("cc",out var cc)?cc:"");
+    var dm=Display.Match(m.From);
+    m.Sender=dm.Success?dm.Groups[1].Value.Trim():(m.From.Contains("@")?"":m.From.Trim());
+    return m;
+  }
 }
-function DisplayName([string]$from) {
-  $m=[regex]::Match($from,'^\s*"?([^"<]+?)"?\s*<[^>]*>\s*$')
-  if($m.Success) { return $m.Groups[1].Value.Trim() }
-  if($from -notmatch '@') { return $from.Trim() }
-  return ''
+'@
 }
+function QpBytes([string]$value) { LoadMailParser; return [LensMail]::QuotedPrintable($value) }
 $script:ordinal=0
 function HandleMessage([string]$message) {
-  $parsed=SplitMessage $message
-  $h=$parsed.headers
-  $date=if($h.ContainsKey('date')){MailDate $h['date']}else{$null}
-  if($null -eq $date) { Skip 'missing_or_invalid_date'; return }
-  $messageId=if($h.ContainsKey('message-id')){$h['message-id'].Trim().ToLowerInvariant()}else{''}
-  $state=@{plain=$null;html=$null;attachments=0}
-  MimeText $parsed 0 $state
-  $body=if($null -ne $state.plain){$state.plain}elseif($null -ne $state.html){HtmlText $state.html}else{''}
-  $body=$body -replace "`r`n","`n"
-  $truncated=$false; if($body.Length -gt 900000) { $body=$body.Substring(0,900000); $truncated=$true }
-  $subject=DecodeWords $(if($h.ContainsKey('subject')){$h['subject']}else{''})
-  $from=DecodeWords $(if($h.ContainsKey('from')){$h['from']}else{''})
-  $to=DecodeWords $(if($h.ContainsKey('to')){$h['to']}else{''})
-  $cc=DecodeWords $(if($h.ContainsKey('cc')){$h['cc']}else{''})
-  $key=if($messageId){"id:$messageId"}else{'hash:'+[Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($utf8.GetBytes("$($date.UtcTicks)|$from|$subject|$body")))}
+  $m=[LensMail]::Parse($message)
+  if($null -eq $m.Date) { Skip 'missing_or_invalid_date'; return }
+  $date=[DateTimeOffset]$m.Date  # PowerShell already unwraps the Nullable
+  $key=if($m.MessageId){"id:$($m.MessageId)"}else{'hash:'+[Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($utf8.GetBytes("$($date.UtcTicks)|$($m.From)|$($m.Subject)|$($m.Body)")))}
   $script:ordinal++
   if(!(Unique $key)) { return }
-  $text="Subject: $subject`nFrom: $from`nTo: $to`n`n$body"
-  if(!$text.Trim()) { Skip 'empty_message'; return }
-  $metadata=[ordered]@{title=(Clip $subject 1000);sender=(Clip (DisplayName $from) 200);from=(Clip $from 2000);to=(Clip $to 2000);cc=(Clip $cc 2000);
-    message_id=(Clip $messageId 512);attachments=$state.attachments;body_truncated=$truncated;timestamp_basis='email_date_header';record_number=$script:ordinal}
-  $md=@{}; foreach($k in $metadata.Keys) { $md[$k]=$metadata[$k] }
+  $text="Subject: $($m.Subject)`nFrom: $($m.From)`nTo: $($m.To)`n`n$($m.Body)"
+  $md=@{title=(Clip $m.Subject 1000);sender=(Clip $m.Sender 200);from=(Clip $m.From 2000);to=(Clip $m.To 2000);cc=(Clip $m.Cc 2000);
+    message_id=(Clip $m.MessageId 512);attachments=$m.Attachments;body_truncated=$m.Truncated;timestamp_basis='email_date_header';record_number=$script:ordinal}
   Emit (MakeRecord $script:ordinal $text (Stamp $date) (ZoneName $date.Offset) 'Email' 'imported_email' $md)
 }
 
@@ -582,21 +617,12 @@ try {
     $null=$stream.Seek(0,[IO.SeekOrigin]::Begin)
     if($Format -ceq 'Mbox') {
       # Streamed: one message in memory at a time, chunks sent as they fill, all inside one engine transaction.
+      LoadMailParser
       $script:streaming=-not $Preview
       $reader=[IO.StreamReader]::new($stream,$latin1,$false,1MB)
-      $message=[Text.StringBuilder]::new(); $started=$false; $previousBlank=$true
-      while($null -ne ($line=$reader.ReadLine())) {
-        $script:bytesRead+=$line.Length+1
-        if($line.StartsWith('From ') -and $previousBlank) {
-          if($started) { HandleMessage $message.ToString() }
-          [void]$message.Clear(); $started=$true; $previousBlank=$false; continue
-        }
-        if(!$started) { if($line.Trim()) { FailImport 'unsupported_mbox_layout' }; continue }
-        if($line.StartsWith('>') -and $line -match '^>+From ') { $line=$line.Substring(1) }  # mboxrd unescaping
-        [void]$message.Append($line).Append("`n"); $previousBlank=$line.Length -eq 0
-      }
-      if(!$started) { FailImport 'unsupported_mbox_layout' }
-      HandleMessage $message.ToString()
+      $mbox=[LensMboxState]::new()  # mboxo/mboxrd: "From " after a blank line starts a message; ">From " is unescaped
+      foreach($message in [LensMail]::Mbox($reader,$mbox)) { $script:bytesRead=$mbox.CharsRead; HandleMessage $message }
+      if($mbox.Invalid -or !$mbox.Started) { FailImport 'unsupported_mbox_layout' }
     } else {
       $bytes=[byte[]]::new([int]$stream.Length); $offset=0
       while($offset -lt $bytes.Length) {
@@ -646,7 +672,7 @@ try {
     CheckZone $parsed $SourceTimeZone
     Emit (MakeRecord 1 $raw $OriginalTimestamp $SourceTimeZone $SourceApplication 'imported_note' @{timestamp_basis='user_supplied_original_time'})
   } elseif($Format -ceq 'Eml') {
-    HandleMessage $latin1.GetString($bytes)
+    LoadMailParser; HandleMessage $latin1.GetString($bytes)
     if(!$script:ordinal) { FailImport 'invalid_message' }
   } elseif($Format -ceq 'Ics') { ImportCalendar $raw
   } elseif($Format -ceq 'Vcf') { ImportContacts $raw
