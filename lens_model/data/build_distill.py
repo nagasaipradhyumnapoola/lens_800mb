@@ -5,7 +5,7 @@ scores public training pairs; its scores are Platt-calibrated against the gold l
 into soft targets: y_soft = alpha * y_gold + (1 - alpha) * p_teacher. The student (Lens answerability head) trains
 on y_soft with BCE, keeping its 118M-parameter / ~124 MB INT8 size inside the 800 MB system ceiling.
 Pool (never a benchmark test split, never Lens fixtures, never personal data), language-balanced per spec §1a
-(temperature sampling, no language above 20%, Indian group at most 40%):
+(temperature sampling, English ~30% as the primary language, no other language above 12%, Indian group at most 30%):
 - v0 training pairs (SQuAD 2.0 train, TyDi train in 11 languages, IndicQA/XQuAD training splits) and v1's hard kinds
   (substitution near-misses, keyword lookups, cross-lingual XQuAD);
 - MLQA validation (13 configs incl. de/ar/vi and cross-lingual; 0 paragraphs shared with MLQA test — checked);
@@ -141,13 +141,13 @@ def long_evidence(rng,per_source=4000,max_chars=1200):
     return out
 
 
-def balance(rows,total,rng,alpha=0.5,cap=0.20,indic_cap=0.40):
+def balance(rows,total,rng,alpha=0.5,cap=0.12,indic_cap=0.30,english=0.30):
     """Temperature-sampled per-language quotas (n^alpha), no language above `cap`, Indian group at most `indic_cap`
     of the mix (spec §1a). Cross-lingual pairs ('xx>yy') form their own bucket; questions keep their pairs together."""
     by=collections.defaultdict(lambda:collections.defaultdict(list))
     for r in rows:by[r['lang'] if '>' not in r['lang'] else 'cross'][r['group']+'|'+r['q']].append(r)
     size={l:sum(len(v) for v in g.values()) for l,g in by.items()};w={l:n**alpha*(1 if l in TARGET or l=='cross' else 0.5) for l,n in size.items()};z=sum(w.values())
-    quota={l:min(size[l],cap*total,total*w[l]/z) for l in by}
+    quota={l:min(size[l],english*total if l=='en' else min(cap*total,total*w[l]/z)) for l in by}  # English primary (spec §1a)
     ind=sum(q for l,q in quota.items() if l in INDIC)
     if ind>indic_cap*total:
         for l in quota:

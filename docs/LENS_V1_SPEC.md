@@ -16,14 +16,17 @@ There is one product, Lens V1 (no parallel "v2/v3" products).
 
 ### 1a. Languages (founder directive, 2026-10-27): a global product
 
-Lens is built for the world, not one region. Quality-critical languages (every benchmark reports each one):
+Lens is built for the world, not one region. English is the PRIMARY language (founder, 2026-10-28): it carries
+the strictest quality gates, is the headline of every benchmark, and gets the largest share of training data.
+Other quality-critical languages (every benchmark also reports each one):
 - Top world languages: English (en), Mandarin Chinese (zh), Spanish (es), Arabic (ar), French (fr),
   Portuguese (pt), Russian (ru), Indonesian (id), German (de), Japanese (ja).
 - Top Indian languages: Hindi (hi), Bengali (bn), Telugu (te), Marathi (mr), Tamil (ta), Urdu (ur), Gujarati (gu).
 - Real usage: code-switching (e.g. Hinglish, Spanglish, Chinese–English), romanized writing (romanized Indic,
   Arabizi), colloquial and spoken registers, slang, and expressive/emotional speech.
-Training data must be balanced: per-language temperature sampling, the Indian group capped at about 40% and no
-single language above about 20% of any training mix, so no region is over-trained. Data is licensed public,
+Training data must be balanced: per-language temperature sampling with English at about 30% of any training
+mix, no other single language above about 12%, and the Indian group at most about 30%, so no region is
+over-trained; the founder's own languages get no special weight. Data is licensed public,
 synthetic or permitted teacher output only; never the user's own voice, screen or memories. Non-commercial
 datasets may be used for evaluation only, never in shipped weights. Other languages degrade gracefully
 (stored and keyword-searchable) and are reported as unsupported for quality claims.
