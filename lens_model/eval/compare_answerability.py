@@ -7,7 +7,8 @@ Judges (CPU only, the Lens deployment target):
   bge-reranker-v2-m3                                         — cross-encoder logit
   qwen2.5-1.5b-instruct, qwen3-1.7b, qwen3-4b                — zero-shot instruct judges (thinking off; 4B models in bf16):
                                                                score = log P(yes|Yes) - log P(no|No) for the next token
-Same pairs, same text, no per-judge tuning beyond the documented prompt. Metrics per set and language: ROC AUC,
+Same pairs, same text, no per-judge tuning beyond the documented prompt. Judges over 4 GB of weights (the 4B models)
+are scored on a fixed 300-pair sample per set (seed 20261028) plus the full Lens harness; their reports say so. Metrics per set and language: ROC AUC,
 average precision, and recall of supported pairs at 5% false support (TPR@5%FPR). Efficiency: weights on disk, RSS
 after load, peak working set, single-pair latency (64 fixed pairs, batch 1) with 8 threads.
 Writes artifacts/lens-model/bench/scores/<judge>.jsonl and reports/lens-model/benchmark/<judge>.json;
@@ -165,6 +166,13 @@ def run(name,limit):
     judge=make(name);load_s=time.perf_counter()-t0;load_rss=proc.memory_info().rss-before
     rows=[json.loads(l) for s in SETS for l in (BENCH/f'{s}.jsonl').open(encoding='utf-8')]
     if limit:rows=[r for s in SETS for r in [x for x in rows if x['set']==s][:limit]]
+    cap=None
+    if not limit and judge.weights_mb>4000:  # 4B judges on CPU: a fixed, documented per-set sample (full Lens harness kept)
+        cap=300;rng=np.random.default_rng(20261028);keep=[]
+        for s in SETS:
+            sr=[x for x in rows if x['set']==s]
+            keep+=sr if s=='lens_harness' or len(sr)<=cap else [sr[i] for i in sorted(rng.choice(len(sr),cap,replace=False))]
+        rows=keep
     probe=[rows[i] for i in np.random.default_rng(7).choice(len(rows),min(64,len(rows)),replace=False)];lat=[]
     for r in probe[:4]:judge.batch([r])  # warm-up
     for r in probe:
@@ -189,7 +197,7 @@ def run(name,limit):
         m=cl&np.array([r['lang']==l for r in rows])
         if m.any() and len(set(y[m]))==2:lang_m[l]=metrics(y[m],scores[m])
     res['by_language_clean']=lang_m
-    rep={'judge':name,'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'pairs':len(rows),'limit':limit,'threads':THREADS,
+    rep={'judge':name,'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'pairs':len(rows),'limit':limit,'per_set_sample':cap,'threads':THREADS,
          'weights_mb':judge.weights_mb,'dtype':getattr(judge,'dtype','float32' if not name.endswith('int8') else 'int8'),'load_seconds':load_s,'load_rss_mb':load_rss/2**20,'peak_working_set_mb':proc.memory_info().peak_wset/2**20,
          'latency_ms_batch1':{'p50':float(np.percentile(lat,50)),'p95':float(np.percentile(lat,95))},'throughput_pairs_per_s':len(rows)/total_s,'sets':res}
     if not limit:
