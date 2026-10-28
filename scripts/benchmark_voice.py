@@ -571,6 +571,61 @@ def confidence(files):
     write('confidence-dev.json',{'provenance':provenance(),'files':[str(f) for f in files],**out,'rows':segs});print(json.dumps(out,indent=1))
 
 
+def lid_probabilities(model,max_clips=40):
+    """Whisper language probabilities (all 99) per FLEURS clip of the 17 spec languages via lens-asr-probe --lid."""
+    MAX_CLIPS[0]=max_clips;items=[(code,c) for code in GLOBAL for c in clips(code)]
+    p=subprocess.run([str(REL/'lens-asr-probe.exe'),'--lid',str(model)],input=''.join(str(c['path'])+'\n' for _,c in items),
+                     capture_output=True,text=True,encoding='utf-8',timeout=7200)
+    rows=[json.loads(l) for l in p.stdout.splitlines() if l.startswith('{')]
+    by={str(Path(r['file'])):r for r in rows}
+    return [{'language':code,'clip':c['id'],'split':c['split'],'p':by[str(c['path'])]['p']} for code,c in items if 'p' in by.get(str(c['path']),{})]
+
+
+def lid_predict(row,allowed,offsets):
+    return max(allowed,key=lambda l:np.log(max(row['p'][l],1e-12))+offsets.get(l,0.0))
+
+
+def lid_scores(rows,allowed,offsets):
+    per={}
+    for l in allowed:
+        rs=[r for r in rows if r['language']==l]
+        if rs:per[l]=round(sum(lid_predict(r,allowed,offsets)==l for r in rs)/len(rs),4)
+    conf={}
+    for r in rows:
+        g=lid_predict(r,allowed,offsets)
+        if g!=r['language']:conf[f"{r['language']}->{g}"]=conf.get(f"{r['language']}->{g}",0)+1
+    return {'balanced_accuracy':round(float(np.mean(list(per.values()))),4),'per_language':per,'confusions':dict(sorted(conf.items(),key=lambda x:-x[1]))}
+
+
+def lid_tune(rows,allowed):
+    """Per-language log-prior offsets by coordinate ascent on dev balanced accuracy; ties keep the smaller |offset|."""
+    off={l:0.0 for l in allowed};grid=[x/4 for x in range(-12,13)]
+    best=lid_scores(rows,allowed,off)['balanced_accuracy']
+    for _ in range(3):
+        changed=False
+        for l in allowed:
+            for v in sorted(grid,key=abs):
+                trial={**off,l:v};a=lid_scores(rows,allowed,trial)['balanced_accuracy']
+                if a>best+1e-9:best,off,changed=a,trial,True
+        if not changed:break
+    return {l:v for l,v in off.items() if v},best
+
+
+def lid_command(max_clips):
+    allowed=list(GLOBAL);out={'provenance':provenance(),'allowed':allowed,'clips_per_language':max_clips,'models':{}}
+    for name in ['ggml-base-q5_1.bin','ggml-small-q5_1.bin']:
+        rows=lid_probabilities(WHISPER/name,max_clips);dev=[r for r in rows if r['split']=='dev'];held=[r for r in rows if r['split']=='heldout']
+        off,dev_acc=lid_tune(dev,allowed)
+        out['models'][name]={'dev_clips':len(dev),'heldout_clips':len(held),'offsets':off,
+            'dev_before':lid_scores(dev,allowed,{}),'dev_after':lid_scores(dev,allowed,off),
+            'heldout_before':lid_scores(held,allowed,{}),'heldout_after':lid_scores(held,allowed,off),'rows':rows}
+        m=out['models'][name];print(name,'dev',m['dev_before']['balanced_accuracy'],'->',m['dev_after']['balanced_accuracy'],
+              'heldout',m['heldout_before']['balanced_accuracy'],'->',m['heldout_after']['balanced_accuracy'],'offsets',off,flush=True)
+        print(' heldout per-language after',m['heldout_after']['per_language'],flush=True)
+        print(' heldout confusions after',list(m['heldout_after']['confusions'].items())[:8],flush=True)
+    write('lid-calibration.json',out)
+
+
 def fetch(per_language):
     """First `per_language` FLEURS test members per configured language via scripts/fetch_fleurs.py (pinned revision,
     per-file SHA-256; CC BY 4.0). Existing larger manifests are kept."""
@@ -582,7 +637,7 @@ def fetch(per_language):
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('command',choices=['vad','tune','asr','latency','soak','speaker','fetch','confidence'])
+    p=argparse.ArgumentParser();p.add_argument('command',choices=['vad','tune','asr','latency','soak','speaker','fetch','confidence','lid'])
     p.add_argument('--files',nargs='*',default=[])
     p.add_argument('--per-language',type=int,default=40);p.add_argument('--max-clips',type=int,default=None)
     p.add_argument('--speaker-threshold',type=float,default=-1.0)
@@ -596,6 +651,7 @@ def main():
     if a.command=='tune':return tune()
     if a.command=='fetch':return fetch(a.per_language)
     if a.command=='confidence':return confidence(a.files)
+    if a.command=='lid':return lid_command(a.max_clips or 40)
     if a.command=='soak':return soak(a.minutes,a.vad,params)
     if a.command=='speaker':return speaker_command(a.split,a.speaker_threshold,[c for c in a.conditions if c in ('clean','pink10','babble10','fan10')] or ['clean'])
     if a.split=='heldout' and a.command=='vad' and params:print('note: explicit parameters on held-out are reported, never tuned',flush=True)
