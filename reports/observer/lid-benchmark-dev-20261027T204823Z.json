@@ -1,0 +1,789 @@
+{
+ "created_utc": "20261027T204823Z",
+ "split": "dev",
+ "per_bucket": 150,
+ "strings": 7530,
+ "identifiers": {
+  "lens": {
+   "method": "lens-lid-rules-v1",
+   "binary_sha256": "e1bc6499e59a67c8ac238f75671ce878110708e12f81f67cf5020f8d4023f9ac",
+   "model_bytes": 0,
+   "ms_per_string": 0.0568,
+   "note": "includes process start and JSON I/O"
+  },
+  "fasttext": {
+   "model": "lid.176.ftz",
+   "model_bytes": 938013,
+   "ms_per_string": 0.1195,
+   "note": "Python binding, prediction loop only; no romanized or mixed labels exist in lid.176"
+  }
+ },
+ "metrics": {
+  "strict": "exact tag (hi-Latn must be hi-Latn; mixed must name both components)",
+  "lenient": "base language (hi-Latn counted correct as hi); for mixed, either component"
+ },
+ "summary": {
+  "native_17": {
+   "lens_strict": 0.9554,
+   "lens_lenient": 0.9554,
+   "ft_strict": 0.9816,
+   "ft_lenient": 0.9816,
+   "by_bucket_short": {
+    "lens_strict": 0.8875,
+    "ft_strict": 0.9525,
+    "ft_lenient": 0.9525
+   },
+   "by_bucket_sentence": {
+    "lens_strict": 0.9811,
+    "ft_strict": 0.9922,
+    "ft_lenient": 0.9922
+   },
+   "by_bucket_paragraph": {
+    "lens_strict": 0.9976,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0
+   }
+  },
+  "romanized_hi_ta_te": {
+   "lens_strict": 0.3378,
+   "lens_lenient": 0.3378,
+   "ft_strict": 0.0,
+   "ft_lenient": 0.0,
+   "by_bucket_short": {
+    "lens_strict": 0.2289,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0
+   },
+   "by_bucket_sentence": {
+    "lens_strict": 0.3111,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0
+   },
+   "by_bucket_paragraph": {
+    "lens_strict": 0.4733,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0
+   }
+  },
+  "code_switched": {
+   "lens_strict": 0.225,
+   "lens_lenient": 0.98,
+   "ft_strict": 0.0,
+   "ft_lenient": 0.9234,
+   "by_bucket_mixed": {
+    "lens_strict": 0.225,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.9234
+   }
+  }
+ },
+ "per_language": {
+  "ar": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 134
+   },
+   "short": {
+    "lens_strict": 0.9933,
+    "lens_lenient": 0.9933,
+    "ft_strict": 0.9867,
+    "ft_lenient": 0.9867,
+    "n": 150
+   }
+  },
+  "bn": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9933,
+    "lens_lenient": 0.9933,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.7667,
+    "lens_lenient": 0.7667,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   }
+  },
+  "de": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9667,
+    "lens_lenient": 0.9667,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.84,
+    "lens_lenient": 0.84,
+    "ft_strict": 0.9933,
+    "ft_lenient": 0.9933,
+    "n": 150
+   }
+  },
+  "en": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.9267,
+    "lens_lenient": 0.9267,
+    "ft_strict": 0.98,
+    "ft_lenient": 0.98,
+    "n": 150
+   }
+  },
+  "es": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9933,
+    "lens_lenient": 0.9933,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.92,
+    "lens_lenient": 0.92,
+    "ft_strict": 0.9667,
+    "ft_lenient": 0.9667,
+    "n": 150
+   }
+  },
+  "fr": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9667,
+    "lens_lenient": 0.9667,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.7867,
+    "lens_lenient": 0.7867,
+    "ft_strict": 0.9533,
+    "ft_lenient": 0.9533,
+    "n": 150
+   }
+  },
+  "gu": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   }
+  },
+  "hi": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9924,
+    "lens_lenient": 0.9924,
+    "ft_strict": 0.9924,
+    "ft_lenient": 0.9924,
+    "n": 131
+   },
+   "short": {
+    "lens_strict": 0.9867,
+    "lens_lenient": 0.9867,
+    "ft_strict": 0.9333,
+    "ft_lenient": 0.9333,
+    "n": 150
+   }
+  },
+  "hi-Latn": {
+   "paragraph": {
+    "lens_strict": 0.98,
+    "lens_lenient": 0.98,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.82,
+    "lens_lenient": 0.82,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.6467,
+    "lens_lenient": 0.6467,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 150
+   }
+  },
+  "id": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.96,
+    "lens_lenient": 0.96,
+    "ft_strict": 0.9333,
+    "ft_lenient": 0.9333,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.6933,
+    "lens_lenient": 0.6933,
+    "ft_strict": 0.7733,
+    "ft_lenient": 0.7733,
+    "n": 150
+   }
+  },
+  "ja": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 143
+   },
+   "short": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 0.98,
+    "ft_lenient": 0.98,
+    "n": 150
+   }
+  },
+  "mixed:en+hi": {
+   "mixed": {
+    "lens_strict": 0.88,
+    "lens_lenient": 1.0,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.9467,
+    "n": 150
+   }
+  },
+  "mixed:en+hi-Latn": {
+   "mixed": {
+    "lens_strict": 0.02,
+    "lens_lenient": 0.98,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.9,
+    "n": 150
+   }
+  },
+  "mixed:en+ta-Latn": {
+   "mixed": {
+    "lens_strict": 0.0,
+    "lens_lenient": 0.9933,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.9267,
+    "n": 150
+   }
+  },
+  "mixed:en+te-Latn": {
+   "mixed": {
+    "lens_strict": 0.0,
+    "lens_lenient": 0.9467,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.92,
+    "n": 150
+   }
+  },
+  "mr": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.86,
+    "lens_lenient": 0.86,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.4933,
+    "lens_lenient": 0.4933,
+    "ft_strict": 0.9267,
+    "ft_lenient": 0.9267,
+    "n": 150
+   }
+  },
+  "pt": {
+   "paragraph": {
+    "lens_strict": 0.96,
+    "lens_lenient": 0.96,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9933,
+    "lens_lenient": 0.9933,
+    "ft_strict": 0.9933,
+    "ft_lenient": 0.9933,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.7733,
+    "lens_lenient": 0.7733,
+    "ft_strict": 0.8667,
+    "ft_lenient": 0.8667,
+    "n": 150
+   }
+  },
+  "ru": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 0.9933,
+    "ft_lenient": 0.9933,
+    "n": 150
+   }
+  },
+  "ta": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9867,
+    "lens_lenient": 0.9867,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.9867,
+    "lens_lenient": 0.9867,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   }
+  },
+  "ta-Latn": {
+   "paragraph": {
+    "lens_strict": 0.1,
+    "lens_lenient": 0.1,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.02,
+    "lens_lenient": 0.02,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.0067,
+    "lens_lenient": 0.0067,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 150
+   }
+  },
+  "te": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9733,
+    "lens_lenient": 0.9733,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.9667,
+    "lens_lenient": 0.9667,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 150
+   }
+  },
+  "te-Latn": {
+   "paragraph": {
+    "lens_strict": 0.34,
+    "lens_lenient": 0.34,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.0933,
+    "lens_lenient": 0.0933,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.0333,
+    "lens_lenient": 0.0333,
+    "ft_strict": 0.0,
+    "ft_lenient": 0.0,
+    "n": 150
+   }
+  },
+  "ur": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 0.9754,
+    "ft_lenient": 0.9754,
+    "n": 122
+   },
+   "short": {
+    "lens_strict": 0.98,
+    "lens_lenient": 0.98,
+    "ft_strict": 0.9467,
+    "ft_lenient": 0.9467,
+    "n": 150
+   }
+  },
+  "zh": {
+   "paragraph": {
+    "lens_strict": 1.0,
+    "lens_lenient": 1.0,
+    "ft_strict": 1.0,
+    "ft_lenient": 1.0,
+    "n": 50
+   },
+   "sentence": {
+    "lens_strict": 0.9933,
+    "lens_lenient": 0.9933,
+    "ft_strict": 0.9733,
+    "ft_lenient": 0.9733,
+    "n": 150
+   },
+   "short": {
+    "lens_strict": 0.9733,
+    "lens_lenient": 0.9733,
+    "ft_strict": 0.8933,
+    "ft_lenient": 0.8933,
+    "n": 150
+   }
+  }
+ },
+ "top_confusions": {
+  "lens": {
+   "en": {
+    "und-Latn": 10,
+    "und": 1
+   },
+   "zh": {
+    "mixed": 4,
+    "und-Latn": 1
+   },
+   "es": {
+    "und-Latn": 7,
+    "pt": 3,
+    "mixed": 1
+   },
+   "ar": {
+    "und-Latn": 1
+   },
+   "fr": {
+    "es": 17,
+    "und-Latn": 10,
+    "en": 5
+   },
+   "pt": {
+    "es": 18,
+    "en": 7,
+    "fr": 6
+   },
+   "id": {
+    "en": 32,
+    "und-Latn": 15,
+    "hi-Latn": 2
+   },
+   "de": {
+    "en": 15,
+    "und-Latn": 11,
+    "mixed": 2
+   },
+   "hi": {
+    "mr": 2,
+    "mixed": 1
+   },
+   "bn": {
+    "mixed": 36
+   },
+   "te": {
+    "mixed": 8,
+    "und-Latn": 1
+   },
+   "mr": {
+    "hi": 95,
+    "mixed": 2
+   },
+   "ta": {
+    "mixed": 4
+   },
+   "ur": {
+    "ar": 3
+   },
+   "hi-Latn": {
+    "en": 32,
+    "und-Latn": 22,
+    "id": 12
+   },
+   "ta-Latn": {
+    "en": 236,
+    "und-Latn": 84,
+    "fr": 13
+   },
+   "te-Latn": {
+    "en": 202,
+    "und-Latn": 77,
+    "es": 19
+   },
+   "mixed:en+hi-Latn": {
+    "en": 115,
+    "hi-Latn": 29,
+    "fr": 2
+   },
+   "mixed:en+ta-Latn": {
+    "en": 149,
+    "und-Latn": 1
+   },
+   "mixed:en+te-Latn": {
+    "en": 142,
+    "und-Latn": 6,
+    "fr": 1
+   },
+   "mixed:en+hi": {
+    "hi": 12,
+    "en": 3,
+    "mixed": 3
+   }
+  },
+  "fasttext": {
+   "en": {
+    "de": 1,
+    "es": 1,
+    "it": 1
+   },
+   "zh": {
+    "ja": 13,
+    "en": 3,
+    "wuu": 1
+   },
+   "es": {
+    "pt": 2,
+    "cs": 1,
+    "it": 1
+   },
+   "ar": {
+    "hu": 1,
+    "azb": 1
+   },
+   "fr": {
+    "it": 2,
+    "en": 2,
+    "ca": 1
+   },
+   "pt": {
+    "es": 15,
+    "en": 4,
+    "ro": 1
+   },
+   "ru": {
+    "bg": 1
+   },
+   "id": {
+    "ms": 21,
+    "en": 8,
+    "it": 4
+   },
+   "de": {
+    "es": 1
+   },
+   "ja": {
+    "zh": 2,
+    "it": 1
+   },
+   "hi": {
+    "mr": 10,
+    "gom": 1
+   },
+   "mr": {
+    "hi": 9,
+    "et": 2
+   },
+   "ur": {
+    "pnb": 8,
+    "fa": 3
+   },
+   "hi-Latn": {
+    "en": 142,
+    "eo": 30,
+    "id": 26
+   },
+   "ta-Latn": {
+    "en": 219,
+    "fi": 68,
+    "nl": 17
+   },
+   "te-Latn": {
+    "en": 150,
+    "fi": 81,
+    "tr": 16
+   }
+  }
+ },
+ "pool_sizes": {
+  "en": 153,
+  "zh": 182,
+  "es": 178,
+  "ar": 134,
+  "fr": 158,
+  "pt": 172,
+  "ru": 178,
+  "id": 152,
+  "de": 175,
+  "ja": 143,
+  "hi": 131,
+  "bn": 166,
+  "te": 157,
+  "mr": 186,
+  "ta": 160,
+  "ur": 122,
+  "gu": 163,
+  "hi-Latn": 5000,
+  "ta-Latn": 5000,
+  "te-Latn": 5000
+ },
+ "sources": {
+  "fleurs": {
+   "dataset": "google/fleurs",
+   "license": "CC-BY-4.0",
+   "files": "data/external/fleurs/<config>/test.tsv (transcription column)"
+  },
+  "dakshina": {
+   "dataset": "google-research-datasets/dakshina v1.0",
+   "license": "CC BY-SA 4.0",
+   "files": "<lang>/romanized/<lang>.romanized.rejoined.{dev,test}.roman.txt"
+  },
+  "fasttext_lid176": {
+   "model": "lid.176.ftz",
+   "license": "CC BY-SA 3.0",
+   "runtime": "fasttext-wheel 0.9.2 (MIT), isolated venv .tools/lid-eval",
+   "url": "https://dl.fbaipublicfiles.com/fasttext/supervised-models/lid.176.ftz",
+   "sha256": "8f3472cfe8738a7b6099e8e999c3cbfae0dcd15696aac7d7738a8039db603e83",
+   "use": "evaluation only"
+  }
+ },
+ "dakshina_tar_sha256": "83530bec211893d9df429298f42e63c350c25ad56f9f5172f85edb0575ee5b03"
+}

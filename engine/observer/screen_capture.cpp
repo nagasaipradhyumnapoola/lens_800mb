@@ -91,7 +91,15 @@ void ServeWorker::stop() {
     if(!process_)return;
     CloseHandle(in_);in_=nullptr;  // EOF: the worker finishes and exits
     if(WaitForSingleObject(process_,5000)!=WAIT_OBJECT_0)TerminateProcess(process_,1);
+    finished_cpu_ms_=cpu_ms();
     CloseHandle(out_);CloseHandle(process_);out_=process_=nullptr;buffer_.clear();
+}
+
+unsigned long long ServeWorker::cpu_ms() const {
+    FILETIME c,e,k,u;
+    if(!process_||!GetProcessTimes(process_,&c,&e,&k,&u))return finished_cpu_ms_;
+    auto v=[](const FILETIME& f){return (static_cast<unsigned long long>(f.dwHighDateTime)<<32)|f.dwLowDateTime;};
+    return finished_cpu_ms_+(v(k)+v(u))/10000;
 }
 
 std::optional<std::string> ServeWorker::request(const std::string& line,DWORD timeout_ms) {

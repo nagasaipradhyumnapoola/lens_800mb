@@ -1,0 +1,119 @@
+{
+ "created_utc": "20261027T205356Z",
+ "method": "lens-lid-ngram-v1",
+ "seed": 20261028,
+ "groups": {
+  "latin": {
+   "labels": [
+    "en",
+    "es",
+    "fr",
+    "pt",
+    "de",
+    "id",
+    "hi-Latn",
+    "ta-Latn",
+    "te-Latn"
+   ],
+   "features": 14000,
+   "chars_per_class": 22277,
+   "sentences": {
+    "en": 900,
+    "es": 900,
+    "fr": 900,
+    "pt": 900,
+    "de": 900,
+    "id": 900,
+    "hi-Latn": 1563,
+    "ta-Latn": 477,
+    "te-Latn": 708
+   },
+   "bytes": 238000
+  },
+  "deva": {
+   "labels": [
+    "hi",
+    "mr"
+   ],
+   "features": 5000,
+   "chars_per_class": 61753,
+   "sentences": {
+    "hi": 900,
+    "mr": 900
+   },
+   "bytes": 50000
+  }
+ },
+ "provenance": {
+  "aksharantar_hin": {
+   "pairs_by_source": {
+    "Dakshina": 24727,
+    "AK-Freq": 9159,
+    "Existing": 131773,
+    "Wikidata": 24528,
+    "Samanantar": 152778,
+    "IndicCorp": 956190
+   },
+   "excluded_source": "Dakshina",
+   "native_words": 1148542
+  },
+  "aksharantar_tam": {
+   "pairs_by_source": {
+    "Dakshina": 60210,
+    "AK-Freq": 776,
+    "Existing": 1545,
+    "Wikidata": 273,
+    "Samanantar": 34447,
+    "IndicCorp": 3133651
+   },
+   "excluded_source": "Dakshina",
+   "native_words": 3155363
+  },
+  "aksharantar_tel": {
+   "pairs_by_source": {
+    "Dakshina": 50927,
+    "Existing": 24056,
+    "Wikidata": 26,
+    "Samanantar": 42413,
+    "IndicCorp": 2312140
+   },
+   "excluded_source": "Dakshina",
+   "native_words": 2358123
+  }
+ },
+ "inputs": {
+  "arb_Arab.jsonl": "a2282b0974826172b1ce76a5d9e362091cfc8a7a25023df2d011f88f588b56e0",
+  "ben_Beng.jsonl": "cd8be5c2a52d0d3847ff0c2837f3186bbc32f9d19439acd17304cc8c94665896",
+  "ben_Latn.jsonl": "2a27a5a3aa2e9918d2626dc2e73665daf210b1bbd90e72462a53e7686c6eb12e",
+  "deu_Latn.jsonl": "ca04cfec5a865a803dfe70636b6f6c4696efbbfa66f4eb5e8cf89c86b0a74f09",
+  "eng_Latn.jsonl": "15af884c2b5994fdc71199e79d553a1864b08ce1b31894aa87f6be925a064a31",
+  "fra_Latn.jsonl": "11c3cd50907631642e6dca8396974e4d0dfbf6603e0f6e35d6c1e64eed662060",
+  "guj_Gujr.jsonl": "36799a073817b5c756a284152eb41c7853a5436c3ac8361a1df6a5ca7f4a3bf4",
+  "hin_Deva.jsonl": "41d34aab7f8fc4d57dc5d61fb36c3ce6ce230fe8e1c156c4d3cff0ba4710ed8f",
+  "hin_Latn.jsonl": "f93c3c827f387644c9f176ad8d715367e1a4cc8ccd37c64c20a489e8f7432ce6",
+  "ind_Latn.jsonl": "14b16460324ca9b70f0fba56068a9860b1b5db00b6791acc4069aad69d8ab641",
+  "jpn_Jpan.jsonl": "c5cc2184b7468196ea8a1c37382ab9e80640edd410266a381a42a05cbc0d2605",
+  "mar_Deva.jsonl": "b6f55f4be685d01dc9b57eb14cc7cab272073a2cc5713de4a2f28da48ca9633d",
+  "por_Latn.jsonl": "da63cd6215d550f0ad3df5562567096e8e7731a04322f90e801c554b1c43b431",
+  "rus_Cyrl.jsonl": "e8b81853605b97e993af07a34ad2c0a48ccd8dab80956b0650a161e8fea00de5",
+  "spa_Latn.jsonl": "04741f3bc179d9d21a71d5fc0fa3eb1873986d0bef1ad47fbbbb3f710428a5b9",
+  "tam_Taml.jsonl": "f950eb23a6e7001087d0dbc3ebc892f1b92a99cfc35b929b4cdfb07288037044",
+  "tel_Telu.jsonl": "10403c5d76edf5112b0703217836e15857119a58f431052eb47b7874d9fc419e",
+  "urd_Arab.jsonl": "68aa20692ec92883e0b1cfa8e4a720da1c02a773305fe6334472505152276c22",
+  "urd_Latn.jsonl": "19028cfb8e439fb66c23b6685aedf404e2a026a5586327bb096ec3ce7627fedd",
+  "zho_Hans.jsonl": "f3b7915eaa27e44225979ffd38708c5beee63d28bea27a91253e5fe68e2fa147",
+  "hin.zip": "208c2d1b128234e6dc777b750779b4f5e6214ab43244039349b530bf9868bdaf",
+  "tam.zip": "d019cffcdc2264870a96b8ffaea0b66a3b175c8c7d56c095d9f6dd4bbeb313a2",
+  "tel.zip": "08f1c2841f4d02fcc2a56362f7760ec16fc52d8a199029c68d44024ab0d22c1a"
+ },
+ "licenses": {
+  "belebele": "CC BY-SA 4.0 (question field only)",
+  "aksharantar": "CC-BY 4.0 (manual) / CC0 (mined)",
+  "output": "CC BY-SA 4.0"
+ },
+ "output": {
+  "path": "engine\\observer\\lid_model_data.hpp",
+  "sha256": "b9e7bc3bd639d5fea7642623d950575aa6b72dff5a326ca3c906b154023efb3d",
+  "source_bytes": 758654
+ }
+}

@@ -108,7 +108,7 @@ class Observer(unittest.TestCase):
     def test_latin_text_gets_a_language_not_und(self):
         a=self.app(title='Notas sintéticas',label='Nota de prueba',body='La reunión trimestral se pasó al jueves y todos los equipos están de acuerdo.')
         r=self.wait(self.observer(a),timeout=25)[0];self.assertEqual(r['language'],'es',r['metadata']['language_detail'])
-        self.assertEqual(r['metadata']['language_detail']['method'],'lens-lid-rules-v1')
+        self.assertEqual(r['metadata']['language_detail']['method'],'lens-lid-ngram-v1')
         r=self.wait(self.observer(self.app()),timeout=25)[0];self.assertEqual(r['language'],'en',r['metadata']['language_detail'])
 
     LID_CASES=[  # synthetic sentences written for this test (no personal or copied content)
@@ -213,6 +213,10 @@ class Observer(unittest.TestCase):
         a=self.app(body='\\n'.join(lines+['Status 1']));o=self.observer(a);self.assertEqual(len(self.wait(o,timeout=25)),1)
         a.send('set '+'\\n'.join(lines+['Status 2']));a.out.get(timeout=10)  # a re-render: one short line changed
         self.assertEqual(self.records(o,4),[])
+        end=time.time()+30;st={}  # on a loaded machine, make sure the re-render was seen before the next change
+        while time.time()<end and st.get('counts',{}).get('near_duplicates',0)<1:
+            o.send('status');st=([json.loads(x) for x in o.lines(o.err,1) if '"status"' in x] or [st])[-1]
+        self.assertGreaterEqual(st.get('counts',{}).get('near_duplicates',0),1,st)
         a.send('set '+'\\n'.join(lines[:8]+['Status 2','Synthetic new row: the supplier confirmed delivery for next Tuesday morning at nine']));a.out.get(timeout=10)
         d=self.wait(o,timeout=25);self.assertEqual(len(d),1,d);self.assertIn('supplier confirmed delivery',d[0]['text'])
         o.send('status');st=[json.loads(x) for x in o.lines(o.err,2) if '"status"' in x][-1]
@@ -224,6 +228,16 @@ class Observer(unittest.TestCase):
         s=self.wait(o,timeout=25);self.assertEqual(len(s),1,s);m=s[0]['metadata']
         self.assertEqual(m['capture_mode'],'snapshot');self.assertEqual(m['snapshot_reason'],'document_changed')
         self.assertIn('quarterly review',s[0]['text']);self.assertEqual(m['previous_capture'],first['id'])
+
+    def test_cpu_budget_throttles_polling_when_exceeded(self):
+        a=self.app();a.send('fill 400 Synthetic history line');a.out.get(timeout=10)
+        o=self.observer(a,{'cpu_budget_percent':0.01,'min_interval_ms':300,'max_interval_ms':1200})  # any work exceeds this budget
+        self.assertTrue(self.wait(o,timeout=25))
+        end=time.time()+40;st={}
+        while time.time()<end and st.get('throttle',1)<2:
+            a.send(f'append Synthetic throttle probe {time.time()}');a.out.get(timeout=10)
+            o.send('status');st=([json.loads(x) for x in o.lines(o.err,1.5) if '"status"' in x] or [st])[-1]
+        self.assertGreaterEqual(st.get('throttle',1),2,st)
 
     # CPU budget (real-screen fix 5): the observer itself stays well under 10% of one core on a streaming window.
     def test_observer_cpu_stays_low_on_a_streaming_window(self):

@@ -12,7 +12,7 @@
 //   "snapshot" is taken on the first capture, a document (title) change, or every full_snapshot_ms.
 // - each stored text is capped at max_capture_chars (metadata.truncated records a cut) and labelled with a language.
 // - CPU: below-normal priority, polling stretched to keep extraction under ~5% duty, and a throttle that slows every
-//   interval while the observer's own CPU use exceeds cpu_budget_percent of one core.
+//   interval while the CPU of the observer plus its OCR worker exceeds cpu_budget_percent of one core.
 // --identify-language: reads {"text":...} lines on stdin, writes the language label of each (no capture, no consent).
 #include "uia_text.hpp"
 #include "screen_capture.hpp"
@@ -59,7 +59,7 @@ std::string utc_now() {
 }
 json language_json(const lens::observe::LanguageGuess& g) {
     return {{"language",g.language},{"script",g.script},{"confidence",std::round(g.confidence*1000)/1000},{"languages",g.languages},
-            {"method","lens-lid-rules-v1"}};
+            {"method","lens-lid-ngram-v1"}};
 }
 // The document a window shows, for snapshot decisions: the title without a leading unread counter such as "(3) ".
 std::wstring document_identity(const std::wstring& title) {
@@ -103,7 +103,7 @@ struct Config {
     double near_duplicate_overlap=0.9;size_t near_duplicate_chars=24;  // re-render (clock, counter, typing indicator):
                                                           // this much overlap and fewer new characters
     int full_snapshot_ms=600000;                          // periodic full snapshot of a window
-    double cpu_budget_percent=5.0;                        // the observer's own CPU, percent of one core
+    double cpu_budget_percent=5.0;                        // observer + OCR worker CPU, percent of one core
 };
 std::wstring wide(const std::string& s) {
     const int n=MultiByteToWideChar(CP_UTF8,0,s.data(),static_cast<int>(s.size()),nullptr,0);
@@ -209,6 +209,7 @@ int wmain(int argc,wchar_t** argv) {
     std::deque<std::string> recent;HWND last_window=nullptr;std::wstring last_title;
     int interval=config.min_interval_ms;auto next_check=clock::now();
     lens::observe::UiaBudget budget;budget.max_chars=std::max<size_t>(2*config.max_capture_chars,4000);
+    const DWORD base_uia_ms=budget.max_ms;int timeouts=0;  // consecutive time-budget hits: the budget doubles (to 2 s)
     lens::observe::Frame previous_frame;HWND previous_frame_window=nullptr;  // last OCR'd frame
     lens::observe::Frame settle_frame;HWND settle_frame_window=nullptr;long long frame_generation=0;  // last checked frame
     std::wstring ocr_exe;
@@ -293,8 +294,9 @@ int wmain(int argc,wchar_t** argv) {
         ws.last_id=*id;++counts[reason?"snapshots":"deltas"];return true;
     };
 
-    // CPU budget: the observer's own CPU over ~5 s windows; above budget every interval is stretched (up to 16x).
-    int throttle=1;double cpu_percent=0;auto cpu_at=clock::now();auto cpu_ms_at=process_cpu_ms();long long last_work_ms=0;
+    // CPU budget: observer + OCR worker CPU over ~5 s windows; above budget every interval is stretched (up to 16x).
+    // The budget covers the observer and the OCR worker it drives (the worker's CPU is the observer's work).
+    int throttle=1;double cpu_percent=0;auto cpu_at=clock::now();auto cpu_ms_at=process_cpu_ms()+ocr_worker.cpu_ms();long long last_work_ms=0;
     auto schedule=[&](int base_ms) {
         // The observer's own CPU per check at most ~5% of the time (UIA wall time is mostly waiting on the target app).
         const long long duty=std::min<long long>(20*last_work_ms,config.max_interval_ms);
@@ -303,7 +305,7 @@ int wmain(int argc,wchar_t** argv) {
     while(!stopping) {
         std::this_thread::sleep_for(ms(250));
         if(const auto t=clock::now();t-cpu_at>=std::chrono::seconds(5)) {
-            const auto c=process_cpu_ms();
+            const auto c=process_cpu_ms()+ocr_worker.cpu_ms();
             cpu_percent=100.0*static_cast<double>(c-cpu_ms_at)/static_cast<double>(std::chrono::duration_cast<ms>(t-cpu_at).count());
             if(cpu_percent>config.cpu_budget_percent)throttle=std::min(throttle*2,16);
             else if(cpu_percent<config.cpu_budget_percent/2&&throttle>1)throttle/=2;
@@ -333,6 +335,7 @@ int wmain(int argc,wchar_t** argv) {
         // While content is settling, poll at a third of the settle time (slower for windows that keep changing).
         const int settle_poll=std::max(config.min_interval_ms,config.settle_ms/3)*(1+std::min(ws.churn,3));
         const auto t0=clock::now();const auto cpu0=thread_cpu_ms();
+        budget.max_ms=std::min<DWORD>(base_uia_ms<<std::min(timeouts,3),2000);
         const auto text=lens::observe::extract_window_text(w,budget);
         const auto elapsed=std::chrono::duration_cast<ms>(clock::now()-t0).count();last_work_ms=static_cast<long long>(thread_cpu_ms()-cpu0);
         last_extract={{"available",text.available},{"nodes",text.nodes},{"offscreen",text.offscreen},{"pruned",text.pruned},
@@ -388,7 +391,10 @@ int wmain(int argc,wchar_t** argv) {
             }
         } else {
             const auto hash=lens::observe::line_hash(utf8(document_identity(title))+"\n"+body);  // a new document is new content
-            if(text.timed_out){++counts["timed_out_extracts"];schedule(settle_poll);continue;}  // a stalled target app: retry later
+            // A walk cut by the time budget is a partial view: retry with a larger budget; after three in a row the
+            // partial text is used (marked truncated) so a slow or huge tree is still captured.
+            if(text.timed_out){++counts["timed_out_extracts"];if(++timeouts<=3){schedule(settle_poll);continue;}}
+            else timeouts=0;
             if(hash!=ws.considered) {
                 if(!settled(hash,ws)){schedule(settle_poll);continue;}
                 ws.considered=hash;

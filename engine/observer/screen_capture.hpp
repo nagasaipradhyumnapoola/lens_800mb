@@ -30,8 +30,9 @@ public:
     void stop();
     bool running() const {return process_!=nullptr;}
     ULONGLONG last_used() const {return last_used_;}
+    unsigned long long cpu_ms() const;  // CPU time of every worker process this object has run (kernel + user)
 private:
     bool start();
-    std::wstring exe_;HANDLE process_=nullptr,in_=nullptr,out_=nullptr;std::string buffer_;ULONGLONG last_used_=0;
+    std::wstring exe_;HANDLE process_=nullptr,in_=nullptr,out_=nullptr;std::string buffer_;ULONGLONG last_used_=0;unsigned long long finished_cpu_ms_=0;
 };
 }

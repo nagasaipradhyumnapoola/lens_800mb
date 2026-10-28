@@ -37,10 +37,14 @@ def main():
     report={'created_utc':start.strftime('%Y%m%dT%H%M%SZ'),'minutes':a.minutes,'consent':'owner-approved real-screen run 2026-10-27'};private={}
     try:
         pipe=Pipe(name);assert pipe.ask({'op':'set_consent','observe_screen':True})['observe_screen']
-        samples=[];statuses=[];end=time.time()+a.minutes*60;t0=time.time()
+        samples=[];statuses=[];end=time.time()+a.minutes*60;t0=time.time();cpu_total={};cpu_prev={}
         while time.time()<end:
             s=tree(agent.pid)
-            if s:samples.append({'t':round(time.time()-t0,1),'ws':s[0],'private':s[1],'cpu':s[2],'by_process':s[3]})
+            if s:
+                # CPU accumulates per process name, so a worker that exits (OCR, models) keeps its CPU in the total.
+                for n,c in s[4].items():cpu_total[n]=cpu_total.get(n,0)+(c-cpu_prev[n] if n in cpu_prev and c>=cpu_prev[n] else c)
+                cpu_prev.clear();cpu_prev.update(s[4])
+                samples.append({'t':round(time.time()-t0,1),'ws':s[0],'private':s[1],'cpu':sum(cpu_total.values()),'by_process':s[3],'private_by_process':s[5]})
             if len(samples)%6==0:st=pipe.ask({'op':'status'});statuses.append({'t':round(time.time()-t0,1),**{k:st.get(k) for k in ('observed','stored','failed','observer_running')}})
             time.sleep(5)
         status=pipe.ask({'op':'status'});stats=pipe.ask({'op':'stats'})
@@ -60,6 +64,8 @@ def main():
         report.update({'samples':len(samples),'peak_working_set_mb':max(ws)/2**20,'peak_private_mb':max(pv)/2**20,'median_working_set_mb':statistics.median(ws)/2**20,
             'first_quarter_median_ws_mb':statistics.median(ws[:q4])/2**20,'last_quarter_median_ws_mb':statistics.median(ws[-q4:])/2**20,
             'mean_cpu_percent_of_one_core':100*(samples[-1]['cpu']-samples[0]['cpu'])/max(1,samples[-1]['t']-samples[0]['t']),
+            'mean_cpu_percent_by_process':{n:round(100*c/max(1,samples[-1]['t']),2) for n,c in cpu_total.items()},
+            'peak_private_by_process_mb':{k:max(x['private_by_process'].get(k,0) for x in samples)/2**20 for k in {k for x in samples for k in x['private_by_process']}},
             'peak_by_process_mb':{k:max(s['by_process'].get(k,0) for s in samples)/2**20 for k in {k for s in samples for k in s['by_process']}},
             'observed':status.get('observed'),'stored':status.get('stored'),'failed':status.get('failed'),'screen_observations':len(obs),
             'capture_paths':dict(prov),'distinct_applications':len({x.get('source_application') for x in obs}),
