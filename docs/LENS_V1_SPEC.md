@@ -3,7 +3,7 @@
 Source: founder directives (Second Brain AI; founder Naga Sai Pradhyumna Poola), 2026-10-26, consolidated.
 This file is the durable record of WHAT Lens must be. It does not state what exists — see
 IMPLEMENTATION_STATUS.md and docs/VERIFICATION.md. Never present a planned item here as implemented.
-Older specification: docs/product-requirements.md (still binding where not superseded).
+Detailed requirements register: docs/REQUIREMENTS.md (binding where not superseded by this specification).
 
 ## 1. What Lens is
 
@@ -18,6 +18,9 @@ There is one product, Lens V1 (no parallel "v2/v3" products).
 
 Lens is built for the world, not one region. English is the PRIMARY language (founder, 2026-10-28): it carries
 the strictest quality gates, is the headline of every benchmark, and gets the largest share of training data.
+Priority after English (founder, 2026-10-28): Hindi, then Mandarin Chinese, then Spanish, then the other languages
+below. No major Telugu-specific work: Telugu stays in the matrix and in every per-language report, but gets no
+dedicated projects ahead of the priority languages (its screen OCR already passes, held-out CER 1.65%).
 Other quality-critical languages (every benchmark also reports each one):
 - Top world languages: English (en), Mandarin Chinese (zh), Spanish (es), Arabic (ar), French (fr),
   Portuguese (pt), Russian (ru), Indonesian (id), German (de), Japanese (ja).

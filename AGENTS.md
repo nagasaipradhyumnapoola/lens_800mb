@@ -1,9 +1,10 @@
 # Lens Micro
 
 Read docs/architecture.md and docs/acceptance-gates.md before changing scope.
-The authoritative user specification is docs/product-requirements.md (restored 2026-10-26).
+The canonical specification is docs/LENS_V1_SPEC.md; the detailed requirements register is docs/REQUIREMENTS.md
+(binding where not superseded by the specification).
 The complete deliverable is the distributed Lens system; the earlier engine-only scope is superseded.
-Follow its dependency order: models, encrypted memory/context, authorized collectors/importers,
+Follow the specified dependency order: models, encrypted memory/context, authorized collectors/importers,
 authenticated sync/execution, then Windows/Android/Wear clients and original UI. No fictional capabilities.
 Preserve user files. Never push, publish, or change repository visibility without approval.
 Use pinned upstream runtimes; Python is development-only. No cloud inference or private-data training.

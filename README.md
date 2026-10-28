@@ -1,96 +1,62 @@
-# Lens Micro Engine 0.1.0-dev
+# Lens
 
-A functional, experimental local memory engine for Windows. Native C++ executables perform
-speech recognition, cropped-text OCR, structured extraction and SQLCipher persistence. The
-PowerShell client connects them; no Pytton interpreter or cloud model API is required by that
-client. Python is used for model export, benchmarks and tests.
+Lens is the local-first perception and long-term memory subsystem of Second Brain AI's Recursion application.
+It observes only what the user authorises (screen text, speech, imported history), stores every original
+record encrypted on the device, organises it into episodes, entities, facts and projects, and answers
+natural-language questions with the original evidence, or with an explicit "not found".
 
-**Launch priority: English, Mandarin Chinese, Spanish and Hindi, then worldwide coverage.**
-This is an engine proof, not a consumer app release. Hindi speech accuracy and Needle extraction
-quality fail the current targets. Full-screen detection, automatic device observation, semantic QA,
-backups/key rotation, encrypted sync, Android/Wear clients and real-watch validation remain pending.
-No microphone, screen, notification or other private device capture was enabled.
+## Status
 
-## Run the existing native engine
+Lens V1 is under development and is not release-ready. Current capability status is maintained in
+[IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md), release gates in
+[docs/RELEASE_READINESS.md](docs/RELEASE_READINESS.md), and all measurements with their evidence in
+[docs/VERIFICATION.md](docs/VERIFICATION.md). Only executed, recorded results are reported as working.
 
-PowerShell 7 is already installed on the audited machine. Start in `D:\Lens`:
+## Documentation
 
-```powershell
-pwsh -NoProfile -File scripts/lens.ps1 -Action Stats
-pwsh -NoProfile -File scripts/lens.ps1 -Action ImportAudio -Language en -SourcePath 'C:\YourFiles\consented-recording.wav'
-pwsh -NoProfile -File scripts/lens.ps1 -Action ImportAudio -Language zh -SourcePath 'C:\YourFiles\consented-mandarin.wav'
-pwsh -NoProfile -File scripts/lens.ps1 -Action ImportImage -Language es -SourcePath 'C:\YourFiles\consented-text-crop.png'
-pwsh -NoProfile -File scripts/lens.ps1 -Action Search -Query 'Arun'
-```
+| Document | Content |
+|---|---|
+| [docs/LENS_V1_SPEC.md](docs/LENS_V1_SPEC.md) | Canonical product specification |
+| [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | Detailed requirements register (machine-readable: [docs/requirements.json](docs/requirements.json)) |
+| [docs/acceptance-gates.md](docs/acceptance-gates.md) | Acceptance gates and hardware tiers |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Architecture as built |
+| [docs/retrieval.md](docs/retrieval.md) | Retrieval design and decisions |
+| [docs/history-import.md](docs/history-import.md) | Historical data import |
+| [docs/LENS_MODEL.md](docs/LENS_MODEL.md) | Trained Lens model: architecture and training plan |
+| [docs/datasets.md](docs/datasets.md) | Dataset provenance and licences |
+| [docs/HANDOFF.md](docs/HANDOFF.md) | Engineering handoff: how to build, test and continue |
+| [AGENTS.md](AGENTS.md) | Mandatory engineering rules |
+| [LICENSES.md](LICENSES.md) | Third-party licences |
 
-Replace example file paths with actual files you have permission to process. `ImportImage` accepts
-a text crop; full screenshot text-box detection is not implemented. `Search` uses exact phrase
-and literal substring retrieval, returning original sources; it does not answer arbitrary questions.
-An unmatched query returns `not_found`. The client verifies selected weight/runtime digests.
+## Components
 
-By default, memories and the DPAPI-protected key are created under ignored `data/private/`.
-Use `-DatabasePath` for another location. Keep the database and its `.key` together on the same
-Windows user profile. The key file contains DPAPI ciphertext, not a plaintext password. Cross-device
-key export/pairing is not implemented. Do not treat a copied key file as a portable backup.
+| Component | Role |
+|---|---|
+| `lens-agent` | Always-on owner process: engine, consented capture, device link, consolidation, approvals |
+| `lens-engine` | Encrypted store (SQLCipher), indexing, retrieval, speech recognition, lifecycle operations |
+| `lens-observer` | Consent-gated Windows observation: UI Automation text first, OCR fallback |
+| `lens-ocr` | Screen text detection and script-routed recognition (PaddleOCR models, ONNX Runtime) |
+| `lens-voice` | Consent-gated microphone capture with voice-activity detection and language routing |
+| `lens-app` | Windows application (Win32 + WebView2) |
+| `lens-mesh` | Authenticated, encrypted link to paired devices |
+| `android/` | Android and Wear OS companions (Kotlin, Jetpack Compose) |
+| `lens_model/` | Training, export and evaluation of the Lens model (development only) |
 
-Original text is immutable. Identical observations deduplicate; a conflicting existing source ID is
-rejected. Source text, language, UTC import timestamp, device, confidence and provenance are stored
-separately from derived records. Current file timestamps are **import time**, not proof of when the
-speech originally occurred. Dolphin supplies no calibrated confidence: its source record uses a
-conservative zero with `model_confidence:null` and an explicit provenance policy; zero is not an
-accuracy measurement. Whisper token probability is also not measured accuracy.
+The core is C++20. Python is used only for development, benchmarks, training and tests; it is never a
+runtime dependency of the product.
 
-Sensitive field types and known password/OTP/financial-secret labels are excluded by default.
-This is a bounded heuristic, not proof that every secret is detectable. The CLI is a developer
-interface; it does not establish whole-OS plaintext or shell-history privacy.
+## Building
 
-## Genuine demo and tests
-
-```powershell
-.venv\Scripts\python.exe scripts/native-demo.py
-.venv\Scripts\python.exe scripts/test_all.py
-```
-
-The demo uses the public historical JFK WAV supplied by whisper.cpp, stores its actual transcript,
-closes the process, decrypts/retrieves the same source, and checks an absent query. It is explicitly
-a recorded-fixture demo, not a microphone or physical-watch test. Additional integration tests
-exercise real Mandarin audio and native OCR through the PowerShell client.
-
-Measured evidence: [model comparison](reports/model-comparison.md), [release gates](reports/release-gates.md),
-[Windows profile](reports/windows-profile.md), [retrieval](reports/memory-retrieval.md),
-[privacy/encryption](reports/privacy-and-encryption.md), [independent review](reports/independent-review.md).
-All failed runs are retained. Test success is not a language-quality or production-security certification.
-
-The checked native developer bundle is **596,957,774 bytes (596.96 decimal MB)** with all selected
-models. Its path and per-file hashes are in reports/staged-bundle.json. The staged client passed
-18 checks from a separate working directory, including audio/OCR imports for all four priority
-languages. It uses this host's installed Windows/MSVC/PowerShell prerequisites; a clean-machine
-installer is pending. Recreate and validate the explicit bundle with:
+Prerequisites: Windows 11 x64, Visual Studio with MSVC C++ tools and CMake, Git, Python 3.12 with uv,
+and the project-local PowerShell 7.6.6. Dependencies are restored from the committed lock files:
 
 ```powershell
-.venv\Scripts\python.exe scripts/stage-native.py
-.venv\Scripts\python.exe scripts/check-staged-bundle.py
-.venv\Scripts\python.exe scripts/report-results.py
-```
-
-## Reproduce from the pinned source
-
-Existing prerequisites: MSVC C++ tools, Visual Studio CMake, Git, Python 3.12/uv, PowerShell 7.
-Do not rerun research_upstreams.py to reproduce a build: that command discovers new candidates.
-Use the committed lock files instead:
-
-```powershell
+.venv\Scripts\python.exe scripts/bootstrap_pwsh.py
 pwsh -NoProfile -File scripts/bootstrap-upstreams.ps1
 uv venv --python 3.12 .venv
 uv pip install --python .venv\Scripts\python.exe -r requirements-dev.lock.txt
 .venv\Scripts\python.exe scripts/restore-artifacts.py
 pwsh -NoProfile -File scripts/build-native.ps1 -Dependencies
-```
-
-OCR build/export uses an isolated conversion environment because Paddle2ONNX 2.1.0 does not load
-with the reference environment's Paddle 3.2.2:
-
-```powershell
 uv venv --python 3.12 .tools/ocr-convert
 uv pip install --python .tools/ocr-convert/Scripts/python.exe -r requirements-ocr-export.lock.txt
 .venv\Scripts\python.exe scripts/prepare_native_ocr.py
@@ -98,40 +64,52 @@ uv pip install --python .tools/ocr-convert/Scripts/python.exe -r requirements-oc
 pwsh -NoProfile -File scripts/build-native.ps1
 ```
 
-The export environment pins Paddle 3.1.1 and disables optional optimizer auto-installs. Re-exporting
-may change serialization hashes: compare output locks intentionally rather than accepting drift.
-The native OCR adapter is Windows WIC + unmodified ONNX Runtime + the official PaddleOCR models;
-normalization/CTC handling follows PaddleX. Sherpa/Dolphin uses its published native C API.
+OCR model export runs in the isolated `.tools/ocr-convert` environment because Paddle2ONNX 2.1.0 does not load
+with the development environment's Paddle. Re-exports are compared against the lock files; drift is never
+accepted silently.
 
-## Reproduce benchmarks
+## Testing
 
 ```powershell
-.venv\Scripts\python.exe scripts/fetch_fleurs.py
-.venv\Scripts\python.exe scripts/benchmark.py
-.venv\Scripts\python.exe scripts/benchmark_priority_holdout.py
-.venv\Scripts\python.exe scripts/benchmark_native_needle.py
-.venv\Scripts\python.exe scripts/benchmark_ocr.py
-.venv\Scripts\python.exe scripts/benchmark_native_ocr.py
-.venv\Scripts\python.exe scripts/benchmark_sherpa.py --holdout
-.venv\Scripts\python.exe scripts/benchmark_retrieval.py
-.venv\Scripts\python.exe scripts/profile_native.py --seconds 1800
+.venv\Scripts\python.exe -B -m unittest discover -s tests -v
 ```
 
-Google FLEURS audio is CC BY 4.0 and attributed in [dataset provenance](docs/datasets.md). The 100
-priority-language holdout clips exclude the first two clips used for the smoke/model comparison.
-No fine-tuning or private-data training occurred. Benchmark outputs are generated from executed
-inference. Hindi Whisper's three invalid-UTF-8 export failures stay counted; there is no lossy repair.
+Tests use temporary directories and invisible test windows only; they never read the real screen or open the
+microphone. The Android companion builds with `android\gradlew.bat` (JDK 17).
 
-Budgets: the original 500 MB figures remain visible optimization targets. The user explicitly
-accepted 740 MB RAM and instructed not to cut features for 500 MB. Reports retain larger model
-configurations and exact working-set/private-commit measurements. These metrics are distinct;
-staged-file size is not an installed Android/Wear application measurement.
+## Packaging
 
-## Source and scope
+```powershell
+.venv\Scripts\python.exe -B scripts/package_lens.py
+powershell -NoProfile -File scripts/install_lens.ps1
+powershell -NoProfile -File scripts/uninstall_lens.ps1
+```
 
-See [architecture](docs/architecture.md), [fixed quality gates and revised budgets](docs/acceptance-gates.md),
-[dependency licenses](LICENSES.md), [skills](reports/skills.md) and immutable manifests under third_party/.
-Upstream source/weights, development environments, public benchmark audio and personal databases
-are separate from application source and ignored by Git. No repository was pushed or published.
+The installer is per-user and requires no administrator rights. Screen and microphone capture remain off until
+the user enables them in the application. Uninstalling keeps the encrypted memories unless removal is requested.
+Release artifacts are not yet code-signed.
 
-The owner has not selected a license for Lens-specific source. Upstream licenses remain in force.
+## Benchmarks
+
+| Area | Script |
+|---|---|
+| Retrieval | `scripts/benchmark_retrieval_nl.py` (tuning on the dev split only), `scripts/verify_retrieval_report.py` |
+| Screen OCR | `scripts/benchmark_ocr_native.py`, `scripts/benchmark_ocr_memory.py`, `scripts/benchmark_ocr_latency.py` |
+| Voice | `scripts/benchmark_voice.py` |
+| Observation language ID | `scripts/benchmark_observer_lid.py` |
+| Storage and import | `scripts/benchmark_storage.py`, `scripts/benchmark_history_import.py` |
+| Resources | `scripts/sustained_run.py`, `scripts/profile_combined.py` |
+| Hardware compatibility | `scripts/hardware_profile.py`, `scripts/check_hardware_compat.py` |
+
+Sealed holdout sets are never used for tuning. Every run, including failed runs, is retained under `reports/`.
+
+## Privacy
+
+Capture requires explicit, source-specific consent and can be paused at any time. Personal content never enters
+version control, model weights, telemetry or logs. There is no cloud inference. Deletion removes derived records
+together with their sources.
+
+## Licence
+
+No licence has been granted for the Lens-specific source code; all rights are reserved by Second Brain AI.
+Third-party components remain under their own licences ([LICENSES.md](LICENSES.md), `third_party/licenses/`).

@@ -1,14 +1,17 @@
 # Lens Micro Engine V1 — implementation decision
 
 Status: the native proof is implemented; full distributed product scope was restored on 2026-10-26.
-The authoritative specification is product-requirements.md. The earlier engine-only limitation is
+The authoritative specification is LENS_V1_SPEC.md, detailed in REQUIREMENTS.md. The earlier engine-only limitation is
 superseded. Models and memory remain first; collectors/importers, trusted sync/execution and
 Windows/Android/Wear clients are mandatory subsequent phases. Future platforms stay future.
-Launch language priority (user clarification): English, Mandarin Chinese, Spanish and Hindi,
-followed by worldwide language coverage. Lens is a global product; Indian-language testing is
-part of the international matrix and does not define the product's geographic focus.
-Budget revision: the user accepted 740 MB RAM and asked not to cut features for 500 MB.
-Keep the original-budget comparison visible and optimize without omitting requested functions.
+Launch language priority (founder, 2026-10-28; supersedes the earlier en, zh, es, hi order):
+English first, then Hindi, Mandarin Chinese and Spanish, followed by worldwide language coverage
+(docs/LENS_V1_SPEC.md §1a). Lens is a global product; Indian-language testing is part of the
+international matrix and does not define the product's geographic focus.
+Budget: the 800,000,000-byte absolute ceiling for the complete always-on background system (peaks,
+working set and private commit) and the 50–100 MB idle target (founder, 2026-10-26; spec §15)
+supersede the earlier 740 MB acceptance. 500 MB stays a visible optimization target; do not cut
+requested functions to reach it.
 
 ## Selected approach and alternatives
 

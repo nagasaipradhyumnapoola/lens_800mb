@@ -1,23 +1,24 @@
 # Lens — product vision
 
 Lens is the local-first perception and long-term memory engine of Second Brain AI's unified Recursion
-application. There is one product, Lens V1, with platform clients (Windows first; Android and Wear OS later)
-sharing one memory architecture, one data format, one retrieval contract and one privacy model.
+application. There is one product, Lens V1, with platform clients (Windows, Android and Wear OS) sharing one
+memory architecture, one data format, one retrieval contract and one privacy model.
 
 ## What Lens must do
 
-- Observe only what the user authorizes (screen text, speech, imports), with visible controls and pause.
+- Observe only what the user authorises (screen text, speech, imported history), with visible controls and pause.
 - Keep every captured original immutable and encrypted on the device; derived records link to their sources.
-- Answer natural-language questions in English, Mandarin, Spanish, Hindi, Tamil and Telugu (then more),
-  across languages and code-switched speech, returning the original evidence with time and source —
-  or an explicit "not found" instead of a guess.
-- Understand time ("last week"), people, applications and changed facts (original vs latest decision).
-- Fit the always-on footprint in 500 MB RAM; personal memory may grow beyond the install size.
-- Sync and act across the user's paired devices only through authenticated, end-to-end encrypted channels
-  and deterministic permission checks — a model may propose an action, never authorize it.
+- Answer natural-language questions across languages and code-switched text and speech, returning the original
+  evidence with time and source, or an explicit "not found" instead of a guess. English is the primary language,
+  followed by Hindi, Mandarin Chinese and Spanish, then the other specified languages (docs/LENS_V1_SPEC.md §1a).
+- Understand time ("last week"), people, applications, projects and changed facts (original versus latest).
+- Keep the complete always-on background system within 800,000,000 bytes of RAM at peak, with an idle target of
+  50–100 MB, on CPU-only and low-end hardware (docs/LENS_V1_SPEC.md §15).
+- Synchronise and act across the user's paired devices only through authenticated, end-to-end encrypted channels
+  and deterministic permission checks; a model may propose an action, never authorise it.
 
 ## Principles
 
 - Models process; the encrypted memory remembers. No personal data in model weights, logs or telemetry.
 - No cloud inference, no paid model APIs, no covert capture.
-- Only measured, independently verified behavior is reported as working (docs/VERIFICATION.md).
+- Only measured, independently verified behaviour is reported as working (docs/VERIFICATION.md).
