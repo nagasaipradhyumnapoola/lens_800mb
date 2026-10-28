@@ -1,0 +1,2021 @@
+{
+ "created_utc": "20261027T212010Z",
+ "worker": "lens-ocr.exe mode=screen",
+ "set": "heldout",
+ "manifest_sha256": "675614965ebf3b3f25c885760faa365cfdaa2cbfb90166116bd47b71e8067f99",
+ "det": "v5",
+ "det_pixels": 409600,
+ "only": "en,zh,es,fr,pt,de,id,ja",
+ "route": "oracle",
+ "threads": 2,
+ "te_recognizer": "PaddlePaddle--te_PP-OCRv5_mobile_rec",
+ "recognizer_overrides": [
+  "general=PaddlePaddle--PP-OCRv6_small_rec",
+  "ja=PaddlePaddle--PP-OCRv5_mobile_rec"
+ ],
+ "tag": "PP-OCRv6_small_rec",
+ "te_onnx_sha256": "636f40684474dc5a9d5aa321018d9a591deff5f9d7eec6230b1576482637a48b",
+ "metric": "page CER on NFC text, ZWNJ/ZWJ removed, whitespace collapsed (page_cer_raw: without NFC/ZW removal)",
+ "edge_version": "156.0.4314.42",
+ "summary": {
+  "en": {
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0
+  },
+  "zh": {
+   "page_cer": 0.0017241379310344827,
+   "page_cer_raw": 0.0017241379310344827,
+   "line_accuracy": 0.975
+  },
+  "es": {
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0
+  },
+  "fr": {
+   "page_cer": 0.0004914004914004914,
+   "page_cer_raw": 0.0004914004914004914,
+   "line_accuracy": 1.0
+  },
+  "pt": {
+   "page_cer": 0.000990153608607474,
+   "page_cer_raw": 0.000990153608607474,
+   "line_accuracy": 1.0
+  },
+  "de": {
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0
+  },
+  "id": {
+   "page_cer": 0.0005494505494505495,
+   "page_cer_raw": 0.0005494505494505495,
+   "line_accuracy": 1.0
+  },
+  "ja": {
+   "page_cer": 0.00757437070938215,
+   "page_cer_raw": 0.00757437070938215,
+   "line_accuracy": 1.0
+  },
+  "latency_ms": {
+   "full_compute_p50": 2828.1217500000002,
+   "full_compute_p95": 4155.862025,
+   "region_compute_p50": 200.50045,
+   "region_compute_p95": 720.1884699999998,
+   "region_wall_p50": 1230.280899999343,
+   "full_wall_p50": 3744.2164000021876
+  },
+  "peak_working_set_mb_max": 102.457344
+ },
+ "rows": [
+  {
+   "name": "en-mail",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1415.3347,
+     "detector_load": 270.8691,
+     "recognize": 753.1014,
+     "recognizer_load": 275.3052
+    },
+    "wall_ms": 2915.36890000134,
+    "peak_working_set_bytes": 102354944,
+    "boxes": 9
+   },
+   "region": {
+    "size": [
+     318,
+     49
+    ],
+    "timing_ms": {
+     "detect": 17.1968,
+     "detector_load": 275.7958,
+     "recognize": 106.99559999999997,
+     "recognizer_load": 288.8287
+    },
+    "wall_ms": 882.4926999950549,
+    "peak_working_set_bytes": 85102592,
+    "text": [
+     "Total bill: 3,675 rupees, payment complete."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Inbox",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Students can check exam results online.",
+    "Srinivas must submit the project report.",
+    "The cricket match was cancelled due to rain.",
+    "The library stays closed on Sundays.",
+    "Train ticket fare was fixed at 1,240 rupees.",
+    "The school annual day is on 5 December.",
+    "Doctor appointment: Wednesday 10:15 am, clinic 3."
+   ]
+  },
+  {
+   "name": "en-notes",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1264.4244,
+     "detector_load": 281.1217,
+     "recognize": 1113.6244,
+     "recognizer_load": 308.5805
+    },
+    "wall_ms": 3175.1798999976018,
+    "peak_working_set_bytes": 101199872,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     324,
+     49
+    ],
+    "timing_ms": {
+     "detect": 18.5748,
+     "detector_load": 311.1398,
+     "recognize": 100.0709,
+     "recognizer_load": 286.6626
+    },
+    "wall_ms": 895.5554999993183,
+    "peak_working_set_bytes": 85200896,
+    "text": [
+     "The library stays closed on Sundays."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Doctor appointment: Wednesday 10:15 am, clinic 3.",
+    "The library stays closed on Sundays.",
+    "Train ticket fare was fixed at 1,240 rupees.",
+    "The cricket match was cancelled due to rain.",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Students can check exam results online.",
+    "The school annual day is on 5 December.",
+    "Srinivas must submit the project report."
+   ]
+  },
+  {
+   "name": "en-cards",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1368.8054,
+     "detector_load": 324.3775,
+     "recognize": 752.3115,
+     "recognizer_load": 349.7542
+    },
+    "wall_ms": 3008.9752999992925,
+    "peak_working_set_bytes": 101740544,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     313,
+     49
+    ],
+    "timing_ms": {
+     "detect": 16.2966,
+     "detector_load": 257.7741,
+     "recognize": 104.41569999999996,
+     "recognizer_load": 257.2988
+    },
+    "wall_ms": 883.7655999959679,
+    "peak_working_set_bytes": 85291008,
+    "text": [
+     "The school annual day is on 5 December."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "The cricket match was cancelled due to rain.",
+    "The school annual day is on 5 December.",
+    "Doctor appointment: Wednesday 10:15 am, clinic 3.",
+    "Students can check exam results online.",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Srinivas must submit the project report.",
+    "The library stays closed on Sundays.",
+    "Train ticket fare was fixed at 1,240 rupees."
+   ]
+  },
+  {
+   "name": "en-heading",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1050.3972,
+     "detector_load": 271.9163,
+     "recognize": 995.1870000000001,
+     "recognizer_load": 322.0763
+    },
+    "wall_ms": 2844.282400001248,
+    "peak_working_set_bytes": 101199872,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     417,
+     43
+    ],
+    "timing_ms": {
+     "detect": 23.3951,
+     "detector_load": 254.2271,
+     "recognize": 156.1843,
+     "recognizer_load": 259.0915
+    },
+    "wall_ms": 928.6572000055457,
+    "peak_working_set_bytes": 86024192,
+    "text": [
+     "Doctor appointment: Wednesday 10:15 am, clinic 3."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "The school annual day is on 5 December.",
+    "Doctor appointment: Wednesday 10:15 am, clinic 3.",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Students can check exam results online.",
+    "The library stays closed on Sundays.",
+    "Train ticket fare was fixed at 1,240 rupees.",
+    "Srinivas must submit the project report.",
+    "The cricket match was cancelled due to rain."
+   ]
+  },
+  {
+   "name": "en-compact",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 887.607,
+     "detector_load": 176.5886,
+     "recognize": 706.2906,
+     "recognizer_load": 218.3684
+    },
+    "wall_ms": 2160.9553000016604,
+    "peak_working_set_bytes": 101064704,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     291,
+     43
+    ],
+    "timing_ms": {
+     "detect": 18.3626,
+     "detector_load": 205.2481,
+     "recognize": 452.8759,
+     "recognizer_load": 230.0255
+    },
+    "wall_ms": 1057.9154000006383,
+    "peak_working_set_bytes": 108056576,
+    "text": [
+     "raln ticket Tare was Tixed at T,z4o rubees",
+     "The cricket match was cancelled due to rain."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Train ticket fare was fixed at 1,240 rupees.",
+    "The cricket match was cancelled due to rain.",
+    "Srinivas must submit the project report.",
+    "The school annual day is on 5 December.",
+    "The library stays closed on Sundays.",
+    "Students can check exam results online.",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Doctor appointment: Wednesday 10:15 am, clinic 3."
+   ]
+  },
+  {
+   "name": "zh-mail",
+   "language": "zh",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1216.1856,
+     "detector_load": 268.0556,
+     "recognize": 487.90560000000005,
+     "recognizer_load": 238.8593
+    },
+    "wall_ms": 2371.9507999994676,
+    "peak_working_set_bytes": 102412288,
+    "boxes": 9
+   },
+   "region": {
+    "size": [
+     159,
+     47
+    ],
+    "timing_ms": {
+     "detect": 13.1137,
+     "detector_load": 227.5455,
+     "recognize": 50.218199999999996,
+     "recognizer_load": 236.5518
+    },
+    "wall_ms": 699.6034999974654,
+    "peak_working_set_bytes": 85078016,
+    "text": [
+     "图书馆周日不开放。"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Inbox",
+    "图书馆周日不开放。",
+    "学校年度庆典将于12月5日举行。",
+    "总账单：3675元，已完成付款。",
+    "火车票价格定为1240元。",
+    "由于下雨，板球比赛被取消了。",
+    "学生可以在网上查看考试成绩。",
+    "医生预约在周三上午10:15。",
+    "项目报告需要由李明提交。"
+   ]
+  },
+  {
+   "name": "zh-notes",
+   "language": "zh",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1271.76,
+     "detector_load": 244.5792,
+     "recognize": 515.491,
+     "recognizer_load": 276.9108
+    },
+    "wall_ms": 2512.101899999834,
+    "peak_working_set_bytes": 102408192,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     239,
+     43
+    ],
+    "timing_ms": {
+     "detect": 23.8691,
+     "detector_load": 444.4606,
+     "recognize": 105.81729999999999,
+     "recognizer_load": 372.8698
+    },
+    "wall_ms": 1152.7893000020413,
+    "peak_working_set_bytes": 85422080,
+    "text": [
+     "学生可以在网上查看考试成绩。"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "学校年度庆典将于12月5日举行。",
+    "学生可以在网上查看考试成绩。",
+    "图书馆周日不开放。",
+    "医生预约在周三上午10:15。",
+    "项目报告需要由李明提交。",
+    "总账单：3675元，已完成付款。",
+    "火车票价格定为1240元。",
+    "由于下雨，板球比赛被取消了。"
+   ]
+  },
+  {
+   "name": "zh-cards",
+   "language": "zh",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1064.3611,
+     "detector_load": 279.65,
+     "recognize": 592.2665000000001,
+     "recognizer_load": 202.8122
+    },
+    "wall_ms": 2368.605199997546,
+    "peak_working_set_bytes": 101093376,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     259,
+     46
+    ],
+    "timing_ms": {
+     "detect": 16.1712,
+     "detector_load": 240.5253,
+     "recognize": 83.32960000000003,
+     "recognizer_load": 276.1266
+    },
+    "wall_ms": 814.5756000012625,
+    "peak_working_set_bytes": 85106688,
+    "text": [
+     "总账单：3675元，已完成付款。"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "学校年度庆典将于12月5日举行。",
+    "总账单：3675元，已完成付款。",
+    "医生预约在周三上午10:15。",
+    "学生可以在网上查看考试成绩。",
+    "图书馆周日不开放。",
+    "由于下雨，板球比赛被取消了。",
+    "项目报告需要由李明提交。",
+    "火车票价格定为1240元。"
+   ]
+  },
+  {
+   "name": "zh-heading",
+   "language": "zh",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1052.3709,
+     "detector_load": 203.7963,
+     "recognize": 524.1700999999999,
+     "recognizer_load": 205.7141
+    },
+    "wall_ms": 2146.3176000033855,
+    "peak_working_set_bytes": 102318080,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     253,
+     43
+    ],
+    "timing_ms": {
+     "detect": 13.2147,
+     "detector_load": 190.9916,
+     "recognize": 97.7979,
+     "recognizer_load": 200.5203
+    },
+    "wall_ms": 659.6838999976171,
+    "peak_working_set_bytes": 85213184,
+    "text": [
+     "由于下雨，板球比赛被取消了。"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "学生可以在网上查看考试成绩。",
+    "由于下雨，板球比赛被取消了。",
+    "学校年度庆典将于12月5日举行。",
+    "火车票价格定为1240元。",
+    "医生预约在周三上午10:15。",
+    "总账单：3675元，已完成付款。",
+    "项目报告需要由李明提交。",
+    "图书馆周日不开放。"
+   ]
+  },
+  {
+   "name": "zh-compact",
+   "language": "zh",
+   "page_cer": 0.008620689655172414,
+   "page_cer_raw": 0.008620689655172414,
+   "line_accuracy": 0.875,
+   "full": {
+    "timing_ms": {
+     "detect": 1085.8779,
+     "detector_load": 192.1417,
+     "recognize": 526.3125,
+     "recognizer_load": 223.3403
+    },
+    "wall_ms": 2286.5388999998686,
+    "peak_working_set_bytes": 101187584,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     214,
+     42
+    ],
+    "timing_ms": {
+     "detect": 8.627,
+     "detector_load": 188.0275,
+     "recognize": 293.3517,
+     "recognizer_load": 216.4448
+    },
+    "wall_ms": 1049.2622000019765,
+    "peak_working_set_bytes": 94076928,
+    "text": [
+     "项日报告需专田子明提交",
+     "学校年度庆典将于12月5日举行。",
+     "总账单",
+     "上世"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "项目报告需要由李明提交。",
+    "学校年度庆典将于12月5日举行。",
+    "总账单：3675元，已完成付款。",
+    "火车票价格定为1240元。",
+    "图书馆周日不开放。",
+    "医生预约在周三上午10：15。",
+    "由于下雨，板球比赛被取消了。",
+    "学生可以在网上查看考试成绩。"
+   ]
+  },
+  {
+   "name": "es-mail",
+   "language": "es",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1009.7542,
+     "detector_load": 245.3008,
+     "recognize": 603.4722,
+     "recognizer_load": 216.5395
+    },
+    "wall_ms": 2242.802100001427,
+    "peak_working_set_bytes": 102416384,
+    "boxes": 9
+   },
+   "region": {
+    "size": [
+     256,
+     49
+    ],
+    "timing_ms": {
+     "detect": 10.7636,
+     "detector_load": 178.5765,
+     "recognize": 60.9692,
+     "recognizer_load": 206.8352
+    },
+    "wall_ms": 648.7521000017296,
+    "peak_working_set_bytes": 85291008,
+    "text": [
+     "El partido se canceló por la lluvia."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Inbox",
+    "El partido se canceló por la lluvia.",
+    "La biblioteca cierra los domingos.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "Los estudiantes pueden ver sus notas en línea.",
+    "Lucía debe entregar el informe del proyecto.",
+    "Factura total: 3.675 pesos, pago completado.",
+    "El billete de tren cuesta 1.240 pesos.",
+    "La fiesta anual del colegio es el 5 de diciembre."
+   ]
+  },
+  {
+   "name": "es-notes",
+   "language": "es",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1034.3043,
+     "detector_load": 186.2454,
+     "recognize": 911.5141000000001,
+     "recognizer_load": 207.884
+    },
+    "wall_ms": 2524.5118999955594,
+    "peak_working_set_bytes": 102326272,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     408,
+     43
+    ],
+    "timing_ms": {
+     "detect": 28.9715,
+     "detector_load": 198.7352,
+     "recognize": 101.6234,
+     "recognizer_load": 213.6139
+    },
+    "wall_ms": 717.5821000055294,
+    "peak_working_set_bytes": 87162880,
+    "text": [
+     "La fiesta anual del colegio es el 5 de diciembre."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "La biblioteca cierra los domingos.",
+    "La fiesta anual del colegio es el 5 de diciembre.",
+    "Factura total: 3.675 pesos, pago completado.",
+    "Los estudiantes pueden ver sus notas en línea.",
+    "El billete de tren cuesta 1.240 pesos.",
+    "El partido se canceló por la lluvia.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "Lucía debe entregar el informe del proyecto."
+   ]
+  },
+  {
+   "name": "es-cards",
+   "language": "es",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 964.439,
+     "detector_load": 241.8415,
+     "recognize": 555.69,
+     "recognizer_load": 233.621
+    },
+    "wall_ms": 2153.8348000030965,
+    "peak_working_set_bytes": 101203968,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     283,
+     50
+    ],
+    "timing_ms": {
+     "detect": 13.3168,
+     "detector_load": 204.8653,
+     "recognize": 103.82969999999997,
+     "recognizer_load": 191.4265
+    },
+    "wall_ms": 654.0387999993982,
+    "peak_working_set_bytes": 85114880,
+    "text": [
+     "El billete de tren cuesta 1.240 pesos."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "El partido se canceló por la lluvia.",
+    "El billete de tren cuesta 1.240 pesos.",
+    "Lucía debe entregar el informe del proyecto.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "La fiesta anual del colegio es el 5 de diciembre.",
+    "Los estudiantes pueden ver sus notas en línea.",
+    "La biblioteca cierra los domingos.",
+    "Factura total: 3.675 pesos, pago completado."
+   ]
+  },
+  {
+   "name": "es-heading",
+   "language": "es",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1111.203,
+     "detector_load": 179.2253,
+     "recognize": 865.031,
+     "recognizer_load": 222.8051
+    },
+    "wall_ms": 2554.5985999997356,
+    "peak_working_set_bytes": 101257216,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     383,
+     46
+    ],
+    "timing_ms": {
+     "detect": 26.5031,
+     "detector_load": 297.3331,
+     "recognize": 156.03519999999997,
+     "recognizer_load": 261.0477
+    },
+    "wall_ms": 1015.9889999995357,
+    "peak_working_set_bytes": 87773184,
+    "text": [
+     "La fiesta anual del colegio es el 5 de diciembre."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "El billete de tren cuesta 1.240 pesos.",
+    "La fiesta anual del colegio es el 5 de diciembre.",
+    "El partido se canceló por la lluvia.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "Factura total: 3.675 pesos, pago completado.",
+    "La biblioteca cierra los domingos.",
+    "Lucía debe entregar el informe del proyecto.",
+    "Los estudiantes pueden ver sus notas en línea."
+   ]
+  },
+  {
+   "name": "es-compact",
+   "language": "es",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1215.5466,
+     "detector_load": 230.3707,
+     "recognize": 934.3027,
+     "recognizer_load": 342.28
+    },
+    "wall_ms": 2920.1365999979316,
+    "peak_working_set_bytes": 101072896,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     225,
+     43
+    ],
+    "timing_ms": {
+     "detect": 16.2409,
+     "detector_load": 282.2231,
+     "recognize": 408.81759999999997,
+     "recognizer_load": 286.7872
+    },
+    "wall_ms": 1256.8208999946364,
+    "peak_working_set_bytes": 95948800,
+    "text": [
+     "ue trel cuesta T.z4o",
+     "La biblioteca cierra los domingos.",
+     "u. 1"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "El billete de tren cuesta 1.240 pesos.",
+    "La biblioteca cierra los domingos.",
+    "El partido se canceló por la lluvia.",
+    "La fiesta anual del colegio es el 5 de diciembre.",
+    "Lucía debe entregar el informe del proyecto.",
+    "Factura total: 3.675 pesos, pago completado.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "Los estudiantes pueden ver sus notas en línea."
+   ]
+  },
+  {
+   "name": "fr-mail",
+   "language": "fr",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1460.6633,
+     "detector_load": 233.2772,
+     "recognize": 834.8258,
+     "recognizer_load": 249.015
+    },
+    "wall_ms": 2986.063700001978,
+    "peak_working_set_bytes": 102379520,
+    "boxes": 9
+   },
+   "region": {
+    "size": [
+     433,
+     52
+    ],
+    "timing_ms": {
+     "detect": 32.1861,
+     "detector_load": 393.7383,
+     "recognize": 140.84390000000002,
+     "recognizer_load": 326.5018
+    },
+    "wall_ms": 1143.1952999992063,
+    "peak_working_set_bytes": 85315584,
+    "text": [
+     "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Inbox",
+    "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3.",
+    "Srinivas doit remettre le rapport du projet.",
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "La bibliothèque est fermée le dimanche.",
+    "Le match de cricket a été annulé à cause de la pluie.",
+    "La fête annuelle de l'école aura lieu le 5 décembre."
+   ]
+  },
+  {
+   "name": "fr-notes",
+   "language": "fr",
+   "page_cer": 0.002457002457002457,
+   "page_cer_raw": 0.002457002457002457,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1172.6624,
+     "detector_load": 275.4229,
+     "recognize": 1324.9885,
+     "recognizer_load": 305.9213
+    },
+    "wall_ms": 3275.689499998407,
+    "peak_working_set_bytes": 101105664,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     455,
+     46
+    ],
+    "timing_ms": {
+     "detect": 32.9333,
+     "detector_load": 289.212,
+     "recognize": 184.05470000000003,
+     "recognizer_load": 306.5564
+    },
+    "wall_ms": 1024.0234000011696,
+    "peak_working_set_bytes": 87236608,
+    "text": [
+     "Les élèves peuvent consulter leurs résultats en ligne."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "La bibliothèque est fermée le dimanche.",
+    "Les élèves peuvent consulter leurs résultats en ligne",
+    "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "Srinivas doit remettre le rapport du projet.",
+    "La fête annuelle de l'école aura lieu le 5 décembre.",
+    "Le match de cricket a été annulé à cause de la pluie."
+   ]
+  },
+  {
+   "name": "fr-cards",
+   "language": "fr",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1085.9331,
+     "detector_load": 257.3969,
+     "recognize": 947.9974,
+     "recognizer_load": 288.0428
+    },
+    "wall_ms": 2775.5292000001646,
+    "peak_working_set_bytes": 102223872,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     358,
+     46
+    ],
+    "timing_ms": {
+     "detect": 27.0014,
+     "detector_load": 407.7181,
+     "recognize": 157.13759999999996,
+     "recognizer_load": 324.8095
+    },
+    "wall_ms": 1283.5632999995141,
+    "peak_working_set_bytes": 85282816,
+    "text": [
+     "Facture totale : 3 675 euros, paiement effectué."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Le match de cricket a été annulé à cause de la pluie.",
+    "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3.",
+    "La bibliothèque est fermée le dimanche.",
+    "Srinivas doit remettre le rapport du projet.",
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "La fête annuelle de l'école aura lieu le 5 décembre."
+   ]
+  },
+  {
+   "name": "fr-heading",
+   "language": "fr",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1671.3399,
+     "detector_load": 306.7244,
+     "recognize": 2086.6039,
+     "recognizer_load": 541.6257
+    },
+    "wall_ms": 5017.902699997649,
+    "peak_working_set_bytes": 102457344,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     492,
+     46
+    ],
+    "timing_ms": {
+     "detect": 53.8201,
+     "detector_load": 374.5628,
+     "recognize": 360.26410000000004,
+     "recognizer_load": 379.4373
+    },
+    "wall_ms": 1606.0101999973995,
+    "peak_working_set_bytes": 94904320,
+    "text": [
+     "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3.",
+    "La bibliothèque est fermée le dimanche.",
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "Le match de cricket a été annulé à cause de la pluie.",
+    "La fête annuelle de l'école aura lieu le 5 décembre.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Srinivas doit remettre le rapport du projet."
+   ]
+  },
+  {
+   "name": "fr-compact",
+   "language": "fr",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 2270.7597,
+     "detector_load": 355.0773,
+     "recognize": 1640.9069,
+     "recognizer_load": 579.8039
+    },
+    "wall_ms": 5230.778700002702,
+    "peak_working_set_bytes": 102330368,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     337,
+     43
+    ],
+    "timing_ms": {
+     "detect": 27.7526,
+     "detector_load": 334.0064,
+     "recognize": 483.0541999999999,
+     "recognizer_load": 536.9713
+    },
+    "wall_ms": 1921.1532999979681,
+    "peak_working_set_bytes": 91648000,
+    "text": [
+     "e prix uu Dittet ue tral",
+     "40 eur0s.",
+     "Les élèves peuvent consulter leurs résultats en ligne.",
+     "hiblio"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "La bibliothèque est fermée le dimanche.",
+    "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3.",
+    "Le match de cricket a été annulé à cause de la pluie.",
+    "La fête annuelle de l'école aura lieu le 5 décembre.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Srinivas doit remettre le rapport du projet."
+   ]
+  },
+  {
+   "name": "pt-mail",
+   "language": "pt",
+   "page_cer": 0.002457002457002457,
+   "page_cer_raw": 0.002457002457002457,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 2073.6123,
+     "detector_load": 439.1248,
+     "recognize": 1462.5078999999998,
+     "recognizer_load": 335.3321
+    },
+    "wall_ms": 4678.901500003121,
+    "peak_working_set_bytes": 101134336,
+    "boxes": 9
+   },
+   "region": {
+    "size": [
+     326,
+     49
+    ],
+    "timing_ms": {
+     "detect": 22.526,
+     "detector_load": 485.484,
+     "recognize": 130.54060000000004,
+     "recognizer_load": 513.4638
+    },
+    "wall_ms": 1645.9895999942091,
+    "peak_working_set_bytes": 85168128,
+    "text": [
+     "Conta total: R$ 3.675, pagamento concluído."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Inbox",
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "A partida de críquete foi cancelada por causa da chuva.",
+    "A festa anual da escola será no dia 5 de dezembro.",
+    "O preço da passagem de trem foi fixado em R$ 1.240.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "A biblioteca fica fechada aos domingos.",
+    "Os alunos podem ver os resultados das provas on-line.",
+    "Consulta médica: quarta-feira às 1oh15, consultório 3."
+   ]
+  },
+  {
+   "name": "pt-notes",
+   "language": "pt",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1843.3334,
+     "detector_load": 430.7334,
+     "recognize": 1748.3606,
+     "recognizer_load": 422.6369
+    },
+    "wall_ms": 4905.690200001118,
+    "peak_working_set_bytes": 101208064,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     347,
+     50
+    ],
+    "timing_ms": {
+     "detect": 25.5811,
+     "detector_load": 540.3805,
+     "recognize": 190.32719999999995,
+     "recognizer_load": 682.0293
+    },
+    "wall_ms": 2196.509400004288,
+    "peak_working_set_bytes": 85209088,
+    "text": [
+     "A biblioteca fica fechada aos domingos."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "A festa anual da escola será no dia 5 de dezembro.",
+    "A biblioteca fica fechada aos domingos.",
+    "Os alunos podem ver os resultados das provas on-line.",
+    "A partida de críquete foi cancelada por causa da chuva.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "O preço da passagem de trem foi fixado em R$ 1.240.",
+    "Consulta médica: quarta-feira às 10h15, consultório 3."
+   ]
+  },
+  {
+   "name": "pt-cards",
+   "language": "pt",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1796.4601,
+     "detector_load": 375.2511,
+     "recognize": 1918.5323,
+     "recognizer_load": 513.231
+    },
+    "wall_ms": 5005.697499997041,
+    "peak_working_set_bytes": 101715968,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     357,
+     50
+    ],
+    "timing_ms": {
+     "detect": 33.1391,
+     "detector_load": 398.7695,
+     "recognize": 158.18609999999995,
+     "recognizer_load": 456.3575
+    },
+    "wall_ms": 1475.9491000004346,
+    "peak_working_set_bytes": 85135360,
+    "text": [
+     "Srinivas precisa entregar o relatório do projeto."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "A partida de críquete foi cancelada por causa da chuva.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "Os alunos podem ver os resultados das provas on-line.",
+    "A biblioteca fica fechada aos domingos.",
+    "A festa anual da escola será no dia 5 de dezembro.",
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "O preço da passagem de trem foi fixado em R$ 1.240.",
+    "Consulta médica: quarta-feira às 10h15, consultório 3."
+   ]
+  },
+  {
+   "name": "pt-heading",
+   "language": "pt",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 2529.7499,
+     "detector_load": 397.159,
+     "recognize": 2274.7498,
+     "recognizer_load": 633.2041
+    },
+    "wall_ms": 6274.4228999945335,
+    "peak_working_set_bytes": 100524032,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     439,
+     49
+    ],
+    "timing_ms": {
+     "detect": 28.1393,
+     "detector_load": 310.5972,
+     "recognize": 194.79129999999998,
+     "recognizer_load": 249.4094
+    },
+    "wall_ms": 1028.8323999993736,
+    "peak_working_set_bytes": 88997888,
+    "text": [
+     "Os alunos podem ver os resultados das provas on-line."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "Os alunos podem ver os resultados das provas on-line.",
+    "A biblioteca fica fechada aos domingos.",
+    "Consulta médica: quarta-feira às 10h15, consultório 3.",
+    "A partida de críquete foi cancelada por causa da chuva.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "A festa anual da escola será no dia 5 de dezembro.",
+    "O preço da passagem de trem foi fixado em R$ 1.240."
+   ]
+  },
+  {
+   "name": "pt-compact",
+   "language": "pt",
+   "page_cer": 0.0024937655860349127,
+   "page_cer_raw": 0.0024937655860349127,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1399.2758,
+     "detector_load": 248.5341,
+     "recognize": 1478.8437999999999,
+     "recognizer_load": 389.5298
+    },
+    "wall_ms": 3730.0727000038023,
+    "peak_working_set_bytes": 101216256,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     308,
+     43
+    ],
+    "timing_ms": {
+     "detect": 27.3895,
+     "detector_load": 426.6964,
+     "recognize": 687.1281000000001,
+     "recognizer_load": 351.7186
+    },
+    "wall_ms": 1802.250599997933,
+    "peak_working_set_bytes": 104181760,
+    "text": [
+     "s aturos pouelr ver os resuttauos uas s provas on",
+     "Srinivas precisa entregar o relatório do projeto.",
+     "rtid"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Os alunos podem ver os resultados das provas on-line.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "A partida de críquete foi cancelada por causa da chuva",
+    "O preço da passagem de trem foi fixado em R$ 1.240.",
+    "Consulta médica: quarta-feira às 10h15, consultório 3.",
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "A biblioteca fica fechada aos domingos.",
+    "A festa anual da escola será no dia 5 de dezembro."
+   ]
+  },
+  {
+   "name": "de-mail",
+   "language": "de",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1681.3561,
+     "detector_load": 383.4926,
+     "recognize": 1180.5605,
+     "recognizer_load": 375.6599
+    },
+    "wall_ms": 3893.357399996603,
+    "peak_working_set_bytes": 101150720,
+    "boxes": 9
+   },
+   "region": {
+    "size": [
+     341,
+     49
+    ],
+    "timing_ms": {
+     "detect": 62.889,
+     "detector_load": 382.008,
+     "recognize": 133.29670000000004,
+     "recognizer_load": 358.3502
+    },
+    "wall_ms": 1192.7708000002895,
+    "peak_working_set_bytes": 85331968,
+    "text": [
+     "Das Cricketspiel wurde wegen Regen abgesagt."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Inbox",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Srinivas muss den Projektbericht einreichen.",
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro.",
+    "Schüler können ihre Prüfungsergebnisse online ansehen.",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "Das Schulfest findet am 5. Dezember statt.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3."
+   ]
+  },
+  {
+   "name": "de-notes",
+   "language": "de",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1746.3581,
+     "detector_load": 357.6518,
+     "recognize": 1676.4062,
+     "recognizer_load": 361.1955
+    },
+    "wall_ms": 4423.750900001323,
+    "peak_working_set_bytes": 101146624,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     443,
+     49
+    ],
+    "timing_ms": {
+     "detect": 36.307,
+     "detector_load": 391.9327,
+     "recognize": 243.10369999999995,
+     "recognizer_load": 387.8394
+    },
+    "wall_ms": 1300.1561999990372,
+    "peak_working_set_bytes": 88559616,
+    "text": [
+     "Der Fahrpreis für das Zugticket beträgt 1.240 Euro."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Das Schulfest findet am 5. Dezember statt.",
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro.",
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3.",
+    "Srinivas muss den Projektbericht einreichen.",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Schüler können ihre Prüfungsergebnisse online ansehen.",
+    "Die Bibliothek ist sonntags geschlossen."
+   ]
+  },
+  {
+   "name": "de-cards",
+   "language": "de",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1781.8343,
+     "detector_load": 348.4679,
+     "recognize": 1221.4538000000002,
+     "recognizer_load": 410.0476
+    },
+    "wall_ms": 4044.7839999978896,
+    "peak_working_set_bytes": 101154816,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     403,
+     49
+    ],
+    "timing_ms": {
+     "detect": 40.7594,
+     "detector_load": 375.8051,
+     "recognize": 203.54889999999995,
+     "recognizer_load": 363.7701
+    },
+    "wall_ms": 1307.229300000472,
+    "peak_working_set_bytes": 85225472,
+    "text": [
+     "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Schüler können ihre Prüfungsergebnisse online ansehen.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "Das Schulfest findet am 5. Dezember statt.",
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro.",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3.",
+    "Srinivas muss den Projektbericht einreichen."
+   ]
+  },
+  {
+   "name": "de-heading",
+   "language": "de",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1724.074,
+     "detector_load": 357.7587,
+     "recognize": 1740.0294,
+     "recognizer_load": 379.9045
+    },
+    "wall_ms": 4544.7658999983105,
+    "peak_working_set_bytes": 101134336,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     380,
+     43
+    ],
+    "timing_ms": {
+     "detect": 38.2198,
+     "detector_load": 366.4386,
+     "recognize": 182.74019999999996,
+     "recognizer_load": 363.4878
+    },
+    "wall_ms": 1239.0709000028437,
+    "peak_working_set_bytes": 87371776,
+    "text": [
+     "Das Cricketspiel wurde wegen Regen abgesagt."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro.",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3.",
+    "Das Schulfest findet am 5. Dezember statt.",
+    "Srinivas muss den Projektbericht einreichen.",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "Schüler können ihre Prüfungsergebnisse online ansehen."
+   ]
+  },
+  {
+   "name": "de-compact",
+   "language": "de",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1733.0505,
+     "detector_load": 343.851,
+     "recognize": 1776.1666,
+     "recognizer_load": 358.1252
+    },
+    "wall_ms": 4455.00880000327,
+    "peak_working_set_bytes": 101236736,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     327,
+     42
+    ],
+    "timing_ms": {
+     "detect": 24.3567,
+     "detector_load": 264.4338,
+     "recognize": 501.62010000000004,
+     "recognizer_load": 310.2381
+    },
+    "wall_ms": 1315.5383999983314,
+    "peak_working_set_bytes": 93515776,
+    "text": [
+     "Ar2tten. MctWocn",
+     ", Praxis 3.",
+     "Der Fahrpreis für das Zugticket beträgt 1.240 Euro."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3.",
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro.",
+    "Srinivas muss den Projektbericht einreichen.",
+    "Schüler können ihre Prüfungsergebnisse online ansehen.",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "Das Schulfest findet am 5. Dezember statt."
+   ]
+  },
+  {
+   "name": "id-mail",
+   "language": "id",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1758.3506,
+     "detector_load": 318.8278,
+     "recognize": 1112.1475,
+     "recognizer_load": 331.3354
+    },
+    "wall_ms": 3758.360100000573,
+    "peak_working_set_bytes": 101675008,
+    "boxes": 9
+   },
+   "region": {
+    "size": [
+     394,
+     49
+    ],
+    "timing_ms": {
+     "detect": 28.3781,
+     "detector_load": 391.1811,
+     "recognize": 164.0779,
+     "recognizer_load": 344.7212
+    },
+    "wall_ms": 1238.7847999998485,
+    "peak_working_set_bytes": 88494080,
+    "text": [
+     "Perayaan tahunan sekolah diadakan pada 5 Desember."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Inbox",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Pertandingan kriket dibatalkan karena hujan.",
+    "Harga tiket kereta ditetapkan Rp1.240.000.",
+    "Total tagihan: Rp3.675.000, pembayaran selesai.",
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Srinivas harus menyerahkan laporan proyek."
+   ]
+  },
+  {
+   "name": "id-notes",
+   "language": "id",
+   "page_cer": 0.0027472527472527475,
+   "page_cer_raw": 0.0027472527472527475,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 2151.5501,
+     "detector_load": 373.3542,
+     "recognize": 1533.0594999999998,
+     "recognizer_load": 355.6227
+    },
+    "wall_ms": 4681.18400000094,
+    "peak_working_set_bytes": 101183488,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     419,
+     49
+    ],
+    "timing_ms": {
+     "detect": 31.3457,
+     "detector_load": 450.0883,
+     "recognize": 172.7745,
+     "recognizer_load": 406.115
+    },
+    "wall_ms": 1314.969300001394,
+    "peak_working_set_bytes": 85237760,
+    "text": [
+     "Janji dokter: Rabu pukul 10.15, ruang praktik 3."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Srinivas harus menyerahkan laporan proyek.",
+    "Total tagihan: Rp3.675.000, pembayaran selesai.",
+    "Harga tiket kereta ditetapkan Rp1.240.000",
+    "Pertandingan kriket dibatalkan karena hujan."
+   ]
+  },
+  {
+   "name": "id-cards",
+   "language": "id",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1831.3594,
+     "detector_load": 384.8762,
+     "recognize": 1070.508,
+     "recognizer_load": 353.6886
+    },
+    "wall_ms": 3961.3332000008086,
+    "peak_working_set_bytes": 102342656,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     325,
+     49
+    ],
+    "timing_ms": {
+     "detect": 48.8772,
+     "detector_load": 354.9564,
+     "recognize": 148.00349999999997,
+     "recognizer_load": 363.9152
+    },
+    "wall_ms": 1240.0386000008439,
+    "peak_working_set_bytes": 85254144,
+    "text": [
+     "Harga tiket kereta ditetapkan Rp1.240.000"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Total tagihan: Rp3.675.000, pembayaran selesai.",
+    "Harga tiket kereta ditetapkan Rp1.240.000.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Pertandingan kriket dibatalkan karena hujan.",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Srinivas harus menyerahkan laporan proyek."
+   ]
+  },
+  {
+   "name": "id-heading",
+   "language": "id",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1406.9592,
+     "detector_load": 370.259,
+     "recognize": 1387.3677,
+     "recognizer_load": 363.8087
+    },
+    "wall_ms": 3805.9912999960943,
+    "peak_working_set_bytes": 101130240,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     369,
+     46
+    ],
+    "timing_ms": {
+     "detect": 26.8847,
+     "detector_load": 349.3729,
+     "recognize": 167.41360000000003,
+     "recognizer_load": 348.0945
+    },
+    "wall_ms": 1113.6040999990655,
+    "peak_working_set_bytes": 85262336,
+    "text": [
+     "Siswa dapat melihat hasil ujian secara daring."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Srinivas harus menyerahkan laporan proyek.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Pertandingan kriket dibatalkan karena hujan.",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Total tagihan: Rp3.675.000, pembayaran selesai.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Harga tiket kereta ditetapkan Rp1.240.000."
+   ]
+  },
+  {
+   "name": "id-compact",
+   "language": "id",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1583.7689,
+     "detector_load": 331.7607,
+     "recognize": 1054.1178,
+     "recognizer_load": 394.5535
+    },
+    "wall_ms": 3604.269600000407,
+    "peak_working_set_bytes": 101011456,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     311,
+     46
+    ],
+    "timing_ms": {
+     "detect": 25.106,
+     "detector_load": 359.1215,
+     "recognize": 802.829,
+     "recognizer_load": 380.5459
+    },
+    "wall_ms": 1836.481600003026,
+    "peak_working_set_bytes": 98578432,
+    "text": [
+     "Harga tiket kereta ditetapkan Rp1.240.000.",
+     "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+     "Total tagihar Dr",
+     "75",
+     "selesai"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Harga tiket kereta ditetapkan Rp1.240.000.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Total tagihan: Rp3.675.000, pembayaran selesai.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Pertandingan kriket dibatalkan karena hujan.",
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Srinivas harus menyerahkan laporan proyek."
+   ]
+  },
+  {
+   "name": "ja-mail",
+   "language": "ja",
+   "page_cer": 0.005263157894736842,
+   "page_cer_raw": 0.005263157894736842,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1748.2459,
+     "detector_load": 391.8027,
+     "recognize": 2338.5549,
+     "recognizer_load": 510.0127
+    },
+    "wall_ms": 5235.8978999982355,
+    "peak_working_set_bytes": 101081088,
+    "boxes": 9
+   },
+   "region": {
+    "size": [
+     330,
+     46
+    ],
+    "timing_ms": {
+     "detect": 31.3332,
+     "detector_load": 339.9181,
+     "recognize": 330.7922,
+     "recognizer_load": 470.5683
+    },
+    "wall_ms": 1465.0933000011719,
+    "peak_working_set_bytes": 81166336,
+    "text": [
+     "雨のため、クリケットの試合は中止になりました。"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "Inbox",
+    "雨のため、クリケットの試合は中止になりました。",
+    "電車の切符の料金は1,240円に決まりました。",
+    "合計金額：3,675円、支払いが完了しました。",
+    "図書館は日曜日休館です。",
+    "学生はオンラインで試験結果を確認できます。",
+    "スリニヴァスさんはブロジェクト報告書を提出する必要があります。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "学校の年次行事は12月5日に行われます。"
+   ]
+  },
+  {
+   "name": "ja-notes",
+   "language": "ja",
+   "page_cer": 0.005434782608695652,
+   "page_cer_raw": 0.005434782608695652,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 2054.9761,
+     "detector_load": 356.1748,
+     "recognize": 2093.3888,
+     "recognizer_load": 415.1187
+    },
+    "wall_ms": 5178.510199999437,
+    "peak_working_set_bytes": 101105664,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     343,
+     46
+    ],
+    "timing_ms": {
+     "detect": 22.5233,
+     "detector_load": 347.9633,
+     "recognize": 292.9513,
+     "recognizer_load": 463.5954
+    },
+    "wall_ms": 1442.0261999985087,
+    "peak_working_set_bytes": 81907712,
+    "text": [
+     "電車の切符の料金は1,240円に決まりました。"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "学生はオンラインで試験結果を確認できます。",
+    "電車の切符の料金は1,240円に決まりました。",
+    "学校の年次行事は12月5日に行われます。",
+    "スリニヴァスさんはプロジェクト報告書を提出する必要があります。",
+    "図書館は日曜日休館です。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "雨のため、クリケットの試合は中止になリました。",
+    "合計金額：3,675円、支払いが完了しました。"
+   ]
+  },
+  {
+   "name": "ja-cards",
+   "language": "ja",
+   "page_cer": 0.010869565217391304,
+   "page_cer_raw": 0.010869565217391304,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1587.6198,
+     "detector_load": 299.8615,
+     "recognize": 2323.6038,
+     "recognizer_load": 419.813
+    },
+    "wall_ms": 4876.374399995257,
+    "peak_working_set_bytes": 101154816,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     372,
+     43
+    ],
+    "timing_ms": {
+     "detect": 29.7911,
+     "detector_load": 301.2928,
+     "recognize": 245.30349999999993,
+     "recognizer_load": 398.9535
+    },
+    "wall_ms": 1221.7769999988377,
+    "peak_working_set_bytes": 81215488,
+    "text": [
+     "学生はオンラインで試験結果を確認できます。"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "スリニヴァスさんはプロジェクト報告書を提出する必要があリます。",
+    "学生はオンラインで試験結果を確認できます。",
+    "雨のため、クリケットの試合は中止になリました。",
+    "合計金額：3,675円、支払いが完了しました。",
+    "学校の年次行事は12月5日に行われます。",
+    "図書館は日曜日休館です。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "電車の切符の料金は1,240円に決まりました。"
+   ]
+  },
+  {
+   "name": "ja-heading",
+   "language": "ja",
+   "page_cer": 0.005434782608695652,
+   "page_cer_raw": 0.005434782608695652,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1331.1076,
+     "detector_load": 300.391,
+     "recognize": 2967.1998,
+     "recognizer_load": 405.0652
+    },
+    "wall_ms": 5242.374300003576,
+    "peak_working_set_bytes": 101228544,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     404,
+     43
+    ],
+    "timing_ms": {
+     "detect": 27.6682,
+     "detector_load": 327.6097,
+     "recognize": 375.82099999999997,
+     "recognizer_load": 376.5189
+    },
+    "wall_ms": 1360.322599997744,
+    "peak_working_set_bytes": 84774912,
+    "text": [
+     "病院の予約：水曜日の午前10時15分、診察室3。"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "学校の年次行事は12月5日に行われます。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "合計金額：3,675円、支払いが完了しました。",
+    "雨のため、クリケットの試合は中止になりました。",
+    "図書館は日曜日休館です。",
+    "スリニヴァスさんはブロジェクト報告書を提出する必要があります。",
+    "学生はオンラインで試験結果を確認できます。",
+    "電車の切符の料金は1,240円に決まりました。"
+   ]
+  },
+  {
+   "name": "ja-compact",
+   "language": "ja",
+   "page_cer": 0.010869565217391304,
+   "page_cer_raw": 0.010869565217391304,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1409.1798,
+     "detector_load": 292.9962,
+     "recognize": 2258.2813,
+     "recognizer_load": 439.2486
+    },
+    "wall_ms": 4658.870699997351,
+    "peak_working_set_bytes": 101232640,
+    "boxes": 8
+   },
+   "region": {
+    "size": [
+     421,
+     43
+    ],
+    "timing_ms": {
+     "detect": 34.2968,
+     "detector_load": 362.7132,
+     "recognize": 877.4205000000002,
+     "recognizer_load": 452.7358
+    },
+    "wall_ms": 1995.5241000061505,
+    "peak_working_set_bytes": 87072768,
+    "text": [
+     "雨0",
+     "中工になりましに。",
+     "スリニヴァスさんはプロジェクト報告書を提出する必要があリます。",
+     "図き館は F"
+    ]
+   },
+   "recognizers": [
+    "ja"
+   ],
+   "pred": [
+    "雨のため、クリケットの試合は中止になリました。",
+    "スリニヴァスさんはプロジェクト報告書を提出する必要があリます。",
+    "図書館は日曜日休館です。",
+    "合計金額：3,675円、支払いが完了しました。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "学生はオンラインで試験結果を確認できます。",
+    "学校の年次行事は12月5日に行われます。",
+    "電車の切符の料金は1,240円に決まりました。"
+   ]
+  }
+ ]
+}

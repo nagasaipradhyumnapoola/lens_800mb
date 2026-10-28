@@ -1,0 +1,1587 @@
+{
+ "created_utc": "20261028T025618Z",
+ "engine": "tesseract v5.4.0.20240606",
+ "set": "dev",
+ "only": null,
+ "manifest_sha256": "bff03c92ad7c453ebc3330a6b37564abca64b137b4ce38f2198b1b3d6651ffe5",
+ "tessdata_best_commit": "e12c65a915945e4c28e237a9b52bc4a8f39a0cec",
+ "exe_sha256": "babb405f4366b480d02cd8ff2bac8d497170f6c1711ce6f3d5d8bf0fb7fa6ed9",
+ "psm": 3,
+ "threads": 2,
+ "metric": "page CER on NFC text, ZWNJ/ZWJ removed, empty lines dropped",
+ "summary": {
+  "en": {
+   "page_cer": 0.005984568194035987,
+   "line_accuracy": 0.9666666666666667,
+   "wall_ms_p50": 1451.0164500024985
+  },
+  "zh": {
+   "page_cer": 0.7270833333333334,
+   "line_accuracy": 0.0,
+   "wall_ms_p50": 2607.494100011536
+  },
+  "es": {
+   "page_cer": 0.026896551724137928,
+   "line_accuracy": 0.9666666666666666,
+   "wall_ms_p50": 1585.431100000278
+  },
+  "hi": {
+   "page_cer": 0.015384615384615385,
+   "line_accuracy": 0.9,
+   "wall_ms_p50": 1540.9234999970067
+  },
+  "ta": {
+   "page_cer": 0.04946996466431096,
+   "line_accuracy": 0.6,
+   "wall_ms_p50": 1585.6666999898152
+  },
+  "te": {
+   "page_cer": 0.019011406844106467,
+   "line_accuracy": 0.9333333333333332,
+   "wall_ms_p50": 1824.454900008277
+  },
+  "fr": {
+   "page_cer": 0.006349206349206349,
+   "line_accuracy": 0.9333333333333332,
+   "wall_ms_p50": 1149.935599998571
+  },
+  "pt": {
+   "page_cer": 0.021875,
+   "line_accuracy": 0.9666666666666668,
+   "wall_ms_p50": 1214.2716999951517
+  },
+  "de": {
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms_p50": 1584.7240000002785
+  },
+  "id": {
+   "page_cer": 0.012101910828025478,
+   "line_accuracy": 0.9666666666666666,
+   "wall_ms_p50": 2127.373700001044
+  },
+  "ru": {
+   "page_cer": 0.0006849315068493151,
+   "line_accuracy": 1.0,
+   "wall_ms_p50": 1688.1141000048956
+  },
+  "ja": {
+   "page_cer": 0.6812030075187969,
+   "line_accuracy": 0.0,
+   "wall_ms_p50": 2954.678200010676
+  },
+  "ar": {
+   "page_cer": 0.0390625,
+   "line_accuracy": 0.6333333333333334,
+   "wall_ms_p50": 1566.817799990531
+  },
+  "ur": {
+   "page_cer": 0.04302788844621514,
+   "line_accuracy": 0.7000000000000001,
+   "wall_ms_p50": 1791.9943000015337
+  },
+  "bn": {
+   "page_cer": 0.035606060606060606,
+   "line_accuracy": 0.7666666666666667,
+   "wall_ms_p50": 1780.5052000039723
+  },
+  "mr": {
+   "page_cer": 0.00933852140077821,
+   "line_accuracy": 0.9666666666666668,
+   "wall_ms_p50": 1342.0091000007233
+  },
+  "gu": {
+   "page_cer": 0.03520599250936329,
+   "line_accuracy": 0.8666666666666668,
+   "wall_ms_p50": 1484.535199997481
+  },
+  "mixed": {
+   "page_cer": 0.05555555555555555,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms_p50": 3857.151199990767
+  },
+  "peak_working_set_mb_max": 180.486144
+ },
+ "rows": [
+  {
+   "name": "en-light",
+   "language": "en",
+   "tesseract_langs": "eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1579.7328000044217,
+   "peak_working_set_bytes": 56557568,
+   "pred": [
+    "Quarterly planning notes",
+    "The vendor contract renewal is due on 14 November.",
+    "Priya will share the revised budget by Friday.",
+    "Meeting moved to Thursday at 4:30 pm in room B12.",
+    "Action items: update the roadmap, review hiring plan.",
+    "Total spend so far: $48,250"
+   ]
+  },
+  {
+   "name": "en-dark",
+   "language": "en",
+   "tesseract_langs": "eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1774.4214999984251,
+   "peak_working_set_bytes": 56512512,
+   "pred": [
+    "Quarterly planning notes",
+    "The vendor contract renewal is due on 14 November.",
+    "Priya will share the revised budget by Friday.",
+    "Meeting moved to Thursday at 4:30 pm in room B12.",
+    "Action items: update the roadmap, review hiring plan.",
+    "Total spend so far: $48,250"
+   ]
+  },
+  {
+   "name": "en-small",
+   "language": "en",
+   "tesseract_langs": "eng",
+   "page_cer": 0.011811023622047244,
+   "line_accuracy": 1.0,
+   "wall_ms": 1213.2099000009475,
+   "peak_working_set_bytes": 56553472,
+   "pred": [
+    "Quarterly planning notes",
+    "The vendor contract renewal is due on 14 November.",
+    "Priya wil share the revised budget by Friday.",
+    "Meeting moved to Thursday at 430 pm in room B12.",
+    "Action items: update the roadmap, review hiring plan.",
+    "Total spend so far: $48250"
+   ]
+  },
+  {
+   "name": "en-chat",
+   "language": "en",
+   "tesseract_langs": "eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1462.7438000024995,
+   "peak_working_set_bytes": 56561664,
+   "pred": [
+    "Quarterly planning notes",
+    "The vendor contract renewal is due on 14 November.",
+    "Priya will share the revised budget by Friday.",
+    "Meeting moved to Thursday at 4:30 pm in room B12.",
+    "Action items: update the roadmap, review hiring plan.",
+    "Total spend so far: $48,250"
+   ]
+  },
+  {
+   "name": "en-table",
+   "language": "en",
+   "tesseract_langs": "eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1439.2891000024974,
+   "peak_working_set_bytes": 56573952,
+   "pred": [
+    "Quarterly planning notes",
+    "The vendor contract renewal is due on 14 November.",
+    "Priya will share the revised budget by Friday.",
+    "Meeting moved to Thursday at 4:30 pm in room B12.",
+    "Action items: update the roadmap, review hiring plan.",
+    "Total spend so far: $48,250"
+   ]
+  },
+  {
+   "name": "zh-light",
+   "language": "zh",
+   "tesseract_langs": "chi_sim+eng",
+   "page_cer": 0.6979166666666666,
+   "line_accuracy": 0.0,
+   "wall_ms": 1711.6959000122733,
+   "peak_working_set_bytes": 107798528,
+   "pred": [
+    "季度 计划 笔记",
+    "供应 商 合同 续签 截止 日 期 是 十 一 月 十 四 日 。",
+    "王 芳 会 在 周 五 前 分 享 修订 后 的 预算 。",
+    "会 议 改 到 周 四 下 午 四 点 半 ， 在 B12 会 议 室 。",
+    "待 办 事项 : 更 新 路 线 图 ， 审 核 招聘 计划 。",
+    "目前 总 支出 : 48250 元"
+   ]
+  },
+  {
+   "name": "zh-dark",
+   "language": "zh",
+   "tesseract_langs": "chi_sim+eng",
+   "page_cer": 0.7083333333333334,
+   "line_accuracy": 0.0,
+   "wall_ms": 2816.768700009561,
+   "peak_working_set_bytes": 107802624,
+   "pred": [
+    "季度 计划 笔记",
+    "供应 商 合同 续签 截止 日 期 是 十 一 月 十 四 日 。",
+    "王 东 会 在 周 五 前 分 享 修订 后 的 预算 。",
+    "SEER",
+    "I",
+    "#， 在 B12 会 议 室 。",
+    ": 更 新 路 线 图 ， 审 核 招聘 计划 。",
+    "目前 总 支出 : 48250 元"
+   ]
+  },
+  {
+   "name": "zh-small",
+   "language": "zh",
+   "tesseract_langs": "chi_sim+eng",
+   "page_cer": 0.8125,
+   "line_accuracy": 0.0,
+   "wall_ms": 2093.3245999913197,
+   "peak_working_set_bytes": 107798528,
+   "pred": [
+    "季 谊 计划 笔记",
+    "供应 商 合同 续 符 载 止 日 期 是 十 一 月 十 四 日 。",
+    "王 蘑 会 在 周 五 前 分 享 修订 后 的 预算",
+    "会 议 改 到 周 四 下 午 四 点 半 ， 在 812 会 议 室 -",
+    "ENE: 更 新 路 线 图 ， 宗 核 招聘 计划 -",
+    "目前 总 支出 : 48250 元"
+   ]
+  },
+  {
+   "name": "zh-chat",
+   "language": "zh",
+   "tesseract_langs": "chi_sim+eng",
+   "page_cer": 0.7083333333333334,
+   "line_accuracy": 0.0,
+   "wall_ms": 2899.3488999985857,
+   "peak_working_set_bytes": 107790336,
+   "pred": [
+    "季度 计划 笔记",
+    "供应 商 合同 续签 截止 日 期 是 十 一 月 十 四 日 。",
+    "王 芳 会 在 周 五 前 分 享 修订 后 的 预算 。",
+    "会 议 改 到 周 四 下 午 四 点 半 ， 在 B12 会 议 塞 。",
+    "待 办 事项 : 更 新 路 线 图 ， 审 核 招聘 计划 。",
+    "目前 总 支出 : 48250 元"
+   ]
+  },
+  {
+   "name": "zh-table",
+   "language": "zh",
+   "tesseract_langs": "chi_sim+eng",
+   "page_cer": 0.7083333333333334,
+   "line_accuracy": 0.0,
+   "wall_ms": 2607.494100011536,
+   "peak_working_set_bytes": 107827200,
+   "pred": [
+    "季度 计划 笔记",
+    "供应 商 合同 续签 截止 日 期 是 十 一 月 十 四 日 。",
+    "王 芳 会 在 周 五 前 分 享 修订 后 的 预算 。",
+    "会 议 改 到 周 四 下 午 四 点 半 ， 在 B12 会 议 塞 。",
+    "待 办 事项 : 更 新 路 线 图 ， 审 核 招聘 计划 。",
+    "目前 总 支出 : 48250 元"
+   ]
+  },
+  {
+   "name": "es-light",
+   "language": "es",
+   "tesseract_langs": "spa+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1599.6161000075517,
+   "peak_working_set_bytes": 85016576,
+   "pred": [
+    "Notas de planificación trimestral",
+    "La renovación del contrato vence el 14 de noviembre.",
+    "Ana compartirá el presupuesto revisado el viernes.",
+    "La reunión se movió al jueves a las 16:30 en la sala B12.",
+    "Tareas: actualizar la hoja de ruta y revisar contrataciones.",
+    "Gasto total hasta ahora: 48.250 €"
+   ]
+  },
+  {
+   "name": "es-dark",
+   "language": "es",
+   "tesseract_langs": "spa+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 2212.3477999994066,
+   "peak_working_set_bytes": 85037056,
+   "pred": [
+    "Notas de planificación trimestral",
+    "La renovación del contrato vence el 14 de noviembre.",
+    "Ana compartirá el presupuesto revisado el viernes.",
+    "La reunión se movió al jueves a las 16:30 en la sala B12.",
+    "Tareas: actualizar la hoja de ruta y revisar contrataciones.",
+    "Gasto total hasta ahora: 48.250 €"
+   ]
+  },
+  {
+   "name": "es-small",
+   "language": "es",
+   "tesseract_langs": "spa+eng",
+   "page_cer": 0.010344827586206896,
+   "line_accuracy": 1.0,
+   "wall_ms": 1585.431100000278,
+   "peak_working_set_bytes": 85049344,
+   "pred": [
+    "Notas de planificación trimestral",
+    "La renovación del contrato vence el 14 de noviembre.",
+    "Ana compartirá el presupuesto revisado el vienes.",
+    "La reunión se movió al jueves a las 16:30 en la sala B12.",
+    "Tareas: actualizar la hoja de ruta y revisar contrataciones,",
+    "Gasto total hasta ahora: 48250 €"
+   ]
+  },
+  {
+   "name": "es-chat",
+   "language": "es",
+   "tesseract_langs": "spa+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1462.1903999941424,
+   "peak_working_set_bytes": 85032960,
+   "pred": [
+    "Notas de planificación trimestral",
+    "La renovación del contrato vence el 14 de noviembre.",
+    "Ana compartirá el presupuesto revisado el viernes.",
+    "La reunión se movió al jueves a las 16:30 en la sala B12.",
+    "Tareas: actualizar la hoja de ruta y revisar contrataciones.",
+    "Gasto total hasta ahora: 48.250 €"
+   ]
+  },
+  {
+   "name": "es-table",
+   "language": "es",
+   "tesseract_langs": "spa+eng",
+   "page_cer": 0.12413793103448276,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1304.5682999945711,
+   "peak_working_set_bytes": 85032960,
+   "pred": [
+    "Notas de planificación trimestral",
+    "La renovación del contrato vence el 14 de noviembre.",
+    "Ana compartirá el presupuesto revisado el viernes.",
+    "0 en la sala B12.",
+    "La reunión se movió al jueves a las 16:",
+    "Tareas: actualizar la hoja de ruta y revisar contrataciones.",
+    "Gasto total hasta ahora: 48.250 €"
+   ]
+  },
+  {
+   "name": "hi-light",
+   "language": "hi",
+   "tesseract_langs": "hin+eng",
+   "page_cer": 0.008547008547008548,
+   "line_accuracy": 1.0,
+   "wall_ms": 1534.4303000019863,
+   "peak_working_set_bytes": 65843200,
+   "pred": [
+    "तिमाही योजना नोट्स",
+    "विक्रेता अनुबंध का नवीनीकरण 4 नवंबर तक करना है।",
+    "प्रिया शुक्रवार तक संशोधित बजट साझा करेगी।",
+    "बैठक गुरुवार शाम 4:30 बजे कमरा B2 में होगी।",
+    "कार्य सूची: रोडमैप अपडेट करें, भर्ती योजना देखें।",
+    "अब तक कुल खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "hi-dark",
+   "language": "hi",
+   "tesseract_langs": "hin+eng",
+   "page_cer": 0.008547008547008548,
+   "line_accuracy": 1.0,
+   "wall_ms": 2629.5489000040106,
+   "peak_working_set_bytes": 65843200,
+   "pred": [
+    "तिमाही योजना नोट्स",
+    "विक्रेता अनुबंध का नवीनीकरण 4 नवंबर तक करना है।",
+    "प्रिया शुक्रवार तक संशोधित बजट साझा करेगी।",
+    "बैठक गुरुवार शाम 4:30 बजे कमरा B2 में होगी।",
+    "कार्य सूची: रोडमैप अपडेट करें, भर्ती योजना देखें।",
+    "अब तक कुल खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "hi-small",
+   "language": "hi",
+   "tesseract_langs": "hin+eng",
+   "page_cer": 0.03418803418803419,
+   "line_accuracy": 0.5,
+   "wall_ms": 1559.921599997324,
+   "peak_working_set_bytes": 65851392,
+   "pred": [
+    "तिमाही योजना नौट्स",
+    "[विक्रेता अनुबंध का नवीनीकरण 4 नवंबर तक करना है।",
+    "प्रिया शुक्रवार तक संशोधित बजट साझा करेगी।",
+    "बैठक गुरुवार शाम 430 बजे कमरा 872 में होगी।",
+    "कार्य सूची: रोडमैप अपडेट करें, भर्ती योजना देखें।",
+    "अब तक कुल खर्च, 48250 रुपये"
+   ]
+  },
+  {
+   "name": "hi-chat",
+   "language": "hi",
+   "tesseract_langs": "hin+eng",
+   "page_cer": 0.01282051282051282,
+   "line_accuracy": 1.0,
+   "wall_ms": 1540.9234999970067,
+   "peak_working_set_bytes": 65859584,
+   "pred": [
+    "तिमाही योजना नोट्स",
+    "विक्रेता अनुबंध का नवीनीकरण 4 नवंबर तक करना है।",
+    "प्रिया शुक्रवार तक संशोधित बजट साझा करेगी।",
+    "बैठक गुरुवार शाम 4:30 बजे कमरा 872 में होगी।",
+    "कार्य सूची: रोडमैप अपडेट करें, भर्ती योजना देखें।",
+    "अब तक कुल खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "hi-table",
+   "language": "hi",
+   "tesseract_langs": "hin+eng",
+   "page_cer": 0.01282051282051282,
+   "line_accuracy": 1.0,
+   "wall_ms": 1305.5572000012035,
+   "peak_working_set_bytes": 65859584,
+   "pred": [
+    "तिमाही योजना नोट्स",
+    "विक्रेता अनुबंध का नवीनीकरण 4 नवंबर तक करना है।",
+    "प्रिया शुक्रवार तक संशोधित बजट साझा करेगी।",
+    "बैठक गुरुवार शाम 4:30 बजे कमरा 872 में होगी।",
+    "कार्य सूची: रोडमैप अपडेट करें, भर्ती योजना देखें।",
+    "अब तक कुल खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "ta-light",
+   "language": "ta",
+   "tesseract_langs": "tam+eng",
+   "page_cer": 0.04240282685512368,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1468.0952000053367,
+   "peak_working_set_bytes": 66670592,
+   "pred": [
+    "காலாண்டு திட்டக் குறிப்புகள்",
+    "விற்பனையாளர் ஓப்பந்த புதுப்பித்தல் நவம்பர் 14 அன்று.",
+    "பிரியா வெள்ளிக்கிழமைக்குள் திருத்திய பட்ஜெட்டை LG Feu.",
+    "கூட்டம் வியாழன் மாலை 4:30 மணிக்கு அறை 812 இல்",
+    "செயல்கள்: வழிகாட்டியைப் புதுப்பி, பணியமர்த்தல் திட்டத்தை பார்.",
+    "இதுவரை மொத்த செலவு: 48,250 ரூபாய்"
+   ]
+  },
+  {
+   "name": "ta-dark",
+   "language": "ta",
+   "tesseract_langs": "tam+eng",
+   "page_cer": 0.0636042402826855,
+   "line_accuracy": 0.5,
+   "wall_ms": 2091.1960000084946,
+   "peak_working_set_bytes": 66686976,
+   "pred": [
+    "காலாண்டு இட்டக் குறிப்புகள்:",
+    "விற்பனையாளர் ஒப்பந்த புதுப்பித்தல் நவம்பர் 14 அன்று.",
+    "பிரியா வெள்ளிக்கிழமைக்குள் இருத்திய பட்ஜெட்டை LG Feu.",
+    "கூட்டம் வியாழன் மாலை 4:30 மணிக்கு அறை B12 6",
+    "செயல்கள்: வழிகாட்டியைப் புதுப்பி, பணியமர்த்தல் திட்டத்தை பார்.",
+    "இதுவரை மொத்த செலவு: 48,250 ரூபாய்"
+   ]
+  },
+  {
+   "name": "ta-small",
+   "language": "ta",
+   "tesseract_langs": "tam+eng",
+   "page_cer": 0.08833922261484099,
+   "line_accuracy": 0.3333333333333333,
+   "wall_ms": 1453.2227000017883,
+   "peak_working_set_bytes": 66674688,
+   "pred": [
+    "காலாண்டு இட்டக குறிப்புகள்:",
+    "விற்பனையாளர் ஒப்பந்த புதுப்பித்தல் நவம்பர் 14 அன்று.",
+    "பிரியா வெள்ளிக்கழமைக்குள் இருத்இய பட்ஜெட்டை LETTS.",
+    "கூட்டம் வியாழன் மாலை430 மணிக்கு அறை 812 இல்.",
+    "செயல்கள்: வழிகாட்டியைப் புதுப்பி, பணியமர்த்தல் இட்டத்தை பார்.",
+    "இதுவரை மொத்த செலவு:48250 ரூபாய்"
+   ]
+  },
+  {
+   "name": "ta-chat",
+   "language": "ta",
+   "tesseract_langs": "tam+eng",
+   "page_cer": 0.028268551236749116,
+   "line_accuracy": 0.6666666666666666,
+   "wall_ms": 1588.614399996004,
+   "peak_working_set_bytes": 66666496,
+   "pred": [
+    "காலாண்டு இட்டக் குறிப்புகள்",
+    "விற்பனையாளர் ஓப்பந்த புதுப்பித்தல் நவம்பர் 14 அன்று.",
+    "பிரியா வெள்ளிக்கிழமைக்குள் இருத்திய பட்ஜெட்டை பஜஇர்வார்.",
+    "கூட்டம் வியாழன் மாலை 4:30 மணிக்கு அறை 812 இல்.",
+    "செயல்கள்: வழிகாட்டியைப் புதுப்பி, பணியமர்த்தல் திட்டத்தை பார்.",
+    "இதுவரை மொத்த செலவு: 48,250 ரூபாய்"
+   ]
+  },
+  {
+   "name": "ta-table",
+   "language": "ta",
+   "tesseract_langs": "tam+eng",
+   "page_cer": 0.024734982332155476,
+   "line_accuracy": 0.6666666666666666,
+   "wall_ms": 1585.6666999898152,
+   "peak_working_set_bytes": 66674688,
+   "pred": [
+    "காலாண்டு இட்டக் குறிப்புகள்",
+    "விற்பனையாளர் ஒப்பந்த புதுப்பித்தல் நவம்பர் 14 அன்று.",
+    "பிரியா வெள்ளிக்கிழமைக்குள் இருத்திய பட்ஜெட்டை பஜஇர்வார்.",
+    "கூட்டம் வியாழன் மாலை 4:30 மணிக்கு அறை 812 இல்.",
+    "செயல்கள்: வழிகாட்டியைப் புதுப்பி, பணியமர்த்தல் திட்டத்தை பார்.",
+    "இதுவரை மொத்த செலவு: 48,250 ரூபாய்"
+   ]
+  },
+  {
+   "name": "te-light",
+   "language": "te",
+   "tesseract_langs": "tel+eng",
+   "page_cer": 0.011406844106463879,
+   "line_accuracy": 1.0,
+   "wall_ms": 1637.1685000049183,
+   "peak_working_set_bytes": 70696960,
+   "pred": [
+    "(త్రైమాసిక ప్రణాళిక గమనికలు",
+    "విక్రేత ఒప్పందం పునరుద్ధరణ నవంబర్ 14 లోపు.",
+    "[ప్రియ శుక్రవారం లోపు సవరించిన బడ్జెట్ పంచుకుంటుంది.",
+    "సమావేశం గురువారం సాయంత్రం 4:30 కి గది 812 లో.",
+    "చర్యలు: రోడ్మ్యాప్ నవీకరించండి, నియామక ప్రణాళిక చూడండి.",
+    "ఇప్పటివరకు మొత్తం ఖర్చు: 48,250 రూపాయలు"
+   ]
+  },
+  {
+   "name": "te-dark",
+   "language": "te",
+   "tesseract_langs": "tel+eng",
+   "page_cer": 0.011406844106463879,
+   "line_accuracy": 1.0,
+   "wall_ms": 2486.996299994644,
+   "peak_working_set_bytes": 70705152,
+   "pred": [
+    "(త్రైమాసిక ప్రణాళిక గమనికలు",
+    "విక్రేత ఒప్పందం పునరుద్ధరణ నవంబర్ 14 లోపు.",
+    "(ప్రియ శుక్రవారం లోపు సవరించిన బడ్జెట్ పంచుకుంటుంది.",
+    "సమావేశం గురువారం సాయంత్రం 4:30 కి గది 812 లో.",
+    "చర్యలు: రోడ్మ్యాప్ నవీకరించండి, నియామక ప్రణాళిక చూడండి.",
+    "ఇప్పటివరకు మొత్తం ఖర్చు: 48,250 రూపాయలు"
+   ]
+  },
+  {
+   "name": "te-small",
+   "language": "te",
+   "tesseract_langs": "tel+eng",
+   "page_cer": 0.049429657794676805,
+   "line_accuracy": 0.6666666666666666,
+   "wall_ms": 1857.4951000045985,
+   "peak_working_set_bytes": 70705152,
+   "pred": [
+    "(తైమాసిక ప్రణాళిక గమనికలు",
+    "DES ఒప్పందం పునరుద్దరణ నవంబర్ 14 లోపు.",
+    "ప్రియ శుక్రవారం లోపు సవరించిన బడ్జెట్ పంచుకుంటుంది.",
+    "సమావేశం గురువారం సాయంత్రం 4:30 కి గది 812 లో.",
+    "చర్యలు: రోడ్మ్యాప్ నవీకరించండి, నియామక (ప్రణాళిక చూడండి.",
+    "ఇప్పటివరకు మొత్తం ఖర్చు: 48,250 రూపాయలు"
+   ]
+  },
+  {
+   "name": "te-chat",
+   "language": "te",
+   "tesseract_langs": "tel+eng",
+   "page_cer": 0.011406844106463879,
+   "line_accuracy": 1.0,
+   "wall_ms": 1824.454900008277,
+   "peak_working_set_bytes": 70701056,
+   "pred": [
+    "(త్రైమాసిక ప్రణాళిక గమనికలు",
+    "విక్రేత ఒప్పందం పునరుద్దరణ నవంబర్ 14 లోపు.",
+    "ప్రియ శుక్రవారం లోపు సవరించిన బడ్జెట్ పంచుకుంటుంది.",
+    "సమావేశం గురువారం సాయంత్రం 4:30 కి గది 812 లో.",
+    "చర్యలు: రోడ్మ్యాప్ నవీకరించండి, నియామక ప్రణాళిక చూడండి.",
+    "ఇప్పటివరకు మొత్తం ఖర్చు: 48,250 రూపాయలు"
+   ]
+  },
+  {
+   "name": "te-table",
+   "language": "te",
+   "tesseract_langs": "tel+eng",
+   "page_cer": 0.011406844106463879,
+   "line_accuracy": 1.0,
+   "wall_ms": 1780.6786000001011,
+   "peak_working_set_bytes": 70692864,
+   "pred": [
+    "(త్రైమాసిక ప్రణాళిక గమనికలు",
+    "విక్రేత ఒప్పందం పునరుద్దరణ నవంబర్ 14 లోపు.",
+    "ప్రియ శుక్రవారం లోపు సవరించిన బడ్జెట్ పంచుకుంటుంది.",
+    "సమావేశం గురువారం సాయంత్రం 4:30 కి గది 812 లో.",
+    "చర్యలు: రోడ్మ్యాప్ నవీకరించండి, నియామక ప్రణాళిక చూడండి.",
+    "ఇప్పటివరకు మొత్తం ఖర్చు: 48,250 రూపాయలు"
+   ]
+  },
+  {
+   "name": "fr-light",
+   "language": "fr",
+   "tesseract_langs": "fra+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1149.935599998571,
+   "peak_working_set_bytes": 71401472,
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dû le 14 novembre.",
+    "Priya partagera le budget révisé d'ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour : 48 250 €"
+   ]
+  },
+  {
+   "name": "fr-dark",
+   "language": "fr",
+   "tesseract_langs": "fra+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1100.1766999979736,
+   "peak_working_set_bytes": 71421952,
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dû le 14 novembre.",
+    "Priya partagera le budget révisé d'ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour : 48 250 €"
+   ]
+  },
+  {
+   "name": "fr-small",
+   "language": "fr",
+   "tesseract_langs": "fra+eng",
+   "page_cer": 0.031746031746031744,
+   "line_accuracy": 0.6666666666666666,
+   "wall_ms": 1172.8199000062887,
+   "peak_working_set_bytes": 71409664,
+   "pred": [
+    "Notes de planification trimesriele",
+    "Le renouvellement du contrat fournisseur est d le 14 novembre.",
+    "Priya partager le budget révisé d'ici vendredi",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À aie: mettre à jour a feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour :48 250 €"
+   ]
+  },
+  {
+   "name": "fr-chat",
+   "language": "fr",
+   "tesseract_langs": "fra+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1160.3857000009157,
+   "peak_working_set_bytes": 71413760,
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dû le 14 novembre.",
+    "Priya partagera le budget révisé d'ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour : 48 250 €"
+   ]
+  },
+  {
+   "name": "fr-table",
+   "language": "fr",
+   "tesseract_langs": "fra+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1014.0624000050593,
+   "peak_working_set_bytes": 71409664,
+   "pred": [
+    "Notes de planification trimestrielle",
+    "Le renouvellement du contrat fournisseur est dû le 14 novembre.",
+    "Priya partagera le budget révisé d'ici vendredi.",
+    "La réunion est déplacée à jeudi 16 h 30, salle B12.",
+    "À faire : mettre à jour la feuille de route, revoir le plan de recrutement.",
+    "Dépenses totales à ce jour : 48 250 €"
+   ]
+  },
+  {
+   "name": "pt-light",
+   "language": "pt",
+   "tesseract_langs": "por+eng",
+   "page_cer": 0.003125,
+   "line_accuracy": 1.0,
+   "wall_ms": 1329.5768999960274,
+   "peak_working_set_bytes": 77180928,
+   "pred": [
+    "Notas de planejamento trimestral",
+    "AA renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: R$ 48.250"
+   ]
+  },
+  {
+   "name": "pt-dark",
+   "language": "pt",
+   "tesseract_langs": "por+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 3533.2745000050636,
+   "peak_working_set_bytes": 76341248,
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: R$ 48.250"
+   ]
+  },
+  {
+   "name": "pt-small",
+   "language": "pt",
+   "tesseract_langs": "por+eng",
+   "page_cer": 0.103125,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1214.2716999951517,
+   "peak_working_set_bytes": 77189120,
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações."
+   ]
+  },
+  {
+   "name": "pt-chat",
+   "language": "pt",
+   "tesseract_langs": "por+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1073.799300007522,
+   "peak_working_set_bytes": 77168640,
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "A reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: R$ 48.250"
+   ]
+  },
+  {
+   "name": "pt-table",
+   "language": "pt",
+   "tesseract_langs": "por+eng",
+   "page_cer": 0.003125,
+   "line_accuracy": 1.0,
+   "wall_ms": 980.2631000056863,
+   "peak_working_set_bytes": 77172736,
+   "pred": [
+    "Notas de planejamento trimestral",
+    "A renovação do contrato com o fornecedor vence em 14 de novembro.",
+    "Priya vai compartilhar o orçamento revisado até sexta-feira.",
+    "AA reunião foi transferida para quinta-feira às 16h30, sala B12.",
+    "Tarefas: atualizar o roteiro e revisar o plano de contratações.",
+    "Gasto total até agora: R$ 48.250"
+   ]
+  },
+  {
+   "name": "de-light",
+   "language": "de",
+   "tesseract_langs": "deu+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 985.2140000002692,
+   "peak_working_set_bytes": 77897728,
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+    "Priya teilt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "de-dark",
+   "language": "de",
+   "tesseract_langs": "deu+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1929.2325999995228,
+   "peak_working_set_bytes": 77914112,
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+    "Priya teilt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "de-small",
+   "language": "de",
+   "tesseract_langs": "deu+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1511.98110000405,
+   "peak_working_set_bytes": 77905920,
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+    "Priya teilt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "de-chat",
+   "language": "de",
+   "tesseract_langs": "deu+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1871.2548000039533,
+   "peak_working_set_bytes": 77897728,
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+    "Priya teilt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "de-table",
+   "language": "de",
+   "tesseract_langs": "deu+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1584.7240000002785,
+   "peak_working_set_bytes": 77897728,
+   "pred": [
+    "Notizen zur Quartalsplanung",
+    "Die Verlängerung des Lieferantenvertrags ist am 14. November fällig.",
+    "Priya teilt das überarbeitete Budget bis Freitag.",
+    "Das Meeting wurde auf Donnerstag, 16:30 Uhr, Raum B12 verschoben.",
+    "Aufgaben: Roadmap aktualisieren, Einstellungsplan prüfen.",
+    "Bisherige Gesamtausgaben: 48.250 €"
+   ]
+  },
+  {
+   "name": "id-light",
+   "language": "id",
+   "tesseract_langs": "ind+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1505.0951000011992,
+   "peak_working_set_bytes": 75567104,
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "id-dark",
+   "language": "id",
+   "tesseract_langs": "ind+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 2127.373700001044,
+   "peak_working_set_bytes": 75563008,
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "id-small",
+   "language": "id",
+   "tesseract_langs": "ind+eng",
+   "page_cer": 0.0031847133757961785,
+   "line_accuracy": 1.0,
+   "wall_ms": 1447.0628999988548,
+   "peak_working_set_bytes": 75571200,
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang 812.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "id-chat",
+   "language": "id",
+   "tesseract_langs": "ind+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 3125571.7214000034,
+   "peak_working_set_bytes": 75563008,
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh ini: Rp48.250.000"
+   ]
+  },
+  {
+   "name": "id-table",
+   "language": "id",
+   "tesseract_langs": "ind+eng",
+   "page_cer": 0.05732484076433121,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 2537.537700001849,
+   "peak_working_set_bytes": 75567104,
+   "pred": [
+    "Catatan perencanaan triwulan",
+    "Perpanjangan kontrak pemasok jatuh tempo pada 14 November.",
+    "Priya akan membagikan anggaran yang direvisi paling lambat hari Jumat.",
+    "Rapat dipindahkan ke hari Kamis pukul 16.30 di ruang B12.",
+    "Tugas: perbarui peta jalan, tinjau rencana perekrutan.",
+    "Total pengeluaran sejauh"
+   ]
+  },
+  {
+   "name": "ru-light",
+   "language": "ru",
+   "tesseract_langs": "rus+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1626.8510000081733,
+   "peak_working_set_bytes": 72486912,
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната B12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ru-dark",
+   "language": "ru",
+   "tesseract_langs": "rus+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 2427.4187999981223,
+   "peak_working_set_bytes": 72515584,
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната B12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ru-small",
+   "language": "ru",
+   "tesseract_langs": "rus+eng",
+   "page_cer": 0.003424657534246575,
+   "line_accuracy": 1.0,
+   "wall_ms": 614767.6118999952,
+   "peak_working_set_bytes": 72511488,
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната B12.",
+    "Згдачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ru-chat",
+   "language": "ru",
+   "tesseract_langs": "rus+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1272.236899996642,
+   "peak_working_set_bytes": 72499200,
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната B12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ru-table",
+   "language": "ru",
+   "tesseract_langs": "rus+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1688.1141000048956,
+   "peak_working_set_bytes": 72507392,
+   "pred": [
+    "Заметки по квартальному планированию",
+    "Продление договора с поставщиком нужно оформить до 14 ноября.",
+    "Прия поделится исправленным бюджетом к пятнице.",
+    "Встреча перенесена на четверг, 16:30, комната B12.",
+    "Задачи: обновить дорожную карту, проверить план найма.",
+    "Общие расходы на сегодня: 48 250 рублей"
+   ]
+  },
+  {
+   "name": "ja-light",
+   "language": "ja",
+   "tesseract_langs": "jpn+eng",
+   "page_cer": 0.6766917293233082,
+   "line_accuracy": 0.0,
+   "wall_ms": 3036.902400010149,
+   "peak_working_set_bytes": 101171200,
+   "pred": [
+    "四半 期 計画 メ モ",
+    "仕 入 先 と の 契約 更新 の 期限 は 11 月 14 日 で す 。",
+    "プリ ヤ さ ん が 人 金曜 日 まで に 修正 し た 予算 を 共有 し ます 。",
+    "会 議 は 木曜 日 の 午後 4 時 30 分 、B12 会 議 室 に 変更 に な り ま し た 。",
+    "や る こと : ロー ド マ ッ プ を 更新 し 、 採用 計画 を 確認 する 。",
+    "これ まで の 支出 合計 : 48.250 円"
+   ]
+  },
+  {
+   "name": "ja-dark",
+   "language": "ja",
+   "tesseract_langs": "jpn+eng",
+   "page_cer": 0.6616541353383458,
+   "line_accuracy": 0.0,
+   "wall_ms": 3613.711099998909,
+   "peak_working_set_bytes": 101257216,
+   "pred": [
+    "四半 期 計 画 メ モ",
+    "仕 入 先 と の 契約 更新 の 期限 は 11 月 14 日 で す 。",
+    "プリ ヤ さ ん が 金曜 日 まで に 修正 し た 予算 を 共有 し ます 。",
+    "会 議 は 木曜 日 の 午後 4 時 30 分 、B12 会 議 室 に 変更 に な り ま し た 。",
+    "や る こと : ロー ド マ ッ プ を 更新 し 、 採用 計画 を 確認 する 。",
+    "これ まで の 支出 合計 : 48,250 円"
+   ]
+  },
+  {
+   "name": "ja-small",
+   "language": "ja",
+   "tesseract_langs": "jpn+eng",
+   "page_cer": 0.6842105263157895,
+   "line_accuracy": 0.0,
+   "wall_ms": 2954.678200010676,
+   "peak_working_set_bytes": 100438016,
+   "pred": [
+    "期 計画 メモ",
+    "仕 入 先 と の 契約 更新 の 期限 は 11 月 14 日 で す 。",
+    "リヤ ャ さん が 金曜 日 まで に 修正 し た 予算 を 共有 し ます 。",
+    "会 議 は 木曜 日 の 午後 4 時 30 分 、B12 会 議 宇 に 変更 に な り ま し た 。",
+    "や 3 こと : ロー ド マ ッ プ を 更新 し 、 採用 計画 を 確認 する 。",
+    "これ まで の 支出 合計 : 48250 円"
+   ]
+  },
+  {
+   "name": "ja-chat",
+   "language": "ja",
+   "tesseract_langs": "jpn+eng",
+   "page_cer": 0.6917293233082706,
+   "line_accuracy": 0.0,
+   "wall_ms": 2913.984899991192,
+   "peak_working_set_bytes": 100442112,
+   "pred": [
+    "四半 期 計画 メモ",
+    "仕 入 先 と の 契約 更新 の 期限 は 11 月 14 日 で す 。",
+    "プリ ヤ さ ん が 人 金曜 日 まで に 修正 し た 予算 を 共有 し ます 。",
+    "会 議 は 木曜 日 の 午後 4 時 30 分 、B12 会 議 室 に 変更 に な り ま し た 。",
+    "や る こと : ロー ド マ ッ プ を 更新 し 、 採 用 計画 を 確認 する 。",
+    "て これ まで の 支出 合計 : 48.250 円"
+   ]
+  },
+  {
+   "name": "ja-table",
+   "language": "ja",
+   "tesseract_langs": "jpn+eng",
+   "page_cer": 0.6917293233082706,
+   "line_accuracy": 0.0,
+   "wall_ms": 2938.7355000071693,
+   "peak_working_set_bytes": 100454400,
+   "pred": [
+    "四半 期 計画 メモ",
+    "仕 入 先 と の 契約 更新 の 期限 は 11 月 14 日 で す 。",
+    "プリ ヤ さ ん が 人 金曜 日 まで に 修正 し た 予算 を 共有 し ます 。",
+    "会 議 は 木曜 日 の 午後 4 時 30 分 、B12 会 議 室 に 変更 に な り ま し た 。",
+    "や る こと : ロー ド マ ッ プ を 更新 し 、 採 用 計画 を 確認 する 。",
+    "て これ まで の 支出 合計 : 48.250 円"
+   ]
+  },
+  {
+   "name": "ar-light",
+   "language": "ar",
+   "tesseract_langs": "ara+eng",
+   "page_cer": 0.01953125,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1566.817799990531,
+   "peak_working_set_bytes": 74788864,
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 توقمير.",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة.",
+    "تم نقل الاجتماع إلى يوم الخميس الساعة 4:30 مساء في الغرقة 812.",
+    "المهام: تحديث خارطة الطريق ومراجعة خطة التوظيف.",
+    "إجمالي الإنفاق حتى الآن: 48,250 دولار"
+   ]
+  },
+  {
+   "name": "ar-dark",
+   "language": "ar",
+   "tesseract_langs": "ara+eng",
+   "page_cer": 0.0546875,
+   "line_accuracy": 0.5,
+   "wall_ms": 2701.5824999980396,
+   "peak_working_set_bytes": 74788864,
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 توقمير.",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة.",
+    "تم نقل الاجتماع إلى يوم الخميس الساعة 4:30 مساء قي الغرقة ‎B12‏",
+    "‏المهام: تحديث خارطة الطريق ومراجعة ‎dhs‏ التوظيف.",
+    "إجمالي الإنقاق حتى الآن: 48,250 دولار"
+   ]
+  },
+  {
+   "name": "ar-small",
+   "language": "ar",
+   "tesseract_langs": "ara+eng",
+   "page_cer": 0.02734375,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1553.8094000075944,
+   "peak_working_set_bytes": 74784768,
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 توفمير.",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة.",
+    "تم نقل الاجتماع إلى يوم الخميس الساعة 430 مساء في الغرفة ‎B12‏",
+    "‏المهام: تحديث خارطة الطريق ومراجعة خطة التوظيف»",
+    "إجمالي الإنفاق حتى الآن: 48,250 دولار"
+   ]
+  },
+  {
+   "name": "ar-chat",
+   "language": "ar",
+   "tesseract_langs": "ara+eng",
+   "page_cer": 0.046875,
+   "line_accuracy": 0.5,
+   "wall_ms": 1392.0196000108263,
+   "peak_working_set_bytes": 74780672,
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 توقمبر.",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة.",
+    "تم ‎Jas‏ الاجتماع إلى يوم الخميس الساعة 4:30 مساء في الغرفة ‎B12‏",
+    "‏المهام: تحديث خارطة الطريق ومراجعة خطة التوظيف.",
+    "إجمالي الإتقاق حتى الآن: 48,250 دولار"
+   ]
+  },
+  {
+   "name": "ar-table",
+   "language": "ar",
+   "tesseract_langs": "ara+eng",
+   "page_cer": 0.046875,
+   "line_accuracy": 0.5,
+   "wall_ms": 1981.7867999954615,
+   "peak_working_set_bytes": 74792960,
+   "pred": [
+    "ملاحظات التخطيط الفصلي",
+    "تجديد عقد المورد مستحق في 14 توقمبر.",
+    "ستشارك بريا الميزانية المعدلة بحلول يوم الجمعة.",
+    "تم ‎Jas‏ الاجتماع إلى يوم الخميس الساعة 4:30 مساء في الغرفة ‎B12‏",
+    "‏المهام: تحديث خارطة الطريق ومراجعة خطة التوظيف.",
+    "إجمالي الإتقاق حتى الآن: 48,250 دولار"
+   ]
+  },
+  {
+   "name": "ur-light",
+   "language": "ur",
+   "tesseract_langs": "urd+eng",
+   "page_cer": 0.0199203187250996,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1791.9943000015337,
+   "peak_working_set_bytes": 67813376,
+   "pred": [
+    "سہ ماہی متصویہ بندی کے نوٹس",
+    "سپلائر کے معاہدے کی تجدید 14 نومبر تک ہوئی ہے۔",
+    "پریا جمعہ تک نظرثانی شدہ بجٹ شیئر کرے گی۔",
+    "میٹنگ جمعرات شام 4:30 بجے کمرہ 812 میں منتقل کر دی گئی ہے۔",
+    "کام: روڈ میپ اپ ڈیٹ کریں, بھرتی کا منصوبہ دیکھیں۔",
+    "اب تک کل خرچ: 48,250 روپے"
+   ]
+  },
+  {
+   "name": "ur-dark",
+   "language": "ur",
+   "tesseract_langs": "urd+eng",
+   "page_cer": 0.03187250996015936,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 2150.618600004236,
+   "peak_working_set_bytes": 67821568,
+   "pred": [
+    "سہ ماہی منصوبہ بندی کے نوٹس",
+    "سپلائر کے معاہدے کی تجدید 14 تومبر تک ہونی ہے۔",
+    "پریا جمعہ تک نظرثانی شدہ بجٹ شیئر کرے گی۔",
+    "میٹنگ جمعرات شام 4:30 بجے کمرہ 812 میں منتقل کر دی گئی ہے۔",
+    "کام: روڈ میپ اپ ڈیٹ کریں, بھرتی کا منصویہ دیکھیں۔",
+    "اب تک کل خرچ: 48,250 )19"
+   ]
+  },
+  {
+   "name": "ur-small",
+   "language": "ur",
+   "tesseract_langs": "urd+eng",
+   "page_cer": 0.0796812749003984,
+   "line_accuracy": 0.5,
+   "wall_ms": 1347.3795000027167,
+   "peak_working_set_bytes": 67805184,
+   "pred": [
+    "سہ ماہی منصوبہ بندی کے ٹوٹس",
+    "‎ls‏ کے معاہدے کی تجدید 14 نومیر تک ہوئی ہے۔",
+    "‏پریا جمعہ تک نظرتانی شدہ بجٹ شیئر کرے گی۔",
+    "‏میٹنگ جمعرات شام 4:30 بجے کمرہ 812 میں منتقل کر دی گئی ہے۔",
+    "کام؛ روڈ میب اب ڈیٹ کریں۔ بھرتی کا منصوبہ دیکھیں۔",
+    "‏اب تک کل خرچ: 48250 روہے"
+   ]
+  },
+  {
+   "name": "ur-chat",
+   "language": "ur",
+   "tesseract_langs": "urd+eng",
+   "page_cer": 0.05179282868525897,
+   "line_accuracy": 0.5,
+   "wall_ms": 2012.4378000036813,
+   "peak_working_set_bytes": 67813376,
+   "pred": [
+    "سہ ماہی منصوبہ بندی کے نوٹس",
+    "سیلائر کے معاہدے کی تجدید 14 نومبر تک ہونی ہے۔",
+    "‎bys‏ جمعہ تک نظرثانی شدہ بجٹ شیئر کرے گی۔",
+    "‏میٹنگ جمعرات شام 4:30 بجے کمرہ 812 میں منتقل کر دی گئی ہے۔",
+    "کام: روڈ میب اب ڈیٹ کریں, بھرتی کا منصوبہ دیکھیں۔",
+    "‏اب تک کل خرج: 48,250 روپے"
+   ]
+  },
+  {
+   "name": "ur-table",
+   "language": "ur",
+   "tesseract_langs": "urd+eng",
+   "page_cer": 0.03187250996015936,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1738.1122000078904,
+   "peak_working_set_bytes": 67809280,
+   "pred": [
+    "سہ ماہی منصوبہ بندی کے نوٹس",
+    "سیلائر کے معاہدے کی تجدید 14 نومبر تک ہوئی ہے۔",
+    "بریا جمعہ تک نظرثانی شدہ بجٹ شیئر کرے گی۔",
+    "میٹنگ جمعرات شام 4:30 بجے کمرہ 812 میں منتقل کر دی گئی ہے۔",
+    "کام: روڈ میب اب ڈیٹ کریں, بھرتی کا منصوبہ دیکھیں۔",
+    "اب تک کل خرج: 48,250 روپے"
+   ]
+  },
+  {
+   "name": "bn-light",
+   "language": "bn",
+   "tesseract_langs": "ben+eng",
+   "page_cer": 0.011363636363636364,
+   "line_accuracy": 1.0,
+   "wall_ms": 1819.2767999862554,
+   "peak_working_set_bytes": 72331264,
+   "pred": [
+    "ত্রেমাসিক পরিকল্পনার নোট",
+    "সরবরাহকারীর চুক্তি নবায়নের শেষ তারিখ 14 নভেম্বর",
+    "প্রিয়া শুক্রবারের মধ্যে সংশোধিত বাজেট শেয়ার করবে।",
+    "মিটিং বৃহস্পতিবার বিকেল 4:30-এ রুম ৪12-এ সরানো হয়েছে।",
+    "কাজ: রোডম্যাপ আপডেট করুন, নিয়োগ পরিকল্পনা দেখুন।",
+    "এখন পর্যন্ত মোট খরচ: 48,250 টাকা"
+   ]
+  },
+  {
+   "name": "bn-dark",
+   "language": "bn",
+   "tesseract_langs": "ben+eng",
+   "page_cer": 0.041666666666666664,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 2569.6107000112534,
+   "peak_working_set_bytes": 72339456,
+   "pred": [
+    "Tawi পরিকল্পনার নোট",
+    "সরবরাহকারীর চুক্তি নবায়নের শেষ তারিখ 14 নভেম্বর",
+    "প্রিয়া শুক্রবারের মধ্যে সংশোধিত বাজেট শেয়ার করবে।",
+    "মিটিং বৃহস্পতিবার বিকেল 4:30-এ রুম ৪12-এ সরানো হয়েছে।",
+    "কাজ: রোডম্যাপ আপডেট করুন, নিয়োগ পরিকল্পনা দেখুন।",
+    "এখন পর্যন্ত মোট খরচ: 48,250 টাকা"
+   ]
+  },
+  {
+   "name": "bn-small",
+   "language": "bn",
+   "tesseract_langs": "ben+eng",
+   "page_cer": 0.06439393939393939,
+   "line_accuracy": 0.5,
+   "wall_ms": 1780.5052000039723,
+   "peak_working_set_bytes": 72323072,
+   "pred": [
+    "'ব্রেমাসিক পরিকল্পনার নোট",
+    "সরবরাহকারী চুক্তি নবায়নের শেষ তারিখ 14 নভেম্বর।",
+    "TET শুক্রবারের মধ্যে সংশোধিত বাজেট শেয়ার করবে।",
+    "মিটিং বৃহস্পতিবার বিকেল 430-এ রুম ৪12-এ সরানো হয়েছে।",
+    "কাজ: রোডম্যাপ আপডেট করুন, নিয়োগ পরিকর্ননা দেখুন।",
+    "এখন পর্যন্ত মোট খরচ: 46.250 টাকা"
+   ]
+  },
+  {
+   "name": "bn-chat",
+   "language": "bn",
+   "tesseract_langs": "ben+eng",
+   "page_cer": 0.045454545454545456,
+   "line_accuracy": 0.6666666666666666,
+   "wall_ms": 1330.0378999992972,
+   "peak_working_set_bytes": 72339456,
+   "pred": [
+    "ব্রেমাসিক পরিকল্পনার নোট",
+    "সরবরাহকারীর চুক্তি নবায়নের শেষ তারিখ 14 নভেম্বর",
+    "প্রিয়া শুক্রবারের মধ্যে সংশোধিত বাজেট শেয়ার করবে।",
+    "মিটিং বৃহস্পতিবার বিকেল 4:30-এ রুম ৪12-এ সরানো হয়েছে।",
+    "কাজ: (RIG আপডেট করুন, নিয়োগ পরিকল্পনা দেখুন।",
+    "এখন পর্যন্ত মোট খরচ: 48,250 টাকা"
+   ]
+  },
+  {
+   "name": "bn-table",
+   "language": "bn",
+   "tesseract_langs": "ben+eng",
+   "page_cer": 0.015151515151515152,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1496.4918000041507,
+   "peak_working_set_bytes": 72339456,
+   "pred": [
+    "ব্রেমাসিক পরিকল্পনার নোট",
+    "সরবরাহকারীর চুক্তি নবায়নের শেষ তারিখ 14 নভেম্বর",
+    "প্রিয়া শুক্রবারের মধ্যে সংশোধিত বাজেট শেয়ার করবে।",
+    "মিটিং বৃহস্পতিবার বিকেল 4:30-এ রুম ৪12-এ সরানো হয়েছে।",
+    "কাজ: রোডম্যাপ আপডেট করুন, নিয়োগ পরিকল্পনা দেখুন।",
+    "এখন পর্যন্ত মোট খরচ: 48,250 টাকা"
+   ]
+  },
+  {
+   "name": "mr-light",
+   "language": "mr",
+   "tesseract_langs": "mar+eng",
+   "page_cer": 0.0038910505836575876,
+   "line_accuracy": 1.0,
+   "wall_ms": 1025.2873999997973,
+   "peak_working_set_bytes": 68939776,
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोव्हेंबरपर्यंत करायचे आहे.",
+    "प्रिया शुक्रवारपर्यंत सुधारित बजेट शेअर करेल.",
+    "बेठक गुरुवारी दुपारी 4:30 वाजता खोली B12 मध्ये हलवली आहे.",
+    "कामे: रोडमॅप अपडेट करा, भरती योजना तपासा.",
+    "आतापर्यंत एकूण खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "mr-dark",
+   "language": "mr",
+   "tesseract_langs": "mar+eng",
+   "page_cer": 0.007782101167315175,
+   "line_accuracy": 1.0,
+   "wall_ms": 1342.0091000007233,
+   "peak_working_set_bytes": 68931584,
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोव्हेंबरपर्यंत करायचे आहे.",
+    "प्रिया शुक्रवारपर्यंत सुधारित बजेट शेअर करेल.",
+    "बेठक गुरुवारी दुपारी 4:30 वाजता खोली 912 मध्ये हलवली आहे.",
+    "कामे: रोडमॅप अपडेट करा, भरती योजना तपासा.",
+    "आतापर्यंत एकूण खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "mr-small",
+   "language": "mr",
+   "tesseract_langs": "mar+eng",
+   "page_cer": 0.03501945525291829,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 1121.6214000014588,
+   "peak_working_set_bytes": 68919296,
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोव्हँबरपर्यंत करायचे आहे.",
+    "प्रिया शुक्रवारपर्यंत सुधारित बजेट बोअर करेल.",
+    "बठक गुरुवारी दुपारी 430 वाजता खोली 812 मध्ये हलवली आहे.",
+    "कामे; रोडमॅप अपडेट करा, भरती योजना तपासा.",
+    "आतापर्यंत एकूण खर्च: 48250 रुपये"
+   ]
+  },
+  {
+   "name": "mr-chat",
+   "language": "mr",
+   "tesseract_langs": "mar+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1811.7897000047378,
+   "peak_working_set_bytes": 68931584,
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोव्हेंबरपर्यंत करायचे आहे.",
+    "प्रिया शुक्रवारपर्यंत सुधारित बजेट शेअर करेल.",
+    "बैठक गुरुवारी दुपारी 4:30 वाजता खोली B12 मध्ये हलवली आहे.",
+    "कामे: रोडमॅप अपडेट करा, भरती योजना तपासा.",
+    "आतापर्यंत एकूण खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "mr-table",
+   "language": "mr",
+   "tesseract_langs": "mar+eng",
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "wall_ms": 1506.80889999785,
+   "peak_working_set_bytes": 68943872,
+   "pred": [
+    "तिमाही नियोजन नोंदी",
+    "पुरवठादार कराराचे नूतनीकरण 14 नोव्हेंबरपर्यंत करायचे आहे.",
+    "प्रिया शुक्रवारपर्यंत सुधारित बजेट शेअर करेल.",
+    "बैठक गुरुवारी दुपारी 4:30 वाजता खोली B12 मध्ये हलवली आहे.",
+    "कामे: रोडमॅप अपडेट करा, भरती योजना तपासा.",
+    "आतापर्यंत एकूण खर्च: 48,250 रुपये"
+   ]
+  },
+  {
+   "name": "gu-light",
+   "language": "gu",
+   "tesseract_langs": "guj+eng",
+   "page_cer": 0.003745318352059925,
+   "line_accuracy": 1.0,
+   "wall_ms": 1484.535199997481,
+   "peak_working_set_bytes": 68947968,
+   "pred": [
+    "ત્રિમાસિક આયોજન નોંધો",
+    "સપ્લાયર કરારનું નવીકરણ 14 નવેમ્બર સુધીમાં કરવાનું છે.",
+    "પ્રિયા શુક્રવાર સુધીમાં સુધારેલું બજેટ શેર કરશે.",
+    "મીટિંગ ગુરુવારે સાંજે 4:30 વાગ્યે રૂમ 812 માં ખસેડવામાં આવી છે.",
+    "કામ: રોડમેપ અપડેટ કરો, ભરતી યોજના તપાસો.",
+    "અત્યાર સુધીનો કુલ ખર્ચ: 48,250 રૂપિયા"
+   ]
+  },
+  {
+   "name": "gu-dark",
+   "language": "gu",
+   "tesseract_langs": "guj+eng",
+   "page_cer": 0.003745318352059925,
+   "line_accuracy": 1.0,
+   "wall_ms": 1611.5811000054237,
+   "peak_working_set_bytes": 68960256,
+   "pred": [
+    "ત્રિમાસિક આયોજન નોંધો",
+    "સપ્લાયર કરારનું નવીકરણ 14 નવેમ્બર સુધીમાં કરવાનું છે.",
+    "પ્રિયા શુક્રવાર સુધીમાં સુધારેલું બજેટ શેર કરશે.",
+    "મીટિંગ ગુરુવારે સાંજે 4:30 વાગ્યે રૂમ 812 માં ખસેડવામાં આવી છે.",
+    "કામ: રોડમેપ અપડેટ કરો, ભરતી યોજના તપાસો.",
+    "અત્યાર સુધીનો કુલ ખર્ચ: 48,250 રૂપિયા"
+   ]
+  },
+  {
+   "name": "gu-small",
+   "language": "gu",
+   "tesseract_langs": "guj+eng",
+   "page_cer": 0.14606741573033707,
+   "line_accuracy": 0.3333333333333333,
+   "wall_ms": 1385.6079999968642,
+   "peak_working_set_bytes": 68947968,
+   "pred": [
+    "ત્રિમાસિક આયોજન નોંયો",
+    "સપ્લાયર કરાતું નવીકરણ 14 નવેમબર સુધીમા કરવાનું છ.",
+    "પ્રિયા sare all સયારલુ બજેટ શેર કરશ.",
+    "મીટિગ ગુરવાર સાંજ 430 વાગય રૂમ 812માં ખસેડવામાં આવી છે.",
+    "કામઃ રોડમેપ અપડેટ કરો, ભરતી યોજના તપાસો.",
+    "અવ્યાર સુધીનો કુલ ખર્ચ 48250 રૂપિયા"
+   ]
+  },
+  {
+   "name": "gu-chat",
+   "language": "gu",
+   "tesseract_langs": "guj+eng",
+   "page_cer": 0.011235955056179775,
+   "line_accuracy": 1.0,
+   "wall_ms": 2733.302699998603,
+   "peak_working_set_bytes": 68743168,
+   "pred": [
+    "ત્રિમાસિક આયોજન નોંધો",
+    "સપ્લાયર કરારનું નવીકરણ 14 નવેમ્બર સુધીમાં કરવાનું છે.",
+    "પ્રિયા શુક્રવાર સુધીમાં સુધારેલું બજેટ શેર કરશે.",
+    "મીટિંગ ગુસ્વારે સાંજે 4:30 વાગ્યે રૂમ 812 માં ખસેડવામાં આવી છે.",
+    "કામ: રોડમેપ અપડેટ કરો, ભરતી યોજના તપાસો.",
+    "અત્યાર સુધીનો કુલ ખર્ચ: 48,250 રૂપિયા"
+   ]
+  },
+  {
+   "name": "gu-table",
+   "language": "gu",
+   "tesseract_langs": "guj+eng",
+   "page_cer": 0.011235955056179775,
+   "line_accuracy": 1.0,
+   "wall_ms": 1277.3821000009775,
+   "peak_working_set_bytes": 68964352,
+   "pred": [
+    "ત્રિમાસિક આયોજન નોંધો",
+    "સપ્લાયર કરારનું નવીકરણ 14 નવેમ્બર સુધીમાં કરવાનું છે.",
+    "પ્રિયા શુક્રવાર સુધીમાં સુધારેલું બજેટ શેર કરશે.",
+    "મીટિંગ ગુસ્વારે સાંજે 4:30 વાગ્યે રૂમ 812 માં ખસેડવામાં આવી છે.",
+    "કામ: રોડમેપ અપડેટ કરો, ભરતી યોજના તપાસો.",
+    "અત્યાર સુધીનો કુલ ખર્ચ: 48,250 રૂપિયા"
+   ]
+  },
+  {
+   "name": "mixed-light",
+   "language": "mixed",
+   "tesseract_langs": "tel+eng+hin+chi_sim+tam+spa",
+   "page_cer": 0.05555555555555555,
+   "line_accuracy": 0.8333333333333334,
+   "wall_ms": 3857.151199990767,
+   "peak_working_set_bytes": 180486144,
+   "pred": [
+    "The vendor contract renewal is due on 14 November.",
+    "प्रिया शुक्रवार तक संशोधित बजट साझा करेगी।",
+    "கூட்டம் வியாழன் மாலை 4:30 மணிக்கு அறை B12 இல்.",
+    "供应 商 合同 续签 截止 日 期 是 十 一 月 十 四 日 。",
+    "[ప్రియ శుక్రవారం లోపు సవరించిన బడ్జెట్ పంచుకుంటుంది.",
+    "La reunión se movió al jueves a las 16:30 en la sala B12."
+   ]
+  },
+  {
+   "name": "code-dark",
+   "language": "en",
+   "tesseract_langs": "eng",
+   "page_cer": 0.024096385542168676,
+   "line_accuracy": 0.8,
+   "wall_ms": 876.0035000013886,
+   "peak_working_set_bytes": 56561664,
+   "pred": [
+    "def renew_contract(vendor_id: int) -> bool:",
+    "deadline - date(2026, 11, 14)",
+    "if today() > deadline:",
+    "raise ContractExpired(vendor_id)",
+    "return notify(\"financegexample. con\")"
+   ]
+  }
+ ]
+}

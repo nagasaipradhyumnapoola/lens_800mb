@@ -135,16 +135,17 @@ class Detector:
 
 class Edge:
     """One headless Edge (no window, temporary profile) driven over the DevTools protocol on a loopback port; a fresh
-    browser per page costs 13-27 s on a loaded machine. Same 1280-px viewport and device scale 1 as --screenshot."""
-    def __init__(self,profile,height):
+    browser per page costs 13-27 s on a loaded machine. Default: the 1280-px viewport and device scale 1 of --screenshot;
+    shot() can change the CSS viewport and device scale per page and evaluate a script on the rendered page."""
+    def __init__(self,profile,height,width=1280):
         self.p=subprocess.Popen([str(EDGE),'--headless=new','--disable-gpu','--hide-scrollbars','--no-first-run','--disable-extensions',
                                  f'--user-data-dir={profile}','--remote-debugging-address=127.0.0.1','--remote-debugging-port=0',
-                                 f'--window-size=1280,{height}','about:blank'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+                                 f'--window-size={width},{height}','about:blank'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         port_file=Path(profile)/'DevToolsActivePort'
         for _ in range(600):
             if port_file.exists() and port_file.read_text().strip():break
             time.sleep(0.1)
-        self.port=int(port_file.read_text().split()[0]);self.height=height;self.loop=asyncio.new_event_loop();self.n=0
+        self.port=int(port_file.read_text().split()[0]);self.width=width;self.height=height;self.loop=asyncio.new_event_loop();self.n=0
         self.loop.run_until_complete(self.connect())
 
     async def connect(self):
@@ -152,7 +153,7 @@ class Edge:
         targets=await (await self.http.get(f'http://127.0.0.1:{self.port}/json/list')).json()
         self.ws=await self.http.ws_connect(next(t for t in targets if t['type']=='page')['webSocketDebuggerUrl'],max_msg_size=0)
         await self.call('Page.enable')
-        await self.call('Emulation.setDeviceMetricsOverride',width=1280,height=self.height,deviceScaleFactor=1,mobile=False)
+        await self.call('Emulation.setDeviceMetricsOverride',width=self.width,height=self.height,deviceScaleFactor=1,mobile=False)
 
     async def call(self,method,wait_event=None,**params):
         self.n+=1;msg_id=self.n;await self.ws.send_json({'id':msg_id,'method':method,'params':params});result=None;seen=wait_event is None
@@ -164,12 +165,18 @@ class Edge:
             elif msg.get('method')==wait_event:seen=True
         return result
 
-    async def shot(self,url):
+    async def shot(self,url,size=None,scale=None,evaluate=None):
+        if size or scale:
+            w,h=size or (self.width,self.height)
+            await self.call('Emulation.setDeviceMetricsOverride',width=w,height=h,deviceScaleFactor=scale or 1,mobile=False)
         await self.call('Page.navigate','Page.loadEventFired',url=url)
         await self.call('Runtime.evaluate',expression='document.fonts.ready.then(()=>1)',awaitPromise=True)
-        return base64.b64decode((await self.call('Page.captureScreenshot',format='png'))['data'])
+        png=base64.b64decode((await self.call('Page.captureScreenshot',format='png'))['data'])
+        if evaluate is None:return png
+        r=await self.call('Runtime.evaluate',expression=evaluate,returnByValue=True)
+        return png,r['result'].get('value')
 
-    def screenshot(self,url):return self.loop.run_until_complete(self.shot(url))
+    def screenshot(self,url,**kw):return self.loop.run_until_complete(self.shot(url,**kw))
 
     def close(self):
         try:self.loop.run_until_complete(self.ws.send_json({'id':0,'method':'Browser.close'}))

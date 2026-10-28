@@ -1,0 +1,1924 @@
+{
+ "created_utc": "20261027T210455Z",
+ "set": "heldout",
+ "only": null,
+ "det": "v5",
+ "route": "oracle",
+ "metric": "page CER on NFC text, ZWNJ/ZWJ removed (as scripts/benchmark_ocr_native.py)",
+ "auto_threshold": 0.9,
+ "threads": 2,
+ "peak_working_set_bytes": 471621632,
+ "edge_version": "156.0.4314.42",
+ "summary": {
+  "en": {
+   "page_cer": 0.0017595307917888565,
+   "line_accuracy": 1.0,
+   "det_ms_p50": 561.1276999989059,
+   "total_ms_p50": 818.8434999974561
+  },
+  "zh": {
+   "page_cer": 0.0034482758620689655,
+   "line_accuracy": 0.95,
+   "det_ms_p50": 691.255400000955,
+   "total_ms_p50": 884.8241000014241
+  },
+  "es": {
+   "page_cer": 0.005737385544515877,
+   "line_accuracy": 0.975,
+   "det_ms_p50": 563.1988999957684,
+   "total_ms_p50": 747.9851999960374
+  },
+  "hi": {
+   "page_cer": 0.02352295106802,
+   "line_accuracy": 0.7555555555555555,
+   "det_ms_p50": 570.050700000138,
+   "total_ms_p50": 1203.5415999998804
+  },
+  "ta": {
+   "page_cer": 0.009098984771573605,
+   "line_accuracy": 0.9527777777777778,
+   "det_ms_p50": 577.7375999969081,
+   "total_ms_p50": 1483.1825000001118
+  },
+  "te": {
+   "page_cer": 0.051826645264847516,
+   "line_accuracy": 0.5611111111111111,
+   "det_ms_p50": 538.8231000033556,
+   "total_ms_p50": 1154.7637000039686
+  },
+  "mixed": {
+   "page_cer": 0.11971611349149493,
+   "line_accuracy": 0.7595238095238095,
+   "det_ms_p50": 603.402400003688,
+   "total_ms_p50": 3071.0028000030434
+  },
+  "fr": {
+   "page_cer": 0.0044011874520349095,
+   "line_accuracy": 1.0,
+   "det_ms_p50": 520.1297999956296,
+   "total_ms_p50": 747.7381999997306
+  },
+  "pt": {
+   "page_cer": 0.002985166077435404,
+   "line_accuracy": 1.0,
+   "det_ms_p50": 579.0250999998534,
+   "total_ms_p50": 799.3299000008847
+  },
+  "de": {
+   "page_cer": 0.0037348719392063046,
+   "line_accuracy": 1.0,
+   "det_ms_p50": 584.2510000002221,
+   "total_ms_p50": 821.1162999941735
+  },
+  "id": {
+   "page_cer": 0.0049272349272349285,
+   "line_accuracy": 1.0,
+   "det_ms_p50": 548.0268000028445,
+   "total_ms_p50": 726.9866999995429
+  },
+  "ru": {
+   "page_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms_p50": 600.6783000048017,
+   "total_ms_p50": 1425.026999997499
+  },
+  "ja": {
+   "page_cer": 0.01080091533180778,
+   "line_accuracy": 1.0,
+   "det_ms_p50": 521.0105000005569,
+   "total_ms_p50": 1717.1192999958294
+  },
+  "ar": {
+   "page_cer": 0.1593091955764278,
+   "line_accuracy": 0.4333333333333333,
+   "det_ms_p50": 549.7070999990683,
+   "total_ms_p50": 1055.7243000002927
+  },
+  "ur": {
+   "page_cer": 0.30497034000482276,
+   "line_accuracy": 0.1388888888888889,
+   "det_ms_p50": 554.7028000000864,
+   "total_ms_p50": 959.0937999964808
+  },
+  "bn": {
+   "page_cer": 0.8363707317073171,
+   "line_accuracy": 0.02222222222222222,
+   "det_ms_p50": 509.15290000557434,
+   "total_ms_p50": 4189.0110000022105
+  },
+  "mr": {
+   "page_cer": 0.02979041916167665,
+   "line_accuracy": 0.8527777777777779,
+   "det_ms_p50": 493.92839999927673,
+   "total_ms_p50": 920.7128999987617
+  },
+  "gu": {
+   "page_cer": 0.7921196181570233,
+   "line_accuracy": 0.02222222222222222,
+   "det_ms_p50": 504.762299999129,
+   "total_ms_p50": 3749.3220000033034
+  }
+ },
+ "rows": [
+  {
+   "name": "en-mail",
+   "language": "en",
+   "boxes": 9,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 561.1276999989059,
+   "rec_ms": 321.17980000475654,
+   "pred": [
+    "Inbox",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Students can check exam results online.",
+    "Srinivas must submit the project report.",
+    "The cricket match was cancelled due to rain.",
+    "The library stays closed on Sundays.",
+    "Train ticket fare was fixed at 1,240 rupees.",
+    "The school annual day is on 5 December.",
+    "Doctor appointment: Wednesday 10:15 am, clinic 3."
+   ]
+  },
+  {
+   "name": "en-notes",
+   "language": "en",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 615.968600002816,
+   "rec_ms": 202.87489999464015,
+   "pred": [
+    "Doctor appointment: Wednesday 10:15 am, clinic 3.",
+    "The library stays closed on Sundays.",
+    "Train ticket fare was fixed at 1,240 rupees.",
+    "The cricket match was cancelled due to rain.",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Students can check exam results online.",
+    "The school annual day is on 5 December.",
+    "Srinivas must submit the project report."
+   ]
+  },
+  {
+   "name": "en-cards",
+   "language": "en",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 500.4112000024179,
+   "rec_ms": 137.4641000002157,
+   "pred": [
+    "The cricket match was cancelled due to rain.",
+    "The school annual day is on 5 December.",
+    "Doctor appointment: Wednesday 10:15 am, clinic 3.",
+    "Students can check exam results online.",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Srinivas must submit the project report.",
+    "The library stays closed on Sundays.",
+    "Train ticket fare was fixed at 1,240 rupees."
+   ]
+  },
+  {
+   "name": "en-heading",
+   "language": "en",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 646.0366000028444,
+   "rec_ms": 325.37109999975655,
+   "pred": [
+    "The school annual day is on 5 December.",
+    "Doctor appointment: Wednesday 10:15 am, clinic 3.",
+    "Total bill: 3,675 rupees, payment complete.",
+    "Students can check exam results online.",
+    "The library stays closed on Sundays.",
+    "Train ticket fare was fixed at 1,240 rupees.",
+    "Srinivas must submit the project report.",
+    "The cricket match was cancelled due to rain."
+   ]
+  },
+  {
+   "name": "en-compact",
+   "language": "en",
+   "boxes": 8,
+   "page_cer": 0.008797653958944282,
+   "line_cer": 0.008298906243258401,
+   "line_accuracy": 1.0,
+   "det_ms": 479.85329999937676,
+   "rec_ms": 177.89970000012545,
+   "pred": [
+    "Train ticket fare was fixed at 1,240 rupees.",
+    "The cricket match was cancelled due to rain",
+    "Srinivas must submit the project report.",
+    "The school annual day is on 5 December.",
+    "The library stays closed on Sundays.",
+    "Students can check exam results online.",
+    "Total bill: 3,675 rupees, payment complete",
+    "Doctor appointment: Wednesday 10: 15 am, clinic 3."
+   ]
+  },
+  {
+   "name": "zh-mail",
+   "language": "zh",
+   "boxes": 9,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 553.8851000019349,
+   "rec_ms": 161.29029999865452,
+   "pred": [
+    "Inbox",
+    "图书馆周日不开放。",
+    "学校年度庆典将于12月5日举行。",
+    "总账单：3675元，已完成付款。",
+    "火车票价格定为1240元。",
+    "由于下雨，板球比赛被取消了。",
+    "学生可以在网上查看考试成绩。",
+    "医生预约在周三上午10:15。",
+    "项目报告需要由李明提交。"
+   ]
+  },
+  {
+   "name": "zh-notes",
+   "language": "zh",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 582.8965999971842,
+   "rec_ms": 128.94129999767756,
+   "pred": [
+    "学校年度庆典将于12月5日举行。",
+    "学生可以在网上查看考试成绩。",
+    "图书馆周日不开放。",
+    "医生预约在周三上午10:15。",
+    "项目报告需要由李明提交。",
+    "总账单：3675元，已完成付款。",
+    "火车票价格定为1240元。",
+    "由于下雨，板球比赛被取消了。"
+   ]
+  },
+  {
+   "name": "zh-cards",
+   "language": "zh",
+   "boxes": 8,
+   "page_cer": 0.008620689655172414,
+   "line_cer": 0.008333333333333333,
+   "line_accuracy": 0.875,
+   "det_ms": 691.255400000955,
+   "rec_ms": 193.5687000004691,
+   "pred": [
+    "学校年度庆典将于12月5日举行。",
+    "总账单：3675元，已完成付款。",
+    "医生预约在周三上午10：15。",
+    "学生可以在网上查看考试成绩。",
+    "图书馆周日不开放。",
+    "由于下雨，板球比赛被取消了。",
+    "项目报告需要由李明提交。",
+    "火车票价格定为1240元。"
+   ]
+  },
+  {
+   "name": "zh-heading",
+   "language": "zh",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 999.7495999996318,
+   "rec_ms": 222.4828000034904,
+   "pred": [
+    "学生可以在网上查看考试成绩。",
+    "由于下雨，板球比赛被取消了。",
+    "学校年度庆典将于12月5日举行。",
+    "火车票价格定为1240元。",
+    "医生预约在周三上午10:15。",
+    "总账单：3675元，已完成付款。",
+    "项目报告需要由李明提交。",
+    "图书馆周日不开放。"
+   ]
+  },
+  {
+   "name": "zh-compact",
+   "language": "zh",
+   "boxes": 8,
+   "page_cer": 0.008620689655172414,
+   "line_cer": 0.008333333333333333,
+   "line_accuracy": 0.875,
+   "det_ms": 755.3722000011476,
+   "rec_ms": 184.54429999837885,
+   "pred": [
+    "项目报告需要由李明提交。",
+    "学校年度庆典将于12月5日举行。",
+    "总账单：3675元，已完成付款。",
+    "火车票价格定为1240元。",
+    "图书馆周日不开放。",
+    "医生预约在周三上午10：15。",
+    "由于下雨，板球比赛被取消了。",
+    "学生可以在网上查看考试成绩。"
+   ]
+  },
+  {
+   "name": "es-mail",
+   "language": "es",
+   "boxes": 9,
+   "page_cer": 0.002824858757062147,
+   "line_cer": 0.0030864197530864196,
+   "line_accuracy": 1.0,
+   "det_ms": 878.1967999966582,
+   "rec_ms": 209.25720000377623,
+   "pred": [
+    "Inbox",
+    "El partido se canceló por la luvia.",
+    "La biblioteca cierra los domingos.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "Los estudiantes pueden ver sus notas en línea.",
+    "Lucía debe entregar el informe del proyecto.",
+    "Factura total: 3.675 pesos, pago completado.",
+    "El billete de tren cuesta 1.240 pesos.",
+    "La fiesta anual del colegio es el 5 de diciembre."
+   ]
+  },
+  {
+   "name": "es-notes",
+   "language": "es",
+   "boxes": 8,
+   "page_cer": 0.020114942528735632,
+   "line_cer": 0.022143227306871714,
+   "line_accuracy": 0.875,
+   "det_ms": 488.11600000044564,
+   "rec_ms": 210.76719999837223,
+   "pred": [
+    "La biblioteca cierra los domingos",
+    "La fiesta anual del colegio es el 5 de diciembre",
+    "Factura total: 3.675 pesos, pago completado",
+    "Los estudiantes pueden ver sus notas en línea.",
+    "El billete de tren cuesta 1.240 pesos",
+    "El partido se canceló por la Iluvia",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "Lucía debe entregar el informe del proyecto"
+   ]
+  },
+  {
+   "name": "es-cards",
+   "language": "es",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 541.467900002317,
+   "rec_ms": 122.08229999669129,
+   "pred": [
+    "El partido se canceló por la lluvia.",
+    "El billete de tren cuesta 1.240 pesos.",
+    "Lucía debe entregar el informe del proyecto.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "La fiesta anual del colegio es el 5 de diciembre.",
+    "Los estudiantes pueden ver sus notas en línea.",
+    "La biblioteca cierra los domingos.",
+    "Factura total: 3.675 pesos, pago completado."
+   ]
+  },
+  {
+   "name": "es-heading",
+   "language": "es",
+   "boxes": 8,
+   "page_cer": 0.0028735632183908046,
+   "line_cer": 0.003472222222222222,
+   "line_accuracy": 1.0,
+   "det_ms": 572.4084999965271,
+   "rec_ms": 192.1998000034364,
+   "pred": [
+    "El billete de tren cuesta 1.240 pesos.",
+    "La fiesta anual del colegio es el 5 de diciembre.",
+    "El partido se canceló por la Iluvia.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "Factura total: 3.675 pesos, pago completado.",
+    "La biblioteca cierra los domingos.",
+    "Lucía debe entregar el informe del proyecto.",
+    "Los estudiantes pueden ver sus notas en línea."
+   ]
+  },
+  {
+   "name": "es-compact",
+   "language": "es",
+   "boxes": 8,
+   "page_cer": 0.0028735632183908046,
+   "line_cer": 0.002551020408163265,
+   "line_accuracy": 1.0,
+   "det_ms": 563.1988999957684,
+   "rec_ms": 184.78630000026897,
+   "pred": [
+    "El billete de tren cuesta 1.240 pesos.",
+    "La biblioteca cierra los domingos.",
+    "El partido se canceló por la lluvia.",
+    "La fiesta anual del colegio es el 5 de diciembre",
+    "Lucía debe entregar el informe del proyecto.",
+    "Factura total: 3.675 pesos, pago completado.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "Los estudiantes pueden ver sus notas en línea."
+   ]
+  },
+  {
+   "name": "hi-mail",
+   "language": "hi",
+   "boxes": 9,
+   "page_cer": 0.021341463414634148,
+   "line_cer": 0.02012783897728818,
+   "line_accuracy": 0.7777777777777778,
+   "det_ms": 570.050700000138,
+   "rec_ms": 1145.121100002143,
+   "pred": [
+    "Inbox",
+    "रेल टिकट का किराया 1,24० रुपये तय हुआ",
+    "छात्र परीक्षा परिणाम ऑनलाइन देख सकते हैं।",
+    "विद्यालय का वार्षिक उत्सव 5 दिसंबर को होगा",
+    "पुस्तकालय रविवार को बंद रहता है।",
+    "डॉक्टर से मुलाकात बुधवार सुबह 10:15 बजे है।",
+    "कुल बिलः 3,675 रुपये, भुगतान पूरा हुआ।",
+    "बारिश के कारण क्रिकेट मैच र६ हो गया।",
+    "परियोजना रिपोर्ट श्रीनिवास को जमा करनी है।"
+   ]
+  },
+  {
+   "name": "hi-notes",
+   "language": "hi",
+   "boxes": 8,
+   "page_cer": 0.027950310559006212,
+   "line_cer": 0.028500686628653314,
+   "line_accuracy": 0.625,
+   "det_ms": 580.7523999974364,
+   "rec_ms": 769.7972000023583,
+   "pred": [
+    "परियोजना रिपोर्ट श्रीनिवास को जमा करनी है।",
+    "कुल बिल: 3,675 रुपये, भुगतान पूरा हुआ।",
+    "छात्र परीक्षा परणाम आनलाइन देख सकते हैं",
+    "रेल टिकट का किराया 1,240 रुूपये तय हुआ",
+    "डॉक्टर से मुलाकात बुधवार सुबह 10:15 बजे है।",
+    "पुस्तकालय रविवार को बंद रहता है।",
+    "विदधयालय का वार्षिक उत्सव 5 दिसंबर को होगा।",
+    "बारिश के कारण क्रिकेट मैच र६ हो गया।"
+   ]
+  },
+  {
+   "name": "hi-cards",
+   "language": "hi",
+   "boxes": 8,
+   "page_cer": 0.015527950310559006,
+   "line_cer": 0.015965982028241336,
+   "line_accuracy": 0.875,
+   "det_ms": 548.0069999975967,
+   "rec_ms": 545.326200001,
+   "pred": [
+    "विद्यालय का वार्षिक उत्सव 5 दिसंबर को होगा।",
+    "पुस्तकालय रविवार को बंद रहता है।",
+    "डॉक्टर से मुलाकात बुधवार सुबह 10:15 बजे है।",
+    "कुल बिल: 3,675 रुपये, भुगतान पूरा हुआ।",
+    "बारिश के कारण क्रिकेट मैच र६ हो गया।",
+    "छात्र परीक्षा परणाम आनलाइन देख सकते हैं।",
+    "रेल टिकट का किराया 1,240 रुपये तय हुआ।",
+    "परियोजना रिपोर्ट श्रीनिवास को जमा करनी है।"
+   ]
+  },
+  {
+   "name": "hi-heading",
+   "language": "hi",
+   "boxes": 8,
+   "page_cer": 0.027950310559006212,
+   "line_cer": 0.02850068662865331,
+   "line_accuracy": 0.75,
+   "det_ms": 534.6104000054765,
+   "rec_ms": 668.9311999944039,
+   "pred": [
+    "रेल टिकट का किराया 1,24० रुपये तय हुआ।",
+    "विद्यालय का वार्षिक उत्सव 5 दिसंबर को होगा",
+    "छात्र परीक्षा परणाम आनलाइन देख सकते हैं",
+    "कुल बिल: 3,675 रुूपये, भुगतान पूरा हुआ।",
+    "परियोजना रिपोर्ट श्रीनिवास को जमा करनी है।",
+    "बारिश के कारण क्रिकेट मैच र६ हो गया।",
+    "पुस्तकालय रविवार को बंद रहता है।",
+    "डॉक्टर से मुलाकात बुधवार सुबह 10:15 बजे है।"
+   ]
+  },
+  {
+   "name": "hi-compact",
+   "language": "hi",
+   "boxes": 8,
+   "page_cer": 0.024844720496894408,
+   "line_cer": 0.02562000932563968,
+   "line_accuracy": 0.75,
+   "det_ms": 588.1908000010299,
+   "rec_ms": 534.7612999976263,
+   "pred": [
+    "कुल बिल: 3,675 रूपये, भुगतान पूरा हुआ।",
+    "परियोजना रिपोर्टश्रीनिवास को जमा करनी है।",
+    "पुस्तकालय रविवार को बंद रहता है।",
+    "रल टिकट का किराया 1,240 रुूपये तय हुआ।",
+    "डॉक्टर से मुलाकात बुधवार सुबह 10:15 बजे है",
+    "बारिश के कारण क्रिकेट मैच रद हो गया",
+    "छात्र परीक्षा परिणाम ऑनलाइन देख सकते हैं।",
+    "विद्यालय का वार्षिक उत्सव 5 दिसंबर को होगा।"
+   ]
+  },
+  {
+   "name": "ta-mail",
+   "language": "ta",
+   "boxes": 9,
+   "page_cer": 0.0125,
+   "line_cer": 0.011227878124429849,
+   "line_accuracy": 0.8888888888888888,
+   "det_ms": 577.7375999969081,
+   "rec_ms": 1650.7951000021421,
+   "pred": [
+    "Inbox",
+    "மருத்துவர் சந்திப்பு புதன்கிழமை காலை 10:15 மணிக்கு.",
+    "நூலகம் ஞாயிற்றுக்கிழூமை மூடப்பட்டிருக்கும்.",
+    "திட்ட அறிக்கையை சீனிவாசன் சமர்ப்பிக்க வேண்டும்.",
+    "பள்ளி ஆண்டு விழா டிசம்பர் 5 அன்று நடைபெறும்.",
+    "மழை காரணமாக கிரிக்கைட் பொாட்டி ரத்து செய்யப்பட்டது.",
+    "மொத்த கட்டணம்: 3,675 ரூபாய், செலுத்தப்பட்டது.",
+    "ரயில் டிக்கட் கட்டணம் 1,240 ரூபாய் என நிர்ணயிக்கப்பட்டது.",
+    "மாணவர்கள் தேர்வு முடிவுகளை இணையத்தில் பார்க்கலாம்."
+   ]
+  },
+  {
+   "name": "ta-notes",
+   "language": "ta",
+   "boxes": 9,
+   "page_cer": 0.012690355329949238,
+   "line_cer": 0.013620689655172415,
+   "line_accuracy": 0.875,
+   "det_ms": 594.3840000036289,
+   "rec_ms": 1115.8217999982298,
+   "pred": [
+    "மொத்த கட்டணம்: 3,675 ரூபாய், செலுத்தப்பட்டது.",
+    "மாணவர்கள் தேர்வு முடிவுகளை இணயத்தில் பார்க்கலாம்.",
+    "மருத்துவர் சந்திப்பு புதன்கிழமை காலை 10:15 மணிக்கு.",
+    "மழை காரணமாக கிரிக்கெட் பாட்டி ரத்து செய்யப்பட்டது.",
+    "திட்ட அறிக்கையை சீனிவாசன் சமர்ப்பிக்க வேண்டும்.",
+    "ரயில் டிக்கட் கட்டணம் 1,240 ரூபாய் என நிர்ணயிக்கப்பட்ட",
+    "து",
+    "பள்ளி ஆண்டு விழா டிசம்பர் 5 அன்று நடைபெறும்.",
+    "நூலகம் ஞாயிற்றுக்கிழமை மூடப்பட்டிருக்கும்."
+   ]
+  },
+  {
+   "name": "ta-cards",
+   "language": "ta",
+   "boxes": 8,
+   "page_cer": 0.005076142131979695,
+   "line_cer": 0.004655172413793103,
+   "line_accuracy": 1.0,
+   "det_ms": 605.0056000021868,
+   "rec_ms": 878.1768999979249,
+   "pred": [
+    "திட்ட அறிக்கையை சீனிவாசன் சமர்ப்பிக்க வேண்டும்.",
+    "மாணவர்கள் தேர்வு முடிவுகளை இணையத்தில் பார்க்கலாம்.",
+    "ரயில் டிக்கட் கட்டணம் 1,240 ரூபாய் என நிர்ணயிக்கப்பட்டது.",
+    "மொத்த கட்டணம்: 3,675 ரூபாய், செலுத்தப்பட்டது.",
+    "மழை காரணமாக கிரிக்கெட் பொட்டி ரத்து செய்யப்பட்டது.",
+    "பள்ளி ஆண்டு விழா டிசம்பர் 5 அன்று நடைபெறும்.",
+    "நூலகம் ஞாயிற்றுக்கிழமை மூடப்பட்டிருக்கும்.",
+    "மருத்துவர் சந்திப்பு புதன்கிழமை காலை 10:15 மணிக்கு."
+   ]
+  },
+  {
+   "name": "ta-heading",
+   "language": "ta",
+   "boxes": 8,
+   "page_cer": 0.007614213197969543,
+   "line_cer": 0.0077777777777777776,
+   "line_accuracy": 1.0,
+   "det_ms": 477.4738000051002,
+   "rec_ms": 939.6037999977125,
+   "pred": [
+    "நூலகம் ஞாயிற்றுக்கிழமை மூடப்பட்டிருக்கும்.",
+    "திட்ட அறிக்கையை சீனிவாசன் சமர்ப்பிக்க வேண்டும்.",
+    "மொத்த கட்டணம்: 3,675 ூபாய், செலுத்தப்பட்டது.",
+    "மாணவர்கள் தேர்வு முடிவுகளை இணையத்தில் பார்க்கலாம்.",
+    "மழை காொரணமாக கிரிக்கெட் பாட்டி ரத்து செய்யப்பட்டது.",
+    "ரயில் டிக்கெட் கட்டணம் 1,240 ரூபாய் என நிர்ணயிக்கப்பட்டது.",
+    "மருத்துவர் சந்திப்பு புதன்கிழமை காலை 10:15 மணிக்கு.",
+    "பள்ளி ஆண்டு விழா டிசம்பர் 5 அன்று நடைபெறும்."
+   ]
+  },
+  {
+   "name": "ta-compact",
+   "language": "ta",
+   "boxes": 8,
+   "page_cer": 0.007614213197969543,
+   "line_cer": 0.006810344827586207,
+   "line_accuracy": 1.0,
+   "det_ms": 520.7167000044137,
+   "rec_ms": 817.7115999933449,
+   "pred": [
+    "மாணவர்கள் தேர்வு முடிவுகளை இணையத்தில் பார்க்கலாம்.",
+    "மழை காரணமாக கிரிக்கெட் பொட்டி ரத்து செய்யப்பட்டது.",
+    "பள்ளி ஆண்டு விழா டிசம்பர் 5 அன்று நடைபெறும்.",
+    "மொத்த கட்டணம்: 3,675 ரூபாய், செலுத்தப்பட்டது.",
+    "ரயில் டிக்கட் கட்டணம் 1,240 ூபாய் என நிர்ணயிக்கப்பட்டது.",
+    "திட்ட அறிக்கையை சீனிவாசன் சமர்ப்பிக்க வேண்டும்.",
+    "நூலகம் ஞாயிற்றுக்கிழமை மூடப்பட்டிருக்கும்.",
+    "மருத்துவர் சந்திப்பு புதன்கிழமை காலை 10:15 மணிக்கு."
+   ]
+  },
+  {
+   "name": "te-mail",
+   "language": "te",
+   "boxes": 9,
+   "page_cer": 0.05056179775280899,
+   "line_cer": 0.049325592427857355,
+   "line_accuracy": 0.5555555555555556,
+   "det_ms": 538.8231000033556,
+   "rec_ms": 1283.218399999896,
+   "pred": [
+    "Inbox",
+    "విద్యార్జలు పరీక్ర ఫలితాలు ఆన్లైన్లో చూడవచ్చు.",
+    "డాక్టర్ అపాయింట్మెంట్ బుధవారం ఉదయం 10:15 కి.",
+    "పాఠశాల వార్టికోత్సవం డిసెంబర్ 5న జరుగుతుంది.",
+    "[పాజె్ట్ నివేదిక గరీనివాస్ సమర్పించాలి.",
+    "రైలు టికెట్ ధర 1,240 రూపాయలుగా నిర్ణయించారు.",
+    "గంథాలయం ఆదివారం మూసి ఉంటుంది.",
+    "మొత్తం బిల్లు: 3,675 రూపాయలు, చెల్లింపు పూర్తయింది.",
+    "కి కెట్ మ్యూచ్ వర్ణం కారణంగా రద్ధయింది."
+   ]
+  },
+  {
+   "name": "te-notes",
+   "language": "te",
+   "boxes": 8,
+   "page_cer": 0.04285714285714286,
+   "line_cer": 0.047475243763194425,
+   "line_accuracy": 0.5,
+   "det_ms": 501.3889000038034,
+   "rec_ms": 653.3748000001651,
+   "pred": [
+    "డాక్టర్ అపాయింట్మెంట్ బుధవారం ఉదయం 10:15 కి.",
+    "పాఠశాల వార్షికోత్సవం డిసెంబర్ 5న జరుగుతుంది.",
+    "[ప్ాజెక్ట్ నివేదిక శీనివాస్ సమర్పించాలి.",
+    "మొత్తం బిల్లు: 3,675 రూపాయలు, చెల్లింపు పూర్తయింది",
+    "[గంథాలయం ఆదివారం మూసి ఉంటుంది.",
+    "ర్ైలు టికెట్ ధర 1,240 రూపాయలుగా నిర్థయించారు",
+    "[కికెట్ మ్యాచ్ వర్షం కారణంగా రద్ధయింది.",
+    "విద్యార్థులు పరీక్ష ఫలితాలు ఆన్లైన్లో చూడవచ్చు."
+   ]
+  },
+  {
+   "name": "te-cards",
+   "language": "te",
+   "boxes": 8,
+   "page_cer": 0.05142857142857143,
+   "line_cer": 0.05722664432341852,
+   "line_accuracy": 0.625,
+   "det_ms": 603.5458999976981,
+   "rec_ms": 538.6094000059529,
+   "pred": [
+    "[గంథాలయం ఆదివారం మూసి ఉంటుంది.",
+    "ర్ైలు టికెట్ ధర 1,240 రూపాయలుగా నిర్ణయించారు.",
+    "మొత్తం బిల్లు: 3,675 రూపాయలు, చెల్లింపు పూర్తయింది.",
+    "[కికెట్ మ్యూచ్ వర్గం కారణంగా రద్ధయింది.",
+    "పాజెక్ట్ నివేదిక [శీినివాస్ సమర్పించాలి.",
+    "పాఠశాల వార్ధికోత్పవం డిసెంబర్ 5న జరుగుతుంది.",
+    "విద్యార్థులు పరీక్ష ఫలితాలు ఆన్లైన్లో చూడవచ్చు.",
+    "డాక్టర్ అపాయింట్మెంట్ బుధవారం ఉదయం 10:15 కి."
+   ]
+  },
+  {
+   "name": "te-heading",
+   "language": "te",
+   "boxes": 8,
+   "page_cer": 0.05714285714285714,
+   "line_cer": 0.06321193214916215,
+   "line_accuracy": 0.625,
+   "det_ms": 497.65620000107447,
+   "rec_ms": 645.2896999981022,
+   "pred": [
+    "[కికెట్ మా్యూచ్ వర్షం కారణంగా రద్ధయింది.",
+    "[పాజె్ట్ నివేదిక గ్రీనివాస్ సమర్పించాలి.",
+    "[గంథాలయం ఆదివారం మూసి ఉంటుంది",
+    "మొత్తం బిల్లు: 3,675 రూపాయలు, చెల్లింపు పూర్తయింది",
+    "డాక్షర్ అపాయింట్మెంట్ బుధవారం ఉదయం 10:15 కి.",
+    "విద్యార్జులు పరీక్ష ఫలితాలు ఆన్లైన్లో చూడవచ్చు",
+    "పాఠశాల వార్షికోత్సవం డిసెంబర్ 5న జరుగుతుంది.",
+    "ర్ైలు టికెట్ ధర 1,240 రూపాయలుగా నిర్ణయించారు."
+   ]
+  },
+  {
+   "name": "te-compact",
+   "language": "te",
+   "boxes": 8,
+   "page_cer": 0.05714285714285714,
+   "line_cer": 0.0628624092676941,
+   "line_accuracy": 0.5,
+   "det_ms": 661.6214999958174,
+   "rec_ms": 593.7124999982188,
+   "pred": [
+    "[కికెట్ మా్యాచ్ వర్థం కారణంగా రద్ధయింది.",
+    "విద్యార్జులు పరీక్ష ఫలితాలు ఆన్లైన్లో చూడవచ్చు.",
+    "[గంథాలయం ఆదివారం మూసి ఉంటుంది.",
+    "మొత్తం బిల్లు: 3,675 రూపాయలు, చెల్లింపు పూర్తయింది.",
+    "[పాజె్ నివేదిక శరీనివాస్ సమర్పించాలి.",
+    "డాక్టర్ అపాయింట్మెంట్ బుధవారం ఉదయం 10:15 కి.",
+    "పాఠశాల వార్థికోతృవం డిసెంబర్ 5న జరుగుతుంది.",
+    "రైలు టికెట్ ధర 1,240 రూపాయలుగా నిర్ణయించారు."
+   ]
+  },
+  {
+   "name": "mixed-notes",
+   "language": "mixed",
+   "boxes": 8,
+   "page_cer": 0.02909090909090909,
+   "line_cer": 0.03440744718940208,
+   "line_accuracy": 0.5714285714285714,
+   "det_ms": 713.6821000021882,
+   "rec_ms": 4392.923499995959,
+   "pred": [
+    "[ప్ాజెక్ట్ నివేదిక శీనివాస్ సమర్పించాలి.",
+    "The library stays closed on Sundays.",
+    "बारिश के कारण क्रिकेट मैच र६ हो गया।",
+    "火车票价格定为1240元。",
+    "மொத்த கட்டணம்: 3,675 ரூபாய், செலுத்தப்பட்ட",
+    "து.",
+    "Factura total: 3.675 pesos, pago completado.",
+    "మొత్తం బిల్లు: 3,675 రూపాయలు, చెల్లింపు పూర్తయింది."
+   ]
+  },
+  {
+   "name": "mixed-cards",
+   "language": "mixed",
+   "boxes": 7,
+   "page_cer": 0.013377926421404682,
+   "line_cer": 0.011657182178628772,
+   "line_accuracy": 1.0,
+   "det_ms": 663.7388000017381,
+   "rec_ms": 1997.035300002608,
+   "pred": [
+    "డాక్టర్ అపాయింట్మెంట్ బుధవారం ఉదయం 10:15 కి.",
+    "Total bill: 3,675 rupees, payment complete.",
+    "छात्र परीक्षा परिणाम ऑनलाइन देख सकते हैं",
+    "火车票价格定为1240元。",
+    "ரயில் டிக்கட் கட்டணம் 1,240 ூபாய் என நிர்ணயிக்கப்பட்டது.",
+    "Cita médica: miércoles a las 10:15, consultorio 3.",
+    "ర్ైలు టికెట్ ధర 1,240 రూపాయలుగా నిర్ణయించారు."
+   ]
+  },
+  {
+   "name": "fr-mail",
+   "language": "fr",
+   "boxes": 9,
+   "page_cer": 0.007263922518159807,
+   "line_cer": 0.006210826210826211,
+   "line_accuracy": 1.0,
+   "det_ms": 444.79449999926146,
+   "rec_ms": 192.48309999966295,
+   "pred": [
+    "Inbox",
+    "Rendez-vous chez le médecin : mercredi à 1o h 15, cabinet 3.",
+    "Srinivas doit remettre le rapport du projet.",
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Le prix du billet de train est fixé à 1 24o euros.",
+    "La bibliothèque est fermée le dimanche.",
+    "Le match de cricket a été annulé à cause de la pluie.",
+    "La fête annuelle de l’école aura lieu le 5 décembre."
+   ]
+  },
+  {
+   "name": "fr-notes",
+   "language": "fr",
+   "boxes": 8,
+   "page_cer": 0.004914004914004914,
+   "line_cer": 0.004487179487179487,
+   "line_accuracy": 1.0,
+   "det_ms": 467.06750000157626,
+   "rec_ms": 338.63969999947585,
+   "pred": [
+    "La bibliothèque est fermée le dimanche.",
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "Rendez-vous chez le médecin: mercredi à 10 h 15, cabinet 3.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "Srinivas doit remettre le rapport du projet.",
+    "La fête annuelle de l’école aura lieu le 5 décembre.",
+    "Le match de cricket a été annulé à cause de la pluie."
+   ]
+  },
+  {
+   "name": "fr-cards",
+   "language": "fr",
+   "boxes": 8,
+   "page_cer": 0.002457002457002457,
+   "line_cer": 0.002403846153846154,
+   "line_accuracy": 1.0,
+   "det_ms": 562.2824000020046,
+   "rec_ms": 204.52369999838993,
+   "pred": [
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Le match de cricket a été annulé à cause de la pluie.",
+    "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3.",
+    "La bibliothèque est fermée le dimanche.",
+    "Srinivas doit remettre le rapport du projet.",
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "La fête annuelle de l’école aura lieu le 5 décembre."
+   ]
+  },
+  {
+   "name": "fr-heading",
+   "language": "fr",
+   "boxes": 8,
+   "page_cer": 0.004914004914004914,
+   "line_cer": 0.004807692307692308,
+   "line_accuracy": 1.0,
+   "det_ms": 520.1297999956296,
+   "rec_ms": 227.26110000076005,
+   "pred": [
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3.",
+    "La bibliothèque est fermée le dimanche.",
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "Le match de cricket a été annulé à cause de la pluie.",
+    "La fête annuelle de l’école aura lieu le 5 décembre",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Srinivas doit remettre le rapport du projet."
+   ]
+  },
+  {
+   "name": "fr-compact",
+   "language": "fr",
+   "boxes": 8,
+   "page_cer": 0.002457002457002457,
+   "line_cer": 0.002403846153846154,
+   "line_accuracy": 1.0,
+   "det_ms": 523.2651999976952,
+   "rec_ms": 224.4730000020354,
+   "pred": [
+    "Le prix du billet de train est fixé à 1 240 euros.",
+    "Les élèves peuvent consulter leurs résultats en ligne.",
+    "La bibliothèque est fermée le dimanche.",
+    "Rendez-vous chez le médecin : mercredi à 10 h 15, cabinet 3.",
+    "Le match de cricket a été annulé à cause de la pluie.",
+    "La fête annuelle de l’école aura lieu le 5 décembre.",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "Srinivas doit remettre le rapport du projet."
+   ]
+  },
+  {
+   "name": "pt-mail",
+   "language": "pt",
+   "boxes": 9,
+   "page_cer": 0.002457002457002457,
+   "line_cer": 0.0020576131687242796,
+   "line_accuracy": 1.0,
+   "det_ms": 719.393500003207,
+   "rec_ms": 216.5928999966127,
+   "pred": [
+    "Inbox",
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "A partida de críquete foi cancelada por causa da chuva.",
+    "A festa anual da escola será no dia 5 de dezembro.",
+    "O preço da passagem de trem foi fixado em R$ 1.240.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "A biblioteca fica fechada aos domingos.",
+    "Os alunos podem ver os resultados das provas on-line.",
+    "Consulta médica: quarta-feira às 1oh15, consultório 3."
+   ]
+  },
+  {
+   "name": "pt-notes",
+   "language": "pt",
+   "boxes": 8,
+   "page_cer": 0.0024937655860349127,
+   "line_cer": 0.0025,
+   "line_accuracy": 1.0,
+   "det_ms": 456.14190000196686,
+   "rec_ms": 221.42239999811864,
+   "pred": [
+    "A festa anual da escola será no dia 5 de dezembro",
+    "A biblioteca fica fechada aos domingos.",
+    "Os alunos podem ver os resultados das provas on-line.",
+    "A partida de críquete foi cancelada por causa da chuva.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "O preço da passagem de trem foi fixado em R$ 1.240.",
+    "Consulta médica: quarta-feira às 10h15, consultório 3."
+   ]
+  },
+  {
+   "name": "pt-cards",
+   "language": "pt",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 544.2241000055219,
+   "rec_ms": 154.5397999943816,
+   "pred": [
+    "A partida de críquete foi cancelada por causa da chuva.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "Os alunos podem ver os resultados das provas on-line.",
+    "A biblioteca fica fechada aos domingos.",
+    "A festa anual da escola será no dia 5 de dezembro.",
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "O preço da passagem de trem foi fixado em R$ 1.240.",
+    "Consulta médica: quarta-feira às 10h15, consultório 3."
+   ]
+  },
+  {
+   "name": "pt-heading",
+   "language": "pt",
+   "boxes": 8,
+   "page_cer": 0.0024937655860349127,
+   "line_cer": 0.0022727272727272726,
+   "line_accuracy": 1.0,
+   "det_ms": 617.3157000011997,
+   "rec_ms": 278.97159999702126,
+   "pred": [
+    "Conta total: R$ 3.675, pagamento concluído.",
+    "Os alunos podem ver os resultados das provas on-line.",
+    "A biblioteca fica fechada aos domingos.",
+    "Consulta médica: quarta-feira às 10h15, consultório 3.",
+    "A partida de críquete foi cancelada por causa da chuva",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "A festa anual da escola será no dia 5 de dezembro.",
+    "O preço da passagem de trem foi fixado em R$ 1.240."
+   ]
+  },
+  {
+   "name": "pt-compact",
+   "language": "pt",
+   "boxes": 8,
+   "page_cer": 0.007481296758104738,
+   "line_cer": 0.00785795713634291,
+   "line_accuracy": 1.0,
+   "det_ms": 579.0250999998534,
+   "rec_ms": 220.30480000103125,
+   "pred": [
+    "Os alunos podem ver os resultados das provas on-line.",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "A partida de críquete foi cancelada por causa da chuva.",
+    "O preço da passagem de trem foi fixado em RS 1.240.",
+    "Consulta médica: quarta-feira às 10h15, consultório 3.",
+    "Conta total: RS 3.675, pagamento concluído.",
+    "A biblioteca fica fechada aos domingos.",
+    "A festa anual da escola será no dia 5 de dezembro"
+   ]
+  },
+  {
+   "name": "de-mail",
+   "language": "de",
+   "boxes": 9,
+   "page_cer": 0.002631578947368421,
+   "line_cer": 0.0021786492374727667,
+   "line_accuracy": 1.0,
+   "det_ms": 565.5618000018876,
+   "rec_ms": 294.21239999646787,
+   "pred": [
+    "Inbox",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Srinivas muss den Projektbericht einreichen.",
+    "Der Fahrpreis für das Zugticket beträgt 1.24o Euro.",
+    "Schüler können ihre Prüfungsergebnisse online ansehen.",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "Das Schulfest findet am 5. Dezember statt.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3."
+   ]
+  },
+  {
+   "name": "de-notes",
+   "language": "de",
+   "boxes": 8,
+   "page_cer": 0.0106951871657754,
+   "line_cer": 0.010241985683162154,
+   "line_accuracy": 1.0,
+   "det_ms": 553.0831000069156,
+   "rec_ms": 207.72589999978663,
+   "pred": [
+    "Das Schulfest findet am 5. Dezember statt.",
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro",
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3",
+    "Srinivas muss den Projektbericht einreichen.",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen",
+    "Schüler können ihre Prüfungsergebnisse online ansehen",
+    "Die Bibliothek ist sonntags geschlossen."
+   ]
+  },
+  {
+   "name": "de-cards",
+   "language": "de",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 584.2510000002221,
+   "rec_ms": 160.24530000140658,
+   "pred": [
+    "Schüler können ihre Prüfungsergebnisse online ansehen.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "Das Schulfest findet am 5. Dezember statt.",
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro.",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3.",
+    "Srinivas muss den Projektbericht einreichen."
+   ]
+  },
+  {
+   "name": "de-heading",
+   "language": "de",
+   "boxes": 8,
+   "page_cer": 0.0053475935828877,
+   "line_cer": 0.005155723905723906,
+   "line_accuracy": 1.0,
+   "det_ms": 600.7698999965214,
+   "rec_ms": 276.81590000429424,
+   "pred": [
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro.",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3.",
+    "Das Schulfest findet am 5. Dezember statt.",
+    "Srinivas muss den Projektbericht einreichen",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "Schüler können ihre Prüfungsergebnisse online ansehen"
+   ]
+  },
+  {
+   "name": "de-compact",
+   "language": "de",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 605.038699999568,
+   "rec_ms": 216.0775999946054,
+   "pred": [
+    "Arzttermin: Mittwoch, 10:15 Uhr, Praxis 3.",
+    "Der Fahrpreis für das Zugticket beträgt 1.240 Euro.",
+    "Srinivas muss den Projektbericht einreichen.",
+    "Schüler können ihre Prüfungsergebnisse online ansehen.",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "Gesamtrechnung: 3.675 Euro, Zahlung abgeschlossen.",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "Das Schulfest findet am 5. Dezember statt."
+   ]
+  },
+  {
+   "name": "id-mail",
+   "language": "id",
+   "boxes": 9,
+   "page_cer": 0.005405405405405406,
+   "line_cer": 0.005009568839356073,
+   "line_accuracy": 1.0,
+   "det_ms": 575.8480000004056,
+   "rec_ms": 143.27079999929992,
+   "pred": [
+    "Inbox",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Pertandingan kriket dibatalkan karena hujan.",
+    "Harga tiket kereta ditetapkan Rp1.240.00o.",
+    "Total tagihan: Rp3.675.00o, pembayaran selesai.",
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Srinivas harus menyerahkan laporan proyek."
+   ]
+  },
+  {
+   "name": "id-notes",
+   "language": "id",
+   "boxes": 8,
+   "page_cer": 0.005494505494505495,
+   "line_cer": 0.005635764944275583,
+   "line_accuracy": 1.0,
+   "det_ms": 580.7758999944781,
+   "rec_ms": 207.05420000012964,
+   "pred": [
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Srinivas harus menyerahkan laporan proyek.",
+    "Total tagihan: Rp3.675.000, pembayaran selesai",
+    "Harga tiket kereta ditetapkan Rp1.240.000",
+    "Pertandingan kriket dibatalkan karena hujan."
+   ]
+  },
+  {
+   "name": "id-cards",
+   "language": "id",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 525.5389000012656,
+   "rec_ms": 157.04639999603387,
+   "pred": [
+    "Total tagihan: Rp3.675.000, pembayaran selesai.",
+    "Harga tiket kereta ditetapkan Rp1.240.000.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Pertandingan kriket dibatalkan karena hujan.",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Srinivas harus menyerahkan laporan proyek."
+   ]
+  },
+  {
+   "name": "id-heading",
+   "language": "id",
+   "boxes": 8,
+   "page_cer": 0.01098901098901099,
+   "line_cer": 0.010976674035184673,
+   "line_accuracy": 1.0,
+   "det_ms": 546.0493999999017,
+   "rec_ms": 222.55630000290694,
+   "pred": [
+    "Srinivas harus menyerahkan laporan proyek.",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Pertandingan kriket dibatalkan karena hujan]",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember",
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Total tagihan: Rp3.675.000, pembayaran selesai",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Harga tiket kereta ditetapkan Rp1.240.000"
+   ]
+  },
+  {
+   "name": "id-compact",
+   "language": "id",
+   "boxes": 8,
+   "page_cer": 0.0027472527472527475,
+   "line_cer": 0.0026595744680851063,
+   "line_accuracy": 1.0,
+   "det_ms": 548.0268000028445,
+   "rec_ms": 178.95989999669837,
+   "pred": [
+    "Harga tiket kereta ditetapkan Rp1.240.000.",
+    "Janji dokter: Rabu pukul 10.15, ruang praktik 3.",
+    "Total tagihan: Rp3.675.000, pembayaran selesai",
+    "Siswa dapat melihat hasil ujian secara daring.",
+    "Pertandingan kriket dibatalkan karena hujan.",
+    "Perpustakaan tutup setiap hari Minggu.",
+    "Perayaan tahunan sekolah diadakan pada 5 Desember.",
+    "Srinivas harus menyerahkan laporan proyek."
+   ]
+  },
+  {
+   "name": "ru-mail",
+   "language": "ru",
+   "boxes": 9,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 600.6783000048017,
+   "rec_ms": 761.6643000001204,
+   "pred": [
+    "Inbox",
+    "Школьный праздник пройдёт 5 декабря.",
+    "Приём у врача: среда, 10:15, кабинет 3.",
+    "Итого к оплате: 3 675 рублей, оплата завершена.",
+    "Шринивас должен сдать отчёт по проекту.",
+    "Стоимость билета на поезд: 1 240 рублей.",
+    "Студенты могут посмотреть результаты экзаменов онлайн.",
+    "Библиотека закрыта по воскресеньям.",
+    "Матч по крикету отменили из-за дождя."
+   ]
+  },
+  {
+   "name": "ru-notes",
+   "language": "ru",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 593.1860999990022,
+   "rec_ms": 1075.7224000044516,
+   "pred": [
+    "Матч по крикету отменили из-за дождя.",
+    "Итого к оплате: 3 675 рублей, оплата завершена.",
+    "Приём у врача: среда, 10:15, кабинет 3.",
+    "Студенты могут посмотреть результаты экзаменов онлайн.",
+    "Школьный праздник пройдёт 5 декабря.",
+    "Стоимость билета на поезд: 1 240 рублей.",
+    "Библиотека закрыта по воскресеньям.",
+    "Шринивас должен сдать отчёт по проекту."
+   ]
+  },
+  {
+   "name": "ru-cards",
+   "language": "ru",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 693.835099998978,
+   "rec_ms": 731.191899998521,
+   "pred": [
+    "Приём у врача: среда, 10:15, кабинет 3.",
+    "Студенты могут посмотреть результаты экзаменов онлайн.",
+    "Матч по крикету отменили из-за дождя.",
+    "Библиотека закрыта по воскресеньям.",
+    "Школьный праздник пройдёт 5 декабря.",
+    "Стоимость билета на поезд: 1 240 рублей.",
+    "Шринивас должен сдать отчёт по проекту.",
+    "Итого к оплате: 3 675 рублей, оплата завершена."
+   ]
+  },
+  {
+   "name": "ru-heading",
+   "language": "ru",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 590.3303000013693,
+   "rec_ms": 910.5016999965301,
+   "pred": [
+    "Приём у врача: среда, 10:15, кабинет 3.",
+    "Матч по крикету отменили из-за дождя.",
+    "Школьный праздник пройдёт 5 декабря.",
+    "Студенты могут посмотреть результаты экзаменов онлайн.",
+    "Стоимость билета на поезд: 1 240 рублей.",
+    "Шринивас должен сдать отчёт по проекту.",
+    "Библиотека закрыта по воскресеньям.",
+    "Итого к оплате: 3 675 рублей, оплата завершена."
+   ]
+  },
+  {
+   "name": "ru-compact",
+   "language": "ru",
+   "boxes": 8,
+   "page_cer": 0.0,
+   "line_cer": 0.0,
+   "line_accuracy": 1.0,
+   "det_ms": 632.1882999982336,
+   "rec_ms": 635.9168000053614,
+   "pred": [
+    "Стоимость билета на поезд: 1 240 рублей.",
+    "Матч по крикету отменили из-за дождя.",
+    "Приём у врача: среда, 10:15, кабинет 3.",
+    "Итого к оплате: 3 675 рублей, оплата завершена.",
+    "Шринивас должен сдать отчёт по проекту.",
+    "Школьный праздник пройдёт 5 декабря.",
+    "Студенты могут посмотреть результаты экзаменов онлайн.",
+    "Библиотека закрыта по воскресеньям."
+   ]
+  },
+  {
+   "name": "ja-mail",
+   "language": "ja",
+   "boxes": 9,
+   "page_cer": 0.010526315789473684,
+   "line_cer": 0.010121923165401427,
+   "line_accuracy": 1.0,
+   "det_ms": 479.74380000232486,
+   "rec_ms": 3584.0258999960497,
+   "pred": [
+    "Inbox",
+    "雨のため、クリケッの試合は中止になりました。",
+    "電車の切符の料金は1,240円に決まりました。",
+    "合計金額：3,675円、支払いが完了しました。",
+    "図書館は日曜日休館です。",
+    "学生はオンランで試験結果を確認できます。",
+    "スリニヴァスさんはプロジェクト報告書を提出する必要があります。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "学校の年次行事は12月5日に行われます。"
+   ]
+  },
+  {
+   "name": "ja-notes",
+   "language": "ja",
+   "boxes": 8,
+   "page_cer": 0.010869565217391304,
+   "line_cer": 0.009467040673211781,
+   "line_accuracy": 1.0,
+   "det_ms": 368.72369999764487,
+   "rec_ms": 777.2188000017195,
+   "pred": [
+    "学生はオンラインで試験結果を確認できます。",
+    "電車の切符の料金は1,240円に決まりました。",
+    "学校の年次行事は12月5日に行われます。",
+    "スリニヴァスさんはプロジェクト報告書を提出する必要があリます。",
+    "図書館は日曜日休館です。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "雨のため、クリケットの試合は中止になリました。",
+    "合計金額：3,675円、支払いが完了しました。"
+   ]
+  },
+  {
+   "name": "ja-cards",
+   "language": "ja",
+   "boxes": 8,
+   "page_cer": 0.016304347826086956,
+   "line_cer": 0.014901823281907433,
+   "line_accuracy": 1.0,
+   "det_ms": 521.0105000005569,
+   "rec_ms": 1464.967699997942,
+   "pred": [
+    "スリニヴァスさんはプロジェクト報告書を提出する必要があリます。",
+    "学生はオンラインで試験結果を確認できます。",
+    "雨のため、クリケットの試合は中止になリました。",
+    "合計金額：3,675円、支払いが完了しました。",
+    "学校の年次行事は12月5日に行われます。",
+    "図書館は日曜日休館です。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "電車の切符の料金は1,240円に決まりました"
+   ]
+  },
+  {
+   "name": "ja-heading",
+   "language": "ja",
+   "boxes": 8,
+   "page_cer": 0.005434782608695652,
+   "line_cer": 0.004032258064516129,
+   "line_accuracy": 1.0,
+   "det_ms": 532.5288999956683,
+   "rec_ms": 1184.590400000161,
+   "pred": [
+    "学校の年次行事は12月5日に行われます。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "合計金額：3,675円、支払いが完了しました。",
+    "雨のため、クリケットの試合は中止になりました。",
+    "図書館は日曜日休館です。",
+    "スリニヴァスさんはブロジェクト報告書を提出する必要があります。",
+    "学生はオンラインで試験結果を確認できます。",
+    "電車の切符の料金は1,240円に決まりました。"
+   ]
+  },
+  {
+   "name": "ja-compact",
+   "language": "ja",
+   "boxes": 8,
+   "page_cer": 0.010869565217391304,
+   "line_cer": 0.009467040673211781,
+   "line_accuracy": 1.0,
+   "det_ms": 613.1050999974832,
+   "rec_ms": 899.2281000028015,
+   "pred": [
+    "雨のため、クリケットの試合は中止になリました。",
+    "スリニヴァスさんはプロジェクト報告書を提出する必要があリます。",
+    "図書館は日曜日休館です。",
+    "合計金額：3,675円、支払いが完了しました。",
+    "病院の予約：水曜日の午前10時15分、診察室3。",
+    "学生はオンラインで試験結果を確認できます。",
+    "学校の年次行事は12月5日に行われます。",
+    "電車の切符の料金は1,240円に決まりました。"
+   ]
+  },
+  {
+   "name": "ar-mail",
+   "language": "ar",
+   "boxes": 9,
+   "page_cer": 0.08536585365853659,
+   "line_cer": 0.07322002516510524,
+   "line_accuracy": 0.6666666666666666,
+   "det_ms": 548.7194000015734,
+   "rec_ms": 776.8884000033722,
+   "pred": [
+    "Inbox",
+    "إجمالي الفاتورة7, 3ريالا، تم الدفع",
+    "يمكن للطلاب الاطلاع على نتائج الامتحانات عبر الإنترنت.",
+    "تم تحديد سعر تذكرة القطار بمبلغ0 , 1ريالا.",
+    "يقام الحفل السنوي للمدرسة في 5 ديسمبر،",
+    "ألغيت مباراة الكريكيت بسبب المطر،",
+    "يجب على سرينيفاس تسليم تقرير المشروع.",
+    "موعد الطبيبالأربعاء الساعة،العيادة",
+    "تغلق المكتبة أيام الأحد."
+   ]
+  },
+  {
+   "name": "ar-notes",
+   "language": "ar",
+   "boxes": 8,
+   "page_cer": 0.2329192546583851,
+   "line_cer": 0.21517605917634525,
+   "line_accuracy": 0.375,
+   "det_ms": 605.6420000022626,
+   "rec_ms": 450.08229999803007,
+   "pred": [
+    "سرة القار",
+    "إجب على سرينيفاس تسليم تقرير المروع",
+    "إجمالي الفاتورةيالا تم الدفح",
+    "قام الحفل السنوي للمدرسة في دس",
+    "موعد الطبالأربعاء الساعة العيادة",
+    "تغلق المكتبة أيام الأحد",
+    "ألغيت مباراة الكريكيت بسبب المطر",
+    "يمكن للطلاب الاطلاع على نتائج الامتحانات عبر الإنترنت"
+   ]
+  },
+  {
+   "name": "ar-cards",
+   "language": "ar",
+   "boxes": 8,
+   "page_cer": 0.19254658385093168,
+   "line_cer": 0.1823565493831512,
+   "line_accuracy": 0.5,
+   "det_ms": 579.4930999982171,
+   "rec_ms": 443.90849999763304,
+   "pred": [
+    "إجمالي الفاتورة ريالاء تم الدفع",
+    "يقام الحفل السنوي للمدرسة في ديسمبر",
+    "محد سر ةالار",
+    "يمكن للطلاب الاطلاع على نتائج الامتحانات عبر الإنترنت",
+    "ألغيت مباراة الكريكيت بسبب المطر",
+    "يجب على سرينيفاس تسليم تقرير المشروع",
+    "موعد الطببالأربعاء الساعةالعيادة",
+    "تغلق المكتبة أيام الأحد"
+   ]
+  },
+  {
+   "name": "ar-heading",
+   "language": "ar",
+   "boxes": 8,
+   "page_cer": 0.09006211180124224,
+   "line_cer": 0.08485603408372287,
+   "line_accuracy": 0.5,
+   "det_ms": 549.7070999990683,
+   "rec_ms": 633.122800005367,
+   "pred": [
+    "يقام الحفل السنوي للمدرسة في ديسمبر",
+    "يجب على سرينيفاس تسليم تقرير المشروع.",
+    "إجمالي الفاتورة675, 3ريالا، تم الدفع.",
+    "تغلق المكتبة أيام الأحد.",
+    "ألغيت مباراة الكريكيت بسبب المطر",
+    "تم تحديد سعر تذكرة القطار بمبلغ ، 1ريالا.",
+    "موعد الطبيبالأربعاء الساعة،العيادة",
+    "يمكن للطلاب الاطلاع على نتائج الامتحانات عبر الإنترنت"
+   ]
+  },
+  {
+   "name": "ar-compact",
+   "language": "ar",
+   "boxes": 8,
+   "page_cer": 0.1956521739130435,
+   "line_cer": 0.1880030751955809,
+   "line_accuracy": 0.125,
+   "det_ms": 428.40659999637865,
+   "rec_ms": 407.9912000015611,
+   "pred": [
+    "تم تحديد سعرككرة القطار بمبلغرا",
+    "إجمالي الفاتورةريالاء تم الدفع",
+    "يمكن للطلاب الاطلاع على افج الامتحاات عبر الإترك",
+    "الغيب مباراد الكريكيت بسبب المطر",
+    "تغلق المكتبة أيام الأحد",
+    "موعد الطببالأريعاء الساعةالعيادة",
+    "يجب على سريبيفاس شليم تقرير المشروع",
+    "قام الحفل السوي للمدرس في ديسمر"
+   ]
+  },
+  {
+   "name": "ur-mail",
+   "language": "ur",
+   "boxes": 9,
+   "page_cer": 0.09538461538461539,
+   "line_cer": 0.08692315472425133,
+   "line_accuracy": 0.4444444444444444,
+   "det_ms": 581.3823999997112,
+   "rec_ms": 443.8030999954208,
+   "pred": [
+    "Inbox",
+    "کل بل675 :, 3روے، ادائیگی مکمل بو گئی-",
+    "طلبہ امتحان کے نتائج آن لائن دیکھ سکتے بیں۔",
+    "ٹرین ٹکٹ کا کرایر240 , 1رویے مقرر کیا گیا۔",
+    "اسکول کا سالانہ جشن 5 دسمبر کو بوگا۔",
+    "بارش کی وجر سے کرکٹ میچ منسوخ بو گیا۔",
+    "لائبریری اتوار کو بند رېتی ے۔",
+    "سری نواس کو منصویے کی رپورٹ جمع کرانی ہے۔",
+    "ڈاکٹر سے ملاقات :بده صبح 10:15 بجے، کلینک.3"
+   ]
+  },
+  {
+   "name": "ur-notes",
+   "language": "ur",
+   "boxes": 8,
+   "page_cer": 0.42946708463949845,
+   "line_cer": 0.43414406451133625,
+   "line_accuracy": 0.0,
+   "det_ms": 564.0917999990052,
+   "rec_ms": 430.6004000027315,
+   "pred": [
+    "رين رايوے مقرركا گيا۔",
+    "سكول كا سالان جشن دسمر كوبوگا",
+    "طلبر امتحان ك نتائج أن لائن ديكهسكتي ب",
+    "لائرير اتواركوبندريتي",
+    "كل بلروے، ادائيگي مكمل بوگي",
+    "لسرى نواس كو منصوے كي ريورث جمع كراني",
+    "بارش كي وجس كرك ميج منسوخ بوگیا",
+    "رس مااتبهح ج، كلين"
+   ]
+  },
+  {
+   "name": "ur-cards",
+   "language": "ur",
+   "boxes": 8,
+   "page_cer": 0.335423197492163,
+   "line_cer": 0.3358934113649088,
+   "line_accuracy": 0.0,
+   "det_ms": 554.7028000000864,
+   "rec_ms": 404.3909999963944,
+   "pred": [
+    "لائبريرى اتوار كو بند ربتى ب",
+    "سرى نواس کو منصوبے كی ريورث جمع كرانى بے",
+    "طلبم امتحان كے نتائج أن لائن ديكه سكتي بین",
+    "اسكول كا سالان جشن دسمبر كو بوگا",
+    "ترين ثث كرايم روے مقرر كيا گيا۔",
+    "س ملاقاتدهصبح بجع، كلينك",
+    "كل بل 6روي، ادائيگى مكمل بوگي",
+    "بارش كی وجم سے كركث ميج منسوخ بو گیا"
+   ]
+  },
+  {
+   "name": "ur-heading",
+   "language": "ur",
+   "boxes": 8,
+   "page_cer": 0.14106583072100312,
+   "line_cer": 0.14781604528130335,
+   "line_accuracy": 0.25,
+   "det_ms": 452.80279999860795,
+   "rec_ms": 409.5847999997204,
+   "pred": [
+    "لائبريرى اتوار كو بندرېتىے",
+    "ڈاكثر سے ملاقات :بدهصبح 10:15 بجے، کلينک.3",
+    "کل بل675 :, 3رویے، ادائیگی مکمل بو گئی-",
+    "ٹرین ٹکٹ کا کرایر240 , 1دویے مقرر کیا گیا۔",
+    "سری نواس کو منصویے کی رپورٹ جمع کرانی بے۔",
+    "اسکول کا سالانر جشن 5 دسمبر کو بوگا۔",
+    "بارش کی وجر سے کرکٹ میچ منسوخ بو گیا۔",
+    "طلبہ امتحان کے نتائج آن لائن دیکھ سکتے بیں۔"
+   ]
+  },
+  {
+   "name": "ur-compact",
+   "language": "ur",
+   "boxes": 8,
+   "page_cer": 0.5235109717868338,
+   "line_cer": 0.5128062971157129,
+   "line_accuracy": 0.0,
+   "det_ms": 390.22010000189766,
+   "rec_ms": 315.5140000017127,
+   "pred": [
+    "لانبريري اتوار كو بدرتي ب",
+    "ثرين كت كرايروي مرر كا گي",
+    "اكر سمااهع جي كلب",
+    "اسكول كا سالاجن دسمر كوبوگا",
+    "سري واس كو مصوي ك رورث جع كراي",
+    "ك ااف كمل وي",
+    "طلبم اتحان ك تالج أن لا دكهسكتي ب",
+    "بار كي وج كر ميج موخ بو گیا"
+   ]
+  },
+  {
+   "name": "bn-mail",
+   "language": "bn",
+   "boxes": 9,
+   "page_cer": 0.816,
+   "line_cer": 0.7463431048262028,
+   "line_accuracy": 0.1111111111111111,
+   "det_ms": 427.12960000062594,
+   "rec_ms": 3879.7658999974374,
+   "pred": [
+    "Inbox",
+    "Cn: 3,675 , (CC",
+    "1,240",
+    "अद्रगात बवियात्र यक्ष थाटका",
+    "बृष्षिन काबण क्िककडे मगाह वाजिल शव्टष।",
+    "शवशजीता छननाशेन म्रीक्रात यनायन (मथज गाब्यय।",
+    "कूलत वार्िक छनूरश़ान 5 छिमब छनूर्िण शव।",
+    "ाछाब छाप्नैटमने: दूथवा मकान 10:15, क्रिनिक 3।",
+    "शीनिवामक शकाब्ब अजिवमन छमा मिछ शय।"
+   ]
+  },
+  {
+   "name": "bn-notes",
+   "language": "bn",
+   "boxes": 8,
+   "page_cer": 0.8265582655826558,
+   "line_cer": 0.8381922794791858,
+   "line_accuracy": 0.0,
+   "det_ms": 509.63050000427756,
+   "rec_ms": 4368.643699999666,
+   "pred": [
+    "शवशजोता छनलारेन प्ोक्ात यलारल (पथछ शातव।",
+    "अ्ागात बविवात बक् शाक",
+    "शीनियागक शक्त शज्िवमन छया मिछ शव।",
+    "नल जिकिटेत जाजा 1,240 जीका ठिक कता श्एए",
+    "(यार् विल: 3,675 फोका, (पटमने जम्भ् श्व।",
+    "101",
+    "कूलत बार्थिक खनूर्ान 5 छिसशत जनूर्ि शव।",
+    "बष्ि काबण क्िकड गाछ वा्िल शआएए।"
+   ]
+  },
+  {
+   "name": "bn-cards",
+   "language": "bn",
+   "boxes": 8,
+   "page_cer": 0.8428184281842819,
+   "line_cer": 0.8501766675326528,
+   "line_accuracy": 0.0,
+   "det_ms": 412.6708000039798,
+   "rec_ms": 3664.0607999943313,
+   "pred": [
+    "दछ्िल काब्व क्िएकडे मा वािल श८्रएए।",
+    "कूल्र वार्थिक छनूर्ान 5 छिमशत्र छनूर्िछ शव।",
+    "शवशली्रा छननारेटन पश्रीक्रा् यलायन (फथछ शाब्रय।",
+    "शीनिवामक श्काब्ब शज्िवमन छया मिछ शव।",
+    "अ्याशात्र बविवात्र वक्ष थाटक।",
+    ",7",
+    "जाकात्त्र जाभशन्डे्न्े: बूथवात मकान 10:15, क्रिनिक 3।",
+    "दिटनस िकिटडेन्र जा़ा 1,240 जोका ठिक कब्ला शट्यएए"
+   ]
+  },
+  {
+   "name": "bn-heading",
+   "language": "bn",
+   "boxes": 8,
+   "page_cer": 0.8130081300813008,
+   "line_cer": 0.8266342303930558,
+   "line_accuracy": 0.0,
+   "det_ms": 509.15290000557434,
+   "rec_ms": 3679.858099996636,
+   "pred": [
+    "अद्ागात् बविवात बक्र थारक।",
+    "जाछाबत् छाभ्नदेमनडे: बूथवा्र मकान 10:15, क्रिनिक 3",
+    "कूलत् वार्िक एनूर्ान 5 डिलनव्त छनूर्िछ शव।",
+    "Cदिटनस िकिटेन्र जा़ा 1,240 छोका ठिक कब्ला श८्एए।",
+    "शीनिवामक शकब्च् शजिवमन छया मिछ शव।",
+    "बछिलत काब्वप क्िटकछे माह वाछिन श८्यएए।",
+    "या् विलन: 3,675 जोका, (श्ने सम्पू् श८्शएए",
+    "शाछशजी्रा छननाशेन शश्रीक्रात कलाकल (मथज शा्रव।"
+   ]
+  },
+  {
+   "name": "bn-compact",
+   "language": "bn",
+   "boxes": 8,
+   "page_cer": 0.8834688346883469,
+   "line_cer": 0.88091478514812,
+   "line_accuracy": 0.0,
+   "det_ms": 518.2787000012468,
+   "rec_ms": 3440.3719999972964,
+   "pred": [
+    "वष४िल काबवण क्िटके गाष वािन श्ापष।",
+    "5 2",
+    "अ्ाशात्र बविवा्र वक् थाटक।",
+    "：3,675Φ，C",
+    "1,2403",
+    "1015,",
+    "शीनिवामक शका्् शछ्िवमन छया मिक शव।",
+    "शवशजोत्ा छनलाशेन पब्ोक्रात कलाषल (मथछ शाब्रव।"
+   ]
+  },
+  {
+   "name": "mr-mail",
+   "language": "mr",
+   "boxes": 9,
+   "page_cer": 0.023952095808383235,
+   "line_cer": 0.02250233426704015,
+   "line_accuracy": 0.8888888888888888,
+   "det_ms": 552.0926999961375,
+   "rec_ms": 447.2440000026836,
+   "pred": [
+    "Inbox",
+    "श्रीनिवासला प्रकल्पाचा अहवाल सादर करायचा आहे",
+    "विद्यारथी परीक्षचे निकाल ऑनलाइन पाहू शकतात.",
+    "शाळेचा वार्षिक समारंभ 5 डिसेंबर रोजी होईल",
+    "पावसामुळे क्रिकेट सामना र६ झाला.",
+    "ग्रंथालय रविवारी बंद असते.",
+    "एकूण बिल: 3,675 रुपये, पेमेंट पूर्ण झाले.",
+    "रेल्वे तिकिटाचे भाडे 1,240 रुपये ठरले आहे",
+    "डॉक्टरांची भेट: बुधवार सकाळी 10:15, दवाखाना 3."
+   ]
+  },
+  {
+   "name": "mr-notes",
+   "language": "mr",
+   "boxes": 8,
+   "page_cer": 0.042682926829268296,
+   "line_cer": 0.04584923087433848,
+   "line_accuracy": 0.875,
+   "det_ms": 463.80930000304943,
+   "rec_ms": 416.58689999894705,
+   "pred": [
+    "एकूण बिल: 3,675 रुूपये, पेमेंट पूर्ण झाले",
+    "शाळेचा वार्षक समारंभ 5 डिसेंबर रोजी होईल",
+    "पावसामुळे क्रिकेट सामना र६ शाला.",
+    "श्रीनिवासला प्रकल्पाचा अहवाल सादर करायचा आहे",
+    "रेल्वे तिकिटाचे भाडे 1,240 रुूपये ठरले आहे",
+    "विद्या्थी परीक्षेचे निकाल ऑनलाइन पाहु शकतात.",
+    "ग्रंथालय रविवारी बेंद असते.",
+    "डॉक्टरांची भेट: बुधवार सकाळी 10:15, दवाखाना 3."
+   ]
+  },
+  {
+   "name": "mr-cards",
+   "language": "mr",
+   "boxes": 8,
+   "page_cer": 0.021341463414634148,
+   "line_cer": 0.02260993828425679,
+   "line_accuracy": 0.875,
+   "det_ms": 445.87390000378946,
+   "rec_ms": 452.924899997015,
+   "pred": [
+    "विद्यारथी परीक्षेचे निकाल ऑनलाइन पाहु शकतात.",
+    "ग्रंथालय रविवारी बंद असते.",
+    "पावसामुळे क्रिकेट सामना र६ झाला.",
+    "श्रीनिवासला प्रकल्पाचा अहवाल सादर करायचा आहे.",
+    "रेल्वे तिकिटाचे भाडे 1,240 रुपये ठरले आहे",
+    "एकूण बिल: 3,675 रूपये, पेमेंट पूर्ण झाले.",
+    "शाळेचा वार्षिक समारंभ 5 डिसेंबर रोजी होईल.",
+    "डॉक्टरांची भेट: बुधवार सकाळी 10:15, दवाखाना 3."
+   ]
+  },
+  {
+   "name": "mr-heading",
+   "language": "mr",
+   "boxes": 8,
+   "page_cer": 0.027439024390243903,
+   "line_cer": 0.030664823778166678,
+   "line_accuracy": 0.875,
+   "det_ms": 493.92839999927673,
+   "rec_ms": 426.784499999485,
+   "pred": [
+    "रेल्वे तिकिटाचे भाडे 1,240 रुपये ठरले आहे",
+    "शाळेचा वार्षिक समारंभ 5 डिसेंबर रोजी होईल",
+    "पावसामुळे क्रिकेट सामना र६ झाला.",
+    "एकूण बिल: 3,675 रूपये, पेमेंट पूर्ण झाले",
+    "डॉक्टरांची भेट: बुधवार सकाळी 10:15, दवाखाना 3.",
+    "श्रीनिवासला प्रकल्पाचा अहवाल सादर करायचा आहे.",
+    "विद्यार्ी परीक्षेचे निकाल ऑनलाइन पाहू शकतात.",
+    "ग्रंथालय रविवारी बंद असते"
+   ]
+  },
+  {
+   "name": "mr-compact",
+   "language": "mr",
+   "boxes": 8,
+   "page_cer": 0.03353658536585366,
+   "line_cer": 0.03582355393689683,
+   "line_accuracy": 0.75,
+   "det_ms": 564.9723000024096,
+   "rec_ms": 487.91630000050645,
+   "pred": [
+    "श्रीनिवासला प्रकत्पाचा अहवाल सादर करायचा आहे",
+    "डॉक्टरांची भेट: बुधवार सकाळी 10:15, दवाखाना 3.",
+    "ग्रथालय रविवारी बंद असते.",
+    "एकूण बिल: 3,675 रूपये, पेमेंट पूर्ण झाले",
+    "पावसामुळे क्रिकेट सामना रदध झाला",
+    "विद्यार्ी परी्षचे निकाल ऑनलाइन पाहू शकतात.",
+    "शाळेचा वार्षिक समारंभ 5 डिसेंबर रोजी होईल.",
+    "रेल्वे तिकिटाचे भाडे 1,240 रुपये ठरले आहे."
+   ]
+  },
+  {
+   "name": "gu-mail",
+   "language": "gu",
+   "boxes": 9,
+   "page_cer": 0.7853107344632768,
+   "line_cer": 0.7198025066265054,
+   "line_accuracy": 0.1111111111111111,
+   "det_ms": 553.0776000014157,
+   "rec_ms": 2821.615099994233,
+   "pred": [
+    "Inbox",
+    "टेन टि5टनु लाई 1,240 रूपिथा न६ही ह२वाभं थाव्यु छ.",
+    "विधाथीयो परोक्षानां परिएभो योन९।छन %ोछ श३ छे.",
+    "श्रीनिवासे ्रोछटनो सडेवाव ४भ। 5रववानो छे.",
+    "परसा।६ने 5।२९ ६डट भेय २६ थ८.",
+    "शाणानो वाषि५ वत्सव ५ डसेभ्यरे योणशे.",
+    "ो९टरनी भुवाातः पुधवार सवारे 1०:15, छ्वनि5 ३.",
+    ".",
+    "६९ ्िदः 3,675 रूपिया, यु5वशी पूरए थछ."
+   ]
+  },
+  {
+   "name": "gu-notes",
+   "language": "gu",
+   "boxes": 8,
+   "page_cer": 0.7873563218390804,
+   "line_cer": 0.7959840257461536,
+   "line_accuracy": 0.0,
+   "det_ms": 503.1463999985135,
+   "rec_ms": 3372.84340000042,
+   "pred": [
+    "शाणानो वाष५ त्सव 5 डसेभ्यरे योलश.",
+    "ई६ व्िद: 3,675 रूपिथा, यु5वशी पूर्श थ्",
+    "पुस्तसवय २विवारे ५ंच २छे छ.",
+    "वरस।६ने sा२९ (डडट मेथ २६ थ४.",
+    "टन ह5टनु आाई 1,240 रपथा न८ही s२वाभं आाव्यु छ",
+    "श्रोीनिवासे ्रोळ्ेबटनो अडेवाव ४भा इरववानो छे",
+    "विधा्थायो परोक्षानं परशाभो थोनवाछन %ोे श3 छे",
+    "SोSट२नी भुवा5ात: पुधवार सवरे 10:15, वना 3."
+   ]
+  },
+  {
+   "name": "gu-cards",
+   "language": "gu",
+   "boxes": 8,
+   "page_cer": 0.7931034482758621,
+   "line_cer": 0.8112767699990271,
+   "line_accuracy": 0.0,
+   "det_ms": 451.38159999623895,
+   "rec_ms": 2961.4088000016636,
+   "pred": [
+    "विधाथीयो परीक्षानं परिएभो ोनशाछन ४ोछ श३ छ",
+    "५व व्िदः 3,675 रूपिथा, युडवशी पूरए थ्.",
+    "परसा।६ने ५।२९ (६३ट भेथ २६ थ४.",
+    "ुस्त५ावय २विवारे ५ंच २७ छ.",
+    "SोSट२नी भुधाSातः पुधवार२ सवारे 1०:15, (डवनि5 ३.",
+    "श्रीनिवासे प्रोछटनो सडेवाव ४भा इराववानो छ.",
+    "शाणनो वाषि५ βत्सव ५ डिसेभ्यरे योणश.",
+    "टन हि5टनु भाई 1,240 रूपया न5डी इ२वाभं आाव्थु छ."
+   ]
+  },
+  {
+   "name": "gu-heading",
+   "language": "gu",
+   "boxes": 8,
+   "page_cer": 0.7902298850574713,
+   "line_cer": 0.8101984930317416,
+   "line_accuracy": 0.0,
+   "det_ms": 719.6392000041669,
+   "rec_ms": 3708.970399995451,
+   "pred": [
+    "व२स६ने हा२९ो (डड२ भेथ २६ थछ.",
+    "शाणानो वाष५ त्सव ५ डसेभ्दरे योणशे",
+    "इव व्िव: 3,675 रूपिया, युह्वशी पूए थ्",
+    "Sोsट२नी भुधा५ात: पुधवा२ सवरे 1०:15, Sवन५ 3.",
+    "श्रीनिवासे प्रोछटनो अडेवाद ४भा इराववानो छ.",
+    "पुस्त५।वय २विवारे भंध २३ छ",
+    "टन हिSटनु लाई 1,240 रूपथा नइडी s२वाभं आाव्यु छ.",
+    "विधाथीयो परीक्षनं परिएाभो योनशाछन लोछ श३ छे."
+   ]
+  },
+  {
+   "name": "gu-compact",
+   "language": "gu",
+   "boxes": 8,
+   "page_cer": 0.8045977011494253,
+   "line_cer": 0.8156589539070731,
+   "line_accuracy": 0.0,
+   "det_ms": 504.762299999129,
+   "rec_ms": 3244.5597000041744,
+   "pred": [
+    "टन हिडिटनु भार 1,240 रपिथा न5डी s२वाभं आाव्थु छ",
+    "विधाथायो परोक्षानां परशिशाभो योनशाछन ोछ शे छे",
+    "वरसा।६ने ६ा२ए (6डट मेथ २६ थ४.",
+    "श्रीनिवासे प्रोछषटनो भडेवाव ४भा हरववानो छ",
+    "शाजानो वाषिड वत्सव ५ डसेभ्यरे योलश",
+    "Sो८टरनी भुवाडातः तुधवार सवारे 1०:15, िवनिड 3.",
+    "पस्तधावय रविवारे भंच २३े छ",
+    "इद िदः 3,675 रूपिया, युडवशी पूर्श थछ"
+   ]
+  },
+  {
+   "name": "mixed-global-mail",
+   "language": "mixed",
+   "boxes": 10,
+   "page_cer": 0.21212121212121213,
+   "line_cer": 0.17465915171954463,
+   "line_accuracy": 0.8,
+   "det_ms": 543.0660000056378,
+   "rec_ms": 2938.165499996103,
+   "pred": [
+    "Inbox",
+    "Студенты могут посмотреть результаты экзаменов онлайн.",
+    "スリニヴァスさんはプロジェクト報告書を提出する必要があリます。",
+    "Facture totale : 3 675 euros, paiement effectué.",
+    "जाछाब छावनैटमने: ूथवा मकान 10:15, क्िनिक ३",
+    "Das Cricketspiel wurde wegen Regen abgesagt.",
+    "विधाथायो परीक्षानां परशाभो थोनधाछन ोछ शड छ",
+    "Srinivas precisa entregar o relatório do projeto.",
+    "विद्यारथी परीक्षचे निकाल ऑनलाइन पाहू शकतात.",
+    "Perpustakaan tutup setiap hari Minggu."
+   ]
+  },
+  {
+   "name": "mixed-global-compact",
+   "language": "mixed",
+   "boxes": 9,
+   "page_cer": 0.22427440633245382,
+   "line_cer": 0.21594047046428,
+   "line_accuracy": 0.6666666666666666,
+   "det_ms": 483.3899000004749,
+   "rec_ms": 1957.3525000014342,
+   "pred": [
+    "Библиотека закрыта по воскресеньям.",
+    "病院0予約：水曜日)午前10時15分、診察室3。",
+    "Srinivas doit remettre le rapport du projet.",
+    "शवशजोत्ा छनलाशेन पब्ोक्रात कलाषल (मथछ शाबरव।",
+    "Die Bibliothek ist sonntags geschlossen.",
+    "शाणानो वाषिड ढत्सव ५ डिसेभ्यरे योलशे",
+    "A festa anual da escola será no dia 5 de dezembro",
+    "विद्यार्ी परीक्षचे निकाल ऑनलाइन पाहू शकतात.",
+    "Pertandingan kriket dibatalkan karena hujan"
+   ]
+  }
+ ]
+}
