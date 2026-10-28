@@ -165,7 +165,7 @@ void on_capture(ma_device*,void*,const void* input,ma_uint32 frames){push_audio(
 int wmain(int argc,wchar_t** argv) {
     bool consent=false;std::wstring input_wav,model,language=L"auto",device=L"windows-local",vad_mode=L"adaptive";
     std::optional<double> threshold_flag,on_margin_flag,off_margin_flag,hpf_flag,lpf_flag,floor_pct_flag;std::optional<int> silence_flag,min_speech_flag,onset_flag,tail_flag;
-    double max_seconds=600,pace=0,min_confidence=0;std::optional<double> soft_split_flag,max_segment_flag;
+    double max_seconds=600,pace=0,min_confidence=0,short_segment_s=2.5,short_min_lid=0.7;std::optional<double> soft_split_flag,max_segment_flag;
     std::wstring languages=L"en,zh,es,ar,fr,pt,ru,id,de,ja,hi,bn,te,mr,ta,ur,gu",sherpa_library;bool routes_enabled=true;  // spec §1a
     // Speaker threshold from LibriSpeech dev speakers: FAR 0.4%, FRR 4.8% (reports/voice/speaker-dev.json).
     std::wstring enroll_path,profile_path,speaker_model;double speaker_threshold=0.46;bool require_owner=false;
@@ -192,6 +192,8 @@ int wmain(int argc,wchar_t** argv) {
         else if(a==L"--sherpa-library")sherpa_library=next();
         else if(a==L"--no-routes")routes_enabled=false;
         else if(a==L"--min-confidence")min_confidence=std::stod(next());
+        else if(a==L"--short-segment-s")short_segment_s=std::stod(next());
+        else if(a==L"--short-min-lid")short_min_lid=std::stod(next());
         else if(a==L"--soft-split-s")soft_split_flag=std::stod(next());
         else if(a==L"--max-segment-s")max_segment_flag=std::stod(next());
         else if(a==L"--pace")pace=std::stod(next());
@@ -234,7 +236,8 @@ int wmain(int argc,wchar_t** argv) {
         const auto dolphin=models/L"csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02";
         const auto indic=models/L"parismitaglobalsolutions--indicconformer-sherpa-onnx";
         add("zh","dolphin",dolphin/L"model.int8.onnx",dolphin/L"tokens.txt");
-        add("hi","nemo_ctc",indic/L"hi/model.int8.onnx",indic/L"tokens.txt");
+        // IndicConformer per-language exports (shared vocabulary); only languages installed on disk are routed.
+        for(const char* code:{"hi","bn","te","mr","ta","ur","gu"})add(code,"nemo_ctc",indic/fs::path(code)/L"model.int8.onnx",indic/L"tokens.txt");
     }
     const bool enrolling=!enroll_path.empty();json profile=nullptr;std::vector<float> owner;
     if(!profile_path.empty()&&!enrolling) {
@@ -317,7 +320,8 @@ int wmain(int argc,wchar_t** argv) {
             const auto digest=sha256_hex(keyed.data(),keyed.size());
             const auto clipped=std::count_if(segment.begin(),segment.end(),[](float v){return std::fabs(v)>=0.999f;});
             json req={{"op","ingest_audio"},{"consent",true},{"id","voice-"+digest.substr(0,24)},{"audio_base64",wav_base64(segment)},
-                {"model",utf8(model)},{"language",utf8(language)},{"asr_routes",routes},{"min_confidence",min_confidence},{"timestamp",iso(t)},{"device",utf8(device)},{"kind","voice_note"},
+                {"model",utf8(model)},{"language",utf8(language)},{"asr_routes",routes},{"min_confidence",min_confidence},
+                {"short_segment_rule",{{"max_seconds",short_segment_s},{"min_language_probability",short_min_lid}}},{"timestamp",iso(t)},{"device",utf8(device)},{"kind","voice_note"},
                 {"provenance",live?"lens-voice microphone":"lens-voice file"},{"consent_context",{{"mode","voice_explicit_consent"}}},
                 {"metadata",{{"capture",live?"microphone":"file"},{"duration_ms",static_cast<long long>(segment.size())*1000/rate},{"speech_ms",speech_ms},
                     {"stream_start_ms",segment_start*1000/rate},{"stream_end_ms",(segment_start+static_cast<long long>(segment.size()))*1000/rate},
@@ -361,7 +365,7 @@ int wmain(int argc,wchar_t** argv) {
             segment.insert(segment.end(),f.begin(),f.end());
             if(voiced){speech_ms+=30;silent_ms=0;last_voiced_end=processed+frame;}else silent_ms+=30;
             const bool soft_split=adaptive&&!voiced&&segment.size()>=soft_split_samples;  // split long talk at a pause
-            if(silent_ms>=silence_ms||soft_split||segment.size()>=max_segment_samples)emit();  // utterance end, or segment cap
+            if(silent_ms>=silence_ms||soft_split||segment.size()+frame>max_segment_samples)emit();  // utterance end, or before the cap is exceeded
         }
         preroll.insert(preroll.end(),f.begin(),f.end());while(preroll.size()>preroll_samples)preroll.pop_front();
         processed+=frame;

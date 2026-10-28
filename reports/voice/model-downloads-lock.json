@@ -1,0 +1,15 @@
+{
+ "downloaded": "2026-10-27/28, approved by the owner in the voice session",
+ "models": [
+  {"path": "models/k2-fsa--speaker-recognition/nemo_en_titanet_small.onnx", "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/nemo_en_titanet_small.onnx", "sha256": "ad4a1802485d8b34c722d2a9d04249662f2ece5d28a7a039063ca22f515a789e", "bytes": 40257283, "use": "lens-voice owner verification (default)", "licence": "NVIDIA NeMo TitaNet model card; confirm before redistribution"},
+  {"path": "models/k2-fsa--speaker-recognition/wespeaker_en_voxceleb_CAM++.onnx", "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/wespeaker_en_voxceleb_CAM++.onnx", "sha256": "c46fad10b5f81e1aa4a60c162714208577093655076c5450f8c469e522ec54ef", "bytes": 29292684, "use": "rejected: poor separation in this runtime (reports/voice/speaker-dev-campplus-failed.json)"},
+  {"path": "models/k2-fsa--speaker-recognition/3dspeaker_speech_campplus_sv_en_voxceleb_16k.onnx", "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/speaker-recongition-models/3dspeaker_speech_campplus_sv_en_voxceleb_16k.onnx", "sha256": "357a834f702b80161e5b981182c038e18553c1f2ca752ed6cec2052365d4129b", "bytes": 29596978, "use": "rejected: poor separation in this runtime (probe only)"},
+  {"path": "models/parismitaglobalsolutions--indicconformer-sherpa-onnx/{bn,gu,mr,ta,te,ur}/model.int8.onnx", "repo": "parismitaglobalsolutions/indicconformer-sherpa-onnx", "revision": "9721eb71eea141fae0982cfcdb9dd2e3d4953c4a", "licence": "MIT (AI4Bharat, AI4Bharat-LICENSE-MIT.txt)", "verified": "local sha256 == Hugging Face LFS oid",
+   "sha256": {"bn": "e9120a534f69df065314be468bf15579f1b92a4cd8c07ad119b80b69244718a8", "gu": "822ed7f0b809bbd479275bf91c913d05564b88c0d082bbcba2f37999b88cb598", "mr": "1ea81e55c4b9b12624c9d02a5b9c1b6f7c871c78a55ff52d333f81cb5136eaf2", "ta": "abb7b59d706b8d27ba3fb5e5e3db7671c9e1a09bf7bc6122de507c60030e65fb", "te": "710f176e33080f1be84b4f38bb5f33be3f522dcf4f191bf4d5cc89f7a85924f3", "ur": "0239f1c371a38f7623f29a8d7bae79f91f16f58aba45ea67103630dbb425cb07"}},
+  {"path": "models/parismitaglobalsolutions--indicconformer-sherpa-onnx/available_languages.json", "sha256": "9703453ebd61a9a08cfd2d277fec5ffa31884092d003d6752891812a76b44f52"}
+ ],
+ "datasets": [
+  {"path": "data/external/librispeech/test-clean.tar.gz", "url": "https://www.openslr.org/resources/12/test-clean.tar.gz", "licence": "CC BY 4.0", "md5": "32fa31d27d2e1cad72775fee3f4849a9", "sha256": "39fde525e59672dc6d1551919b1478f724438a95aa55f874b576be21967e6c23", "use": "speaker verification evaluation only"},
+  {"path": "data/external/fleurs/{ar_eg,fr_fr,pt_br,ru_ru,id_id,de_de,ja_jp,bn_in,te_in,mr_in,ta_in,ur_pk,gu_in}", "source": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd, first 40 archive members, per-file sha256 in each manifest.json", "licence": "CC BY 4.0"}
+ ]
+}

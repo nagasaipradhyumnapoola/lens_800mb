@@ -1,0 +1,47 @@
+ur clean adaptive WER=0.198 CER=0.072 segs=8 wall=19s
+ur clean adaptive WER=0.165 CER=0.091 segs=8 wall=19s
+ur clean adaptive WER=0.179 CER=0.046 segs=8 wall=19s
+gu clean adaptive WER=0.253 CER=0.088 segs=10 wall=21s
+gu clean adaptive WER=0.240 CER=0.087 segs=9 wall=20s
+gu clean adaptive WER=0.186 CER=0.062 segs=8 wall=20s
+gu clean adaptive WER=0.327 CER=0.170 segs=5 wall=18s
+[
+ {
+  "language": "gu",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "configured",
+  "sessions": 4,
+  "utterances": 28,
+  "segments": 32,
+  "stored": 32,
+  "failed": 0,
+  "wer": 0.2452,
+  "cer": 0.0941,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.0004,
+  "nonspeech_captured": 0.1396,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 394817536,
+  "p95_asr_ms": 2807
+ },
+ {
+  "language": "ur",
+  "condition": "clean",
+  "vad": "adaptive",
+  "mode": "configured",
+  "sessions": 3,
+  "utterances": 24,
+  "segments": 24,
+  "stored": 24,
+  "failed": 0,
+  "wer": 0.1809,
+  "cer": 0.0702,
+  "utterance_recall": 1.0,
+  "missed_speech": 0.005,
+  "nonspeech_captured": 0.0012,
+  "false_triggers_per_10min": 0.0,
+  "peak_sum_working_set_bytes": 389148672,
+  "p95_asr_ms": 2714
+ }
+]

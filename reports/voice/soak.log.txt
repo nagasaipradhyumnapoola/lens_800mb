@@ -1,0 +1,73 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "28abd1720a8979b7583b092301270895714b5670328ddc47045e104ccf2924b5",
+  "lens_engine_sha256": "c7ec4e93e2fd09df1a2e51c9062753775b89fedd2cb9c36d744160c417172085",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-28T04:24:19",
+  "git_head": "3288e476ff147810ad35110a2292beb8640735d5"
+ },
+ "vad": "adaptive",
+ "params": {},
+ "stream_seconds": 1945.9,
+ "wall_seconds": 1946.7,
+ "exit_code": 0,
+ "stopped": [
+  {
+   "event": "stopped",
+   "overrun_seconds": 0.0,
+   "owner_only": false,
+   "peak_dbfs": -11.060912633636292,
+   "processed_seconds": 1945.92,
+   "segments": 143,
+   "speaker_rejected": 0,
+   "vad": "adaptive"
+  }
+ ],
+ "vad_scores": {
+  "reference_utterances": 112,
+  "segments": 143,
+  "detected_utterances": 80,
+  "missed_speech_s": 68.027,
+  "speech_s": 1035.95,
+  "false_trigger_segments": 10,
+  "nonspeech_captured_s": 105.126,
+  "nonspeech_s": 749.6,
+  "capped_segments": 0,
+  "duration_s": 1945.93
+ },
+ "word_errors": 478,
+ "reference_words": 2473,
+ "character_errors": 1403,
+ "reference_characters": 11829,
+ "stored": 138,
+ "failed": 5,
+ "errors": [
+  "no_speech_found",
+  "repetition_rejected",
+  "uncertain_short_segment"
+ ],
+ "stored_observations": 138,
+ "ram": {
+  "samples": 7614,
+  "peak_sum_working_set_bytes": 174309376,
+  "peak_sum_private_bytes": 266407936,
+  "peak_voice_working_set_bytes": 7139328,
+  "peak_engine_working_set_bytes": 167305216,
+  "peak_engine_private_bytes": 262754304
+ },
+ "voice_ws_slope_bytes_per_min_second_half": 14083.797233604651,
+ "voice_private_slope_bytes_per_min_second_half": 19121.796413751563,
+ "engine_idle_ws_first_last": [
+  7954432,
+  21045248
+ ],
+ "latency_ms": {
+  "utterances": 112,
+  "p50_stored": 3391,
+  "p95_stored": 4867,
+  "max_stored": 7581,
+  "p50_emit": -124
+ }
+}

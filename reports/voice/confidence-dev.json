@@ -1,0 +1,2174 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "e45bd5e89583108d9021cec8d1f170d52ae56cc1fc3a8644caa851fc7153e067",
+  "lens_engine_sha256": "0b753987e95ad75915d55ceb53d626c8b6579b2d1bef41d6b58d72ded0362612",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-28T02:12:47",
+  "git_head": "2fcc6f066c2ba2c6c353e33b40a31e0b0f6eb8ac"
+ },
+ "files": [
+  "reports/voice/asr-dev-adaptive-product-conf.json",
+  "reports/voice/asr-dev-adaptive-product-seg12-20.json",
+  "reports/voice/asr-dev-adaptive-product-seg8-15.json",
+  "reports/voice/asr-dev-adaptive-product-seg20-30.json"
+ ],
+ "segments": 358,
+ "good": 338,
+ "garbage": 20,
+ "threshold": 0.52,
+ "garbage_rejected": 0.15,
+ "good_rejected": 0.0118,
+ "note": "session-level reference word sets; a segment is checked against all words of its session reference",
+ "rows": [
+  {
+   "p": 0.7523181003540061,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8135443650186062,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8332624431699515,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7828396033146419,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7118829926475883,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8587051871418953,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7816984808215728,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8222452410711691,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.6913396501913667,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.8836514431805838,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.7854464966803789,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.7071489576588977,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.8849078500270844,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.7938588261604309,
+   "good": false,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.6274494454264641,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.7052795664996517,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.7442135707690165,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.722503429154555,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.9332255959510803,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.6511375046357876,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.538024116307497,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.8297097571194172,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.5937269880539842,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.9090937566426065,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.6284705996513367,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.5911331707168193,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.4891526371240616,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.6607866280332759,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.8802318965705732,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.6236139159649611,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.7645610012114048,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.733747334126383,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7994327757507562,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7623989997431636,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.5903204110892195,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.8120947887118046,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.6938739522899452,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7626019547814908,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7543948799944841,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7083628553276261,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7656051337718963,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7593574352562428,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.5876850825217035,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7346532017820411,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8175906755030156,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8582084180787206,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.7963083259761333,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.7654877840117975,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.6508663409948349,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8294559703767299,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.7685047783530675,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8265832331962883,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8038491366001276,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.7986865943918625,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8531211137305945,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.873168686164483,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8121039688300628,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8035863561289651,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7917089485986666,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8263686400971242,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8420972207188606,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.5051613952964544,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.5388536423444747,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.7462660112217361,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.8519604584622767,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.6126926345085459,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.8146438509225845,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.866448693536222,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.847842256228129,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.5813639536499977,
+   "good": false,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.821598631055916,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.7383939469089875,
+   "good": true,
+   "condition": "white5",
+   "language": "en"
+  },
+  {
+   "p": 0.6867316417679514,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.760070600733161,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.6380597715896945,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.6253753910141606,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.7156778749682613,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.9051931182543437,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.8274476108037763,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.9364713063606849,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.5433747598694431,
+   "good": true,
+   "condition": "babble5",
+   "language": "en"
+  },
+  {
+   "p": 0.9651417255401611,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.6101793851703405,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7087802544464262,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.8876632776471877,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7965405265299174,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.8106901723359312,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7137951132926074,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7122959848493338,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.6876651393654554,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.8701645012658376,
+   "good": true,
+   "condition": "pink5",
+   "language": "en"
+  },
+  {
+   "p": 0.7817520509389314,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8202411744515506,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8901036451420477,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8171191636472941,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.49537890321678585,
+   "good": false,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8145034615252469,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8062494163927825,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8150149283664567,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8647037224471569,
+   "good": true,
+   "condition": "fan5",
+   "language": "en"
+  },
+  {
+   "p": 0.8171174432392474,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8022025660389945,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.9777761474251747,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8361728956302007,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7428964309786495,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.828179946659427,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8410757482051849,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7712849792838097,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8104875440207812,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7680321834236383,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7375596387357246,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7607889024333822,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8134270006674342,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.5249021465424448,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.825660828087065,
+   "good": false,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.6120770358510556,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.5865067574195564,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.9125148781708309,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8830068880005887,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8532706371375492,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8746677080790202,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.5127019464969635,
+   "good": false,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.7241711027242921,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.5818359416723251,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.6366163750569667,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.6595565370199356,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.6816625642003836,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.8945587547495961,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.5829216639806585,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.7246211605339214,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.8510551057406701,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.831126748485134,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.15714662401406562,
+   "good": false,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.5725891818957669,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.6305486039137063,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.5888939491576619,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7129545725183561,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.4776962274271581,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8283997401595116,
+   "good": false,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.6289392394324144,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.676310818348276,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.749497445507182,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8104179510329332,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7076223051796356,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8485637302028721,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7955297508410045,
+   "good": false,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8360032151142757,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.708664346098279,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.6339857673893372,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7286628683408102,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8491322810628584,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7792289222280184,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.77381288446486,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8569095615417727,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7348244717487922,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8373085139836702,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8497967857538777,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8104476502537727,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8508496208426853,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8338997736573219,
+   "good": false,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7597271410955323,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.728652441115291,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7291733771562576,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8156260969560771,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7826128113748771,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8009092753583734,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8251072244326535,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8685286782888902,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7427866590519746,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8591179326176643,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8486379893639913,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8308894086983942,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7281290628015995,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8364948824394581,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8645504284650087,
+   "good": false,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.802471152718433,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8823845513164997,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.6501872513443232,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8175061923555202,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.6330668940208852,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.6487456538059093,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.554169510602951,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8019731913048488,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.6263770688204996,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.7822115663439035,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.5258277404154169,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.5493679822043136,
+   "good": true,
+   "condition": "white5",
+   "language": "es"
+  },
+  {
+   "p": 0.8623396923972501,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.7604629461114344,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.5605894370147815,
+   "good": false,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.7479122921824455,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.7971849995354812,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.8368458778131753,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.8401958192590364,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.5500968112968482,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.8761017204207533,
+   "good": true,
+   "condition": "babble5",
+   "language": "es"
+  },
+  {
+   "p": 0.6133417595630964,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7877494619848827,
+   "good": false,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.564453155361116,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7049231334872867,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7942492391381945,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8062298347552618,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.6970923804875576,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7860744276951099,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8046590326121077,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.7124835677444935,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8268385926882426,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.6276000262134604,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.5820489711394268,
+   "good": true,
+   "condition": "pink5",
+   "language": "es"
+  },
+  {
+   "p": 0.8274032419281346,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.6883565460642179,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7910894569275635,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7969048699658168,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8342229575899086,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8851955006165164,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7695572800163565,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7955012162183893,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.8394011480338646,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.863290759069579,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7546221571309226,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.6021348561550821,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.710619308501482,
+   "good": true,
+   "condition": "fan5",
+   "language": "es"
+  },
+  {
+   "p": 0.7523181003540061,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8135443650186062,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8332624431699515,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7828396033146419,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7118829926475883,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8587051871418953,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7816984808215728,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8222452410711691,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.772326197958103,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.6620902015190375,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8274566322565079,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8054743504151702,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.6297859163023531,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.5589266044553369,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8021564672887326,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.7151898099825933,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.6415622669963106,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8171174432392474,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8022025660389945,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.9777761474251747,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8361728956302007,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7428964309786495,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.828179946659427,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8410757482051849,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7712849792838097,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8104875440207812,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7680321834236383,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7375596387357246,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7847489060769821,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.7639452191069722,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.7412830467025439,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.7189131083587805,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6341788618393788,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.5216399194672704,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8435853898525238,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8798823203891516,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6842293551621529,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8786269128322601,
+   "good": false,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.9115931128080075,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6732705630023371,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6483041647821665,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8522250654382838,
+   "good": false,
+   "condition": "babble10",
+   "language": "hi"
+  },
+  {
+   "p": 0.7129548528770867,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.6862813229007381,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8153505276888608,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8332624431699515,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8042037502940124,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.6963646800981628,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7118829926475883,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8414955641264501,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.6233538873493671,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7816984808215728,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8007888342051402,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8699315807649067,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.772326197958103,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.6620902015190375,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8274566322565079,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8054743504151702,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.9248580661686984,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.5120250467211008,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.5589266044553369,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.7431951030580835,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.7473340783464281,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.7151898099825933,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.6148011137185425,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8838415848357337,
+   "good": false,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8125889234396876,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8622498327383289,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.9777761474251747,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.840493590136369,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7488679036095336,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.828179946659427,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8410757482051849,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7712849792838097,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7871462237690726,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7907824210822583,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7680321834236383,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.6493667878210545,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8404003363102674,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7847489060769821,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.7639452191069722,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8177066025634606,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8966368834177653,
+   "good": false,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.7189131083587805,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6128160630219749,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.5216399194672704,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8435853898525238,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8798823203891516,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6842293551621529,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8786269128322601,
+   "good": false,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.9115931128080075,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6732705630023371,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6206664721811971,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6758210277901247,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8522250654382838,
+   "good": false,
+   "condition": "babble10",
+   "language": "hi"
+  },
+  {
+   "p": 0.7523181003540061,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8135443650186062,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8332624431699515,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7828396033146419,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7118829926475883,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8587051871418953,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.7816984808215728,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.8222452410711691,
+   "good": true,
+   "condition": "clean",
+   "language": "en"
+  },
+  {
+   "p": 0.772326197958103,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.6620902015190375,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8274566322565079,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8054743504151702,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.6297859163023531,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.5589266044553369,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8021564672887326,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.7151898099825933,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.6415622669963106,
+   "good": true,
+   "condition": "babble10",
+   "language": "en"
+  },
+  {
+   "p": 0.8620820733374113,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.9777761474251747,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8361728956302007,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7428964309786495,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.828179946659427,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8410757482051849,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7712849792838097,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.8104875440207812,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7680321834236383,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7361511268266817,
+   "good": true,
+   "condition": "clean",
+   "language": "es"
+  },
+  {
+   "p": 0.7847489060769821,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.7639452191069722,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.7412830467025439,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.7189131083587805,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6341788618393788,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.5216399194672704,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8435853898525238,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8798823203891516,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6842293551621529,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8786269128322601,
+   "good": false,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.9115931128080075,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6732705630023371,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.6483041647821665,
+   "good": true,
+   "condition": "babble10",
+   "language": "es"
+  },
+  {
+   "p": 0.8522250654382838,
+   "good": false,
+   "condition": "babble10",
+   "language": "hi"
+  }
+ ]
+}

@@ -1,0 +1,2960 @@
+{
+ "provenance": {
+  "lens_voice_sha256": "28abd1720a8979b7583b092301270895714b5670328ddc47045e104ccf2924b5",
+  "lens_engine_sha256": "c7ec4e93e2fd09df1a2e51c9062753775b89fedd2cb9c36d744160c417172085",
+  "whisper_base_sha256": "422f1ae452ade6f30a004d7e5c6a43195e4433bc370bf23fac9cc591f01a8898",
+  "dataset": "google/fleurs test, revision 70bb2e84b976b7e960aa89f1c648e09c59f894dd (CC BY 4.0)",
+  "split_rule": "sha256(lang:sentence_id) bucket <3 of 10 = dev, else heldout",
+  "time": "2026-10-28T03:51:36",
+  "git_head": "3288e476ff147810ad35110a2292beb8640735d5"
+ },
+ "vad": "adaptive",
+ "params": {},
+ "mode": "product",
+ "split": "heldout",
+ "table": [
+  {
+   "language": "en",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 9,
+   "stored": 8,
+   "failed": 1,
+   "wer": 0.2971,
+   "cer": 0.2072,
+   "utterance_recall": 0.625,
+   "missed_speech": 0.0636,
+   "nonspeech_captured": 0.3491,
+   "false_triggers_per_10min": 6.333,
+   "peak_sum_working_set_bytes": 175124480,
+   "p95_asr_ms": 5116
+  },
+  {
+   "language": "en",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 8,
+   "stored": 8,
+   "failed": 0,
+   "wer": 0.0629,
+   "cer": 0.0234,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0012,
+   "nonspeech_captured": 0.0256,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 177012736,
+   "p95_asr_ms": 6168
+  },
+  {
+   "language": "es",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 9,
+   "stored": 8,
+   "failed": 1,
+   "wer": 0.1639,
+   "cer": 0.0761,
+   "utterance_recall": 0.625,
+   "missed_speech": 0.0834,
+   "nonspeech_captured": 0.1966,
+   "false_triggers_per_10min": 5.511,
+   "peak_sum_working_set_bytes": 176128000,
+   "p95_asr_ms": 4793
+  },
+  {
+   "language": "es",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 9,
+   "stored": 8,
+   "failed": 1,
+   "wer": 0.0984,
+   "cer": 0.0357,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0,
+   "nonspeech_captured": 0.1317,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 175845376,
+   "p95_asr_ms": 4598
+  },
+  {
+   "language": "hi",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 13,
+   "stored": 12,
+   "failed": 1,
+   "wer": 0.3578,
+   "cer": 0.291,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0097,
+   "nonspeech_captured": 0.408,
+   "false_triggers_per_10min": 5.28,
+   "peak_sum_working_set_bytes": 376164352,
+   "p95_asr_ms": 4760
+  },
+  {
+   "language": "hi",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 8,
+   "stored": 8,
+   "failed": 0,
+   "wer": 0.0833,
+   "cer": 0.0226,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0143,
+   "nonspeech_captured": 0.0465,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 413130752,
+   "p95_asr_ms": 10770
+  },
+  {
+   "language": "ta",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 18,
+   "stored": 11,
+   "failed": 7,
+   "wer": 0.5948,
+   "cer": 0.4025,
+   "utterance_recall": 0.875,
+   "missed_speech": 0.0625,
+   "nonspeech_captured": 0.2415,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 374431744,
+   "p95_asr_ms": 5314
+  },
+  {
+   "language": "ta",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 12,
+   "stored": 12,
+   "failed": 0,
+   "wer": 0.366,
+   "cer": 0.2355,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0105,
+   "nonspeech_captured": 0.1365,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 393207808,
+   "p95_asr_ms": 5469
+  },
+  {
+   "language": "zh",
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 12,
+   "stored": 12,
+   "failed": 0,
+   "wer": 1.0,
+   "cer": 0.2102,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.016,
+   "nonspeech_captured": 0.1636,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 483098624,
+   "p95_asr_ms": 5522
+  },
+  {
+   "language": "zh",
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "sessions": 1,
+   "utterances": 8,
+   "segments": 9,
+   "stored": 9,
+   "failed": 0,
+   "wer": 1.0,
+   "cer": 0.139,
+   "utterance_recall": 1.0,
+   "missed_speech": 0.0011,
+   "nonspeech_captured": 0.1357,
+   "false_triggers_per_10min": 0.0,
+   "peak_sum_working_set_bytes": 495374336,
+   "p95_asr_ms": 7529
+  }
+ ],
+ "rows": [
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 98.7,
+   "reference_utterances": 8,
+   "segments": 8,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.08,
+   "speech_s": 68.76,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 0.473,
+   "nonspeech_s": 18.462,
+   "capped_segments": 0,
+   "duration_s": 97.822,
+   "word_errors": 11,
+   "reference_words": 175,
+   "character_errors": 19,
+   "reference_characters": 811,
+   "stored": 8,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": " However, due to the slow communication channels, styles in the West could lag behind by 25 to 30 years.  All nouns alongside the world say for you always begin with a capital letter even in the middle of a sentence.  The cabbage juice changes color depending on how acidic, basic alkaline the chemical is.  Many people don't think about them as dinosaurs because they have feathers and can fly.  The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.  As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses easier to reach than those built in modern times.  Lion prides acts much like packs of wolves or dogs animals surprisingly similar to lions but not other big cats in behavior and also very deadly to their prey.  The city is also the base to claim that Nairai-Gongo volcano, along with some of the cheapest mountain guerrilla trafficking in Africa.",
+   "reference": "However, due to the slow communication channels, styles in the west could lag behind by 25 to 30 year. All nouns, alongside the word Sie for you, always begin with a capital letter, even in the middle of a sentence. The cabbage juice changes color depending on how acidic or basic (alkaline) the chemical is. Many people don't think about them as dinosaurs because they have feathers and can fly. The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others. As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses, easier to reach than those built in modern times. Lion prides act much like packs of wolves or dogs, animals surprisingly similar to lions (but not other big cats) in behavior, and also very deadly to their prey. The city is also the base to climb the Nyiragongo volcano along with some of the cheapest Mountain Gorilla tracking in Africa.",
+   "ram": {
+    "samples": 362,
+    "peak_sum_working_set_bytes": 177012736,
+    "peak_sum_private_bytes": 263811072,
+    "peak_voice_working_set_bytes": 9027584,
+    "peak_engine_working_set_bytes": 168562688,
+    "peak_engine_private_bytes": 259514368
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    5012,
+    4105,
+    4809,
+    4505,
+    3896,
+    3812,
+    4776,
+    6168
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.71,
+     "end": 13.07,
+     "ok": true,
+     "error": null,
+     "text": " However, due to the slow communication channels, styles in the West could lag behind by 25 to 30 years.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8507953900843859,
+     "lid": {
+      "chosen_probability": 0.9953268766403198,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9953268766403198
+     },
+     "asr_ms": 5012
+    },
+    {
+     "start": 14.85,
+     "end": 24.14,
+     "ok": true,
+     "error": null,
+     "text": " All nouns alongside the world say for you always begin with a capital letter even in the middle of a sentence.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7778450308057169,
+     "lid": {
+      "chosen_probability": 0.9710830450057983,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9710830450057983
+     },
+     "asr_ms": 4105
+    },
+    {
+     "start": 27.48,
+     "end": 34.01,
+     "ok": true,
+     "error": null,
+     "text": " The cabbage juice changes color depending on how acidic, basic alkaline the chemical is.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8555495356650729,
+     "lid": {
+      "chosen_probability": 0.9982960224151611,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9982960224151611
+     },
+     "asr_ms": 4809
+    },
+    {
+     "start": 37.23,
+     "end": 42.32,
+     "ok": true,
+     "error": null,
+     "text": " Many people don't think about them as dinosaurs because they have feathers and can fly.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.869053623982166,
+     "lid": {
+      "chosen_probability": 0.9774847626686096,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9774847626686096
+     },
+     "asr_ms": 4505
+    },
+    {
+     "start": 44.61,
+     "end": 56.61,
+     "ok": true,
+     "error": null,
+     "text": " The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8288407315313816,
+     "lid": {
+      "chosen_probability": 0.9950180053710938,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9950180053710938
+     },
+     "asr_ms": 3896
+    },
+    {
+     "start": 57.33,
+     "end": 68.0,
+     "ok": true,
+     "error": null,
+     "text": " As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses easier to reach than those built in modern times.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8698171894801291,
+     "lid": {
+      "chosen_probability": 0.9958288669586182,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9958288669586182
+     },
+     "asr_ms": 3812
+    },
+    {
+     "start": 69.57,
+     "end": 81.2,
+     "ok": true,
+     "error": null,
+     "text": " Lion prides acts much like packs of wolves or dogs animals surprisingly similar to lions but not other big cats in behavior and also very deadly to their prey.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8022984505602808,
+     "lid": {
+      "chosen_probability": 0.9973886013031006,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9973886013031006
+     },
+     "asr_ms": 4776
+    },
+    {
+     "start": 82.74,
+     "end": 92.33,
+     "ok": true,
+     "error": null,
+     "text": " The city is also the base to claim that Nairai-Gongo volcano, along with some of the cheapest mountain guerrilla trafficking in Africa.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7884430510594564,
+     "lid": {
+      "chosen_probability": 0.9970604777336121,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9970604777336121
+     },
+     "asr_ms": 6168
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-en_us-1904-1003119935936341070.wav",
+     "emit_ms": 561,
+     "stored_ms": 5573
+    },
+    {
+     "clip": "fleurs-en_us-1675-10052240106321793346.wav",
+     "emit_ms": 628,
+     "stored_ms": 4732
+    },
+    {
+     "clip": "fleurs-en_us-1728-10197164397713068203.wav",
+     "emit_ms": 559,
+     "stored_ms": 5367
+    },
+    {
+     "clip": "fleurs-en_us-1972-10233995782544396174.wav",
+     "emit_ms": 569,
+     "stored_ms": 5074
+    },
+    {
+     "clip": "fleurs-en_us-1938-10235738076911595987.wav",
+     "emit_ms": 383,
+     "stored_ms": 4279
+    },
+    {
+     "clip": "fleurs-en_us-1806-1036771894648013441.wav",
+     "emit_ms": 574,
+     "stored_ms": 4387
+    },
+    {
+     "clip": "fleurs-en_us-1855-10405958125670257178.wav",
+     "emit_ms": 494,
+     "stored_ms": 5270
+    },
+    {
+     "clip": "fleurs-en_us-1919-10411016628242228511.wav",
+     "emit_ms": -574,
+     "stored_ms": 5594
+    }
+   ]
+  },
+  {
+   "language": "en",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 96.7,
+   "reference_utterances": 8,
+   "segments": 9,
+   "detected_utterances": 5,
+   "missed_speech_s": 4.37,
+   "speech_s": 68.76,
+   "false_trigger_segments": 1,
+   "nonspeech_captured_s": 5.372,
+   "nonspeech_s": 15.389,
+   "capped_segments": 0,
+   "duration_s": 94.749,
+   "word_errors": 52,
+   "reference_words": 175,
+   "character_errors": 168,
+   "reference_characters": 811,
+   "stored": 8,
+   "failed": 1,
+   "errors": [
+    "uncertain_short_segment"
+   ],
+   "hypothesis": " However, due to the slow-fading impact, styles in the West can land behind by twenty-five to thirty years.  All now is almost as old as Sam brings us, always in with a capital weather, even in the middle of the sand.  The cap is used to change its color depending on how acidic, basic alkaline becomes a good one.  Many people don't think about them as dinosaurs because they have feathers and can fly.  The hospital has followed to a high-pitched infection, so it can be separated from others, or prevent possible infection from others.  As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses easier to reach than those built in modern times.  Lion prize acts much like packs of wolves or dogs, animals surprisingly similar to lions, but not other big cats, and behavior, and also very deadly to their prey.  The city is also the base to find that Nairai Gango, Valkhino, along with some of the cheapest mountain gorilla trafficking in Africa.",
+   "reference": "However, due to the slow communication channels, styles in the west could lag behind by 25 to 30 year. All nouns, alongside the word Sie for you, always begin with a capital letter, even in the middle of a sentence. The cabbage juice changes color depending on how acidic or basic (alkaline) the chemical is. Many people don't think about them as dinosaurs because they have feathers and can fly. The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others. As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses, easier to reach than those built in modern times. Lion prides act much like packs of wolves or dogs, animals surprisingly similar to lions (but not other big cats) in behavior, and also very deadly to their prey. The city is also the base to climb the Nyiragongo volcano along with some of the cheapest Mountain Gorilla tracking in Africa.",
+   "ram": {
+    "samples": 367,
+    "peak_sum_working_set_bytes": 175124480,
+    "peak_sum_private_bytes": 263888896,
+    "peak_voice_working_set_bytes": 9244672,
+    "peak_engine_working_set_bytes": 168079360,
+    "peak_engine_private_bytes": 260747264
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    5116,
+    4157,
+    3675,
+    4427,
+    3914,
+    3461,
+    4415,
+    3581,
+    1812
+   ],
+   "detected_languages": [
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    "en",
+    null
+   ],
+   "segments_detail": [
+    {
+     "start": 0.12,
+     "end": 11.12,
+     "ok": true,
+     "error": null,
+     "text": " However, due to the slow-fading impact, styles in the West can land behind by twenty-five to thirty years.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.6273891116891589,
+     "lid": {
+      "chosen_probability": 0.8669020533561707,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.8669020533561707
+     },
+     "asr_ms": 5116
+    },
+    {
+     "start": 14.85,
+     "end": 23.78,
+     "ok": true,
+     "error": null,
+     "text": " All now is almost as old as Sam brings us, always in with a capital weather, even in the middle of the sand.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5905872963901077,
+     "lid": {
+      "chosen_probability": 0.9430622458457947,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9430622458457947
+     },
+     "asr_ms": 4157
+    },
+    {
+     "start": 25.32,
+     "end": 32.6,
+     "ok": true,
+     "error": null,
+     "text": " The cap is used to change its color depending on how acidic, basic alkaline becomes a good one.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.623575013295825,
+     "lid": {
+      "chosen_probability": 0.9903404116630554,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9903404116630554
+     },
+     "asr_ms": 3675
+    },
+    {
+     "start": 32.94,
+     "end": 37.19,
+     "ok": true,
+     "error": null,
+     "text": " Many people don't think about them as dinosaurs because they have feathers and can fly.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8765144571661949,
+     "lid": {
+      "chosen_probability": 0.8576193451881409,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.8576193451881409
+     },
+     "asr_ms": 4427
+    },
+    {
+     "start": 40.53,
+     "end": 52.74,
+     "ok": true,
+     "error": null,
+     "text": " The hospital has followed to a high-pitched infection, so it can be separated from others, or prevent possible infection from others.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.9227155272302956,
+     "lid": {
+      "chosen_probability": 0.8343698978424072,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.8343698978424072
+     },
+     "asr_ms": 3914
+    },
+    {
+     "start": 54.72,
+     "end": 63.08,
+     "ok": true,
+     "error": null,
+     "text": " As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses easier to reach than those built in modern times.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8668100908398628,
+     "lid": {
+      "chosen_probability": 0.9956380128860474,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9956380128860474
+     },
+     "asr_ms": 3461
+    },
+    {
+     "start": 66.24,
+     "end": 75.92,
+     "ok": true,
+     "error": null,
+     "text": " Lion prize acts much like packs of wolves or dogs, animals surprisingly similar to lions, but not other big cats, and behavior, and also very deadly to their prey.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8045917137249096,
+     "lid": {
+      "chosen_probability": 0.9961294531822205,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9961294531822205
+     },
+     "asr_ms": 4415
+    },
+    {
+     "start": 79.92,
+     "end": 88.82,
+     "ok": true,
+     "error": null,
+     "text": " The city is also the base to find that Nairai Gango, Valkhino, along with some of the cheapest mountain gorilla trafficking in Africa.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7225024164380396,
+     "lid": {
+      "chosen_probability": 0.9925280809402466,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.9925280809402466
+     },
+     "asr_ms": 3581
+    },
+    {
+     "start": 92.28,
+     "end": 94.74,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1812
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-en_us-1904-1003119935936341070.wav",
+     "emit_ms": -1377,
+     "stored_ms": 3740
+    },
+    {
+     "clip": "fleurs-en_us-1675-10052240106321793346.wav",
+     "emit_ms": 497,
+     "stored_ms": 4654
+    },
+    {
+     "clip": "fleurs-en_us-1728-10197164397713068203.wav",
+     "emit_ms": 1801,
+     "stored_ms": 5476
+    },
+    {
+     "clip": "fleurs-en_us-1972-10233995782544396174.wav",
+     "emit_ms": -73,
+     "stored_ms": 4355
+    },
+    {
+     "clip": "fleurs-en_us-1938-10235738076911595987.wav",
+     "emit_ms": 6,
+     "stored_ms": 3919
+    },
+    {
+     "clip": "fleurs-en_us-1806-1036771894648013441.wav",
+     "emit_ms": -1004,
+     "stored_ms": 2458
+    },
+    {
+     "clip": "fleurs-en_us-1855-10405958125670257178.wav",
+     "emit_ms": -549,
+     "stored_ms": 3866
+    },
+    {
+     "clip": "fleurs-en_us-1919-10411016628242228511.wav",
+     "emit_ms": -721,
+     "stored_ms": 2859
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 112.0,
+   "reference_utterances": 8,
+   "segments": 9,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.0,
+   "speech_s": 67.81,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 3.747,
+   "nonspeech_s": 28.458,
+   "capped_segments": 0,
+   "duration_s": 111.068,
+   "word_errors": 18,
+   "reference_words": 183,
+   "character_errors": 30,
+   "reference_characters": 841,
+   "stored": 8,
+   "failed": 1,
+   "errors": [
+    "uncertain_short_segment"
+   ],
+   "hypothesis": " Se recomienda enfáticamente a los viajeros que se informen sobre cualquier rijo del clima extremo en el área que visitan, dado que ello puede afectar sus planes de viajer.  Fue tanta la cantidad de gente que se concentró que no todos pudieron acceder al funeral en la plaza de San Pedro.  Esto parece tener sentido, ya que en la tierra no se percibe su movimiento ¿cierto?  Duval, que está casado y tiene dos hijos adultos, no causó una buena impresión a Miller que fue aquí en la relató la historia.  Entre los fenómenos climáticos regionales y estacionales extremos encontramos los ventarrones, las tormentas de nieve y elopolvo.  No se ha emitido ni se emitirá ninguna alerta de tsunami, ya que según la agencia geofísica de Jakarta, el terremoto no alcanzó la magnitud de 6,5 exigía a tal fin de la pandemia.  Las 25 fotografías de Dunlap, que se sabe que aún existe, son las copiomas antiguas conservadas del documento. El manuscrito original se ha perdido.  La superficie de la luna se compone de rocas y polvo y su capa exterior se denomina corteza.",
+   "reference": "Se recomienda enfáticamente a los viajeros que se informen sobre cualquier riesgo de clima extremo en el área que visitan, dado que ello puede afectar sus planes de viaje. Fue tanta la cantidad de gente que se concentró, que no todos pudieron acceder al funeral en la Plaza de San Pedro. Esto parece tener sentido, ya que en la Tierra no se percibe su movimiento, ¿cierto? Duvall, que está casado y tiene dos hijos adultos, no causó una buena impresión a Miller, que fue a quien le relató la historia. Entre los fenómenos climáticos regionales y estacionales extremos encontramos los ventarrones, las tormentas de nieve, hielo o polvo. No se ha emitido ni se emitirá ninguna alerta de tsunami ya que, según la agencia geofísica de Yakarta, el terremoto no alcanzó la magnitud de 6,5 exigida a tal fin. Las 25 fotografías de Dunlap, que se sabe que aún existen, son las copias más antiguas conservadas del documento. El manuscrito original se ha perdido. La superficie de la luna se compone de rocas y polvo y su capa exterior se denomina corteza.",
+   "ram": {
+    "samples": 438,
+    "peak_sum_working_set_bytes": 175845376,
+    "peak_sum_private_bytes": 265265152,
+    "peak_voice_working_set_bytes": 8597504,
+    "peak_engine_working_set_bytes": 168304640,
+    "peak_engine_private_bytes": 260755456
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    3795,
+    3977,
+    4598,
+    3441,
+    3832,
+    3749,
+    1698,
+    3736,
+    3700
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    null,
+    "es",
+    "es"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.83,
+     "end": 14.01,
+     "ok": true,
+     "error": null,
+     "text": " Se recomienda enfáticamente a los viajeros que se informen sobre cualquier rijo del clima extremo en el área que visitan, dado que ello puede afectar sus planes de viajer.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8397951526774301,
+     "lid": {
+      "chosen_probability": 0.9975686073303223,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9975686073303223
+     },
+     "asr_ms": 3795
+    },
+    {
+     "start": 17.1,
+     "end": 27.53,
+     "ok": true,
+     "error": null,
+     "text": " Fue tanta la cantidad de gente que se concentró que no todos pudieron acceder al funeral en la plaza de San Pedro.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.882339397265065,
+     "lid": {
+      "chosen_probability": 0.9877513647079468,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9877513647079468
+     },
+     "asr_ms": 3977
+    },
+    {
+     "start": 30.87,
+     "end": 39.95,
+     "ok": true,
+     "error": null,
+     "text": " Esto parece tener sentido, ya que en la tierra no se percibe su movimiento ¿cierto?",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7702492046291414,
+     "lid": {
+      "chosen_probability": 0.9967567920684814,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9967567920684814
+     },
+     "asr_ms": 4598
+    },
+    {
+     "start": 42.84,
+     "end": 51.38,
+     "ok": true,
+     "error": null,
+     "text": " Duval, que está casado y tiene dos hijos adultos, no causó una buena impresión a Miller que fue aquí en la relató la historia.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.793403765133449,
+     "lid": {
+      "chosen_probability": 0.992218017578125,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.992218017578125
+     },
+     "asr_ms": 3441
+    },
+    {
+     "start": 55.74,
+     "end": 67.04,
+     "ok": true,
+     "error": null,
+     "text": " Entre los fenómenos climáticos regionales y estacionales extremos encontramos los ventarrones, las tormentas de nieve y elopolvo.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8456629321381852,
+     "lid": {
+      "chosen_probability": 0.996953010559082,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.996953010559082
+     },
+     "asr_ms": 3832
+    },
+    {
+     "start": 70.5,
+     "end": 82.86,
+     "ok": true,
+     "error": null,
+     "text": " No se ha emitido ni se emitirá ninguna alerta de tsunami, ya que según la agencia geofísica de Jakarta, el terremoto no alcanzó la magnitud de 6,5 exigía a tal fin de la pandemia.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7817123224626162,
+     "lid": {
+      "chosen_probability": 0.9978923797607422,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9978923797607422
+     },
+     "asr_ms": 3749
+    },
+    {
+     "start": 82.62,
+     "end": 83.57,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1698
+    },
+    {
+     "start": 84.9,
+     "end": 96.53,
+     "ok": true,
+     "error": null,
+     "text": " Las 25 fotografías de Dunlap, que se sabe que aún existe, son las copiomas antiguas conservadas del documento. El manuscrito original se ha perdido.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7917518660772679,
+     "lid": {
+      "chosen_probability": 0.9822210669517517,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9822210669517517
+     },
+     "asr_ms": 3736
+    },
+    {
+     "start": 99.54,
+     "end": 107.96,
+     "ok": true,
+     "error": null,
+     "text": " La superficie de la luna se compone de rocas y polvo y su capa exterior se denomina corteza.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8411886596987987,
+     "lid": {
+      "chosen_probability": 0.9982517957687378,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9982517957687378
+     },
+     "asr_ms": 3700
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-es_419-2001-1001146817223348054.wav",
+     "emit_ms": 73,
+     "stored_ms": 3868
+    },
+    {
+     "clip": "fleurs-es_419-1764-1008205615316519958.wav",
+     "emit_ms": 1407,
+     "stored_ms": 5384
+    },
+    {
+     "clip": "fleurs-es_419-1770-10084850086754329587.wav",
+     "emit_ms": 583,
+     "stored_ms": 5182
+    },
+    {
+     "clip": "fleurs-es_419-1816-10150624747569080019.wav",
+     "emit_ms": 1159,
+     "stored_ms": 4600
+    },
+    {
+     "clip": "fleurs-es_419-1783-10155332265364188477.wav",
+     "emit_ms": 965,
+     "stored_ms": 4797
+    },
+    {
+     "clip": "fleurs-es_419-1835-10234623649795772963.wav",
+     "emit_ms": 3460,
+     "stored_ms": 5158
+    },
+    {
+     "clip": "fleurs-es_419-1964-10286137499198568147.wav",
+     "emit_ms": 997,
+     "stored_ms": 4733
+    },
+    {
+     "clip": "fleurs-es_419-1844-10292824205703786391.wav",
+     "emit_ms": 582,
+     "stored_ms": 4282
+    }
+   ]
+  },
+  {
+   "language": "es",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 110.8,
+   "reference_utterances": 8,
+   "segments": 9,
+   "detected_utterances": 5,
+   "missed_speech_s": 5.654,
+   "speech_s": 67.81,
+   "false_trigger_segments": 1,
+   "nonspeech_captured_s": 5.164,
+   "nonspeech_s": 26.262,
+   "capped_segments": 0,
+   "duration_s": 108.871,
+   "word_errors": 30,
+   "reference_words": 183,
+   "character_errors": 64,
+   "reference_characters": 841,
+   "stored": 8,
+   "failed": 1,
+   "errors": [
+    "uncertain_short_segment"
+   ],
+   "hypothesis": " Se recomienda enfáticamente a los viajeros que se informen sobre cualquier rijo del clima extremo en el área que visitan, dado que ello puede afectar sus planes de viaje.  fue tanta la cantidad de gente que se concentró que no todos pudieron acceder al funeral en la plaza de San Pedro.  Esto parece tener sentido, ya que en la tierra no se percibe su movimiento.  Dúbal que está casado y tiene dos hijos adultos, no causó una buena impresión a miler que fue aquí en el relató la historia.  Entre los fenómenos climáticos regionales y estacionales en Tremor, encontramos los ventarrones, las tormentas de nieve y aelo o polvo.  No se ha emitido ni se emitirá ninguna alerta de tsunami, ya que según la agencia geofísica de Jakarta, el terremoto no alcanzó la magnitud de 6,5 exigida a tal fin.  las 25 fotografías del Dungla, que se sabe que aún existen. Son los copiómenos activos conservados del duque de los demás. El Mánucutito original se acuerde.  La superficie de la luna se compone de rocas y polvo y su capa exterior se nos dio una corteza.",
+   "reference": "Se recomienda enfáticamente a los viajeros que se informen sobre cualquier riesgo de clima extremo en el área que visitan, dado que ello puede afectar sus planes de viaje. Fue tanta la cantidad de gente que se concentró, que no todos pudieron acceder al funeral en la Plaza de San Pedro. Esto parece tener sentido, ya que en la Tierra no se percibe su movimiento, ¿cierto? Duvall, que está casado y tiene dos hijos adultos, no causó una buena impresión a Miller, que fue a quien le relató la historia. Entre los fenómenos climáticos regionales y estacionales extremos encontramos los ventarrones, las tormentas de nieve, hielo o polvo. No se ha emitido ni se emitirá ninguna alerta de tsunami ya que, según la agencia geofísica de Yakarta, el terremoto no alcanzó la magnitud de 6,5 exigida a tal fin. Las 25 fotografías de Dunlap, que se sabe que aún existen, son las copias más antiguas conservadas del documento. El manuscrito original se ha perdido. La superficie de la luna se compone de rocas y polvo y su capa exterior se denomina corteza.",
+   "ram": {
+    "samples": 432,
+    "peak_sum_working_set_bytes": 176128000,
+    "peak_sum_private_bytes": 263196672,
+    "peak_voice_working_set_bytes": 8388608,
+    "peak_engine_working_set_bytes": 168636416,
+    "peak_engine_private_bytes": 259686400
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    3620,
+    4793,
+    3142,
+    3443,
+    3605,
+    3905,
+    3811,
+    4654,
+    1768
+   ],
+   "detected_languages": [
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    "es",
+    null
+   ],
+   "segments_detail": [
+    {
+     "start": 3.78,
+     "end": 14.36,
+     "ok": true,
+     "error": null,
+     "text": " Se recomienda enfáticamente a los viajeros que se informen sobre cualquier rijo del clima extremo en el área que visitan, dado que ello puede afectar sus planes de viaje.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8161932033383184,
+     "lid": {
+      "chosen_probability": 0.9980766773223877,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9980766773223877
+     },
+     "asr_ms": 3620
+    },
+    {
+     "start": 18.51,
+     "end": 25.7,
+     "ok": true,
+     "error": null,
+     "text": " fue tanta la cantidad de gente que se concentró que no todos pudieron acceder al funeral en la plaza de San Pedro.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8648163482787148,
+     "lid": {
+      "chosen_probability": 0.9921959042549133,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9921959042549133
+     },
+     "asr_ms": 4793
+    },
+    {
+     "start": 29.22,
+     "end": 34.58,
+     "ok": true,
+     "error": null,
+     "text": " Esto parece tener sentido, ya que en la tierra no se percibe su movimiento.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8245412428863347,
+     "lid": {
+      "chosen_probability": 0.9945908188819885,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9945908188819885
+     },
+     "asr_ms": 3142
+    },
+    {
+     "start": 37.08,
+     "end": 47.54,
+     "ok": true,
+     "error": null,
+     "text": " Dúbal que está casado y tiene dos hijos adultos, no causó una buena impresión a miler que fue aquí en el relató la historia.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7396955333046011,
+     "lid": {
+      "chosen_probability": 0.9869248867034912,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9869248867034912
+     },
+     "asr_ms": 3443
+    },
+    {
+     "start": 51.21,
+     "end": 59.63,
+     "ok": true,
+     "error": null,
+     "text": " Entre los fenómenos climáticos regionales y estacionales en Tremor, encontramos los ventarrones, las tormentas de nieve y aelo o polvo.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7781277102906079,
+     "lid": {
+      "chosen_probability": 0.9903498291969299,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9903498291969299
+     },
+     "asr_ms": 3605
+    },
+    {
+     "start": 65.61,
+     "end": 77.54,
+     "ok": true,
+     "error": null,
+     "text": " No se ha emitido ni se emitirá ninguna alerta de tsunami, ya que según la agencia geofísica de Jakarta, el terremoto no alcanzó la magnitud de 6,5 exigida a tal fin.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8171524891121821,
+     "lid": {
+      "chosen_probability": 0.9959590435028076,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9959590435028076
+     },
+     "asr_ms": 3905
+    },
+    {
+     "start": 81.51,
+     "end": 92.21,
+     "ok": true,
+     "error": null,
+     "text": " las 25 fotografías del Dungla, que se sabe que aún existen. Son los copiómenos activos conservados del duque de los demás. El Mánucutito original se acuerde.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.5134095582088419,
+     "lid": {
+      "chosen_probability": 0.9493104815483093,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9493104815483093
+     },
+     "asr_ms": 3811
+    },
+    {
+     "start": 95.46,
+     "end": 101.87,
+     "ok": true,
+     "error": null,
+     "text": " La superficie de la luna se compone de rocas y polvo y su capa exterior se nos dio una corteza.",
+     "language": "es",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7579440886775652,
+     "lid": {
+      "chosen_probability": 0.9972407221794128,
+      "unrestricted": "es",
+      "unrestricted_probability": 0.9972407221794128
+     },
+     "asr_ms": 4654
+    },
+    {
+     "start": 106.5,
+     "end": 108.87,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1768
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-es_419-2001-1001146817223348054.wav",
+     "emit_ms": 462,
+     "stored_ms": 4082
+    },
+    {
+     "clip": "fleurs-es_419-1764-1008205615316519958.wav",
+     "emit_ms": 465,
+     "stored_ms": 5258
+    },
+    {
+     "clip": "fleurs-es_419-1770-10084850086754329587.wav",
+     "emit_ms": -1555,
+     "stored_ms": 1587
+    },
+    {
+     "clip": "fleurs-es_419-1816-10150624747569080019.wav",
+     "emit_ms": 615,
+     "stored_ms": 4058
+    },
+    {
+     "clip": "fleurs-es_419-1783-10155332265364188477.wav",
+     "emit_ms": -700,
+     "stored_ms": 2905
+    },
+    {
+     "clip": "fleurs-es_419-1835-10234623649795772963.wav",
+     "emit_ms": 393,
+     "stored_ms": 4298
+    },
+    {
+     "clip": "fleurs-es_419-1964-10286137499198568147.wav",
+     "emit_ms": 879,
+     "stored_ms": 4690
+    },
+    {
+     "clip": "fleurs-es_419-1844-10292824205703786391.wav",
+     "emit_ms": -1119,
+     "stored_ms": 3536
+    }
+   ]
+  },
+  {
+   "language": "zh",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 112.3,
+   "reference_utterances": 8,
+   "segments": 9,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.062,
+   "speech_s": 58.16,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 5.178,
+   "nonspeech_s": 38.171,
+   "capped_segments": 0,
+   "duration_s": 111.381,
+   "word_errors": 27,
+   "reference_words": 27,
+   "character_errors": 41,
+   "reference_characters": 295,
+   "stored": 9,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": "钙甲等元素属于金属银合精等元素当然也是金属 适当使用博客可以使学生变得更善于分析和进行思辨通过积极回网络材料学生们可以在他人的文章上下文中找到自己的立场并特定问题提出。 自己的观点work二零零二 大多数现代科研望远镜都是巨型设施市位于大替大气条件优良的偏远地区 一九六三年大坝建成后季节性洪水被控制住了陈积物不再冲散到河流里 他的场下颚上铺满了七十多颗剃刀般锋利的牙齿上颚上还有一排这意味着任何与它相遇的东西都无路可逃 当所有可用的资源在一个组织的职能部门之间得到有效利用时创造力和独创性就会发生 他随后被传转送到剑桥的阿登布鲁克医院 执政党西南非洲人民组织也在议会选举中保述了多数席位",
+   "reference": "钙、钾等元素属于金属，银和金等元素当然也是金属。 \"适当使用博客，\"可以使学生变得更善于分析和进行思辨；通过积极回应网络材料，学生们可以在他人文章的上下文语境中找到自己的立场，并能够针对特定问题提出自己的观点（Oravec, 2002）。\" 大多数现代科研望远镜都是巨型设施，位于大气条件优良的偏远地区。 1963 年大坝建成后，季节性洪水被控制住了，沉积物不再冲散到河流里。 它的长下颚上布满了 70 多颗剃刀般锋利的牙齿，上颚上还有一排。这意味着任何与它相遇的东西都无路可逃。 当所有可用的资源在一个组织的职能部门之间得到有效利用时，创造力和独创性就会发生。 他随后被转送到剑桥的阿登布鲁克医院。 执政党西南非洲人民组织 (SWAPO) 也在议会选举中保持了多数席位。",
+   "ram": {
+    "samples": 439,
+    "peak_sum_working_set_bytes": 495374336,
+    "peak_sum_private_bytes": 593219584,
+    "peak_voice_working_set_bytes": 8830976,
+    "peak_engine_working_set_bytes": 487567360,
+    "peak_engine_private_bytes": 589623296
+   },
+   "stored_observations": 9,
+   "asr_ms": [
+    4665,
+    5782,
+    3945,
+    7529,
+    4786,
+    4929,
+    5318,
+    4142,
+    5097
+   ],
+   "detected_languages": [
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.25,
+     "end": 9.2,
+     "ok": true,
+     "error": null,
+     "text": "钙甲等元素属于金属银合精等元素当然也是金属",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.99910569190979,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.99910569190979
+     },
+     "asr_ms": 4665
+    },
+    {
+     "start": 13.68,
+     "end": 26.85,
+     "ok": true,
+     "error": null,
+     "text": "适当使用博客可以使学生变得更善于分析和进行思辨通过积极回网络材料学生们可以在他人的文章上下文中找到自己的立场并特定问题提出。",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9874606728553772,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9874606728553772
+     },
+     "asr_ms": 5782
+    },
+    {
+     "start": 26.58,
+     "end": 28.76,
+     "ok": true,
+     "error": null,
+     "text": "自己的观点work二零零二",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9867424964904785,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9867424964904785
+     },
+     "asr_ms": 3945
+    },
+    {
+     "start": 31.35,
+     "end": 42.92,
+     "ok": true,
+     "error": null,
+     "text": "大多数现代科研望远镜都是巨型设施市位于大替大气条件优良的偏远地区",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9955946207046509,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9955946207046509
+     },
+     "asr_ms": 7529
+    },
+    {
+     "start": 47.43,
+     "end": 57.77,
+     "ok": true,
+     "error": null,
+     "text": "一九六三年大坝建成后季节性洪水被控制住了陈积物不再冲散到河流里",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9983259439468384,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9983259439468384
+     },
+     "asr_ms": 4786
+    },
+    {
+     "start": 65.22,
+     "end": 77.22,
+     "ok": true,
+     "error": null,
+     "text": "他的场下颚上铺满了七十多颗剃刀般锋利的牙齿上颚上还有一排这意味着任何与它相遇的东西都无路可逃",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9925859570503235,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9925859570503235
+     },
+     "asr_ms": 4929
+    },
+    {
+     "start": 83.13,
+     "end": 90.44,
+     "ok": true,
+     "error": null,
+     "text": "当所有可用的资源在一个组织的职能部门之间得到有效利用时创造力和独创性就会发生",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.998751163482666,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.998751163482666
+     },
+     "asr_ms": 5318
+    },
+    {
+     "start": 92.04,
+     "end": 97.25,
+     "ok": true,
+     "error": null,
+     "text": "他随后被传转送到剑桥的阿登布鲁克医院",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9985964298248291,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9985964298248291
+     },
+     "asr_ms": 4142
+    },
+    {
+     "start": 100.56,
+     "end": 106.88,
+     "ok": true,
+     "error": null,
+     "text": "执政党西南非洲人民组织也在议会选举中保述了多数席位",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9970851540565491,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9970851540565491
+     },
+     "asr_ms": 5097
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-cmn_hans_cn-2006-10040380210557600780.wav",
+     "emit_ms": 664,
+     "stored_ms": 5329
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1852-10053956375630517392.wav",
+     "emit_ms": 3491,
+     "stored_ms": 7436
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1890-10073099671796350432.wav",
+     "emit_ms": 692,
+     "stored_ms": 8221
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1721-10081186303620187437.wav",
+     "emit_ms": 561,
+     "stored_ms": 5347
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1869-10104380129516909856.wav",
+     "emit_ms": 196,
+     "stored_ms": 5125
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1903-10142207404499844309.wav",
+     "emit_ms": 440,
+     "stored_ms": 5758
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1953-10144930991730701959.wav",
+     "emit_ms": 195,
+     "stored_ms": 4337
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1830-10147383166642115307.wav",
+     "emit_ms": 496,
+     "stored_ms": 5594
+    }
+   ]
+  },
+  {
+   "language": "zh",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 112.0,
+   "reference_utterances": 8,
+   "segments": 12,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.931,
+   "speech_s": 58.16,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 6.312,
+   "nonspeech_s": 38.574,
+   "capped_segments": 0,
+   "duration_s": 111.784,
+   "word_errors": 27,
+   "reference_words": 27,
+   "character_errors": 62,
+   "reference_characters": 295,
+   "stored": 12,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": "盖夹的元素方法 银和经准元素当然也是精 适当使用博客可以使学生辩更善于分析和进行思辨,通过积极回网络材料学生们可以在他人的文章的上下文语经中找到自己的立场。 并能够针对特定问题提出自己的观点二零零二 大多数现代科研望远镜都是巨型设施位于大体大条件优良偏远地区 一九六三年大坝建后季节性洪水被控制住了陈积不在冲三岛和 擦场下颚上布满了许多颗剃刀般锋力的牙齿 上上还有一排。 这意味着任何一大相遇的东西都无路可逃 当所有可用的资源在一个组织的职能部门之间得到有效利用时创造力和足创性就会发生 他随后被传转送到剑桥的阿登布鲁克医院 执政党西南非洲人民组织也在议会选组中饱述多数席位",
+   "reference": "钙、钾等元素属于金属，银和金等元素当然也是金属。 \"适当使用博客，\"可以使学生变得更善于分析和进行思辨；通过积极回应网络材料，学生们可以在他人文章的上下文语境中找到自己的立场，并能够针对特定问题提出自己的观点（Oravec, 2002）。\" 大多数现代科研望远镜都是巨型设施，位于大气条件优良的偏远地区。 1963 年大坝建成后，季节性洪水被控制住了，沉积物不再冲散到河流里。 它的长下颚上布满了 70 多颗剃刀般锋利的牙齿，上颚上还有一排。这意味着任何与它相遇的东西都无路可逃。 当所有可用的资源在一个组织的职能部门之间得到有效利用时，创造力和独创性就会发生。 他随后被转送到剑桥的阿登布鲁克医院。 执政党西南非洲人民组织 (SWAPO) 也在议会选举中保持了多数席位。",
+   "ram": {
+    "samples": 436,
+    "peak_sum_working_set_bytes": 483098624,
+    "peak_sum_private_bytes": 591405056,
+    "peak_voice_working_set_bytes": 8708096,
+    "peak_engine_working_set_bytes": 476135424,
+    "peak_engine_private_bytes": 587784192
+   },
+   "stored_observations": 12,
+   "asr_ms": [
+    3957,
+    3576,
+    5522,
+    3667,
+    5282,
+    4756,
+    4034,
+    3298,
+    4048,
+    6512,
+    4042,
+    4347
+   ],
+   "detected_languages": [
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh",
+    "zh"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.35,
+     "end": 5.69,
+     "ok": true,
+     "error": null,
+     "text": "盖夹的元素方法",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.5226349234580994,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.5226349234580994
+     },
+     "asr_ms": 3957
+    },
+    {
+     "start": 5.58,
+     "end": 9.44,
+     "ok": true,
+     "error": null,
+     "text": "银和经准元素当然也是精",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.7965080142021179,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.7965080142021179
+     },
+     "asr_ms": 3576
+    },
+    {
+     "start": 13.41,
+     "end": 24.92,
+     "ok": true,
+     "error": null,
+     "text": "适当使用博客可以使学生辩更善于分析和进行思辨,通过积极回网络材料学生们可以在他人的文章的上下文语经中找到自己的立场。",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9774382710456848,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9774382710456848
+     },
+     "asr_ms": 5522
+    },
+    {
+     "start": 24.87,
+     "end": 28.97,
+     "ok": true,
+     "error": null,
+     "text": "并能够针对特定问题提出自己的观点二零零二",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.6186715960502625,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.6186715960502625
+     },
+     "asr_ms": 3667
+    },
+    {
+     "start": 35.94,
+     "end": 46.91,
+     "ok": true,
+     "error": null,
+     "text": "大多数现代科研望远镜都是巨型设施位于大体大条件优良偏远地区",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9813663363456726,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9813663363456726
+     },
+     "asr_ms": 5282
+    },
+    {
+     "start": 50.19,
+     "end": 60.56,
+     "ok": true,
+     "error": null,
+     "text": "一九六三年大坝建后季节性洪水被控制住了陈积不在冲三岛和",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9896066784858704,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9896066784858704
+     },
+     "asr_ms": 4756
+    },
+    {
+     "start": 68.43,
+     "end": 73.46,
+     "ok": true,
+     "error": null,
+     "text": "擦场下颚上布满了许多颗剃刀般锋力的牙齿",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9903331995010376,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9903331995010376
+     },
+     "asr_ms": 4034
+    },
+    {
+     "start": 73.41,
+     "end": 74.93,
+     "ok": true,
+     "error": null,
+     "text": "上上还有一排。",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9486144781112671,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9486144781112671
+     },
+     "asr_ms": 3298
+    },
+    {
+     "start": 75.0,
+     "end": 79.4,
+     "ok": true,
+     "error": null,
+     "text": "这意味着任何一大相遇的东西都无路可逃",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9965466856956482,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9965466856956482
+     },
+     "asr_ms": 4048
+    },
+    {
+     "start": 82.44,
+     "end": 91.31,
+     "ok": true,
+     "error": null,
+     "text": "当所有可用的资源在一个组织的职能部门之间得到有效利用时创造力和足创性就会发生",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9818809628486633,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9818809628486633
+     },
+     "asr_ms": 6512
+    },
+    {
+     "start": 94.74,
+     "end": 99.05,
+     "ok": true,
+     "error": null,
+     "text": "他随后被传转送到剑桥的阿登布鲁克医院",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9969807267189026,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9969807267189026
+     },
+     "asr_ms": 4042
+    },
+    {
+     "start": 101.25,
+     "end": 106.94,
+     "ok": true,
+     "error": null,
+     "text": "执政党西南非洲人民组织也在议会选组中饱述多数席位",
+     "language": "zh",
+     "provider": "sherpa-onnx-dolphin-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9970393180847168,
+      "unrestricted": "zh",
+      "unrestricted_probability": 0.9970393180847168
+     },
+     "asr_ms": 4347
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-cmn_hans_cn-2006-10040380210557600780.wav",
+     "emit_ms": 1124,
+     "stored_ms": 4700
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1852-10053956375630517392.wav",
+     "emit_ms": 1165,
+     "stored_ms": 4832
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1890-10073099671796350432.wav",
+     "emit_ms": 2701,
+     "stored_ms": 7983
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1721-10081186303620187437.wav",
+     "emit_ms": 1020,
+     "stored_ms": 5776
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1869-10104380129516909856.wav",
+     "emit_ms": 2505,
+     "stored_ms": 6552
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1903-10142207404499844309.wav",
+     "emit_ms": 285,
+     "stored_ms": 6797
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1953-10144930991730701959.wav",
+     "emit_ms": 4,
+     "stored_ms": 4046
+    },
+    {
+     "clip": "fleurs-cmn_hans_cn-1830-10147383166642115307.wav",
+     "emit_ms": 290,
+     "stored_ms": 4637
+    }
+   ]
+  },
+  {
+   "language": "hi",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 112.4,
+   "reference_utterances": 8,
+   "segments": 8,
+   "detected_utterances": 8,
+   "missed_speech_s": 1.126,
+   "speech_s": 78.47,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 1.122,
+   "nonspeech_s": 24.107,
+   "capped_segments": 0,
+   "duration_s": 112.257,
+   "word_errors": 17,
+   "reference_words": 204,
+   "character_errors": 19,
+   "reference_characters": 842,
+   "stored": 8,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": "ग्रीनलैंड को बहुत कम जगह बसाया गया था नॉर्थ सगास में वे कहते हैं कि एरिक रेड हत्या के लिए आइसलैंड से निर्वासित किया गया था और आगे पश्चिम की यात्रा करते समय ग्रीनलैंड मिला जिसे ग्रीनलैंड नाम दिया गया टेलीविजन रिपोर्टों में प्लांट से निकलने वाला सफेद धुआं दिखाया गया है अपनी सरकार के अलावा आप अन्य देशों की सरकारों की सलाह ले सकते हैं हालांकि उनकी सलाह उनके नागरिकों को ध्यान में रखकर दी जाती है प्राचीन काल से ही लोग सोने चादी और तांबे जैसे रासायनिक तत्वों के बारे में ही जानकारी रखते हैं क्योंकि इन्हें प्रकृति में मूल स्वरूप में ढूंढा जा सकता है और इन्हें प्राथमिक उपकरणों के जरिए ढूंढना अपेक्षाकृत आसान है इसे केमिकल का फ कहा जाता है आप लाल गोभी के जूस को इस्तेमाल करके एक संकेतक बना सकते हैं केवल दो हफ्तों में अमेरिकियों और फ्री फ्रेंच बलों ने दक्षिणी फ़्रांस को मुक्त कर दिया था और जर्मनी की ओर बढ़ रहे थे एमएस बीमारी केंद्रीय तंत्रिक तंत्र पर असर करती है जिसमें दिमाग स्पाइनल कॉर्ड और ऑप्टिक नर्व शामिल हैं हर कोई समाज से जुड़ा होता है और ट्रांसपोर्ट सिस्टम का उपयोग करता है लगभग सभी लोग ट्रांसपोर्ट सिस्टम के बारे में शिकायत करते हैं",
+   "reference": "ग्रीनलैंड को बहुत कम जगह बसाया गया था. नॉर्स सगास में वे कहते हैं कि एरिक रेड हत्या के लिए आइसलैंड से निर्वासित किया गया था, और आगे पश्चिम की यात्रा करते समय, ग्रीनलैंड मिला जिसे ग्रीनलैंड नाम दिया गया. टेलीविजन रिपोर्टों में प्लांट से निकलने वाला सफेद धुआँ दिखाया गया है। अपनी सरकार के अलावा आप अन्य देशों की सरकारों की सलाह ले सकते हैं. हालाँकि, उनकी सलाह उनके नागरिकों को ध्यान में रखकर दी जाती हैं. प्राचीनकाल से ही लोग सोने, चाँदी, और तांबे जैसे रासायनिक तत्वों के बारे में ही जानकारी रखते हैं, क्योंकि इन्हें प्रकृति में मूल स्वरूप में ढूँढा जा सकता है और इन्हें प्राथमिक उपकरणों के ज़रिए ढूँढना अपेक्षाकृत आसान है. इसे केमिकल का pH कहा जाता है. आप लाल गोभी के जूस का इस्तेमाल करके एक संकेतक बना सकते हैं. केवल दो हफ़्तों में अमेरिकियों और फ़्री फ़्रेंच बलों ने दक्षिणी फ़्रांस को मुक्त कर दिया था और जर्मनी की ओर बढ़ रहे थे. MS, बीमारी केंद्रीय तंत्रिका तंत्र पर असर करती है, जिसमें दिमाग, स्पाइनल कॉर्ड और ऑप्टिक नर्व शामिल हैं. हर कोई समाज से जुड़ा होता है और ट्रांसपोर्ट सिस्टम का उपयोग करता है. लगभग सभी लोग ट्रांसपोर्ट सिस्टम के बारे में शिकायत करते हैं.",
+   "ram": {
+    "samples": 439,
+    "peak_sum_working_set_bytes": 413130752,
+    "peak_sum_private_bytes": 541437952,
+    "peak_voice_working_set_bytes": 8531968,
+    "peak_engine_working_set_bytes": 408301568,
+    "peak_engine_private_bytes": 538701824
+   },
+   "stored_observations": 8,
+   "asr_ms": [
+    10770,
+    5218,
+    4385,
+    4897,
+    3682,
+    4555,
+    3666,
+    3814
+   ],
+   "detected_languages": [
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi",
+    "hi"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.52,
+     "end": 14.97,
+     "ok": true,
+     "error": null,
+     "text": "ग्रीनलैंड को बहुत कम जगह बसाया गया था नॉर्थ सगास में वे कहते हैं कि एरिक रेड हत्या के लिए आइसलैंड से निर्वासित किया गया था और आगे पश्चिम की यात्रा करते समय ग्रीनलैंड मिला जिसे ग्रीनलैंड नाम दिया गया",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8652387261390686,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8652387261390686
+     },
+     "asr_ms": 10770
+    },
+    {
+     "start": 17.61,
+     "end": 23.45,
+     "ok": true,
+     "error": null,
+     "text": "टेलीविजन रिपोर्टों में प्लांट से निकलने वाला सफेद धुआं दिखाया गया है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8556552529335022,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8556552529335022
+     },
+     "asr_ms": 5218
+    },
+    {
+     "start": 23.94,
+     "end": 35.36,
+     "ok": true,
+     "error": null,
+     "text": "अपनी सरकार के अलावा आप अन्य देशों की सरकारों की सलाह ले सकते हैं हालांकि उनकी सलाह उनके नागरिकों को ध्यान में रखकर दी जाती है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.988334059715271,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.988334059715271
+     },
+     "asr_ms": 4385
+    },
+    {
+     "start": 37.2,
+     "end": 53.97,
+     "ok": true,
+     "error": null,
+     "text": "प्राचीन काल से ही लोग सोने चादी और तांबे जैसे रासायनिक तत्वों के बारे में ही जानकारी रखते हैं क्योंकि इन्हें प्रकृति में मूल स्वरूप में ढूंढा जा सकता है और इन्हें प्राथमिक उपकरणों के जरिए ढूंढना अपेक्षाकृत आसान है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9971139430999756,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9971139430999756
+     },
+     "asr_ms": 4897
+    },
+    {
+     "start": 58.35,
+     "end": 66.05,
+     "ok": true,
+     "error": null,
+     "text": "इसे केमिकल का फ कहा जाता है आप लाल गोभी के जूस को इस्तेमाल करके एक संकेतक बना सकते हैं",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8387548923492432,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8387548923492432
+     },
+     "asr_ms": 3682
+    },
+    {
+     "start": 69.93,
+     "end": 82.23,
+     "ok": true,
+     "error": null,
+     "text": "केवल दो हफ्तों में अमेरिकियों और फ्री फ्रेंच बलों ने दक्षिणी फ़्रांस को मुक्त कर दिया था और जर्मनी की ओर बढ़ रहे थे",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8358439207077026,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8358439207077026
+     },
+     "asr_ms": 4555
+    },
+    {
+     "start": 84.45,
+     "end": 93.05,
+     "ok": true,
+     "error": null,
+     "text": "एमएस बीमारी केंद्रीय तंत्रिक तंत्र पर असर करती है जिसमें दिमाग स्पाइनल कॉर्ड और ऑप्टिक नर्व शामिल हैं",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9460238814353943,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9460238814353943
+     },
+     "asr_ms": 3666
+    },
+    {
+     "start": 96.9,
+     "end": 106.46,
+     "ok": true,
+     "error": null,
+     "text": "हर कोई समाज से जुड़ा होता है और ट्रांसपोर्ट सिस्टम का उपयोग करता है लगभग सभी लोग ट्रांसपोर्ट सिस्टम के बारे में शिकायत करते हैं",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9449270963668823,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9449270963668823
+     },
+     "asr_ms": 3814
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-hi_in-1784-10014385262415025488.wav",
+     "emit_ms": -13,
+     "stored_ms": 10757
+    },
+    {
+     "clip": "fleurs-hi_in-1778-10027305580492162464.wav",
+     "emit_ms": 2783,
+     "stored_ms": 8001
+    },
+    {
+     "clip": "fleurs-hi_in-1666-10107687492910459268.wav",
+     "emit_ms": 587,
+     "stored_ms": 4972
+    },
+    {
+     "clip": "fleurs-hi_in-1836-10128382631186456345.wav",
+     "emit_ms": -626,
+     "stored_ms": 4271
+    },
+    {
+     "clip": "fleurs-hi_in-1792-10135688561274120767.wav",
+     "emit_ms": 692,
+     "stored_ms": 4374
+    },
+    {
+     "clip": "fleurs-hi_in-1702-10291152526359423424.wav",
+     "emit_ms": -556,
+     "stored_ms": 3999
+    },
+    {
+     "clip": "fleurs-hi_in-1955-10359991159058879218.wav",
+     "emit_ms": 804,
+     "stored_ms": 4470
+    },
+    {
+     "clip": "fleurs-hi_in-1797-10550791631951016124.wav",
+     "emit_ms": 564,
+     "stored_ms": 4378
+    }
+   ]
+  },
+  {
+   "language": "hi",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 117.5,
+   "reference_utterances": 8,
+   "segments": 13,
+   "detected_utterances": 8,
+   "missed_speech_s": 0.764,
+   "speech_s": 78.47,
+   "false_trigger_segments": 1,
+   "nonspeech_captured_s": 10.401,
+   "nonspeech_s": 25.49,
+   "capped_segments": 0,
+   "duration_s": 113.64,
+   "word_errors": 73,
+   "reference_words": 204,
+   "character_errors": 245,
+   "reference_characters": 842,
+   "stored": 12,
+   "failed": 1,
+   "errors": [
+    "uncertain_short_segment"
+   ],
+   "hypothesis": "ग्रीनलैंड को बहुत कम जगह बसाया गया था नॉर् सगास में वे कहते है की एरिक रेड हत्या के लिए आइसलैंड से निर्वासित किया गया था और आगे पश्चिम की यात्रा करते समय ग्रीनलैंड मिला टेलीविज़न रिपोर्टों में प्लांट से निकलने वाला सफ़ेद बीमा दिखाया गया है اپنی سرکار کے علاوہ انیہ دیشوں کی سرکاروں کی صلاح لے سکتے ہیں حالانکہ ان کی صلاح ان کے ناگرکوں کو دھیان میں رکھ کر بھی جاتی ہے प्राचीन काल से ही लोग सोने चादी और तांबे जैसे रासायनिक तत्वों के बारे में ही जानकारी रखते हैं क्योंकि इन्हें प्रकृति में मूल स्वरूप में ढूंढा जा सकता है और इन्हें प्राथमिक उपकरणों के जरिए ढूंढना अपेक्षाकृत आसान है इसे केमिकल का फाग कहा जाता है आप लाल गोभी के दीज को इस्तेमाल करके एक संकेतक बना सकते हैं  Kevin Dohaftumir, Ameriq, Ourofri, French Ballonay. दक्षिणी फ्रांस को मुक्त कर दिया था और जर्मनी की और बढ़ रहे थे मस बीमारी केंद्रीय तंत्र का तंत्र पर असर करती है जिसमें दिमाग स्पाइनल कोड और ऑप्टिक नर्व शामिल है हर कोई समाज से जुड़ा होता है और ट्रांसपोर्ट सिस्टम का उपयोग करता है लगभग सभी लोग ट्रांसपोर्ट सिस्टम के बारे में शिकायत करते हैं  Соберите, пожалуйста, вон, у меня там наскольких, конечно.",
+   "reference": "ग्रीनलैंड को बहुत कम जगह बसाया गया था. नॉर्स सगास में वे कहते हैं कि एरिक रेड हत्या के लिए आइसलैंड से निर्वासित किया गया था, और आगे पश्चिम की यात्रा करते समय, ग्रीनलैंड मिला जिसे ग्रीनलैंड नाम दिया गया. टेलीविजन रिपोर्टों में प्लांट से निकलने वाला सफेद धुआँ दिखाया गया है। अपनी सरकार के अलावा आप अन्य देशों की सरकारों की सलाह ले सकते हैं. हालाँकि, उनकी सलाह उनके नागरिकों को ध्यान में रखकर दी जाती हैं. प्राचीनकाल से ही लोग सोने, चाँदी, और तांबे जैसे रासायनिक तत्वों के बारे में ही जानकारी रखते हैं, क्योंकि इन्हें प्रकृति में मूल स्वरूप में ढूँढा जा सकता है और इन्हें प्राथमिक उपकरणों के ज़रिए ढूँढना अपेक्षाकृत आसान है. इसे केमिकल का pH कहा जाता है. आप लाल गोभी के जूस का इस्तेमाल करके एक संकेतक बना सकते हैं. केवल दो हफ़्तों में अमेरिकियों और फ़्री फ़्रेंच बलों ने दक्षिणी फ़्रांस को मुक्त कर दिया था और जर्मनी की ओर बढ़ रहे थे. MS, बीमारी केंद्रीय तंत्रिका तंत्र पर असर करती है, जिसमें दिमाग, स्पाइनल कॉर्ड और ऑप्टिक नर्व शामिल हैं. हर कोई समाज से जुड़ा होता है और ट्रांसपोर्ट सिस्टम का उपयोग करता है. लगभग सभी लोग ट्रांसपोर्ट सिस्टम के बारे में शिकायत करते हैं.",
+   "ram": {
+    "samples": 461,
+    "peak_sum_working_set_bytes": 376164352,
+    "peak_sum_private_bytes": 402706432,
+    "peak_voice_working_set_bytes": 9048064,
+    "peak_engine_working_set_bytes": 368156672,
+    "peak_engine_private_bytes": 399187968
+   },
+   "stored_observations": 12,
+   "asr_ms": [
+    4760,
+    1810,
+    3551,
+    4539,
+    3353,
+    4167,
+    3429,
+    5904,
+    3720,
+    4255,
+    4019,
+    4333,
+    3703
+   ],
+   "detected_languages": [
+    "hi",
+    null,
+    "hi",
+    "ur",
+    "ur",
+    "hi",
+    "hi",
+    "hi",
+    "en",
+    "hi",
+    "hi",
+    "hi",
+    "ru"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.56,
+     "end": 13.68,
+     "ok": true,
+     "error": null,
+     "text": "ग्रीनलैंड को बहुत कम जगह बसाया गया था नॉर् सगास में वे कहते है की एरिक रेड हत्या के लिए आइसलैंड से निर्वासित किया गया था और आगे पश्चिम की यात्रा करते समय ग्रीनलैंड मिला",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.7764760255813599,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.7764760255813599
+     },
+     "asr_ms": 4760
+    },
+    {
+     "start": 13.47,
+     "end": 15.32,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1810
+    },
+    {
+     "start": 18.69,
+     "end": 23.63,
+     "ok": true,
+     "error": null,
+     "text": "टेलीविज़न रिपोर्टों में प्लांट से निकलने वाला सफ़ेद बीमा दिखाया गया है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.7817548513412476,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.7817548513412476
+     },
+     "asr_ms": 3551
+    },
+    {
+     "start": 27.03,
+     "end": 32.48,
+     "ok": true,
+     "error": null,
+     "text": "اپنی سرکار کے علاوہ انیہ دیشوں کی سرکاروں کی صلاح لے سکتے ہیں",
+     "language": "ur",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.4766172170639038,
+      "unrestricted": "ur",
+      "unrestricted_probability": 0.4766172170639038
+     },
+     "asr_ms": 4539
+    },
+    {
+     "start": 32.43,
+     "end": 38.36,
+     "ok": true,
+     "error": null,
+     "text": "حالانکہ ان کی صلاح ان کے ناگرکوں کو دھیان میں رکھ کر بھی جاتی ہے",
+     "language": "ur",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.499781996011734,
+      "unrestricted": "ur",
+      "unrestricted_probability": 0.499781996011734
+     },
+     "asr_ms": 3353
+    },
+    {
+     "start": 39.66,
+     "end": 51.66,
+     "ok": true,
+     "error": null,
+     "text": "प्राचीन काल से ही लोग सोने चादी और तांबे जैसे रासायनिक तत्वों के बारे में ही जानकारी रखते हैं क्योंकि इन्हें प्रकृति में मूल स्वरूप में ढूंढा जा सकता है और इन्हें प्राथमिक उपकरणों के",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9889425039291382,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9889425039291382
+     },
+     "asr_ms": 4167
+    },
+    {
+     "start": 51.51,
+     "end": 56.27,
+     "ok": true,
+     "error": null,
+     "text": "जरिए ढूंढना अपेक्षाकृत आसान है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.5710691809654236,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.5710691809654236
+     },
+     "asr_ms": 3429
+    },
+    {
+     "start": 57.48,
+     "end": 67.97,
+     "ok": true,
+     "error": null,
+     "text": "इसे केमिकल का फाग कहा जाता है आप लाल गोभी के दीज को इस्तेमाल करके एक संकेतक बना सकते हैं",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.6194262504577637,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.6194262504577637
+     },
+     "asr_ms": 5904
+    },
+    {
+     "start": 69.78,
+     "end": 76.07,
+     "ok": true,
+     "error": null,
+     "text": " Kevin Dohaftumir, Ameriq, Ourofri, French Ballonay.",
+     "language": "en",
+     "provider": "whisper.cpp",
+     "token_probability": 0.8520999051954435,
+     "lid": {
+      "chosen_probability": 0.24650225043296814,
+      "unrestricted": "en",
+      "unrestricted_probability": 0.24650225043296814
+     },
+     "asr_ms": 3720
+    },
+    {
+     "start": 75.96,
+     "end": 81.95,
+     "ok": true,
+     "error": null,
+     "text": "दक्षिणी फ्रांस को मुक्त कर दिया था और जर्मनी की और बढ़ रहे थे",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8344178199768066,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8344178199768066
+     },
+     "asr_ms": 4255
+    },
+    {
+     "start": 85.59,
+     "end": 93.26,
+     "ok": true,
+     "error": null,
+     "text": "मस बीमारी केंद्रीय तंत्र का तंत्र पर असर करती है जिसमें दिमाग स्पाइनल कोड और ऑप्टिक नर्व शामिल है",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8953485488891602,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.8953485488891602
+     },
+     "asr_ms": 4019
+    },
+    {
+     "start": 95.67,
+     "end": 107.48,
+     "ok": true,
+     "error": null,
+     "text": "हर कोई समाज से जुड़ा होता है और ट्रांसपोर्ट सिस्टम का उपयोग करता है लगभग सभी लोग ट्रांसपोर्ट सिस्टम के बारे में शिकायत करते हैं",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9143573641777039,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.9143573641777039
+     },
+     "asr_ms": 4333
+    },
+    {
+     "start": 109.89,
+     "end": 113.61,
+     "ok": true,
+     "error": null,
+     "text": " Соберите, пожалуйста, вон, у меня там наскольких, конечно.",
+     "language": "ru",
+     "provider": "whisper.cpp",
+     "token_probability": 0.7978325479409911,
+     "lid": {
+      "chosen_probability": 0.21846772730350494,
+      "unrestricted": "ru",
+      "unrestricted_probability": 0.21846772730350494
+     },
+     "asr_ms": 3703
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-hi_in-1784-10014385262415025488.wav",
+     "emit_ms": 3448,
+     "stored_ms": 5258
+    },
+    {
+     "clip": "fleurs-hi_in-1778-10027305580492162464.wav",
+     "emit_ms": 11,
+     "stored_ms": 3562
+    },
+    {
+     "clip": "fleurs-hi_in-1666-10107687492910459268.wav",
+     "emit_ms": 613,
+     "stored_ms": 3965
+    },
+    {
+     "clip": "fleurs-hi_in-1836-10128382631186456345.wav",
+     "emit_ms": 133,
+     "stored_ms": 3563
+    },
+    {
+     "clip": "fleurs-hi_in-1792-10135688561274120767.wav",
+     "emit_ms": 776,
+     "stored_ms": 6680
+    },
+    {
+     "clip": "fleurs-hi_in-1702-10291152526359423424.wav",
+     "emit_ms": -116,
+     "stored_ms": 4139
+    },
+    {
+     "clip": "fleurs-hi_in-1955-10359991159058879218.wav",
+     "emit_ms": 441,
+     "stored_ms": 4460
+    },
+    {
+     "clip": "fleurs-hi_in-1797-10550791631951016124.wav",
+     "emit_ms": 458,
+     "stored_ms": 4791
+    }
+   ]
+  },
+  {
+   "language": "ta",
+   "session": 0,
+   "condition": "clean",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 156.3,
+   "reference_utterances": 8,
+   "segments": 12,
+   "detected_utterances": 8,
+   "missed_speech_s": 1.177,
+   "speech_s": 112.3,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 3.271,
+   "nonspeech_s": 23.962,
+   "capped_segments": 0,
+   "duration_s": 153.732,
+   "word_errors": 56,
+   "reference_words": 153,
+   "character_errors": 285,
+   "reference_characters": 1210,
+   "stored": 12,
+   "failed": 0,
+   "errors": [],
+   "hypothesis": "நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையைப் பெற விரும்பலாம் ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர வ நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையைப் பெற விரும்பலாம் ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது முக்கியமான மேடைகளில் இசை நிகழ்ச்சி முடிந்திருந்தாலும் விழாவின் சில பிரிவுகள் இரவு இசைப்பதைத் தொடரும் பேருந்துகள் நாள் முழுவதும் மாவட்டங்களுக்கு இடையிலான பேருந்து நிலையத்தில் இருந்து ஆற்றின் குறுக்கே புறப்படுகின்றன இருப்பினும் பெரும்பாலானவை குறிப்பாக கிழக்கு நோக்கி செல்லும் பேருந்துகள் மற்றும் మ జాగర్ పుందాంగ్ ఆర్ర ముదల్ ఏల్ర మణికి ఇడయే పురపడ చల్లిగినను ரோம் நகரில் பல இடங்களில் ஏராளமான பெரிய தொலைக்காட்சித் தேரகள் அமைக்கப்பட்டு மக்கள் இந்த விழாவைக் காண முடிந்தது வலைப்பதிவுகளின் சரியான பயன்பாடு மாணவர்களை மேலும் விமர்சகர்களாகவும் பகுத்தாய்பவர்களாகவும் ஆக்கும் இணைய கேள்விகளுக்கு பதிலளிக்கும்போது அவர்கள் அடுத்தவர்களுடைய கருத்திற்கு தங்கள் பதிலை சொல்வதுடன் தங்களுக்கே உரிய ஒரு நிலையை எடுக்கவும் உதவுகிறது ஒராவேக் இரண்டாயிரத்தி இரண்டு சிங்கத்தைப் போன்றே ஊநாய்கள் அல்லது நாய்கள் ஆகிய விலங்குகள் வியக்கத்தை வகையில் செயல்படுகின்றன ஆனால் மற்ற பூனை இனங்கள் இல்லை நடவடிக்கையிலும் ஒத்துப்போகின்றன மிகவும் ஆபத்தானவையும் கூட அதன்ல நடிகர்களும் கூட மேடையின் மீது கஞ்சாவைப் புகைக்கிறார்கள் மற்றும் தியேட்டரும் கூட பார்வையாளர்களை அதில் இணைய உற்சாகப்படுத்துகிறது மேலே தெளிவான அழகான வானம் மற்றும் பல மலைகளால் சூழப்பட்டதை தவிர வேறு எதையும் காண இயலாது குகைக்குள் இருந்து மிகக் குறைந்த அளவே உலகினை காணவோ அல்லது கேட்கவோ முடியும்",
+   "reference": "நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையை பெற விரும்பலாம், ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது. முக்கியமான மேடைகளில் இசை நிகழ்ச்சி முடிந்திருந்தாலும், விழாவின் சில பிரிவுகள் இரவு இசைப்பதைத் தொடரும். பேருந்துகள் நாள் முழுவதும் மாவட்டங்களுக்கு இடையேயான பேருந்து நிலையத்திலிருந்து (ஆற்றின் குறுக்கே) புறப்படுகின்றன, இருப்பினும் பெரும்பாலானவை, குறிப்பாகக் கிழக்கு நோக்கிச் செல்லும் பேருந்துகள், மற்றும் ஜகார் / பும்தாங் 06:30 முதல் 07:30 மணிக்கு இடையே புறப்பட்டுச் செல்கின்றன. ரோம் நகரில் பல இடங்களில் ஏராளமான பெரிய தொலைக்காட்சித் திரைகள் அமைக்கப்பட்டு, மக்கள் இந்த விழாவைக் காண முடிந்தது. \"வலைப்பதிவுகளின் சரியான பயன்பாடு \"\"மாணவர்களை மேலும் விமர்சகர்களாகவும், பகுத்தாய்பவர்களாகவும் ஆக்கும்; இணைய கேள்விகளுக்கு பதிலளிக்கும் போது அவர்கள் அடுதவர்களுடைய கருத்துக்கு தங்கள் பதிலைச் சொல்வதுடன், தங்களுக்கே உரிய ஒரு நிலையை எடுக்கவும் உதவுகிறது\"\" (ஓராவேக் 2002). \" சிங்கத்தை போன்றே ஓநாய்கள் அல்லது நாய்கள் ஆகிய விலங்குகள் வியக்கத்தக்க வகையில் செயல்படுகின்றன, (ஆனால் மற்ற பூனை இனங்கள் இல்லை) நடவடிக்கையிலும் ஒத்துபோகின்றன மிகவும் ஆபத்தானவையும் கூட. அதன் பலனாக, நடிகர்களும் கூட மேடையின் மீது கஞ்சாவை புகைக்கிறார்கள், மற்றும் தியேட்டரும் கூட பார்வையாளர்களை அதில் இணைய உற்சாகப்படுத்துகிறது. மேலே தெளிவான, அழகான வானம் மற்றும் பல மலைகளால் சூழப்பட்டுள்ளதைத் தவிர வேறு எதையும் காண இயலாது. குகைக்குள் இருந்து மிகக் குறைந்த அளவே உலகினைக் காணவோ அல்லது கேட்கவோ முடியும்.",
+   "ram": {
+    "samples": 610,
+    "peak_sum_working_set_bytes": 393207808,
+    "peak_sum_private_bytes": 404008960,
+    "peak_voice_working_set_bytes": 8617984,
+    "peak_engine_working_set_bytes": 385634304,
+    "peak_engine_private_bytes": 400609280
+   },
+   "stored_observations": 12,
+   "asr_ms": [
+    4609,
+    4188,
+    5469,
+    4849,
+    3279,
+    3936,
+    4583,
+    4042,
+    3597,
+    4416,
+    4531,
+    6597
+   ],
+   "detected_languages": [
+    "ta",
+    "ta",
+    "ta",
+    "ta",
+    "te",
+    "ta",
+    "ta",
+    "ta",
+    "ta",
+    "ta",
+    "ta",
+    "ta"
+   ],
+   "segments_detail": [
+    {
+     "start": 2.73,
+     "end": 15.81,
+     "ok": true,
+     "error": null,
+     "text": "நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையைப் பெற விரும்பலாம் ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர வ",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.6695247888565063,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.6695247888565063
+     },
+     "asr_ms": 4609
+    },
+    {
+     "start": 16.38,
+     "end": 26.69,
+     "ok": true,
+     "error": null,
+     "text": "நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையைப் பெற விரும்பலாம் ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.9144935011863708,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.9144935011863708
+     },
+     "asr_ms": 4188
+    },
+    {
+     "start": 29.16,
+     "end": 41.16,
+     "ok": true,
+     "error": null,
+     "text": "முக்கியமான மேடைகளில் இசை நிகழ்ச்சி முடிந்திருந்தாலும் விழாவின் சில பிரிவுகள் இரவு இசைப்பதைத் தொடரும்",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.7930790185928345,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.7930790185928345
+     },
+     "asr_ms": 5469
+    },
+    {
+     "start": 46.77,
+     "end": 59.73,
+     "ok": true,
+     "error": null,
+     "text": "பேருந்துகள் நாள் முழுவதும் மாவட்டங்களுக்கு இடையிலான பேருந்து நிலையத்தில் இருந்து ஆற்றின் குறுக்கே புறப்படுகின்றன இருப்பினும் பெரும்பாலானவை குறிப்பாக கிழக்கு நோக்கி செல்லும் பேருந்துகள் மற்றும்",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.880040168762207,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.880040168762207
+     },
+     "asr_ms": 4849
+    },
+    {
+     "start": 59.55,
+     "end": 66.26,
+     "ok": true,
+     "error": null,
+     "text": "మ జాగర్ పుందాంగ్ ఆర్ర ముదల్ ఏల్ర మణికి ఇడయే పురపడ చల్లిగినను",
+     "language": "te",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.20749621093273163,
+      "unrestricted": "ml",
+      "unrestricted_probability": 0.7301269173622131
+     },
+     "asr_ms": 3279
+    },
+    {
+     "start": 70.41,
+     "end": 77.78,
+     "ok": true,
+     "error": null,
+     "text": "ரோம் நகரில் பல இடங்களில் ஏராளமான பெரிய தொலைக்காட்சித் தேரகள் அமைக்கப்பட்டு மக்கள் இந்த விழாவைக் காண முடிந்தது",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.778584361076355,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.778584361076355
+     },
+     "asr_ms": 3936
+    },
+    {
+     "start": 79.92,
+     "end": 91.92,
+     "ok": true,
+     "error": null,
+     "text": "வலைப்பதிவுகளின் சரியான பயன்பாடு மாணவர்களை மேலும் விமர்சகர்களாகவும் பகுத்தாய்பவர்களாகவும் ஆக்கும் இணைய கேள்விகளுக்கு பதிலளிக்கும்போது அவர்கள்",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8733029961585999,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.8733029961585999
+     },
+     "asr_ms": 4583
+    },
+    {
+     "start": 91.71,
+     "end": 98.78,
+     "ok": true,
+     "error": null,
+     "text": "அடுத்தவர்களுடைய கருத்திற்கு தங்கள் பதிலை சொல்வதுடன் தங்களுக்கே உரிய ஒரு நிலையை எடுக்கவும் உதவுகிறது",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8033784627914429,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.8033784627914429
+     },
+     "asr_ms": 4042
+    },
+    {
+     "start": 98.73,
+     "end": 101.72,
+     "ok": true,
+     "error": null,
+     "text": "ஒராவேக் இரண்டாயிரத்தி இரண்டு",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.16846391558647156,
+      "unrestricted": "ml",
+      "unrestricted_probability": 0.4557144343852997
+     },
+     "asr_ms": 3597
+    },
+    {
+     "start": 104.67,
+     "end": 119.01,
+     "ok": true,
+     "error": null,
+     "text": "சிங்கத்தைப் போன்றே ஊநாய்கள் அல்லது நாய்கள் ஆகிய விலங்குகள் வியக்கத்தை வகையில் செயல்படுகின்றன ஆனால் மற்ற பூனை இனங்கள் இல்லை நடவடிக்கையிலும் ஒத்துப்போகின்றன மிகவும் ஆபத்தானவையும் கூட",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.08471643179655075,
+      "unrestricted": "ml",
+      "unrestricted_probability": 0.5707438588142395
+     },
+     "asr_ms": 4416
+    },
+    {
+     "start": 121.89,
+     "end": 133.89,
+     "ok": true,
+     "error": null,
+     "text": "அதன்ல நடிகர்களும் கூட மேடையின் மீது கஞ்சாவைப் புகைக்கிறார்கள் மற்றும் தியேட்டரும் கூட பார்வையாளர்களை அதில் இணைய உற்சாகப்படுத்துகிறது",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.48861628770828247,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.48861628770828247
+     },
+     "asr_ms": 4531
+    },
+    {
+     "start": 135.69,
+     "end": 149.43,
+     "ok": true,
+     "error": null,
+     "text": "மேலே தெளிவான அழகான வானம் மற்றும் பல மலைகளால் சூழப்பட்டதை தவிர வேறு எதையும் காண இயலாது குகைக்குள் இருந்து மிகக் குறைந்த அளவே உலகினை காணவோ அல்லது கேட்கவோ முடியும்",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.8196017146110535,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.8196017146110535
+     },
+     "asr_ms": 6597
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-ta_in-1666-10072241588933076862.wav",
+     "emit_ms": 281,
+     "stored_ms": 4469
+    },
+    {
+     "clip": "fleurs-ta_in-1771-10151944176129497809.wav",
+     "emit_ms": -2711,
+     "stored_ms": 2758
+    },
+    {
+     "clip": "fleurs-ta_in-1730-10222238337252024030.wav",
+     "emit_ms": 413,
+     "stored_ms": 3692
+    },
+    {
+     "clip": "fleurs-ta_in-1917-10296046279567274586.wav",
+     "emit_ms": 1151,
+     "stored_ms": 5087
+    },
+    {
+     "clip": "fleurs-ta_in-1852-10367238297771483490.wav",
+     "emit_ms": 972,
+     "stored_ms": 4569
+    },
+    {
+     "clip": "fleurs-ta_in-1855-10394228005554884342.wav",
+     "emit_ms": -33,
+     "stored_ms": 4383
+    },
+    {
+     "clip": "fleurs-ta_in-1861-10431271162503376039.wav",
+     "emit_ms": 104,
+     "stored_ms": 4635
+    },
+    {
+     "clip": "fleurs-ta_in-1841-10514693308136502515.wav",
+     "emit_ms": -757,
+     "stored_ms": 5840
+    }
+   ]
+  },
+  {
+   "language": "ta",
+   "session": 0,
+   "condition": "babble10",
+   "vad": "adaptive",
+   "mode": "product",
+   "pace": 1.0,
+   "wall_s": 154.9,
+   "reference_utterances": 8,
+   "segments": 18,
+   "detected_utterances": 7,
+   "missed_speech_s": 7.015,
+   "speech_s": 112.3,
+   "false_trigger_segments": 0,
+   "nonspeech_captured_s": 5.976,
+   "nonspeech_s": 24.742,
+   "capped_segments": 0,
+   "duration_s": 154.512,
+   "word_errors": 91,
+   "reference_words": 153,
+   "character_errors": 487,
+   "reference_characters": 1210,
+   "stored": 11,
+   "failed": 7,
+   "errors": [
+    "no_speech_found",
+    "uncertain_short_segment"
+   ],
+   "hypothesis": "நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையைப் பெற விரும்பலாம் ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையைப் பெற விரும்பலாம் ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது முக்கியமான மேடைகளில் இசை நிகழ்ச்சி முடிந்திருந்தாலும் गलरे इस परई थोड़ा रू पूरीपगर जिल के माफ सेलग मेट्रो जागर सहदओ र इक्टर पर चले ग ரோம் நகரில் பல இடங்களில் ஏராளமான பெரிய தொலைக்காட்சி தேவைகள் அமைக்கப்பட்டு மக்கள் இந்த விழாவைக் காண முடிந்தது வலை பதிப்புகளின் சரியான பயன்பாடு மாணவர்களை மேலும் விமர்சகர்களாகவும் பகுத்தாய்பவர்களாகவும் ஆக்கும் இணைய கேள்விகளுக்கு பதிலளிக்கும்பது அவர்கள் அடுத்தவர்களுடைய கருத்துக்குு தங்கள் பதிலை சொல்வதுடன் தங்களுக்கே உரிய ஒரு நிலையை கொடுக்கவும் உதவுகிறது்கள் அதன் பலனாகஹ நடிகர்களும் கூட மேடையின் மீது கஞ்சாவை புதிக்கிறார்கள் மற்றும் தேீட்டர ம் கூட பார்வையாளர்களை அது இனிய உற்சாகப்படுத்துகிறது மேலே தெளிவான அழகான வானம் மற்றும் பல மலைகளால் சூழப்பட்டத தை விட புகைக்குிருந்து மிகக் குறைந்த அளவில் உலகினை காணவோ அல்லதை கேட்கவோ முடியும்",
+   "reference": "நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையை பெற விரும்பலாம், ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது. முக்கியமான மேடைகளில் இசை நிகழ்ச்சி முடிந்திருந்தாலும், விழாவின் சில பிரிவுகள் இரவு இசைப்பதைத் தொடரும். பேருந்துகள் நாள் முழுவதும் மாவட்டங்களுக்கு இடையேயான பேருந்து நிலையத்திலிருந்து (ஆற்றின் குறுக்கே) புறப்படுகின்றன, இருப்பினும் பெரும்பாலானவை, குறிப்பாகக் கிழக்கு நோக்கிச் செல்லும் பேருந்துகள், மற்றும் ஜகார் / பும்தாங் 06:30 முதல் 07:30 மணிக்கு இடையே புறப்பட்டுச் செல்கின்றன. ரோம் நகரில் பல இடங்களில் ஏராளமான பெரிய தொலைக்காட்சித் திரைகள் அமைக்கப்பட்டு, மக்கள் இந்த விழாவைக் காண முடிந்தது. \"வலைப்பதிவுகளின் சரியான பயன்பாடு \"\"மாணவர்களை மேலும் விமர்சகர்களாகவும், பகுத்தாய்பவர்களாகவும் ஆக்கும்; இணைய கேள்விகளுக்கு பதிலளிக்கும் போது அவர்கள் அடுதவர்களுடைய கருத்துக்கு தங்கள் பதிலைச் சொல்வதுடன், தங்களுக்கே உரிய ஒரு நிலையை எடுக்கவும் உதவுகிறது\"\" (ஓராவேக் 2002). \" சிங்கத்தை போன்றே ஓநாய்கள் அல்லது நாய்கள் ஆகிய விலங்குகள் வியக்கத்தக்க வகையில் செயல்படுகின்றன, (ஆனால் மற்ற பூனை இனங்கள் இல்லை) நடவடிக்கையிலும் ஒத்துபோகின்றன மிகவும் ஆபத்தானவையும் கூட. அதன் பலனாக, நடிகர்களும் கூட மேடையின் மீது கஞ்சாவை புகைக்கிறார்கள், மற்றும் தியேட்டரும் கூட பார்வையாளர்களை அதில் இணைய உற்சாகப்படுத்துகிறது. மேலே தெளிவான, அழகான வானம் மற்றும் பல மலைகளால் சூழப்பட்டுள்ளதைத் தவிர வேறு எதையும் காண இயலாது. குகைக்குள் இருந்து மிகக் குறைந்த அளவே உலகினைக் காணவோ அல்லது கேட்கவோ முடியும்.",
+   "ram": {
+    "samples": 603,
+    "peak_sum_working_set_bytes": 374431744,
+    "peak_sum_private_bytes": 401715200,
+    "peak_voice_working_set_bytes": 8097792,
+    "peak_engine_working_set_bytes": 367165440,
+    "peak_engine_private_bytes": 398319616
+   },
+   "stored_observations": 11,
+   "asr_ms": [
+    4738,
+    1849,
+    6949,
+    3168,
+    1614,
+    3158,
+    3433,
+    1778,
+    4266,
+    4385,
+    3550,
+    5314,
+    3477,
+    1681,
+    3985,
+    3915,
+    1911,
+    3894
+   ],
+   "detected_languages": [
+    "ta",
+    null,
+    "ta",
+    "ta",
+    null,
+    "hi",
+    null,
+    null,
+    "hi",
+    "ta",
+    "ta",
+    "ta",
+    null,
+    null,
+    "ta",
+    "ta",
+    null,
+    "ta"
+   ],
+   "segments_detail": [
+    {
+     "start": 1.89,
+     "end": 13.34,
+     "ok": true,
+     "error": null,
+     "text": "நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையைப் பெற விரும்பலாம் ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.30186405777931213,
+      "unrestricted": "ml",
+      "unrestricted_probability": 0.3165554106235504
+     },
+     "asr_ms": 4738
+    },
+    {
+     "start": 13.77,
+     "end": 16.16,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1849
+    },
+    {
+     "start": 16.44,
+     "end": 26.66,
+     "ok": true,
+     "error": null,
+     "text": "நீங்கள் உங்கள் சொந்த கருத்தைத் தவிர அரசாங்கங்களின் ஆலோசனையைப் பெற விரும்பலாம் ஆனால் அவர்களின் ஆலோசனை அவர்களின் குடிமக்களுக்கென உருவாக்கப்பட்டுள்ளது",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.738598108291626,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.738598108291626
+     },
+     "asr_ms": 6949
+    },
+    {
+     "start": 31.38,
+     "end": 35.96,
+     "ok": true,
+     "error": null,
+     "text": "முக்கியமான மேடைகளில் இசை நிகழ்ச்சி முடிந்திருந்தாலும்",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.38462594151496887,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.38462594151496887
+     },
+     "asr_ms": 3168
+    },
+    {
+     "start": 35.85,
+     "end": 37.28,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1614
+    },
+    {
+     "start": 37.23,
+     "end": 41.66,
+     "ok": true,
+     "error": null,
+     "text": "गलरे इस परई थोड़ा रू",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.4619763195514679,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.4619763195514679
+     },
+     "asr_ms": 3158
+    },
+    {
+     "start": 44.82,
+     "end": 54.38,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3433
+    },
+    {
+     "start": 55.98,
+     "end": 58.4,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1778
+    },
+    {
+     "start": 58.35,
+     "end": 67.64,
+     "ok": true,
+     "error": null,
+     "text": "पूरीपगर जिल के माफ सेलग मेट्रो जागर सहदओ र इक्टर पर चले ग",
+     "language": "hi",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.1611316204071045,
+      "unrestricted": "hi",
+      "unrestricted_probability": 0.1611316204071045
+     },
+     "asr_ms": 4266
+    },
+    {
+     "start": 70.53,
+     "end": 77.87,
+     "ok": true,
+     "error": null,
+     "text": "ரோம் நகரில் பல இடங்களில் ஏராளமான பெரிய தொலைக்காட்சி தேவைகள் அமைக்கப்பட்டு மக்கள் இந்த விழாவைக் காண முடிந்தது",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.24087443947792053,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.24087443947792053
+     },
+     "asr_ms": 4385
+    },
+    {
+     "start": 80.61,
+     "end": 88.07,
+     "ok": true,
+     "error": null,
+     "text": "வலை பதிப்புகளின் சரியான பயன்பாடு மாணவர்களை மேலும் விமர்சகர்களாகவும் பகுத்தாய்பவர்களாகவும் ஆக்கும்",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.5476128458976746,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.5476128458976746
+     },
+     "asr_ms": 3550
+    },
+    {
+     "start": 88.23,
+     "end": 100.26,
+     "ok": true,
+     "error": null,
+     "text": "இணைய கேள்விகளுக்கு பதிலளிக்கும்பது அவர்கள் அடுத்தவர்களுடைய கருத்துக்குு தங்கள் பதிலை சொல்வதுடன் தங்களுக்கே உரிய ஒரு நிலையை கொடுக்கவும் உதவுகிறது்கள்",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.7669938802719116,
+      "unrestricted": "ta",
+      "unrestricted_probability": 0.7669938802719116
+     },
+     "asr_ms": 5314
+    },
+    {
+     "start": 104.28,
+     "end": 116.34,
+     "ok": false,
+     "error": "no_speech_found",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 3477
+    },
+    {
+     "start": 116.46,
+     "end": 117.47,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1681
+    },
+    {
+     "start": 123.03,
+     "end": 132.35,
+     "ok": true,
+     "error": null,
+     "text": "அதன் பலனாகஹ நடிகர்களும் கூட மேடையின் மீது கஞ்சாவை புதிக்கிறார்கள் மற்றும் தேீட்டர ம் கூட பார்வையாளர்களை அது இனிய உற்சாகப்படுத்துகிறது",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.18716906011104584,
+      "unrestricted": "ml",
+      "unrestricted_probability": 0.3202257752418518
+     },
+     "asr_ms": 3985
+    },
+    {
+     "start": 136.41,
+     "end": 142.55,
+     "ok": true,
+     "error": null,
+     "text": "மேலே தெளிவான அழகான வானம் மற்றும் பல மலைகளால் சூழப்பட்டத தை விட",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.15747776627540588,
+      "unrestricted": "ne",
+      "unrestricted_probability": 0.3173735439777374
+     },
+     "asr_ms": 3915
+    },
+    {
+     "start": 142.71,
+     "end": 145.04,
+     "ok": false,
+     "error": "uncertain_short_segment",
+     "text": "",
+     "language": null,
+     "provider": null,
+     "token_probability": null,
+     "lid": null,
+     "asr_ms": 1911
+    },
+    {
+     "start": 144.96,
+     "end": 150.65,
+     "ok": true,
+     "error": null,
+     "text": "புகைக்குிருந்து மிகக் குறைந்த அளவில் உலகினை காணவோ அல்லதை கேட்கவோ முடியும்",
+     "language": "ta",
+     "provider": "sherpa-onnx-indicconformer-ctc",
+     "token_probability": 0.0,
+     "lid": {
+      "chosen_probability": 0.24425257742404938,
+      "unrestricted": "ml",
+      "unrestricted_probability": 0.3268463909626007
+     },
+     "asr_ms": 3894
+    }
+   ],
+   "latency": [
+    {
+     "clip": "fleurs-ta_in-1666-10072241588933076862.wav",
+     "emit_ms": 296,
+     "stored_ms": 7245
+    },
+    {
+     "clip": "fleurs-ta_in-1771-10151944176129497809.wav",
+     "emit_ms": -2292,
+     "stored_ms": 866
+    },
+    {
+     "clip": "fleurs-ta_in-1730-10222238337252024030.wav",
+     "emit_ms": 337,
+     "stored_ms": 4602
+    },
+    {
+     "clip": "fleurs-ta_in-1917-10296046279567274586.wav",
+     "emit_ms": 479,
+     "stored_ms": 4864
+    },
+    {
+     "clip": "fleurs-ta_in-1852-10367238297771483490.wav",
+     "emit_ms": -1591,
+     "stored_ms": 3723
+    },
+    {
+     "clip": "fleurs-ta_in-1855-10394228005554884342.wav",
+     "emit_ms": 1787,
+     "stored_ms": 3469
+    },
+    {
+     "clip": "fleurs-ta_in-1861-10431271162503376039.wav",
+     "emit_ms": -1108,
+     "stored_ms": 2877
+    },
+    {
+     "clip": "fleurs-ta_in-1841-10514693308136502515.wav",
+     "emit_ms": -187,
+     "stored_ms": 3707
+    }
+   ]
+  }
+ ],
+ "latency_ms": {
+  "utterances": 80,
+  "p50_stored": 4635,
+  "p95_stored": 7436,
+  "max_stored": 10757,
+  "p50_emit": 465,
+  "p95_emit": 2701
+ }
+}

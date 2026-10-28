@@ -67,8 +67,20 @@ std::string strip_annotations(const std::string& text) {
     }
     return out;
 }
-// A unit (word, or character for unspaced scripts) sequence repeated four or more times and covering at least half
-// the transcript, or eight times anywhere, is a decoding loop, not speech.
+// Whisper can split a multi-byte character across tokens; invalid UTF-8 is dropped so the JSON response never fails.
+std::string valid_utf8(const std::string& s) {
+    std::string out;
+    for(size_t i=0;i<s.size();) {
+        const auto c=static_cast<unsigned char>(s[i]);
+        const size_t n=c<0x80?1:(c>>5)==6?2:(c>>4)==14?3:(c>>3)==30?4:0;
+        bool ok=n&&i+n<=s.size();
+        for(size_t k=1;ok&&k<n;++k)ok=(static_cast<unsigned char>(s[i+k])&0xC0)==0x80;
+        if(ok){out.append(s,i,n);i+=n;}else ++i;
+    }
+    return out;
+}
+// A unit (word, or character for unspaced scripts) sequence repeated three or more times and covering at least 80% of
+// the transcript, four times covering half, or eight times anywhere, is a decoding loop, not speech.
 bool repetition_loop(const std::string& text) {
     std::vector<std::u32string> units;std::u32string word;size_t spaces=0;const auto cps=codepoints(text);
     for(char32_t c:cps)if(c==U' ')++spaces;
@@ -84,7 +96,7 @@ bool repetition_loop(const std::string& text) {
         for(size_t i=0;i+len*2<=n;++i) {
             size_t reps=1;
             while(i+(reps+1)*len<=n&&std::equal(units.begin()+static_cast<long>(i),units.begin()+static_cast<long>(i+len),units.begin()+static_cast<long>(i+reps*len)))++reps;
-            if(reps>=8||(reps>=4&&reps*len*2>=n))return true;
+            if(reps>=8||(reps>=4&&reps*len*2>=n)||(reps>=3&&reps*len*5>=n*4))return true;
         }
     return false;
 }
@@ -159,8 +171,12 @@ json transcribe(const json& request) {
     }
     const json routes=request.value("asr_routes",json::object());
     const double min_confidence=request.value("min_confidence",0.0);
+    // Short segments with an uncertain language are mostly noise-triggered hallucinations (dev split: 70% of garbage
+    // rejected, 1.2% of real segments; reports/voice/confidence-dev.json).
+    const json short_rule=request.value("short_segment_rule",json::object());
+    const double short_seconds=short_rule.value("max_seconds",0.0),short_min_lid=short_rule.value("min_language_probability",0.0);
     auto finish=[&](std::string text,json result) {
-        text=strip_annotations(text);const auto cps=codepoints(text);
+        text=valid_utf8(strip_annotations(text));const auto cps=codepoints(text);
         if(std::all_of(cps.begin(),cps.end(),is_mark))throw Error("no_speech_found");
         if(repetition_loop(text))throw Error("repetition_rejected");
         result["text"]=text;result["duration_s"]=static_cast<double>(pcm.size())/WHISPER_SAMPLE_RATE;result["confidence_is_accuracy"]=false;
@@ -192,6 +208,7 @@ json transcribe(const json& request) {
         float best=-1;for(const auto& code:allowed){const float p=probs[static_cast<size_t>(whisper_lang_id(code.c_str()))];if(p>best){best=p;language=code;}}
         lid={{"unrestricted",whisper_lang_str(top)},{"unrestricted_probability",probs[static_cast<size_t>(top)]},{"chosen_probability",best}};
         language_source="whisper_lid_restricted";
+        if(static_cast<double>(pcm.size())/WHISPER_SAMPLE_RATE<short_seconds&&best<short_min_lid)throw Error("uncertain_short_segment");
     }
     if(language!="auto"&&routes.contains(language)&&!audio_base64.empty()) {
         ctx.reset();model.close();  // free whisper before the routed model loads: one speech model resident at a time
@@ -205,7 +222,7 @@ json transcribe(const json& request) {
     if(whisper_full(ctx.get(),params,pcm.data(),static_cast<int>(pcm.size())))throw Error("transcription_failed");
     std::string text;json segments=json::array();double probability=0;int tokens=0;
     for(int i=0;i<whisper_full_n_segments(ctx.get());++i) {
-        const std::string part=whisper_full_get_segment_text(ctx.get(),i);text+=part;
+        const std::string part=valid_utf8(whisper_full_get_segment_text(ctx.get(),i));text+=part;
         segments.push_back({{"text",part},{"start_ms",whisper_full_get_segment_t0(ctx.get(),i)*10},
                             {"end_ms",whisper_full_get_segment_t1(ctx.get(),i)*10}});
         for(int t=0;t<whisper_full_n_tokens(ctx.get(),i);++t){probability+=whisper_full_get_token_p(ctx.get(),i,t);++tokens;}
