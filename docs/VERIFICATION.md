@@ -1035,3 +1035,30 @@ travel in `metadata`).
   recurrence expansion, cross-file e-mail dedup (same file re-import is deduplicated), dictionary re-training after
   partial deletes, and an agent-side import lock. The desktop app keeps its own C++ parser until it can run this script
   (needs PowerShell 7 in the package).
+
+## Correction and fix: compression dictionaries after partial deletion (2026-10-28) — PASS (synthetic)
+
+- Defect confirmed before the fix (tests/test_lifecycle.py `test_partial_delete_retires_trained_dictionaries`, run
+  against the previous engine): a dictionary trained after 130 synthetic sources contained the sentinel text
+  (positive control read from a decrypted logical copy), and after deleting only the sentinel sources the dictionary
+  survived (`text_dictionaries` 1, expected 0). The "NOT covered" item in the schema v9 entry above was a real leak path.
+  Exposure was limited to direct engine use: lens-agent refuses `train_text_dictionary` (tests/test_agent.py).
+- Fix (engine/text_codec.cpp `retire_dictionaries`, called by `purge_sources` for every delete that removed rows,
+  including retention): inside the deleting transaction, every dictionary-coded row is re-encoded as a plain zstd frame
+  (or plain text when that no longer saves 15%) in batches of 256, each new encoding checked to decode to the identical
+  text, then all dictionaries are deleted. The immutability trigger is dropped and recreated within that transaction
+  for this storage-only rewrite. New rows stop using dictionaries at once; decoders stay loaded so a rollback leaves
+  every row readable.
+- After the fix: no dictionary remains, the sentinel is absent from the decrypted copy and from the raw DB/WAL/SHM
+  bytes, all 100 surviving sources export byte-exact, and a source written after the delete decodes in a new process.
+- Regression: full suite 252 tests OK, 1 skipped (test_android_link: no device), 2026-10-28, run from PowerShell.
+
+## Idle private commit re-measured (2026-10-28) — the 318 MB idle sample does not reproduce
+
+- scripts/sustained_run.py now records private bytes per process. 30-minute synthetic run
+  (reports/perf/sustained-20261028T061621Z.json, --snapshot, invisible windows, UIA/OCR phases, recall every 30 s):
+  0 crashes; peak 431 MB working set / 380 MB private (under the 500 MB working target and the 800 MB ceiling);
+  mean CPU 6.8% of one core; recall p50 219 ms, p95 2.52 s. Idle after load: 53.9 MB working set / 20.2 MB private
+  (agent 2.3, engine 12.3, observer 5.6 MB private). A 6-minute run gave 51.2 / 16.8 MB
+  (reports/perf/sustained-20261028T060450Z.json). The earlier 318–333 MB idle private readings came from runs without
+  per-process private accounting and are superseded; no idle commit owner exists to fix.

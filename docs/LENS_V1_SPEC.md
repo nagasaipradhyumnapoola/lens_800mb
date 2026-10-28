@@ -171,7 +171,8 @@ worldwide. Never assume CUDA, AVX2, a modern processor or a discrete GPU.
   capability must work, and be benchmarked, with no GPU.
 - RAM: absolute ceiling 800 MB (800,000,000 bytes) for the complete always-on background system — every Lens
   process (observer, engine, model workers), working set and private commit, peaks included. Idle target
-  50–100 MB. Heavy models (OCR, ASR, retrieval, verifier, Lens-Core heads) are loaded lazily, never resident
+  50–100 MB. Working target (founder, 2026-10-28): stay at or below 500,000,000 bytes wherever possible; 800 MB is
+  the upper limit, never a planning target. Heavy models (OCR, ASR, retrieval, verifier, Lens-Core heads) are loaded lazily, never resident
   together unless the measured combined peak stays inside the budget, and unloaded when idle.
 - Low-memory machines: support 8 GB systems; support 4 GB systems wherever technically feasible. The background
   budget adapts to the machine (smaller peak cap and deferred heavy work under OS memory pressure on 4 GB).
