@@ -128,7 +128,7 @@ def main():
     # Fixed shapes: the TorchScript exporter bakes attention's sequence length into Reshape constants.
     torch.backends.mha.set_fastpath_enabled(False)
     # Wrappers in eval mode: the exporter restores the wrapper's mode afterwards, which would put the model back in training.
-    src=torch.tensor([pad(enc('pradhyumna'),IN_LEN)]);memory=Encoder(model).eval()(src)
+    src=torch.tensor([pad(enc('zephyrus'),IN_LEN)]);memory=Encoder(model).eval()(src)
     torch.onnx.export(Encoder(model).eval(),(src,),str(OUT/'encoder.onnx'),input_names=['chars'],output_names=['memory'],opset_version=17,dynamo=False)
     torch.onnx.export(Decoder(model).eval(),(memory,src,torch.tensor([pad([BOS],OUT_LEN)])),str(OUT/'decoder.onnx'),
                       input_names=['memory','chars','phonemes'],output_names=['logits'],opset_version=17,dynamo=False)
