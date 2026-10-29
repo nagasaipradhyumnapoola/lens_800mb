@@ -104,13 +104,62 @@
     e.preventDefault();
     const query = $('ask-input').value.trim();
     if (!query) return;
-    const btn = e.target.querySelector('button');
+    const btn = e.target.querySelector('button[type=submit]');
     btn.disabled = true;
     loading(results, 'Searching your memory…');
     const r = await call({ op: 'recall', query, limit: 5 });
     btn.disabled = false;
     renderResults(r);
+    if (spokenQuestion) {  // asked by voice: read the best English evidence back
+      spokenQuestion = false;
+      const listen = results.querySelector('.result .listen-btn:not([hidden])');
+      if (listen) listen.click();
+    }
   });
+
+  // Voice questions: the user clicks Speak, talks, clicks again (or stops after 15 s). The audio goes to the local agent
+  // as 16 kHz WAV, is transcribed (Canary for English) and is never stored; the transcript is asked like typed text.
+  let recording = null, spokenQuestion = false;
+  const mic = $('ask-mic');
+  mic.addEventListener('click', () => (recording ? stopRecording() : startRecording()));
+  async function startRecording() {
+    let stream;
+    try { stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } }); }
+    catch { $('ask-hint').textContent = 'The microphone is unavailable or was not allowed.'; return; }
+    stopSpeaking();
+    const ctx = new AudioContext(), node = ctx.createScriptProcessor(4096, 1, 1), chunks = [];
+    node.onaudioprocess = (e) => chunks.push(new Float32Array(e.inputBuffer.getChannelData(0)));
+    ctx.createMediaStreamSource(stream).connect(node); node.connect(ctx.destination);
+    recording = { stream, ctx, node, chunks, timer: setTimeout(stopRecording, 15000) };
+    mic.textContent = 'Stop'; mic.setAttribute('aria-pressed', 'true'); mic.setAttribute('aria-label', 'Stop recording and ask');
+  }
+  async function stopRecording() {
+    const r = recording; if (!r) return; recording = null; clearTimeout(r.timer);
+    r.node.disconnect(); r.stream.getTracks().forEach((t) => t.stop()); const rate = r.ctx.sampleRate; await r.ctx.close();
+    mic.textContent = 'Speak'; mic.removeAttribute('aria-pressed'); mic.setAttribute('aria-label', 'Ask by voice');
+    const all = new Float32Array(r.chunks.reduce((n, c) => n + c.length, 0)); let at = 0;
+    for (const c of r.chunks) { all.set(c, at); at += c.length; }
+    await askByVoice(all, rate);
+  }
+  function wav16k(samples, rate) {  // linear resampling to 16 kHz, 16-bit mono PCM, base64
+    const n = Math.floor(samples.length * 16000 / rate), b = new Uint8Array(44 + 2 * n), v = new DataView(b.buffer);
+    const s = (o, t) => { for (let i = 0; i < t.length; i++) b[o + i] = t.charCodeAt(i); };
+    s(0, 'RIFF'); v.setUint32(4, 36 + 2 * n, true); s(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, 16000, true); v.setUint32(28, 32000, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); s(36, 'data'); v.setUint32(40, 2 * n, true);
+    for (let i = 0; i < n; i++) {
+      const x = i * rate / 16000, k = Math.floor(x), f = x - k, a = samples[k] || 0, c = samples[k + 1] ?? a;
+      v.setInt16(44 + 2 * i, Math.max(-1, Math.min(1, a + (c - a) * f)) * 32767, true);
+    }
+    let out = ''; for (let i = 0; i < b.length; i += 0x8000) out += String.fromCharCode(...b.subarray(i, i + 0x8000));
+    return btoa(out);
+  }
+  async function askByVoice(samples, rate) {
+    loading(results, 'Listening to your question…');
+    const t = await call({ op: 'transcribe', audio_base64: wav16k(samples, rate) });
+    const text = t && t.ok && t.transcript ? (t.transcript.text || '').trim() : '';
+    if (!text) { settled(results); results.append(el('p', 'error', `Lens could not hear a question (${t && !t.ok ? errorText(t) : 'no speech'}).`)); return; }
+    $('ask-input').value = text; spokenQuestion = true; $('ask-form').requestSubmit();
+  }
   function renderResults(r) {
     settled(results);
     if (!r || !r.ok) { results.append(el('p', 'error', `Lens could not search right now (${errorText(r)}).`)); return; }
@@ -815,7 +864,7 @@
     return result;
   };
   window.lensUi = { call, renderResults, loadTimeline, refreshCapture, loadStatus, loadStorage, loadDiagnostics, loadRequests, loadPeople, openEntity,
-    loadProjects, openProject, loadDevices, loadImports, openEvidence, closeEvidence, show, openOnboarding };
+    loadProjects, openProject, loadDevices, loadImports, openEvidence, closeEvidence, show, openOnboarding, askByVoice, wav16k };
 
   let readyMs = null;
   const ready = (async () => {

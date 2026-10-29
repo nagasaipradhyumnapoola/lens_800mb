@@ -14,6 +14,7 @@
 #include "child_process.hpp"
 #include "actions.hpp"
 #include "imports.hpp"
+#include "../asr_routes.hpp"
 #include <windows.h>
 #include <bcrypt.h>
 #include <sddl.h>
@@ -343,7 +344,7 @@ int wmain(int argc,wchar_t** argv) {
     };
     speech.on_stop=[&]{std::lock_guard g(observer_lock);if(observer.running())observer.send("release_ocr");};
     engine.before=[&](const json& r){
-        static const std::set<std::string> loads_models{"recall","search","retrieve_context","index","ingest_audio"};
+        static const std::set<std::string> loads_models{"recall","search","retrieve_context","index","ingest_audio","transcribe"};
         if(r.is_object()&&loads_models.count(r.value("op",std::string())))speech.stop();
     };
     if(consent("observe_screen"))start_observer();
@@ -520,6 +521,17 @@ int wmain(int argc,wchar_t** argv) {
         if(op=="import_cancel")return imports.cancel(req);
         if(op=="import_delete")return imports.remove(req);
         if(op=="speak")return speech.speak(root,exe_dir,req);
+        if(op=="transcribe") {  // a spoken question: the user pressed the app's microphone button; the audio is never stored
+            if(!req.contains("audio_base64")||!req["audio_base64"].is_string()||req["audio_base64"].get_ref<const std::string&>().size()>1400000)
+                return {{"ok",false},{"error","invalid_request"}};  // ~30 s of 16 kHz 16-bit mono
+            const auto model=root/L"models"/L"ggerganov--whisper.cpp"/L"ggml-base-q5_1.bin";
+            if(!fs::exists(model))return {{"ok",false},{"error","speech_input_unavailable"}};
+            const auto library=root/L".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll";
+            json r={{"op","transcribe"},{"consent",true},{"audio_base64",req["audio_base64"]},{"model",utf8(model.wstring())},
+                    {"asr_routes",lens::asr_routes(root/L"models",library)},
+                    {"allowed_languages",{"en","zh","es","ar","fr","pt","ru","id","de","ja","hi","bn","te","mr","ta","ur","gu"}}};  // spec §1a
+            const auto out=engine.ask(r);return out?*out:json{{"ok",false},{"error","engine_unavailable"}};
+        }
         if(op=="shutdown"){stopping=true;wake.notify_all();return {{"ok",true}};}
         if(!passthrough.count(op))return {{"ok",false},{"error","unsupported_operation"}};
         const auto r=engine.ask(req);return r?*r:json{{"ok",false},{"error","engine_unavailable"}};

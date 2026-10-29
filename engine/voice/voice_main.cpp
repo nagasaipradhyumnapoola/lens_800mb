@@ -29,6 +29,7 @@
 #include <bcrypt.h>
 #include <wincrypt.h>
 #include <nlohmann/json.hpp>
+#include "../asr_routes.hpp"
 #include <algorithm>
 #include <atomic>
 #include <chrono>
@@ -228,23 +229,7 @@ int wmain(int argc,wchar_t** argv) {
     if(routes_enabled) {
         namespace fs=std::filesystem;const fs::path models=fs::path(model).parent_path().parent_path();
         const fs::path library=sherpa_library.empty()?models.parent_path()/L".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll":fs::path(sherpa_library);
-        auto add=[&](const char* code,const char* type,const fs::path& weights,const fs::path& tokens) {
-            std::error_code ec;
-            if(fs::is_regular_file(weights,ec)&&fs::is_regular_file(tokens,ec)&&fs::is_regular_file(library,ec))
-                routes[code]={{"model_type",type},{"model",utf8(fs::path(weights).make_preferred().wstring())},{"tokens",utf8(fs::path(tokens).make_preferred().wstring())},{"library",utf8(fs::path(library).make_preferred().wstring())}};
-        };
-        const auto dolphin=models/L"csukuangfj--sherpa-onnx-dolphin-small-ctc-multi-lang-int8-2025-04-02";
-        const auto indic=models/L"parismitaglobalsolutions--indicconformer-sherpa-onnx";
-        add("zh","dolphin",dolphin/L"model.int8.onnx",dolphin/L"tokens.txt");
-        // IndicConformer per-language exports (shared vocabulary); only languages installed on disk are routed.
-        for(const char* code:{"hi","bn","te","mr","ta","ur","gu"})add(code,"nemo_ctc",indic/fs::path(code)/L"model.int8.onnx",indic/L"tokens.txt");
-        // Canary-180M-flash (Open ASR LibriSpeech clean/other 1.87/3.83% WER vs whisper base) for English, Spanish, German, French.
-        const auto canary=models/L"csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8";
-        for(const char* code:{"en","es","de","fr"}) {
-            add(code,"canary",canary/L"encoder.int8.onnx",canary/L"tokens.txt");
-            std::error_code ec;if(routes.contains(code)&&fs::is_regular_file(canary/L"decoder.int8.onnx",ec))routes[code]["decoder"]=utf8((canary/L"decoder.int8.onnx").make_preferred().wstring());
-            else routes.erase(code);
-        }
+        routes=lens::asr_routes(models,library);
     }
     const bool enrolling=!enroll_path.empty();json profile=nullptr;std::vector<float> owner;
     if(!profile_path.empty()&&!enrolling) {

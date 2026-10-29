@@ -91,6 +91,7 @@ window.__lensMock = (req) => {
   if (req.op === 'recall' && req.query === 'nothing') return { ok: true, not_found: true, results: [] };
   if (req.op === 'recall' && req.query === 'telugu') return { ok: true, not_found: false, results: [{ source: { id: 's9', text: 'తెలుగు', language: 'te',
       timestamp: '2026-10-27T09:30:00Z', source_application: 'chrome.exe' }, evidence: { quote: 'తెలుగు' } }] };
+  if (req.op === 'transcribe') return atob(req.audio_base64).slice(0, 4) === 'RIFF' ? { ok: true, transcript: { text: ' paper i read ', language: 'en' } } : { ok: false, error: 'audio_decode_failed' };
   if (req.op === 'speak') {  // 0.1 s of silence at 24 kHz, 16-bit mono
     const n = 2400, b = new Uint8Array(44 + 2 * n), v = new DataView(b.buffer), s = (o, t) => [...t].forEach((c, i) => b[o + i] = c.charCodeAt(0));
     s(0, 'RIFF'); v.setUint32(4, 36 + 2 * n, true); s(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
@@ -241,7 +242,34 @@ LISTEN=r"""
 """
 
 
+VOICE_QUESTION=r"""
+(async () => {
+  const out = {};
+  const settle = () => new Promise((r) => setTimeout(r, 50));
+  try {
+    await settle();
+    const tone = new Float32Array(48000); for (let i = 0; i < tone.length; i++) tone[i] = 0.3 * Math.sin(i / 7);
+    const wav = atob(window.lensUi.wav16k(tone, 48000)); out.wav_bytes = wav.length; out.riff = wav.slice(0, 4);
+    out.rate = wav.charCodeAt(24) | (wav.charCodeAt(25) << 8) | (wav.charCodeAt(26) << 16);
+    await window.lensUi.askByVoice(tone, 48000); await settle(); await settle();
+    out.ops = window.__calls.map((c) => c.op).filter((o) => ['transcribe', 'recall', 'speak'].includes(o));
+    out.query = document.getElementById('ask-input').value;
+    out.recall_query = (window.__calls.find((c) => c.op === 'recall') || {}).query;
+    out.mic_label = document.getElementById('ask-mic').getAttribute('aria-label');
+  } catch (e) { out.error = String(e && e.stack || e); }
+  const pre = document.createElement('pre'); pre.id = 'scenario-result'; pre.textContent = JSON.stringify(out); document.body.append(pre);
+})();
+"""
+
+
 class AppUi(unittest.TestCase):
+    def test_voice_question_is_transcribed_asked_and_answered_aloud(self):
+        out=run_in_headless_edge(self,VOICE_QUESTION)
+        self.assertEqual((out['riff'],out['rate'],out['wav_bytes']),('RIFF',16000,44+2*16000))  # 1 s at 48 kHz -> 16 kHz PCM
+        self.assertEqual(out['ops'],['transcribe','recall','speak'])  # voice in, recall, voice out
+        self.assertEqual(out['query'],'paper i read');self.assertEqual(out['recall_query'],'paper i read')
+        self.assertEqual(out['mic_label'],'Ask by voice')
+
     def test_listen_speaks_the_evidence_locally(self):
         out=run_in_headless_edge(self,LISTEN)
         self.assertTrue(out['visible']);self.assertIn('Chrome',out['label']);self.assertEqual(out['speak_calls'],1)

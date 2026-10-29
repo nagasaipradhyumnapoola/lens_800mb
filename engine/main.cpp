@@ -73,6 +73,8 @@ int wmain(int argc,wchar_t** argv) {
                     request["metadata"]["segments"]=result.at("segments");request["metadata"]["audio_duration_seconds"]=result.at("duration_s");
                     auto response=store.request(request);response["transcript"]=result;
                     std::cout<<response.dump()<<'\n';
+                } else if(request.value("op",std::string{})=="transcribe") {  // a spoken question: transcript only, nothing stored
+                    std::cout<<nlohmann::json{{"ok",true},{"transcript",lens::transcribe(request)}}.dump()<<'\n';
                 } else std::cout<<store.request(request).dump()<<'\n';
             }
             catch(const lens::Error& e){std::cout<<nlohmann::json{{"ok",false},{"error",e.what()}}.dump()<<'\n';}

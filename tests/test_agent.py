@@ -111,6 +111,14 @@ class AgentSpeech(unittest.TestCase):
         while time.time()<end and 'lens-tts.exe' in names():time.sleep(0.5)
         self.assertNotIn('lens-tts.exe',names())  # unloaded when idle: Kokoro is not resident between replies
 
+    def test_spoken_question_is_transcribed_and_not_stored(self):
+        import base64
+        jfk=ROOT/'third_party/whisper.cpp/samples/jfk.wav'
+        r=self.pipe.ask({'op':'transcribe','audio_base64':base64.b64encode(jfk.read_bytes()).decode()})
+        self.assertTrue(r['ok'],r);self.assertIn('your country',r['transcript']['text'].lower())
+        self.assertEqual(self.pipe.ask({'op':'stats'})['source_count'],0)
+        self.assertEqual(self.pipe.ask({'op':'transcribe','audio_base64':'A'*1500000})['error'],'invalid_request')  # over ~30 s
+
     def test_governor_keeps_speech_and_retrieval_models_apart(self):
         add={'op':'add','consent':True,'id':'g1','text':'Synthetic note: the Brightwater audit moved to Tuesday.','language':'en',
              'timestamp':'2026-10-29T09:00:00Z','device':'laptop','kind':'note','provenance':'test'}

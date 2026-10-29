@@ -1177,3 +1177,18 @@ travel in `metadata`).
   change; tests/test_native_ocr.py 14/14 OK.
 - Remaining dev errors are recognition: monospace `l`/`1`, dash runs (`-rw-r--r--` -> `-rw-r- -r-`), `PS` -> `P5`, case
   (`csv` -> `CSV`), `%` -> `%6`, spaces inside code (`row[ "amount"]`), terminal progress-dot rows not detected.
+
+## Voice questions: speech in -> recall -> speech out (2026-10-29) — PASS (functional, H0; no live microphone)
+
+- App: a Speak button beside Ask records from the default microphone (getUserMedia; WebView2's own permission prompt),
+  stops on a second click or after 15 s, resamples to 16 kHz 16-bit WAV in the page and sends it to the agent's new
+  `transcribe` op (≤ 1.4 MB base64 ≈ 30 s). The transcript fills the question box and is asked like typed text; when
+  the question came by voice, the first English evidence card is read aloud (`speak`).
+- Agent `transcribe` -> engine `transcribe` (new op): the same whisper language identification and routes as voice
+  capture (engine/asr_routes.hpp, now shared by lens-voice and lens-agent; English -> Canary-180M-flash), consent
+  required, and nothing stored. The governor treats it as model-loading (stops the TTS worker first).
+- Tests: tests/test_voice.py `test_transcribe_returns_text_and_stores_nothing` (JFK clip, source_count stays 0, no
+  consent refused); tests/test_agent.py `test_spoken_question_is_transcribed_and_not_stored` (over the pipe, oversize
+  audio refused); tests/test_app.py `test_voice_question_is_transcribed_asked_and_answered_aloud` (1 s at 48 kHz ->
+  16 kHz RIFF, call order transcribe -> recall -> speak). test_app + test_voice 36/36 OK.
+- Not verified: a real microphone in the desktop app (needs the owner), end-to-end latency, noisy rooms.

@@ -213,6 +213,15 @@ class VoiceCanary(unittest.TestCase):
         self.assertRegex(t['text'],r'^[A-Z].*[.!?]$')  # capitalised and punctuated (use_pnc)
 
 
+class SpokenQuestion(unittest.TestCase):
+    def test_transcribe_returns_text_and_stores_nothing(self):
+        audio=base64.b64encode(JFK.read_bytes()).decode()
+        rows=engine(json.dumps({'op':'transcribe','consent':True,'audio_base64':audio,'model':str(BASE)})+'\n'+json.dumps({'op':'stats'})+'\n')
+        self.assertTrue(rows[0]['ok'],rows[0]);self.assertIn('ask not what your country can do for you',rows[0]['transcript']['text'].lower())
+        self.assertEqual(rows[1]['source_count'],0)  # a question is not a memory
+        self.assertEqual(engine(json.dumps({'op':'transcribe','audio_base64':audio,'model':str(BASE)})+'\n')[0]['error'],'consent_required')
+
+
 class VoiceFilter(unittest.TestCase):
     def test_noise_is_not_stored_as_a_transcript(self):
         # Low noise sent straight to the engine (no VAD): whisper's [BLANK_AUDIO]-style output must never be stored.
