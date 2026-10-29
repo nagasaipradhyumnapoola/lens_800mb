@@ -3,7 +3,7 @@
 #include "onnxruntime_cxx_api.h"
 #include "onnx_model.hpp"
 #include "input.hpp"
-#include <windows.h>
+#include "platform.hpp"
 namespace lens {
 namespace {
 void quiet(void*,OrtLoggingLevel,const char*,const char*,const char*,const char*){}
@@ -16,18 +16,18 @@ std::vector<float> output_of(std::vector<Ort::Value>&& result,std::vector<std::i
 }
 }
 struct OnnxModel::State {
-    HMODULE module{};
+    void* module{};
     std::unique_ptr<Ort::Env> env;
     std::unique_ptr<Ort::Session> session;
     std::vector<std::string> inputs;
-    ~State(){session.reset();env.reset();if(module)FreeLibrary(module);}
+    ~State(){session.reset();env.reset();platform::close_library(module);}
 };
 
 OnnxModel::OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads,bool low_memory):state_(std::make_unique<State>()){
-    state_->module=LoadLibraryExW(runtime.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+    state_->module=platform::open_library(runtime);
     if(!state_->module)throw Error("onnx_runtime_unavailable");
     using GetBase=const OrtApiBase*(ORT_API_CALL*)();
-    const auto get_base=reinterpret_cast<GetBase>(GetProcAddress(state_->module,"OrtGetApiBase"));
+    const auto get_base=reinterpret_cast<GetBase>(platform::library_symbol(state_->module,"OrtGetApiBase"));
     if(!get_base)throw Error("onnx_runtime_unavailable");
     const auto api=get_base()->GetApi(ORT_API_VERSION);if(!api)throw Error("onnx_runtime_version_mismatch");
     Ort::InitApi(api);

@@ -217,6 +217,15 @@ Installable Windows app + installer and Android companion first. Platform goal (
 at every major operating system — Windows, macOS, Linux, Android and iOS — through the portable core with per-platform
 adapters (observation, secure key storage, IPC, UI shell); each platform needs its own verification before any claim.
 Wearables (Wear OS and others) are deferred to a later phase (founder, 2026-10-29).
+Per-platform scope (founder, 2026-10-30: build for iPhone, Android, Windows, Linux and macOS, all running smoothly
+within §15): one portable C++ core (memory store, retrieval, models, OCR, ASR, TTS) with thin platform adapters —
+library loading, durable files, key storage (DPAPI / Keychain / Secret Service / Android Keystore), process and IPC,
+microphone, UI shell (WebView2 / WKWebView / WebKitGTK / Android WebView). Observation follows each OS's own
+permission model and never bypasses it: Windows UI Automation; macOS Accessibility API + Screen Recording
+permission (ScreenCaptureKit); Linux AT-SPI + the screencast portal (PipeWire); Android Accessibility Service with
+explicit consent; iOS allows no app to read other apps' screens or record continuously, so Lens on iPhone captures
+only what the user gives it (voice, notes, Share sheet, files, photos with OCR) and searches the paired laptop's memory.
+Every platform is benchmarked on its own hardware; no result transfers between platforms.
 Real hardware testing, including low-end CPU-only laptops (4 GB and 8 GB, no AVX2, no dGPU; §15);
 emulator/build success is not production readiness. Validate workflows, permissions,
 crash recovery, offline, migration, backup/restore, updates, uninstall, secure sync, sensitive data, model

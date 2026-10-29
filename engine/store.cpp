@@ -8,7 +8,7 @@
 #include "memory_layers.hpp"
 #include "lifecycle.hpp"
 #include "user_memory.hpp"
-#include "../adapters/windows/key_store.hpp"
+#include "../adapters/key_store.hpp"
 #include <sqlcipher/sqlite3.h>
 #include <openssl/evp.h>
 #include <openssl/crypto.h>

@@ -1,4 +1,6 @@
 #pragma once
+// Per-user protection of the 32-byte database key. One implementation per OS: adapters/windows (DPAPI); macOS/iOS
+// (Keychain), Linux (Secret Service) and Android (Keystore) follow the same contract.
 #include <array>
 #include <filesystem>
 #include <cstdint>

@@ -1,5 +1,5 @@
 // OS-provided randomness and per-user DPAPI. No custom encryption primitives.
-#include "key_store.hpp"
+#include "../key_store.hpp"
 #include "../../engine/input.hpp"
 #include <windows.h>
 #include <wincrypt.h>

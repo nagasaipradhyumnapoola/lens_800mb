@@ -3,8 +3,8 @@
 #include "sql.hpp"
 #include "temporal.hpp"
 #include "text_codec.hpp"
-#include "../adapters/windows/key_store.hpp"
-#include <windows.h>
+#include "../adapters/key_store.hpp"
+#include "platform.hpp"
 #include <openssl/crypto.h>
 #include <openssl/evp.h>
 #include <chrono>
@@ -43,12 +43,7 @@ std::filesystem::path existing_file(const json& j,const char* name) {
     return path;
 }
 std::filesystem::path with_suffix(std::filesystem::path p,const wchar_t* suffix){p+=suffix;return p;}
-void write_new_file(const std::filesystem::path& path,const std::string& data) {
-    HANDLE f=CreateFileW(path.c_str(),GENERIC_WRITE,0,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
-    if(f==INVALID_HANDLE_VALUE)throw Error("file_write_failed");
-    DWORD written=0;const bool ok=WriteFile(f,data.data(),static_cast<DWORD>(data.size()),&written,nullptr)&&written==data.size()&&FlushFileBuffers(f);
-    CloseHandle(f);if(!ok){std::error_code ec;std::filesystem::remove(path,ec);throw Error("file_write_failed");}
-}
+using platform::write_new_file;
 void remove_quietly(const std::filesystem::path& p){std::error_code ec;std::filesystem::remove(p,ec);}
 void remove_database_files(const std::filesystem::path& p) {
     for(const wchar_t* s:{L"",L"-journal",L"-wal",L"-shm"})remove_quietly(with_suffix(p,s));
@@ -82,8 +77,7 @@ long long count_sources(sqlite3* db,const char* alias) {
 }  // namespace
 
 void fault_point(const char* name) {
-    char value[64]{};const DWORD n=GetEnvironmentVariableA("LENS_FAULT_INJECTION",value,sizeof value);
-    if(n>0&&n<sizeof value&&std::string(value)==name)std::_Exit(3);  // simulated crash: no cleanup, no unwinding
+    if(platform::environment("LENS_FAULT_INJECTION")==name)std::_Exit(3);  // simulated crash: no cleanup, no unwinding
 }
 bool database_opens_with(const std::filesystem::path& path,const std::array<std::uint8_t,32>& key) {
     sqlite3* db=nullptr;const auto u8=path.u8string();
@@ -93,7 +87,7 @@ bool database_opens_with(const std::filesystem::path& path,const std::array<std:
     sqlite3_close_v2(db);return ok;
 }
 void replace_file(const std::filesystem::path& from,const std::filesystem::path& to) {
-    if(!MoveFileExW(from.c_str(),to.c_str(),MOVEFILE_REPLACE_EXISTING|MOVEFILE_WRITE_THROUGH))throw Error("database_in_use");
+    if(!platform::replace_file(from,to))throw Error("database_in_use");
 }
 void export_encrypted(sqlite3* db,const std::filesystem::path& target,const std::array<std::uint8_t,32>& key,const char* alias) {
     attach(db,target,alias,key.data(),static_cast<int>(key.size()),false);
@@ -213,11 +207,9 @@ json export_sources(sqlite3* db,const json& j) {
     const auto path=new_file(j,"path");
     const auto ids=select_sources(db,j.contains("scope")?j.at("scope"):json{{"all",true}});
     // The user asked for their own data in a portable form: this file is plaintext by design (reported back).
-    HANDLE f=CreateFileW(path.c_str(),GENERIC_WRITE,0,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
-    if(f==INVALID_HANDLE_VALUE)throw Error("file_write_failed");
-    bool ok=true;std::size_t bytes=0;
-    auto put=[&](const std::string& line){DWORD w=0;const auto data=line+"\n";ok=ok&&WriteFile(f,data.data(),static_cast<DWORD>(data.size()),&w,nullptr)&&w==data.size();bytes+=data.size();};
-    try {
+    platform::NewFile f(path);std::size_t bytes=0;  // removed again unless committed
+    auto put=[&](const std::string& line){f.write(line+"\n");bytes+=line.size()+1;};
+    {
         put(json{{"format","lens-history"},{"version",1}}.dump());
         Statement s(db,(columns+tables+"WHERE o.id=?;").c_str());
         for(const auto& id:ids) {
@@ -228,9 +220,8 @@ json export_sources(sqlite3* db,const json& j) {
             if(!src["model_version"].get<std::string>().empty())row["model_version"]=src["model_version"];
             put(row.dump());
         }
-    } catch(...){CloseHandle(f);remove_quietly(path);throw;}
-    ok=ok&&FlushFileBuffers(f);CloseHandle(f);
-    if(!ok){remove_quietly(path);throw Error("file_write_failed");}
+    }
+    if(!f.commit())throw Error("file_write_failed");
     return {{"ok",true},{"exported",ids.size()},{"bytes",bytes},{"sha256",file_sha256(path)},{"format","lens-history/1"},{"plaintext",true},
             {"warning","plaintext_export_written"}};
 }
