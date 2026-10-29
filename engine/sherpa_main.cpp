@@ -8,15 +8,14 @@
 #define MA_NO_RESOURCE_MANAGER
 #define MA_NO_NODE_GRAPH
 #include "miniaudio.h"
-#include <windows.h>
-#include <wincrypt.h>
+#include "platform.hpp"
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <memory>
 using json=nlohmann::json;
-struct Module {HMODULE h{};~Module(){if(h)FreeLibrary(h);}};
+struct Module {void* h{};~Module(){lens::platform::close_library(h);}};
 struct Audio {ma_decoder d{};bool loaded=false;~Audio(){if(loaded)ma_decoder_uninit(&d);}};
-template<class T>T api(HMODULE h,const char* name){auto p=reinterpret_cast<T>(GetProcAddress(h,name));if(!p)throw lens::Error("asr_api_unavailable");return p;}
+template<class T>T api(void* h,const char* name){auto p=reinterpret_cast<T>(lens::platform::library_symbol(h,name));if(!p)throw lens::Error("asr_api_unavailable");return p;}
 int main(){
   try{
     // "audio": a file path, or "audio_base64": encoded audio piped from lens-engine (voice capture; never on disk).
@@ -29,11 +28,7 @@ int main(){
     if(model_type=="canary"&&language!="en"&&language!="es"&&language!="de"&&language!="fr")throw lens::Error("unsupported_language");
     std::vector<char> bytes;
     if(req.contains("audio_base64")) {
-        const auto text=req.at("audio_base64").get<std::string>();DWORD size=0;
-        if(!CryptStringToBinaryA(text.data(),static_cast<DWORD>(text.size()),CRYPT_STRING_BASE64,nullptr,&size,nullptr,nullptr))throw lens::Error("audio_decode_failed");
-        bytes.resize(size);
-        if(!CryptStringToBinaryA(text.data(),static_cast<DWORD>(text.size()),CRYPT_STRING_BASE64,reinterpret_cast<BYTE*>(bytes.data()),&size,nullptr,nullptr))throw lens::Error("audio_decode_failed");
-        bytes.resize(size);
+        try{bytes=lens::platform::base64_decode(req.at("audio_base64").get<std::string>());}catch(const lens::Error&){throw lens::Error("audio_decode_failed");}
     } else bytes=lens::read_file(lens::utf8_path(req.at("audio").get<std::string>()),64000000);
     Audio audio;auto cfg=ma_decoder_config_init(ma_format_f32,1,16000);
     if(ma_decoder_init_memory(bytes.data(),bytes.size(),&cfg,&audio.d)!=MA_SUCCESS)throw lens::Error("audio_decode_failed");audio.loaded=true;
@@ -43,12 +38,11 @@ int main(){
     if(ma_decoder_read_pcm_frames(&audio.d,pcm.data(),count,&got)!=MA_SUCCESS||!got)throw lens::Error("audio_decode_failed");
     const auto model=lens::validated_string(req.at("model").get<std::string>(),32768);
     const auto tokens=lens::validated_string(req.at("tokens").get<std::string>(),32768);
-    // Fully qualified with backslashes, or LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR is ignored and Windows' System32 onnxruntime.dll loads.
-    const auto library=std::filesystem::absolute(lens::utf8_path(req.at("library").get<std::string>())).make_preferred();
+    const auto library=lens::utf8_path(req.at("library").get<std::string>());  // platform::open_library qualifies it
     const auto decoder=model_type=="canary"?lens::validated_string(req.at("decoder").get<std::string>(),32768):std::string();
     if(!std::filesystem::is_regular_file(lens::utf8_path(model))||!std::filesystem::is_regular_file(lens::utf8_path(tokens))||
        (model_type=="canary"&&!std::filesystem::is_regular_file(lens::utf8_path(decoder))))throw lens::Error("model_unavailable");
-    Module module{LoadLibraryExW(library.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_DEFAULT_DIRS)};
+    Module module{lens::platform::open_library(library)};
     if(!module.h)throw lens::Error("asr_runtime_unavailable");
     auto create=api<decltype(&SherpaOnnxCreateOfflineRecognizer)>(module.h,"SherpaOnnxCreateOfflineRecognizer");
     auto destroy=api<decltype(&SherpaOnnxDestroyOfflineRecognizer)>(module.h,"SherpaOnnxDestroyOfflineRecognizer");

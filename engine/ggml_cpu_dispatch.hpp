@@ -22,7 +22,8 @@ inline const CpuBackend& ensure_ggml_cpu_backend() {
 #ifdef _WIN32
         const char* ext=".dll";const char* prefix="ggml-cpu-";const auto whisper=dir/"whisper.dll";
 #elif defined(__APPLE__)
-        const char* ext=".dylib";const char* prefix="libggml-cpu-";const auto whisper=dir/"libwhisper.dylib";
+        // ggml's backends are CMake MODULE libraries, which take .so on macOS too; libwhisper is a .dylib.
+        const char* ext=".so";const char* prefix="libggml-cpu-";const auto whisper=dir/"libwhisper.dylib";
 #else
         const char* ext=".so";const char* prefix="libggml-cpu-";const auto whisper=dir/"libwhisper.so";
 #endif

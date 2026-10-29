@@ -17,10 +17,13 @@ if (-not (Test-Path "$headers\include\onnxruntime_cxx_api.h")) {
   New-Item -ItemType Directory -Force $headers | Out-Null
   tar -xzf $tgz -C $headers --strip-components=1 'onnxruntime-linux-x64-1.24.4/include'; Remove-Item $tgz
 }
+# sherpa-onnx's C API header for lens-sherpa: the v2.0.0 SDK copy (same text as the pinned source, ci/fetch_sherpa_header.sh).
+$sherpa = "$root\.tools\sherpa-runtime\sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts\include"
+if (-not (Test-Path "$sherpa\sherpa-onnx\c-api\c-api.h")) { $sherpa = '' }
 & $cmake -S "$root\engine" -B "$root\build\android-arm64" -G Ninja "-DCMAKE_MAKE_PROGRAM=$ninja" -DCMAKE_BUILD_TYPE=Release `
   "-DCMAKE_TOOLCHAIN_FILE=$root\third_party\vcpkg\scripts\buildsystems\vcpkg.cmake" "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ndk\build\cmake\android.toolchain.cmake" `
   -DVCPKG_TARGET_TRIPLET=arm64-android -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-29 `
-  "-DLENS_SQLCIPHER_AMALGAMATION=$root\build\sqlcipher-4.19.0" "-DLENS_ORT_DIR=$headers"
+  "-DLENS_SQLCIPHER_AMALGAMATION=$root\build\sqlcipher-4.19.0" "-DLENS_ORT_DIR=$headers" "-DLENS_SHERPA_INCLUDE=$sherpa"
 if ($LASTEXITCODE) { throw "configure failed ($LASTEXITCODE)" }
 & $cmake --build "$root\build\android-arm64" --parallel
 if ($LASTEXITCODE) { throw "build failed ($LASTEXITCODE)" }

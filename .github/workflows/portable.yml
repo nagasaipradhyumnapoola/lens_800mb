@@ -18,7 +18,12 @@ jobs:
       - name: Build image
         run: docker build -t lens-linux ci/linux
       - name: Build and smoke-test
-        run: docker run --rm -v "$PWD:/src" lens-linux bash ci/linux/build.sh
+        run: |
+          set -o pipefail
+          docker run --rm -v "$PWD:/src" lens-linux bash ci/linux/build.sh 2>&1 | tee build.log
+      - name: Report build errors
+        if: failure()
+        run: bash ci/annotate_log.sh build.log
 
   macos:
     runs-on: macos-14
@@ -35,12 +40,18 @@ jobs:
           mkdir -p "$RUNNER_TEMP/ort" && tar -xzf ort.tgz -C "$RUNNER_TEMP/ort" --strip-components=1
       - name: Build
         run: |
+          set -o pipefail
           bash ci/sqlcipher/amalgamation.sh
+          bash ci/fetch_sherpa_header.sh
           cmake -S engine -B build/macos -G Ninja -DCMAKE_BUILD_TYPE=Release -DLENS_ORT_DIR="$RUNNER_TEMP/ort" \
             -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DOPENSSL_ROOT_DIR="$(brew --prefix openssl@3)" \
-            -DCMAKE_PREFIX_PATH="$(brew --prefix nlohmann-json);$(brew --prefix zstd);$(brew --prefix utf8proc)"
-          cmake --build build/macos --parallel
+            -DLENS_SHERPA_INCLUDE="$PWD/build/sherpa-onnx-include" \
+            -DCMAKE_PREFIX_PATH="$(brew --prefix nlohmann-json);$(brew --prefix zstd);$(brew --prefix utf8proc)" 2>&1 | tee build.log
+          cmake --build build/macos --parallel 2>&1 | tee -a build.log
           cp "$RUNNER_TEMP"/ort/lib/libonnxruntime*.dylib build/macos/bin/
+      - name: Report build errors
+        if: failure()
+        run: bash ci/annotate_log.sh build.log
       - name: Smoke test (temporary keychain)
         run: |
           security create-keychain -p lens-ci lens-ci.keychain && security default-keychain -s lens-ci.keychain
@@ -60,6 +71,7 @@ jobs:
           "$RUNNER_TEMP/vcpkg/vcpkg" install openssl zstd utf8proc nlohmann-json --triplet arm64-ios
       - name: Build the memory core for iPhone (arm64)
         run: |
+          set -o pipefail
           brew install ninja tcl-tk
           bash ci/sqlcipher/amalgamation.sh
           curl -fsSL -o ort.tgz https://github.com/microsoft/onnxruntime/releases/download/v1.24.4/onnxruntime-osx-arm64-1.24.4.tgz
@@ -68,5 +80,8 @@ jobs:
           cmake -S engine -B build/ios -G Ninja -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_DEPLOYMENT_TARGET=16.0 \
             -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="$RUNNER_TEMP/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=arm64-ios \
             -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DLENS_ORT_DIR="$RUNNER_TEMP/ort" -DLENS_CORE_ONLY=ON
-          cmake --build build/ios --target lens-store --parallel
+          cmake --build build/ios --target lens-store --parallel 2>&1 | tee build.log
           ls -la build/ios/*.a build/ios/**/*.a 2>/dev/null || find build/ios -name '*.a' | head
+      - name: Report build errors
+        if: failure()
+        run: bash ci/annotate_log.sh build.log

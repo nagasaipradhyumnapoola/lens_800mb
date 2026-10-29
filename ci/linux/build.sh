@@ -4,8 +4,9 @@
 # Usage (repository root): docker build -t lens-linux ci/linux && docker run --rm -v "$PWD:/src" lens-linux bash ci/linux/build.sh
 set -euo pipefail
 [ -f build/sqlcipher-4.19.0/sqlite3.c ] || bash ci/sqlcipher/amalgamation.sh
+[ -f build/sherpa-onnx-include/sherpa-onnx/c-api/c-api.h ] || bash ci/fetch_sherpa_header.sh
 cmake -S engine -B build/linux -G Ninja -DCMAKE_BUILD_TYPE=Release -DLENS_ORT_DIR=/opt/onnxruntime \
-      -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0"
+      -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DLENS_SHERPA_INCLUDE="$PWD/build/sherpa-onnx-include"
 cmake --build build/linux --parallel
 cp -f /opt/onnxruntime/lib/libonnxruntime.so* build/linux/bin/
 # The Secret Service needs a session bus and an unlocked keyring; a throwaway one per run (test data only).

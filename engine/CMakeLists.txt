@@ -42,11 +42,11 @@ if(nlohmann_json_FOUND)
   endif()
   set(SHERPA_SDK "${LENS_ROOT}/.tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts")
   if(EXISTS "${SHERPA_SDK}/include/sherpa-onnx/c-api/c-api.h")
-    add_executable(lens-sherpa sherpa_main.cpp)
+    add_executable(lens-sherpa sherpa_main.cpp platform.cpp)
     target_include_directories(lens-sherpa PRIVATE "${SHERPA_SDK}/include" "${LENS_ROOT}/third_party/whisper.cpp/examples"
       "${LENS_ROOT}/third_party/whisper.cpp/include" "${LENS_ROOT}/third_party/whisper.cpp/ggml/include")
     # Only miniaudio (compiled into whisper.cpp's common.lib) is used; no ggml code.
-    target_link_libraries(lens-sherpa PRIVATE nlohmann_json::nlohmann_json crypt32 "${WHISPER_BUILD}/examples/Release/common.lib")
+    target_link_libraries(lens-sherpa PRIVATE nlohmann_json::nlohmann_json "${WHISPER_BUILD}/examples/Release/common.lib")
     target_compile_definitions(lens-sherpa PRIVATE NOMINMAX)
     target_compile_options(lens-sherpa PRIVATE /utf-8 /W4 /sdl)
   endif()
