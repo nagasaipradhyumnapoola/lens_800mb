@@ -71,8 +71,12 @@ json speak(const json& req,Cache& c){
     const float speed=std::clamp(req.value("speed",1.0f),0.5f,2.0f);
     auto str=[&](const json& v){return lens::validated_string(v.get<std::string>(),32768);};
     const auto& lex=req.at("lexicon");if(!lex.is_array()||lex.size()!=2)throw lens::Error("invalid_request");
-    if(const auto key=str(lex.at(0))+"|"+str(lex.at(1));key!=c.lexicon_key) {
-        c.g2p=std::make_unique<lens::EnglishG2P>(lens::utf8_path(str(lex.at(0))),lens::utf8_path(str(lex.at(1))));c.lexicon_key=key;
+    const auto g2p_model=req.contains("g2p_model")?str(req.at("g2p_model")):std::string();  // trained fallback for unknown words
+    if(const auto key=str(lex.at(0))+"|"+str(lex.at(1))+"|"+g2p_model;key!=c.lexicon_key) {
+        c.g2p=std::make_unique<lens::EnglishG2P>(lens::utf8_path(str(lex.at(0))),lens::utf8_path(str(lex.at(1))),
+                                                 g2p_model.empty()?std::filesystem::path():lens::utf8_path(str(req.at("runtime"))),
+                                                 g2p_model.empty()?std::filesystem::path():lens::utf8_path(g2p_model));
+        c.lexicon_key=key;
     }
     if(const auto key=str(req.at("tokenizer"));key!=c.tokenizer_key) {
         std::ifstream f(lens::utf8_path(key),std::ios::binary);if(!f)throw lens::Error("model_unavailable");

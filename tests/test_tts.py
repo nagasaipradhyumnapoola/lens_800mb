@@ -51,6 +51,14 @@ class SpokenReplies(unittest.TestCase):
         audio,rate=soundfile.read(io.BytesIO(base64.b64decode(r['audio_base64'])))
         self.assertEqual(rate,24000);self.assertAlmostEqual(len(audio)/rate,r['duration_s'],places=2);self.assertGreater(r['duration_s'],3)
 
+    @unittest.skipUnless((ROOT/'models/Lens--g2p-en/encoder.onnx').exists(),'Lens G2P model not installed')
+    def test_unknown_words_are_pronounced_by_the_trained_g2p_not_spelled(self):
+        rows,code=serve([request('Kubernetes and Zephyrus.'),request('Kubernetes and Zephyrus.',g2p_model=str(ROOT/'models/Lens--g2p-en'))])
+        self.assertEqual(code,0);spelled,neural=(' '.join(r['phonemes']) for r in rows)
+        self.assertEqual(rows[1]['unknown_words'],['Kubernetes','Zephyrus'])  # still reported
+        self.assertIn('kjˌubəɹnˈiɾiz',neural);self.assertIn('zˈɛfəɹəs',neural)
+        self.assertLess(len(neural),len(spelled))  # letter-by-letter spelling is much longer
+
     def test_worker_keeps_the_model_and_survives_bad_requests(self):
         rows,code=serve([request('First answer.'),request('   '),request('Second answer.',voice=str(KOKORO/'voices/none.bin')),request('Third answer.')])
         self.assertEqual([r['ok'] for r in rows],[True,False,False,True])

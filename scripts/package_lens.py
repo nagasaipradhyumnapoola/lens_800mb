@@ -24,7 +24,8 @@ OCR_MODELS=['PP-OCRv5_mobile_det','PP-OCRv6_tiny_rec','devanagari_PP-OCRv5_mobil
 WHISPER=['ggml-base-q5_1.bin','ggml-tiny-q5_1.bin']
 # English speech: Canary-180M-flash (input, lens-sherpa route) and Kokoro + misaki (spoken replies, lens-tts)
 SPEECH=['models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/','models/Lens--kokoro-82m-mixed-int8/','models/hexgrad--misaki/us_',
-        'models/onnx-community--Kokoro-82M-v1.0-ONNX/tokenizer.json','models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/']
+        'models/onnx-community--Kokoro-82M-v1.0-ONNX/tokenizer.json','models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/',
+        'models/Lens--g2p-en/encoder.onnx','models/Lens--g2p-en/decoder.onnx','models/Lens--g2p-en/vocab.json']
 SHERPA_LIBS=('/lib/sherpa-onnx-c-api.dll','/lib/onnxruntime.dll','/lib/onnxruntime_providers_shared.dll')
 LENS_HEAD='models/Lens--answerability-v2c/'
 

@@ -34,3 +34,6 @@ zstandard==0.25.0
 onnxruntime==1.24.4
 opencv-python-headless==4.10.0.84
 flatbuffers==25.12.19
+onnxscript==0.7.2
+onnx-ir==1.1.0
+ml-dtypes==0.6.0

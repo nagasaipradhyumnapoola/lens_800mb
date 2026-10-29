@@ -808,5 +808,41 @@
   "sha256": "6905dbd6f25cd8ffd433591a1e0b30334c8316cdc3dc13f4917da833f93ed627",
   "derived_from": "models\\Lens--answerability-v2c",
   "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "encoder.onnx",
+  "path": "models/Lens--g2p-en/encoder.onnx",
+  "bytes": 9587006,
+  "sha256": "85a718ffc265778a2495be1a7920fe492e824a360fb82af1afcd507a463ad0f7",
+  "derived_from": "models\\Lens--g2p-en",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "decoder.onnx",
+  "path": "models/Lens--g2p-en/decoder.onnx",
+  "bytes": 12880368,
+  "sha256": "acdd7a342e3d3e3062ea1e6c3e3e880d934c80690273e62ff420afb4ed22fdd3",
+  "derived_from": "models\\Lens--g2p-en",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "vocab.json",
+  "path": "models/Lens--g2p-en/vocab.json",
+  "bytes": 550,
+  "sha256": "9bb19ac0d6d7367cbbb0aeb39f7b9f96adf5a0172ea9fe09abec5260306e449c",
+  "derived_from": "models\\Lens--g2p-en",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "training.json",
+  "path": "models/Lens--g2p-en/training.json",
+  "bytes": 701,
+  "sha256": "0b6961ac9e01009f0e0440d3a4d18b77e6761d82dfafe6033132f2141e8f8ae4",
+  "derived_from": "models\\Lens--g2p-en",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
  }
 ]

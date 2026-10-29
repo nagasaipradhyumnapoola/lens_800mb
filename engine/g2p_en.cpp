@@ -1,5 +1,6 @@
 #include "g2p_en.hpp"
 #include "input.hpp"
+#include "onnx_model.hpp"
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <array>
@@ -70,7 +71,38 @@ std::string spell_number(std::string_view digits){
     return out;
 }
 
-EnglishG2P::EnglishG2P(const std::filesystem::path& gold,const std::filesystem::path& silver){
+EnglishG2P::~EnglishG2P()=default;
+
+// Greedy decoding with the trained Lens G2P: lower-case letters/apostrophes in, Kokoro phonemes out.
+std::string EnglishG2P::neural(const std::string& w) const {
+    if(!encoder_||w.empty()||w.size()+2>in_len_)return {};
+    std::vector<std::int64_t> ids(in_len_,0);size_t n=0;  // fixed shapes, PAD (0) padded: the graphs mask the padding
+    for(char c:lower(w)){const auto it=chars_.find(c);if(it==chars_.end())return {};ids[n++]=it->second;}
+    std::vector<std::int64_t> shape;const std::vector<std::int64_t> ishape{1,static_cast<std::int64_t>(in_len_)};
+    const auto memory=encoder_->run({{"chars",ishape,ids.data(),nullptr,ids.size()}},"memory",shape);
+    const auto mshape=shape;std::vector<std::int64_t> out(out_len_,0);out[0]=1;size_t t=1;std::string text;  // 1 = <s>
+    while(t<out_len_) {
+        const auto logits=decoder_->run({{"memory",mshape,nullptr,memory.data(),memory.size()},{"chars",ishape,ids.data(),nullptr,ids.size()},
+                                         {"phonemes",{1,static_cast<std::int64_t>(out_len_)},out.data(),nullptr,out.size()}},"logits",shape);
+        const size_t v=static_cast<size_t>(shape.back());const auto row=logits.begin()+static_cast<std::ptrdiff_t>((t-1)*v);
+        const auto best=static_cast<std::int64_t>(std::max_element(row,row+static_cast<std::ptrdiff_t>(v))-row);
+        if(best==2)break;  // </s>
+        if(best>2&&best<static_cast<std::int64_t>(phonemes_.size()))text+=phonemes_[static_cast<size_t>(best)];
+        out[t++]=best;
+    }
+    return text;
+}
+
+EnglishG2P::EnglishG2P(const std::filesystem::path& gold,const std::filesystem::path& silver,
+                       const std::filesystem::path& runtime,const std::filesystem::path& model_dir){
+    if(!model_dir.empty()) {
+        std::ifstream f(model_dir/"vocab.json",std::ios::binary);if(!f)throw Error("g2p_model_unavailable");
+        const auto v=nlohmann::json::parse(f);const auto chars=v.at("chars").get<std::vector<std::string>>();
+        for(size_t i=0;i<chars.size();++i)if(chars[i].size()==1)chars_[chars[i][0]]=static_cast<std::int64_t>(i);
+        phonemes_=v.at("phonemes").get<std::vector<std::string>>();
+        in_len_=v.at("input_length").get<size_t>();out_len_=v.at("output_length").get<size_t>();
+        encoder_=std::make_unique<OnnxModel>(runtime,model_dir/"encoder.onnx",1);decoder_=std::make_unique<OnnxModel>(runtime,model_dir/"decoder.onnx",1);
+    }
     for(const auto* path:{&silver,&gold}) {  // gold is loaded last so it wins
         std::ifstream f(*path,std::ios::binary);if(!f)throw Error("lexicon_unavailable");
         const auto j=nlohmann::json::parse(f);
@@ -126,6 +158,7 @@ std::string EnglishG2P::word(const std::string& w,std::vector<std::string>& unkn
     if(!caps)if(const auto* p=find(w))return *p;
     if(!caps)if(auto c=compose(w);!c.empty())return c;
     if(caps)if(const auto* p=find(w);p&&lex_.count(w))return *p;  // acronyms with their own entry (NASA)
+    if(!caps)if(auto p=neural(w);!p.empty()){unknown.push_back(w);return p;}
     std::string out;bool spelled=false;  // letter by letter: acronyms (USA) and unknown words
     for(char c:w)if(std::isalpha(static_cast<unsigned char>(c)))if(const auto* p=find(std::string(1,static_cast<char>(std::toupper(static_cast<unsigned char>(c)))))){out+=*p;spelled=true;}
     if(!caps)unknown.push_back(w);

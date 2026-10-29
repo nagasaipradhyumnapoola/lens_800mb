@@ -91,11 +91,15 @@ struct Speech {
                     {"lexicon",{m+"us_gold.json",m+"us_silver.json"}}};
             std::vector<std::string> files{p["runtime"],p["model"],p["tokenizer"],p["lexicon"][0],p["lexicon"][1]};
             for(const auto& v:voices)files.push_back(k+"voices/"+v+".bin");
+            // Optional: the trained Lens G2P reads words outside the lexicon (spelled letter by letter without it).
+            const std::string g="models/Lens--g2p-en/";const bool g2p=pinned.contains(g+"encoder.onnx");
+            if(g2p)for(const auto* f:{"encoder.onnx","decoder.onnx","vocab.json"})files.push_back(g+f);
             for(const auto& f:files)
                 if(!pinned.contains(f)||file_sha256(root/wide(f))!=pinned[f].get<std::string>())throw std::runtime_error("hash_mismatch:"+f);
             auto abs=[&](const std::string& f){return utf8((root/wide(f)).make_preferred().wstring());};
             paths={{"runtime",abs(p["runtime"])},{"model",abs(p["model"])},{"tokenizer",abs(p["tokenizer"])},
                    {"lexicon",{abs(p["lexicon"][0]),abs(p["lexicon"][1])}},{"voices_dir",abs(k+"voices")}};
+            if(g2p)paths["g2p_model"]=abs("models/Lens--g2p-en");
             status="verified";return true;
         } catch(const std::exception& ex){status=std::string("unavailable: ")+ex.what();return false;}
     }
@@ -106,6 +110,7 @@ struct Speech {
         if(!verify(root))return {{"ok",false},{"error","speech_unavailable"},{"reason",status}};
         json r={{"text",req["text"]},{"voice",paths["voices_dir"].get<std::string>()+"\\"+voice+".bin"},{"speed",req.value("speed",1.0)},{"threads",4},
                 {"runtime",paths["runtime"]},{"model",paths["model"]},{"tokenizer",paths["tokenizer"]},{"lexicon",paths["lexicon"]}};
+        if(paths.contains("g2p_model"))r["g2p_model"]=paths["g2p_model"];
         if(!child.running()) {
             if(on_start)on_start();
             if(!child.start((exe_dir/L"lens-tts.exe").wstring(),{})){if(on_stop)on_stop();return {{"ok",false},{"error","speech_unavailable"}};}

@@ -1214,3 +1214,20 @@ travel in `metadata`).
   can turn null between two reads; lens-tts and lens-sherpa are now stopped on uninstall).
 - Not met: the 0.80 gate. Verifier quality on Lens-style memories is the limit (harness AUC 0.871 vs the 1.79 GB
   teacher's 0.923); next: training data from Lens-style (memory, question) pairs with near-misses.
+
+## Lens English G2P for unknown words; English screen-recogniser fine-tune (2026-10-30)
+
+- G2P (lens_model/train/train_g2p.py; models/Lens--g2p-en, pinned): a 4.8M-parameter character-to-phoneme Transformer
+  trained on the misaki US lexicons (Apache-2.0) on the RTX 5060, 30 epochs. Held-out words (sha256(word) % 50 == 0,
+  3,422 words never seen in training): **word accuracy 75.7%, phoneme error 4.97%**. ONNX export with fixed padded
+  shapes (the TorchScript exporter baked attention's sequence length into Reshape constants; export wrappers are put in
+  eval mode because the exporter restores their training flag afterwards); parity: 200 held-out words decode
+  identically in ONNX and PyTorch. lens-tts uses it (greedy decoding, engine/g2p_en.cpp) for words the lexicon and the
+  decomposition rules cannot read, instead of spelling them; the agent passes it when its files match the lock.
+  Example: Kubernetes -> kjˌubəɹnˈiɾiz, Zephyrus -> zˈɛfəɹəs (were spelled letter by letter). tests/test_tts.py 5/5.
+- Screen recogniser (scripts/make_ocr_en_train.py 59,126 synthetic lines; scripts/train_ocr_screen_rec.py head-only
+  fine-tune of PP-OCRv6 tiny, 8,000 steps, CTC + KL to the original): synthetic validation CER 3.28% -> 2.47%, but on the
+  English hard-screen dev set page CER **2.17% -> 2.39% (worse)**: code improved (JavaScript light 2.2 -> 0.9%, SQL
+  light 2.0 -> 1.0%) while tables (1.2 -> 3.3%), 9 px settings text (1.9 -> 4.6%) and terminals regressed. NOT
+  ADOPTED; the shipped PP-OCRv6 tiny recogniser stays. Likely cause: training crops are whole rendered rows, while table
+  and settings cells reach the recogniser as separate detector segments.
