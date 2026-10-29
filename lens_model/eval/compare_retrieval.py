@@ -16,6 +16,7 @@ Usage: .venv-train\\Scripts\\python.exe lens_model/eval/compare_retrieval.py --m
 import argparse
 from datetime import datetime,timezone
 import json
+import os
 from pathlib import Path
 import random
 import sys
@@ -30,7 +31,7 @@ BASE=ROOT/'models/baselines'
 REPORTS=ROOT/'reports/lens-model/benchmark'
 EXT=ROOT/'data/external'
 TASK='Given a question, retrieve the passage or personal memory that answers it'
-THREADS=8
+THREADS=int(os.environ.get('LENS_EVAL_THREADS','8'))  # lower it to share the CPU with a running training job
 MODELS={  # folder, pooling, query template, passage template, max tokens
     'e5-small':('intfloat--multilingual-e5-small','mean','query: {}','passage: {}',512),
     'e5-base':('intfloat--multilingual-e5-base','mean','query: {}','passage: {}',512),

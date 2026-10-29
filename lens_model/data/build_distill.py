@@ -20,6 +20,7 @@ Usage: .venv-train\\Scripts\\python.exe lens_model/data/build_distill.py --teach
 """
 import argparse
 import collections
+import hashlib
 import json
 from pathlib import Path
 import random
@@ -130,12 +131,12 @@ def long_evidence(rng,per_source=4000,max_chars=1200):
     for it in items:by[(it[0],it[4])].append(it)
     out=[]
     for (lang,src),its in by.items():
-        rng.shuffle(its);ctxs=list({c for _,_,c,_,_ in its})
+        rng.shuffle(its);ctxs=sorted({c for _,_,c,_,_ in its})  # sorted: a set's order changes with the hash seed
         for _,q,ctx,start,_ in its[:per_source]:
             lo=max(0,min(start-max_chars//2,len(ctx)-max_chars));e=ctx[lo:lo+max_chars]
             other=rng.choice(ctxs)
             if other==ctx:continue
-            g=f'long:{src}:{hash(ctx)&0xffffffff:x}'
+            g=f'long:{src}:{key(ctx)[:8]}'  # stable across processes (built-in hash() is randomised per process)
             out+=[{'q':q,'e':e,'y':1,'lang':lang,'src':src+'+long','group':g,'kind':'long_supported'},
                   {'q':q,'e':other[:max_chars],'y':0,'lang':lang,'src':src+'+long','group':g,'kind':'long_other_article'}]
     return out
@@ -161,6 +162,11 @@ def balance(rows,total,rng,alpha=0.5,cap=0.12,indic_cap=0.30,english=0.30):
     rng.shuffle(out);return out
 
 
+def key(*parts):
+    """Content hash used for group ids and the teacher cache: identical in every process and on every machine."""
+    return hashlib.sha256('\x1f'.join(parts).encode('utf-8')).hexdigest()
+
+
 def platt(s,y,iters=500):
     a,b=1.0,0.0
     for _ in range(iters):  # Newton steps on logistic loss of sigmoid(a*s+b)
@@ -179,8 +185,10 @@ def main():
     cands=v0+v1+mlqa_validation(rng)+jaquad(rng,12000)+uqa(rng,12000)+indicqa_train(rng)
     cands+=topical_negatives(cands,rng)+long_evidence(rng)
     pool=balance(cands,a.pool_size,rng)
-    for i,r in enumerate(pool):r['pid']=i
-    cache=OUT/f'teacher-{a.teacher}.jsonl';done={}
+    # Cache entries are keyed by a hash of (question, evidence), never by position, so a pool built differently can
+    # never inherit another pair's teacher score.
+    for r in pool:r['pid']=key(r['q'],r['e'])
+    cache=OUT/f'teacher-{a.teacher}.v2.jsonl';done={}
     if cache.exists():
         for l in cache.open(encoding='utf-8'):x=json.loads(l);done[x['pid']]=x['s']
     todo=sorted([r for r in pool if r['pid'] not in done],key=lambda r:len(r['q'])+len(r['e']))

@@ -20,6 +20,7 @@ import argparse
 from datetime import datetime,timezone
 import json
 import math
+import os
 from pathlib import Path
 import time
 import numpy as np
@@ -71,16 +72,18 @@ class OnnxCrossEncoder:
 
 
 class TorchCrossEncoder:
+    # Benchmarks are CPU-only (deployment targets have no GPU). LENS_TORCH_DEVICE=cuda is only for offline teacher
+    # labelling (lens_model/data/build_distill.py); FP32 either way.
     def __init__(self,folder,max_len):
         import torch
         from transformers import AutoModelForSequenceClassification,AutoTokenizer
-        self.torch=torch;self.tok=AutoTokenizer.from_pretrained(folder);self.max_len=max_len
-        self.m=AutoModelForSequenceClassification.from_pretrained(folder,torch_dtype=torch.float32).eval()
+        self.torch=torch;self.tok=AutoTokenizer.from_pretrained(folder);self.max_len=max_len;self.device=os.environ.get('LENS_TORCH_DEVICE','cpu')
+        self.m=AutoModelForSequenceClassification.from_pretrained(folder,dtype=torch.float32).eval().to(self.device)
         self.weights_mb=dir_mb(Path(folder).glob('*.safetensors'))
 
     def batch(self,rows):
         with self.torch.inference_mode():
-            enc=self.tok([r['q'] for r in rows],[r['e'] for r in rows],truncation='longest_first',max_length=self.max_len,padding=True,return_tensors='pt')
+            enc=self.tok([r['q'] for r in rows],[r['e'] for r in rows],truncation='longest_first',max_length=self.max_len,padding=True,return_tensors='pt').to(self.device)
             return self.m(**enc).logits[:,0].float().tolist()
 
 

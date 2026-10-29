@@ -56,7 +56,7 @@ def grouped_batches(rows,size,rng):
 def margin_loss(logits,rows,ids):
     """MarginMSE (Hofstätter et al., 2020): within each question, the student's logit gap between supported and
     unsupported evidence regresses to the teacher's calibrated logit gap. Ranking signal; BCE keeps calibration."""
-    t=torch.tensor([math.log(min(max(rows[i]['p_teacher'],1e-4),1-1e-4)/(1-min(max(rows[i]['p_teacher'],1e-4),1-1e-4))) for i in ids])
+    t=torch.tensor([math.log(min(max(rows[i]['p_teacher'],1e-4),1-1e-4)/(1-min(max(rows[i]['p_teacher'],1e-4),1-1e-4))) for i in ids],device=logits.device)
     key=[rows[i]['group']+'|'+rows[i]['q'] for i in ids];gold=[rows[i].get('y_gold',rows[i]['y']) for i in ids];terms=[]
     for a in range(len(ids)):
         for b in range(len(ids)):
@@ -73,8 +73,9 @@ def encode(tok,rows,ids,max_len):
 @torch.no_grad()
 def scores(model,tok,rows,max_len,size=64):
     model.eval();out=np.zeros(len(rows),dtype=np.float32)
+    dev=next(model.parameters()).device
     for ids in batches(rows,size,None,shuffle=False):
-        enc,_=encode(tok,rows,ids,max_len);out[ids]=model(**enc).logits[:,0].float().numpy()
+        enc,_=encode(tok,rows,ids,max_len);out[ids]=model(**enc.to(dev)).logits[:,0].float().cpu().numpy()
     model.train();return out
 
 
@@ -102,8 +103,12 @@ def main():
     ap.add_argument('--init',type=Path,default=INIT,help='checkpoint to start from (default: the shipped reranker)')
     ap.add_argument('--train-data',type=Path,default=DATA,help='folder holding train.jsonl (dev/held-out always from answerability-v0)')
     ap.add_argument('--margin-weight',type=float,default=0.0,help='weight of the MarginMSE term on teacher logit gaps (needs p_teacher rows)')
+    ap.add_argument('--device',default='cuda' if torch.cuda.is_available() else 'cpu',
+                    help='training device; weights are device-independent and deployment is CPU-only INT8 (export_onnx.py)')
     args=ap.parse_args();args.init=args.init.resolve() if args.init.exists() else args.init;args.train_data=args.train_data.resolve();torch.manual_seed(args.seed);rng=random.Random(args.seed);torch.set_num_threads(args.threads)
-    tok=AutoTokenizer.from_pretrained(args.init);model=AutoModelForSequenceClassification.from_pretrained(args.init,num_labels=1)
+    tok=AutoTokenizer.from_pretrained(args.init);model=AutoModelForSequenceClassification.from_pretrained(args.init,num_labels=1).to(args.device)
+    # FP32 master weights; bf16 autocast on CUDA only (CPU training stays FP32, as v0/v1 were).
+    amp=(lambda:torch.autocast('cuda',dtype=torch.bfloat16)) if args.device.startswith('cuda') else (lambda:torch.autocast('cpu',enabled=False))
     for p in model.base_model.embeddings.word_embeddings.parameters():p.requires_grad=False
     trainable=[p for p in model.parameters() if p.requires_grad]
     train,dev=load('train',args.train_data),load('dev');held={n:load(n) for n in ('indicqa_heldout','xquad_heldout')}
@@ -119,8 +124,9 @@ def main():
     base={'dev':report(dev_small,scores(model,tok,dev_small,args.max_len))};print('init dev auc',base['dev']['all'],flush=True)
     model.train();t0=time.perf_counter()
     for step,ids in enumerate(plan,1):
-        enc,y=encode(tok,train,ids,args.max_len)
-        logits=model(**enc).logits[:,0];loss=lossf(logits,y)
+        enc,y=encode(tok,train,ids,args.max_len);enc,y=enc.to(args.device),y.to(args.device)
+        with amp():logits=model(**enc).logits[:,0].float()
+        loss=lossf(logits,y)
         if distil:loss=loss+args.margin_weight*margin_loss(logits,train,ids)
         loss.backward()
         torch.nn.utils.clip_grad_norm_(trainable,1.0);opt.step();sched.step();opt.zero_grad(set_to_none=True)
@@ -132,7 +138,9 @@ def main():
     final={'dev':report(dev,scores(model,tok,dev,args.max_len))}|{n:report(r,scores(model,tok,r,args.max_len)) for n,r in held.items()}
     meta={'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'init':str(args.init.relative_to(ROOT)) if args.init.is_relative_to(ROOT) else str(args.init),'train_data':str(args.train_data.relative_to(ROOT)) if args.train_data.is_relative_to(ROOT) else str(args.train_data),
           'args':vars(args),'steps':len(plan),'train_rows':len(train),'train_seconds':time.perf_counter()-t0,'peak_rss_bytes':peak,
-          'torch':torch.__version__,'frozen':'word_embeddings','baseline_init_dev_2000':base,'final':final,'log':log}
+          'torch':torch.__version__,'device':args.device,'device_name':torch.cuda.get_device_name(0) if args.device.startswith('cuda') else 'cpu',
+          'cuda_peak_bytes':torch.cuda.max_memory_allocated() if args.device.startswith('cuda') else None,
+          'frozen':'word_embeddings','baseline_init_dev_2000':base,'final':final,'log':log}
     (out/'training-report.json').write_text(json.dumps(meta,indent=1,ensure_ascii=False),encoding='utf-8')
     print(json.dumps({k:{kk:vv for kk,vv in v.items() if kk=='all'} for k,v in final.items()},indent=1))
 
