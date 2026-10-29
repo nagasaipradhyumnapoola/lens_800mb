@@ -169,11 +169,13 @@ worldwide. Never assume CUDA, AVX2, a modern processor or a discrete GPU.
 
 - CPU-only inference is mandatory and complete. A GPU (CUDA, DirectML) is an optional accelerator; every
   capability must work, and be benchmarked, with no GPU.
-- RAM: absolute ceiling 800 MB (800,000,000 bytes) for the complete always-on background system — every Lens
-  process (observer, engine, model workers), working set and private commit, peaks included. Idle target
-  50–100 MB. Working target (founder, 2026-10-28): stay at or below 500,000,000 bytes wherever possible; 800 MB is
-  the upper limit, never a planning target. Heavy models (OCR, ASR, retrieval, verifier, Lens-Core heads) are loaded lazily, never resident
-  together unless the measured combined peak stays inside the budget, and unloaded when idle.
+- RAM (founder, 2026-10-29; supersedes the 800 MB ceiling of 2026-10-26): absolute ceiling 500 MB
+  (500,000,000 bytes) for the complete Lens system — every Lens process (agent, observer, engine, model workers, the
+  app window), working set and private commit, peaks included. Idle target 50–100 MB. Heavy models (OCR, ASR, TTS,
+  retrieval, verifier, Lens-Core heads) are loaded lazily, never resident together unless the measured combined peak
+  stays inside the budget, and unloaded when idle.
+- Storage (founder, 2026-10-29): the installed app, runtimes and models may use up to 1 GB (1,000,000,000 bytes) per
+  device; RAM, not disk, is the binding limit.
 - Low-memory machines: support 8 GB systems; support 4 GB systems wherever technically feasible. The background
   budget adapts to the machine (smaller peak cap and deferred heavy work under OS memory pressure on 4 GB).
 - CPU instruction sets: the baseline is x86-64 with SSE4.2 and POPCNT (the Windows 11 24H2 floor). AVX, AVX2,
@@ -211,7 +213,10 @@ uploads without explicit authorization; never circumvent OS protections.
 
 ## 18. Production release
 
-Installable Windows app + installer, Android companion, Wear OS companion; macOS/iOS later via portable core.
+Installable Windows app + installer and Android companion first. Platform goal (founder, 2026-10-29): Lens is aimed
+at every major operating system — Windows, macOS, Linux, Android and iOS — through the portable core with per-platform
+adapters (observation, secure key storage, IPC, UI shell); each platform needs its own verification before any claim.
+Wearables (Wear OS and others) are deferred to a later phase (founder, 2026-10-29).
 Real hardware testing, including low-end CPU-only laptops (4 GB and 8 GB, no AVX2, no dGPU; §15);
 emulator/build success is not production readiness. Validate workflows, permissions,
 crash recovery, offline, migration, backup/restore, updates, uninstall, secure sync, sensitive data, model

@@ -111,7 +111,7 @@ def main():
         'recalls':len(recalls),'recall_ok':sum(r['ok'] for r in recalls),'recall_ms_p50':statistics.median([r['ms'] for r in recalls]) if recalls else None,
         'recall_ms_p95':sorted(r['ms'] for r in recalls)[int(0.95*(len(recalls)-1))] if recalls else None,
         'final_status':status,'final_stats':{k:stats.get(k) for k in ('source_count','embedded_sources','compressed_sources','schema_version')},
-        'within_800MB':max(ws)<=800_000_000 and max(pv)<=800_000_000,'trace':samples})
+        'within_500MB':max(ws)<=500_000_000 and max(pv)<=500_000_000,'trace':samples})
     if snapshot:shutil.rmtree(snapshot,ignore_errors=True)
     out=ROOT/'reports/perf';out.mkdir(parents=True,exist_ok=True)
     path=out/f"sustained-{report['created_utc']}.json";path.write_text(json.dumps(report,indent=1),encoding='utf-8')

@@ -49,8 +49,8 @@ windows, application and entity signals, user pins and feedback, abstention, and
 ## Resource policy
 
 Models load lazily in the process that needs them, run one heavy model at a time, and unload when idle
-(`--model-idle-unload-ms`, default 60 s; OCR worker after 30 s). The 800,000,000-byte ceiling applies to the
-complete background process tree. Measurements are recorded in docs/VERIFICATION.md.
+(`--model-idle-unload-ms`, default 60 s; OCR worker after 30 s). The 500,000,000-byte ceiling (founder, 2026-10-29) applies to the
+complete Lens process tree. Measurements are recorded in docs/VERIFICATION.md.
 
 ## Not yet built
 

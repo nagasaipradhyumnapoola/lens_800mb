@@ -28,7 +28,7 @@ only when its inference runs through trained Lens weights and passes its benchma
 
 **Deployment (inference) targets — founder requirement, docs/LENS_V1_SPEC.md §15.** Every Lens-Core variant
 must run CPU-only on older, low-end Windows laptops with no dedicated GPU, including 8 GB and (where feasible)
-4 GB machines and x64 CPUs without AVX2. The complete background system stays under 800 MB at peak; idle
+4 GB machines and x64 CPUs without AVX2. The complete Lens system stays under 500 MB at peak (founder, 2026-10-29); idle
 target 50–100 MB. A GPU is used for training and is only an optional accelerator at inference. Hardware tiers
 H0–H3 are defined in docs/acceptance-gates.md; each variant is benchmarked on the tiers it targets.
 
@@ -163,7 +163,7 @@ The founder's bar: Lens-Core should be one of the best-benchmarked models of its
   multilingual-e5-small, bge-m3 as an upper reference, the current rerankers, PP-OCR, Whisper tiny/base), run
   by us on the same data and hardware, not copied from papers.
 - Every result table carries quality, RAM (full process), latency and hardware tier together; a model that wins
-  on quality but breaks the 800 MB ceiling or fails on H2/H3 does not count as a win.
+  on quality but breaks the 500 MB ceiling or fails on H2/H3 does not count as a win.
 - Claims are scoped: "best in its size class" only when measured against that class; never parity with large
   models without measurement. Losses are published alongside wins.
 - Submitting results to public leaderboards is publishing and needs the founder's approval first.

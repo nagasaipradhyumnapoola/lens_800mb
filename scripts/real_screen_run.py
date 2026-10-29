@@ -72,7 +72,7 @@ def main():
             'exact_duplicate_texts':len(texts)-len(set(texts)),'languages':dict(collections.Counter(x.get('language') for x in obs)),
             'median_chars':statistics.median([len(t) for t in texts]) if texts else 0,'embedded_sources':stats.get('embedded_sources'),
             'recall_ms_p50':statistics.median([r['ms'] for r in recalls]),'recalls_answered':sum(not r['abstained'] for r in recalls),'recalls':len(recalls),
-            'status_trace':statuses,'within_800MB':max(ws)<=800*2**20 and max(pv)<=800*2**20,
+            'status_trace':statuses,'within_500MB':max(ws)<=500_000_000 and max(pv)<=500_000_000,
             'concurrent_load':'a CPU model-training job and other sessions were running on the same laptop'})
         private['applications']=dict(collections.Counter(x.get('source_application') for x in obs).most_common())
         pipe.ask({'op':'set_consent','observe_screen':False});time.sleep(75)

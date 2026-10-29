@@ -52,7 +52,7 @@ class Installer(unittest.TestCase):
         except OSError:return None
 
     def test_package_footprint_and_manifest(self):
-        self.assertLessEqual(self.manifest['installed_bytes'],500_000_000)
+        self.assertLessEqual(self.manifest['installed_bytes'],1_000_000_000)  # storage budget (founder, 2026-10-29)
         paths={f['path'] for f in self.manifest['files']}
         for need in ['bin/lens-agent.exe','bin/lens-app.exe','bin/lens-engine.exe','bin/lens-voice.exe','bin/ggml-cpu-x64.dll','bin/vcruntime140.dll','bin/ui/index.html',
                      'third_party/embedding-lock.json','.tools/ocr-runtime/onnxruntime.dll','models/ggerganov--whisper.cpp/ggml-base-q5_1.bin']:self.assertIn(need,paths)

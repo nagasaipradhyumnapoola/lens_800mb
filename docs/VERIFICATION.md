@@ -1120,3 +1120,16 @@ travel in `metadata`).
   kinds) and v2e (gold labels only) trained and scored only on the training-time held-out sets (dev 0.898/0.907 vs v2b
   0.873); their CPU INT8 runs were not made. Latency numbers of v2a–v2c were taken while GPU training ran (upper bounds).
 - Not done: the M2 answerability gate (correct answered at 5% false answers, 614 questions), engine integration.
+
+## Budget revision (founder, 2026-10-29): 500 MB RAM ceiling, 1 GB storage, every OS, wearables later
+
+- RAM ceiling for the complete Lens system is now 500,000,000 bytes (was 800,000,000), working set and private
+  commit; installed storage may reach 1,000,000,000 bytes; Lens aims at every major OS; wearables are deferred.
+- Existing H0 evidence against the new ceiling (no new measurement): 30-minute synthetic run peak 431 MB working set /
+  380 MB private — within; serial model workers 440 MB private — within; concurrent workers 879 MB / 995 MB — over;
+  2026-10-27 real-screen run 905 MB private — over; lens-tts alone 394 MB (plus the 54 MB idle tree ≈ 448 MB) —
+  within only while no other heavy model is loaded. The installed package (861.7 MB) is within the storage budget.
+- Consequence: heavy models (OCR, ASR, TTS, retrieval, verifier) must never be resident together; a whole-tree
+  resource governor is required before any 500 MB claim. Code, gates and tests now use 500 MB (agent diagnostics
+  ceiling, app meter, scripts/profile_combined.py, sustained/real-screen runs, tests/test_app.py) and 1 GB for the
+  package (tests/test_installer.py).

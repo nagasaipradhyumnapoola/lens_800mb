@@ -8,9 +8,9 @@ Launch language priority (founder, 2026-10-28; supersedes the earlier en, zh, es
 English first, then Hindi, Mandarin Chinese and Spanish, followed by worldwide language coverage
 (docs/LENS_V1_SPEC.md §1a). Lens is a global product; Indian-language testing is part of the
 international matrix and does not define the product's geographic focus.
-Budget: the 800,000,000-byte absolute ceiling for the complete always-on background system (peaks,
-working set and private commit) and the 50–100 MB idle target (founder, 2026-10-26; spec §15)
-supersede the earlier 740 MB acceptance. 500 MB stays a visible optimization target; do not cut
+Budget: the 500,000,000-byte absolute ceiling for the complete Lens system (peaks, working set and
+private commit) and the 50–100 MB idle target (founder, 2026-10-29; spec §15) supersede the earlier
+800 MB ceiling and 740 MB acceptance; installed storage may reach 1 GB. Do not cut
 requested functions to reach it.
 
 ## Selected approach and alternatives

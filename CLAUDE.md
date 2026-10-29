@@ -29,9 +29,9 @@ The sealed retrieval holdout (data/fixtures/retrieval-nl/holdout.json) is never 
 - Retrieval: `recall` op (keyword | semantic | hybrid RRF) with multilingual-e5-small INT8, default cross-encoder
   rerank (mmarco-mMiniLMv2 INT8) when configured, and natural-language time windows; pinned ONNX Runtime 1.24.4 DLL.
   Verified at 1k/10k/100k (docs/VERIFICATION.md): functional gates pass, quality targets do not yet.
-- RAM ceiling: 800 MB peak for the complete always-on background system, idle target 50–100 MB, CPU-only
+- RAM ceiling (founder, 2026-10-29): 500 MB peak for the complete Lens system (was 800 MB), storage up to 1 GB, idle target 50–100 MB, CPU-only
   mandatory, low-end laptops supported (spec §15). Measured on the G14 only: serial model workers 440 MB private
-  (under 800, after the whisper commit patches), concurrent 995 MB (over); engine idle 11 MB, 18 MB after
+  (under 500, after the whisper commit patches), concurrent 995 MB (over); lens-tts alone 394 MB; engine idle 11 MB, 18 MB after
   model unload (automatic after 60 s idle, `--model-idle-unload-ms`); synthetic 30-minute whole-tree run with observer
   401 MB working set / 366 MB private; the 2026-10-27 real-screen run FAILED (905 MB private); low-end tiers NOT VERIFIED.
 - CPU compatibility: whisper.cpp is built in build/whisper-dl as shared libs with runtime-selected ggml CPU variants

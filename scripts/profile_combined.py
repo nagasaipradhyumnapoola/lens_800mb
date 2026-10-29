@@ -15,7 +15,7 @@ import time
 import psutil
 ROOT=Path(__file__).resolve().parents[1]
 REL=ROOT/'build/engine/Release'
-LIMIT=800_000_000  # founder ceiling for the complete background system (docs/LENS_V1_SPEC.md §15)
+LIMIT=500_000_000  # founder ceiling (2026-10-29) for the complete background system (docs/LENS_V1_SPEC.md §15)
 
 
 def lock(name,filename):

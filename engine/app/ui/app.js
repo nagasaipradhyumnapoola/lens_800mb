@@ -726,7 +726,7 @@
       stat('Models in memory', st.models_loaded ? 'Loaded' : 'Unloaded (idle)', true);
     }
     const mb = d.memory.working_set / 1e6, meter = $('diag-meter');
-    meter.setAttribute('aria-valuenow', String(Math.round(mb))); meter.setAttribute('aria-valuetext', `${Math.round(mb)} MB of 800 MB`);
+    meter.setAttribute('aria-valuenow', String(Math.round(mb))); meter.setAttribute('aria-valuetext', `${Math.round(mb)} MB of 500 MB`);
     meter.firstElementChild.style.width = `${Math.min(100, (d.memory.working_set / d.memory.ceiling) * 100)}%`;
     for (const p of d.processes) {
       const row = el('div', 'kv'); row.append(el('span', null, p.name), el('span', 'num', `${bytes(p.working_set)} in use · ${bytes(p.private)} private`)); procs.append(row);

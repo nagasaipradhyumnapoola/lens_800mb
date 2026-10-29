@@ -720,8 +720,8 @@ class AgentDesktop(unittest.TestCase):
     def test_diagnostics_report_real_measurements_without_content(self):
         d=self.pipe.ask({'op':'diagnostics'})
         names=[p['name'] for p in d['processes']];self.assertIn('lens-agent.exe',names);self.assertIn('lens-engine.exe',names)
-        self.assertEqual(d['memory']['working_set'],sum(p['working_set'] for p in d['processes']));self.assertLess(d['memory']['working_set'],800_000_000)
-        self.assertEqual(d['memory']['ceiling'],800_000_000);self.assertIn('memory.db',[f['name'] for f in d['storage']['files']])
+        self.assertEqual(d['memory']['working_set'],sum(p['working_set'] for p in d['processes']));self.assertLess(d['memory']['working_set'],500_000_000)
+        self.assertEqual(d['memory']['ceiling'],500_000_000);self.assertIn('memory.db',[f['name'] for f in d['storage']['files']])
         self.assertEqual(d['capture'],{'screen':None,'voice':None})
         self.pipe.ask({'op':'set_consent','observe_screen':True})
         end=time.time()+20
@@ -807,7 +807,7 @@ class AppMemory(unittest.TestCase):
                 ws=max(s[0] for s in samples);pv=max(s[1] for s in samples)
                 print(f"\n  lens-app idle (hidden window, {samples[-1][2]} processes incl. WebView2): {ws/1e6:.0f} MB working set, {pv/1e6:.0f} MB private;"
                       f" background agent tree {agent_ws/1e6:.0f} MB; time to interactive {out['host_ready_ms']} ms")
-                self.assertLess(ws+agent_ws,800_000_000)  # app open plus the background system stays under the ceiling
+                self.assertLess(ws+agent_ws,500_000_000)  # app open plus the background system stays under the ceiling
             finally:
                 pipe.ask({'op':'shutdown'});pipe.close();agent.wait(timeout=30)
 

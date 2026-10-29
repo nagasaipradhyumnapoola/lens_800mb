@@ -487,7 +487,7 @@ int wmain(int argc,wchar_t** argv) {
             }
             json t;{std::lock_guard g(telemetry_lock);t=telemetry;}
             const auto up=std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now()-started_at).count();
-            return {{"ok",true},{"uptime_seconds",up},{"processes",procs},{"memory",{{"working_set",ws},{"private",pv},{"ceiling",800000000}}},
+            return {{"ok",true},{"uptime_seconds",up},{"processes",procs},{"memory",{{"working_set",ws},{"private",pv},{"ceiling",500000000}}},
                     {"capture",t},{"observer_running",observer.running()},{"voice_running",voice_running()},{"mesh_running",mesh_running()},
                     {"paused",paused.load()},{"observed",observed.load()},{"stored",stored.load()},{"failed",failed.load()},{"voiced",voiced.load()},
                     {"semantic",semantic},{"storage",{{"data_dir",utf8(data_dir.wstring())},{"files",files},{"total_bytes",total}}}};

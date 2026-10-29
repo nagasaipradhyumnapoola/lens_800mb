@@ -3,7 +3,7 @@
 A stronger public model (the leader of lens_model/eval/compare_answerability.py, e.g. Qwen3-Reranker-4B, Apache-2.0)
 scores public training pairs; its scores are Platt-calibrated against the gold labels on the same pool and blended
 into soft targets: y_soft = alpha * y_gold + (1 - alpha) * p_teacher. The student (Lens answerability head) trains
-on y_soft with BCE, keeping its 118M-parameter / ~124 MB INT8 size inside the 800 MB system ceiling.
+on y_soft with BCE, keeping its 118M-parameter / ~124 MB INT8 size inside the 500 MB system ceiling.
 Pool (never a benchmark test split, never Lens fixtures, never personal data), language-balanced per spec §1a
 (temperature sampling, English ~30% as the primary language, no other language above 12%, Indian group at most 30%):
 - v0 training pairs (SQuAD 2.0 train, TyDi train in 11 languages, IndicQA/XQuAD training splits) and v1's hard kinds

@@ -4,7 +4,7 @@ Formal register of the detailed product requirements for Lens V1. Each entry is 
 with a stable identifier. "Shall" is mandatory, "Should" is recommended, "May" is optional.
 
 Precedence: docs/LENS_V1_SPEC.md and the dated founder decisions recorded there take precedence over this
-register where they conflict, in particular the 800,000,000-byte RAM ceiling (§15) and the language priority
+register where they conflict, in particular the 500,000,000-byte RAM ceiling (§15, 2026-10-29) and the language priority
 (§1a). Entries affected by a later decision are marked "superseded" and kept for traceability.
 
 Status of every entry is unverified until evidence in docs/VERIFICATION.md demonstrates it; this register
