@@ -167,13 +167,21 @@ def key(*parts):
     return hashlib.sha256('\x1f'.join(parts).encode('utf-8')).hexdigest()
 
 
-def platt(s,y,iters=500):
-    a,b=1.0,0.0
-    for _ in range(iters):  # Newton steps on logistic loss of sigmoid(a*s+b)
-        p=1/(1+np.exp(-(a*s+b)));g=np.array([((p-y)*s).sum(),(p-y).sum()]);w=p*(1-p)+1e-9
-        H=np.array([[(w*s*s).sum(),(w*s).sum()],[(w*s).sum(),w.sum()]])+1e-6*np.eye(2);d=np.linalg.solve(H,g);a,b=a-d[0],b-d[1]
-        if np.abs(d).max()<1e-8:break
-    return float(a),float(b)
+def platt(s,y,iters=100):
+    """Platt (1999) calibration p = sigmoid(a*s+b): Platt's smoothed targets, standardized scores and Newton steps with
+    backtracking, so the fit cannot run away on well-separated scores (an undamped fit returned a=8e7, all p in {0,1})."""
+    n1=float((y==1).sum());n0=float(len(y)-n1);t=np.where(y==1,(n1+1)/(n1+2),1/(n0+2))
+    mu,sd=float(s.mean()),float(s.std()) or 1.0;z=(s-mu)/sd;a,b=1.0,0.0
+    loss=lambda a,b:float((np.logaddexp(0,a*z+b)-t*(a*z+b)).sum())
+    cur=loss(a,b)
+    for _ in range(iters):
+        p=np.exp(-np.logaddexp(0,-(a*z+b)));g=np.array([((p-t)*z).sum(),(p-t).sum()]);w=p*(1-p)
+        H=np.array([[(w*z*z).sum(),(w*z).sum()],[(w*z).sum(),w.sum()]])+1e-9*np.eye(2);d=np.linalg.solve(H,g);step=1.0
+        while step>1e-8 and loss(a-step*d[0],b-step*d[1])>cur:step/=2
+        a,b=a-step*d[0],b-step*d[1];new=loss(a,b)
+        if cur-new<1e-10:break
+        cur=new
+    return float(a/sd),float(b-a*mu/sd)
 
 
 def main():
@@ -202,8 +210,9 @@ def main():
                 for r,v in zip(b,s):f.write(json.dumps({'pid':r['pid'],'s':float(v)})+'\n');done[r['pid']]=float(v)
                 if k//a.batch%200==0:
                     f.flush();el=time.perf_counter()-t;print(f'{k+len(b)}/{len(todo)} {el/60:.1f} min, eta {(len(todo)-k)*el/max(1,k+len(b))/60:.0f} min',flush=True)
-    s=np.array([done[r['pid']] for r in pool]);y=np.array([float(r['y']) for r in pool]);A,B=platt(s,y);p=1/(1+np.exp(-(A*s+B)))
-    for r,pt in zip(pool,p):r['y_gold']=r['y'];r['p_teacher']=float(pt);r['y']=a.alpha*r['y_gold']+(1-a.alpha)*float(pt)
+    s=np.array([done[r['pid']] for r in pool]);y=np.array([float(r['y']) for r in pool]);A,B=platt(s,y);p=np.exp(-np.logaddexp(0,-(A*s+B)))
+    if not 0<A<100 or ((p<1e-3)|(p>1-1e-3)).mean()>0.5:raise SystemExit(f'degenerate calibration a={A} b={B}; teacher scores unusable')
+    for r,st,pt in zip(pool,s,p):r['y_gold']=r['y'];r['s_teacher']=float(st);r['p_teacher']=float(pt);r['y']=a.alpha*r['y_gold']+(1-a.alpha)*float(pt)
     with (OUT/'train.jsonl').open('w',encoding='utf-8') as f:
         for r in pool:f.write(json.dumps({k:v for k,v in r.items() if k!='pid'},ensure_ascii=False)+'\n')
     disagree=[r for r in pool if abs(r['y_gold']-r['p_teacher'])>0.9]

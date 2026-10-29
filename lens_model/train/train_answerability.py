@@ -103,6 +103,8 @@ def main():
     ap.add_argument('--init',type=Path,default=INIT,help='checkpoint to start from (default: the shipped reranker)')
     ap.add_argument('--train-data',type=Path,default=DATA,help='folder holding train.jsonl (dev/held-out always from answerability-v0)')
     ap.add_argument('--margin-weight',type=float,default=0.0,help='weight of the MarginMSE term on teacher logit gaps (needs p_teacher rows)')
+    ap.add_argument('--gold-kinds',default='',help='comma-separated pair kinds (or "all") trained on y_gold instead of the soft target: a '
+                    'relevance teacher scores answer-containment kinds (near-misses, supported windows) by topic, not by answer')
     ap.add_argument('--device',default='cuda' if torch.cuda.is_available() else 'cpu',
                     help='training device; weights are device-independent and deployment is CPU-only INT8 (export_onnx.py)')
     args=ap.parse_args();args.init=args.init.resolve() if args.init.exists() else args.init;args.train_data=args.train_data.resolve();torch.manual_seed(args.seed);rng=random.Random(args.seed);torch.set_num_threads(args.threads)
@@ -112,6 +114,9 @@ def main():
     for p in model.base_model.embeddings.word_embeddings.parameters():p.requires_grad=False
     trainable=[p for p in model.parameters() if p.requires_grad]
     train,dev=load('train',args.train_data),load('dev');held={n:load(n) for n in ('indicqa_heldout','xquad_heldout')}
+    gold={k for k in args.gold_kinds.split(',') if k}
+    for r in train:
+        if 'y_gold' in r and ('all' in gold or r['kind'] in gold):r['y']=r['y_gold']
     distil=args.margin_weight>0
     if distil and not all('p_teacher' in r for r in train):raise SystemExit('--margin-weight needs teacher-scored rows (lens_model/data/build_distill.py)')
     make=grouped_batches if distil else batches
@@ -141,7 +146,7 @@ def main():
           'torch':torch.__version__,'device':args.device,'device_name':torch.cuda.get_device_name(0) if args.device.startswith('cuda') else 'cpu',
           'cuda_peak_bytes':torch.cuda.max_memory_allocated() if args.device.startswith('cuda') else None,
           'frozen':'word_embeddings','baseline_init_dev_2000':base,'final':final,'log':log}
-    (out/'training-report.json').write_text(json.dumps(meta,indent=1,ensure_ascii=False),encoding='utf-8')
+    (out/'training-report.json').write_text(json.dumps(meta,indent=1,ensure_ascii=False,default=str),encoding='utf-8')  # args hold Paths
     print(json.dumps({k:{kk:vv for kk,vv in v.items() if kk=='all'} for k,v in final.items()},indent=1))
 
 

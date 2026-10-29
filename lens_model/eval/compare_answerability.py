@@ -136,6 +136,9 @@ def make(name):
         'qwen3-1.7b':lambda:TorchYesNo(BASE/'Qwen--Qwen3-1.7B',False),
         'qwen3-4b':lambda:TorchYesNo(BASE/'Qwen--Qwen3-4B',False),
     }
+    if name not in table and name.startswith('lens-v'):  # sweep variants: lens-v2a-int8 -> onnx/answerability-v2a, lens-v2a -> checkpoint
+        ver=name[len('lens-'):].removesuffix('-int8');d=(ONNX if name.endswith('-int8') else CKPT)/f'answerability-{ver}'
+        if d.exists():return OnnxCrossEncoder(d/'model_int8.onnx',d/'tokenizer.json',MAXLEN) if name.endswith('-int8') else TorchCrossEncoder(d,MAXLEN)
     return table[name]()
 
 
