@@ -1148,3 +1148,32 @@ travel in `metadata`).
 - Not covered: the engine's retrieval models (peak 323 MB on H0) and the OCR worker (≤ 141 MB at 4K) may still be
   resident together (≈ 518 MB with the idle tree in the worst case) — to be removed by the shared Lens-Core trunk or a
   second governor rule; whole-tree 500 MB not yet re-measured with the governor.
+
+## English hard-screen OCR: dev split and row assembly (2026-10-29) — dev only (held-out not yet run)
+
+- Set: scripts/make_ocr_screens_en_hard.py rendered for the first time (dev 25 screens / 411 lines; held-out 25 screens,
+  untouched): 9–11 px settings panes, code editors (gutter, syntax colours, dark/light), shell and PowerShell terminals,
+  browser pages, PDF-like pages with 9 px footnotes, tables, chat, mail lists; device scales 1–2. Two ground-truth
+  defects fixed before any evaluation: rows with nested coloured spans were rejected as wrapped (client rects counted
+  instead of line tops), and the tab bar drew "module.pyx" while the truth said "module.py x" (no gap).
+- Dev, oracle route, CPU (page CER on NFC text, whitespace collapsed; reports/ocr-screens/ocr-native-en-hard-dev-*):
+
+  | configuration | page CER | line accuracy | full-screen compute p50 | worker peak |
+  |---|---:|---:|---:|---:|
+  | shipped: PP-OCRv5 mobile det + PP-OCRv6 tiny rec | 4.35% | 0.54 | 1.6 s | 118 MB |
+  | + PP-OCRv6 small rec | 3.93% | 0.55 | 3.3 s | 118 MB |
+  | + PP-OCRv6 medium rec | 4.22% | 0.55 | 9.8 s | 210 MB |
+  | PP-OCRv5 server det (PaddleOCR's default) + tiny rec | 3.81% | 0.57 | 7.5 s | 374 MB |
+  | PP-OCRv5 server det + medium rec | 3.53% | 0.58 | 17.0 s | 373 MB |
+  | **shipped models + Lens row assembly** | **2.17%** | **0.89** | 1.6 s | 118 MB |
+
+- Row assembly (engine/ocr_main.cpp): segments farther apart than two line heights now join when they form a row of a
+  table, form or list (vertical centres within 20% of the text height, heights within 60% — unclip makes short words'
+  boxes taller), but never two segments each wider than 35% of the image (side-by-side text columns). The first
+  version (equal heights, ≥ 80% overlap) gave 2.47% / 0.84; settings values like "On" stayed separate.
+- Not helpful on dev: detector thresholds (0.2/0.4–0.6: 2.47–2.49%), unclip 2.0 (3.23%), whole-image upscaling before
+  detection (×1.5 3.01%, ×2 3.98% vs 3.16% on the small-text/code/terminal/table/mail subset).
+- 17-language dev set (auto route): identical page CER and line accuracy for every language before and after the
+  change; tests/test_native_ocr.py 14/14 OK.
+- Remaining dev errors are recognition: monospace `l`/`1`, dash runs (`-rw-r--r--` -> `-rw-r- -r-`), `PS` -> `P5`, case
+  (`csv` -> `CSV`), `%` -> `%6`, spaces inside code (`row[ "amount"]`), terminal progress-dot rows not detected.

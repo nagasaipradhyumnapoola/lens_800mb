@@ -26,12 +26,14 @@ sys.path.insert(0,str(ROOT/'scripts'))
 from ocr_reference import ORACLE,edit,norm
 M=ROOT/'models'
 RUNTIME=ROOT/'.tools/ocr-runtime/onnxruntime.dll'
-DET={'v5':(M/'PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx',0.3,0.6,1.5),'v6':(M/'PaddlePaddle--PP-OCRv6_tiny_det/inference.onnx',0.2,0.4,1.4)}
+DET={'v5':(M/'PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx',0.3,0.6,1.5),'v6':(M/'PaddlePaddle--PP-OCRv6_tiny_det/inference.onnx',0.2,0.4,1.4),
+     'server':(M/'PaddlePaddle--PP-OCRv5_server_det/inference.onnx',0.3,0.6,1.5)}  # PaddleOCR's default (most accurate) detector
 REC={'general':'PaddlePaddle--PP-OCRv6_tiny_rec','hi':'PaddlePaddle--devanagari_PP-OCRv5_mobile_rec','ta':'PaddlePaddle--ta_PP-OCRv5_mobile_rec',
      'te':'PaddlePaddle--te_PP-OCRv5_mobile_rec','ja':'PaddlePaddle--PP-OCRv5_mobile_rec','ar':'PaddlePaddle--arabic_PP-OCRv5_mobile_rec',
      'ru':'PaddlePaddle--cyrillic_PP-OCRv5_mobile_rec'}
 RTL={'ar'}  # PaddleOCR reverses arabic_* output (pred_reverse); lens-ocr does it for "rtl":true
-SETS={'dev':ROOT/'artifacts/ocr-screens/v1/manifest.json','heldout':ROOT/'artifacts/ocr-screens/heldout-v1/manifest.json'}
+SETS={'dev':ROOT/'artifacts/ocr-screens/v1/manifest.json','heldout':ROOT/'artifacts/ocr-screens/heldout-v1/manifest.json',
+      'en-hard-dev':ROOT/'artifacts/ocr-screens/en-hard-dev/manifest.json','en-hard-heldout':ROOT/'artifacts/ocr-screens/en-hard-heldout/manifest.json'}
 
 
 def metric_text(s):return unicodedata.normalize('NFC',norm(s.replace('‌','').replace('‍','')))
@@ -39,6 +41,7 @@ def metric_text(s):return unicodedata.normalize('NFC',norm(s.replace('‌','').r
 
 def request(image_bytes,args,route,region=None):
     det,thresh,box_thresh,unclip=DET[args.det];rec={**REC,'te':args.te,**dict(r.split('=',1) for r in args.rec)}
+    thresh,box_thresh,unclip=args.det_thresh or thresh,args.box_thresh or box_thresh,args.unclip or unclip
     req={'consent':True,'runtime':str(RUNTIME),'mode':'screen','detector':str(det),'det_thresh':thresh,'box_thresh':box_thresh,
          'unclip_ratio':unclip,'threads':args.threads,'route':route,'auto_threshold':args.auto_threshold,'det_pixels':args.det_pixels,
          'recognizers':{k:{'model':str(M/v/'inference.onnx'),'dictionary':str(M/v/'ctc-dictionary.json'),'rtl':k in RTL} for k,v in rec.items()},
@@ -52,12 +55,13 @@ def request(image_bytes,args,route,region=None):
 
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--route',choices=['auto','oracle'],default='auto');ap.add_argument('--det',choices=['v5','v6'],default='v5')
+    ap=argparse.ArgumentParser();ap.add_argument('--route',choices=['auto','oracle'],default='auto');ap.add_argument('--det',choices=list(DET),default='v5')
     ap.add_argument('--threads',type=int,default=2);ap.add_argument('--auto-threshold',type=float,default=0.9)
     ap.add_argument('--set',choices=list(SETS),default='dev');ap.add_argument('--te',default=REC['te'])
     ap.add_argument('--rec',action='append',default=[],help='key=models-folder override, e.g. general=PaddlePaddle--PP-OCRv6_small_rec')
     ap.add_argument('--tag',default='',help='label added to the report file name')
     ap.add_argument('--det-pixels',type=int,default=409600);ap.add_argument('--only',help='comma-separated languages to run')
+    ap.add_argument('--det-thresh',type=float);ap.add_argument('--box-thresh',type=float);ap.add_argument('--unclip',type=float)  # detector overrides
     args=ap.parse_args()
     manifest=json.loads(SETS[args.set].read_text(encoding='utf-8'));rows=[]
     for sc in manifest['scenarios']:

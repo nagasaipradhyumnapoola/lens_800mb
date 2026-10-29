@@ -248,7 +248,7 @@ def scenarios(split):
             bg,fg,mu=THEMES[theme];font=[F['mono'],f2('mono'),F.get('mono3',F['mono'])][i%3];px=13+(i%2)
             lines=code.split('\n')
             def build(n,lines=lines,lang=lang,theme=theme,bg=bg,fg=fg,mu=mu,font=font,px=px):
-                rows=[row([f'{lang}_module.{ {"python":"py","javascript":"js","sql":"sql","go":"go","rust":"rs","yaml":"yml"}[lang]}','x'],f'font-size:12px;color:{mu}')]
+                rows=[row([f'{lang}_module.{ {"python":"py","javascript":"js","sql":"sql","go":"go","rust":"rs","yaml":"yml"}[lang]}','x'],f'font-size:12px;color:{mu};display:flex;gap:14px')]
                 rows+=[f'<div class="r"><span class="c g">{k+1}</span><span class="c">{colour_code(l,lang,theme)}</span></div>' for k,l in enumerate(lines[:n]) if l.strip()]
                 rows.append(row([f'Ln {rng.randint(1,40)}, Col {rng.randint(1,30)}','Spaces: 4','UTF-8',lang.capitalize()],f'font-size:11px;color:{mu};gap:24px;display:flex'))
                 css=(f'body{{font-family:{font};font-size:{px}px;color:{fg};padding:10px 0}}.r{{padding:1px 12px;line-height:1.55}}'
@@ -337,7 +337,8 @@ def scenarios(split):
 
 GT_JS="""(()=>{const rows=[...document.querySelectorAll('.r')];return rows.map(r=>{const b=r.getBoundingClientRect();
  const cells=[...r.querySelectorAll(':scope > .c')];const text=(cells.length?cells.map(c=>c.innerText):[r.innerText]).join(' ');
- const lines=cells.length?Math.max(...cells.map(c=>c.getClientRects().length)):r.getClientRects().length;
+ const tops=(n)=>new Set([...n.getClientRects()].filter(q=>q.height>0).map(q=>Math.round(q.top))).size;  // nested spans add rects, not lines
+ const lines=cells.length?Math.max(...cells.map(tops)):tops(r);
  const rects=cells.length?cells.map(c=>{const q=c.getBoundingClientRect();return q.height>0&&q.height<b.height*1.01?1:0}):[1];
  return {text,top:b.top,bottom:b.bottom,left:b.left,right:b.right,ok:b.bottom<=innerHeight&&b.right<=innerWidth&&b.top>=0&&lines==1}})})()"""
 

@@ -329,11 +329,14 @@ json screen(const json& req,Runtime& rt,Image img) {
         if(text.find_first_not_of(' ')==std::string::npos)continue;
         // The detector can split one line at wide word gaps (Urdu, code). A box that overlaps the previous one
         // vertically by >= 50% and starts within two line heights of it continues that line; right-to-left
-        // recognisers' segments are joined right to left. Separate columns (wider gaps) stay separate lines.
+        // recognisers' segments are joined right to left. Farther segments join only as a row of a table, form or
+        // list (vertical centres within 20% of the text height, heights within 60% — unclip makes short words' boxes
+        // taller), never two wide segments (side-by-side text columns).
         if(!lines.empty()&&merge_lines) {
             auto& prev=lines.back();const auto pb=prev.at("box").get<std::vector<int>>();
-            const int overlap=std::min(pb[3],b.y1)-std::max(pb[1],b.y0),h=std::min(pb[3]-pb[1],b.y1-b.y0);
-            if(overlap*2>=h&&b.x0>=pb[0]&&b.x0-pb[2]<=2*h) {
+            const int overlap=std::min(pb[3],b.y1)-std::max(pb[1],b.y0),h=std::min(pb[3]-pb[1],b.y1-b.y0),tall=std::max(pb[3]-pb[1],b.y1-b.y0);
+            const bool row=std::abs((pb[1]+pb[3])-(b.y0+b.y1))*10<=4*h&&h*10>=6*tall&&!((pb[2]-pb[0])*100>35*img.w&&(b.x1-b.x0)*100>35*img.w);
+            if(overlap*2>=h&&b.x0>=pb[0]&&(b.x0-pb[2]<=2*h||row)) {
                 const bool rtl=specs.at(used).value("rtl",false)&&specs.at(prev.at("recognizer").get<std::string>()).value("rtl",false);
                 const auto pt=prev.at("text").get<std::string>();
                 const double n0=static_cast<double>(pt.size()),n1=static_cast<double>(text.size());
