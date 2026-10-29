@@ -23,7 +23,10 @@ int main(){
     std::string line;if(lens::read_line(std::cin,line,4*1024*1024)!=lens::Line::ready)throw lens::Error("invalid_request");
     const auto req=json::parse(line);if(!req.value("consent",false))throw lens::Error("consent_required");
     const auto model_type=lens::validated_string(req.value("model_type",std::string("dolphin")),64);
-    if(model_type!="dolphin"&&model_type!="nemo_ctc")throw lens::Error("unsupported_asr_model_type");
+    if(model_type!="dolphin"&&model_type!="nemo_ctc"&&model_type!="canary")throw lens::Error("unsupported_asr_model_type");
+    const auto language=lens::validated_string(req.value("language",std::string("und")),32);
+    // Canary-180M-flash transcribes en/es/de/fr only; anything else must stay on its own route.
+    if(model_type=="canary"&&language!="en"&&language!="es"&&language!="de"&&language!="fr")throw lens::Error("unsupported_language");
     std::vector<char> bytes;
     if(req.contains("audio_base64")) {
         const auto text=req.at("audio_base64").get<std::string>();DWORD size=0;
@@ -42,7 +45,9 @@ int main(){
     const auto tokens=lens::validated_string(req.at("tokens").get<std::string>(),32768);
     // Fully qualified with backslashes, or LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR is ignored and Windows' System32 onnxruntime.dll loads.
     const auto library=std::filesystem::absolute(lens::utf8_path(req.at("library").get<std::string>())).make_preferred();
-    if(!std::filesystem::is_regular_file(lens::utf8_path(model))||!std::filesystem::is_regular_file(lens::utf8_path(tokens)))throw lens::Error("model_unavailable");
+    const auto decoder=model_type=="canary"?lens::validated_string(req.at("decoder").get<std::string>(),32768):std::string();
+    if(!std::filesystem::is_regular_file(lens::utf8_path(model))||!std::filesystem::is_regular_file(lens::utf8_path(tokens))||
+       (model_type=="canary"&&!std::filesystem::is_regular_file(lens::utf8_path(decoder))))throw lens::Error("model_unavailable");
     Module module{LoadLibraryExW(library.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_DEFAULT_DIRS)};
     if(!module.h)throw lens::Error("asr_runtime_unavailable");
     auto create=api<decltype(&SherpaOnnxCreateOfflineRecognizer)>(module.h,"SherpaOnnxCreateOfflineRecognizer");
@@ -54,7 +59,10 @@ int main(){
     auto result_get=api<decltype(&SherpaOnnxGetOfflineStreamResultAsJson)>(module.h,"SherpaOnnxGetOfflineStreamResultAsJson");
     auto result_destroy=api<decltype(&SherpaOnnxDestroyOfflineStreamResultJson)>(module.h,"SherpaOnnxDestroyOfflineStreamResultJson");
     SherpaOnnxOfflineRecognizerConfig config{};config.feat_config.sample_rate=16000;config.feat_config.feature_dim=80;
-    if(model_type=="dolphin")config.model_config.dolphin.model=model.c_str();else config.model_config.nemo_ctc.model=model.c_str();
+    if(model_type=="dolphin")config.model_config.dolphin.model=model.c_str();
+    else if(model_type=="canary"){
+        auto& c=config.model_config.canary;c.encoder=model.c_str();c.decoder=decoder.c_str();c.src_lang=language.c_str();c.tgt_lang=language.c_str();c.use_pnc=1;
+    } else config.model_config.nemo_ctc.model=model.c_str();
     config.model_config.tokens=tokens.c_str();
     config.model_config.num_threads=2;config.model_config.provider="cpu";config.model_config.debug=0;config.decoding_method="greedy_search";
     std::unique_ptr<const SherpaOnnxOfflineRecognizer,decltype(destroy)> recognizer(create(&config),destroy);
@@ -66,8 +74,8 @@ int main(){
     if(!raw)throw lens::Error("transcription_failed");
     auto result=json::parse(raw.get());result["ok"]=true;result["confidence"]=nullptr;
     result["confidence_status"]="not_provided_by_model";
-    result["provider"]=model_type=="dolphin"?"sherpa-onnx-dolphin-ctc":"sherpa-onnx-indicconformer-ctc";
-    result["language"]=lens::validated_string(req.value("language",std::string("und")),32);
+    result["provider"]=model_type=="dolphin"?"sherpa-onnx-dolphin-ctc":model_type=="canary"?"sherpa-onnx-canary-180m-flash":"sherpa-onnx-indicconformer-ctc";
+    result["language"]=language;
     result["language_source"]="user_supplied; language identification not scored";
     std::cout<<result.dump()<<'\n';
   }catch(const lens::Error& e){std::cerr<<e.what()<<'\n';return 1;}catch(...){std::cerr<<"asr_request_failed\n";return 1;}

@@ -561,5 +561,216 @@
   "sha256": "2c719dba044c4e2228aef8ff92f5f575394d75d24c16de096a33b7cfd902f66d",
   "upstream_verification": "git-blob-sha1",
   "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv5_server_det",
+  "revision": "ca867c897ecbca8873081573a802ad70d499cb94",
+  "filename": "inference.json",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det/resolve/ca867c897ecbca8873081573a802ad70d499cb94/inference.json",
+  "path": "models/PaddlePaddle--PP-OCRv5_server_det/inference.json",
+  "bytes": 402480,
+  "sha256": "af5876933d8806a1b50d895867e0781e135cd92ff37381992828fc8d1b842d28",
+  "upstream_verification": "git-blob-sha1",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv5_server_det",
+  "revision": "ca867c897ecbca8873081573a802ad70d499cb94",
+  "filename": "inference.pdiparams",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det/resolve/ca867c897ecbca8873081573a802ad70d499cb94/inference.pdiparams",
+  "path": "models/PaddlePaddle--PP-OCRv5_server_det/inference.pdiparams",
+  "bytes": 87932887,
+  "sha256": "183146fe9d9910352f68482f623bcbbb9fa7b9e8fa1463b9ad288cef00524d2d",
+  "upstream_verification": "lfs-sha256",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "PaddlePaddle/PP-OCRv5_server_det",
+  "revision": "ca867c897ecbca8873081573a802ad70d499cb94",
+  "filename": "inference.yml",
+  "url": "https://huggingface.co/PaddlePaddle/PP-OCRv5_server_det/resolve/ca867c897ecbca8873081573a802ad70d499cb94/inference.yml",
+  "path": "models/PaddlePaddle--PP-OCRv5_server_det/inference.yml",
+  "bytes": 903,
+  "sha256": "28fb721efc3634fc8aa677e474b9602cb815a91cf569ef357a7a553d7b3ce685",
+  "upstream_verification": "git-blob-sha1",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "csukuangfj/sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8",
+  "revision": "9077164e0d3dd1d5353743e89ceaa1d3a770838c",
+  "filename": "encoder.int8.onnx",
+  "url": "https://huggingface.co/csukuangfj/sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/resolve/9077164e0d3dd1d5353743e89ceaa1d3a770838c/encoder.int8.onnx",
+  "path": "models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/encoder.int8.onnx",
+  "bytes": 132678643,
+  "sha256": "7a75b4e2a5857a6dcc0819503bbe3fad66943db4a3ccf21d3f27c633667d303f",
+  "upstream_verification": "lfs-sha256",
+  "license": "CC-BY-4.0"
+ },
+ {
+  "repo": "csukuangfj/sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8",
+  "revision": "9077164e0d3dd1d5353743e89ceaa1d3a770838c",
+  "filename": "decoder.int8.onnx",
+  "url": "https://huggingface.co/csukuangfj/sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/resolve/9077164e0d3dd1d5353743e89ceaa1d3a770838c/decoder.int8.onnx",
+  "path": "models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/decoder.int8.onnx",
+  "bytes": 74437848,
+  "sha256": "e41a2ab9c0c2fe81a1e8ade5a45fb02a74bc4db7d1f91b89a54a25e2cf79cba2",
+  "upstream_verification": "lfs-sha256",
+  "license": "CC-BY-4.0"
+ },
+ {
+  "repo": "csukuangfj/sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8",
+  "revision": "9077164e0d3dd1d5353743e89ceaa1d3a770838c",
+  "filename": "tokens.txt",
+  "url": "https://huggingface.co/csukuangfj/sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/resolve/9077164e0d3dd1d5353743e89ceaa1d3a770838c/tokens.txt",
+  "path": "models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/tokens.txt",
+  "bytes": 53555,
+  "sha256": "2dae6fc7815f9640645e0c765522b278ee0cef49b482d91f6913e334628d3e77",
+  "upstream_verification": "git-blob-sha1",
+  "license": "CC-BY-4.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "onnx/model.onnx",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/onnx/model.onnx",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/onnx/model.onnx",
+  "bytes": 325532232,
+  "sha256": "8fbea51ea711f2af382e88c833d9e288c6dc82ce5e98421ea61c058ce21a34cb",
+  "upstream_verification": "lfs-sha256",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "onnx/model_quantized.onnx",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/onnx/model_quantized.onnx",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/onnx/model_quantized.onnx",
+  "bytes": 92361116,
+  "sha256": "fbae9257e1e05ffc727e951ef9b9c98418e6d79f1c9b6b13bd59f5c9028a1478",
+  "upstream_verification": "lfs-sha256",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "config.json",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/config.json",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/config.json",
+  "bytes": 44,
+  "sha256": "df34b4f930b23447cd4dc410fabfb42eb3f24e803e6c3f97d618fb359380a36f",
+  "upstream_verification": "git-blob-sha1",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "tokenizer.json",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/tokenizer.json",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/tokenizer.json",
+  "bytes": 3497,
+  "sha256": "77a02c8e164413299b4b4c403b14f8e0e1c1b727db4d46a09d6327b861060a34",
+  "upstream_verification": "git-blob-sha1",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "voices/af_heart.bin",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/voices/af_heart.bin",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/af_heart.bin",
+  "bytes": 522240,
+  "sha256": "d583ccff3cdca2f7fae535cb998ac07e9fcb90f09737b9a41fa2734ec44a8f0b",
+  "upstream_verification": "lfs-sha256",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "voices/af_bella.bin",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/voices/af_bella.bin",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/af_bella.bin",
+  "bytes": 522240,
+  "sha256": "f69d836209b78eb8c66e75e3cda491e26ea838a3674257e9d4e5703cbaf55c8b",
+  "upstream_verification": "lfs-sha256",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "voices/am_michael.bin",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/voices/am_michael.bin",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/am_michael.bin",
+  "bytes": 522240,
+  "sha256": "1d1f21dd8da39c30705cd4c75d039d265e9bc4a2a93ed09bc9e1b1225eb95ba1",
+  "upstream_verification": "lfs-sha256",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "voices/bf_emma.bin",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/voices/bf_emma.bin",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/bf_emma.bin",
+  "bytes": 522240,
+  "sha256": "669fe0647f9dd04fcab92f1439a40eeb4c8b4ab1f82e4996fe3d918ce4a63b73",
+  "upstream_verification": "lfs-sha256",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "onnx-community/Kokoro-82M-v1.0-ONNX",
+  "revision": "1939ad2a8e416c0acfeecc08a694d14ef25f2231",
+  "filename": "voices/bm_george.bin",
+  "url": "https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/1939ad2a8e416c0acfeecc08a694d14ef25f2231/voices/bm_george.bin",
+  "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/bm_george.bin",
+  "bytes": 522240,
+  "sha256": "c4b235a4c1f2cd3b939fed08b899ce9385638b763f7b73a59616c4fc9bd6c9bc",
+  "upstream_verification": "lfs-sha256",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "github:hexgrad/misaki",
+  "revision": "fba1236595f2d2bf21d414ba6e57d25256afada3",
+  "filename": "misaki/data/us_gold.json",
+  "url": "https://raw.githubusercontent.com/hexgrad/misaki/fba1236595f2d2bf21d414ba6e57d25256afada3/misaki/data/us_gold.json",
+  "path": "models/hexgrad--misaki/us_gold.json",
+  "bytes": 3000469,
+  "sha256": "dc414872a49a28ae6c141463d502fd945f3b2fde040484fdc47d00cc4612686f",
+  "upstream_verification": "git-blob-sha1",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "github:hexgrad/misaki",
+  "revision": "fba1236595f2d2bf21d414ba6e57d25256afada3",
+  "filename": "misaki/data/us_silver.json",
+  "url": "https://raw.githubusercontent.com/hexgrad/misaki/fba1236595f2d2bf21d414ba6e57d25256afada3/misaki/data/us_silver.json",
+  "path": "models/hexgrad--misaki/us_silver.json",
+  "bytes": 3099517,
+  "sha256": "de8f67be911bb6c659187b4a65fd966b6a30e56350e0f790d763210b053ac475",
+  "upstream_verification": "git-blob-sha1",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "github:hexgrad/misaki",
+  "revision": "fba1236595f2d2bf21d414ba6e57d25256afada3",
+  "filename": "LICENSE",
+  "url": "https://raw.githubusercontent.com/hexgrad/misaki/fba1236595f2d2bf21d414ba6e57d25256afada3/LICENSE",
+  "path": "models/hexgrad--misaki/LICENSE",
+  "bytes": 11357,
+  "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+  "upstream_verification": "git-blob-sha1",
+  "license": "Apache-2.0"
+ },
+ {
+  "repo": "derived",
+  "filename": "model.onnx",
+  "path": "models/Lens--kokoro-82m-mixed-int8/model.onnx",
+  "bytes": 186743185,
+  "sha256": "ba6b1c3af01d5534fa22db58a44e0a854a0e4633f213769c3036398b4d1897db",
+  "derived_from": {
+   "path": "models/onnx-community--Kokoro-82M-v1.0-ONNX/onnx/model.onnx",
+   "sha256": "8fbea51ea711f2af382e88c833d9e288c6dc82ce5e98421ea61c058ce21a34cb"
+  },
+  "method": "onnxruntime.quantization static QDQ INT8 (per-channel), waveform generator kept FP32",
+  "license": "Apache-2.0"
  }
 ]

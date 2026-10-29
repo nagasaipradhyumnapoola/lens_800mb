@@ -129,6 +129,11 @@
       if (src.language && src.language !== 'und') q.lang = src.language;
       const ep = item.episode;
       node.querySelector('.episode').textContent = ep ? `${appName(ep.application)} session · ${ep.observation_count} views · ${minutes(ep.duration_seconds)}` : '';
+      if (!src.language || src.language === 'en' || src.language === 'und') {  // spoken replies are English-only for now
+        const listen = node.querySelector('.listen-btn'); listen.hidden = false;
+        listen.setAttribute('aria-label', `Listen to this memory from ${appName(src.source_application)}`);
+        listen.addEventListener('click', () => speak(listen, `${appName(src.source_application)}, ${when(src.timestamp)}. ${utf8Prefix(ev.quote || src.text || '', 800)}`));
+      }
       node.querySelector('.source-btn').addEventListener('click', () => openEvidence(src.id, { byte_offset: ev.byte_offset, byte_end: ev.byte_end, quote: ev.quote }));
       node.querySelector('.source-btn').setAttribute('aria-label', `Open evidence from ${appName(src.source_application)}, ${when(src.timestamp)}`);
       const del = node.querySelector('.delete-btn');
@@ -141,6 +146,26 @@
       node.dataset.sourceId = src.id || '';
       results.append(node);
     }
+  }
+
+  // Spoken replies: synthesised locally by the agent (lens-tts); one reply plays at a time, a second click stops it.
+  let speaking = null;
+  function stopSpeaking() {
+    if (!speaking) return;
+    speaking.audio.pause(); URL.revokeObjectURL(speaking.audio.src);
+    speaking.button.textContent = 'Listen'; speaking.button.removeAttribute('aria-pressed'); speaking = null;
+  }
+  async function speak(btn, text) {
+    const again = speaking && speaking.button === btn; stopSpeaking(); if (again) return;
+    btn.disabled = true; btn.textContent = 'Preparing…';
+    const r = await call({ op: 'speak', text });
+    btn.disabled = false;
+    if (!r || !r.ok || !r.audio_base64) { btn.textContent = 'Voice unavailable'; return; }
+    const wav = Uint8Array.from(atob(r.audio_base64), (c) => c.charCodeAt(0));
+    const audio = new Audio(URL.createObjectURL(new Blob([wav], { type: 'audio/wav' })));
+    speaking = { audio, button: btn }; btn.textContent = 'Stop'; btn.setAttribute('aria-pressed', 'true');
+    audio.addEventListener('ended', () => { if (speaking && speaking.audio === audio) stopSpeaking(); });
+    audio.play().catch(() => { stopSpeaking(); btn.textContent = 'Voice unavailable'; });
   }
 
   // ---- Evidence viewer -----------------------------------------------------------------------------------------

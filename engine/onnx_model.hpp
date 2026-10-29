@@ -9,7 +9,8 @@ namespace lens {
 // fatal-only logging). Released with the object so models never stay resident beyond their owner.
 class OnnxModel {
 public:
-    OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads=4);
+    // low_memory: no CPU arena or memory patterns (variable-shape models whose arena would keep every peak shape).
+    OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads=4,bool low_memory=false);
     ~OnnxModel();
     OnnxModel(const OnnxModel&)=delete;
     OnnxModel& operator=(const OnnxModel&)=delete;
@@ -17,6 +18,9 @@ public:
     // Runs one sequence (batch 1) of int64 inputs named in `names`; returns the float output and its shape.
     std::vector<float> run(const std::vector<const char*>& names,const std::vector<const std::vector<std::int64_t>*>& inputs,
                            const char* output,std::vector<std::int64_t>& shape);
+    // Any-shape int64 or float inputs (set exactly one of i64/f32, `count` elements); returns the float output.
+    struct Tensor {const char* name;std::vector<std::int64_t> shape;const std::int64_t* i64=nullptr;const float* f32=nullptr;std::size_t count=0;};
+    std::vector<float> run(const std::vector<Tensor>& inputs,const char* output,std::vector<std::int64_t>& shape);
 private:
     struct State;
     std::unique_ptr<State> state_;

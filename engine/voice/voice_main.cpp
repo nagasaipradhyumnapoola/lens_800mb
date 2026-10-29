@@ -238,6 +238,13 @@ int wmain(int argc,wchar_t** argv) {
         add("zh","dolphin",dolphin/L"model.int8.onnx",dolphin/L"tokens.txt");
         // IndicConformer per-language exports (shared vocabulary); only languages installed on disk are routed.
         for(const char* code:{"hi","bn","te","mr","ta","ur","gu"})add(code,"nemo_ctc",indic/fs::path(code)/L"model.int8.onnx",indic/L"tokens.txt");
+        // Canary-180M-flash (Open ASR LibriSpeech clean/other 1.87/3.83% WER vs whisper base) for English, Spanish, German, French.
+        const auto canary=models/L"csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8";
+        for(const char* code:{"en","es","de","fr"}) {
+            add(code,"canary",canary/L"encoder.int8.onnx",canary/L"tokens.txt");
+            std::error_code ec;if(routes.contains(code)&&fs::is_regular_file(canary/L"decoder.int8.onnx",ec))routes[code]["decoder"]=utf8((canary/L"decoder.int8.onnx").make_preferred().wstring());
+            else routes.erase(code);
+        }
     }
     const bool enrolling=!enroll_path.empty();json profile=nullptr;std::vector<float> owner;
     if(!profile_path.empty()&&!enrolling) {

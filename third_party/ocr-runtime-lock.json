@@ -263,6 +263,15 @@
       "source_config_sha256": "2c719dba044c4e2228aef8ff92f5f575394d75d24c16de096a33b7cfd902f66d",
       "source_weights_sha256": "63853f062a5f4089befc16f565a68277618e0da5cb45468b49d11079de0ada77",
       "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
+    },
+    {
+      "model": "PP-OCRv5_server_det",
+      "path": "models/PaddlePaddle--PP-OCRv5_server_det/inference.onnx",
+      "bytes": 88047983,
+      "sha256": "d5f46afc7a2b7fe5773c4ce6ff05c9e23631eb5de0f59d7a90404d9c49678f3c",
+      "source_config_sha256": "28fb721efc3634fc8aa677e474b9602cb815a91cf569ef357a7a553d7b3ce685",
+      "source_weights_sha256": "183146fe9d9910352f68482f623bcbbb9fa7b9e8fa1463b9ad288cef00524d2d",
+      "exporter": "paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None"
     }
   ],
   "derived": [

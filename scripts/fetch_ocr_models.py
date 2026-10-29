@@ -50,12 +50,13 @@ def export(name,folder):
     subprocess.run([str(ROOT/'.tools/ocr-convert/Scripts/python.exe'),'-m','paddle2onnx.command','--model_dir',str(folder),
                     '--model_filename','inference.json','--params_filename','inference.pdiparams','--save_file',str(output),
                     '--opset_version','17','--optimize_tool','None'],cwd=ROOT,check=True,capture_output=True)
-    config=yaml.safe_load((folder/'inference.yml').read_text(encoding='utf-8'))
-    dict_path=folder/'ctc-dictionary.json'
-    dict_path.write_text(json.dumps(['blank']+config['PostProcess']['character_dict']+[' '],ensure_ascii=False),encoding='utf-8')
+    config=yaml.safe_load((folder/'inference.yml').read_text(encoding='utf-8'));outputs=[output]
+    if 'character_dict' in config['PostProcess']:  # recognisers only; detectors have no dictionary
+        dict_path=folder/'ctc-dictionary.json';outputs.append(dict_path)
+        dict_path.write_text(json.dumps(['blank']+config['PostProcess']['character_dict']+[' '],ensure_ascii=False),encoding='utf-8')
     return [{'model':name,'path':a.relative_to(ROOT).as_posix(),'bytes':a.stat().st_size,'sha256':sha(a.read_bytes()),
              'source_config_sha256':sha((folder/'inference.yml').read_bytes()),'source_weights_sha256':sha((folder/'inference.pdiparams').read_bytes()),
-             'exporter':'paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None'} for a in (output,dict_path)]
+             'exporter':'paddle2onnx 2.1.0, PaddlePaddle 3.1.1, ONNX opset 17, optimize_tool=None'} for a in outputs]
 
 
 def merge(path,new,key):

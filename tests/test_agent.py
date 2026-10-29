@@ -82,4 +82,34 @@ class Agent(unittest.TestCase):
         self.assertEqual(second.returncode,3);self.assertIn('already_running',second.stderr)
 
 
+@unittest.skipUnless((ROOT/'models/Lens--kokoro-82m-mixed-int8/model.onnx').exists(),'speech models not installed')
+class AgentSpeech(unittest.TestCase):
+    def setUp(self):
+        self.tmp=tempfile.TemporaryDirectory();self.data=Path(self.tmp.name);self.name=f'lens-test-{uuid.uuid4().hex[:10]}'
+        (self.data/'config.json').write_text(json.dumps({'speech_idle_seconds':2}),encoding='utf-8')
+        self.agent=subprocess.Popen([str(REL/'lens-agent.exe'),'--data-dir',str(self.data),'--root',str(ROOT),'--pipe-name',self.name],
+                                    stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+        self.pipe=Pipe(self.name)
+
+    def tearDown(self):
+        try:self.pipe.ask({'op':'shutdown'});self.pipe.close()
+        except OSError:pass
+        try:self.agent.wait(timeout=30)
+        except subprocess.TimeoutExpired:self.agent.kill();self.agent.wait()
+        self.tmp.cleanup()
+
+    def test_spoken_reply_over_the_pipe_and_idle_worker_exit(self):
+        import base64,io,soundfile
+        r=self.pipe.ask({'op':'speak','text':'Your meeting with Priya is at 2 pm.','voice':'am_michael'})
+        self.assertTrue(r['ok'],r);audio,rate=soundfile.read(io.BytesIO(base64.b64decode(r['audio_base64'])))
+        self.assertEqual(rate,24000);self.assertGreater(len(audio)/rate,1.5)
+        names=lambda:[p['name'] for p in self.pipe.ask({'op':'diagnostics'})['processes']]
+        self.assertIn('lens-tts.exe',names())
+        self.assertEqual(self.pipe.ask({'op':'speak','text':'hi','voice':'someone_else'})['error'],'unsupported_voice')
+        self.assertEqual(self.pipe.ask({'op':'speak'})['error'],'invalid_request')
+        end=time.time()+20
+        while time.time()<end and 'lens-tts.exe' in names():time.sleep(0.5)
+        self.assertNotIn('lens-tts.exe',names())  # unloaded when idle: Kokoro is not resident between replies
+
+
 if __name__=='__main__':unittest.main()

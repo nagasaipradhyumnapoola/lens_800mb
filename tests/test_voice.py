@@ -194,6 +194,25 @@ class VoiceLanguages(unittest.TestCase):
                 else:self.assertIn(row['error'],['no_speech_found','repetition_rejected','low_confidence_transcript'])
 
 
+CANARY=ROOT/'models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8'
+
+
+@unittest.skipUnless(SHERPA.exists(),'sherpa runtime not present')
+class VoiceCanary(unittest.TestCase):
+    def test_canary_refuses_languages_it_cannot_transcribe(self):
+        req={'consent':True,'audio':str(JFK),'model_type':'canary','language':'hi','model':'x','decoder':'x','tokens':'x','library':str(SHERPA)}
+        p=subprocess.run([str(REL/'lens-sherpa.exe')],input=json.dumps(req)+'\n',capture_output=True,text=True,encoding='utf-8',timeout=60)
+        self.assertEqual(p.returncode,1);self.assertIn('unsupported_language',p.stderr)
+
+    @unittest.skipUnless((CANARY/'decoder.int8.onnx').exists(),'Canary model not present')
+    def test_english_routes_to_canary_with_punctuation(self):
+        p=voice('--consent','--model',BASE,'--input-wav',JFK);self.assertEqual(p.returncode,0,p.stderr)
+        reqs=p.stdout.splitlines();self.assertTrue(reqs);self.assertIn('decoder',json.loads(reqs[0])['asr_routes']['en'])
+        t=engine(reqs[0]+'\n')[0]['transcript']
+        self.assertEqual(t['provider'],'sherpa-onnx-canary-180m-flash');self.assertIn('ask not what your country can do for you',t['text'].lower())
+        self.assertRegex(t['text'],r'^[A-Z].*[.!?]$')  # capitalised and punctuated (use_pnc)
+
+
 class VoiceFilter(unittest.TestCase):
     def test_noise_is_not_stored_as_a_transcript(self):
         # Low noise sent straight to the engine (no VAD): whisper's [BLANK_AUDIO]-style output must never be stored.

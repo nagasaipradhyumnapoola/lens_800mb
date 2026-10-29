@@ -17,11 +17,15 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 REL=ROOT/'build/engine/Release'
 VERSION='0.3.0-dev'
-EXES=['lens-agent.exe','lens-app.exe','lens-engine.exe','lens-mesh.exe','lens-observer.exe','lens-ocr.exe','lens-voice.exe']
+EXES=['lens-agent.exe','lens-app.exe','lens-engine.exe','lens-mesh.exe','lens-observer.exe','lens-ocr.exe','lens-voice.exe','lens-sherpa.exe','lens-tts.exe']
 DLLS=['sqlcipher.dll','libcrypto-3-x64.dll','libssl-3-x64.dll','zstd.dll','whisper.dll','ggml.dll','ggml-base.dll']
 CRT=Path(r'C:\Program Files\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\x64\Microsoft.VC145.CRT')
 OCR_MODELS=['PP-OCRv5_mobile_det','PP-OCRv6_tiny_rec','devanagari_PP-OCRv5_mobile_rec','ta_PP-OCRv5_mobile_rec','te_PP-OCRv5_mobile_rec']
 WHISPER=['ggml-base-q5_1.bin','ggml-tiny-q5_1.bin']
+# English speech: Canary-180M-flash (input, lens-sherpa route) and Kokoro + misaki (spoken replies, lens-tts)
+SPEECH=['models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/','models/Lens--kokoro-82m-mixed-int8/','models/hexgrad--misaki/us_',
+        'models/onnx-community--Kokoro-82M-v1.0-ONNX/tokenizer.json','models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/']
+SHERPA_LIBS=('/lib/sherpa-onnx-c-api.dll','/lib/onnxruntime.dll','/lib/onnxruntime_providers_shared.dll')
 
 
 def sha(p):
@@ -41,7 +45,9 @@ def lock_files():
     out+=[(a['path'],a['sha256']) for a in ocr['runtime_artifacts'] if a['path'].endswith('/onnxruntime.dll')]
     out+=[(e['path'],e['sha256']) for e in ocr['exports'] if e['model'] in OCR_MODELS]
     for e in json.loads((ROOT/'third_party/model-lock.json').read_text(encoding='utf-8')):
-        if e.get('filename') in WHISPER:out.append((e['path'],e['sha256']))
+        if e.get('filename') in WHISPER or e['path'].startswith(tuple(SPEECH)):out.append((e['path'],e['sha256']))
+    sherpa=json.loads((ROOT/'third_party/sherpa-reference-lock.json').read_text(encoding='utf-8'))
+    out+=[(a['path'],a['sha256']) for a in sherpa['runtime_artifacts'] if a['path'].endswith(SHERPA_LIBS)]
     return out
 
 
@@ -61,7 +67,7 @@ def main():
         dst=out/rel;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(src,dst)
     if missing:sys.exit('artifact missing or hash mismatch: '+', '.join(missing))
     (out/'third_party').mkdir(exist_ok=True)
-    for name in ['embedding-lock.json','reranker-lock.json','ocr-runtime-lock.json','model-lock.json','upstream-lock.json','build-lock.json']:
+    for name in ['embedding-lock.json','reranker-lock.json','ocr-runtime-lock.json','model-lock.json','upstream-lock.json','build-lock.json','sherpa-reference-lock.json']:
         shutil.copy2(ROOT/'third_party'/name,out/'third_party'/name)
     shutil.copytree(ROOT/'third_party/licenses',out/'third_party/licenses')
     for doc in ['LICENSES.md']:

@@ -134,6 +134,7 @@ json transcribe_routed(const json& request,const json& route,const std::string& 
                 {"model",validated_string(route.at("model").get<std::string>(),32768)},
                 {"tokens",validated_string(route.at("tokens").get<std::string>(),32768)},
                 {"library",validated_string(route.at("library").get<std::string>(),32768)}};
+    if(route.contains("decoder"))child["decoder"]=validated_string(route.at("decoder").get<std::string>(),32768);  // encoder-decoder models (Canary)
     (void)request;unsigned long code=1;
     const auto out=run_child(sibling(L"lens-sherpa.exe"),child.dump()+"\n",code);
     if(code!=0)throw Error("asr_route_failed");

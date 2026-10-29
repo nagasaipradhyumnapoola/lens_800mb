@@ -1,0 +1,3 @@
+NVIDIA canary-180m-flash (https://huggingface.co/nvidia/canary-180m-flash), licensed under CC-BY-4.0
+(https://creativecommons.org/licenses/by/4.0/). ONNX INT8 export by the k2-fsa/sherpa-onnx project
+(https://huggingface.co/csukuangfj/sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8). Used unmodified.

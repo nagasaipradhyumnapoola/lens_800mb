@@ -1062,3 +1062,61 @@ travel in `metadata`).
   (agent 2.3, engine 12.3, observer 5.6 MB private). A 6-minute run gave 51.2 / 16.8 MB
   (reports/perf/sustained-20261028T060450Z.json). The earlier 318–333 MB idle private readings came from runs without
   per-process private accounting and are superseded; no idle commit owner exists to fix.
+
+## English speech input and spoken replies (2026-10-29) — PARTIAL (functional on H0; installed-footprint gate FAIL)
+
+- Input: NVIDIA Canary-180M-flash (CC-BY-4.0; sherpa-onnx INT8 export, encoder 132.7 MB + decoder 74.4 MB) routed for
+  en/es/de/fr through lens-sherpa (`model_type` canary, punctuation and capitalisation on); whisper base still identifies
+  the language first. Published Open ASR leaderboard WER (model card, not measured here): LibriSpeech clean/other
+  1.87/3.83%, AMI 14.86%, Earnings-22 13.33%. Fetched at pinned revisions with LFS sha256 checks
+  (scripts/fetch_speech_models.py, third_party/model-lock.json). Tests: tests/test_voice.py 18/18 OK (new: English routes
+  to Canary and the JFK clip comes back capitalised and punctuated; Canary refuses languages it cannot transcribe).
+  Not yet measured: WER on LibriSpeech/FLEURS held-out audio, latency and RAM of the routed worker, live microphone.
+- Output: lens-tts (engine/tts_main.cpp, engine/g2p_en.cpp) = misaki US lexicons (Apache-2.0, 90,201 gold + 93,361
+  silver entries; replaces espeak-ng, GPL-3.0) with numbers, ordinals, years, times, money, percentages, "dot" in
+  domains, CamelCase/suffix/compound decomposition, then Kokoro-82M v1.0 (Apache-2.0) through the pinned ONNX Runtime
+  1.24.4, 24 kHz WAV. One worker serves many requests (model loaded once); lens-agent `speak` starts it on first use,
+  verifies every file's sha256 first and stops it after 60 s idle. App: "Listen" on English evidence cards reads
+  "<app>, <when>. <quote>" (no generated text); CSP allows `media-src blob:` only.
+- Model choice (G2P from this pipeline, 4 threads, CPU 26% busy from other apps; intelligibility = Canary transcription
+  of the synthetic speech): upstream dynamic INT8 export 88 MB, real-time factor 1.52 (ConvInteger kernels), correct;
+  FP32 310 MB, RTF 0.53, correct, lens-tts peak 620 MB (554 MB with sentence packing, 521 MB without the CPU arena);
+  static QDQ INT8 of everything 129 MB, RTF 0.32, garbled ("in Chrome" -> "and pronounced"); **Lens mixed export
+  (scripts/export_kokoro.py: static QDQ INT8 except the iSTFTNet generator, FP32) 178 MB, RTF 0.51, 0/25 word errors on
+  2 sentences; lens-tts peak 394 MB working set** (under the 500 MB working target). Chunks pack sentences up to 200
+  phonemes (hard cap 500 of Kokoro's 512).
+- Tests: tests/test_tts.py 4/4 OK (number/symbol reading, worker reuse with model_load < 5 ms on the second request and
+  recovery after bad requests, long reply chunked with peak < 500 MB, Canary hears "document … research paper … chrome …
+  yesterday afternoon"); tests/test_agent.py AgentSpeech OK (audio over the pipe, unknown voice refused, worker exits
+  when idle); tests/test_app.py `test_listen_speaks_the_evidence_locally` OK (headless Edge, autoplay allowed by flag
+  because a scripted click is not a user gesture).
+- Package: scripts/package_lens.py now ships lens-sherpa.exe, lens-tts.exe, the sherpa-onnx runtime DLLs, Canary,
+  Kokoro (mixed) and misaki. **Installed footprint 861,742,126 bytes: FAIL against the 500,000,000-byte gate**
+  (docs/acceptance-gates.md); tests/test_installer.py footprint test fails accordingly, the other 3 installer tests pass.
+- Not done: G2P has no part-of-speech tagging (heteronyms use DEFAULT), unknown words fall back to spelling, English only;
+  real-time factor on low-end CPUs, first-audio latency and listening (MOS) tests not measured.
+
+## Lens-Core answerability head v2 — teacher distillation sweep (2026-10-28/29) — v2c selected, NOT ADOPTED (gate not run)
+
+- Data (lens_model/data/build_distill.py): 26,645-pair language-balanced pool (en 27%), bge-reranker-v2-m3 teacher
+  scores on the RTX 5060 (bf16 off: FP32 inference; content-keyed cache). Defect found and fixed before training: the
+  undamped Platt fit diverged (a = 8.1e7), so every p_teacher was exactly 0 or 1; the fit now uses Platt's smoothed
+  targets, standardized scores and backtracking Newton steps (a = 0.307, b = −0.099, log-loss 0.434; pairs with
+  |gold − teacher| > 0.9: 5,554 → 380), and the build refuses a degenerate calibration.
+- The teacher measures topical relevance, not answer presence: wrong side of 0.5 on 33% of supported windows, 31% of
+  substitution near-misses and 41% of unanswerable near-misses, but ≤ 3% on other-article and long negatives.
+- Training (GPU, bf16 autocast, FP32 master weights; ~2.5 min per run), deployment form = INT8 ONNX on the CPU
+  execution provider only. CPU INT8 results on the comparison sets (reports/lens-model/benchmark/lens-v2*-int8.json):
+
+  | run | init | targets | Lens harness AUC | 17-language macro AUC | Belebele global | SQuAD 2.0 dev |
+  |---|---|---|---:|---:|---:|---:|
+  | v1 (previous) | — | — | 0.825 | 0.783 | 0.665 | 0.931 |
+  | v2a | mmarco | soft, MarginMSE 0.1 | 0.854 | 0.923 | 0.960 | 0.807 |
+  | v2b | mmarco | soft | 0.849 | 0.927 | 0.931 | 0.862 |
+  | **v2c** | v1 | soft, MarginMSE 0.1 | **0.871** | **0.932** | **0.966** | 0.858 |
+  | bge-reranker-v2-m3 (teacher, 1.79 GB) | — | — | 0.923 | 0.924 | 0.986 | 0.788 |
+
+  v2c: 13 ms p50 per pair, benchmark process peak 490 MB working set. Ablations v2d (gold labels on answer-containment
+  kinds) and v2e (gold labels only) trained and scored only on the training-time held-out sets (dev 0.898/0.907 vs v2b
+  0.873); their CPU INT8 runs were not made. Latency numbers of v2a–v2c were taken while GPU training ran (upper bounds).
+- Not done: the M2 answerability gate (correct answered at 5% false answers, 614 questions), engine integration.

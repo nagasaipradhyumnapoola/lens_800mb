@@ -71,6 +71,47 @@ struct Engine {
     }
 };
 
+// Spoken replies (lens-tts): one worker, started on first use and stopped when idle so Kokoro is never resident for
+// long (spec §15). Every file it reads is hash-verified against the lock files once, before the first start.
+struct Speech {
+    Child child;std::mutex lock;std::chrono::steady_clock::time_point last{};json paths;std::string status="not_checked";
+    static inline const std::set<std::string> voices{"af_heart","af_bella","am_michael","bf_emma","bm_george"};
+    bool verify(const fs::path& root) {
+        if(status=="verified")return true;
+        try {
+            json pinned;for(const auto& r:read_json(root/"third_party/model-lock.json"))pinned[r.at("path").get<std::string>()]=r.at("sha256");
+            const auto o=read_json(root/"third_party/ocr-runtime-lock.json");
+            for(const auto& a:o.at("runtime_artifacts"))if(a.at("path").get<std::string>().ends_with("/onnxruntime.dll"))pinned[a.at("path").get<std::string>()]=a.at("sha256");
+            const std::string k="models/onnx-community--Kokoro-82M-v1.0-ONNX/",m="models/hexgrad--misaki/";
+            json p={{"runtime",".tools/ocr-runtime/onnxruntime.dll"},{"model","models/Lens--kokoro-82m-mixed-int8/model.onnx"},{"tokenizer",k+"tokenizer.json"},
+                    {"lexicon",{m+"us_gold.json",m+"us_silver.json"}}};
+            std::vector<std::string> files{p["runtime"],p["model"],p["tokenizer"],p["lexicon"][0],p["lexicon"][1]};
+            for(const auto& v:voices)files.push_back(k+"voices/"+v+".bin");
+            for(const auto& f:files)
+                if(!pinned.contains(f)||file_sha256(root/wide(f))!=pinned[f].get<std::string>())throw std::runtime_error("hash_mismatch:"+f);
+            auto abs=[&](const std::string& f){return utf8((root/wide(f)).make_preferred().wstring());};
+            paths={{"runtime",abs(p["runtime"])},{"model",abs(p["model"])},{"tokenizer",abs(p["tokenizer"])},
+                   {"lexicon",{abs(p["lexicon"][0]),abs(p["lexicon"][1])}},{"voices_dir",abs(k+"voices")}};
+            status="verified";return true;
+        } catch(const std::exception& ex){status=std::string("unavailable: ")+ex.what();return false;}
+    }
+    json speak(const fs::path& root,const fs::path& exe_dir,const json& req) {
+        std::lock_guard g(lock);
+        if(!req.contains("text")||!req["text"].is_string())return {{"ok",false},{"error","invalid_request"}};
+        const auto voice=req.value("voice",std::string("af_heart"));if(!voices.count(voice))return {{"ok",false},{"error","unsupported_voice"}};
+        if(!verify(root))return {{"ok",false},{"error","speech_unavailable"},{"reason",status}};
+        json r={{"text",req["text"]},{"voice",paths["voices_dir"].get<std::string>()+"\\"+voice+".bin"},{"speed",req.value("speed",1.0)},{"threads",4},
+                {"runtime",paths["runtime"]},{"model",paths["model"]},{"tokenizer",paths["tokenizer"]},{"lexicon",paths["lexicon"]}};
+        if(!child.running()&&!child.start((exe_dir/L"lens-tts.exe").wstring(),{}))return {{"ok",false},{"error","speech_unavailable"}};
+        const auto line=child.request(r.dump());last=std::chrono::steady_clock::now();
+        if(!line){child.stop();return {{"ok",false},{"error","speech_unavailable"}};}
+        auto out=json::parse(*line,nullptr,false);return out.is_object()?out:json{{"ok",false},{"error","speech_unavailable"}};
+    }
+    void stop_if_idle(std::chrono::seconds idle) {
+        std::lock_guard g(lock);if(child.running()&&std::chrono::steady_clock::now()-last>idle)child.stop();
+    }
+};
+
 // Engine arguments from the pinned lock files (same model id convention as scripts/lens.ps1). Every artifact is
 // hash-verified; on any mismatch the engine runs keyword-only and the reason is reported in status.
 std::vector<std::wstring> engine_args(const fs::path& root,const fs::path& db,std::string& semantic_status) {
@@ -239,7 +280,7 @@ int wmain(int argc,wchar_t** argv) {
     auto save_config=[&]{std::lock_guard g(config_lock);std::ofstream f(config_path);f<<config.dump(1);};
     auto consent=[&](const char* key){std::lock_guard g(config_lock);return config.value(key,false);};
 
-    std::string semantic;Engine engine;lens::agent::Actions actions(test_capabilities);
+    std::string semantic;Engine engine;Speech speech;lens::agent::Actions actions(test_capabilities);
     if(!engine.child.start((exe_dir/L"lens-engine.exe").wstring(),engine_args(root,data_dir/L"memory.db",semantic))){log({{"event","refused"},{"reason","engine_start_failed"}});return 1;}
     const auto stats=engine.ask({{"op","stats"}});
     if(!stats||!stats->value("ok",false)){log({{"event","refused"},{"reason","database_open_failed"}});return 1;}
@@ -328,6 +369,14 @@ int wmain(int argc,wchar_t** argv) {
             if(const auto r=engine.ask({{"op","consolidate"}}))log({{"event","consolidated"},{"episodes",r->value("episodes",0)}});
             // Embed new observations for semantic recall (models load lazily and unload again when idle).
             if(semantic=="verified")for(int k=0;k<20&&!stopping;++k){const auto r=engine.ask({{"op","index"},{"limit",256}});if(!r||r->value("pending_sources",0)==0)break;}
+        }
+    });
+    std::thread speech_idle([&]{  // the TTS worker exits after 60 s without a spoken reply
+        std::unique_lock l(wake_lock);
+        while(!stopping){
+            wake.wait_for(l,std::chrono::seconds(5));
+            int idle=60;{std::lock_guard g(config_lock);idle=std::max(1,config.value("speech_idle_seconds",60));}
+            speech.stop_if_idle(std::chrono::seconds(idle));
         }
     });
 
@@ -448,6 +497,7 @@ int wmain(int argc,wchar_t** argv) {
         if(op=="import_status")return imports.status(req);
         if(op=="import_cancel")return imports.cancel(req);
         if(op=="import_delete")return imports.remove(req);
+        if(op=="speak")return speech.speak(root,exe_dir,req);
         if(op=="shutdown"){stopping=true;wake.notify_all();return {{"ok",true}};}
         if(!passthrough.count(op))return {{"ok",false},{"error","unsupported_operation"}};
         const auto r=engine.ask(req);return r?*r:json{{"ok",false},{"error","engine_unavailable"}};
@@ -494,7 +544,7 @@ int wmain(int argc,wchar_t** argv) {
     if(tray_thread.joinable()){while(!tray_ready)Sleep(10);if(HWND w=tray_window)PostMessageW(w,WM_CLOSE,0,0);tray_thread.join();}
     stop_mesh();stop_observer();stop_voice();  // the mesh holds a pipe connection of its own; stop children before joining clients
     for(auto& t:clients)if(t.joinable()){CancelSynchronousIo(t.native_handle());t.join();}  // unblock idle clients (e.g. an open app)
-    consolidator.join();imports.cancel_all();engine.child.stop();
+    consolidator.join();speech_idle.join();speech.child.stop();imports.cancel_all();engine.child.stop();
     LocalFree(sa.lpSecurityDescriptor);ReleaseMutex(single);CloseHandle(single);
     log({{"event","stopped"}});
     return 0;

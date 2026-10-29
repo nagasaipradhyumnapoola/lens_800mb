@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <title>Lens</title>
@@ -291,7 +291,7 @@
   <article class="result">
     <header><span class="app"></span><span class="window" dir="auto"></span><time></time></header>
     <blockquote class="quote" dir="auto"></blockquote>
-    <footer><span class="episode"></span><span class="spacer"></span><button class="link source-btn">Open evidence</button><button class="link danger delete-btn">Delete</button></footer>
+    <footer><span class="episode"></span><span class="spacer"></span><button class="link listen-btn" hidden>Listen</button><button class="link source-btn">Open evidence</button><button class="link danger delete-btn">Delete</button></footer>
   </article>
 </template>
 <script src="qr.js"></script>

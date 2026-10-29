@@ -89,6 +89,14 @@ window.__lensMock = (req) => {
   if (req.op === 'set_autostart') { __state.autostart = req.enabled; return { ok: true, autostart: req.enabled }; }
   if (req.op === 'pause' || req.op === 'resume') { __state.paused = req.op === 'pause'; return { ok: true, paused: __state.paused }; }
   if (req.op === 'recall' && req.query === 'nothing') return { ok: true, not_found: true, results: [] };
+  if (req.op === 'recall' && req.query === 'telugu') return { ok: true, not_found: false, results: [{ source: { id: 's9', text: 'తెలుగు', language: 'te',
+      timestamp: '2026-10-27T09:30:00Z', source_application: 'chrome.exe' }, evidence: { quote: 'తెలుగు' } }] };
+  if (req.op === 'speak') {  // 0.1 s of silence at 24 kHz, 16-bit mono
+    const n = 2400, b = new Uint8Array(44 + 2 * n), v = new DataView(b.buffer), s = (o, t) => [...t].forEach((c, i) => b[o + i] = c.charCodeAt(0));
+    s(0, 'RIFF'); v.setUint32(4, 36 + 2 * n, true); s(8, 'WAVEfmt '); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, 24000, true); v.setUint32(28, 48000, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); s(36, 'data'); v.setUint32(40, 2 * n, true);
+    return { ok: true, sample_rate: 24000, duration_s: 0.1, audio_base64: btoa(String.fromCharCode(...b)) };
+  }
   if (req.op === 'recall') return { ok: true, not_found: false, results: [{
       source: { id: 's1', text: 'FULL <img src=x onerror="window.__pwned=1"> text', timestamp: '2026-10-27T09:30:00Z', source_application: 'chrome.exe', source_locator: 'window:Paper <b>bold</b> - Chrome' },
       evidence: { quote: 'Quote <script>window.__pwned=2</script> and <img src=x onerror="window.__pwned=3">', byte_offset: hs, byte_end: he },
@@ -204,6 +212,7 @@ def run_in_headless_edge(test,scenario,preset=''):
         html=(d/'index.html').read_text(encoding='utf-8').replace('<script src="app.js"></script>','<script src="mock.js"></script><script src="app.js"></script><script src="scenario.js"></script>')
         (d/'harness.html').write_text(html,encoding='utf-8')
         p=subprocess.run([str(EDGE),'--headless=new','--disable-gpu','--no-first-run','--disable-extensions',f'--user-data-dir={Path(tmp)/"profile"}',
+                          '--autoplay-policy=no-user-gesture-required',  # a scripted click is not a user gesture; a real one is
                           '--allow-file-access-from-files','--window-size=1280,900','--virtual-time-budget=20000','--dump-dom',(d/'harness.html').as_uri()],
                          capture_output=True,text=True,encoding='utf-8',timeout=120)
         m=re.search(r'<pre id="scenario-result">(.*?)</pre>',p.stdout,re.S);test.assertTrue(m,p.stdout[-2000:]+p.stderr[-1000:])
@@ -212,7 +221,34 @@ def run_in_headless_edge(test,scenario,preset=''):
         return out
 
 
+LISTEN=r"""
+(async () => {
+  const out = {};
+  const settle = () => new Promise((r) => setTimeout(r, 50));
+  try {
+    await settle();
+    document.getElementById('ask-input').value = 'paper i read'; document.getElementById('ask-form').requestSubmit(); await settle();
+    const btn = document.querySelector('.result .listen-btn');
+    out.visible = !btn.hidden; out.label = btn.getAttribute('aria-label');
+    btn.click(); await settle(); await settle();
+    const calls = window.__calls.filter((c) => c.op === 'speak'); out.speak_calls = calls.length; out.text = calls.length ? calls[0].text : '';
+    out.after = btn.textContent; out.injected = document.querySelectorAll('.results img, .results script').length; out.pwned = window.__pwned || 0;
+    document.getElementById('ask-input').value = 'telugu'; document.getElementById('ask-form').requestSubmit(); await settle();
+    out.non_english_hidden = document.querySelector('.result .listen-btn').hidden;
+  } catch (e) { out.error = String(e && e.stack || e); }
+  const pre = document.createElement('pre'); pre.id = 'scenario-result'; pre.textContent = JSON.stringify(out); document.body.append(pre);
+})();
+"""
+
+
 class AppUi(unittest.TestCase):
+    def test_listen_speaks_the_evidence_locally(self):
+        out=run_in_headless_edge(self,LISTEN)
+        self.assertTrue(out['visible']);self.assertIn('Chrome',out['label']);self.assertEqual(out['speak_calls'],1)
+        self.assertTrue(out['text'].startswith('Chrome, '));self.assertIn('Quote <script>',out['text'])  # the evidence quote, spoken as plain text
+        self.assertIn(out['after'],['Stop','Listen']);self.assertEqual((out['injected'],out['pwned']),(0,0))  # Listen again once 0.1 s has played
+        self.assertTrue(out['non_english_hidden'])
+
     def test_ui_behaviour_in_headless_edge(self):
         out=run_in_headless_edge(self,SCENARIO)
         self.assertEqual(out['results'],1);self.assertEqual(out['injected_elements'],0);self.assertEqual(out['pwned'],0)

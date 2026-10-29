@@ -5,7 +5,16 @@
 #include "input.hpp"
 #include <windows.h>
 namespace lens {
-namespace {void quiet(void*,OrtLoggingLevel,const char*,const char*,const char*,const char*){}}
+namespace {
+void quiet(void*,OrtLoggingLevel,const char*,const char*,const char*,const char*){}
+std::vector<float> output_of(std::vector<Ort::Value>&& result,std::vector<std::int64_t>& shape){
+    auto info=result[0].GetTensorTypeAndShapeInfo();
+    if(info.GetElementType()!=ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT)throw Error("onnx_output_type_mismatch");
+    shape=info.GetShape();
+    const float* data=result[0].GetTensorData<float>();
+    return std::vector<float>(data,data+info.GetElementCount());
+}
+}
 struct OnnxModel::State {
     HMODULE module{};
     std::unique_ptr<Ort::Env> env;
@@ -14,7 +23,7 @@ struct OnnxModel::State {
     ~State(){session.reset();env.reset();if(module)FreeLibrary(module);}
 };
 
-OnnxModel::OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads):state_(std::make_unique<State>()){
+OnnxModel::OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads,bool low_memory):state_(std::make_unique<State>()){
     state_->module=LoadLibraryExW(runtime.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
     if(!state_->module)throw Error("onnx_runtime_unavailable");
     using GetBase=const OrtApiBase*(ORT_API_CALL*)();
@@ -26,6 +35,7 @@ OnnxModel::OnnxModel(const std::filesystem::path& runtime,const std::filesystem:
     state_->env->DisableTelemetryEvents();
     Ort::SessionOptions options;options.SetIntraOpNumThreads(threads);options.SetInterOpNumThreads(1);
     options.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_ALL);
+    if(low_memory){options.DisableCpuMemArena();options.DisableMemPattern();}
     state_->session=std::make_unique<Ort::Session>(*state_->env,model.c_str(),options);
     Ort::AllocatorWithDefaultOptions allocator;
     for(std::size_t i=0;i<state_->session->GetInputCount();++i)state_->inputs.emplace_back(state_->session->GetInputNameAllocated(i,allocator).get());
@@ -46,12 +56,19 @@ std::vector<float> OnnxModel::run(const std::vector<const char*>& names,const st
         if(v->size()!=inputs[0]->size())throw Error("onnx_invalid_inputs");
         values.push_back(Ort::Value::CreateTensor<std::int64_t>(memory,const_cast<std::int64_t*>(v->data()),v->size(),dims.data(),dims.size()));
     }
-    const char* outputs[]={output};
-    auto result=state_->session->Run(Ort::RunOptions{nullptr},names.data(),values.data(),values.size(),outputs,1);
-    auto info=result[0].GetTensorTypeAndShapeInfo();
-    if(info.GetElementType()!=ONNX_TENSOR_ELEMENT_DATA_TYPE_FLOAT)throw Error("onnx_output_type_mismatch");
-    shape=info.GetShape();
-    const float* data=result[0].GetTensorData<float>();
-    return std::vector<float>(data,data+info.GetElementCount());
+    return output_of(state_->session->Run(Ort::RunOptions{nullptr},names.data(),values.data(),values.size(),&output,1),shape);
+}
+
+std::vector<float> OnnxModel::run(const std::vector<Tensor>& inputs,const char* output,std::vector<std::int64_t>& shape){
+    auto memory=Ort::MemoryInfo::CreateCpu(OrtArenaAllocator,OrtMemTypeDefault);
+    std::vector<Ort::Value> values;std::vector<const char*> names;
+    for(const auto& t:inputs){
+        std::int64_t n=1;for(auto d:t.shape)n*=d;
+        if((t.i64==nullptr)==(t.f32==nullptr)||n!=static_cast<std::int64_t>(t.count))throw Error("onnx_invalid_inputs");
+        names.push_back(t.name);
+        values.push_back(t.i64?Ort::Value::CreateTensor<std::int64_t>(memory,const_cast<std::int64_t*>(t.i64),t.count,t.shape.data(),t.shape.size())
+                              :Ort::Value::CreateTensor<float>(memory,const_cast<float*>(t.f32),t.count,t.shape.data(),t.shape.size()));
+    }
+    return output_of(state_->session->Run(Ort::RunOptions{nullptr},names.data(),values.data(),values.size(),&output,1),shape);
 }
 }
