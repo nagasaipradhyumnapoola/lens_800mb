@@ -39,6 +39,31 @@ def batches(rows,size,rng,shuffle=True):
     return out
 
 
+def grouped_batches(rows,size,rng):
+    """Batches made of whole question groups (same group and question), so supported and near-miss evidence for one
+    question meet in one batch for the margin term; groups are length-bucketed like batches() to limit padding."""
+    by={};[by.setdefault(r['group']+'|'+r['q'],[]).append(i) for i,r in enumerate(rows)]
+    groups=list(by.values());rng.shuffle(groups);out=[]
+    for c in range(0,len(groups),size*20):
+        part=sorted(groups[c:c+size*20],key=lambda g:sum(len(rows[k]['q'])+len(rows[k]['e']) for k in g)/len(g));cur=[]
+        for g in part:
+            if cur and len(cur)+len(g)>size:out.append(cur);cur=[]
+            cur+=g[:size]
+        if cur:out.append(cur)
+    rng.shuffle(out);return out
+
+
+def margin_loss(logits,rows,ids):
+    """MarginMSE (Hofstätter et al., 2020): within each question, the student's logit gap between supported and
+    unsupported evidence regresses to the teacher's calibrated logit gap. Ranking signal; BCE keeps calibration."""
+    t=torch.tensor([math.log(min(max(rows[i]['p_teacher'],1e-4),1-1e-4)/(1-min(max(rows[i]['p_teacher'],1e-4),1-1e-4))) for i in ids])
+    key=[rows[i]['group']+'|'+rows[i]['q'] for i in ids];gold=[rows[i].get('y_gold',rows[i]['y']) for i in ids];terms=[]
+    for a in range(len(ids)):
+        for b in range(len(ids)):
+            if key[a]==key[b] and gold[a]==1 and gold[b]==0:terms.append(((logits[a]-logits[b])-(t[a]-t[b]))**2)
+    return torch.stack(terms).mean() if terms else logits.sum()*0
+
+
 def encode(tok,rows,ids,max_len):
     b=[rows[i] for i in ids]
     enc=tok([r['q'] for r in b],[r['e'] for r in b],truncation='longest_first',max_length=max_len,padding=True,return_tensors='pt')
@@ -76,12 +101,16 @@ def main():
     ap.add_argument('--threads',type=int,default=8);ap.add_argument('--seed',type=int,default=20261027);ap.add_argument('--name',default='answerability-v0')
     ap.add_argument('--init',type=Path,default=INIT,help='checkpoint to start from (default: the shipped reranker)')
     ap.add_argument('--train-data',type=Path,default=DATA,help='folder holding train.jsonl (dev/held-out always from answerability-v0)')
+    ap.add_argument('--margin-weight',type=float,default=0.0,help='weight of the MarginMSE term on teacher logit gaps (needs p_teacher rows)')
     args=ap.parse_args();args.init=args.init.resolve() if args.init.exists() else args.init;args.train_data=args.train_data.resolve();torch.manual_seed(args.seed);rng=random.Random(args.seed);torch.set_num_threads(args.threads)
     tok=AutoTokenizer.from_pretrained(args.init);model=AutoModelForSequenceClassification.from_pretrained(args.init,num_labels=1)
     for p in model.base_model.embeddings.word_embeddings.parameters():p.requires_grad=False
     trainable=[p for p in model.parameters() if p.requires_grad]
     train,dev=load('train',args.train_data),load('dev');held={n:load(n) for n in ('indicqa_heldout','xquad_heldout')}
-    plan=[b for e in range(math.ceil(args.epochs)) for b in batches(train,args.batch,rng)][:int(len(train)/args.batch*args.epochs)]
+    distil=args.margin_weight>0
+    if distil and not all('p_teacher' in r for r in train):raise SystemExit('--margin-weight needs teacher-scored rows (lens_model/data/build_distill.py)')
+    make=grouped_batches if distil else batches
+    plan=[b for e in range(math.ceil(args.epochs)) for b in make(train,args.batch,rng)][:int(len(train)/args.batch*args.epochs)]
     if args.max_steps:plan=plan[:args.max_steps]
     opt=torch.optim.AdamW(trainable,lr=args.lr,weight_decay=0.01);warm=max(1,int(0.05*len(plan)))
     sched=torch.optim.lr_scheduler.LambdaLR(opt,lambda k:min((k+1)/warm,max(0.0,(len(plan)-k)/max(1,len(plan)-warm))))
@@ -91,7 +120,9 @@ def main():
     model.train();t0=time.perf_counter()
     for step,ids in enumerate(plan,1):
         enc,y=encode(tok,train,ids,args.max_len)
-        loss=lossf(model(**enc).logits[:,0],y);loss.backward()
+        logits=model(**enc).logits[:,0];loss=lossf(logits,y)
+        if distil:loss=loss+args.margin_weight*margin_loss(logits,train,ids)
+        loss.backward()
         torch.nn.utils.clip_grad_norm_(trainable,1.0);opt.step();sched.step();opt.zero_grad(set_to_none=True)
         peak=max(peak,proc.memory_info().rss)
         if step%50==0 or step==len(plan):

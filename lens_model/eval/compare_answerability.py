@@ -119,10 +119,12 @@ def make(name):
     table={
         'lens-v0-int8':lambda:OnnxCrossEncoder(ONNX/'answerability-v0/model_int8.onnx',ONNX/'answerability-v0/tokenizer.json',MAXLEN),
         'lens-v1-int8':lambda:OnnxCrossEncoder(ONNX/'answerability-v1/model_int8.onnx',ONNX/'answerability-v1/tokenizer.json',MAXLEN),
+        'lens-v2-int8':lambda:OnnxCrossEncoder(ONNX/'answerability-v2/model_int8.onnx',ONNX/'answerability-v2/tokenizer.json',MAXLEN),
         'mmarco-int8':lambda:OnnxCrossEncoder(mm/'onnx/model_qint8_avx512_vnni.onnx',mm/'tokenizer.json',MAXLEN),
         'qa-xlmr-int8':lambda:OnnxCrossEncoder(qa_dir/'onnx/model_int8.onnx',qa_dir/'tokenizer.json',384,qa=True),
         'lens-v0':lambda:TorchCrossEncoder(CKPT/'answerability-v0',MAXLEN),
         'lens-v1':lambda:TorchCrossEncoder(CKPT/'answerability-v1',MAXLEN),
+        'lens-v2':lambda:TorchCrossEncoder(CKPT/'answerability-v2',MAXLEN),
         'mmarco':lambda:TorchCrossEncoder(mm,MAXLEN),
         'bge-reranker-v2-m3':lambda:TorchCrossEncoder(BASE/'BAAI--bge-reranker-v2-m3',512),
         'qwen3-reranker-0.6b':lambda:TorchYesNo(BASE/'Qwen--Qwen3-Reranker-0.6B',True),
