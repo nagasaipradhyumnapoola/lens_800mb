@@ -63,8 +63,9 @@ std::mutex log_lock;
 void log(const json& j){std::lock_guard g(log_lock);std::cerr<<j.dump()<<'\n';std::cerr.flush();}  // never memory content
 
 struct Engine {
-    Child child;std::mutex lock;
+    Child child;std::mutex lock;std::function<void(const json&)> before;  // resource governor hook (spec §15)
     std::optional<json> ask(const json& req) {
+        if(before)before(req);
         std::lock_guard g(lock);const auto line=child.request(req.dump());
         if(!line)return std::nullopt;
         return json::parse(*line,nullptr,false);
@@ -75,6 +76,8 @@ struct Engine {
 // long (spec §15). Every file it reads is hash-verified against the lock files once, before the first start.
 struct Speech {
     Child child;std::mutex lock;std::chrono::steady_clock::time_point last{};json paths;std::string status="not_checked";
+    // Kokoro (~394 MB) never shares RAM with another heavy model: on_start frees the others, on_stop lets them back.
+    std::function<void()> on_start,on_stop;
     static inline const std::set<std::string> voices{"af_heart","af_bella","am_michael","bf_emma","bm_george"};
     bool verify(const fs::path& root) {
         if(status=="verified")return true;
@@ -102,14 +105,20 @@ struct Speech {
         if(!verify(root))return {{"ok",false},{"error","speech_unavailable"},{"reason",status}};
         json r={{"text",req["text"]},{"voice",paths["voices_dir"].get<std::string>()+"\\"+voice+".bin"},{"speed",req.value("speed",1.0)},{"threads",4},
                 {"runtime",paths["runtime"]},{"model",paths["model"]},{"tokenizer",paths["tokenizer"]},{"lexicon",paths["lexicon"]}};
-        if(!child.running()&&!child.start((exe_dir/L"lens-tts.exe").wstring(),{}))return {{"ok",false},{"error","speech_unavailable"}};
+        if(!child.running()) {
+            if(on_start)on_start();
+            if(!child.start((exe_dir/L"lens-tts.exe").wstring(),{})){if(on_stop)on_stop();return {{"ok",false},{"error","speech_unavailable"}};}
+        }
         const auto line=child.request(r.dump());last=std::chrono::steady_clock::now();
-        if(!line){child.stop();return {{"ok",false},{"error","speech_unavailable"}};}
+        if(!line){stop_locked();return {{"ok",false},{"error","speech_unavailable"}};}
         auto out=json::parse(*line,nullptr,false);return out.is_object()?out:json{{"ok",false},{"error","speech_unavailable"}};
     }
     void stop_if_idle(std::chrono::seconds idle) {
-        std::lock_guard g(lock);if(child.running()&&std::chrono::steady_clock::now()-last>idle)child.stop();
+        std::lock_guard g(lock);if(child.running()&&std::chrono::steady_clock::now()-last>idle)stop_locked();
     }
+    void stop(){std::lock_guard g(lock);if(child.running())stop_locked();}
+private:
+    void stop_locked(){child.stop();if(on_stop)on_stop();}
 };
 
 // Engine arguments from the pinned lock files (same model id convention as scripts/lens.ps1). Every artifact is
@@ -321,9 +330,22 @@ int wmain(int argc,wchar_t** argv) {
             long long ms=0;const auto r=timed_ask(req,ms);if(r&&r->value("ok",false))++stored;else ++failed;
             note_capture("screen",req,r,ms);
         });
+        if(speech.child.running())observer.send("hold_ocr");  // a spoken reply is using the heavy-model budget
         log({{"event","observer_started"}});
     };
     auto stop_observer=[&]{std::lock_guard g(observer_lock);if(observer.running()){observer.stop();log({{"event","observer_stopped"}});}};
+    // Resource governor (spec §15, 500 MB for the whole tree): the TTS worker never runs beside the engine's retrieval
+    // models or the OCR worker. Speaking unloads the first and holds the second; any engine request that loads a model
+    // stops the TTS worker first, which releases the OCR hold.
+    speech.on_start=[&]{
+        engine.ask({{"op","unload_models"}});
+        std::lock_guard g(observer_lock);if(observer.running())observer.send("hold_ocr");
+    };
+    speech.on_stop=[&]{std::lock_guard g(observer_lock);if(observer.running())observer.send("release_ocr");};
+    engine.before=[&](const json& r){
+        static const std::set<std::string> loads_models{"recall","search","retrieve_context","index","ingest_audio"};
+        if(r.is_object()&&loads_models.count(r.value("op",std::string())))speech.stop();
+    };
     if(consent("observe_screen"))start_observer();
 
     // Voice capture (lens-voice): the default microphone, only while microphone consent is on and not paused. Speech

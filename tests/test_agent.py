@@ -111,5 +111,17 @@ class AgentSpeech(unittest.TestCase):
         while time.time()<end and 'lens-tts.exe' in names():time.sleep(0.5)
         self.assertNotIn('lens-tts.exe',names())  # unloaded when idle: Kokoro is not resident between replies
 
+    def test_governor_keeps_speech_and_retrieval_models_apart(self):
+        add={'op':'add','consent':True,'id':'g1','text':'Synthetic note: the Brightwater audit moved to Tuesday.','language':'en',
+             'timestamp':'2026-10-29T09:00:00Z','device':'laptop','kind':'note','provenance':'test'}
+        self.assertTrue(self.pipe.ask(add)['ok']);self.pipe.ask({'op':'index','limit':16})
+        if not self.pipe.ask({'op':'stats'}).get('models_loaded'):self.skipTest('semantic models not installed')
+        names=lambda:[p['name'] for p in self.pipe.ask({'op':'diagnostics'})['processes']]
+        self.assertTrue(self.pipe.ask({'op':'speak','text':'The audit moved to Tuesday.'})['ok'])
+        self.assertFalse(self.pipe.ask({'op':'stats'})['models_loaded'])  # retrieval models unloaded before Kokoro loaded
+        self.assertIn('lens-tts.exe',names())
+        self.assertTrue(self.pipe.ask({'op':'recall','query':'when is the Brightwater audit','limit':3})['ok'])
+        self.assertNotIn('lens-tts.exe',names())  # a model-loading request stops the speech worker first
+
 
 if __name__=='__main__':unittest.main()

@@ -187,6 +187,8 @@ int wmain(int argc,wchar_t** argv) {
     if(FAILED(CoInitializeEx(nullptr,COINIT_MULTITHREADED)))return 1;
 
     std::atomic<bool> paused=false,stopping=false,status_requested=false;
+    // hold_ocr: the agent needs the RAM for another heavy model (spec §15: one at a time); UIA capture continues.
+    std::atomic<bool> ocr_held=false;
     std::thread control([&] {
         std::string line;
         while(!stopping&&std::getline(std::cin,line)) {
@@ -195,6 +197,8 @@ int wmain(int argc,wchar_t** argv) {
             op.erase(op.find_last_not_of(" \r\n\t")+1);
             if(op=="pause"){paused=true;status({{"event","paused"}});}
             else if(op=="resume"){paused=false;status({{"event","resumed"}});}
+            else if(op=="hold_ocr"){ocr_held=true;status({{"event","ocr_held"}});}
+            else if(op=="release_ocr"){ocr_held=false;status({{"event","ocr_released"}});}
             else if(op=="status")status_requested=true;
             else if(op=="stop")break;
         }
@@ -317,7 +321,7 @@ int wmain(int argc,wchar_t** argv) {
                     {"skipped",skipped},{"interval_ms",interval},{"throttle",throttle},{"cpu_percent",std::round(cpu_percent*10)/10},{"last_extract",last_extract}});
         }
         // Release the OCR worker (and its models) after a quiet period; it restarts on the next OCR need.
-        if(ocr_worker.running()&&GetTickCount64()-ocr_worker.last_used()>static_cast<ULONGLONG>(config.ocr_idle_ms))ocr_worker.stop();
+        if(ocr_worker.running()&&(ocr_held||GetTickCount64()-ocr_worker.last_used()>static_cast<ULONGLONG>(config.ocr_idle_ms)))ocr_worker.stop();
         if(paused)continue;
         HWND w=nullptr;
         if(follow_pid){FindPid f{follow_pid};EnumWindows(find_pid_window,reinterpret_cast<LPARAM>(&f));w=f.found;}
@@ -343,6 +347,9 @@ int wmain(int argc,wchar_t** argv) {
         const auto body=utf8(text.text);
         const long long uia_chars=static_cast<long long>(text.text.size())-static_cast<long long>(title.size());
         bool fresh=false;
+        if(!config.ocr.is_null()&&(!text.available||uia_chars<config.min_uia_chars)&&ocr_held) {
+            ++skipped["ocr_deferred"];schedule(settle_poll);continue;  // retried once the hold is released
+        }
         if(!config.ocr.is_null()&&(!text.available||uia_chars<config.min_uia_chars)) {
             // OCR fallback: capture in memory; once the frame has settled, OCR only what changed since the last OCR.
             const auto frame=lens::observe::capture_window(w);

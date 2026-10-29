@@ -1133,3 +1133,18 @@ travel in `metadata`).
   resource governor is required before any 500 MB claim. Code, gates and tests now use 500 MB (agent diagnostics
   ceiling, app meter, scripts/profile_combined.py, sustained/real-screen runs, tests/test_app.py) and 1 GB for the
   package (tests/test_installer.py).
+
+## Resource governor v1: spoken replies run alone (2026-10-29) — PASS (functional, H0)
+
+- lens-agent keeps the Kokoro worker (lens-tts, ~394 MB) apart from every other heavy model: before it starts, the
+  engine unloads its retrieval models (`unload_models`) and the observer receives `hold_ocr` (its OCR worker exits,
+  OCR-only windows are deferred and counted as `ocr_deferred`, UI Automation capture continues); any engine request
+  that loads a model (recall, search, retrieve_context, index, ingest_audio) stops the TTS worker first, which sends
+  `release_ocr`. An observer started while a reply is loaded starts held.
+- Tests: tests/test_agent.py `test_governor_keeps_speech_and_retrieval_models_apart` (engine `models_loaded` false after
+  `speak`, lens-tts gone after the next recall), tests/test_observer.py `test_ocr_hold_frees_the_worker_and_defers_ocr_until_release`
+  (no OCR worker and no OCR record while held, the deferred change is captured after release); test_agent 5/5,
+  test_observer 28/28 OK.
+- Not covered: the engine's retrieval models (peak 323 MB on H0) and the OCR worker (≤ 141 MB at 4K) may still be
+  resident together (≈ 518 MB with the idle tree in the worst case) — to be removed by the shared Lens-Core trunk or a
+  second governor rule; whole-tree 500 MB not yet re-measured with the governor.

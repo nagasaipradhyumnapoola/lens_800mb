@@ -311,6 +311,16 @@ class Observer(unittest.TestCase):
         a.stop();time.sleep(9)  # window gone: no OCR requests, so the worker must be released
         self.assertEqual([c for c in psutil.Process(o.p.pid).children() if c.name().lower()=='lens-ocr.exe'],[])
 
+    def test_ocr_hold_frees_the_worker_and_defers_ocr_until_release(self):
+        import psutil
+        a=self.painted_app('Synthetic canvas note: invoice 7310 due Monday')
+        o=self.observer(a,{'ocr':self.OCR,'min_interval_ms':500,'max_interval_ms':1000})
+        self.assertIn('invoice',json.loads(o.out.get(timeout=20))['text'])
+        o.send('hold_ocr');a.send('set Synthetic canvas note: invoice 7310 due Friday')
+        self.assertEqual(self.records(o,4),[])  # deferred while another heavy model holds the RAM budget
+        self.assertEqual([c for c in psutil.Process(o.p.pid).children() if c.name().lower()=='lens-ocr.exe'],[])
+        o.send('release_ocr');self.assertIn('Friday',json.loads(o.out.get(timeout=30))['text'])
+
     def test_without_ocr_config_text_invisible_to_uia_is_not_captured(self):
         a=self.painted_app('Synthetic canvas note: invoice 7310 due Monday')
         for r in self.records(self.observer(a),4):self.assertNotIn('invoice',r['text'])
