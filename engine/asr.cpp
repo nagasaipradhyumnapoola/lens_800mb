@@ -10,7 +10,7 @@
 #include "whisper.h"
 #include "common-whisper.h"
 #include "ggml_cpu_dispatch.hpp"
-#include <wincrypt.h>
+#include "platform.hpp"
 #define MA_NO_DEVICE_IO
 #define MA_NO_THREADING
 #define MA_NO_ENCODING
@@ -101,32 +101,6 @@ bool repetition_loop(const std::string& text) {
     return false;
 }
 
-std::string run_child(const std::filesystem::path& exe,const std::string& input,unsigned long& exit_code) {
-    SECURITY_ATTRIBUTES sa{sizeof sa,nullptr,TRUE};HANDLE in_r{},in_w{},out_r{},out_w{};
-    if(!CreatePipe(&in_r,&in_w,&sa,0))throw Error("asr_route_failed");
-    if(!CreatePipe(&out_r,&out_w,&sa,0)){CloseHandle(in_r);CloseHandle(in_w);throw Error("asr_route_failed");}
-    SetHandleInformation(in_w,HANDLE_FLAG_INHERIT,0);SetHandleInformation(out_r,HANDLE_FLAG_INHERIT,0);
-    STARTUPINFOW si{};si.cb=sizeof si;si.dwFlags=STARTF_USESTDHANDLES;si.hStdInput=in_r;si.hStdOutput=out_w;si.hStdError=out_w;
-    PROCESS_INFORMATION pi{};std::wstring cmd=L"\""+exe.wstring()+L"\"";
-    const bool started=CreateProcessW(exe.c_str(),cmd.data(),nullptr,nullptr,TRUE,CREATE_NO_WINDOW,nullptr,nullptr,&si,&pi);
-    CloseHandle(in_r);CloseHandle(out_w);
-    if(!started){CloseHandle(in_w);CloseHandle(out_r);throw Error("asr_route_unavailable");}
-    std::thread writer([&] {
-        size_t at=0;
-        while(at<input.size()){DWORD n=0;if(!WriteFile(in_w,input.data()+at,static_cast<DWORD>(std::min<size_t>(input.size()-at,65536)),&n,nullptr))break;at+=n;}
-        CloseHandle(in_w);
-    });
-    std::string out;char buf[65536];DWORD n=0;
-    while(ReadFile(out_r,buf,sizeof buf,&n,nullptr)&&n){out.append(buf,n);if(out.size()>4*1024*1024)break;}
-    writer.join();CloseHandle(out_r);
-    if(WaitForSingleObject(pi.hProcess,300000)!=WAIT_OBJECT_0)TerminateProcess(pi.hProcess,1);
-    exit_code=1;GetExitCodeProcess(pi.hProcess,&exit_code);CloseHandle(pi.hProcess);CloseHandle(pi.hThread);
-    return out;
-}
-std::filesystem::path sibling(const wchar_t* name) {
-    std::wstring self(32768,L'\0');self.resize(GetModuleFileNameW(nullptr,self.data(),static_cast<DWORD>(self.size())));
-    return std::filesystem::path(self).parent_path()/name;
-}
 // The routed model in its own process (lens-sherpa), fed the request's audio over stdin.
 json transcribe_routed(const json& request,const json& route,const std::string& language,const std::string& audio_base64) {
     json child={{"consent",true},{"audio_base64",audio_base64},{"language",language},
@@ -135,9 +109,11 @@ json transcribe_routed(const json& request,const json& route,const std::string& 
                 {"tokens",validated_string(route.at("tokens").get<std::string>(),32768)},
                 {"library",validated_string(route.at("library").get<std::string>(),32768)}};
     if(route.contains("decoder"))child["decoder"]=validated_string(route.at("decoder").get<std::string>(),32768);  // encoder-decoder models (Canary)
-    (void)request;unsigned long code=1;
-    const auto out=run_child(sibling(L"lens-sherpa.exe"),child.dump()+"\n",code);
+    (void)request;int code=1;
+    const auto run=platform::run_child(platform::sibling("lens-sherpa"),child.dump()+"\n",code);
+    if(!run)throw Error("asr_route_unavailable");
     if(code!=0)throw Error("asr_route_failed");
+    const auto& out=*run;
     const auto start=out.find('{');if(start==std::string::npos)throw Error("asr_route_failed");
     auto result=json::parse(out.substr(start),nullptr,false);
     if(!result.is_object()||!result.value("ok",false))throw Error("asr_route_failed");
@@ -149,11 +125,9 @@ json transcribe(const json& request) {
     // "audio": path to an audio file, or "audio_base64": encoded audio bytes (live capture; never written to disk).
     std::vector<char> bytes;std::string audio_base64;
     if(request.contains("audio_base64")) {
-        audio_base64=request.at("audio_base64").get<std::string>();const auto& text=audio_base64;DWORD size=0;
-        if(text.size()>90000000||!CryptStringToBinaryA(text.data(),static_cast<DWORD>(text.size()),CRYPT_STRING_BASE64,nullptr,&size,nullptr,nullptr))throw Error("audio_decode_failed");
-        bytes.resize(size);
-        if(!CryptStringToBinaryA(text.data(),static_cast<DWORD>(text.size()),CRYPT_STRING_BASE64,reinterpret_cast<BYTE*>(bytes.data()),&size,nullptr,nullptr))throw Error("audio_decode_failed");
-        bytes.resize(size);
+        audio_base64=request.at("audio_base64").get<std::string>();
+        if(audio_base64.size()>90000000)throw Error("audio_decode_failed");
+        try{bytes=platform::base64_decode(audio_base64);}catch(const Error&){throw Error("audio_decode_failed");}
     } else bytes=read_file(utf8_path(request.at("audio").get<std::string>()),64000000);
     auto config=ma_decoder_config_init(ma_format_f32,1,WHISPER_SAMPLE_RATE);
     ma_decoder decoder{};

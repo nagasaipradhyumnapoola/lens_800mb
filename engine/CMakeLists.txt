@@ -3,6 +3,10 @@ project(lens_micro VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(LENS_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/..")
+if(NOT WIN32)  # Linux, macOS, iOS, Android: the portable core (engine/portable.cmake); the rest of this file is Windows
+  include(portable.cmake)
+  return()
+endif()
 # whisper.cpp built as shared libraries with runtime-selected ggml CPU backends (GGML_BACKEND_DL +
 # GGML_CPU_ALL_VARIANTS): no binary requires AVX/AVX2 unconditionally (docs/LENS_V1_SPEC.md §15).
 set(WHISPER_BUILD "${LENS_ROOT}/build/whisper-dl")
@@ -17,7 +21,7 @@ function(lens_use_whisper target)
   target_link_options(${target} PRIVATE ${WHISPER_DELAYLOAD})
   add_custom_command(TARGET ${target} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${WHISPER_RUNTIME} $<TARGET_FILE_DIR:${target}>)
 endfunction()
-add_executable(lens-asr-probe asr_probe.cpp)
+add_executable(lens-asr-probe asr_probe.cpp platform.cpp)
 target_include_directories(lens-asr-probe PRIVATE "${LENS_ROOT}/third_party/whisper.cpp/include"
   "${LENS_ROOT}/third_party/whisper.cpp/examples" "${LENS_ROOT}/third_party/whisper.cpp/ggml/include")
 target_link_libraries(lens-asr-probe PRIVATE psapi)

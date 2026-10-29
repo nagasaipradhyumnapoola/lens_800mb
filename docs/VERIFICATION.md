@@ -1231,3 +1231,33 @@ travel in `metadata`).
   light 2.0 -> 1.0%) while tables (1.2 -> 3.3%), 9 px settings text (1.9 -> 4.6%) and terminals regressed. NOT
   ADOPTED; the shipped PP-OCRv6 tiny recogniser stays. Likely cause: training crops are whole rendered rows, while table
   and settings cells reach the recogniser as separate detector segments.
+
+## Portable core: Linux build and smoke test; macOS/iOS CI; Android in progress (2026-10-30)
+
+- Founder directive 2026-10-30: build for iPhone, Android, Windows, Linux and macOS. The core's OS-specific calls moved
+  behind engine/platform.{hpp,cpp} (shared libraries, durable new files, atomic replace, environment, executable folder,
+  child processes with pipes, base64) and engine/ggml_cpu_dispatch.hpp (ggml CPU-variant selection on every OS); the
+  engine entry point accepts UTF-8 arguments on POSIX. Windows behaviour is unchanged (full rebuild + test suite).
+- Keys off Windows (adapters/posix/key_store.cpp): the database key is AES-256-GCM-wrapped (OpenSSL) with a per-user
+  master key held only by the OS secret store — Secret Service via libsecret (adapters/linux), the Keychain with
+  kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly (adapters/apple), the Android Keystore through the app over JNI
+  (adapters/android). A locked or missing store fails closed (key_unavailable); there is no plaintext fallback.
+- SQLCipher 4.19.0 (the version the Windows overlay pins), built from its SHA-512-checked source tarball as an
+  amalgamation (ci/sqlcipher/amalgamation.sh) with the Windows build's definitions (FTS5, temp store in memory, thread
+  safety, the 4.19 init/shutdown hooks) on every non-Windows platform. Ubuntu's own libsqlcipher package failed the
+  engine's schema migration (database_operation_failed) and is not used.
+- whisper.cpp at the pinned commit with both Lens RAM patches (ci/fetch_whisper.sh, sha256-checked), GGML_OPENMP=OFF,
+  shared libraries with all 15 x86-64 ggml CPU variants selected at run time, as on Windows.
+- Linux (ci/linux: Ubuntu 24.04 container, GCC 13.3, ONNX Runtime 1.24.4 checked against GitHub's published sha256):
+  lens-engine, lens-tts and lens-embed build; ci/linux/smoke.py on synthetic data, with the pinned models mounted:
+  **10/10 PASS** — add/stats/keyword search, wrapped key file in the Secret Service keyring, no plaintext in the
+  database file, semantic recall with e5 + the Lens v2c reranker, plaintext export, encrypted backup, restore into a
+  new database that opens and searches, spoken reply with Kokoro + misaki (2.9 s of audio, real-time factor 0.48).
+- .github/workflows/portable.yml: Linux (the same container), macOS 14 arm64 (Homebrew deps, ONNX Runtime osx-arm64
+  1.24.4 sha256-pinned, smoke test with a temporary keychain) and iOS arm64 (vcpkg deps at the overlay's vcpkg commit;
+  links the memory core, lens-store). Results only once pushed and run on GitHub's hosted runners.
+- Android: NDK r27.1 (already installed); vcpkg building OpenSSL, zstd, ICU and nlohmann-json for arm64-android; vcpkg's
+  SQLCipher port is Windows-only, so Android also uses the amalgamation. Not yet built.
+- Not ported yet: observation (macOS Accessibility + ScreenCaptureKit, Linux AT-SPI + screencast portal, Android
+  Accessibility Service), the app shells (WKWebView, WebKitGTK, Android WebView), the agent's IPC, lens-ocr (image
+  decoding via Windows Imaging Component), lens-voice microphone capture. No run on macOS, iOS or Android hardware.

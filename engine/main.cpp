@@ -8,7 +8,9 @@
 #include <string>
 #include <stdexcept>
 #include <thread>
-int wmain(int argc,wchar_t** argv) {
+#include <vector>
+namespace {
+int run(int argc,wchar_t** argv) {
     // lens-engine --db <db> [--ort <onnxruntime.dll> --embedding-model <onnx> --embedding-tokenizer <json> --embedding-id <id>
     //                       [--reranker-model <onnx> --reranker-tokenizer <json>]] [--model-idle-unload-ms <ms>]
     // Retrieval models are released after <ms> without requests (default 60000; 0 keeps them until unload_models),
@@ -82,5 +84,18 @@ int wmain(int argc,wchar_t** argv) {
             std::cout.flush();
             last_request=std::chrono::steady_clock::now();models_may_be_loaded=true;wake.notify_all();
         }
-    } catch(...) {std::cerr<<"database_open_failed\n";return 1;}
+    } catch(const lens::Error& e) {std::cerr<<"database_open_failed: "<<e.what()<<"\n";return 1;}  // a reason code, never content
+    catch(...) {std::cerr<<"database_open_failed\n";return 1;}
+    return 0;
 }
+}
+#ifdef _WIN32
+int wmain(int argc,wchar_t** argv){return run(argc,argv);}
+#else
+int main(int argc,char** argv) {  // UTF-8 arguments on POSIX
+    std::vector<std::wstring> args;std::vector<wchar_t*> ptrs;
+    for(int i=0;i<argc;++i)args.push_back(std::filesystem::path(std::u8string(reinterpret_cast<const char8_t*>(argv[i]))).wstring());
+    for(auto& a:args)ptrs.push_back(a.data());
+    return run(argc,ptrs.data());
+}
+#endif

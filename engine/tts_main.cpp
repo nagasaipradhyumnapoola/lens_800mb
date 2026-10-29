@@ -6,8 +6,7 @@
 #include "g2p_en.hpp"
 #include "input.hpp"
 #include "onnx_model.hpp"
-#include <windows.h>
-#include <wincrypt.h>
+#include "platform.hpp"
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <chrono>
@@ -50,13 +49,6 @@ std::string wav(const std::vector<float>& pcm){
     put(32,2,2);put(34,16,2);out.replace(36,4,"data");put(40,bytes,4);
     for(float s:pcm){const auto v=static_cast<std::int16_t>(std::lround(std::clamp(s,-1.0f,1.0f)*32767.0f));out.push_back(static_cast<char>(v&0xFF));out.push_back(static_cast<char>((v>>8)&0xFF));}
     return out;
-}
-std::string base64(const std::string& raw){
-    DWORD n=0;const auto flags=CRYPT_STRING_BASE64|CRYPT_STRING_NOCRLF;
-    if(!CryptBinaryToStringA(reinterpret_cast<const BYTE*>(raw.data()),static_cast<DWORD>(raw.size()),flags,nullptr,&n))throw lens::Error("encode_failed");
-    std::string out(n,'\0');
-    if(!CryptBinaryToStringA(reinterpret_cast<const BYTE*>(raw.data()),static_cast<DWORD>(raw.size()),flags,out.data(),&n))throw lens::Error("encode_failed");
-    out.resize(n);return out;
 }
 double ms(std::chrono::steady_clock::time_point t){return std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-t).count();}
 // Loaded once per worker and reused across requests; the worker's owner ends it when idle (spec §15).
@@ -115,7 +107,7 @@ json speak(const json& req,Cache& c){
               {"timing_ms",{{"phonemize",prep_ms},{"model_load",load_ms},{"synthesize",synth_ms}}},
               {"real_time_factor",synth_ms/1000.0/std::max(1e-9,static_cast<double>(pcm.size())/RATE)}};
     if(req.contains("output")){std::ofstream f(lens::utf8_path(str(req.at("output"))),std::ios::binary);if(!f.write(audio.data(),static_cast<std::streamsize>(audio.size())))throw lens::Error("write_failed");}
-    else out["audio_base64"]=base64(audio);
+    else out["audio_base64"]=lens::platform::base64_encode(audio);
     return out;
 }
 }

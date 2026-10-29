@@ -37,6 +37,7 @@ inline std::vector<char> read_file(const std::filesystem::path& path,std::size_t
         if(n>limit-result.size())throw Error("file_too_large");
         result.insert(result.end(),buffer.data(),buffer.data()+n);
     }
-    if(file.bad())throw Error("file_read_failed");return result;
+    if(file.bad())throw Error("file_read_failed");
+    return result;
 }
 }

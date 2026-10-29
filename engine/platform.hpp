@@ -2,8 +2,23 @@
 // Thin operating-system layer for the portable core (Windows, Linux, macOS, Android, iOS): shared libraries and durable
 // new files. Everything else in the core is standard C++. Key storage lives in adapters/<os>/key_store.cpp.
 #include <filesystem>
+#include <optional>
 #include <string>
+#include <vector>
 namespace lens::platform {
+std::filesystem::path executable_dir();  // folder of the running executable (sibling workers live there)
+inline std::filesystem::path sibling(const char* name) {  // a worker next to this executable: "lens-sherpa" -> lens-sherpa(.exe)
+#ifdef _WIN32
+    return executable_dir()/(std::string(name)+".exe");
+#else
+    return executable_dir()/name;
+#endif
+}
+// Runs `exe` without arguments or a console window, feeds `input` on stdin and returns its stdout and stderr
+// (at most 4 MiB); nullopt when it cannot start. Killed after 300 s.
+std::optional<std::string> run_child(const std::filesystem::path& exe,const std::string& input,int& exit_code);
+std::vector<char> base64_decode(const std::string& text);  // standard alphabet, whitespace ignored; throws Error("base64_invalid")
+std::string base64_encode(const std::string& bytes);
 // nullptr on failure. Windows resolves the library's own dependencies from its folder first (never System32's copy).
 void* open_library(const std::filesystem::path& path);
 void* library_symbol(void* library,const char* name);

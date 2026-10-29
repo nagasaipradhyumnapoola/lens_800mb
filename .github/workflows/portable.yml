@@ -1,0 +1,72 @@
+# Portable Lens core on Linux, macOS and iOS (docs/LENS_V1_SPEC.md §18). Windows is built and tested locally (scripts/,
+# tests/). Models are not in Git, so the smoke test covers storage, OS key storage, keyword search, export, backup and
+# restore here; semantic recall and spoken replies run where the pinned models are installed.
+name: portable-core
+on:
+  push:
+    branches: ['**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch whisper.cpp (pinned)
+        run: bash ci/fetch_whisper.sh
+      - name: Build image
+        run: docker build -t lens-linux ci/linux
+      - name: Build and smoke-test
+        run: docker run --rm -v "$PWD:/src" lens-linux bash ci/linux/build.sh
+
+  macos:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch whisper.cpp (pinned)
+        run: bash ci/fetch_whisper.sh
+      - name: Dependencies
+        run: brew install ninja openssl@3 zstd utf8proc nlohmann-json pkg-config tcl-tk
+      - name: ONNX Runtime 1.24.4 (pinned)
+        run: |
+          curl -fsSL -o ort.tgz https://github.com/microsoft/onnxruntime/releases/download/v1.24.4/onnxruntime-osx-arm64-1.24.4.tgz
+          echo "93787795f47e1eee369182e43ed51b9e5da0878ab0346aecf4258979b8bba989  ort.tgz" | shasum -a 256 -c -
+          mkdir -p "$RUNNER_TEMP/ort" && tar -xzf ort.tgz -C "$RUNNER_TEMP/ort" --strip-components=1
+      - name: Build
+        run: |
+          bash ci/sqlcipher/amalgamation.sh
+          cmake -S engine -B build/macos -G Ninja -DCMAKE_BUILD_TYPE=Release -DLENS_ORT_DIR="$RUNNER_TEMP/ort" \
+            -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DOPENSSL_ROOT_DIR="$(brew --prefix openssl@3)" \
+            -DCMAKE_PREFIX_PATH="$(brew --prefix nlohmann-json);$(brew --prefix zstd);$(brew --prefix utf8proc)"
+          cmake --build build/macos --parallel
+          cp "$RUNNER_TEMP"/ort/lib/libonnxruntime*.dylib build/macos/bin/
+      - name: Smoke test (temporary keychain)
+        run: |
+          security create-keychain -p lens-ci lens-ci.keychain && security default-keychain -s lens-ci.keychain
+          security unlock-keychain -p lens-ci lens-ci.keychain && security set-keychain-settings lens-ci.keychain
+          python3 ci/linux/smoke.py build/macos/bin
+
+  ios:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch whisper.cpp (pinned)
+        run: bash ci/fetch_whisper.sh
+      - name: vcpkg (the commit the Windows overlay is based on)
+        run: |
+          git clone https://github.com/microsoft/vcpkg "$RUNNER_TEMP/vcpkg" && git -C "$RUNNER_TEMP/vcpkg" checkout 817892b0ecbc6af994dd6df999c73faf795adbf2
+          "$RUNNER_TEMP/vcpkg/bootstrap-vcpkg.sh" -disableMetrics
+          "$RUNNER_TEMP/vcpkg/vcpkg" install openssl zstd utf8proc nlohmann-json --triplet arm64-ios
+      - name: Build the memory core for iPhone (arm64)
+        run: |
+          brew install ninja tcl-tk
+          bash ci/sqlcipher/amalgamation.sh
+          curl -fsSL -o ort.tgz https://github.com/microsoft/onnxruntime/releases/download/v1.24.4/onnxruntime-osx-arm64-1.24.4.tgz
+          echo "93787795f47e1eee369182e43ed51b9e5da0878ab0346aecf4258979b8bba989  ort.tgz" | shasum -a 256 -c -
+          mkdir -p "$RUNNER_TEMP/ort" && tar -xzf ort.tgz -C "$RUNNER_TEMP/ort" --strip-components=1   # C API headers
+          cmake -S engine -B build/ios -G Ninja -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_DEPLOYMENT_TARGET=16.0 \
+            -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="$RUNNER_TEMP/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=arm64-ios \
+            -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DLENS_ORT_DIR="$RUNNER_TEMP/ort" -DLENS_CORE_ONLY=ON
+          cmake --build build/ios --target lens-store --parallel
+          ls -la build/ios/*.a build/ios/**/*.a 2>/dev/null || find build/ios -name '*.a' | head

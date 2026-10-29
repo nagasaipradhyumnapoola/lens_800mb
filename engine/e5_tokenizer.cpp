@@ -3,8 +3,12 @@
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <cstring>
+#ifdef _WIN32
 #include <windows.h>
-#include <icu.h>
+#include <icu.h>  // the ICU that ships with Windows 10+
+#else
+#include <utf8proc.h>  // UAX #29 grapheme clusters without ICU's data (Linux, macOS, iOS, Android)
+#endif
 namespace lens {
 namespace {
 std::string base64(const std::string& in){
@@ -19,9 +23,11 @@ std::string base64(const std::string& in){
     return out;
 }
 std::size_t utf8_length(unsigned char b){return b<0x80?1:(b>>5)==6?2:(b>>4)==14?3:4;}
-// UTF-8 byte offsets of extended grapheme cluster boundaries, computed by the Windows ICU break iterator.
+// UTF-8 byte offsets of extended grapheme cluster boundaries (Unicode UAX #29): the ICU break iterator that ships with
+// Windows, utf8proc elsewhere.
 std::vector<std::size_t> grapheme_boundaries(const std::string& text){
     std::vector<std::size_t> bounds{0};if(text.empty())return bounds;
+#ifdef _WIN32
     std::u16string units;std::vector<std::size_t> byte_at; // UTF-16 index -> UTF-8 offset
     for(std::size_t i=0;i<text.size();){
         const auto n=std::min(utf8_length(static_cast<unsigned char>(text[i])),text.size()-i);
@@ -38,6 +44,17 @@ std::vector<std::size_t> grapheme_boundaries(const std::string& text){
     if(U_FAILURE(status)||!it)throw Error("grapheme_segmentation_unavailable");
     for(auto k=ubrk_next(it);k!=UBRK_DONE;k=ubrk_next(it))bounds.push_back(byte_at.at(static_cast<std::size_t>(k)));
     ubrk_close(it);
+#else
+    utf8proc_int32_t state=0,previous=-1;
+    for(std::size_t i=0;i<text.size();){
+        utf8proc_int32_t cp=0;
+        const auto n=utf8proc_iterate(reinterpret_cast<const utf8proc_uint8_t*>(text.data()+i),static_cast<utf8proc_ssize_t>(text.size()-i),&cp);
+        const std::size_t step=n>0?static_cast<std::size_t>(n):1;  // invalid bytes: one boundary each, as ICU does
+        if(n<=0)cp=0xFFFD;
+        if(previous>=0&&utf8proc_grapheme_break_stateful(previous,cp,&state))bounds.push_back(i);
+        previous=cp;i+=step;
+    }
+#endif
     if(bounds.back()!=text.size())bounds.push_back(text.size());
     return bounds;
 }
