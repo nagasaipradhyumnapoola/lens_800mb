@@ -127,18 +127,33 @@ private:
 std::vector<std::wstring> engine_args(const fs::path& root,const fs::path& db,std::string& semantic_status) {
     std::vector<std::wstring> args{L"--db",db.wstring()};
     try {
-        const auto e=read_json(root/"third_party/embedding-lock.json"),r=read_json(root/"third_party/reranker-lock.json"),o=read_json(root/"third_party/ocr-runtime-lock.json");
+        const auto e=read_json(root/"third_party/embedding-lock.json"),o=read_json(root/"third_party/ocr-runtime-lock.json");
         auto pick=[](const json& lock,const char* name)->const json&{for(const auto& f:lock.at("files"))if(f.at("filename")==name)return f;throw std::runtime_error("missing");};
         const auto& model=pick(e,"onnx/model_qint8_avx512_vnni.onnx");const auto& tok=pick(e,"onnx/tokenizer.json");
-        const auto& rmodel=pick(r,"onnx/model_qint8_avx512_vnni.onnx");const auto& rtok=pick(r,"tokenizer.json");
         json ort;for(const auto& a:o.at("runtime_artifacts"))if(a.at("path").get<std::string>().ends_with("/onnxruntime.dll"))ort=a;
-        for(const json* a:std::initializer_list<const json*>{&model,&tok,&rmodel,&rtok,&ort})
-            if(file_sha256(root/wide(a->at("path").get<std::string>()))!=a->at("sha256").get<std::string>())throw std::runtime_error("hash_mismatch:"+a->at("path").get<std::string>());
+        auto check=[&](const std::string& path,const std::string& sha){if(file_sha256(root/wide(path))!=sha)throw std::runtime_error("hash_mismatch:"+path);};
+        for(const json* a:std::initializer_list<const json*>{&model,&tok,&ort})check(a->at("path").get<std::string>(),a->at("sha256").get<std::string>());
         const auto id="intfloat/multilingual-e5-small@"+e.at("revision").get<std::string>().substr(0,12)+"/onnx/model_qint8_avx512_vnni.onnx#sha256:"+model.at("sha256").get<std::string>().substr(0,16);
+        // The trained Lens answerability head (v2c, fine-tuned from the mMARCO reranker) replaces that reranker and also
+        // verifies evidence: one model resident instead of two (500 MB ceiling). Used only when every file matches
+        // third_party/model-lock.json; otherwise the pinned mMARCO reranker is verified and used.
+        fs::path rerank_model,rerank_tok;bool lens_head=false;
+        try {
+            json pinned;for(const auto& r:read_json(root/"third_party/model-lock.json"))pinned[r.at("path").get<std::string>()]=r.at("sha256");
+            const std::string dir="models/Lens--answerability-v2c/";
+            for(const auto* f:{"model_int8.onnx","tokenizer.json","gate.json"})check(dir+f,pinned.at(dir+f).get<std::string>());
+            rerank_model=root/wide(dir+"model_int8.onnx");rerank_tok=root/wide(dir+"tokenizer.json");lens_head=true;
+        } catch(const std::exception&) {
+            const auto r=read_json(root/"third_party/reranker-lock.json");const auto& rmodel=pick(r,"onnx/model_qint8_avx512_vnni.onnx");const auto& rtok=pick(r,"tokenizer.json");
+            for(const json* a:std::initializer_list<const json*>{&rmodel,&rtok})check(a->at("path").get<std::string>(),a->at("sha256").get<std::string>());
+            rerank_model=root/wide(rmodel.at("path").get<std::string>());rerank_tok=root/wide(rtok.at("path").get<std::string>());
+        }
         for(const auto& a:std::vector<std::wstring>{L"--ort",(root/wide(ort.at("path").get<std::string>())).wstring(),L"--embedding-model",(root/wide(model.at("path").get<std::string>())).wstring(),
             L"--embedding-tokenizer",(root/wide(tok.at("path").get<std::string>())).wstring(),L"--embedding-id",wide(id),
-            L"--reranker-model",(root/wide(rmodel.at("path").get<std::string>())).wstring(),L"--reranker-tokenizer",(root/wide(rtok.at("path").get<std::string>())).wstring()})args.push_back(a);
-        semantic_status="verified";
+            L"--reranker-model",rerank_model.wstring(),L"--reranker-tokenizer",rerank_tok.wstring()})args.push_back(a);
+        if(lens_head)for(const auto& a:{std::wstring(L"--verifier-model"),rerank_model.wstring(),std::wstring(L"--verifier-tokenizer"),rerank_tok.wstring()})args.push_back(a);
+        semantic_status="verified";  // compared verbatim elsewhere; whether the Lens head is used is logged below
+        if(lens_head)log({{"event","lens_answerability_head"},{"model","Lens--answerability-v2c"}});
     } catch(const std::exception& ex){semantic_status=std::string("keyword_only: ")+ex.what();}
     return args;
 }

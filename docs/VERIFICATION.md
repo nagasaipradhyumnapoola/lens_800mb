@@ -1192,3 +1192,25 @@ travel in `metadata`).
   audio refused); tests/test_app.py `test_voice_question_is_transcribed_asked_and_answered_aloud` (1 s at 48 kHz ->
   16 kHz RIFF, call order transcribe -> recall -> speak). test_app + test_voice 36/36 OK.
 - Not verified: a real microphone in the desktop app (needs the owner), end-to-end latency, noisy rooms.
+
+## Lens answerability head v2c in recall: reranker + verifier + answer gate (2026-10-30) — integrated; gate below target
+
+- Retrieval with v2c replacing the mMARCO reranker (same 614 v1 dev/test + expansion + near-miss questions, 10k
+  synthetic corpora, scripts/experiment_answer_verifier.py --reranker; never the sealed holdout): top-1 correct for
+  answerable questions 0.827 -> 0.836, recall@3 0.900 -> 0.927, paraphrase top-1 0.69 -> 0.72; other types equal.
+- Gate (correct top-1 answered with ≤ 5% of unanswerable questions answered; 5-fold grouped CV over all 614):
+  mMARCO rerank + cosine + literal 0.420; v2c as verifier on mMARCO retrieval 0.509; **v2c reranking + cosine + literal
+  0.493 (+ a separate v2c verifier pass 0.496: the same model adds no new signal)**; target 0.80, ceiling = top-1 0.836.
+- Shipped gate (lens_model/eval/fit_gate.py, models/Lens--answerability-v2c/gate.json, pinned): logistic over
+  (v2c support of the top evidence, best rerank, best cosine, full literal match), fitted on the v1 dev split and the
+  near-miss set only; threshold 0.715 for 5% false answers there. Validation: v1 test 0.456 correct answered,
+  unanswerable rejected 1.0; expansion 0.233 (unanswerable and near-miss rejected 1.0).
+- Engine: the verifier reuses the reranker instance when both point at the same model (one model resident); with
+  gate.json beside the model, recall abstains when the gate probability is below its threshold (a full literal match is a
+  feature, not an override). Agent: v2c is used as reranker and verifier when its model, tokenizer and gate all match
+  third_party/model-lock.json, otherwise the pinned mMARCO reranker. Package: v2c replaces mMARCO.
+- Tests: tests/test_answer_gate.py (supported question answered with answer_probability; unrelated question abstains);
+  test_agent 6/6, test_installer 4/4 (an uninstall race fixed: PowerShell's Process.Path is re-read per access and
+  can turn null between two reads; lens-tts and lens-sherpa are now stopped on uninstall).
+- Not met: the 0.80 gate. Verifier quality on Lens-style memories is the limit (harness AUC 0.871 vs the 1.79 GB
+  teacher's 0.923); next: training data from Lens-style (memory, question) pairs with near-misses.

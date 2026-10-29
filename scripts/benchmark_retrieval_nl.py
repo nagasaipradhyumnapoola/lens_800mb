@@ -113,6 +113,7 @@ def record(item,i):
 
 
 VERIFIER_ARGS=[]  # set by --verifier: trained Lens answerability head (lens_model/)
+RERANKER=None     # (model, tokenizer) replacing the pinned mMARCO reranker, e.g. the Lens answerability head
 
 
 class Engine:
@@ -123,6 +124,7 @@ class Engine:
         rlock=json.loads((ROOT/'third_party/reranker-lock.json').read_text(encoding='utf-8'))
         rmodel=next(ROOT/f['path'] for f in rlock['files'] if f['filename']=='onnx/model_qint8_avx512_vnni.onnx')
         rtok=next(ROOT/f['path'] for f in rlock['files'] if f['filename']=='tokenizer.json')
+        if RERANKER:rmodel,rtok=RERANKER
         self.p=subprocess.Popen([str(ENGINE),'--db',str(db),'--ort',str(RUNTIME),'--embedding-model',str(model),
             '--embedding-tokenizer',str(tok),'--embedding-id',model_id,'--reranker-model',str(rmodel),'--reranker-tokenizer',str(rtok)]+VERIFIER_ARGS,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,
             text=True,encoding='utf-8',bufsize=1)

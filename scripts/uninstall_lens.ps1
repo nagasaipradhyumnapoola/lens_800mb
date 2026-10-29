@@ -34,7 +34,8 @@ if ($ProgramsDir) { $links += (Join-Path $ProgramsDir 'Lens.lnk') }
 elseif ($record.shortcut -is [string]) { $links += $record.shortcut }
 else { $links += (Join-Path ([Environment]::GetFolderPath('Programs')) 'Lens.lnk') }
 
-$fromHere = { param($p) $p.Path -and $p.Path.StartsWith($InstallDir, [StringComparison]::OrdinalIgnoreCase) }
+# Process.Path is re-read on every access; a process that exits in between reads as null, so read it once.
+$fromHere = { param($p) $path = $p.Path; $path -and $path.StartsWith($InstallDir, [StringComparison]::OrdinalIgnoreCase) }
 # Ask a running agent from this installation to shut down cleanly (it stops its observer, voice and engine children).
 if (Get-Process -Name lens-agent -ErrorAction SilentlyContinue | Where-Object { & $fromHere $_ }) {
   try {
@@ -45,7 +46,7 @@ if (Get-Process -Name lens-agent -ErrorAction SilentlyContinue | Where-Object { 
   } catch { Write-Verbose "Agent did not answer on $PipeName; stopping it instead." }
 }
 # Stop whatever still runs from this installation.
-Get-Process -Name lens-app, lens-agent, lens-engine, lens-observer, lens-ocr, lens-voice, lens-mesh -ErrorAction SilentlyContinue |
+Get-Process -Name lens-app, lens-agent, lens-engine, lens-observer, lens-ocr, lens-voice, lens-mesh, lens-sherpa, lens-tts -ErrorAction SilentlyContinue |
   Where-Object { & $fromHere $_ } |
   ForEach-Object { if (-not $_.WaitForExit(10000)) { Stop-Process -Id $_.Id -Force; $_.WaitForExit(5000) | Out-Null } }
 

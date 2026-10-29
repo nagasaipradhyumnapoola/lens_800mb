@@ -13,6 +13,8 @@
 #include <openssl/evp.h>
 #include <openssl/crypto.h>
 #include <cmath>
+#include <filesystem>
+#include <fstream>
 #include <iomanip>
 #include <regex>
 #include <sstream>
@@ -228,6 +230,7 @@ Embedder& Store::embedder(){
 
 Reranker& Store::verifier(){
     if(!verification_.configured())throw Error("verifier_not_configured");
+    if(reranking_.configured()&&verification_.model==reranking_.model)return reranker();  // one model reranks and verifies (RAM)
     if(!verifier_)verifier_=std::make_unique<Reranker>(verification_);
     return *verifier_;
 }
@@ -273,9 +276,22 @@ json Store::dispatch(const json& j) {
         if(verification_.configured()&&j.value("abstain",true)&&!result.value("not_found",true)&&!result["results"].empty()) {
             auto& top=result["results"][0];const auto quote=top["evidence"].value("quote",std::string());
             const double support=verifier().score(j.at("query").get<std::string>(),{quote}).at(0);
-            const double min_support=j.value("min_support",default_min_support);
+            double decision=support,min_support=j.value("min_support",default_min_support);bool literal_overrides=true;
+            // gate.json beside the verifier model: a logistic over (support, best rerank, best cosine, full literal match)
+            // fitted on dev data only, with the threshold for a 5% false-answer rate (lens_model/eval/fit_gate.py).
+            const auto gate_path=verification_.model.parent_path()/"gate.json";std::error_code ec;
+            if(std::filesystem::is_regular_file(gate_path,ec)) {
+                std::ifstream f(gate_path,std::ios::binary);const auto g=json::parse(f);
+                const double x[4]={support,result.value("best_rerank",json(-10.0)).is_number()?result["best_rerank"].get<double>():-10.0,
+                                   result.value("best_semantic",json(0.0)).is_number()?result["best_semantic"].get<double>():0.0,
+                                   result.value("full_keyword_match",false)?1.0:0.0};
+                double z=g.at("bias").get<double>();
+                for(int k=0;k<4;++k)z+=g.at("weights")[k].get<double>()*(x[k]-g.at("mean")[k].get<double>())/g.at("std")[k].get<double>();
+                decision=1/(1+std::exp(-z));min_support=j.value("min_support",g.at("threshold").get<double>());literal_overrides=false;  // literal is a feature
+                result["answer_probability"]=decision;
+            }
             result["support"]=support;result["min_support"]=min_support;
-            if(support<min_support&&!result.value("full_keyword_match",false)) {
+            if(decision<min_support&&!(literal_overrides&&result.value("full_keyword_match",false))) {
                 result["not_found"]=true;result["withheld_results"]=result["results"].size();result["results"]=json::array();result["abstained_by"]="verifier";
             }
         }

@@ -42,7 +42,7 @@ foreach ($f in $manifest.files) {
   if ($hash -ne $f.sha256) { throw "File does not match the package manifest: $($f.path)" }
 }
 
-$running = Get-Process -Name lens-agent, lens-app -ErrorAction SilentlyContinue | Where-Object { $_.Path -and $_.Path.StartsWith($InstallDir, [StringComparison]::OrdinalIgnoreCase) }
+$running = Get-Process -Name lens-agent, lens-app -ErrorAction SilentlyContinue | Where-Object { $path = $_.Path; $path -and $path.StartsWith($InstallDir, [StringComparison]::OrdinalIgnoreCase) }
 if ($running) { throw 'Lens is running from the install folder. Close it (and its background agent) first.' }
 
 Write-Host "Installing to $InstallDir"

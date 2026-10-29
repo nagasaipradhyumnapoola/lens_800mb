@@ -26,6 +26,7 @@ WHISPER=['ggml-base-q5_1.bin','ggml-tiny-q5_1.bin']
 SPEECH=['models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/','models/Lens--kokoro-82m-mixed-int8/','models/hexgrad--misaki/us_',
         'models/onnx-community--Kokoro-82M-v1.0-ONNX/tokenizer.json','models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/']
 SHERPA_LIBS=('/lib/sherpa-onnx-c-api.dll','/lib/onnxruntime.dll','/lib/onnxruntime_providers_shared.dll')
+LENS_HEAD='models/Lens--answerability-v2c/'
 
 
 def sha(p):
@@ -38,7 +39,12 @@ def sha(p):
 def lock_files():
     """(relative path, expected sha256) for every model/runtime artifact the product loads."""
     out=[]
-    for name,keep in [('embedding-lock.json',{'onnx/model_qint8_avx512_vnni.onnx','onnx/tokenizer.json'}),('reranker-lock.json',{'onnx/model_qint8_avx512_vnni.onnx','tokenizer.json'})]:
+    models=json.loads((ROOT/'third_party/model-lock.json').read_text(encoding='utf-8'))
+    head=[(e['path'],e['sha256']) for e in models if e['path'].startswith(LENS_HEAD) and e['filename'] in ('model_int8.onnx','tokenizer.json','gate.json')]
+    # The Lens answerability head replaces the mMARCO reranker (lens-agent uses it when all three files verify).
+    locks=[('embedding-lock.json',{'onnx/model_qint8_avx512_vnni.onnx','onnx/tokenizer.json'})]+([] if len(head)==3 else [('reranker-lock.json',{'onnx/model_qint8_avx512_vnni.onnx','tokenizer.json'})])
+    out+=head if len(head)==3 else []
+    for name,keep in locks:
         lock=json.loads((ROOT/'third_party'/name).read_text(encoding='utf-8'))
         out+=[(f['path'],f['sha256']) for f in lock['files'] if f['filename'] in keep]
     ocr=json.loads((ROOT/'third_party/ocr-runtime-lock.json').read_text(encoding='utf-8'))

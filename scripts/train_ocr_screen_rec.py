@@ -64,7 +64,7 @@ def prepare(crop,box,rng):
 
 def batch(images):
     """engine/ocr_main.cpp recogniser input: height 48, width ceil(48*w/h) (capped), padded with zeros to >= 320."""
-    widths=[max(1,math.ceil(48*im.shape[1]/max(1,im.shape[0]))) for im in images];W=min(max(320,max(widths)),3200)
+    widths=[max(1,math.ceil(48*im.shape[1]/max(1,im.shape[0]))) for im in images];W=min(max(320,max(widths)),2400)  # 300 frames: 8 GB GPU
     x=np.zeros((len(images),3,48,W),np.float32)
     for i,(im,w) in enumerate(zip(images,widths)):
         w=min(w,W);r=cv2.resize(im,(w,48),interpolation=cv2.INTER_LINEAR).astype(np.float32)/127.5-1.0;x[i,:,:,:w]=r.transpose(2,0,1)
