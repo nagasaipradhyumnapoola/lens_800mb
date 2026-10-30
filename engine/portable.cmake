@@ -161,7 +161,7 @@ if(NOT APPLE AND NOT ANDROID)
   pkg_check_modules(LENS_ATSPI IMPORTED_TARGET atspi-2 gobject-2.0 glib-2.0 x11)
   if(LENS_ATSPI_FOUND)
     add_executable(lens-observer observer/observer_main.cpp observer/os_window_linux.cpp observer/uia_text_atspi.cpp
-      observer/capture_x11.cpp observer/capture_common.cpp agent/os.cpp)
+      observer/capture_x11.cpp observer/serve_worker_posix.cpp observer/capture_common.cpp agent/os.cpp)
     target_link_libraries(lens-observer PRIVATE lens-embedding OpenSSL::Crypto PkgConfig::LENS_ATSPI Threads::Threads)
     target_compile_options(lens-observer PRIVATE ${LENS_WARN})
   endif()
@@ -184,6 +184,14 @@ endif()
 # macOS app (lens-app): Cocoa + WKWebView hosting engine/app/ui, relaying to lens-agent.
 if(APPLE)
   enable_language(OBJCXX)
+  # Screen observer: Accessibility (AX) text of the frontmost window, ScreenCaptureKit for the OCR fallback. Needs the
+  # user's Accessibility and Screen Recording permissions at run time.
+  add_executable(lens-observer observer/observer_main.cpp observer/os_window_mac.mm observer/uia_text_ax.mm observer/capture_mac.mm
+    observer/serve_worker_posix.cpp observer/capture_common.cpp agent/os.cpp)
+  set_source_files_properties(observer/os_window_mac.mm observer/uia_text_ax.mm observer/capture_mac.mm PROPERTIES COMPILE_OPTIONS -fobjc-arc)
+  target_link_libraries(lens-observer PRIVATE lens-embedding OpenSSL::Crypto Threads::Threads "-framework AppKit"
+    "-framework ApplicationServices" "-framework ScreenCaptureKit" "-framework CoreGraphics" "-framework Foundation")
+  target_compile_options(lens-observer PRIVATE ${LENS_WARN})
   add_executable(lens-app app/macos/app_mac.mm agent/os.cpp)
   target_link_libraries(lens-app PRIVATE lens-embedding OpenSSL::Crypto Threads::Threads "-framework Cocoa" "-framework WebKit")
   target_compile_options(lens-app PRIVATE -fobjc-arc ${LENS_WARN})
