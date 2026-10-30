@@ -95,13 +95,13 @@ target_compile_definitions(lens-observer-testapp PRIVATE NOMINMAX)
 target_compile_options(lens-observer-testapp PRIVATE /utf-8 /W4 /sdl)
 
 # Milestone 7 voice capture: consent-gated microphone capture with energy VAD; emits engine ingest_audio requests.
-add_executable(lens-voice voice/voice_main.cpp)
+add_executable(lens-voice voice/voice_main.cpp agent/os.cpp platform.cpp)
 target_include_directories(lens-voice PRIVATE "${LENS_ROOT}/third_party/whisper.cpp/examples")
 if(EXISTS "${LENS_ROOT}/.tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/include/sherpa-onnx/c-api/c-api.h")
   # Header only: lens-voice loads the sherpa-onnx C API at run time for owner (speaker) verification.
   target_include_directories(lens-voice PRIVATE "${LENS_ROOT}/.tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/include")
 endif()
-target_link_libraries(lens-voice PRIVATE nlohmann_json::nlohmann_json bcrypt crypt32 ole32)
+target_link_libraries(lens-voice PRIVATE nlohmann_json::nlohmann_json bcrypt crypt32 ole32 advapi32 shell32)
 target_compile_definitions(lens-voice PRIVATE NOMINMAX)
 target_compile_options(lens-voice PRIVATE /utf-8 /W3 /sdl)
 

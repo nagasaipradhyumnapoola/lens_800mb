@@ -134,6 +134,21 @@ if(EXISTS "${LENS_STB_DIR}/stb_image.h")
   set_source_files_properties(stb_image_impl.c PROPERTIES COMPILE_OPTIONS -w)  # upstream code, unmodified
 endif()
 
+# Voice capture (lens-voice): miniaudio microphone (ALSA/PulseAudio, Core Audio, AAudio) + VAD -> engine ingest_audio;
+# speaker profiles sealed under the OS-held master key. miniaudio is compiled here, so no lens-whisper-common.
+add_executable(lens-voice voice/voice_main.cpp agent/os.cpp)
+target_include_directories(lens-voice PRIVATE "${LENS_ROOT}/third_party/whisper.cpp/examples")
+if(LENS_SHERPA_INCLUDE)
+  target_include_directories(lens-voice PRIVATE "${LENS_SHERPA_INCLUDE}")  # speaker verification, loaded at run time
+endif()
+target_link_libraries(lens-voice PRIVATE lens-store OpenSSL::Crypto Threads::Threads ${CMAKE_DL_LIBS})
+if(APPLE)
+  target_link_libraries(lens-voice PRIVATE "-framework CoreFoundation" "-framework CoreAudio" "-framework AudioToolbox")
+elseif(NOT ANDROID)
+  target_link_libraries(lens-voice PRIVATE m)
+endif()
+target_compile_options(lens-voice PRIVATE ${LENS_WARN})
+
 # Always-on agent (lens-agent): engine host, resource governor, spoken replies, user-only Unix socket (agent/os.cpp).
 find_package(Threads REQUIRED)
 add_executable(lens-agent agent/agent_main.cpp agent/child_process.cpp agent/actions.cpp agent/os.cpp)

@@ -1,0 +1,4271 @@
+{
+ "created_utc": "20261030T043959Z",
+ "minutes": 30.0,
+ "samples": 349,
+ "crashes": 0,
+ "peak_working_set_bytes": 374525952,
+ "peak_private_bytes": 336986112,
+ "median_working_set_bytes": 368521216,
+ "first_quarter_median_ws": 369147904,
+ "last_quarter_median_ws": 368353280,
+ "cpu_seconds": 112.484375,
+ "mean_cpu_percent_of_one_core": 6.254691670373665,
+ "mean_cpu_percent_by_process": {
+  "lens-agent.exe": 0.16,
+  "lens-engine.exe": 4.75,
+  "lens-observer.exe": 1.05,
+  "lens-ocr.exe": 0.3
+ },
+ "peak_working_set_by_process": {
+  "lens-ocr.exe": 70287360,
+  "lens-observer.exe": 23613440,
+  "lens-agent.exe": 11739136,
+  "lens-engine.exe": 344752128
+ },
+ "idle_after_load": {
+  "ws": 57950208,
+  "private": 21585920,
+  "by_process": {
+   "lens-agent.exe": 11128832,
+   "lens-engine.exe": 24641536,
+   "lens-observer.exe": 22179840
+  },
+  "private_by_process": {
+   "lens-agent.exe": 2310144,
+   "lens-engine.exe": 13328384,
+   "lens-observer.exe": 5947392
+  }
+ },
+ "binaries": "snapshot copy",
+ "observer_sha256": "0788c99e42ddf1e28b11e9577f246929fe96d956b5170541bef1cf692e8d7a04",
+ "recalls": 58,
+ "recall_ok": 58,
+ "recall_ms_p50": 211.03999999468215,
+ "recall_ms_p95": 2513.1082000007154,
+ "final_status": {
+  "autostart": false,
+  "data_dir": "C:\\Users\\poola\\AppData\\Local\\Temp\\tmp73wa_qkb",
+  "exclusions": {
+   "excluded_processes": [],
+   "private_title_markers": []
+  },
+  "failed": 0,
+  "mesh_running": false,
+  "microphone": false,
+  "observe_screen": true,
+  "observed": 1,
+  "observer_running": true,
+  "ok": true,
+  "onboarded": false,
+  "paused": false,
+  "phone_link": false,
+  "semantic": "verified",
+  "stored": 1,
+  "tray": "none",
+  "voice_running": false,
+  "voiced": 0
+ },
+ "final_stats": {
+  "source_count": 142,
+  "embedded_sources": 141,
+  "compressed_sources": 0,
+  "schema_version": 9
+ },
+ "within_500MB": true,
+ "trace": [
+  {
+   "t": 0.0,
+   "ws": 32391168,
+   "private": 6340608,
+   "cpu": 1.09375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11567104,
+    "lens-engine.exe": 12980224,
+    "lens-observer.exe": 7843840
+   }
+  },
+  {
+   "t": 5.0,
+   "ws": 44167168,
+   "private": 7921664,
+   "cpu": 1.234375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11616256,
+    "lens-engine.exe": 13176832,
+    "lens-observer.exe": 19374080
+   }
+  },
+  {
+   "t": 10.1,
+   "ws": 44199936,
+   "private": 7942144,
+   "cpu": 1.265625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11620352,
+    "lens-engine.exe": 13176832,
+    "lens-observer.exe": 19402752
+   }
+  },
+  {
+   "t": 15.1,
+   "ws": 44199936,
+   "private": 7942144,
+   "cpu": 1.265625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11620352,
+    "lens-engine.exe": 13176832,
+    "lens-observer.exe": 19402752
+   }
+  },
+  {
+   "t": 20.1,
+   "ws": 44220416,
+   "private": 7962624,
+   "cpu": 1.40625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11620352,
+    "lens-engine.exe": 13185024,
+    "lens-observer.exe": 19415040
+   }
+  },
+  {
+   "t": 25.1,
+   "ws": 44220416,
+   "private": 7962624,
+   "cpu": 1.421875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11620352,
+    "lens-engine.exe": 13185024,
+    "lens-observer.exe": 19415040
+   }
+  },
+  {
+   "t": 30.1,
+   "ws": 44265472,
+   "private": 8003584,
+   "cpu": 1.484375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11612160,
+    "lens-engine.exe": 13238272,
+    "lens-observer.exe": 19415040
+   }
+  },
+  {
+   "t": 37.4,
+   "ws": 368922624,
+   "private": 328470528,
+   "cpu": 4.25,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11681792,
+    "lens-engine.exe": 337747968,
+    "lens-observer.exe": 19492864
+   }
+  },
+  {
+   "t": 42.4,
+   "ws": 368918528,
+   "private": 328470528,
+   "cpu": 4.328125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11681792,
+    "lens-engine.exe": 337743872,
+    "lens-observer.exe": 19492864
+   }
+  },
+  {
+   "t": 47.4,
+   "ws": 368988160,
+   "private": 328544256,
+   "cpu": 4.421875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11681792,
+    "lens-engine.exe": 337743872,
+    "lens-observer.exe": 19562496
+   }
+  },
+  {
+   "t": 52.5,
+   "ws": 369070080,
+   "private": 328683520,
+   "cpu": 4.46875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11681792,
+    "lens-engine.exe": 337743872,
+    "lens-observer.exe": 19644416
+   }
+  },
+  {
+   "t": 57.5,
+   "ws": 369070080,
+   "private": 328683520,
+   "cpu": 4.515625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11681792,
+    "lens-engine.exe": 337743872,
+    "lens-observer.exe": 19644416
+   }
+  },
+  {
+   "t": 62.5,
+   "ws": 369020928,
+   "private": 328589312,
+   "cpu": 4.546875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11681792,
+    "lens-engine.exe": 337743872,
+    "lens-observer.exe": 19595264
+   }
+  },
+  {
+   "t": 67.7,
+   "ws": 369147904,
+   "private": 328642560,
+   "cpu": 5.1875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337846272,
+    "lens-observer.exe": 19582976
+   }
+  },
+  {
+   "t": 72.7,
+   "ws": 369147904,
+   "private": 328642560,
+   "cpu": 5.234375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337846272,
+    "lens-observer.exe": 19582976
+   }
+  },
+  {
+   "t": 77.7,
+   "ws": 369147904,
+   "private": 328650752,
+   "cpu": 5.28125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337846272,
+    "lens-observer.exe": 19582976
+   }
+  },
+  {
+   "t": 82.7,
+   "ws": 369160192,
+   "private": 328650752,
+   "cpu": 5.34375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 19582976
+   }
+  },
+  {
+   "t": 87.8,
+   "ws": 369160192,
+   "private": 328650752,
+   "cpu": 5.421875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 19582976
+   }
+  },
+  {
+   "t": 92.8,
+   "ws": 369131520,
+   "private": 328581120,
+   "cpu": 5.46875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337793024,
+    "lens-observer.exe": 19619840
+   }
+  },
+  {
+   "t": 97.9,
+   "ws": 369135616,
+   "private": 328577024,
+   "cpu": 6.171875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11730944,
+    "lens-engine.exe": 337784832,
+    "lens-observer.exe": 19619840
+   }
+  },
+  {
+   "t": 102.9,
+   "ws": 369135616,
+   "private": 328577024,
+   "cpu": 6.21875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11730944,
+    "lens-engine.exe": 337784832,
+    "lens-observer.exe": 19619840
+   }
+  },
+  {
+   "t": 108.0,
+   "ws": 369143808,
+   "private": 328577024,
+   "cpu": 6.25,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11730944,
+    "lens-engine.exe": 337793024,
+    "lens-observer.exe": 19619840
+   }
+  },
+  {
+   "t": 113.0,
+   "ws": 369143808,
+   "private": 328577024,
+   "cpu": 6.265625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11730944,
+    "lens-engine.exe": 337793024,
+    "lens-observer.exe": 19619840
+   }
+  },
+  {
+   "t": 118.0,
+   "ws": 369152000,
+   "private": 328577024,
+   "cpu": 6.28125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11730944,
+    "lens-engine.exe": 337801216,
+    "lens-observer.exe": 19619840
+   }
+  },
+  {
+   "t": 123.0,
+   "ws": 369143808,
+   "private": 328577024,
+   "cpu": 6.3125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11730944,
+    "lens-engine.exe": 337793024,
+    "lens-observer.exe": 19619840
+   }
+  },
+  {
+   "t": 128.2,
+   "ws": 369205248,
+   "private": 328515584,
+   "cpu": 7.171875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11710464,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 19607552
+   }
+  },
+  {
+   "t": 133.2,
+   "ws": 369205248,
+   "private": 328515584,
+   "cpu": 7.21875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11710464,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 19607552
+   }
+  },
+  {
+   "t": 138.3,
+   "ws": 369147904,
+   "private": 328380416,
+   "cpu": 7.296875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11669504,
+    "lens-engine.exe": 337870848,
+    "lens-observer.exe": 19607552
+   }
+  },
+  {
+   "t": 143.3,
+   "ws": 369143808,
+   "private": 328380416,
+   "cpu": 7.390625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11669504,
+    "lens-engine.exe": 337866752,
+    "lens-observer.exe": 19607552
+   }
+  },
+  {
+   "t": 148.3,
+   "ws": 369164288,
+   "private": 328396800,
+   "cpu": 7.421875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11669504,
+    "lens-engine.exe": 337870848,
+    "lens-observer.exe": 19623936
+   }
+  },
+  {
+   "t": 153.3,
+   "ws": 369180672,
+   "private": 328413184,
+   "cpu": 7.515625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11673600,
+    "lens-engine.exe": 337874944,
+    "lens-observer.exe": 19632128
+   }
+  },
+  {
+   "t": 158.5,
+   "ws": 369213440,
+   "private": 328409088,
+   "cpu": 8.40625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11710464,
+    "lens-engine.exe": 337870848,
+    "lens-observer.exe": 19632128
+   }
+  },
+  {
+   "t": 163.5,
+   "ws": 369242112,
+   "private": 328450048,
+   "cpu": 8.484375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337870848,
+    "lens-observer.exe": 19652608
+   }
+  },
+  {
+   "t": 168.5,
+   "ws": 369254400,
+   "private": 328450048,
+   "cpu": 8.515625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337883136,
+    "lens-observer.exe": 19652608
+   }
+  },
+  {
+   "t": 173.6,
+   "ws": 369254400,
+   "private": 328450048,
+   "cpu": 8.5625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337883136,
+    "lens-observer.exe": 19652608
+   }
+  },
+  {
+   "t": 178.6,
+   "ws": 369262592,
+   "private": 328478720,
+   "cpu": 8.578125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337879040,
+    "lens-observer.exe": 19664896
+   }
+  },
+  {
+   "t": 183.6,
+   "ws": 369262592,
+   "private": 328478720,
+   "cpu": 8.625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11718656,
+    "lens-engine.exe": 337879040,
+    "lens-observer.exe": 19664896
+   }
+  },
+  {
+   "t": 188.8,
+   "ws": 369291264,
+   "private": 328503296,
+   "cpu": 9.453125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11739136,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 19664896
+   }
+  },
+  {
+   "t": 193.8,
+   "ws": 369291264,
+   "private": 328503296,
+   "cpu": 9.5,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11739136,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 19664896
+   }
+  },
+  {
+   "t": 198.8,
+   "ws": 369238016,
+   "private": 328458240,
+   "cpu": 9.546875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11681792,
+    "lens-engine.exe": 337883136,
+    "lens-observer.exe": 19673088
+   }
+  },
+  {
+   "t": 203.9,
+   "ws": 369242112,
+   "private": 328450048,
+   "cpu": 9.625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11694080,
+    "lens-engine.exe": 337874944,
+    "lens-observer.exe": 19673088
+   }
+  },
+  {
+   "t": 208.9,
+   "ws": 369246208,
+   "private": 328450048,
+   "cpu": 9.71875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11694080,
+    "lens-engine.exe": 337874944,
+    "lens-observer.exe": 19677184
+   }
+  },
+  {
+   "t": 213.9,
+   "ws": 369246208,
+   "private": 328450048,
+   "cpu": 9.78125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11694080,
+    "lens-engine.exe": 337870848,
+    "lens-observer.exe": 19681280
+   }
+  },
+  {
+   "t": 219.2,
+   "ws": 369258496,
+   "private": 328437760,
+   "cpu": 10.8125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11706368,
+    "lens-engine.exe": 337870848,
+    "lens-observer.exe": 19681280
+   }
+  },
+  {
+   "t": 224.2,
+   "ws": 369258496,
+   "private": 328437760,
+   "cpu": 10.875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11710464,
+    "lens-engine.exe": 337862656,
+    "lens-observer.exe": 19685376
+   }
+  },
+  {
+   "t": 229.2,
+   "ws": 369262592,
+   "private": 328437760,
+   "cpu": 10.921875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11710464,
+    "lens-engine.exe": 337862656,
+    "lens-observer.exe": 19689472
+   }
+  },
+  {
+   "t": 234.3,
+   "ws": 369262592,
+   "private": 328437760,
+   "cpu": 10.96875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11710464,
+    "lens-engine.exe": 337862656,
+    "lens-observer.exe": 19689472
+   }
+  },
+  {
+   "t": 239.3,
+   "ws": 369328128,
+   "private": 328450048,
+   "cpu": 11.046875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11710464,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 19759104
+   }
+  },
+  {
+   "t": 244.3,
+   "ws": 369373184,
+   "private": 328474624,
+   "cpu": 11.125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11710464,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 19804160
+   }
+  },
+  {
+   "t": 249.6,
+   "ws": 369360896,
+   "private": 328486912,
+   "cpu": 12.21875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11681792,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 19820544
+   }
+  },
+  {
+   "t": 254.6,
+   "ws": 369356800,
+   "private": 328470528,
+   "cpu": 12.296875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11694080,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 19804160
+   }
+  },
+  {
+   "t": 259.7,
+   "ws": 369364992,
+   "private": 328495104,
+   "cpu": 12.328125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11694080,
+    "lens-engine.exe": 337866752,
+    "lens-observer.exe": 19804160
+   }
+  },
+  {
+   "t": 264.7,
+   "ws": 369369088,
+   "private": 328503296,
+   "cpu": 12.40625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11702272,
+    "lens-engine.exe": 337862656,
+    "lens-observer.exe": 19804160
+   }
+  },
+  {
+   "t": 269.7,
+   "ws": 369377280,
+   "private": 328511488,
+   "cpu": 12.4375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11702272,
+    "lens-engine.exe": 337862656,
+    "lens-observer.exe": 19812352
+   }
+  },
+  {
+   "t": 274.8,
+   "ws": 369385472,
+   "private": 328511488,
+   "cpu": 12.484375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11702272,
+    "lens-engine.exe": 337870848,
+    "lens-observer.exe": 19812352
+   }
+  },
+  {
+   "t": 280.0,
+   "ws": 369352704,
+   "private": 328437760,
+   "cpu": 13.515625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11673600,
+    "lens-engine.exe": 337866752,
+    "lens-observer.exe": 19812352
+   }
+  },
+  {
+   "t": 285.0,
+   "ws": 369356800,
+   "private": 328441856,
+   "cpu": 13.578125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11677696,
+    "lens-engine.exe": 337866752,
+    "lens-observer.exe": 19812352
+   }
+  },
+  {
+   "t": 290.1,
+   "ws": 369352704,
+   "private": 328450048,
+   "cpu": 13.640625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11685888,
+    "lens-engine.exe": 337854464,
+    "lens-observer.exe": 19812352
+   }
+  },
+  {
+   "t": 295.1,
+   "ws": 369373184,
+   "private": 328450048,
+   "cpu": 13.75,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 11685888,
+    "lens-engine.exe": 337874944,
+    "lens-observer.exe": 19812352
+   }
+  },
+  {
+   "t": 301.8,
+   "ws": 30425088,
+   "private": 6086656,
+   "cpu": 14.5625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10747904,
+    "lens-engine.exe": 11665408,
+    "lens-observer.exe": 8011776
+   }
+  },
+  {
+   "t": 306.8,
+   "ws": 113631232,
+   "private": 61751296,
+   "cpu": 16.15625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10784768,
+    "lens-engine.exe": 12124160,
+    "lens-observer.exe": 21336064,
+    "lens-ocr.exe": 69386240
+   }
+  },
+  {
+   "t": 314.4,
+   "ws": 369090560,
+   "private": 331583488,
+   "cpu": 19.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337457152,
+    "lens-observer.exe": 20803584
+   }
+  },
+  {
+   "t": 319.4,
+   "ws": 369098752,
+   "private": 331583488,
+   "cpu": 19.65625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337457152,
+    "lens-observer.exe": 20811776
+   }
+  },
+  {
+   "t": 324.4,
+   "ws": 369119232,
+   "private": 331583488,
+   "cpu": 19.703125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337457152,
+    "lens-observer.exe": 20832256
+   }
+  },
+  {
+   "t": 329.4,
+   "ws": 369119232,
+   "private": 331583488,
+   "cpu": 19.734375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337457152,
+    "lens-observer.exe": 20832256
+   }
+  },
+  {
+   "t": 334.5,
+   "ws": 369143808,
+   "private": 331612160,
+   "cpu": 19.78125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337498112,
+    "lens-observer.exe": 20828160
+   }
+  },
+  {
+   "t": 339.5,
+   "ws": 369152000,
+   "private": 331612160,
+   "cpu": 19.84375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337498112,
+    "lens-observer.exe": 20836352
+   }
+  },
+  {
+   "t": 344.8,
+   "ws": 369184768,
+   "private": 331694080,
+   "cpu": 20.890625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20836352
+   }
+  },
+  {
+   "t": 349.8,
+   "ws": 369184768,
+   "private": 331694080,
+   "cpu": 20.96875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20836352
+   }
+  },
+  {
+   "t": 354.8,
+   "ws": 369184768,
+   "private": 331694080,
+   "cpu": 21.0,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20836352
+   }
+  },
+  {
+   "t": 359.9,
+   "ws": 369192960,
+   "private": 331694080,
+   "cpu": 21.015625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20844544
+   }
+  },
+  {
+   "t": 364.9,
+   "ws": 369078272,
+   "private": 331489280,
+   "cpu": 21.0625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337448960,
+    "lens-observer.exe": 20799488
+   }
+  },
+  {
+   "t": 369.9,
+   "ws": 369065984,
+   "private": 331460608,
+   "cpu": 21.109375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337448960,
+    "lens-observer.exe": 20787200
+   }
+  },
+  {
+   "t": 375.1,
+   "ws": 369123328,
+   "private": 331378688,
+   "cpu": 22.09375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20787200
+   }
+  },
+  {
+   "t": 380.2,
+   "ws": 369123328,
+   "private": 331378688,
+   "cpu": 22.125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20787200
+   }
+  },
+  {
+   "t": 385.2,
+   "ws": 369123328,
+   "private": 331378688,
+   "cpu": 22.1875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20787200
+   }
+  },
+  {
+   "t": 390.2,
+   "ws": 369127424,
+   "private": 331378688,
+   "cpu": 22.21875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20791296
+   }
+  },
+  {
+   "t": 395.3,
+   "ws": 369127424,
+   "private": 331378688,
+   "cpu": 22.25,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20791296
+   }
+  },
+  {
+   "t": 400.3,
+   "ws": 369127424,
+   "private": 331378688,
+   "cpu": 22.28125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20791296
+   }
+  },
+  {
+   "t": 405.5,
+   "ws": 369139712,
+   "private": 331390976,
+   "cpu": 23.328125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20799488
+   }
+  },
+  {
+   "t": 410.6,
+   "ws": 369139712,
+   "private": 331390976,
+   "cpu": 23.421875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20799488
+   }
+  },
+  {
+   "t": 415.6,
+   "ws": 369139712,
+   "private": 331390976,
+   "cpu": 23.484375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20799488
+   }
+  },
+  {
+   "t": 420.6,
+   "ws": 369139712,
+   "private": 331390976,
+   "cpu": 23.53125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20799488
+   }
+  },
+  {
+   "t": 425.6,
+   "ws": 369127424,
+   "private": 331362304,
+   "cpu": 23.640625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20787200
+   }
+  },
+  {
+   "t": 430.7,
+   "ws": 369127424,
+   "private": 331362304,
+   "cpu": 23.71875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20787200
+   }
+  },
+  {
+   "t": 435.9,
+   "ws": 369078272,
+   "private": 331202560,
+   "cpu": 24.84375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337489920,
+    "lens-observer.exe": 20770816
+   }
+  },
+  {
+   "t": 441.0,
+   "ws": 369078272,
+   "private": 331202560,
+   "cpu": 24.90625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337489920,
+    "lens-observer.exe": 20770816
+   }
+  },
+  {
+   "t": 446.0,
+   "ws": 369078272,
+   "private": 331202560,
+   "cpu": 24.96875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337489920,
+    "lens-observer.exe": 20770816
+   }
+  },
+  {
+   "t": 451.0,
+   "ws": 369086464,
+   "private": 331206656,
+   "cpu": 25.015625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337489920,
+    "lens-observer.exe": 20779008
+   }
+  },
+  {
+   "t": 456.1,
+   "ws": 369086464,
+   "private": 331206656,
+   "cpu": 25.09375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337489920,
+    "lens-observer.exe": 20779008
+   }
+  },
+  {
+   "t": 461.1,
+   "ws": 369098752,
+   "private": 331206656,
+   "cpu": 25.125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337489920,
+    "lens-observer.exe": 20791296
+   }
+  },
+  {
+   "t": 466.3,
+   "ws": 369127424,
+   "private": 331231232,
+   "cpu": 26.171875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337494016,
+    "lens-observer.exe": 20815872
+   }
+  },
+  {
+   "t": 471.4,
+   "ws": 369127424,
+   "private": 331231232,
+   "cpu": 26.21875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337494016,
+    "lens-observer.exe": 20815872
+   }
+  },
+  {
+   "t": 476.4,
+   "ws": 369127424,
+   "private": 331231232,
+   "cpu": 26.25,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337494016,
+    "lens-observer.exe": 20815872
+   }
+  },
+  {
+   "t": 481.4,
+   "ws": 369127424,
+   "private": 331231232,
+   "cpu": 26.328125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337494016,
+    "lens-observer.exe": 20815872
+   }
+  },
+  {
+   "t": 486.4,
+   "ws": 369131520,
+   "private": 331231232,
+   "cpu": 26.390625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337494016,
+    "lens-observer.exe": 20819968
+   }
+  },
+  {
+   "t": 491.5,
+   "ws": 369135616,
+   "private": 331231232,
+   "cpu": 26.46875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337494016,
+    "lens-observer.exe": 20824064
+   }
+  },
+  {
+   "t": 496.7,
+   "ws": 369152000,
+   "private": 331239424,
+   "cpu": 27.375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337498112,
+    "lens-observer.exe": 20824064
+   }
+  },
+  {
+   "t": 501.7,
+   "ws": 369156096,
+   "private": 331239424,
+   "cpu": 27.40625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337498112,
+    "lens-observer.exe": 20828160
+   }
+  },
+  {
+   "t": 506.8,
+   "ws": 369156096,
+   "private": 331239424,
+   "cpu": 27.453125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337498112,
+    "lens-observer.exe": 20828160
+   }
+  },
+  {
+   "t": 511.8,
+   "ws": 369156096,
+   "private": 331239424,
+   "cpu": 27.515625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337498112,
+    "lens-observer.exe": 20828160
+   }
+  },
+  {
+   "t": 516.8,
+   "ws": 369160192,
+   "private": 331239424,
+   "cpu": 27.5625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337498112,
+    "lens-observer.exe": 20832256
+   }
+  },
+  {
+   "t": 521.8,
+   "ws": 369160192,
+   "private": 331239424,
+   "cpu": 27.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337498112,
+    "lens-observer.exe": 20832256
+   }
+  },
+  {
+   "t": 527.1,
+   "ws": 369172480,
+   "private": 331243520,
+   "cpu": 28.71875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20832256
+   }
+  },
+  {
+   "t": 532.1,
+   "ws": 369180672,
+   "private": 331243520,
+   "cpu": 28.75,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20840448
+   }
+  },
+  {
+   "t": 537.2,
+   "ws": 369180672,
+   "private": 331243520,
+   "cpu": 28.796875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20840448
+   }
+  },
+  {
+   "t": 542.2,
+   "ws": 369188864,
+   "private": 331243520,
+   "cpu": 28.84375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20848640
+   }
+  },
+  {
+   "t": 547.2,
+   "ws": 369197056,
+   "private": 331243520,
+   "cpu": 28.921875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337510400,
+    "lens-observer.exe": 20856832
+   }
+  },
+  {
+   "t": 552.2,
+   "ws": 51593216,
+   "private": 19202048,
+   "cpu": 29.171875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10891264,
+    "lens-engine.exe": 19845120,
+    "lens-observer.exe": 20856832
+   }
+  },
+  {
+   "t": 559.5,
+   "ws": 370036736,
+   "private": 331427840,
+   "cpu": 32.21875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 338280448,
+    "lens-observer.exe": 20856832
+   }
+  },
+  {
+   "t": 564.5,
+   "ws": 370036736,
+   "private": 331427840,
+   "cpu": 32.234375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 338280448,
+    "lens-observer.exe": 20856832
+   }
+  },
+  {
+   "t": 569.6,
+   "ws": 370044928,
+   "private": 331427840,
+   "cpu": 32.296875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 338280448,
+    "lens-observer.exe": 20865024
+   }
+  },
+  {
+   "t": 574.6,
+   "ws": 370053120,
+   "private": 331427840,
+   "cpu": 32.390625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 338280448,
+    "lens-observer.exe": 20873216
+   }
+  },
+  {
+   "t": 579.6,
+   "ws": 370053120,
+   "private": 331427840,
+   "cpu": 32.40625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 338280448,
+    "lens-observer.exe": 20873216
+   }
+  },
+  {
+   "t": 584.7,
+   "ws": 370085888,
+   "private": 331489280,
+   "cpu": 32.421875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 338313216,
+    "lens-observer.exe": 20873216
+   }
+  },
+  {
+   "t": 589.9,
+   "ws": 370221056,
+   "private": 331886592,
+   "cpu": 33.5,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10915840,
+    "lens-engine.exe": 338432000,
+    "lens-observer.exe": 20873216
+   }
+  },
+  {
+   "t": 595.0,
+   "ws": 370221056,
+   "private": 331886592,
+   "cpu": 33.546875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10915840,
+    "lens-engine.exe": 338432000,
+    "lens-observer.exe": 20873216
+   }
+  },
+  {
+   "t": 600.0,
+   "ws": 370221056,
+   "private": 331886592,
+   "cpu": 33.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10915840,
+    "lens-engine.exe": 338432000,
+    "lens-observer.exe": 20873216
+   }
+  },
+  {
+   "t": 606.5,
+   "ws": 30420992,
+   "private": 6082560,
+   "cpu": 33.90625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10752000,
+    "lens-engine.exe": 11653120,
+    "lens-observer.exe": 8015872
+   }
+  },
+  {
+   "t": 611.5,
+   "ws": 41504768,
+   "private": 7671808,
+   "cpu": 34.03125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10792960,
+    "lens-engine.exe": 12120064,
+    "lens-observer.exe": 18591744
+   }
+  },
+  {
+   "t": 616.6,
+   "ws": 41517056,
+   "private": 7655424,
+   "cpu": 34.109375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10797056,
+    "lens-engine.exe": 12124160,
+    "lens-observer.exe": 18595840
+   }
+  },
+  {
+   "t": 624.2,
+   "ws": 366264320,
+   "private": 328249344,
+   "cpu": 37.453125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336683008,
+    "lens-observer.exe": 18739200
+   }
+  },
+  {
+   "t": 629.2,
+   "ws": 366264320,
+   "private": 328290304,
+   "cpu": 37.46875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336678912,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 634.2,
+   "ws": 366272512,
+   "private": 328306688,
+   "cpu": 37.53125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 336678912,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 639.3,
+   "ws": 366329856,
+   "private": 328351744,
+   "cpu": 37.65625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336732160,
+    "lens-observer.exe": 18755584
+   }
+  },
+  {
+   "t": 644.3,
+   "ws": 366297088,
+   "private": 328318976,
+   "cpu": 37.65625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336732160,
+    "lens-observer.exe": 18722816
+   }
+  },
+  {
+   "t": 649.3,
+   "ws": 366313472,
+   "private": 328351744,
+   "cpu": 37.703125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336728064,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 654.6,
+   "ws": 366325760,
+   "private": 328331264,
+   "cpu": 38.71875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336732160,
+    "lens-observer.exe": 18718720
+   }
+  },
+  {
+   "t": 659.6,
+   "ws": 366342144,
+   "private": 328335360,
+   "cpu": 38.765625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336744448,
+    "lens-observer.exe": 18722816
+   }
+  },
+  {
+   "t": 664.6,
+   "ws": 366366720,
+   "private": 328368128,
+   "cpu": 38.765625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336744448,
+    "lens-observer.exe": 18747392
+   }
+  },
+  {
+   "t": 669.7,
+   "ws": 366211072,
+   "private": 328130560,
+   "cpu": 38.828125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336666624,
+    "lens-observer.exe": 18669568
+   }
+  },
+  {
+   "t": 674.7,
+   "ws": 366219264,
+   "private": 328134656,
+   "cpu": 38.875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336662528,
+    "lens-observer.exe": 18681856
+   }
+  },
+  {
+   "t": 679.7,
+   "ws": 366219264,
+   "private": 328134656,
+   "cpu": 38.984375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336662528,
+    "lens-observer.exe": 18681856
+   }
+  },
+  {
+   "t": 685.0,
+   "ws": 366321664,
+   "private": 328228864,
+   "cpu": 40.125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10891264,
+    "lens-engine.exe": 336687104,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 690.1,
+   "ws": 366321664,
+   "private": 328228864,
+   "cpu": 40.15625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10891264,
+    "lens-engine.exe": 336687104,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 695.1,
+   "ws": 366329856,
+   "private": 328232960,
+   "cpu": 40.21875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10891264,
+    "lens-engine.exe": 336691200,
+    "lens-observer.exe": 18747392
+   }
+  },
+  {
+   "t": 700.1,
+   "ws": 366342144,
+   "private": 328232960,
+   "cpu": 40.296875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10891264,
+    "lens-engine.exe": 336695296,
+    "lens-observer.exe": 18755584
+   }
+  },
+  {
+   "t": 705.1,
+   "ws": 366346240,
+   "private": 328232960,
+   "cpu": 40.34375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10891264,
+    "lens-engine.exe": 336699392,
+    "lens-observer.exe": 18755584
+   }
+  },
+  {
+   "t": 710.2,
+   "ws": 366354432,
+   "private": 328245248,
+   "cpu": 40.40625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10891264,
+    "lens-engine.exe": 336699392,
+    "lens-observer.exe": 18763776
+   }
+  },
+  {
+   "t": 715.4,
+   "ws": 366325760,
+   "private": 328196096,
+   "cpu": 41.453125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10870784,
+    "lens-engine.exe": 336691200,
+    "lens-observer.exe": 18763776
+   }
+  },
+  {
+   "t": 720.4,
+   "ws": 366333952,
+   "private": 328212480,
+   "cpu": 41.53125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10870784,
+    "lens-engine.exe": 336699392,
+    "lens-observer.exe": 18763776
+   }
+  },
+  {
+   "t": 725.5,
+   "ws": 366305280,
+   "private": 328163328,
+   "cpu": 41.625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 336699392,
+    "lens-observer.exe": 18767872
+   }
+  },
+  {
+   "t": 730.5,
+   "ws": 366297088,
+   "private": 328146944,
+   "cpu": 41.6875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 336691200,
+    "lens-observer.exe": 18755584
+   }
+  },
+  {
+   "t": 735.5,
+   "ws": 366333952,
+   "private": 328183808,
+   "cpu": 41.75,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 336691200,
+    "lens-observer.exe": 18792448
+   }
+  },
+  {
+   "t": 740.6,
+   "ws": 366301184,
+   "private": 328101888,
+   "cpu": 41.828125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336666624,
+    "lens-observer.exe": 18792448
+   }
+  },
+  {
+   "t": 745.8,
+   "ws": 366366720,
+   "private": 328077312,
+   "cpu": 42.71875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 336732160,
+    "lens-observer.exe": 18776064
+   }
+  },
+  {
+   "t": 750.8,
+   "ws": 366366720,
+   "private": 328077312,
+   "cpu": 42.75,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 336732160,
+    "lens-observer.exe": 18776064
+   }
+  },
+  {
+   "t": 755.9,
+   "ws": 366370816,
+   "private": 328077312,
+   "cpu": 42.8125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 336736256,
+    "lens-observer.exe": 18776064
+   }
+  },
+  {
+   "t": 760.9,
+   "ws": 366379008,
+   "private": 328089600,
+   "cpu": 42.828125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 336736256,
+    "lens-observer.exe": 18784256
+   }
+  },
+  {
+   "t": 765.9,
+   "ws": 366387200,
+   "private": 328093696,
+   "cpu": 42.828125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 336736256,
+    "lens-observer.exe": 18792448
+   }
+  },
+  {
+   "t": 770.9,
+   "ws": 366403584,
+   "private": 328105984,
+   "cpu": 42.890625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 336740352,
+    "lens-observer.exe": 18804736
+   }
+  },
+  {
+   "t": 776.2,
+   "ws": 366411776,
+   "private": 328130560,
+   "cpu": 43.890625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10870784,
+    "lens-engine.exe": 336736256,
+    "lens-observer.exe": 18804736
+   }
+  },
+  {
+   "t": 781.2,
+   "ws": 366411776,
+   "private": 328142848,
+   "cpu": 43.953125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10870784,
+    "lens-engine.exe": 336728064,
+    "lens-observer.exe": 18812928
+   }
+  },
+  {
+   "t": 786.3,
+   "ws": 366440448,
+   "private": 328159232,
+   "cpu": 43.984375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10870784,
+    "lens-engine.exe": 336736256,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 791.3,
+   "ws": 366444544,
+   "private": 328159232,
+   "cpu": 44.046875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10870784,
+    "lens-engine.exe": 336740352,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 796.3,
+   "ws": 366444544,
+   "private": 328159232,
+   "cpu": 44.109375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10870784,
+    "lens-engine.exe": 336740352,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 801.4,
+   "ws": 366440448,
+   "private": 328159232,
+   "cpu": 44.140625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10870784,
+    "lens-engine.exe": 336736256,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 806.6,
+   "ws": 366456832,
+   "private": 328151040,
+   "cpu": 45.1875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10878976,
+    "lens-engine.exe": 336744448,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 811.6,
+   "ws": 366456832,
+   "private": 328151040,
+   "cpu": 45.21875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10878976,
+    "lens-engine.exe": 336744448,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 816.7,
+   "ws": 366452736,
+   "private": 328151040,
+   "cpu": 45.265625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10878976,
+    "lens-engine.exe": 336740352,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 821.7,
+   "ws": 366452736,
+   "private": 328151040,
+   "cpu": 45.28125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10878976,
+    "lens-engine.exe": 336740352,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 826.7,
+   "ws": 366460928,
+   "private": 328151040,
+   "cpu": 45.375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10878976,
+    "lens-engine.exe": 336748544,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 831.7,
+   "ws": 366460928,
+   "private": 328151040,
+   "cpu": 45.4375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10878976,
+    "lens-engine.exe": 336748544,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 837.0,
+   "ws": 366452736,
+   "private": 328167424,
+   "cpu": 46.359375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10866688,
+    "lens-engine.exe": 336748544,
+    "lens-observer.exe": 18837504
+   }
+  },
+  {
+   "t": 842.0,
+   "ws": 366460928,
+   "private": 328196096,
+   "cpu": 46.46875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10866688,
+    "lens-engine.exe": 336744448,
+    "lens-observer.exe": 18849792
+   }
+  },
+  {
+   "t": 847.0,
+   "ws": 366460928,
+   "private": 328179712,
+   "cpu": 46.515625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10866688,
+    "lens-engine.exe": 336744448,
+    "lens-observer.exe": 18849792
+   }
+  },
+  {
+   "t": 852.1,
+   "ws": 366485504,
+   "private": 328220672,
+   "cpu": 46.578125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10866688,
+    "lens-engine.exe": 336752640,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 857.1,
+   "ws": 366477312,
+   "private": 328220672,
+   "cpu": 46.65625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10866688,
+    "lens-engine.exe": 336744448,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 862.1,
+   "ws": 50098176,
+   "private": 14966784,
+   "cpu": 46.890625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10932224,
+    "lens-engine.exe": 20299776,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 869.4,
+   "ws": 367382528,
+   "private": 329134080,
+   "cpu": 50.328125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10940416,
+    "lens-engine.exe": 337575936,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 874.5,
+   "ws": 367374336,
+   "private": 329138176,
+   "cpu": 50.375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10940416,
+    "lens-engine.exe": 337567744,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 879.5,
+   "ws": 367382528,
+   "private": 329138176,
+   "cpu": 50.4375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10940416,
+    "lens-engine.exe": 337575936,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 884.5,
+   "ws": 367382528,
+   "private": 329138176,
+   "cpu": 50.46875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10940416,
+    "lens-engine.exe": 337575936,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 889.6,
+   "ws": 367382528,
+   "private": 329138176,
+   "cpu": 50.53125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10940416,
+    "lens-engine.exe": 337575936,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 894.6,
+   "ws": 367411200,
+   "private": 329199616,
+   "cpu": 50.546875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10940416,
+    "lens-engine.exe": 337604608,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 899.8,
+   "ws": 367497216,
+   "private": 329187328,
+   "cpu": 51.640625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10915840,
+    "lens-engine.exe": 337715200,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 904.9,
+   "ws": 367489024,
+   "private": 329187328,
+   "cpu": 51.6875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10915840,
+    "lens-engine.exe": 337707008,
+    "lens-observer.exe": 18866176
+   }
+  },
+  {
+   "t": 911.6,
+   "ws": 30478336,
+   "private": 6131712,
+   "cpu": 51.96875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10747904,
+    "lens-engine.exe": 11714560,
+    "lens-observer.exe": 8015872
+   }
+  },
+  {
+   "t": 916.6,
+   "ws": 91586560,
+   "private": 43286528,
+   "cpu": 52.515625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10747904,
+    "lens-engine.exe": 11714560,
+    "lens-observer.exe": 23613440,
+    "lens-ocr.exe": 45510656
+   }
+  },
+  {
+   "t": 921.6,
+   "ws": 112861184,
+   "private": 61452288,
+   "cpu": 53.484375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10784768,
+    "lens-engine.exe": 12296192,
+    "lens-observer.exe": 21102592,
+    "lens-ocr.exe": 68677632
+   }
+  },
+  {
+   "t": 926.7,
+   "ws": 112148480,
+   "private": 60481536,
+   "cpu": 53.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10784768,
+    "lens-engine.exe": 12296192,
+    "lens-observer.exe": 20389888,
+    "lens-ocr.exe": 68677632
+   }
+  },
+  {
+   "t": 934.3,
+   "ws": 368406528,
+   "private": 331145216,
+   "cpu": 57.140625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337031168,
+    "lens-observer.exe": 20533248
+   }
+  },
+  {
+   "t": 939.3,
+   "ws": 368427008,
+   "private": 331149312,
+   "cpu": 57.1875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337031168,
+    "lens-observer.exe": 20553728
+   }
+  },
+  {
+   "t": 944.4,
+   "ws": 368459776,
+   "private": 331182080,
+   "cpu": 57.234375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10833920,
+    "lens-engine.exe": 337072128,
+    "lens-observer.exe": 20553728
+   }
+  },
+  {
+   "t": 949.4,
+   "ws": 368467968,
+   "private": 331182080,
+   "cpu": 57.3125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10833920,
+    "lens-engine.exe": 337072128,
+    "lens-observer.exe": 20561920
+   }
+  },
+  {
+   "t": 954.4,
+   "ws": 368480256,
+   "private": 331186176,
+   "cpu": 57.34375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10833920,
+    "lens-engine.exe": 337072128,
+    "lens-observer.exe": 20574208
+   }
+  },
+  {
+   "t": 959.5,
+   "ws": 368484352,
+   "private": 331186176,
+   "cpu": 57.359375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10833920,
+    "lens-engine.exe": 337072128,
+    "lens-observer.exe": 20578304
+   }
+  },
+  {
+   "t": 964.7,
+   "ws": 368570368,
+   "private": 331296768,
+   "cpu": 58.359375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337096704,
+    "lens-observer.exe": 20631552
+   }
+  },
+  {
+   "t": 969.7,
+   "ws": 368570368,
+   "private": 331296768,
+   "cpu": 58.40625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337096704,
+    "lens-observer.exe": 20631552
+   }
+  },
+  {
+   "t": 974.8,
+   "ws": 368443392,
+   "private": 331087872,
+   "cpu": 58.484375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337027072,
+    "lens-observer.exe": 20574208
+   }
+  },
+  {
+   "t": 979.8,
+   "ws": 368435200,
+   "private": 331059200,
+   "cpu": 58.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337027072,
+    "lens-observer.exe": 20566016
+   }
+  },
+  {
+   "t": 984.8,
+   "ws": 368504832,
+   "private": 331059200,
+   "cpu": 58.625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337027072,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 989.8,
+   "ws": 368504832,
+   "private": 331059200,
+   "cpu": 58.671875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337027072,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 995.1,
+   "ws": 368521216,
+   "private": 330977280,
+   "cpu": 59.734375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337047552,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 1000.1,
+   "ws": 368521216,
+   "private": 330977280,
+   "cpu": 59.78125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337047552,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 1005.2,
+   "ws": 368521216,
+   "private": 330977280,
+   "cpu": 59.84375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337047552,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 1010.2,
+   "ws": 368521216,
+   "private": 330977280,
+   "cpu": 59.890625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337047552,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 1015.2,
+   "ws": 368521216,
+   "private": 330977280,
+   "cpu": 59.96875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337047552,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 1020.3,
+   "ws": 368521216,
+   "private": 330977280,
+   "cpu": 59.984375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337047552,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 1025.5,
+   "ws": 368611328,
+   "private": 330960896,
+   "cpu": 60.875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337145856,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 1030.5,
+   "ws": 368611328,
+   "private": 330960896,
+   "cpu": 60.953125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337145856,
+    "lens-observer.exe": 20635648
+   }
+  },
+  {
+   "t": 1035.6,
+   "ws": 368599040,
+   "private": 330932224,
+   "cpu": 60.96875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337145856,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1040.6,
+   "ws": 368599040,
+   "private": 330932224,
+   "cpu": 61.015625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10829824,
+    "lens-engine.exe": 337145856,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1045.6,
+   "ws": 368562176,
+   "private": 330809344,
+   "cpu": 61.0625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1050.6,
+   "ws": 368549888,
+   "private": 330776576,
+   "cpu": 61.125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20611072
+   }
+  },
+  {
+   "t": 1055.9,
+   "ws": 368553984,
+   "private": 330788864,
+   "cpu": 62.109375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20611072
+   }
+  },
+  {
+   "t": 1060.9,
+   "ws": 368558080,
+   "private": 330788864,
+   "cpu": 62.203125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20615168
+   }
+  },
+  {
+   "t": 1065.9,
+   "ws": 368558080,
+   "private": 330788864,
+   "cpu": 62.25,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20615168
+   }
+  },
+  {
+   "t": 1071.0,
+   "ws": 368566272,
+   "private": 330788864,
+   "cpu": 62.296875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1076.0,
+   "ws": 368566272,
+   "private": 330788864,
+   "cpu": 62.34375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1081.0,
+   "ws": 368566272,
+   "private": 330788864,
+   "cpu": 62.40625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1086.3,
+   "ws": 368562176,
+   "private": 330813440,
+   "cpu": 63.421875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1091.3,
+   "ws": 368562176,
+   "private": 330813440,
+   "cpu": 63.53125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1096.3,
+   "ws": 368562176,
+   "private": 330813440,
+   "cpu": 63.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1101.4,
+   "ws": 368562176,
+   "private": 330813440,
+   "cpu": 63.625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1106.4,
+   "ws": 368562176,
+   "private": 330813440,
+   "cpu": 63.671875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1111.4,
+   "ws": 368562176,
+   "private": 330813440,
+   "cpu": 63.703125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337117184,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1116.7,
+   "ws": 368566272,
+   "private": 330776576,
+   "cpu": 64.71875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337121280,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1121.7,
+   "ws": 368566272,
+   "private": 330776576,
+   "cpu": 64.75,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337121280,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1126.7,
+   "ws": 368566272,
+   "private": 330776576,
+   "cpu": 64.859375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337121280,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1131.8,
+   "ws": 368566272,
+   "private": 330776576,
+   "cpu": 64.875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337121280,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1136.8,
+   "ws": 368566272,
+   "private": 330776576,
+   "cpu": 64.921875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10821632,
+    "lens-engine.exe": 337121280,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1141.8,
+   "ws": 347602944,
+   "private": 306823168,
+   "cpu": 65.015625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10883072,
+    "lens-engine.exe": 316096512,
+    "lens-observer.exe": 20623360
+   }
+  },
+  {
+   "t": 1149.2,
+   "ws": 369049600,
+   "private": 330440704,
+   "cpu": 68.265625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20631552
+   }
+  },
+  {
+   "t": 1154.2,
+   "ws": 369049600,
+   "private": 330440704,
+   "cpu": 68.3125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20631552
+   }
+  },
+  {
+   "t": 1159.3,
+   "ws": 369049600,
+   "private": 330440704,
+   "cpu": 68.40625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20631552
+   }
+  },
+  {
+   "t": 1164.3,
+   "ws": 369049600,
+   "private": 330440704,
+   "cpu": 68.4375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20631552
+   }
+  },
+  {
+   "t": 1169.3,
+   "ws": 369049600,
+   "private": 330440704,
+   "cpu": 68.53125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 337518592,
+    "lens-observer.exe": 20631552
+   }
+  },
+  {
+   "t": 1174.4,
+   "ws": 123375616,
+   "private": 72441856,
+   "cpu": 69.953125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10899456,
+    "lens-engine.exe": 21561344,
+    "lens-observer.exe": 20627456,
+    "lens-ocr.exe": 70287360
+   }
+  },
+  {
+   "t": 1181.6,
+   "ws": 369434624,
+   "private": 331059200,
+   "cpu": 72.984375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10903552,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 20643840
+   }
+  },
+  {
+   "t": 1186.6,
+   "ws": 369770496,
+   "private": 331132928,
+   "cpu": 73.03125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10903552,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 20979712
+   }
+  },
+  {
+   "t": 1191.7,
+   "ws": 369774592,
+   "private": 331132928,
+   "cpu": 73.03125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10903552,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 20983808
+   }
+  },
+  {
+   "t": 1196.7,
+   "ws": 369774592,
+   "private": 331132928,
+   "cpu": 73.0625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10903552,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 20983808
+   }
+  },
+  {
+   "t": 1201.7,
+   "ws": 369774592,
+   "private": 331132928,
+   "cpu": 73.140625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10903552,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 20983808
+   }
+  },
+  {
+   "t": 1206.7,
+   "ws": 369774592,
+   "private": 331132928,
+   "cpu": 73.203125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10903552,
+    "lens-engine.exe": 337887232,
+    "lens-observer.exe": 20983808
+   }
+  },
+  {
+   "t": 1213.5,
+   "ws": 30552064,
+   "private": 6225920,
+   "cpu": 74.109375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10764288,
+    "lens-engine.exe": 11763712,
+    "lens-observer.exe": 8024064
+   }
+  },
+  {
+   "t": 1218.6,
+   "ws": 41639936,
+   "private": 7782400,
+   "cpu": 74.25,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10797056,
+    "lens-engine.exe": 12247040,
+    "lens-observer.exe": 18595840
+   }
+  },
+  {
+   "t": 1223.6,
+   "ws": 41660416,
+   "private": 7802880,
+   "cpu": 74.265625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10797056,
+    "lens-engine.exe": 12247040,
+    "lens-observer.exe": 18616320
+   }
+  },
+  {
+   "t": 1228.6,
+   "ws": 41803776,
+   "private": 7946240,
+   "cpu": 74.296875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10801152,
+    "lens-engine.exe": 12378112,
+    "lens-observer.exe": 18624512
+   }
+  },
+  {
+   "t": 1233.7,
+   "ws": 41803776,
+   "private": 7946240,
+   "cpu": 74.328125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10801152,
+    "lens-engine.exe": 12378112,
+    "lens-observer.exe": 18624512
+   }
+  },
+  {
+   "t": 1238.7,
+   "ws": 41807872,
+   "private": 7950336,
+   "cpu": 74.421875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10801152,
+    "lens-engine.exe": 12378112,
+    "lens-observer.exe": 18628608
+   }
+  },
+  {
+   "t": 1246.4,
+   "ws": 366563328,
+   "private": 328908800,
+   "cpu": 78.1875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336973824,
+    "lens-observer.exe": 18747392
+   }
+  },
+  {
+   "t": 1251.5,
+   "ws": 366546944,
+   "private": 328908800,
+   "cpu": 78.3125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 336965632,
+    "lens-observer.exe": 18735104
+   }
+  },
+  {
+   "t": 1256.5,
+   "ws": 366546944,
+   "private": 328908800,
+   "cpu": 78.375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 336965632,
+    "lens-observer.exe": 18735104
+   }
+  },
+  {
+   "t": 1261.5,
+   "ws": 366563328,
+   "private": 328908800,
+   "cpu": 78.4375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 336973824,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 1266.6,
+   "ws": 366559232,
+   "private": 328908800,
+   "cpu": 78.5,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 336969728,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 1271.6,
+   "ws": 366563328,
+   "private": 328908800,
+   "cpu": 78.5625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 336973824,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 1276.8,
+   "ws": 366481408,
+   "private": 328679424,
+   "cpu": 79.5625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336916480,
+    "lens-observer.exe": 18690048
+   }
+  },
+  {
+   "t": 1281.9,
+   "ws": 366469120,
+   "private": 328650752,
+   "cpu": 79.65625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336916480,
+    "lens-observer.exe": 18677760
+   }
+  },
+  {
+   "t": 1286.9,
+   "ws": 366477312,
+   "private": 328650752,
+   "cpu": 79.703125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336920576,
+    "lens-observer.exe": 18681856
+   }
+  },
+  {
+   "t": 1291.9,
+   "ws": 366489600,
+   "private": 328663040,
+   "cpu": 79.734375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 336920576,
+    "lens-observer.exe": 18694144
+   }
+  },
+  {
+   "t": 1296.9,
+   "ws": 366419968,
+   "private": 328663040,
+   "cpu": 79.828125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336916480,
+    "lens-observer.exe": 18661376
+   }
+  },
+  {
+   "t": 1302.0,
+   "ws": 366448640,
+   "private": 328695808,
+   "cpu": 79.890625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336916480,
+    "lens-observer.exe": 18690048
+   }
+  },
+  {
+   "t": 1307.2,
+   "ws": 366448640,
+   "private": 328728576,
+   "cpu": 80.953125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336912384,
+    "lens-observer.exe": 18694144
+   }
+  },
+  {
+   "t": 1312.2,
+   "ws": 366460928,
+   "private": 328740864,
+   "cpu": 80.953125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336912384,
+    "lens-observer.exe": 18706432
+   }
+  },
+  {
+   "t": 1317.3,
+   "ws": 366465024,
+   "private": 328740864,
+   "cpu": 81.0625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336916480,
+    "lens-observer.exe": 18706432
+   }
+  },
+  {
+   "t": 1322.3,
+   "ws": 366518272,
+   "private": 328810496,
+   "cpu": 81.09375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336916480,
+    "lens-observer.exe": 18759680
+   }
+  },
+  {
+   "t": 1327.3,
+   "ws": 366505984,
+   "private": 328777728,
+   "cpu": 81.171875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336920576,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 1332.4,
+   "ws": 366518272,
+   "private": 328777728,
+   "cpu": 81.265625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336932864,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 1337.6,
+   "ws": 366534656,
+   "private": 328736768,
+   "cpu": 82.328125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10878976,
+    "lens-engine.exe": 336924672,
+    "lens-observer.exe": 18731008
+   }
+  },
+  {
+   "t": 1342.7,
+   "ws": 366505984,
+   "private": 328708096,
+   "cpu": 82.40625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336932864,
+    "lens-observer.exe": 18731008
+   }
+  },
+  {
+   "t": 1347.7,
+   "ws": 366526464,
+   "private": 328613888,
+   "cpu": 82.4375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336936960,
+    "lens-observer.exe": 18747392
+   }
+  },
+  {
+   "t": 1352.7,
+   "ws": 366510080,
+   "private": 328585216,
+   "cpu": 82.4375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336936960,
+    "lens-observer.exe": 18731008
+   }
+  },
+  {
+   "t": 1357.7,
+   "ws": 366501888,
+   "private": 328585216,
+   "cpu": 82.484375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336928768,
+    "lens-observer.exe": 18731008
+   }
+  },
+  {
+   "t": 1362.8,
+   "ws": 366514176,
+   "private": 328597504,
+   "cpu": 82.515625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 336928768,
+    "lens-observer.exe": 18743296
+   }
+  },
+  {
+   "t": 1368.0,
+   "ws": 366542848,
+   "private": 328642560,
+   "cpu": 83.59375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10862592,
+    "lens-engine.exe": 336924672,
+    "lens-observer.exe": 18755584
+   }
+  },
+  {
+   "t": 1373.0,
+   "ws": 366542848,
+   "private": 328642560,
+   "cpu": 83.625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10862592,
+    "lens-engine.exe": 336924672,
+    "lens-observer.exe": 18755584
+   }
+  },
+  {
+   "t": 1378.1,
+   "ws": 366559232,
+   "private": 328654848,
+   "cpu": 83.6875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10862592,
+    "lens-engine.exe": 336928768,
+    "lens-observer.exe": 18767872
+   }
+  },
+  {
+   "t": 1383.1,
+   "ws": 366559232,
+   "private": 328654848,
+   "cpu": 83.6875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10862592,
+    "lens-engine.exe": 336928768,
+    "lens-observer.exe": 18767872
+   }
+  },
+  {
+   "t": 1388.1,
+   "ws": 366559232,
+   "private": 328654848,
+   "cpu": 83.78125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10862592,
+    "lens-engine.exe": 336928768,
+    "lens-observer.exe": 18767872
+   }
+  },
+  {
+   "t": 1393.2,
+   "ws": 366563328,
+   "private": 328654848,
+   "cpu": 83.8125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10862592,
+    "lens-engine.exe": 336932864,
+    "lens-observer.exe": 18767872
+   }
+  },
+  {
+   "t": 1398.4,
+   "ws": 366579712,
+   "private": 328581120,
+   "cpu": 84.953125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 336994304,
+    "lens-observer.exe": 18767872
+   }
+  },
+  {
+   "t": 1403.4,
+   "ws": 366579712,
+   "private": 328593408,
+   "cpu": 84.984375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 336986112,
+    "lens-observer.exe": 18767872
+   }
+  },
+  {
+   "t": 1408.5,
+   "ws": 366579712,
+   "private": 328593408,
+   "cpu": 85.03125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 336986112,
+    "lens-observer.exe": 18767872
+   }
+  },
+  {
+   "t": 1413.5,
+   "ws": 366592000,
+   "private": 328609792,
+   "cpu": 85.0625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 336982016,
+    "lens-observer.exe": 18784256
+   }
+  },
+  {
+   "t": 1418.5,
+   "ws": 366665728,
+   "private": 328622080,
+   "cpu": 85.140625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337043456,
+    "lens-observer.exe": 18796544
+   }
+  },
+  {
+   "t": 1423.6,
+   "ws": 366673920,
+   "private": 328622080,
+   "cpu": 85.171875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337051648,
+    "lens-observer.exe": 18796544
+   }
+  },
+  {
+   "t": 1428.8,
+   "ws": 366678016,
+   "private": 328638464,
+   "cpu": 86.1875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10817536,
+    "lens-engine.exe": 337043456,
+    "lens-observer.exe": 18817024
+   }
+  },
+  {
+   "t": 1433.9,
+   "ws": 366690304,
+   "private": 328650752,
+   "cpu": 86.265625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337047552,
+    "lens-observer.exe": 18817024
+   }
+  },
+  {
+   "t": 1438.9,
+   "ws": 366690304,
+   "private": 328650752,
+   "cpu": 86.3125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337047552,
+    "lens-observer.exe": 18817024
+   }
+  },
+  {
+   "t": 1443.9,
+   "ws": 366698496,
+   "private": 328650752,
+   "cpu": 86.359375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337051648,
+    "lens-observer.exe": 18821120
+   }
+  },
+  {
+   "t": 1449.0,
+   "ws": 366698496,
+   "private": 328675328,
+   "cpu": 86.421875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10825728,
+    "lens-engine.exe": 337039360,
+    "lens-observer.exe": 18833408
+   }
+  },
+  {
+   "t": 1454.0,
+   "ws": 69488640,
+   "private": 27336704,
+   "cpu": 86.546875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10887168,
+    "lens-engine.exe": 39763968,
+    "lens-observer.exe": 18837504
+   }
+  },
+  {
+   "t": 1461.2,
+   "ws": 367624192,
+   "private": 328884224,
+   "cpu": 89.609375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1466.3,
+   "ws": 367624192,
+   "private": 328884224,
+   "cpu": 89.65625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1471.3,
+   "ws": 367624192,
+   "private": 328884224,
+   "cpu": 89.703125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1476.3,
+   "ws": 367624192,
+   "private": 328884224,
+   "cpu": 89.78125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1481.4,
+   "ws": 367624192,
+   "private": 328884224,
+   "cpu": 89.859375,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 337858560,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1486.4,
+   "ws": 51318784,
+   "private": 15196160,
+   "cpu": 90.125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 21553152,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1493.9,
+   "ws": 374517760,
+   "private": 336986112,
+   "cpu": 93.578125,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10928128,
+    "lens-engine.exe": 344743936,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1498.9,
+   "ws": 374513664,
+   "private": 336986112,
+   "cpu": 93.65625,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10928128,
+    "lens-engine.exe": 344739840,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1503.9,
+   "ws": 374525952,
+   "private": 336986112,
+   "cpu": 93.75,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10928128,
+    "lens-engine.exe": 344752128,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1508.9,
+   "ws": 374525952,
+   "private": 336986112,
+   "cpu": 93.796875,
+   "phase": "uia",
+   "by_process": {
+    "lens-agent.exe": 10928128,
+    "lens-engine.exe": 344752128,
+    "lens-observer.exe": 18845696
+   }
+  },
+  {
+   "t": 1515.4,
+   "ws": 30539776,
+   "private": 6209536,
+   "cpu": 94.671875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10756096,
+    "lens-engine.exe": 11771904,
+    "lens-observer.exe": 8011776
+   }
+  },
+  {
+   "t": 1520.4,
+   "ws": 113483776,
+   "private": 62042112,
+   "cpu": 96.171875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10801152,
+    "lens-engine.exe": 12247040,
+    "lens-observer.exe": 20295680,
+    "lens-ocr.exe": 70139904
+   }
+  },
+  {
+   "t": 1527.9,
+   "ws": 368349184,
+   "private": 330964992,
+   "cpu": 99.578125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 337051648,
+    "lens-observer.exe": 20422656
+   }
+  },
+  {
+   "t": 1532.9,
+   "ws": 368353280,
+   "private": 330964992,
+   "cpu": 99.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 337051648,
+    "lens-observer.exe": 20426752
+   }
+  },
+  {
+   "t": 1538.0,
+   "ws": 368361472,
+   "private": 330964992,
+   "cpu": 99.640625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 337051648,
+    "lens-observer.exe": 20434944
+   }
+  },
+  {
+   "t": 1543.0,
+   "ws": 368365568,
+   "private": 330964992,
+   "cpu": 99.640625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10874880,
+    "lens-engine.exe": 337051648,
+    "lens-observer.exe": 20439040
+   }
+  },
+  {
+   "t": 1548.0,
+   "ws": 368394240,
+   "private": 330993664,
+   "cpu": 99.671875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10862592,
+    "lens-engine.exe": 337092608,
+    "lens-observer.exe": 20439040
+   }
+  },
+  {
+   "t": 1553.0,
+   "ws": 368394240,
+   "private": 330993664,
+   "cpu": 99.734375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10862592,
+    "lens-engine.exe": 337092608,
+    "lens-observer.exe": 20439040
+   }
+  },
+  {
+   "t": 1558.3,
+   "ws": 368463872,
+   "private": 330964992,
+   "cpu": 100.671875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337178624,
+    "lens-observer.exe": 20443136
+   }
+  },
+  {
+   "t": 1563.3,
+   "ws": 368463872,
+   "private": 330964992,
+   "cpu": 100.734375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337178624,
+    "lens-observer.exe": 20443136
+   }
+  },
+  {
+   "t": 1568.3,
+   "ws": 368463872,
+   "private": 330964992,
+   "cpu": 100.78125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337178624,
+    "lens-observer.exe": 20443136
+   }
+  },
+  {
+   "t": 1573.4,
+   "ws": 368463872,
+   "private": 330964992,
+   "cpu": 100.84375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337178624,
+    "lens-observer.exe": 20443136
+   }
+  },
+  {
+   "t": 1578.4,
+   "ws": 368345088,
+   "private": 330764288,
+   "cpu": 100.90625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337113088,
+    "lens-observer.exe": 20389888
+   }
+  },
+  {
+   "t": 1583.4,
+   "ws": 368332800,
+   "private": 330735616,
+   "cpu": 100.953125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10842112,
+    "lens-engine.exe": 337113088,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1588.6,
+   "ws": 368353280,
+   "private": 330739712,
+   "cpu": 101.796875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 337129472,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1593.6,
+   "ws": 368353280,
+   "private": 330739712,
+   "cpu": 101.859375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 337129472,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1598.7,
+   "ws": 368353280,
+   "private": 330739712,
+   "cpu": 101.921875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 337129472,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1603.7,
+   "ws": 368353280,
+   "private": 330739712,
+   "cpu": 101.984375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 337129472,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1608.7,
+   "ws": 368353280,
+   "private": 330739712,
+   "cpu": 102.0,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 337129472,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1613.8,
+   "ws": 368353280,
+   "private": 330739712,
+   "cpu": 102.046875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10846208,
+    "lens-engine.exe": 337129472,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1619.0,
+   "ws": 368353280,
+   "private": 330743808,
+   "cpu": 103.09375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 337125376,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1624.0,
+   "ws": 368353280,
+   "private": 330743808,
+   "cpu": 103.171875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 337125376,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1629.1,
+   "ws": 368353280,
+   "private": 330743808,
+   "cpu": 103.21875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 337125376,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1634.1,
+   "ws": 368353280,
+   "private": 330743808,
+   "cpu": 103.3125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 337125376,
+    "lens-observer.exe": 20377600
+   }
+  },
+  {
+   "t": 1639.1,
+   "ws": 368340992,
+   "private": 330711040,
+   "cpu": 103.34375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 337125376,
+    "lens-observer.exe": 20365312
+   }
+  },
+  {
+   "t": 1644.1,
+   "ws": 368340992,
+   "private": 330711040,
+   "cpu": 103.390625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10850304,
+    "lens-engine.exe": 337125376,
+    "lens-observer.exe": 20365312
+   }
+  },
+  {
+   "t": 1649.4,
+   "ws": 368476160,
+   "private": 330702848,
+   "cpu": 104.421875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337252352,
+    "lens-observer.exe": 20365312
+   }
+  },
+  {
+   "t": 1654.4,
+   "ws": 368459776,
+   "private": 330674176,
+   "cpu": 104.46875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337252352,
+    "lens-observer.exe": 20348928
+   }
+  },
+  {
+   "t": 1659.5,
+   "ws": 368459776,
+   "private": 330674176,
+   "cpu": 104.5,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337252352,
+    "lens-observer.exe": 20348928
+   }
+  },
+  {
+   "t": 1664.5,
+   "ws": 368459776,
+   "private": 330674176,
+   "cpu": 104.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337252352,
+    "lens-observer.exe": 20348928
+   }
+  },
+  {
+   "t": 1669.5,
+   "ws": 368459776,
+   "private": 330674176,
+   "cpu": 104.671875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337252352,
+    "lens-observer.exe": 20348928
+   }
+  },
+  {
+   "t": 1674.6,
+   "ws": 368459776,
+   "private": 330674176,
+   "cpu": 104.78125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337252352,
+    "lens-observer.exe": 20348928
+   }
+  },
+  {
+   "t": 1679.8,
+   "ws": 368545792,
+   "private": 330686464,
+   "cpu": 105.859375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10854400,
+    "lens-engine.exe": 337342464,
+    "lens-observer.exe": 20348928
+   }
+  },
+  {
+   "t": 1684.8,
+   "ws": 368545792,
+   "private": 330686464,
+   "cpu": 105.90625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10854400,
+    "lens-engine.exe": 337342464,
+    "lens-observer.exe": 20348928
+   }
+  },
+  {
+   "t": 1689.8,
+   "ws": 368545792,
+   "private": 330686464,
+   "cpu": 105.953125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10854400,
+    "lens-engine.exe": 337342464,
+    "lens-observer.exe": 20348928
+   }
+  },
+  {
+   "t": 1694.9,
+   "ws": 368599040,
+   "private": 330686464,
+   "cpu": 106.0,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10854400,
+    "lens-engine.exe": 337342464,
+    "lens-observer.exe": 20402176
+   }
+  },
+  {
+   "t": 1699.9,
+   "ws": 368607232,
+   "private": 330686464,
+   "cpu": 106.015625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10854400,
+    "lens-engine.exe": 337342464,
+    "lens-observer.exe": 20410368
+   }
+  },
+  {
+   "t": 1704.9,
+   "ws": 368615424,
+   "private": 330686464,
+   "cpu": 106.046875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10854400,
+    "lens-engine.exe": 337342464,
+    "lens-observer.exe": 20418560
+   }
+  },
+  {
+   "t": 1710.2,
+   "ws": 368607232,
+   "private": 330661888,
+   "cpu": 107.109375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337330176,
+    "lens-observer.exe": 20418560
+   }
+  },
+  {
+   "t": 1715.2,
+   "ws": 368619520,
+   "private": 330661888,
+   "cpu": 107.171875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337330176,
+    "lens-observer.exe": 20430848
+   }
+  },
+  {
+   "t": 1720.2,
+   "ws": 368627712,
+   "private": 330661888,
+   "cpu": 107.234375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337330176,
+    "lens-observer.exe": 20439040
+   }
+  },
+  {
+   "t": 1725.3,
+   "ws": 368635904,
+   "private": 330661888,
+   "cpu": 107.265625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337330176,
+    "lens-observer.exe": 20447232
+   }
+  },
+  {
+   "t": 1730.3,
+   "ws": 368644096,
+   "private": 330665984,
+   "cpu": 107.328125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337330176,
+    "lens-observer.exe": 20455424
+   }
+  },
+  {
+   "t": 1735.3,
+   "ws": 368644096,
+   "private": 330665984,
+   "cpu": 107.375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10858496,
+    "lens-engine.exe": 337330176,
+    "lens-observer.exe": 20455424
+   }
+  },
+  {
+   "t": 1740.5,
+   "ws": 368627712,
+   "private": 330604544,
+   "cpu": 108.34375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337326080,
+    "lens-observer.exe": 20463616
+   }
+  },
+  {
+   "t": 1745.6,
+   "ws": 368627712,
+   "private": 330604544,
+   "cpu": 108.375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337326080,
+    "lens-observer.exe": 20463616
+   }
+  },
+  {
+   "t": 1750.6,
+   "ws": 368627712,
+   "private": 330604544,
+   "cpu": 108.390625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337326080,
+    "lens-observer.exe": 20463616
+   }
+  },
+  {
+   "t": 1755.6,
+   "ws": 368652288,
+   "private": 330604544,
+   "cpu": 108.4375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337326080,
+    "lens-observer.exe": 20488192
+   }
+  },
+  {
+   "t": 1760.7,
+   "ws": 368652288,
+   "private": 330604544,
+   "cpu": 108.484375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10838016,
+    "lens-engine.exe": 337326080,
+    "lens-observer.exe": 20488192
+   }
+  },
+  {
+   "t": 1765.7,
+   "ws": 355180544,
+   "private": 317124608,
+   "cpu": 108.59375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10895360,
+    "lens-engine.exe": 323796992,
+    "lens-observer.exe": 20488192
+   }
+  },
+  {
+   "t": 1773.2,
+   "ws": 370020352,
+   "private": 331337728,
+   "cpu": 112.0625,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 338612224,
+    "lens-observer.exe": 20488192
+   }
+  },
+  {
+   "t": 1778.2,
+   "ws": 370020352,
+   "private": 331337728,
+   "cpu": 112.078125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 338612224,
+    "lens-observer.exe": 20488192
+   }
+  },
+  {
+   "t": 1783.3,
+   "ws": 370020352,
+   "private": 331337728,
+   "cpu": 112.109375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 338612224,
+    "lens-observer.exe": 20488192
+   }
+  },
+  {
+   "t": 1788.3,
+   "ws": 370020352,
+   "private": 331337728,
+   "cpu": 112.171875,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 338612224,
+    "lens-observer.exe": 20488192
+   }
+  },
+  {
+   "t": 1793.3,
+   "ws": 370020352,
+   "private": 331337728,
+   "cpu": 112.203125,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 338612224,
+    "lens-observer.exe": 20488192
+   }
+  },
+  {
+   "t": 1798.4,
+   "ws": 52944896,
+   "private": 16928768,
+   "cpu": 112.484375,
+   "phase": "ocr",
+   "by_process": {
+    "lens-agent.exe": 10919936,
+    "lens-engine.exe": 20840448,
+    "lens-observer.exe": 21184512
+   }
+  }
+ ]
+}

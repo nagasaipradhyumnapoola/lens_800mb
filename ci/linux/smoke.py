@@ -106,6 +106,15 @@ def main():
             p=subprocess.run([str(BIN/'lens-tts')],input=json.dumps(req)+'\n',capture_output=True,text=True,timeout=600)
             r=json.loads(p.stdout.splitlines()[0]) if p.stdout else {}
             check(r.get('ok') and r.get('duration_s',0)>1.5,f"spoken reply synthesised ({r.get('duration_s')} s, RTF {r.get('real_time_factor')})")
+    whisper=ROOT/'models/ggerganov--whisper.cpp/ggml-base-q5_1.bin';jfk=ROOT/'third_party/whisper.cpp/samples/jfk.wav'
+    if (BIN/'lens-voice').exists() and whisper.exists() and jfk.exists():  # voice capture (file input) -> engine ingest_audio
+        p=subprocess.run([str(BIN/'lens-voice'),'--consent','--model',str(whisper),'--input-wav',str(jfk),'--language','en','--no-routes'],
+                         capture_output=True,text=True,timeout=300)
+        reqs=[json.loads(l) for l in p.stdout.splitlines() if l.startswith('{')]
+        check(p.returncode==0 and reqs and all(r['op']=='ingest_audio' and r['audio_base64'] for r in reqs),f'lens-voice segments speech ({len(reqs)} segment(s))')
+        with tempfile.TemporaryDirectory() as tmp:
+            rows=engine(Path(tmp)/'v.db',reqs+[{'op':'search','query':'country','limit':3}],semantic=False)
+            check(all(r.get('ok') for r in rows) and rows[-1]['sources'],'voice note transcribed by whisper and stored')
     agent_check()
     sys.path.insert(0,str(ROOT/'ci'));import ocr_parity
     if ORT and (BIN/'lens-ocr').exists() and ocr_parity.available():

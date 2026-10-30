@@ -11,8 +11,8 @@
 // split at the first pause after 12 s and a 20 s cap. Defaults chosen on the dev split only (reports/voice/).
 // --vad legacy keeps the original fixed-threshold detector (-45 dBFS) for comparison.
 // Owner-only capture: --enroll <profile> turns the owner's speech (>= 10 s) into a speaker embedding (sherpa-onnx,
-// NeMo TitaNet-small; both CAM++ exports separated LibriSpeech speakers poorly in this runtime), saved encrypted with
-// DPAPI for this Windows user; --speaker-profile <profile> then embeds every segment and
+// NeMo TitaNet-small; both CAM++ exports separated LibriSpeech speakers poorly in this runtime), saved encrypted for
+// this user (DPAPI on Windows; elsewhere AES-256-GCM under the master key in the OS secret store); --speaker-profile <profile> then embeds every segment and
 // drops segments whose cosine similarity is below --speaker-threshold before any request is emitted, so other people's
 // speech never leaves this process. stderr reports only counts and similarities.
 #define MINIAUDIO_IMPLEMENTATION
@@ -25,11 +25,19 @@
 #include "sherpa-onnx/c-api/c-api.h"
 #define LENS_SPEAKER 1
 #endif
+#ifdef _WIN32
 #include <windows.h>
-#include <bcrypt.h>
 #include <wincrypt.h>
+#else
+#include "../../adapters/posix/master_key.hpp"
+#include <openssl/evp.h>
+#include <openssl/rand.h>
+#endif
 #include <nlohmann/json.hpp>
 #include "../asr_routes.hpp"
+#include "../agent/os.hpp"
+#include "../input.hpp"
+#include "../platform.hpp"
 #include <algorithm>
 #include <atomic>
 #include <chrono>
@@ -52,21 +60,18 @@ using json=nlohmann::json;
 constexpr int rate=16000,frame=480;  // 30 ms analysis frames
 constexpr size_t max_pending=static_cast<size_t>(rate)*60;  // a stalled consumer drops the oldest audio past 60 s
 
-std::string utf8(const std::wstring& w) {
-    if(w.empty())return {};
-    const int n=WideCharToMultiByte(CP_UTF8,0,w.data(),static_cast<int>(w.size()),nullptr,0,nullptr,nullptr);
-    std::string s(n,'\0');WideCharToMultiByte(CP_UTF8,0,w.data(),static_cast<int>(w.size()),s.data(),n,nullptr,nullptr);return s;
-}
-std::string sha256_hex(const void* data,size_t n) {
-    BCRYPT_ALG_HANDLE alg=nullptr;BCRYPT_HASH_HANDLE h=nullptr;unsigned char d[32]{};
-    BCryptOpenAlgorithmProvider(&alg,BCRYPT_SHA256_ALGORITHM,nullptr,0);BCryptCreateHash(alg,&h,nullptr,0,nullptr,0,0);
-    BCryptHashData(h,static_cast<PUCHAR>(const_cast<void*>(data)),static_cast<ULONG>(n),0);BCryptFinishHash(h,d,32,0);
-    BCryptDestroyHash(h);BCryptCloseAlgorithmProvider(alg,0);
-    static const char* hex="0123456789abcdef";std::string out;for(unsigned char b:d){out+=hex[b>>4];out+=hex[b&15];}return out;
-}
+using native=std::filesystem::path::string_type;
+std::string u8(const native& n){const auto s=std::filesystem::path(n).u8string();return {s.begin(),s.end()};}
+std::string sha256_hex(const void* data,size_t n){return lens::agent::os::sha256(std::string(static_cast<const char*>(data),n));}
 std::string iso(std::chrono::system_clock::time_point t) {
     const auto ms=std::chrono::duration_cast<std::chrono::milliseconds>(t.time_since_epoch()).count();
-    const std::time_t s=static_cast<std::time_t>(ms/1000);std::tm u{};gmtime_s(&u,&s);char buf[40];
+    const std::time_t s=static_cast<std::time_t>(ms/1000);std::tm u{};
+#ifdef _WIN32
+    gmtime_s(&u,&s);
+#else
+    gmtime_r(&s,&u);
+#endif
+    char buf[40];
     std::snprintf(buf,sizeof buf,"%04d-%02d-%02dT%02d:%02d:%02d.%03dZ",u.tm_year+1900,u.tm_mon+1,u.tm_mday,u.tm_hour,u.tm_min,u.tm_sec,static_cast<int>(ms%1000));
     return buf;
 }
@@ -76,9 +81,7 @@ std::string wav_base64(const std::vector<float>& pcm) {
     std::memcpy(&f[0],"RIFF",4);put32(4,static_cast<uint32_t>(f.size()-8));std::memcpy(&f[8],"WAVEfmt ",8);put32(16,16);put16(20,1);put16(22,1);
     put32(24,rate);put32(28,rate*2);put16(32,2);put16(34,16);std::memcpy(&f[36],"data",4);put32(40,static_cast<uint32_t>(pcm.size()*2));
     for(size_t i=0;i<pcm.size();++i){const auto v=static_cast<int16_t>(std::lround(std::clamp(pcm[i],-1.0f,1.0f)*32767.0f));std::memcpy(&f[44+i*2],&v,2);}
-    DWORD n=0;CryptBinaryToStringA(f.data(),static_cast<DWORD>(f.size()),CRYPT_STRING_BASE64|CRYPT_STRING_NOCRLF,nullptr,&n);
-    std::string out(n,'\0');CryptBinaryToStringA(f.data(),static_cast<DWORD>(f.size()),CRYPT_STRING_BASE64|CRYPT_STRING_NOCRLF,out.data(),&n);
-    out.resize(n);return out;
+    return lens::platform::base64_encode(std::string(f.begin(),f.end()));
 }
 // RBJ second-order high/low-pass (Q 0.707), applied to the VAD analysis copy only; ASR receives the unfiltered audio.
 struct Biquad {
@@ -94,16 +97,15 @@ struct Biquad {
 #ifdef LENS_SPEAKER
 // Speaker embeddings through the sherpa-onnx C API, loaded at run time from the pinned runtime (its own onnxruntime).
 struct Speaker {
-    HMODULE h{};const SherpaOnnxSpeakerEmbeddingExtractor* ex{};int dim=0;
+    void* h{};const SherpaOnnxSpeakerEmbeddingExtractor* ex{};int dim=0;
     decltype(&SherpaOnnxCreateSpeakerEmbeddingExtractor) create{};decltype(&SherpaOnnxDestroySpeakerEmbeddingExtractor) destroy{};
     decltype(&SherpaOnnxSpeakerEmbeddingExtractorDim) dims{};decltype(&SherpaOnnxSpeakerEmbeddingExtractorCreateStream) stream{};
     decltype(&SherpaOnnxOnlineStreamAcceptWaveform) accept{};decltype(&SherpaOnnxOnlineStreamInputFinished) finish{};
     decltype(&SherpaOnnxSpeakerEmbeddingExtractorIsReady) ready{};decltype(&SherpaOnnxSpeakerEmbeddingExtractorComputeEmbedding) compute{};
     decltype(&SherpaOnnxSpeakerEmbeddingExtractorDestroyEmbedding) release{};decltype(&SherpaOnnxDestroyOnlineStream) close{};
-    template<class T>bool get(T& f,const char* name){f=reinterpret_cast<T>(GetProcAddress(h,name));return f!=nullptr;}
+    template<class T>bool get(T& f,const char* name){f=reinterpret_cast<T>(lens::platform::library_symbol(h,name));return f!=nullptr;}
     bool load(const std::filesystem::path& library,const std::filesystem::path& model) {
-        // Fully qualified with backslashes, or the loader may pick Windows' own System32 onnxruntime.dll.
-        h=LoadLibraryExW(std::filesystem::absolute(library).make_preferred().c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+        h=lens::platform::open_library(library);  // Windows: fully qualified, never System32's onnxruntime.dll
         if(!h||!get(create,"SherpaOnnxCreateSpeakerEmbeddingExtractor")||!get(destroy,"SherpaOnnxDestroySpeakerEmbeddingExtractor")||
            !get(dims,"SherpaOnnxSpeakerEmbeddingExtractorDim")||!get(stream,"SherpaOnnxSpeakerEmbeddingExtractorCreateStream")||
            !get(accept,"SherpaOnnxOnlineStreamAcceptWaveform")||!get(finish,"SherpaOnnxOnlineStreamInputFinished")||
@@ -135,24 +137,57 @@ struct Speaker {
         }
         normalise(sum);return sum;
     }
-    ~Speaker(){if(ex)destroy(ex);if(h)FreeLibrary(h);}
+    ~Speaker(){if(ex)destroy(ex);lens::platform::close_library(h);}
 };
 #endif
-// Speaker profiles are biometric data: DPAPI-encrypted for the current Windows user, never written in plaintext.
-bool save_profile(const std::wstring& path,const json& profile) {
+// Speaker profiles are biometric data: encrypted for the current user (DPAPI on Windows; elsewhere AES-256-GCM under the
+// per-user master key held by the OS secret store, file "LENSVP1" | nonce(12) | ciphertext | tag(16)), never plaintext.
+#ifdef _WIN32
+bool save_profile(const std::filesystem::path& path,const json& profile) {
     const auto text=profile.dump();DATA_BLOB in{static_cast<DWORD>(text.size()),reinterpret_cast<BYTE*>(const_cast<char*>(text.data()))},out{};
     if(!CryptProtectData(&in,L"lens-voice speaker profile",nullptr,nullptr,nullptr,CRYPTPROTECT_UI_FORBIDDEN,&out))return false;
-    std::ofstream f(std::filesystem::path(path),std::ios::binary);f.write(reinterpret_cast<const char*>(out.pbData),out.cbData);LocalFree(out.pbData);
+    std::ofstream f(path,std::ios::binary);f.write(reinterpret_cast<const char*>(out.pbData),out.cbData);LocalFree(out.pbData);
     return static_cast<bool>(f);
 }
-json load_profile(const std::wstring& path) {
-    std::ifstream f(std::filesystem::path(path),std::ios::binary);if(!f)return nullptr;
+json load_profile(const std::filesystem::path& path) {
+    std::ifstream f(path,std::ios::binary);if(!f)return nullptr;
     std::string bytes((std::istreambuf_iterator<char>(f)),std::istreambuf_iterator<char>());
     DATA_BLOB in{static_cast<DWORD>(bytes.size()),reinterpret_cast<BYTE*>(bytes.data())},out{};
     if(!CryptUnprotectData(&in,nullptr,nullptr,nullptr,nullptr,CRYPTPROTECT_UI_FORBIDDEN,&out))return nullptr;
     auto j=json::parse(std::string(reinterpret_cast<char*>(out.pbData),out.cbData),nullptr,false);LocalFree(out.pbData);
     return j.is_object()?j:json(nullptr);
 }
+#else
+constexpr char PROFILE_MAGIC[]="LENSVP1";
+bool save_profile(const std::filesystem::path& path,const json& profile) {
+    try {
+        const auto key=lens::master_key(true);const auto text=profile.dump();unsigned char nonce[12];RAND_bytes(nonce,12);
+        std::string out(PROFILE_MAGIC,7);out.append(reinterpret_cast<char*>(nonce),12);std::string body(text.size(),'\0');unsigned char tag[16];int n=0,m=0;
+        EVP_CIPHER_CTX* c=EVP_CIPHER_CTX_new();
+        const bool ok=c&&EVP_EncryptInit_ex(c,EVP_aes_256_gcm(),nullptr,key.data(),nonce)==1&&
+            EVP_EncryptUpdate(c,reinterpret_cast<unsigned char*>(body.data()),&n,reinterpret_cast<const unsigned char*>(text.data()),static_cast<int>(text.size()))==1&&
+            EVP_EncryptFinal_ex(c,reinterpret_cast<unsigned char*>(body.data())+n,&m)==1&&EVP_CIPHER_CTX_ctrl(c,EVP_CTRL_GCM_GET_TAG,16,tag)==1;
+        EVP_CIPHER_CTX_free(c);if(!ok)return false;
+        out+=body;out.append(reinterpret_cast<char*>(tag),16);
+        std::error_code ec;std::filesystem::remove(path,ec);lens::platform::write_new_file(path,out);return true;  // 0600
+    } catch(...) {return false;}
+}
+json load_profile(const std::filesystem::path& path) {
+    try {
+        std::ifstream f(path,std::ios::binary);if(!f)return nullptr;
+        std::string bytes((std::istreambuf_iterator<char>(f)),std::istreambuf_iterator<char>());
+        if(bytes.size()<7+12+16||bytes.compare(0,7,PROFILE_MAGIC)!=0)return nullptr;
+        const auto key=lens::master_key(false);const auto* nonce=reinterpret_cast<const unsigned char*>(bytes.data()+7);
+        const auto body=bytes.substr(19,bytes.size()-19-16);std::string tag=bytes.substr(bytes.size()-16);std::string text(body.size(),'\0');int n=0,m=0;
+        EVP_CIPHER_CTX* c=EVP_CIPHER_CTX_new();
+        const bool ok=c&&EVP_DecryptInit_ex(c,EVP_aes_256_gcm(),nullptr,key.data(),nonce)==1&&
+            EVP_DecryptUpdate(c,reinterpret_cast<unsigned char*>(text.data()),&n,reinterpret_cast<const unsigned char*>(body.data()),static_cast<int>(body.size()))==1&&
+            EVP_CIPHER_CTX_ctrl(c,EVP_CTRL_GCM_SET_TAG,16,tag.data())==1&&EVP_DecryptFinal_ex(c,reinterpret_cast<unsigned char*>(text.data())+n,&m)==1;
+        EVP_CIPHER_CTX_free(c);if(!ok)return nullptr;
+        auto j=json::parse(text,nullptr,false);return j.is_object()?j:json(nullptr);
+    } catch(...) {return nullptr;}
+}
+#endif
 
 std::mutex lock;std::deque<float> pending;std::mutex out_lock;long long overrun_samples=0;
 void push_audio(const float* p,size_t n) {
@@ -161,54 +196,73 @@ void push_audio(const float* p,size_t n) {
 }
 void status(const json& j){std::lock_guard g(out_lock);std::cerr<<j.dump()<<'\n';std::cerr.flush();}
 void on_capture(ma_device*,void*,const void* input,ma_uint32 frames){push_audio(static_cast<const float*>(input),frames);}
+// The sherpa-onnx C API library: Windows' pinned runtime under .tools; elsewhere the official release library beside lens-voice.
+std::filesystem::path default_sherpa(const std::filesystem::path& models) {
+#ifdef _WIN32
+    return models.parent_path()/".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll";
+#elif defined(__APPLE__)
+    (void)models;return lens::platform::executable_dir()/"libsherpa-onnx-c-api.dylib";
+#else
+    (void)models;return lens::platform::executable_dir()/"libsherpa-onnx-c-api.so";
+#endif
+}
 }
 
-int wmain(int argc,wchar_t** argv) {
-    bool consent=false;std::wstring input_wav,model,language=L"auto",device=L"windows-local",vad_mode=L"adaptive";
+int run(const std::vector<native>& argv) {
+    bool consent=false;std::string input_wav,model,language="auto",device=
+#ifdef _WIN32
+        "windows-local",
+#elif defined(__APPLE__)
+        "macos-local",
+#else
+        "linux-local",
+#endif
+        vad_mode="adaptive";
     std::optional<double> threshold_flag,on_margin_flag,off_margin_flag,hpf_flag,lpf_flag,floor_pct_flag;std::optional<int> silence_flag,min_speech_flag,onset_flag,tail_flag;
     double max_seconds=600,pace=0,min_confidence=0,short_segment_s=2.5,short_min_lid=0.7;std::optional<double> soft_split_flag,max_segment_flag;
-    std::wstring languages=L"en,zh,es,ar,fr,pt,ru,id,de,ja,hi,bn,te,mr,ta,ur,gu",sherpa_library;bool routes_enabled=true;  // spec §1a
+    std::string languages="en,zh,es,ar,fr,pt,ru,id,de,ja,hi,bn,te,mr,ta,ur,gu",sherpa_library;bool routes_enabled=true;  // spec §1a
     // Speaker threshold from LibriSpeech dev speakers: FAR 0.4%, FRR 4.8% (reports/voice/speaker-dev.json).
-    std::wstring enroll_path,profile_path,speaker_model;double speaker_threshold=0.46;bool require_owner=false;
+    std::string enroll_path,profile_path,speaker_model;double speaker_threshold=0.46;bool require_owner=false;
+    const int argc=static_cast<int>(argv.size());
     for(int i=1;i<argc;++i) {
-        const std::wstring a=argv[i];auto next=[&]{return i+1<argc?std::wstring(argv[++i]):std::wstring();};
-        if(a==L"--consent")consent=true;
-        else if(a==L"--input-wav")input_wav=next();
-        else if(a==L"--model")model=next();
-        else if(a==L"--language")language=next();
-        else if(a==L"--device-name")device=next();
-        else if(a==L"--vad")vad_mode=next();
-        else if(a==L"--threshold-db")threshold_flag=std::stod(next());
-        else if(a==L"--on-margin-db")on_margin_flag=std::stod(next());
-        else if(a==L"--off-margin-db")off_margin_flag=std::stod(next());
-        else if(a==L"--silence-ms")silence_flag=std::stoi(next());
-        else if(a==L"--min-speech-ms")min_speech_flag=std::stoi(next());
-        else if(a==L"--onset-ms")onset_flag=std::stoi(next());
-        else if(a==L"--tail-ms")tail_flag=std::stoi(next());
-        else if(a==L"--hpf-hz")hpf_flag=std::stod(next());
-        else if(a==L"--lpf-hz")lpf_flag=std::stod(next());
-        else if(a==L"--floor-percentile")floor_pct_flag=std::stod(next());
-        else if(a==L"--max-seconds")max_seconds=std::stod(next());
-        else if(a==L"--languages")languages=next();
-        else if(a==L"--sherpa-library")sherpa_library=next();
-        else if(a==L"--no-routes")routes_enabled=false;
-        else if(a==L"--min-confidence")min_confidence=std::stod(next());
-        else if(a==L"--short-segment-s")short_segment_s=std::stod(next());
-        else if(a==L"--short-min-lid")short_min_lid=std::stod(next());
-        else if(a==L"--soft-split-s")soft_split_flag=std::stod(next());
-        else if(a==L"--max-segment-s")max_segment_flag=std::stod(next());
-        else if(a==L"--pace")pace=std::stod(next());
-        else if(a==L"--enroll")enroll_path=next();
-        else if(a==L"--speaker-profile")profile_path=next();
-        else if(a==L"--speaker-model")speaker_model=next();
-        else if(a==L"--speaker-threshold")speaker_threshold=std::stod(next());
-        else if(a==L"--require-owner")require_owner=true;
+        const std::string a=u8(argv[static_cast<size_t>(i)]);auto next=[&]{return i+1<argc?u8(argv[static_cast<size_t>(++i)]):std::string();};
+        if(a=="--consent")consent=true;
+        else if(a=="--input-wav")input_wav=next();
+        else if(a=="--model")model=next();
+        else if(a=="--language")language=next();
+        else if(a=="--device-name")device=next();
+        else if(a=="--vad")vad_mode=next();
+        else if(a=="--threshold-db")threshold_flag=std::stod(next());
+        else if(a=="--on-margin-db")on_margin_flag=std::stod(next());
+        else if(a=="--off-margin-db")off_margin_flag=std::stod(next());
+        else if(a=="--silence-ms")silence_flag=std::stoi(next());
+        else if(a=="--min-speech-ms")min_speech_flag=std::stoi(next());
+        else if(a=="--onset-ms")onset_flag=std::stoi(next());
+        else if(a=="--tail-ms")tail_flag=std::stoi(next());
+        else if(a=="--hpf-hz")hpf_flag=std::stod(next());
+        else if(a=="--lpf-hz")lpf_flag=std::stod(next());
+        else if(a=="--floor-percentile")floor_pct_flag=std::stod(next());
+        else if(a=="--max-seconds")max_seconds=std::stod(next());
+        else if(a=="--languages")languages=next();
+        else if(a=="--sherpa-library")sherpa_library=next();
+        else if(a=="--no-routes")routes_enabled=false;
+        else if(a=="--min-confidence")min_confidence=std::stod(next());
+        else if(a=="--short-segment-s")short_segment_s=std::stod(next());
+        else if(a=="--short-min-lid")short_min_lid=std::stod(next());
+        else if(a=="--soft-split-s")soft_split_flag=std::stod(next());
+        else if(a=="--max-segment-s")max_segment_flag=std::stod(next());
+        else if(a=="--pace")pace=std::stod(next());
+        else if(a=="--enroll")enroll_path=next();
+        else if(a=="--speaker-profile")profile_path=next();
+        else if(a=="--speaker-model")speaker_model=next();
+        else if(a=="--speaker-threshold")speaker_threshold=std::stod(next());
+        else if(a=="--require-owner")require_owner=true;
         else {std::cerr<<"usage: lens-voice --consent --model <ggml model> [--language auto|<code>] [--input-wav <file> [--pace <x realtime>]] [--vad adaptive|legacy] [--languages en,zh,...] [--no-routes] [--min-confidence p] [--enroll <profile> | --speaker-profile <profile> [--speaker-threshold t] [--require-owner]] [--max-seconds N]\n";return 2;}
     }
     if(!consent){std::cerr<<"{\"event\":\"refused\",\"reason\":\"consent_required\"}\n";return 2;}
     if(model.empty()){std::cerr<<"{\"event\":\"refused\",\"reason\":\"model_required\"}\n";return 2;}
-    if(vad_mode!=L"adaptive"&&vad_mode!=L"legacy"){std::cerr<<"{\"event\":\"refused\",\"reason\":\"unknown_vad\"}\n";return 2;}
-    const bool adaptive=vad_mode==L"adaptive";
+    if(vad_mode!="adaptive"&&vad_mode!="legacy"){std::cerr<<"{\"event\":\"refused\",\"reason\":\"unknown_vad\"}\n";return 2;}
+    const bool adaptive=vad_mode=="adaptive";
     // Adaptive defaults were chosen on the dev split of scripts/benchmark_voice.py (reports/voice/); legacy keeps the originals.
     const double threshold_db=threshold_flag.value_or(adaptive?-65:-45),on_margin=on_margin_flag.value_or(8),off_margin=off_margin_flag.value_or(4);
     const int silence_ms=silence_flag.value_or(adaptive?600:800),min_speech_ms=min_speech_flag.value_or(adaptive?150:300);
@@ -223,26 +277,26 @@ int wmain(int argc,wchar_t** argv) {
     // upstream models (Dolphin, IndicConformer) when installed beside the whisper model (<root>/models/...).
     json allowed=json::array();
     for(size_t at=0;at<=languages.size();) {
-        const auto end=std::min(languages.find(L',',at),languages.size());if(end>at)allowed.push_back(utf8(languages.substr(at,end-at)));at=end+1;
+        const auto end=std::min(languages.find(',',at),languages.size());if(end>at)allowed.push_back(languages.substr(at,end-at));at=end+1;
     }
     json routes=json::object();
     if(routes_enabled) {
-        namespace fs=std::filesystem;const fs::path models=fs::path(model).parent_path().parent_path();
-        const fs::path library=sherpa_library.empty()?models.parent_path()/L".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll":fs::path(sherpa_library);
+        namespace fs=std::filesystem;const fs::path models=lens::utf8_path(model).parent_path().parent_path();
+        const fs::path library=sherpa_library.empty()?default_sherpa(models):lens::utf8_path(sherpa_library);
         routes=lens::asr_routes(models,library);
     }
     const bool enrolling=!enroll_path.empty();json profile=nullptr;std::vector<float> owner;
     if(!profile_path.empty()&&!enrolling) {
-        profile=load_profile(profile_path);
+        profile=load_profile(lens::utf8_path(profile_path));
         if(!profile.is_object()){status({{"event","refused"},{"reason","speaker_profile_unreadable"}});return 2;}
         owner=profile.at("embedding").get<std::vector<float>>();
     } else if(require_owner&&!enrolling){status({{"event","refused"},{"reason","speaker_profile_required"}});return 2;}
 #ifdef LENS_SPEAKER
     std::unique_ptr<Speaker> speaker;
     if(enrolling||!owner.empty()) {
-        namespace fs=std::filesystem;const fs::path models=fs::path(model).parent_path().parent_path();
-        const fs::path library=sherpa_library.empty()?models.parent_path()/L".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll":fs::path(sherpa_library);
-        const fs::path weights=speaker_model.empty()?models/L"k2-fsa--speaker-recognition/nemo_en_titanet_small.onnx":fs::path(speaker_model);
+        namespace fs=std::filesystem;const fs::path models=lens::utf8_path(model).parent_path().parent_path();
+        const fs::path library=sherpa_library.empty()?default_sherpa(models):lens::utf8_path(sherpa_library);
+        const fs::path weights=speaker_model.empty()?models/"k2-fsa--speaker-recognition/nemo_en_titanet_small.onnx":lens::utf8_path(speaker_model);
         speaker=std::make_unique<Speaker>();
         if(!speaker->load(library,weights)){status({{"event","refused"},{"reason","speaker_model_unavailable"}});return 3;}
         if(!owner.empty()&&static_cast<int>(owner.size())!=speaker->dim){status({{"event","refused"},{"reason","speaker_profile_model_mismatch"}});return 2;}
@@ -265,7 +319,13 @@ int wmain(int argc,wchar_t** argv) {
         status({{"event","recording"},{"source","microphone"}});  // the visible "recording" signal for supervisors/UI
     } else {
         auto cfg=ma_decoder_config_init(ma_format_f32,1,rate);cfg.resampling.linear.lpfOrder=MA_MAX_FILTER_ORDER;
-        if(ma_decoder_init_file_w(input_wav.c_str(),&cfg,&decoder)!=MA_SUCCESS){status({{"event","refused"},{"reason","audio_decode_failed"}});return 3;}
+        const auto wav=lens::utf8_path(input_wav);
+#ifdef _WIN32
+        const auto opened=ma_decoder_init_file_w(wav.c_str(),&cfg,&decoder);
+#else
+        const auto opened=ma_decoder_init_file(wav.c_str(),&cfg,&decoder);
+#endif
+        if(opened!=MA_SUCCESS){status({{"event","refused"},{"reason","audio_decode_failed"}});return 3;}
         status({{"event","recording"},{"source","file"},{"pace",pace}});
         feeder=std::thread([&] {
             std::vector<float> buf(frame);ma_uint64 fed=0;const auto t0=std::chrono::steady_clock::now();
@@ -312,14 +372,14 @@ int wmain(int argc,wchar_t** argv) {
             const auto digest=sha256_hex(keyed.data(),keyed.size());
             const auto clipped=std::count_if(segment.begin(),segment.end(),[](float v){return std::fabs(v)>=0.999f;});
             json req={{"op","ingest_audio"},{"consent",true},{"id","voice-"+digest.substr(0,24)},{"audio_base64",wav_base64(segment)},
-                {"model",utf8(model)},{"language",utf8(language)},{"asr_routes",routes},{"min_confidence",min_confidence},
-                {"short_segment_rule",{{"max_seconds",short_segment_s},{"min_language_probability",short_min_lid}}},{"timestamp",iso(t)},{"device",utf8(device)},{"kind","voice_note"},
+                {"model",model},{"language",language},{"asr_routes",routes},{"min_confidence",min_confidence},
+                {"short_segment_rule",{{"max_seconds",short_segment_s},{"min_language_probability",short_min_lid}}},{"timestamp",iso(t)},{"device",device},{"kind","voice_note"},
                 {"provenance",live?"lens-voice microphone":"lens-voice file"},{"consent_context",{{"mode","voice_explicit_consent"}}},
                 {"metadata",{{"capture",live?"microphone":"file"},{"duration_ms",static_cast<long long>(segment.size())*1000/rate},{"speech_ms",speech_ms},
                     {"stream_start_ms",segment_start*1000/rate},{"stream_end_ms",(segment_start+static_cast<long long>(segment.size()))*1000/rate},
-                    {"speech_end_ms",last_voiced_end*1000/rate},{"clipped_samples",clipped},{"vad",utf8(vad_mode)},
+                    {"speech_end_ms",last_voiced_end*1000/rate},{"clipped_samples",clipped},{"vad",vad_mode},
                     {"noise_floor_dbfs",adaptive?std::round(floor_db*10)/10:-120.0},{"speaker",speaker_meta}}}};
-            if(language==L"auto")req["allowed_languages"]=allowed;
+            if(language=="auto")req["allowed_languages"]=allowed;
             {std::lock_guard g(out_lock);std::cout<<req.dump()<<'\n';std::cout.flush();}
             ++segments;
             if(clipped*200>static_cast<long long>(segment.size()))status({{"event","clipping"},{"clipped_fraction",static_cast<double>(clipped)/segment.size()}});
@@ -373,11 +433,17 @@ int wmain(int argc,wchar_t** argv) {
         double n=0;for(float x:mean)n+=static_cast<double>(x)*x;n=std::sqrt(n);for(float& x:mean)x=static_cast<float>(x/n);
         const json saved={{"version",1},{"model","nemo_en_titanet_small"},{"dim",mean.size()},{"embedding",mean},
                           {"segments",enrolled.size()},{"speech_seconds",enrolled_seconds},{"created",iso(std::chrono::system_clock::now())}};
-        if(!save_profile(enroll_path,saved)){status({{"event","refused"},{"reason","profile_write_failed"}});return 3;}
+        if(!save_profile(lens::utf8_path(enroll_path),saved)){status({{"event","refused"},{"reason","profile_write_failed"}});return 3;}
         status({{"event","enrolled"},{"segments",enrolled.size()},{"speech_seconds",enrolled_seconds}});
     }
     status({{"event","stopped"},{"segments",segments},{"processed_seconds",static_cast<double>(processed)/rate},{"peak_dbfs",peak_db},
-            {"overrun_seconds",static_cast<double>(overrun)/rate},{"vad",utf8(vad_mode)},{"speaker_rejected",speaker_rejected},
+            {"overrun_seconds",static_cast<double>(overrun)/rate},{"vad",vad_mode},{"speaker_rejected",speaker_rejected},
             {"owner_only",!owner.empty()}});
     return 0;
 }
+
+#ifdef _WIN32
+int wmain(int argc,wchar_t** argv){return run(std::vector<native>(argv,argv+argc));}
+#else
+int main(int argc,char** argv){return run(std::vector<native>(argv,argv+argc));}
+#endif

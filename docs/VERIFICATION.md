@@ -1197,7 +1197,12 @@ travel in `metadata`).
   `test_spoken_question_is_transcribed_and_not_stored` checks `models_loaded` false after a spoken question
   (test_agent 7/7, test_voice 19/19 OK).
 - Cost: an OCR-only window changed within 30 s of a question is read up to 30 s later; a question more than 30 s after
-  the previous one reloads the retrieval models. Whole-tree 500 MB not yet re-measured with v2.
+  the previous one reloads the retrieval models.
+- Whole tree re-measured with v2 (scripts/sustained_run.py --minutes 30 --snapshot, H0, synthetic invisible windows,
+  UIA + OCR paths, a recall every 30 s): **peak 375 MB working set / 337 MB private** (previous 30-minute runs 431/380
+  and 474/425 MB), 0 crashes, 58/58 recalls ok (p50 211 ms, p95 2.5 s), idle after load: agent 11, engine 25,
+  observer 22 MB working set (reports/perf/sustained-20261030T043959Z.json). Within 500 MB on H0; low-end tiers still
+  NOT VERIFIED.
 
 ## Voice questions: speech in -> recall -> speech out (2026-10-29) — PASS (functional, H0; no live microphone)
 
@@ -1363,6 +1368,9 @@ travel in `metadata`).
   Android arm64 also builds lens-agent. GitHub run 40979831791 (commit 31e3e8e): the same agent checks **PASS on the
   macOS arm64 runner** (peer check by getpeereid, process tree by libproc; keyword-only there, no models), Linux and
   iOS PASS.
+- lens-voice off Windows: miniaudio capture (ALSA/PulseAudio, Core Audio, AAudio), native-string arguments, speaker
+  profiles sealed with AES-256-GCM under the OS-held master key (DPAPI stays on Windows). Linux smoke: a file-input
+  session segments speech and the engine transcribes and stores it (now 22 checks PASS); Windows test_voice 19 OK.
+  No live microphone tested on any OS here.
 - Not ported yet: observation (macOS Accessibility + ScreenCaptureKit, Linux AT-SPI + screencast portal, Android
-  Accessibility Service), the app shells (WKWebView, WebKitGTK, Android WebView), sign-in autostart off Windows,
-  lens-voice microphone capture. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.
+  Accessibility Service), the Android app's use of the native core, sign-in autostart off Windows. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.
