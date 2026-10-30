@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="274" viewBox="0 0 760 274" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
+<rect width="760" height="274" rx="10" fill="#1a1a19"/>
+<text x="24" y="32" font-size="17" font-weight="600" fill="#f0efec">Screen OCR — English hard screens (held-out)</text>
+<text x="24" y="54" font-size="12.5" fill="#c3c2b7">Page character error rate, 25 unseen screens: code, terminals, settings, tables, mail; CPU only</text>
+<text x="238" y="91.5" font-size="13" text-anchor="end" fill="#f0efec" font-weight="600">Lens (shipped)</text>
+<path d="M250,74 h38.191676212294794 a4,4 0 0 1 4,4 v18 a4,4 0 0 1 -4,4 h-38.191676212294794 z" fill="#3987e5"/>
+<text x="300.1916762122948" y="91.5" font-size="13" fill="#f0efec" font-weight="600" paint-order="stroke" stroke="#1a1a19" stroke-width="5">0.85%</text>
+<text x="736" y="91.5" font-size="12" text-anchor="end" fill="#c3c2b7">2.9 s · 119 MB</text>
+<text x="238" y="131.5" font-size="13" text-anchor="end" fill="#f0efec" font-weight="400">Baidu largest + Lens rows</text>
+<path d="M250,114 h33.72432226040473 a4,4 0 0 1 4,4 v18 a4,4 0 0 1 -4,4 h-33.72432226040473 z" fill="#5f5e58"/>
+<text x="295.72432226040473" y="131.5" font-size="13" fill="#f0efec" font-weight="600" paint-order="stroke" stroke="#1a1a19" stroke-width="5">0.76%</text>
+<text x="736" y="131.5" font-size="12" text-anchor="end" fill="#c3c2b7">17.8 s · 374 MB</text>
+<text x="238" y="171.5" font-size="13" text-anchor="end" fill="#f0efec" font-weight="400">Lens, previous recogniser</text>
+<path d="M250,154 h74.92325315005729 a4,4 0 0 1 4,4 v18 a4,4 0 0 1 -4,4 h-74.92325315005729 z" fill="#5f5e58"/>
+<text x="336.9232531500573" y="171.5" font-size="13" fill="#f0efec" font-weight="600" paint-order="stroke" stroke="#1a1a19" stroke-width="5">1.59%</text>
+<text x="736" y="171.5" font-size="12" text-anchor="end" fill="#c3c2b7">1.4 s · 119 MB</text>
+<text x="238" y="211.5" font-size="13" text-anchor="end" fill="#f0efec" font-weight="400">Baidu largest, raw output</text>
+<path d="M250,194 h236.74074074074076 a4,4 0 0 1 4,4 v18 a4,4 0 0 1 -4,4 h-236.74074074074076 z" fill="#5f5e58"/>
+<text x="498.74074074074076" y="211.5" font-size="13" fill="#f0efec" font-weight="600" paint-order="stroke" stroke="#1a1a19" stroke-width="5">4.85%</text>
+<text x="736" y="211.5" font-size="12" text-anchor="end" fill="#c3c2b7">18.2 s · 373 MB</text>
+<text x="736" y="262" font-size="11.5" text-anchor="end" fill="#c3c2b7">lower is better</text>
+</svg>
