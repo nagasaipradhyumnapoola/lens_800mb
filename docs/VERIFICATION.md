@@ -1290,6 +1290,23 @@ travel in `metadata`).
   intrinsics need a newer clang than Xcode 15 on macos-14: `'svmmla_s32' needs target feature sve,i8mm`), found
   through ci/annotate_log.sh, which turns compiler errors into a job annotation readable without the job log. The Apple
   jobs moved to macos-15 (Xcode 16); ggml modules load as .so on macOS; Metal and Accelerate BLAS are off (CPU-only).
+  Run 40977462445 (commit 37c7fc0 on the public repository): **macOS arm64 build + smoke test PASS** (engine, TTS,
+  speech input, OCR and embedding workers built; storage, the database key wrapped by a temporary login keychain,
+  encryption at rest, keyword search, export, backup and restore on synthetic data — models are not in Git, so no
+  semantic recall, speech or OCR there), **Linux PASS**, **iOS arm64 memory core PASS**.
+- lens-agent off Windows (engine/agent/os.{hpp,cpp}): the client endpoint is a Unix domain socket in a folder only the
+  user can enter ($LENS_RUNTIME_DIR, else $XDG_RUNTIME_DIR/lens, else /tmp/lens-<uid>; created 0700 and refused unless
+  owned by the user with no group/other access), socket file 0600, every peer's user id checked (SO_PEERCRED,
+  getpeereid) before a request is read; one agent per user by flock; the process tree's memory from /proc (VmRSS,
+  Private_Clean + Private_Dirty) or libproc on macOS; child workers via posix_spawn. ONNX Runtime off Windows is the
+  official release library beside the executables, hash-pinned in third_party/ocr-runtime-lock.json
+  (`portable_runtimes`, linux-x64 1.24.4). Windows keeps the user-only named pipe, tray and Run-key autostart;
+  rebuilt and re-tested: test_agent 7, test_actions 3, test_app 17, test_installer 4, test_mesh 3, test_security 5 OK.
+- Linux smoke test with the agent: **19/19 PASS** — besides the 11 engine/worker checks: agent status over the socket
+  (semantic recall verified), socket mode 0600, add and search passed through to the engine, observation consent
+  accepted with no observer on this OS (reported, not crashed), diagnostics process tree (lens-agent, lens-engine;
+  28 MB working set idle), a spoken reply through the agent with the governor holding OCR, clean shutdown.
+  Android arm64 also builds lens-agent.
 - Not ported yet: observation (macOS Accessibility + ScreenCaptureKit, Linux AT-SPI + screencast portal, Android
-  Accessibility Service), the app shells (WKWebView, WebKitGTK, Android WebView), the agent (named pipe, tray, process
-  tree), lens-voice microphone capture. No run on macOS, iOS or Android hardware.
+  Accessibility Service), the app shells (WKWebView, WebKitGTK, Android WebView), sign-in autostart off Windows,
+  lens-voice microphone capture. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.

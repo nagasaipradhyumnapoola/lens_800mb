@@ -5,11 +5,17 @@
 // JSON Lines ({"text", optional "timestamp", "language", "source_application"} per line) and plain text (one memory
 // per paragraph). Every import is recorded in <data>\imports.json with the ids it created, so it can be deleted as a
 // whole. Logs and status carry counts and error codes only, never content.
+#include "os.hpp"
+#ifdef _WIN32
 #include <windows.h>
-#include <bcrypt.h>
+#else
+#include <ctime>
+#include <sys/stat.h>
+#endif
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <atomic>
+#include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <functional>
@@ -25,14 +31,9 @@
 namespace lens::agent::imports {
 using json=nlohmann::json;namespace fs=std::filesystem;
 
-inline std::string hex_sha256(const std::string& data) {
-    BCRYPT_ALG_HANDLE alg=nullptr;BCRYPT_HASH_HANDLE h=nullptr;unsigned char d[32]{};
-    BCryptOpenAlgorithmProvider(&alg,BCRYPT_SHA256_ALGORITHM,nullptr,0);BCryptCreateHash(alg,&h,nullptr,0,nullptr,0,0);
-    BCryptHashData(h,reinterpret_cast<PUCHAR>(const_cast<char*>(data.data())),static_cast<ULONG>(data.size()),0);
-    BCryptFinishHash(h,d,32,0);BCryptDestroyHash(h);BCryptCloseAlgorithmProvider(alg,0);
-    static const char* hx="0123456789abcdef";std::string out;for(unsigned char b:d){out+=hx[b>>4];out+=hx[b&15];}return out;
-}
+inline std::string hex_sha256(const std::string& data){return os::sha256(data);}
 inline std::string narrow(const fs::path& p){const auto u=p.u8string();return std::string(u.begin(),u.end());}
+#ifdef _WIN32
 inline std::string iso(const SYSTEMTIME& t){char b[32];snprintf(b,sizeof b,"%04u-%02u-%02uT%02u:%02u:%02uZ",t.wYear,t.wMonth,t.wDay,t.wHour,t.wMinute,t.wSecond);return b;}
 inline std::string now_utc(){SYSTEMTIME t;GetSystemTime(&t);return iso(t);}
 // Local wall-clock time (as written in a chat export) to UTC, using this PC's time-zone rules for that date.
@@ -50,6 +51,31 @@ inline std::string file_time_utc(const fs::path& p) {
 inline bool valid_utf8(const std::string& s) {
     return MultiByteToWideChar(CP_UTF8,MB_ERR_INVALID_CHARS,s.data(),static_cast<int>(s.size()),nullptr,0)>0||s.empty();
 }
+#else
+inline std::string iso(std::time_t t){std::tm u{};gmtime_r(&t,&u);char b[32];std::strftime(b,sizeof b,"%Y-%m-%dT%H:%M:%SZ",&u);return b;}
+inline std::string now_utc(){return iso(std::time(nullptr));}
+// Local wall-clock time (as written in a chat export) to UTC, using this device's time-zone rules for that date.
+inline std::optional<std::string> local_to_utc(int y,int mo,int d,int h,int mi,int s) {
+    if(mo<1||mo>12||d<1||d>31||h>23||mi>59||s>59)return std::nullopt;
+    std::tm t{};t.tm_year=y-1900;t.tm_mon=mo-1;t.tm_mday=d;t.tm_hour=h;t.tm_min=mi;t.tm_sec=s;t.tm_isdst=-1;
+    const std::time_t utc=std::mktime(&t);
+    if(utc==static_cast<std::time_t>(-1)||t.tm_mday!=d||t.tm_mon!=mo-1)return std::nullopt;  // mktime moves 31 April to 1 May
+    return iso(utc);
+}
+inline std::string file_time_utc(const fs::path& p){struct stat st{};return ::stat(p.c_str(),&st)==0?iso(st.st_mtime):now_utc();}
+// Well-formed UTF-8 only (no overlong forms, surrogates or code points above U+10FFFF), as MultiByteToWideChar checks on Windows.
+inline bool valid_utf8(const std::string& s) {
+    for(size_t i=0;i<s.size();) {
+        const auto c=static_cast<unsigned char>(s[i]);size_t n=0;unsigned cp=0;
+        if(c<0x80){++i;continue;}
+        if(c>=0xC2&&c<=0xDF){n=1;cp=c&0x1F;}else if(c>=0xE0&&c<=0xEF){n=2;cp=c&0x0F;}else if(c>=0xF0&&c<=0xF4){n=3;cp=c&0x07;}else return false;
+        for(size_t k=1;k<=n;++k){if(i+k>=s.size())return false;const auto b=static_cast<unsigned char>(s[i+k]);if((b&0xC0)!=0x80)return false;cp=(cp<<6)|(b&0x3F);}
+        if((n==2&&(cp<0x800||(cp>=0xD800&&cp<=0xDFFF)))||(n==3&&(cp<0x10000||cp>0x10FFFF)))return false;
+        i+=n+1;
+    }
+    return true;
+}
+#endif
 inline void strip_marks(std::string& s) {  // WhatsApp inserts U+200E/U+200F direction marks and a BOM
     for(const char* m:{"\xE2\x80\x8E","\xE2\x80\x8F","\xEF\xBB\xBF"})for(size_t p;(p=s.find(m))!=std::string::npos;)s.erase(p,3);
     if(!s.empty()&&s.back()=='\r')s.pop_back();
@@ -141,7 +167,7 @@ public:
         const auto file=target(req);const auto format=req.value("format",std::string()),order=req.value("date_order",std::string());
         auto parsed=std::make_shared<Parsed>(parse(file,format,order));
         if(!parsed->error.empty())return {{"ok",false},{"error",parsed->error}};
-        const auto id="imp-"+hex_sha256(narrow(file)+now_utc()+std::to_string(GetTickCount64())).substr(0,12);
+        const auto id="imp-"+hex_sha256(narrow(file)+now_utc()+std::to_string(std::chrono::steady_clock::now().time_since_epoch().count())).substr(0,12);
         json job={{"id",id},{"file",narrow(file.filename())},{"format",format},{"export_sha256",parsed->export_sha256},{"status","running"},{"started_utc",now_utc()},{"total",parsed->records.size()},
                   {"processed",0},{"imported",0},{"deduplicated",0},{"failed",0},{"failed_by",json::object()},{"skipped",parsed->skipped},{"source_ids",json::array()}};
         imports_.push_back(job);save();cancel_=false;running_=true;

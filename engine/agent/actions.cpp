@@ -1,18 +1,26 @@
 #include "actions.hpp"
-#include <windows.h>
-#include <bcrypt.h>
-#include <shellapi.h>
+#include "os.hpp"
+#include <chrono>
+#include <ctime>
 #include <regex>
 
 namespace lens::agent {
 using json=nlohmann::json;
 namespace {
 std::string random_id() {
-    unsigned char b[12];BCryptGenRandom(nullptr,b,sizeof b,BCRYPT_USE_SYSTEM_PREFERRED_RNG);
+    unsigned char b[12];os::random_bytes(b,sizeof b);
     static const char* h="0123456789abcdef";std::string s="act-";for(unsigned char c:b){s+=h[c>>4];s+=h[c&15];}return s;
 }
-std::string now_iso(){SYSTEMTIME t;GetSystemTime(&t);char b[40];snprintf(b,sizeof b,"%04u-%02u-%02uT%02u:%02u:%02u.%03uZ",t.wYear,t.wMonth,t.wDay,t.wHour,t.wMinute,t.wSecond,t.wMilliseconds);return b;}
-std::wstring wide(const std::string& s){const int n=MultiByteToWideChar(CP_UTF8,0,s.data(),static_cast<int>(s.size()),nullptr,0);std::wstring w(n,L'\0');MultiByteToWideChar(CP_UTF8,0,s.data(),static_cast<int>(s.size()),w.data(),n);return w;}
+std::string now_iso() {  // UTC with milliseconds
+    const auto now=std::chrono::system_clock::now();const std::time_t t=std::chrono::system_clock::to_time_t(now);
+    const auto ms=std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count()%1000;std::tm u{};
+#ifdef _WIN32
+    gmtime_s(&u,&t);
+#else
+    gmtime_r(&t,&u);
+#endif
+    char b[40];std::strftime(b,sizeof b,"%Y-%m-%dT%H:%M:%S",&u);char out[48];snprintf(out,sizeof out,"%s.%03dZ",b,static_cast<int>(ms));return out;
+}
 
 // Only absolute https URLs without credentials, control characters or whitespace.
 bool safe_url(const std::string& u) {
@@ -76,8 +84,8 @@ json Actions::execute(const std::string& cap,const json& params) {
     if(cap=="test.echo")return {{"ok",true},{"verified",true},{"echo",params["message"]}};
     if(cap=="laptop.open_url") {
         const auto url=params["url"].get<std::string>();if(!safe_url(url))return {{"ok",false},{"error","invalid_parameters"}};
-        const auto r=reinterpret_cast<INT_PTR>(ShellExecuteW(nullptr,L"open",wide(url).c_str(),nullptr,nullptr,SW_SHOWNORMAL));
-        return {{"ok",r>32},{"verified",r>32}};
+        const bool ok=os::open_url(url);
+        return {{"ok",ok},{"verified",ok}};
     }
     if(cap=="laptop.remember")return {{"ok",true},{"memory",{{"text",params["text"]}}}};  // the agent stores it (needs the engine)
     return {{"ok",false},{"error","unknown_capability"}};

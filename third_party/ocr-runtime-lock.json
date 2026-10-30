@@ -299,5 +299,16 @@
       "data_lines_sha256": "93590a5ecd40f1e2dfceb47ee09780e7b4c78cfddcfd1729ce711d8f23559a70",
       "training_record_sha256": "202674c68ee72383712dc09c8fd85f5c016882ddcd072b0614c374a821d6223c"
     }
+  ],
+  "portable_runtimes": [
+    {
+      "platform": "linux-x64",
+      "file": "libonnxruntime.so.1.24.4",
+      "sha256": "d132535d051344ff5c64c9c200004150559049a81ed330eb4422c1962fb6b7e4",
+      "bytes": 22159232,
+      "archive": "https://github.com/microsoft/onnxruntime/releases/download/v1.24.4/onnxruntime-linux-x64-1.24.4.tgz",
+      "archive_sha256": "3a211fbea252c1e66290658f1b735b772056149f28321e71c308942cdb54b747",
+      "archive_member": "onnxruntime-linux-x64-1.24.4/lib/libonnxruntime.so.1.24.4"
+    }
   ]
 }

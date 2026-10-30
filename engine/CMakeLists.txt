@@ -106,7 +106,7 @@ target_compile_definitions(lens-voice PRIVATE NOMINMAX)
 target_compile_options(lens-voice PRIVATE /utf-8 /W3 /sdl)
 
 # Always-on background agent: owns the engine, runs the observer after consent, serves a user-only named pipe.
-add_executable(lens-agent agent/agent_main.cpp agent/child_process.cpp agent/actions.cpp)
+add_executable(lens-agent agent/agent_main.cpp agent/child_process.cpp agent/actions.cpp agent/os.cpp platform.cpp)
 target_link_libraries(lens-agent PRIVATE nlohmann_json::nlohmann_json bcrypt advapi32 shell32 ole32)
 target_compile_definitions(lens-agent PRIVATE NOMINMAX)
 target_compile_options(lens-agent PRIVATE /utf-8 /W4 /sdl)

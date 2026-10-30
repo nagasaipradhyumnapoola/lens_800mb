@@ -134,5 +134,11 @@ if(EXISTS "${LENS_STB_DIR}/stb_image.h")
   set_source_files_properties(stb_image_impl.c PROPERTIES COMPILE_OPTIONS -w)  # upstream code, unmodified
 endif()
 
+# Always-on agent (lens-agent): engine host, resource governor, spoken replies, user-only Unix socket (agent/os.cpp).
+find_package(Threads REQUIRED)
+add_executable(lens-agent agent/agent_main.cpp agent/child_process.cpp agent/actions.cpp agent/os.cpp)
+target_link_libraries(lens-agent PRIVATE lens-embedding OpenSSL::Crypto Threads::Threads)
+target_compile_options(lens-agent PRIVATE ${LENS_WARN})
+
 add_executable(lens-embed embed_main.cpp)
 target_link_libraries(lens-embed PRIVATE lens-embedding)

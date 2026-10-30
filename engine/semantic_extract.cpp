@@ -41,7 +41,6 @@ S klass(std::uint32_t cp) {
     return S::punct;
 }
 bool indic(S s){return s==S::deva||s==S::taml||s==S::telu;}
-bool word_class(S s){return s==S::latin||s==S::digit||indic(s)||s==S::han||s==S::other_letter||s==S::joiner;}
 std::string ascii_lower(const std::string& s){std::string o=s;for(auto& c:o)if(c>='A'&&c<='Z')c=static_cast<char>(c-'A'+'a');return o;}
 bool starts_with(const std::string& s,const std::string& p){return s.size()>=p.size()&&s.compare(0,p.size(),p)==0;}
 

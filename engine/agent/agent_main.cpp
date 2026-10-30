@@ -1,7 +1,7 @@
 // lens-agent: the always-on Lens background process (docs/LENS_V1_SPEC.md §3–4, §15–17).
 // Owns the encrypted memory engine, runs the screen observer only after the user has consented (config), relays its
 // observations into memory, consolidates episodes periodically, and serves local clients (the Lens app, CLI) over a
-// named pipe that only the current user can open and that rejects remote clients. JSON lines in both directions.
+// local endpoint that only the current user can open and that rejects remote clients. JSON lines in both directions.
 //
 // Client ops: status | set_consent {"observe_screen","microphone","phone_link","onboarded": bool} |
 // set_exclusions {"excluded_processes","private_title_markers": [string]} | set_autostart {"enabled":bool} |
@@ -9,20 +9,20 @@
 // pause | resume | engine ops passed through (recall, search, timeline, retrieve_context, find_source, episodes,
 // episode_context, stats, consolidate, delete, add, import_batch, ingest_audio, unload_models). Anything else is rejected.
 // Pause stops all capture (screen and microphone) at once and holds until resume, whatever else changes meanwhile.
-// --tray adds a notification-area icon (status, Pause/Resume, Open Lens, Quit) on a thread of this process, so the
+// Windows: a named pipe; elsewhere a Unix domain socket (agent/os.hpp). --tray (Windows) adds a notification-area icon (status, Pause/Resume, Open Lens, Quit) on a thread of this process, so the
 // resident system stays one process; --tray-hidden runs the same commands without the icon (tests).
 #include "child_process.hpp"
 #include "actions.hpp"
 #include "imports.hpp"
+#include "os.hpp"
 #include "../asr_routes.hpp"
+#include "../platform.hpp"
+#ifdef _WIN32
 #include <windows.h>
-#include <bcrypt.h>
-#include <sddl.h>
 #include <shellapi.h>
-#include <shlobj.h>
-#include <tlhelp32.h>
-#include <psapi.h>
+#endif
 #include <nlohmann/json.hpp>
+#include <algorithm>
 #include <atomic>
 #include <chrono>
 #include <condition_variable>
@@ -39,29 +39,37 @@
 namespace fs=std::filesystem;
 using json=nlohmann::json;
 using lens::agent::Child;
+using lens::agent::native;
+namespace os=lens::agent::os;
 
 namespace {
-std::string utf8(const std::wstring& w) {
-    if(w.empty())return {};
-    const int n=WideCharToMultiByte(CP_UTF8,0,w.data(),static_cast<int>(w.size()),nullptr,0,nullptr,nullptr);
-    std::string s(n,'\0');WideCharToMultiByte(CP_UTF8,0,w.data(),static_cast<int>(w.size()),s.data(),n,nullptr,nullptr);return s;
-}
-std::wstring wide(const std::string& s) {
-    const int n=MultiByteToWideChar(CP_UTF8,0,s.data(),static_cast<int>(s.size()),nullptr,0);
-    std::wstring w(n,L'\0');MultiByteToWideChar(CP_UTF8,0,s.data(),static_cast<int>(s.size()),w.data(),n);return w;
-}
-std::string file_sha256(const fs::path& p) {
-    std::ifstream f(p,std::ios::binary);if(!f)return {};
-    BCRYPT_ALG_HANDLE alg=nullptr;BCRYPT_HASH_HANDLE h=nullptr;unsigned char d[32]{};
-    BCryptOpenAlgorithmProvider(&alg,BCRYPT_SHA256_ALGORITHM,nullptr,0);BCryptCreateHash(alg,&h,nullptr,0,nullptr,0,0);
-    std::vector<char> buf(1<<20);
-    while(f){f.read(buf.data(),buf.size());const auto n=f.gcount();if(n>0)BCryptHashData(h,reinterpret_cast<PUCHAR>(buf.data()),static_cast<ULONG>(n),0);}
-    BCryptFinishHash(h,d,32,0);BCryptDestroyHash(h);BCryptCloseAlgorithmProvider(alg,0);
-    static const char* hex="0123456789abcdef";std::string out;for(unsigned char b:d){out+=hex[b>>4];out+=hex[b&15];}return out;
-}
-json read_json(const fs::path& p){std::ifstream f(p);if(!f)throw std::runtime_error("unreadable:"+utf8(p.wstring()));return json::parse(f);}
+#ifdef _WIN32
+constexpr const char* EXE=".exe";
+#else
+constexpr const char* EXE="";
+#endif
+std::string u8(const fs::path& p){const auto s=p.u8string();return {s.begin(),s.end()};}
+fs::path up(const std::string& s){return fs::path(std::u8string(s.begin(),s.end()));}  // UTF-8 text (lock files, JSON) to a path
+native arg(const std::string& s){return up(s).native();}                                // UTF-8 text to a child-process argument
+fs::path worker(const fs::path& dir,const char* name){return dir/(std::string(name)+EXE);}
+json read_json(const fs::path& p){std::ifstream f(p);if(!f)throw std::runtime_error("unreadable:"+u8(p));return json::parse(f);}
 std::mutex log_lock;
 void log(const json& j){std::lock_guard g(log_lock);std::cerr<<j.dump()<<'\n';std::cerr.flush();}  // never memory content
+
+// The pinned ONNX Runtime library and its sha256: on Windows the DLL in .tools/ocr-runtime (third_party/ocr-runtime-lock.json
+// runtime_artifacts); elsewhere the official release library next to the executables, matched against portable_runtimes.
+fs::path ort_runtime(const fs::path& root,const fs::path& exe_dir,std::string& sha) {
+    const auto o=read_json(root/"third_party/ocr-runtime-lock.json");
+#ifdef _WIN32
+    (void)exe_dir;
+    for(const auto& a:o.at("runtime_artifacts"))
+        if(a.at("path").get<std::string>().ends_with("/onnxruntime.dll")){sha=a.at("sha256").get<std::string>();return root/up(a.at("path").get<std::string>());}
+#else
+    for(const auto& a:o.value("portable_runtimes",json::array()))
+        if(fs::exists(exe_dir/up(a.at("file").get<std::string>()))){sha=a.at("sha256").get<std::string>();return exe_dir/up(a.at("file").get<std::string>());}
+#endif
+    throw std::runtime_error("onnxruntime_not_pinned");
+}
 
 struct Engine {
     Child child;std::mutex lock;std::function<void(const json&)> before;  // resource governor hook (spec §15)
@@ -80,24 +88,24 @@ struct Speech {
     // Kokoro (~394 MB) never shares RAM with another heavy model: on_start frees the others, on_stop lets them back.
     std::function<void()> on_start,on_stop;
     static inline const std::set<std::string> voices{"af_heart","af_bella","am_michael","bf_emma","bm_george"};
-    bool verify(const fs::path& root) {
+    bool verify(const fs::path& root,const fs::path& exe_dir) {
         if(status=="verified")return true;
         try {
             json pinned;for(const auto& r:read_json(root/"third_party/model-lock.json"))pinned[r.at("path").get<std::string>()]=r.at("sha256");
-            const auto o=read_json(root/"third_party/ocr-runtime-lock.json");
-            for(const auto& a:o.at("runtime_artifacts"))if(a.at("path").get<std::string>().ends_with("/onnxruntime.dll"))pinned[a.at("path").get<std::string>()]=a.at("sha256");
+            std::string runtime_sha;const auto runtime=ort_runtime(root,exe_dir,runtime_sha);
+            if(os::sha256_file(runtime)!=runtime_sha)throw std::runtime_error("hash_mismatch:onnxruntime");
             const std::string k="models/onnx-community--Kokoro-82M-v1.0-ONNX/",m="models/hexgrad--misaki/";
-            json p={{"runtime",".tools/ocr-runtime/onnxruntime.dll"},{"model","models/Lens--kokoro-82m-mixed-int8/model.onnx"},{"tokenizer",k+"tokenizer.json"},
+            json p={{"model","models/Lens--kokoro-82m-mixed-int8/model.onnx"},{"tokenizer",k+"tokenizer.json"},
                     {"lexicon",{m+"us_gold.json",m+"us_silver.json"}}};
-            std::vector<std::string> files{p["runtime"],p["model"],p["tokenizer"],p["lexicon"][0],p["lexicon"][1]};
+            std::vector<std::string> files{p["model"],p["tokenizer"],p["lexicon"][0],p["lexicon"][1]};
             for(const auto& v:voices)files.push_back(k+"voices/"+v+".bin");
             // Optional: the trained Lens G2P reads words outside the lexicon (spelled letter by letter without it).
             const std::string g="models/Lens--g2p-en/";const bool g2p=pinned.contains(g+"encoder.onnx");
             if(g2p)for(const auto* f:{"encoder.onnx","decoder.onnx","vocab.json"})files.push_back(g+f);
             for(const auto& f:files)
-                if(!pinned.contains(f)||file_sha256(root/wide(f))!=pinned[f].get<std::string>())throw std::runtime_error("hash_mismatch:"+f);
-            auto abs=[&](const std::string& f){return utf8((root/wide(f)).make_preferred().wstring());};
-            paths={{"runtime",abs(p["runtime"])},{"model",abs(p["model"])},{"tokenizer",abs(p["tokenizer"])},
+                if(!pinned.contains(f)||os::sha256_file(root/up(f))!=pinned[f].get<std::string>())throw std::runtime_error("hash_mismatch:"+f);
+            auto abs=[&](const std::string& f){return u8((root/up(f)).make_preferred());};
+            paths={{"runtime",u8(runtime.lexically_normal().make_preferred())},{"model",abs(p["model"])},{"tokenizer",abs(p["tokenizer"])},
                    {"lexicon",{abs(p["lexicon"][0]),abs(p["lexicon"][1])}},{"voices_dir",abs(k+"voices")}};
             if(g2p)paths["g2p_model"]=abs("models/Lens--g2p-en");
             status="verified";return true;
@@ -107,13 +115,13 @@ struct Speech {
         std::lock_guard g(lock);
         if(!req.contains("text")||!req["text"].is_string())return {{"ok",false},{"error","invalid_request"}};
         const auto voice=req.value("voice",std::string("af_heart"));if(!voices.count(voice))return {{"ok",false},{"error","unsupported_voice"}};
-        if(!verify(root))return {{"ok",false},{"error","speech_unavailable"},{"reason",status}};
-        json r={{"text",req["text"]},{"voice",paths["voices_dir"].get<std::string>()+"\\"+voice+".bin"},{"speed",req.value("speed",1.0)},{"threads",4},
+        if(!verify(root,exe_dir))return {{"ok",false},{"error","speech_unavailable"},{"reason",status}};
+        json r={{"text",req["text"]},{"voice",u8(up(paths["voices_dir"].get<std::string>())/(voice+".bin"))},{"speed",req.value("speed",1.0)},{"threads",4},
                 {"runtime",paths["runtime"]},{"model",paths["model"]},{"tokenizer",paths["tokenizer"]},{"lexicon",paths["lexicon"]}};
         if(paths.contains("g2p_model"))r["g2p_model"]=paths["g2p_model"];
         if(!child.running()) {
             if(on_start)on_start();
-            if(!child.start((exe_dir/L"lens-tts.exe").wstring(),{})){if(on_stop)on_stop();return {{"ok",false},{"error","speech_unavailable"}};}
+            if(!child.start(worker(exe_dir,"lens-tts").native(),{})){if(on_stop)on_stop();return {{"ok",false},{"error","speech_unavailable"}};}
         }
         const auto line=child.request(r.dump());last=std::chrono::steady_clock::now();
         if(!line){stop_locked();return {{"ok",false},{"error","speech_unavailable"}};}
@@ -129,15 +137,16 @@ private:
 
 // Engine arguments from the pinned lock files (same model id convention as scripts/lens.ps1). Every artifact is
 // hash-verified; on any mismatch the engine runs keyword-only and the reason is reported in status.
-std::vector<std::wstring> engine_args(const fs::path& root,const fs::path& db,std::string& semantic_status) {
-    std::vector<std::wstring> args{L"--db",db.wstring()};
+std::vector<native> engine_args(const fs::path& root,const fs::path& exe_dir,const fs::path& db,std::string& semantic_status) {
+    std::vector<native> args{arg("--db"),db.native()};
     try {
-        const auto e=read_json(root/"third_party/embedding-lock.json"),o=read_json(root/"third_party/ocr-runtime-lock.json");
+        const auto e=read_json(root/"third_party/embedding-lock.json");
         auto pick=[](const json& lock,const char* name)->const json&{for(const auto& f:lock.at("files"))if(f.at("filename")==name)return f;throw std::runtime_error("missing");};
         const auto& model=pick(e,"onnx/model_qint8_avx512_vnni.onnx");const auto& tok=pick(e,"onnx/tokenizer.json");
-        json ort;for(const auto& a:o.at("runtime_artifacts"))if(a.at("path").get<std::string>().ends_with("/onnxruntime.dll"))ort=a;
-        auto check=[&](const std::string& path,const std::string& sha){if(file_sha256(root/wide(path))!=sha)throw std::runtime_error("hash_mismatch:"+path);};
-        for(const json* a:std::initializer_list<const json*>{&model,&tok,&ort})check(a->at("path").get<std::string>(),a->at("sha256").get<std::string>());
+        auto check=[&](const std::string& path,const std::string& sha){if(os::sha256_file(root/up(path))!=sha)throw std::runtime_error("hash_mismatch:"+path);};
+        for(const json* a:std::initializer_list<const json*>{&model,&tok})check(a->at("path").get<std::string>(),a->at("sha256").get<std::string>());
+        std::string ort_sha;const auto ort=ort_runtime(root,exe_dir,ort_sha);
+        if(os::sha256_file(ort)!=ort_sha)throw std::runtime_error("hash_mismatch:onnxruntime");
         const auto id="intfloat/multilingual-e5-small@"+e.at("revision").get<std::string>().substr(0,12)+"/onnx/model_qint8_avx512_vnni.onnx#sha256:"+model.at("sha256").get<std::string>().substr(0,16);
         // The trained Lens answerability head (v2c, fine-tuned from the mMARCO reranker) replaces that reranker and also
         // verifies evidence: one model resident instead of two (500 MB ceiling). Used only when every file matches
@@ -147,32 +156,20 @@ std::vector<std::wstring> engine_args(const fs::path& root,const fs::path& db,st
             json pinned;for(const auto& r:read_json(root/"third_party/model-lock.json"))pinned[r.at("path").get<std::string>()]=r.at("sha256");
             const std::string dir="models/Lens--answerability-v2c/";
             for(const auto* f:{"model_int8.onnx","tokenizer.json","gate.json"})check(dir+f,pinned.at(dir+f).get<std::string>());
-            rerank_model=root/wide(dir+"model_int8.onnx");rerank_tok=root/wide(dir+"tokenizer.json");lens_head=true;
+            rerank_model=root/up(dir+"model_int8.onnx");rerank_tok=root/up(dir+"tokenizer.json");lens_head=true;
         } catch(const std::exception&) {
             const auto r=read_json(root/"third_party/reranker-lock.json");const auto& rmodel=pick(r,"onnx/model_qint8_avx512_vnni.onnx");const auto& rtok=pick(r,"tokenizer.json");
             for(const json* a:std::initializer_list<const json*>{&rmodel,&rtok})check(a->at("path").get<std::string>(),a->at("sha256").get<std::string>());
-            rerank_model=root/wide(rmodel.at("path").get<std::string>());rerank_tok=root/wide(rtok.at("path").get<std::string>());
+            rerank_model=root/up(rmodel.at("path").get<std::string>());rerank_tok=root/up(rtok.at("path").get<std::string>());
         }
-        for(const auto& a:std::vector<std::wstring>{L"--ort",(root/wide(ort.at("path").get<std::string>())).wstring(),L"--embedding-model",(root/wide(model.at("path").get<std::string>())).wstring(),
-            L"--embedding-tokenizer",(root/wide(tok.at("path").get<std::string>())).wstring(),L"--embedding-id",wide(id),
-            L"--reranker-model",rerank_model.wstring(),L"--reranker-tokenizer",rerank_tok.wstring()})args.push_back(a);
-        if(lens_head)for(const auto& a:{std::wstring(L"--verifier-model"),rerank_model.wstring(),std::wstring(L"--verifier-tokenizer"),rerank_tok.wstring()})args.push_back(a);
+        for(const auto& a:std::vector<native>{arg("--ort"),ort.native(),arg("--embedding-model"),(root/up(model.at("path").get<std::string>())).native(),
+            arg("--embedding-tokenizer"),(root/up(tok.at("path").get<std::string>())).native(),arg("--embedding-id"),arg(id),
+            arg("--reranker-model"),rerank_model.native(),arg("--reranker-tokenizer"),rerank_tok.native()})args.push_back(a);
+        if(lens_head)for(const auto& a:{arg("--verifier-model"),rerank_model.native(),arg("--verifier-tokenizer"),rerank_tok.native()})args.push_back(a);
         semantic_status="verified";  // compared verbatim elsewhere; whether the Lens head is used is logged below
         if(lens_head)log({{"event","lens_answerability_head"},{"model","Lens--answerability-v2c"}});
     } catch(const std::exception& ex){semantic_status=std::string("keyword_only: ")+ex.what();}
     return args;
-}
-
-// Security descriptor: full access for the current user only (plus SYSTEM); remote clients are rejected separately.
-bool user_only_security(SECURITY_ATTRIBUTES& sa) {
-    HANDLE token=nullptr;if(!OpenProcessToken(GetCurrentProcess(),TOKEN_QUERY,&token))return false;
-    DWORD n=0;GetTokenInformation(token,TokenUser,nullptr,0,&n);std::vector<BYTE> buf(n);
-    if(!GetTokenInformation(token,TokenUser,buf.data(),n,&n)){CloseHandle(token);return false;}CloseHandle(token);
-    LPWSTR sid=nullptr;if(!ConvertSidToStringSidW(reinterpret_cast<TOKEN_USER*>(buf.data())->User.Sid,&sid))return false;
-    const std::wstring sddl=L"D:P(A;;GA;;;"+std::wstring(sid)+L")(A;;GA;;;SY)";LocalFree(sid);
-    PSECURITY_DESCRIPTOR sd=nullptr;
-    if(!ConvertStringSecurityDescriptorToSecurityDescriptorW(sddl.c_str(),SDDL_REVISION_1,&sd,nullptr))return false;
-    sa.nLength=sizeof sa;sa.lpSecurityDescriptor=sd;sa.bInheritHandle=FALSE;return true;
 }
 
 const std::set<std::string> passthrough={"recall","search","timeline","retrieve_context","find_source","episodes","episode_context","stats",
@@ -180,26 +177,7 @@ const std::set<std::string> passthrough={"recall","search","timeline","retrieve_
     "delete_sources","export","imports","backup","restore","rotate_key","retention_set","retention_list","retention_remove",
     "pin","unpin","pins","feedback","correct_fact"};
 
-// The agent and every process it started (engine, observer and its OCR worker, voice, mesh), with real memory use.
-json process_tree() {
-    json out=json::array();HANDLE snap=CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);if(snap==INVALID_HANDLE_VALUE)return out;
-    std::vector<PROCESSENTRY32W> all;PROCESSENTRY32W e{};e.dwSize=sizeof e;
-    if(Process32FirstW(snap,&e))do all.push_back(e);while(Process32NextW(snap,&e));
-    CloseHandle(snap);
-    std::vector<DWORD> tree{GetCurrentProcessId()};
-    for(size_t i=0;i<tree.size();++i)for(const auto& p:all)
-        if(p.th32ParentProcessID==tree[i]&&std::find(tree.begin(),tree.end(),p.th32ProcessID)==tree.end())tree.push_back(p.th32ProcessID);
-    for(const DWORD pid:tree) {
-        std::wstring name;for(const auto& p:all)if(p.th32ProcessID==pid)name=p.szExeFile;
-        HANDLE h=OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION,FALSE,pid);if(!h)continue;
-        PROCESS_MEMORY_COUNTERS_EX m{};m.cb=sizeof m;
-        if(GetProcessMemoryInfo(h,reinterpret_cast<PROCESS_MEMORY_COUNTERS*>(&m),sizeof m))
-            out.push_back({{"name",utf8(name)},{"pid",pid},{"working_set",m.WorkingSetSize},{"private",m.PrivateUsage}});
-        CloseHandle(h);
-    }
-    return out;
-}
-
+#ifdef _WIN32
 // Notification-area icon. The window is never shown; it only receives the icon's mouse messages and menu commands
 // (tests send the same WM_COMMANDs to the window found by class "LensAgentTray" and the pipe name as its title).
 struct TrayHooks{std::function<json()> status;std::function<void(bool)> pause;std::function<void()> open,quit;};
@@ -271,38 +249,38 @@ void run_tray(TrayHooks* hooks,bool icon,const std::wstring& title,std::atomic<H
     MSG msg;while(GetMessageW(&msg,nullptr,0,0)>0){TranslateMessage(&msg);DispatchMessageW(&msg);}
     window=nullptr;DestroyIcon(icon_on);DestroyIcon(icon_off);
 }
+#endif
 }
 
-int wmain(int argc,wchar_t** argv) {
-    fs::path data_dir,root;std::wstring pipe_name,follow,voice_input,explicit_args;bool test_capabilities=false;
-    std::wstring autostart_key=L"Software\\Microsoft\\Windows\\CurrentVersion\\Run";  // HKCU; tests pass a scratch key
+int run(const std::vector<native>& argv) {
+    fs::path data_dir=os::default_data_dir(),root;native pipe_name,follow,voice_input;std::wstring explicit_args;bool test_capabilities=false;
+    std::wstring autostart_key=L"Software\\Microsoft\\Windows\\CurrentVersion\\Run";  // HKCU (Windows); tests pass a scratch key
     enum class Tray{none,icon,hidden} tray=Tray::none;
-    {wchar_t* local=nullptr;if(SUCCEEDED(SHGetKnownFolderPath(FOLDERID_LocalAppData,0,nullptr,&local))){data_dir=fs::path(local)/L"Lens";CoTaskMemFree(local);}}
-    {  // install root: nearest ancestor of the executable holding the pinned lock files (installed: <root>\bin; repo: build\engine\Release)
-        std::wstring self(32768,L'\0');self.resize(GetModuleFileNameW(nullptr,self.data(),32768));
-        for(auto p=fs::path(self).parent_path();!p.empty()&&p!=p.parent_path();p=p.parent_path())
-            if(fs::exists(p/L"third_party"/L"embedding-lock.json")){root=p;break;}
-    }
-    for(int i=1;i<argc;++i) {
-        const std::wstring a=argv[i];auto next=[&]{return i+1<argc?std::wstring(argv[++i]):std::wstring();};
-        if(a==L"--data-dir"){data_dir=next();explicit_args+=L" --data-dir \""+data_dir.wstring()+L"\"";}
-        else if(a==L"--root")root=next();
-        else if(a==L"--pipe-name"){pipe_name=next();explicit_args+=L" --pipe-name \""+pipe_name+L"\"";}
-        else if(a==L"--observer-follow")follow=next();
-        else if(a==L"--voice-input-wav")voice_input=next();  // tests: a file instead of the microphone
-        else if(a==L"--autostart-key")autostart_key=next();
-        else if(a==L"--tray")tray=Tray::icon;else if(a==L"--tray-hidden")tray=Tray::hidden;
-        else if(a==L"--test-capabilities")test_capabilities=true;
+    const auto exe_dir=lens::platform::executable_dir();
+    // install root: nearest ancestor of the executable holding the pinned lock files (installed: <root>/bin; repo: build/engine/Release)
+    for(auto p=exe_dir;!p.empty()&&p!=p.parent_path();p=p.parent_path())
+        if(fs::exists(p/"third_party"/"embedding-lock.json")){root=p;break;}
+    for(size_t i=1;i<argv.size();++i) {
+        const auto a=u8(argv[i]);auto next=[&]{return i+1<argv.size()?argv[++i]:native();};
+        if(a=="--data-dir"){data_dir=next();explicit_args+=L" --data-dir \""+data_dir.wstring()+L"\"";}
+        else if(a=="--root")root=next();
+        else if(a=="--pipe-name"){pipe_name=next();explicit_args+=L" --pipe-name \""+fs::path(pipe_name).wstring()+L"\"";}
+        else if(a=="--observer-follow")follow=next();
+        else if(a=="--voice-input-wav")voice_input=next();  // tests: a file instead of the microphone
+        else if(a=="--autostart-key")autostart_key=fs::path(next()).wstring();
+        else if(a=="--tray")tray=Tray::icon;else if(a=="--tray-hidden")tray=Tray::hidden;
+        else if(a=="--test-capabilities")test_capabilities=true;
         else {std::cerr<<"usage: lens-agent [--data-dir <dir>] [--root <install root>] [--pipe-name <name>] [--tray]\n";return 2;}
     }
-    if(pipe_name.empty()) {  // per-user pipe name; the ACL is what enforces access
-        wchar_t user[256];DWORD n=256;GetUserNameW(user,&n);pipe_name=L"lens-agent-"+std::wstring(user);
-    }
+#ifndef _WIN32
+    if(tray!=Tray::none){log({{"event","tray_unsupported"}});tray=Tray::none;}  // the app shell provides the status UI here
+#endif
+    if(pipe_name.empty())pipe_name=arg("lens-agent-"+os::user_name());  // per user; the endpoint's permissions enforce access
+    const auto endpoint=u8(pipe_name);
     fs::create_directories(data_dir);
-    HANDLE single=CreateMutexW(nullptr,TRUE,(L"Local\\"+pipe_name).c_str());
-    if(GetLastError()==ERROR_ALREADY_EXISTS){log({{"event","refused"},{"reason","already_running"}});return 3;}
-    const auto exe_dir=fs::path([]{std::wstring s(32768,L'\0');s.resize(GetModuleFileNameW(nullptr,s.data(),32768));return s;}()).parent_path();
-    const auto config_path=data_dir/L"config.json";
+    os::SingleInstance single(endpoint);
+    if(!single.acquired()){log({{"event","refused"},{"reason","already_running"}});return 3;}
+    const auto config_path=data_dir/"config.json";
     // Every consent defaults to off; "onboarded" records that the user has been through the first-run choices.
     json config={{"observe_screen",false},{"microphone",false},{"phone_link",false},{"onboarded",false},{"observer",json::object()},{"consolidate_minutes",10}};
     if(fs::exists(config_path))config.update(read_json(config_path));
@@ -311,7 +289,7 @@ int wmain(int argc,wchar_t** argv) {
     auto consent=[&](const char* key){std::lock_guard g(config_lock);return config.value(key,false);};
 
     std::string semantic;Engine engine;Speech speech;lens::agent::Actions actions(test_capabilities);
-    if(!engine.child.start((exe_dir/L"lens-engine.exe").wstring(),engine_args(root,data_dir/L"memory.db",semantic))){log({{"event","refused"},{"reason","engine_start_failed"}});return 1;}
+    if(!engine.child.start(worker(exe_dir,"lens-engine").native(),engine_args(root,exe_dir,data_dir/"memory.db",semantic))){log({{"event","refused"},{"reason","engine_start_failed"}});return 1;}
     const auto stats=engine.ask({{"op","stats"}});
     if(!stats||!stats->value("ok",false)){log({{"event","refused"},{"reason","database_open_failed"}});return 1;}
 
@@ -346,16 +324,18 @@ int wmain(int argc,wchar_t** argv) {
         observer.stop();  // reap a previous run that ended by itself (its reader thread must be joined before reuse)
         json ocfg;{std::lock_guard c(config_lock);ocfg=config.at("observer");}
         if(!ocfg.contains("ocr")) {  // default OCR fallback from the installed models (docs/VERIFICATION.md, Milestone 4)
-            const auto m=root/L"models";
-            auto rec=[&](const wchar_t* dir){return json{{"model",utf8((m/dir/L"inference.onnx").wstring())},{"dictionary",utf8((m/dir/L"ctc-dictionary.json").wstring())}};};
-            json t={{"runtime",utf8((root/L".tools/ocr-runtime/onnxruntime.dll").wstring())},{"detector",utf8((m/L"PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx").wstring())},
-                    {"route","auto"},{"threads",2},{"recognizers",{{"general",rec(L"PaddlePaddle--PP-OCRv6_tiny_rec")},{"hi",rec(L"PaddlePaddle--devanagari_PP-OCRv5_mobile_rec")},
-                    {"ta",rec(L"PaddlePaddle--ta_PP-OCRv5_mobile_rec")},{"te",rec(L"PaddlePaddle--te_PP-OCRv5_mobile_rec")}}}};
-            if(fs::exists(root/L".tools/ocr-runtime/onnxruntime.dll")&&fs::exists(m/L"PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx"))ocfg["ocr"]=t;
+            const auto m=root/"models";std::string sha;fs::path runtime;
+            try{runtime=ort_runtime(root,exe_dir,sha);}catch(const std::exception&){}
+            auto rec=[&](const char* dir){return json{{"model",u8(m/dir/"inference.onnx")},{"dictionary",u8(m/dir/"ctc-dictionary.json")}};};
+            json t={{"runtime",u8(runtime.make_preferred())},{"detector",u8(m/"PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx")},
+                    {"route","auto"},{"threads",2},{"recognizers",{{"general",rec("PaddlePaddle--PP-OCRv6_tiny_rec")},{"hi",rec("PaddlePaddle--devanagari_PP-OCRv5_mobile_rec")},
+                    {"ta",rec("PaddlePaddle--ta_PP-OCRv5_mobile_rec")},{"te",rec("PaddlePaddle--te_PP-OCRv5_mobile_rec")}}}};
+            if(!runtime.empty()&&fs::exists(runtime)&&fs::exists(m/"PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx"))ocfg["ocr"]=t;
         }
-        const auto cfg=data_dir/L"observer.json";{std::ofstream f(cfg);f<<ocfg.dump();}
-        std::vector<std::wstring> args{L"--consent",L"--config",cfg.wstring()};if(!follow.empty()){args.push_back(L"--follow");args.push_back(follow);}
-        observer.start((exe_dir/L"lens-observer.exe").wstring(),args,[&](const std::string& line){
+        const auto cfg=data_dir/"observer.json";{std::ofstream f(cfg);f<<ocfg.dump();}
+        std::vector<native> args{arg("--consent"),arg("--config"),cfg.native()};if(!follow.empty()){args.push_back(arg("--follow"));args.push_back(follow);}
+        if(!fs::exists(worker(exe_dir,"lens-observer"))){log({{"event","observer_unavailable"},{"reason","not_built_for_this_os"}});return;}
+        observer.start(worker(exe_dir,"lens-observer").native(),args,[&](const std::string& line){
             ++observed;const auto req=json::parse(line,nullptr,false);if(!req.is_object()){++failed;return;}
             long long ms=0;const auto r=timed_ask(req,ms);if(r&&r->value("ok",false))++stored;else ++failed;
             note_capture("screen",req,r,ms);
@@ -397,11 +377,12 @@ int wmain(int argc,wchar_t** argv) {
     auto start_voice=[&]{
         std::lock_guard g(voice_lock);if(voice.running()||paused)return;
         voice.stop();  // reap a previous run (e.g. the microphone went away) before reusing the child
-        const auto model=root/L"models"/L"ggerganov--whisper.cpp"/L"ggml-base-q5_1.bin";
+        const auto model=root/"models"/"ggerganov--whisper.cpp"/"ggml-base-q5_1.bin";
         if(!fs::exists(model)){log({{"event","voice_unavailable"},{"reason","model_missing"}});return;}
-        std::vector<std::wstring> args{L"--consent",L"--model",model.wstring()};
-        if(!voice_input.empty()){args.push_back(L"--input-wav");args.push_back(voice_input);}
-        voice.start((exe_dir/L"lens-voice.exe").wstring(),args,[&](const std::string& line){
+        if(!fs::exists(worker(exe_dir,"lens-voice"))){log({{"event","voice_unavailable"},{"reason","not_built_for_this_os"}});return;}
+        std::vector<native> args{arg("--consent"),arg("--model"),model.native()};
+        if(!voice_input.empty()){args.push_back(arg("--input-wav"));args.push_back(voice_input);}
+        voice.start(worker(exe_dir,"lens-voice").native(),args,[&](const std::string& line){
             const auto req=json::parse(line,nullptr,false);if(!req.is_object()){++failed;return;}
             long long ms=0;const auto r=timed_ask(req,ms);if(r&&r->value("ok",false))++voiced;else ++failed;
             note_capture("voice",req,r,ms);
@@ -417,8 +398,9 @@ int wmain(int argc,wchar_t** argv) {
     auto start_mesh=[&]{
         std::lock_guard g(mesh_lock);if(mesh.running())return;
         mesh.stop();
-        mesh.start((exe_dir/L"lens-mesh.exe").wstring(),{L"--data-dir",data_dir.wstring(),L"--pipe-name",pipe_name,
-                   L"--port",std::to_wstring(config.value("mesh_port",47821)),L"--bind",wide(config.value("mesh_bind",std::string("0.0.0.0")))});
+        if(!fs::exists(worker(exe_dir,"lens-mesh"))){log({{"event","mesh_unavailable"},{"reason","not_built_for_this_os"}});return;}
+        mesh.start(worker(exe_dir,"lens-mesh").native(),{arg("--data-dir"),data_dir.native(),arg("--pipe-name"),pipe_name,
+                   arg("--port"),arg(std::to_string(config.value("mesh_port",47821))),arg("--bind"),arg(config.value("mesh_bind",std::string("0.0.0.0")))});
         log({{"event","mesh_started"}});
     };
     auto stop_mesh=[&]{std::lock_guard g(mesh_lock);if(mesh.running()){mesh.stop();log({{"event","mesh_stopped"}});}};
@@ -448,12 +430,17 @@ int wmain(int argc,wchar_t** argv) {
 
     // Autostart at sign-in: a per-user Run value (no administrator rights, no service). It starts lens-app --background,
     // a GUI-subsystem launcher, so no console window appears; that starts this agent with its tray icon and exits.
+#ifdef _WIN32
     auto autostart_enabled=[&]{DWORD n=0;return RegGetValueW(HKEY_CURRENT_USER,autostart_key.c_str(),L"LensAgent",RRF_RT_REG_SZ,nullptr,nullptr,&n)==ERROR_SUCCESS;};
     auto set_autostart=[&](bool on)->bool {
         if(!on){const auto r=RegDeleteKeyValueW(HKEY_CURRENT_USER,autostart_key.c_str(),L"LensAgent");return r==ERROR_SUCCESS||r==ERROR_FILE_NOT_FOUND;}
         const std::wstring cmd=L"\""+(exe_dir/L"lens-app.exe").wstring()+L"\" --background"+explicit_args;
         return RegSetKeyValueW(HKEY_CURRENT_USER,autostart_key.c_str(),L"LensAgent",REG_SZ,cmd.c_str(),static_cast<DWORD>((cmd.size()+1)*sizeof(wchar_t)))==ERROR_SUCCESS;
     };
+#else
+    auto autostart_enabled=[&]{return false;};  // sign-in start belongs to the app shell / OS service on these platforms
+    auto set_autostart=[&](bool)->bool {return false;};
+#endif
     // Pause holds every capture (screen and microphone) until resume; turning all capture consents off ends it.
     auto set_paused=[&](bool on)->json {
         if(on&&!paused&&!observer.running()&&!voice_running())return {{"ok",false},{"error","observer_not_running"}};
@@ -465,7 +452,7 @@ int wmain(int argc,wchar_t** argv) {
         return {{"ok",true},{"paused",paused.load()}};
     };
 
-    lens::agent::imports::Jobs imports(data_dir/L"imports.json",[&](const json& r){return engine.ask(r);});
+    lens::agent::imports::Jobs imports(data_dir/"imports.json",[&](const json& r){return engine.ask(r);});
 
     auto handle=[&](const json& req)->json {
         const auto op=req.value("op",std::string());
@@ -477,7 +464,7 @@ int wmain(int argc,wchar_t** argv) {
             {"phone_link",consent("phone_link")},{"mesh_running",mesh_running()},{"onboarded",consent("onboarded")},
             {"exclusions",{{"excluded_processes",observer_cfg.value("excluded_processes",json::array())},
                            {"private_title_markers",observer_cfg.value("private_title_markers",json::array())}}},
-            {"autostart",autostart_enabled()},{"tray",tray==Tray::icon?"icon":tray==Tray::hidden?"hidden":"none"},{"data_dir",utf8(data_dir.wstring())}};
+            {"autostart",autostart_enabled()},{"tray",tray==Tray::icon?"icon":tray==Tray::hidden?"hidden":"none"},{"data_dir",u8(data_dir)}};
         }
         if(op=="set_consent") {  // each consent is independent: screen observation, microphone, the paired-device link
             static const char* keys[]={"observe_screen","microphone","phone_link","onboarded"};
@@ -544,12 +531,12 @@ int wmain(int argc,wchar_t** argv) {
             return r;
         }
         if(op=="diagnostics") {  // real measurements only: process memory, capture telemetry, data folder sizes
-            const auto procs=process_tree();unsigned long long ws=0,pv=0;
+            const auto procs=os::process_tree();unsigned long long ws=0,pv=0;
             for(const auto& p:procs){ws+=p["working_set"].get<unsigned long long>();pv+=p["private"].get<unsigned long long>();}
             json files=json::array();unsigned long long total=0;std::error_code ec;
             for(const auto& e:fs::directory_iterator(data_dir,ec)) {
                 if(!e.is_regular_file(ec))continue;const auto b=e.file_size(ec);if(ec)continue;
-                total+=b;files.push_back({{"name",utf8(e.path().filename().wstring())},{"bytes",b}});
+                total+=b;files.push_back({{"name",u8(e.path().filename())},{"bytes",b}});
             }
             json t;{std::lock_guard g(telemetry_lock);t=telemetry;}
             const auto up=std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now()-started_at).count();
@@ -557,7 +544,7 @@ int wmain(int argc,wchar_t** argv) {
                     {"capture",t},{"observer_running",observer.running()},{"voice_running",voice_running()},{"mesh_running",mesh_running()},
                     {"ocr_hold",[&]{std::lock_guard h(hold_lock);return json(ocr_hold);}()},
                     {"paused",paused.load()},{"observed",observed.load()},{"stored",stored.load()},{"failed",failed.load()},{"voiced",voiced.load()},
-                    {"semantic",semantic},{"storage",{{"data_dir",utf8(data_dir.wstring())},{"files",files},{"total_bytes",total}}}};
+                    {"semantic",semantic},{"storage",{{"data_dir",u8(data_dir)},{"files",files},{"total_bytes",total}}}};
         }
         if(op=="import_preview")return imports.preview(req);
         if(op=="import_start")return imports.start(req);
@@ -568,11 +555,17 @@ int wmain(int argc,wchar_t** argv) {
         if(op=="transcribe") {  // a spoken question: the user pressed the app's microphone button; the audio is never stored
             if(!req.contains("audio_base64")||!req["audio_base64"].is_string()||req["audio_base64"].get_ref<const std::string&>().size()>1400000)
                 return {{"ok",false},{"error","invalid_request"}};  // ~30 s of 16 kHz 16-bit mono
-            const auto model=root/L"models"/L"ggerganov--whisper.cpp"/L"ggml-base-q5_1.bin";
+            const auto model=root/"models"/"ggerganov--whisper.cpp"/"ggml-base-q5_1.bin";
             if(!fs::exists(model))return {{"ok",false},{"error","speech_input_unavailable"}};
-            const auto library=root/L".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll";
-            json r={{"op","transcribe"},{"consent",true},{"audio_base64",req["audio_base64"]},{"model",utf8(model.wstring())},
-                    {"asr_routes",lens::asr_routes(root/L"models",library)},
+#ifdef _WIN32
+            const auto library=root/".tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll";
+#elif defined(__APPLE__)
+            const auto library=exe_dir/"libsherpa-onnx-c-api.dylib";
+#else
+            const auto library=exe_dir/"libsherpa-onnx-c-api.so";
+#endif
+            json r={{"op","transcribe"},{"consent",true},{"audio_base64",req["audio_base64"]},{"model",u8(model)},
+                    {"asr_routes",lens::asr_routes(root/"models",library)},
                     {"allowed_languages",{"en","zh","es","ar","fr","pt","ru","id","de","ja","hi","bn","te","mr","ta","ur","gu"}}};  // spec §1a
             const auto out=engine.ask(r);return out?*out:json{{"ok",false},{"error","engine_unavailable"}};
         }
@@ -581,49 +574,57 @@ int wmain(int argc,wchar_t** argv) {
         const auto r=engine.ask(req);return r?*r:json{{"ok",false},{"error","engine_unavailable"}};
     };
 
-    SECURITY_ATTRIBUTES sa{};if(!user_only_security(sa)){log({{"event","refused"},{"reason","security_descriptor_failed"}});return 1;}
-    const std::wstring path=L"\\\\.\\pipe\\"+pipe_name;
-    log({{"event","started"},{"pipe",utf8(path)},{"semantic",semantic},{"observe_screen",consent("observe_screen")}});
-    auto poke_pipe=[&]{HANDLE poke=CreateFileW(path.c_str(),GENERIC_READ|GENERIC_WRITE,0,nullptr,OPEN_EXISTING,0,nullptr);if(poke!=INVALID_HANDLE_VALUE)CloseHandle(poke);};
+    os::Server server;
+    if(!server.listen(endpoint)){log({{"event","refused"},{"reason",server.error()}});return 1;}
+    log({{"event","started"},{"pipe",server.address()},{"semantic",semantic},{"observe_screen",consent("observe_screen")}});
+#ifdef _WIN32
     TrayHooks hooks{[&]{return handle({{"op","status"}});},[&](bool on){set_paused(on);},
         [&]{  // Open Lens: the app is a separate, short-lived process; closing it frees its WebView2 memory
-            std::wstring cmd=L"\""+(exe_dir/L"lens-app.exe").wstring()+L"\" --pipe-name \""+pipe_name+L"\"";
+            std::wstring cmd=L"\""+(exe_dir/L"lens-app.exe").wstring()+L"\" --pipe-name \""+fs::path(pipe_name).wstring()+L"\"";
             STARTUPINFOW si{};si.cb=sizeof si;PROCESS_INFORMATION pi{};
             if(CreateProcessW(nullptr,cmd.data(),nullptr,nullptr,FALSE,0,nullptr,nullptr,&si,&pi)){CloseHandle(pi.hThread);CloseHandle(pi.hProcess);}
         },
-        [&]{handle({{"op","shutdown"}});poke_pipe();}};
+        [&]{handle({{"op","shutdown"}});server.interrupt();}};
     std::atomic<HWND> tray_window=nullptr;std::atomic<bool> tray_ready=false;std::thread tray_thread;
-    if(tray!=Tray::none)tray_thread=std::thread([&]{run_tray(&hooks,tray==Tray::icon,pipe_name,tray_window,tray_ready);});
-    std::vector<std::thread> clients;
+    if(tray!=Tray::none)tray_thread=std::thread([&]{run_tray(&hooks,tray==Tray::icon,fs::path(pipe_name).wstring(),tray_window,tray_ready);});
+#endif
+    std::vector<std::thread> clients;std::mutex connections_lock;std::vector<os::Connection*> connections;
     while(!stopping) {
-        HANDLE pipe=CreateNamedPipeW(path.c_str(),PIPE_ACCESS_DUPLEX,PIPE_TYPE_BYTE|PIPE_READMODE_BYTE|PIPE_WAIT|PIPE_REJECT_REMOTE_CLIENTS,
-                                     PIPE_UNLIMITED_INSTANCES,1<<16,1<<16,0,&sa);
-        if(pipe==INVALID_HANDLE_VALUE){log({{"event","pipe_failed"},{"error",static_cast<int>(GetLastError())}});break;}
-        const BOOL connected=ConnectNamedPipe(pipe,nullptr)?TRUE:(GetLastError()==ERROR_PIPE_CONNECTED);
-        if(!connected||stopping){CloseHandle(pipe);continue;}
-        clients.emplace_back([&,pipe]{
-            std::string pending;char buf[65536];DWORD n=0;
-            while(!stopping&&ReadFile(pipe,buf,sizeof buf,&n,nullptr)&&n) {
-                pending.append(buf,n);size_t pos;
+        auto connection=server.accept();
+        if(!connection){if(!stopping)log({{"event","pipe_failed"},{"error",server.error()}});break;}
+        if(stopping)break;
+        auto* c=connection.release();{std::lock_guard g(connections_lock);connections.push_back(c);}
+        clients.emplace_back([&,c]{
+            std::string pending;
+            while(!stopping&&c->read_some(pending)) {
+                size_t pos;
                 while((pos=pending.find('\n'))!=std::string::npos) {
                     const auto line=pending.substr(0,pos);pending.erase(0,pos+1);
                     const auto req=json::parse(line,nullptr,false);
                     json res;  // hostile or mistyped requests (e.g. a non-string "op") must never end the agent
                     try{res=req.is_object()?handle(req):json{{"ok",false},{"error","invalid_request"}};}
                     catch(...){res={{"ok",false},{"error","invalid_request"}};}
-                    const auto out=res.dump()+"\n";DWORD w=0;WriteFile(pipe,out.data(),static_cast<DWORD>(out.size()),&w,nullptr);
+                    c->write(res.dump()+"\n");
                 }
             }
-            FlushFileBuffers(pipe);DisconnectNamedPipe(pipe);CloseHandle(pipe);
-            if(stopping)poke_pipe();
+            {std::lock_guard g(connections_lock);connections.erase(std::find(connections.begin(),connections.end(),c));delete c;}  // closes it
+            if(stopping)server.interrupt();  // the shutdown request came over this connection: wake the accept loop
         });
     }
     stopping=true;wake.notify_all();
-    if(tray_thread.joinable()){while(!tray_ready)Sleep(10);if(HWND w=tray_window)PostMessageW(w,WM_CLOSE,0,0);tray_thread.join();}
-    stop_mesh();stop_observer();stop_voice();  // the mesh holds a pipe connection of its own; stop children before joining clients
-    for(auto& t:clients)if(t.joinable()){CancelSynchronousIo(t.native_handle());t.join();}  // unblock idle clients (e.g. an open app)
+#ifdef _WIN32
+    if(tray_thread.joinable()){while(!tray_ready)std::this_thread::sleep_for(std::chrono::milliseconds(10));if(HWND w=tray_window)PostMessageW(w,WM_CLOSE,0,0);tray_thread.join();}
+#endif
+    stop_mesh();stop_observer();stop_voice();  // the mesh holds a connection of its own; stop children before joining clients
+    {std::lock_guard g(connections_lock);for(auto* c:connections)c->cancel();}  // unblock idle clients (e.g. an open app)
+    for(auto& t:clients)if(t.joinable())t.join();
     consolidator.join();speech_idle.join();speech.child.stop();imports.cancel_all();engine.child.stop();
-    LocalFree(sa.lpSecurityDescriptor);ReleaseMutex(single);CloseHandle(single);
     log({{"event","stopped"}});
     return 0;
 }
+
+#ifdef _WIN32
+int wmain(int argc,wchar_t** argv){return run(std::vector<native>(argv,argv+argc));}
+#else
+int main(int argc,char** argv){return run(std::vector<native>(argv,argv+argc));}
+#endif

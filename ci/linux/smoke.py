@@ -37,6 +37,38 @@ def check(cond,what):
     if not cond:raise SystemExit(1)
 
 
+def agent_check():
+    """lens-agent as the app talks to it: the user-only Unix socket, engine pass-through, diagnostics and shutdown."""
+    import socket
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp=Path(tmp);run=tmp/'run';run.mkdir(mode=0o700)
+        env={**os.environ,'LENS_RUNTIME_DIR':str(run)}
+        agent=subprocess.Popen([str(BIN/'lens-agent'),'--data-dir',str(tmp/'data'),'--root',str(ROOT),'--pipe-name','lens-smoke'],
+                               env=env,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,text=True)
+        sock=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM);path=str(run/'lens-smoke.sock')
+        for _ in range(150):
+            try:sock.connect(path);break
+            except OSError:
+                if agent.poll() is not None:raise SystemExit(f'agent exited {agent.returncode}: {agent.stderr.read()[-500:]}')
+                import time;time.sleep(0.2)
+        f=sock.makefile('rwb',buffering=0)
+        def ask(req):f.write((json.dumps(req)+'\n').encode());line=f.readline();return json.loads(line) if line else {}
+        s=ask({'op':'status'});check(s.get('ok') and s.get('observe_screen') is False,f"agent status over the Unix socket (semantic: {s.get('semantic','')[:40]})")
+        check(oct((run/'lens-smoke.sock').stat().st_mode&0o777)=='0o600','agent socket is owner-only (0600)')
+        add={'op':'add','consent':True,'id':'a1','text':'Synthetic note: the Larkspur demo is on Thursday.','language':'en',
+             'timestamp':'2026-10-30T09:00:00Z','device':'linux','kind':'note','provenance':'smoke'}
+        check(ask(add).get('ok') and ask({'op':'search','query':'Larkspur','limit':3})['sources'][0]['id']=='a1','agent passes add and search to the engine')
+        check(ask({'op':'set_consent','observe_screen':True}).get('ok') and not ask({'op':'status'})['observer_running'],'observe consent accepted; no observer on this OS yet')
+        d=ask({'op':'diagnostics'});names=[p['name'] for p in d.get('processes',[])]
+        check(d.get('ok') and 'lens-agent' in names and 'lens-engine' in names and d['memory']['working_set']>0,
+              f"diagnostics process tree {names}, {d.get('memory',{}).get('working_set',0)/1e6:.0f} MB working set")
+        if s.get('semantic')=='verified' and (ROOT/'models/Lens--kokoro-82m-mixed-int8/model.onnx').exists():
+            r=ask({'op':'speak','text':'The demo is on Thursday.'})
+            check(r.get('ok') and ask({'op':'diagnostics'})['ocr_hold']==['speech'],'agent spoken reply with the governor holding OCR')
+        check(ask({'op':'shutdown'}).get('ok'),'agent shutdown');f.close();sock.close()
+        check(agent.wait(timeout=60)==0,'agent exited cleanly');agent.stderr.close()
+
+
 def main():
     notes=['Synthetic note: the Brightwater audit moved to Tuesday at 3 pm in room B12.','Synthetic note: Priya shared the revised hiring plan.']
     add=[{'op':'add','consent':True,'id':f'n{i}','text':t,'language':'en','timestamp':'2026-10-2%dT09:00:00Z'%i,'device':'linux','kind':'note','provenance':'smoke'} for i,t in enumerate(notes)]
@@ -63,6 +95,7 @@ def main():
             p=subprocess.run([str(BIN/'lens-tts')],input=json.dumps(req)+'\n',capture_output=True,text=True,timeout=600)
             r=json.loads(p.stdout.splitlines()[0]) if p.stdout else {}
             check(r.get('ok') and r.get('duration_s',0)>1.5,f"spoken reply synthesised ({r.get('duration_s')} s, RTF {r.get('real_time_factor')})")
+    agent_check()
     sys.path.insert(0,str(ROOT/'ci'));import ocr_parity
     if ORT and (BIN/'lens-ocr').exists() and ocr_parity.available():
         cer,rows=ocr_parity.run(BIN/'lens-ocr',ORT)
