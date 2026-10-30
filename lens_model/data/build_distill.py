@@ -33,7 +33,7 @@ sys.path.insert(0,str(ROOT/'lens_model/data'));sys.path.insert(0,str(ROOT/'lens_
 from build_answerability import EXT,grams,most_similar,pairs,windows
 import compare_answerability as ca
 V1=ROOT/'artifacts/lens-model/answerability-v1'
-OUT=ROOT/'artifacts/lens-model/answerability-v2'
+OUT_V2=ROOT/'artifacts/lens-model/answerability-v2'
 CFGS=[f'mlqa.{l}.{l}' for l in ('en','es','hi','zh','de','ar','vi')]+['mlqa.en.hi','mlqa.hi.en','mlqa.en.zh','mlqa.zh.en','mlqa.en.es','mlqa.es.en']
 
 
@@ -186,8 +186,9 @@ def platt(s,y,iters=100):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--teacher',required=True);ap.add_argument('--pool-size',type=int,default=48000)
-    ap.add_argument('--alpha',type=float,default=0.5);ap.add_argument('--batch',type=int,default=8);a=ap.parse_args()
-    rng=random.Random(20261027);OUT.mkdir(parents=True,exist_ok=True)
+    ap.add_argument('--alpha',type=float,default=0.5);ap.add_argument('--batch',type=int,default=8)
+    ap.add_argument('--out',type=Path,default=OUT_V2,help='output folder (v3: qwen3-1.7b answer-presence teacher)');a=ap.parse_args()
+    OUT=a.out;rng=random.Random(20261027);OUT.mkdir(parents=True,exist_ok=True)
     v0=[json.loads(l) for l in (V0/'train.jsonl').open(encoding='utf-8')]  # SQuAD 2.0, TyDi (11 langs), IndicQA/XQuAD train splits
     v1=[r for r in map(json.loads,(V1/'train.jsonl').open(encoding='utf-8')) if r['kind'] in ('substitution_near_miss','keyword_present','keyword_absent') or r['src']=='xquad-cross']
     cands=v0+v1+mlqa_validation(rng)+jaquad(rng,12000)+uqa(rng,12000)+indicqa_train(rng)

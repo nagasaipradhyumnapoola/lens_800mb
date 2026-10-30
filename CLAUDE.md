@@ -18,7 +18,7 @@ The sealed retrieval holdout (data/fixtures/retrieval-nl/holdout.json) is never 
   A running `lens-engine.exe` locks the binary; never rebuild while a benchmark uses it.
 - Client: `scripts/lens.ps1` on project-local PowerShell 7.6.6 (`.venv\Scripts\python.exe scripts/bootstrap_pwsh.py`).
 - Tests: `.venv\Scripts\python.exe -B -m unittest discover -s tests -v` (temp dirs only), run from the PowerShell tool:
-  headless Edge fails inside the Bash tool's sandbox. Baseline 2026-10-28: 250/251 OK, android_link skipped (no device).
+  headless Edge fails inside the Bash tool's sandbox. Baseline 2026-10-30: 270 OK, android_link skipped (no device).
   Do not run `scripts/test_all.py` casually: it overwrites reports/test-results.json.
 - Store: SQLCipher, DPAPI-wrapped key file beside the DB, schema v9 (v7 episodes + episode_members; v8 entities/entity_aliases/entity_mentions, facts/fact_sources, projects/project_sources/
   project_episodes/project_entities, extraction_state — all derived by `consolidate`, deleted with their sources by triggers;

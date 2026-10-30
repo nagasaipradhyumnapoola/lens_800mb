@@ -94,8 +94,10 @@ class TorchYesNo:
         from transformers import AutoModelForCausalLM,AutoTokenizer
         self.torch=torch;self.tok=AutoTokenizer.from_pretrained(folder,padding_side='left');self.reranker=reranker
         self.weights_mb=dir_mb(Path(folder).glob('*.safetensors'))
-        self.dtype='bfloat16' if self.weights_mb>4000 else 'float32'  # 4B in FP32 needs 16 GB; bf16 halves it (AVX-512 BF16 on H0)
-        self.m=AutoModelForCausalLM.from_pretrained(folder,torch_dtype=getattr(torch,self.dtype)).eval()
+        # LENS_JUDGE_DEVICE=cuda: teacher labelling on the GPU (bf16); comparisons stay on the CPU, the deployment target.
+        self.device=os.environ.get('LENS_JUDGE_DEVICE','cpu')
+        self.dtype='bfloat16' if self.weights_mb>4000 or self.device=='cuda' else 'float32'  # 4B in FP32 needs 16 GB; bf16 halves it
+        self.m=AutoModelForCausalLM.from_pretrained(folder,dtype=getattr(torch,self.dtype)).eval().to(self.device)
         words=(['yes'],['no']) if reranker else (['yes','Yes'],['no','No'])
         self.yes=[self.tok.convert_tokens_to_ids(w) for w in words[0]];self.no=[self.tok.convert_tokens_to_ids(w) for w in words[1]]
         assert all(isinstance(i,int) and i>=0 for i in self.yes+self.no)
@@ -112,8 +114,8 @@ class TorchYesNo:
 
     def batch(self,rows):
         with self.torch.inference_mode():
-            enc=self.tok([self.text(r) for r in rows],padding=True,truncation=True,max_length=1024,return_tensors='pt',add_special_tokens=False)
-            lp=self.torch.log_softmax(self.m(**enc).logits[:,-1,:].float(),dim=-1)
+            enc=self.tok([self.text(r) for r in rows],padding=True,truncation=True,max_length=1024,return_tensors='pt',add_special_tokens=False).to(self.device)
+            lp=self.torch.log_softmax(self.m(**enc,logits_to_keep=1,use_cache=False).logits[:,-1,:].float(),dim=-1)  # last position only
             return (self.torch.logsumexp(lp[:,self.yes],dim=-1)-self.torch.logsumexp(lp[:,self.no],dim=-1)).tolist()
 
 
