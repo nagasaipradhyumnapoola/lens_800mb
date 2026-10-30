@@ -35,7 +35,9 @@ def engine(db,lines,semantic=True):
 
 def check(cond,what):
     print(('PASS ' if cond else 'FAIL ')+what,flush=True)
-    if not cond:raise SystemExit(1)
+    if not cond:
+        if os.environ.get('GITHUB_ACTIONS'):print(f'::error title=smoke test failed::{what}',flush=True)  # readable without the job log
+        raise SystemExit(1)
 
 
 def observer_check():
