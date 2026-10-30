@@ -1,4 +1,4 @@
-// lens-observer: consent-gated Windows screen-text observer (docs/LENS_V1_SPEC.md §3–5, §15; Milestone 3).
+// lens-observer: consent-gated screen-text observer (Windows: UI Automation + PrintWindow; Linux: AT-SPI + X11) (docs/LENS_V1_SPEC.md §3–5, §15; Milestone 3).
 // Emits one engine `add` request (JSON line) on stdout per new piece of window content, so
 // `lens-observer --consent | lens-engine --db ...` stores observations in the encrypted memory. UI Automation text of
 // the visible area first, OCR of changed regions as the fallback. Never reads password elements, excluded processes,
@@ -18,12 +18,14 @@
 #include "screen_capture.hpp"
 #include "capture_delta.hpp"
 #include "language_id.hpp"
+#include "os_window.hpp"
+#include "../agent/os.hpp"
+#ifdef _WIN32
 #include <windows.h>
-#include <bcrypt.h>
-#include <dwmapi.h>
+#endif
 #include <nlohmann/json.hpp>
-#include <psapi.h>
 #include <algorithm>
+#include <cwctype>
 #include <atomic>
 #include <chrono>
 #include <cmath>
@@ -40,23 +42,9 @@
 
 namespace {
 using json=nlohmann::json;
-std::string utf8(const std::wstring& w) {
-    if(w.empty())return {};
-    const int n=WideCharToMultiByte(CP_UTF8,0,w.data(),static_cast<int>(w.size()),nullptr,0,nullptr,nullptr);
-    std::string s(n,'\0');WideCharToMultiByte(CP_UTF8,0,w.data(),static_cast<int>(w.size()),s.data(),n,nullptr,nullptr);return s;
-}
+using lens::observe::utf8;using lens::observe::wide;using lens::observe::utc_now;using lens::observe::Window;
 std::wstring lower(std::wstring s){std::transform(s.begin(),s.end(),s.begin(),[](wchar_t c){return static_cast<wchar_t>(towlower(c));});return s;}
-std::string sha256_hex(const std::string& data) {
-    BCRYPT_ALG_HANDLE alg=nullptr;BCRYPT_HASH_HANDLE h=nullptr;unsigned char digest[32]{};
-    BCryptOpenAlgorithmProvider(&alg,BCRYPT_SHA256_ALGORITHM,nullptr,0);BCryptCreateHash(alg,&h,nullptr,0,nullptr,0,0);
-    BCryptHashData(h,reinterpret_cast<PUCHAR>(const_cast<char*>(data.data())),static_cast<ULONG>(data.size()),0);
-    BCryptFinishHash(h,digest,32,0);BCryptDestroyHash(h);BCryptCloseAlgorithmProvider(alg,0);
-    static const char* hex="0123456789abcdef";std::string out;for(unsigned char b:digest){out+=hex[b>>4];out+=hex[b&15];}return out;
-}
-std::string utc_now() {
-    SYSTEMTIME t;GetSystemTime(&t);char buf[40];
-    std::snprintf(buf,sizeof buf,"%04u-%02u-%02uT%02u:%02u:%02u.%03uZ",t.wYear,t.wMonth,t.wDay,t.wHour,t.wMinute,t.wSecond,t.wMilliseconds);return buf;
-}
+std::string sha256_hex(const std::string& data){return lens::agent::os::sha256(data);}
 json language_json(const lens::observe::LanguageGuess& g) {
     return {{"language",g.language},{"script",g.script},{"confidence",std::round(g.confidence*1000)/1000},{"languages",g.languages},
             {"method","lens-lid-ngram-v1"}};
@@ -69,31 +57,25 @@ std::wstring document_identity(const std::wstring& title) {
     }
     return title;
 }
-unsigned long long process_cpu_ms() {
-    FILETIME c,e,k,u;if(!GetProcessTimes(GetCurrentProcess(),&c,&e,&k,&u))return 0;
-    auto v=[](const FILETIME& f){return (static_cast<unsigned long long>(f.dwHighDateTime)<<32)|f.dwLowDateTime;};
-    return (v(k)+v(u))/10000;
-}
-unsigned long long thread_cpu_ms() {
-    FILETIME c,e,k,u;if(!GetThreadTimes(GetCurrentThread(),&c,&e,&k,&u))return 0;
-    auto v=[](const FILETIME& f){return (static_cast<unsigned long long>(f.dwHighDateTime)<<32)|f.dwLowDateTime;};
-    return (v(k)+v(u))/10000;
-}
-std::wstring window_title(HWND w){wchar_t buf[512]{};InternalGetWindowText(w,buf,512);return buf;}
-std::wstring process_name(DWORD pid) {
-    HANDLE p=OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION,FALSE,pid);if(!p)return {};
-    wchar_t path[MAX_PATH]{};DWORD size=MAX_PATH;std::wstring name;
-    if(QueryFullProcessImageNameW(p,0,path,&size)){name=path;name=name.substr(name.find_last_of(L"\\/")+1);}
-    CloseHandle(p);return lower(name);
-}
+using lens::observe::process_cpu_ms;using lens::observe::thread_cpu_ms;
 
 struct Config {
+#ifdef _WIN32
     std::vector<std::wstring> excluded={L"keepass.exe",L"keepassxc.exe",L"1password.exe",L"bitwarden.exe",L"lastpass.exe",L"dashlane.exe",
         L"enpass.exe",L"credentialuibroker.exe",L"consent.exe",L"logonui.exe",L"lockapp.exe",L"lens-observer.exe"};
+#else  // password managers, credential and authentication prompts, the lock screen
+    std::vector<std::wstring> excluded={L"keepassxc",L"keepass2",L"1password",L"bitwarden",L"enpass",L"gcr-prompter",L"pinentry",
+        L"pinentry-gnome3",L"pinentry-qt",L"polkit-gnome-au",L"polkit-kde-auth",L"gnome-screensav",L"xscreensaver",L"lens-observer"};
+#endif
     std::vector<std::wstring> allowed;  // empty = every non-excluded process
     std::vector<std::wstring> private_markers={L"inprivate",L"incognito",L"private browsing",L"private window",L"navigation privée",
         L"navegación privada",L"privates fenster"};
-    int min_interval_ms=1000,max_interval_ms=30000;std::string device="windows-local";
+    int min_interval_ms=1000,max_interval_ms=30000;std::string device=
+#ifdef _WIN32
+        "windows-local";
+#else
+        "linux-local";
+#endif
     // OCR fallback (optional): a lens-ocr screen-mode request template (runtime, detector, recognizers, thresholds).
     // Used only when UI Automation yields fewer than min_uia_chars characters beyond the window title.
     json ocr;int min_uia_chars=20;int ocr_idle_ms=30000;  // the OCR worker exits after this long without requests
@@ -105,11 +87,7 @@ struct Config {
     int full_snapshot_ms=600000;                          // periodic full snapshot of a window
     double cpu_budget_percent=5.0;                        // observer + OCR worker CPU, percent of one core
 };
-std::wstring wide(const std::string& s) {
-    const int n=MultiByteToWideChar(CP_UTF8,0,s.data(),static_cast<int>(s.size()),nullptr,0);
-    std::wstring w(n,L'\0');MultiByteToWideChar(CP_UTF8,0,s.data(),static_cast<int>(s.size()),w.data(),n);return w;
-}
-void load_config(Config& c,const std::wstring& path) {
+void load_config(Config& c,const std::filesystem::path& path) {
     std::ifstream f(path);if(!f)throw std::runtime_error("config_unreadable");
     const auto j=json::parse(f);
     auto list=[&](const char* key,std::vector<std::wstring>& out,bool replace) {
@@ -130,23 +108,17 @@ void load_config(Config& c,const std::wstring& path) {
 }
 
 // Returns an empty string when the window may be read, otherwise the reason it must not be.
-std::string privacy_block(HWND w,const Config& c,const std::wstring& process,const std::wstring& title) {
-    if(!w||!IsWindowVisible(w)||IsIconic(w))return "not_visible";
-    BOOL cloaked=FALSE;if(SUCCEEDED(DwmGetWindowAttribute(w,DWMWA_CLOAKED,&cloaked,sizeof cloaked))&&cloaked)return "not_visible";
-    DWORD affinity=WDA_NONE;if(GetWindowDisplayAffinity(w,&affinity)&&affinity!=WDA_NONE)return "capture_protected";
-    DWORD pid=0;GetWindowThreadProcessId(w,&pid);if(pid==GetCurrentProcessId())return "excluded_process";
+std::string privacy_block(const lens::observe::WindowInfo& w,const Config& c) {
+    const auto& process=w.process;const auto& title=w.title;
+    if(!w.id)return "not_visible";
+    if(const auto os=lens::observe::os_privacy_block(w.id);!os.empty())return os;  // hidden, minimised, capture-protected
+    if(w.pid==lens::observe::current_pid())return "excluded_process";
     if(process.empty())return "process_unknown";
     if(std::find(c.excluded.begin(),c.excluded.end(),process)!=c.excluded.end())return "excluded_process";
     if(!c.allowed.empty()&&std::find(c.allowed.begin(),c.allowed.end(),process)==c.allowed.end())return "not_allowed_process";
     const auto t=lower(title);
     for(const auto& m:c.private_markers)if(!m.empty()&&t.find(m)!=std::wstring::npos)return "private_browsing";
     return {};
-}
-
-struct FindPid{DWORD pid;HWND found=nullptr;};
-BOOL CALLBACK find_pid_window(HWND w,LPARAM p) {
-    auto& f=*reinterpret_cast<FindPid*>(p);DWORD pid=0;GetWindowThreadProcessId(w,&pid);
-    if(pid==f.pid&&IsWindowVisible(w)&&!GetWindow(w,GW_OWNER)){f.found=w;return FALSE;}return TRUE;
 }
 
 std::mutex out_lock;
@@ -163,28 +135,33 @@ int identify_language_lines() {
     return 0;
 }
 
-int wmain(int argc,wchar_t** argv) {
+using native=std::filesystem::path::string_type;
+std::string arg8(const native& n){const auto s=std::filesystem::path(n).u8string();return {s.begin(),s.end()};}
+int run(const std::vector<native>& argv) {
+#ifdef _WIN32
     SetConsoleOutputCP(CP_UTF8);
-    if(argc==2&&std::wstring(argv[1])==L"--identify-language")return identify_language_lines();
-    bool consent=false;std::wstring follow=L"foreground",config_path;Config config;
+#endif
+    const int argc=static_cast<int>(argv.size());
+    if(argc==2&&arg8(argv[1])=="--identify-language")return identify_language_lines();
+    bool consent=false;std::string follow="foreground";std::filesystem::path config_path;Config config;
     for(int i=1;i<argc;++i) {
-        const std::wstring a=argv[i];
-        if(a==L"--consent")consent=true;
-        else if(a==L"--follow"&&i+1<argc)follow=argv[++i];
-        else if(a==L"--config"&&i+1<argc)config_path=argv[++i];
+        const std::string a=arg8(argv[static_cast<size_t>(i)]);
+        if(a=="--consent")consent=true;
+        else if(a=="--follow"&&i+1<argc)follow=arg8(argv[static_cast<size_t>(++i)]);
+        else if(a=="--config"&&i+1<argc)config_path=argv[static_cast<size_t>(++i)];
         else {std::cerr<<"usage: lens-observer --consent [--follow foreground|pid:<n>] [--config <json>]\n";return 2;}
     }
     if(!consent) {
         std::cerr<<"{\"event\":\"refused\",\"reason\":\"consent_required\"}\nusage: lens-observer --consent [--follow foreground|pid:<n>] [--config <json>]\n";
         return 2;
     }
-    DWORD follow_pid=0;
-    if(follow.rfind(L"pid:",0)==0){try{follow_pid=static_cast<DWORD>(std::stoul(follow.substr(4)));}catch(...){return 2;}}
-    else if(follow!=L"foreground")return 2;
+    long follow_pid=0;
+    if(follow.rfind("pid:",0)==0){try{follow_pid=std::stol(follow.substr(4));}catch(...){return 2;}}
+    else if(follow!="foreground")return 2;
     try{if(!config_path.empty())load_config(config,config_path);}catch(...){std::cerr<<"{\"event\":\"refused\",\"reason\":\"invalid_config\"}\n";return 2;}
     // Background work never competes with the user's foreground applications (the OCR worker inherits the class).
-    SetPriorityClass(GetCurrentProcess(),BELOW_NORMAL_PRIORITY_CLASS);
-    if(FAILED(CoInitializeEx(nullptr,COINIT_MULTITHREADED)))return 1;
+    lens::observe::lower_priority();
+    if(!lens::observe::init_thread()){std::cerr<<"{\"event\":\"refused\",\"reason\":\"accessibility_unavailable\"}\n";return 1;}
 
     std::atomic<bool> paused=false,stopping=false,status_requested=false;
     // hold_ocr: the agent needs the RAM for another heavy model (spec §15: one at a time); UIA capture continues.
@@ -210,15 +187,13 @@ int wmain(int argc,wchar_t** argv) {
     status({{"event","started"},{"follow",follow_pid?"pid":"foreground"},{"capture","uia"}});
     std::map<std::string,int> skipped;json last_extract=json::object();
     std::map<std::string,long long> counts;  // records, unchanged, snapshots, deltas, near_duplicates, settle_waits, forced_captures
-    std::deque<std::string> recent;HWND last_window=nullptr;std::wstring last_title;
+    std::deque<std::string> recent;Window last_window=0;std::wstring last_title;
     int interval=config.min_interval_ms;auto next_check=clock::now();
     lens::observe::UiaBudget budget;budget.max_chars=std::max<size_t>(2*config.max_capture_chars,4000);
-    const DWORD base_uia_ms=budget.max_ms;int timeouts=0;  // consecutive time-budget hits: the budget doubles (to 2 s)
-    lens::observe::Frame previous_frame;HWND previous_frame_window=nullptr;  // last OCR'd frame
-    lens::observe::Frame settle_frame;HWND settle_frame_window=nullptr;long long frame_generation=0;  // last checked frame
-    std::wstring ocr_exe;
-    {std::wstring self(32768,L'\0');self.resize(GetModuleFileNameW(nullptr,self.data(),32768));ocr_exe=self.substr(0,self.find_last_of(L"\\/")+1)+L"lens-ocr.exe";}
-    lens::observe::ServeWorker ocr_worker(ocr_exe);
+    const unsigned base_uia_ms=budget.max_ms;int timeouts=0;  // consecutive time-budget hits: the budget doubles (to 2 s)
+    lens::observe::Frame previous_frame;Window previous_frame_window=0;  // last OCR'd frame
+    lens::observe::Frame settle_frame;Window settle_frame_window=0;long long frame_generation=0;  // last checked frame
+    lens::observe::ServeWorker ocr_worker(lens::observe::worker_path("lens-ocr"));
     struct OcrLine {std::string text;int x0,y0,y1;};std::vector<OcrLine> ocr_lines;  // last OCR text of the followed window
 
     // Per-window state: fingerprint of stored lines, links to the previous and base captures, settle back-off.
@@ -226,13 +201,13 @@ int wmain(int argc,wchar_t** argv) {
         std::string key;std::wstring document;bool stored=false;lens::observe::LineFingerprint seen;
         std::string last_id,snapshot_id;clock::time_point snapshot_at{},used{};int churn=0;uint64_t considered=0;
     };
-    std::map<HWND,WindowState> windows;
-    auto state_for=[&](HWND w,const std::wstring& process)->WindowState& {
+    std::map<Window,WindowState> windows;
+    auto state_for=[&](Window w,const std::wstring& process)->WindowState& {
         auto it=windows.find(w);
         if(it==windows.end()) {
             if(windows.size()>=32)windows.erase(std::min_element(windows.begin(),windows.end(),[](const auto& a,const auto& b){return a.second.used<b.second.used;}));
             it=windows.emplace(w,WindowState{}).first;
-            it->second.key=sha256_hex(utf8(process)+"\n"+std::to_string(reinterpret_cast<uintptr_t>(w))+"\n"+std::to_string(GetCurrentProcessId())).substr(0,16);
+            it->second.key=sha256_hex(utf8(process)+"\n"+std::to_string(w)+"\n"+std::to_string(lens::observe::current_pid())).substr(0,16);
         }
         it->second.used=clock::now();return it->second;
     };
@@ -321,25 +296,23 @@ int wmain(int argc,wchar_t** argv) {
                     {"skipped",skipped},{"interval_ms",interval},{"throttle",throttle},{"cpu_percent",std::round(cpu_percent*10)/10},{"last_extract",last_extract}});
         }
         // Release the OCR worker (and its models) after a quiet period; it restarts on the next OCR need.
-        if(ocr_worker.running()&&(ocr_held||GetTickCount64()-ocr_worker.last_used()>static_cast<ULONGLONG>(config.ocr_idle_ms)))ocr_worker.stop();
+        if(ocr_worker.running()&&(ocr_held||lens::observe::tick_ms()-ocr_worker.last_used()>static_cast<unsigned long long>(config.ocr_idle_ms)))ocr_worker.stop();
         if(paused)continue;
-        HWND w=nullptr;
-        if(follow_pid){FindPid f{follow_pid};EnumWindows(find_pid_window,reinterpret_cast<LPARAM>(&f));w=f.found;}
-        else w=GetForegroundWindow();
-        const auto title=w?window_title(w):std::wstring();
+        const auto found=follow_pid?lens::observe::window_for_pid(follow_pid):lens::observe::foreground_window();
+        const lens::observe::WindowInfo info=found.value_or(lens::observe::WindowInfo{});
+        const Window w=info.id;const auto& title=info.title;
         const auto now=clock::now();
         if(w!=last_window||title!=last_title){last_window=w;last_title=title;interval=config.min_interval_ms;next_check=now;pending.active=false;}
         if(now<next_check)continue;
-        DWORD pid=0;if(w)GetWindowThreadProcessId(w,&pid);
-        const auto process=w?process_name(pid):std::wstring();
-        if(const auto reason=privacy_block(w,config,process,title);!reason.empty()) {
+        const auto& process=info.process;
+        if(const auto reason=privacy_block(info,config);!reason.empty()) {
             ++skipped[reason];next_check=now+ms(config.min_interval_ms);continue;
         }
         auto& ws=state_for(w,process);
         // While content is settling, poll at a third of the settle time (slower for windows that keep changing).
         const int settle_poll=std::max(config.min_interval_ms,config.settle_ms/3)*(1+std::min(ws.churn,3));
         const auto t0=clock::now();const auto cpu0=thread_cpu_ms();
-        budget.max_ms=std::min<DWORD>(base_uia_ms<<std::min(timeouts,3),2000);
+        budget.max_ms=std::min<unsigned>(base_uia_ms<<std::min(timeouts,3),2000);
         const auto text=lens::observe::extract_window_text(w,budget);
         const auto elapsed=std::chrono::duration_cast<ms>(clock::now()-t0).count();last_work_ms=static_cast<long long>(thread_cpu_ms()-cpu0);
         last_extract={{"available",text.available},{"nodes",text.nodes},{"offscreen",text.offscreen},{"pruned",text.pruned},
@@ -415,6 +388,12 @@ int wmain(int argc,wchar_t** argv) {
     }
     json c=json::object();for(const auto& [k,v]:counts)c[k]=v;
     status({{"event","stopped"},{"records",counts["records"]},{"unchanged",counts["unchanged"]},{"counts",c},{"skipped",skipped}});
-    CoUninitialize();
+    lens::observe::uninit_thread();
     return 0;
 }
+
+#ifdef _WIN32
+int wmain(int argc,wchar_t** argv){return run(std::vector<native>(argv,argv+argc));}
+#else
+int main(int argc,char** argv){return run(std::vector<native>(argv,argv+argc));}
+#endif

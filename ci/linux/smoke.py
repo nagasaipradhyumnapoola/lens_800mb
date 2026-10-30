@@ -38,6 +38,43 @@ def check(cond,what):
     if not cond:raise SystemExit(1)
 
 
+def observer_check():
+    """lens-observer on a virtual display: reads the synthetic GTK window through AT-SPI, never its password field,
+    and stores only what changed after an edit."""
+    obs,app=BIN/'lens-observer',BIN/'lens-observer-testapp'
+    if not (obs.exists() and app.exists() and shutil.which('Xvfb')):return
+    import threading,time
+    display=':97';x=subprocess.Popen(['Xvfb',display,'-screen','0','1280x800x24','-nolisten','tcp'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
+    env={**os.environ,'DISPLAY':display,'GSK_RENDERER':'cairo','GTK_A11Y':'atspi'};procs=[x]
+    try:
+        time.sleep(1.5)
+        t=subprocess.Popen([str(app),'Observer test window','Synthetic label','Synthetic observer note: the Larkspur review is on Friday.'],
+                           stdin=subprocess.PIPE,stdout=subprocess.PIPE,text=True,env=env);procs.append(t)
+        check(t.stdout.readline().strip()=='ready','synthetic GTK window on the virtual display')
+        with tempfile.TemporaryDirectory() as tmp:
+            cfg=Path(tmp)/'observer.json';cfg.write_text(json.dumps({'min_interval_ms':300,'max_interval_ms':1000,'settle_ms':0}),encoding='utf-8')
+            o=subprocess.Popen([str(obs),'--consent','--follow',f'pid:{t.pid}','--config',str(cfg)],stdin=subprocess.PIPE,stdout=subprocess.PIPE,
+                               stderr=subprocess.DEVNULL,text=True,env=env);procs.append(o)
+            records=[];threading.Thread(target=lambda:[records.append(json.loads(l)) for l in o.stdout if l.startswith('{')],daemon=True).start()
+            def wait_for(word,seconds=20):
+                end=time.time()+seconds
+                while time.time()<end:
+                    if any(word in r.get('text','') for r in records):return True
+                    time.sleep(0.2)
+                return False
+            check(wait_for('Larkspur review is on Friday'),f"observer reads the window through AT-SPI ({len(records)} record(s))")
+            check(not any('Synthetic secret' in r.get('text','') for r in records),'password field never read')
+            r0=records[0];check(r0['op']=='add' and r0['kind']=='screen_observation' and r0['metadata']['capture']=='uia','observation record format')
+            t.stdin.write('set Synthetic observer note: the Larkspur review is on Friday.\\nAgenda: budget and hiring.\n');t.stdin.flush();t.stdout.readline()
+            check(wait_for('budget and hiring'),'an edit is captured')
+            check(not any('Synthetic secret' in r.get('text','') for r in records),'password field still never read')
+            o.stdin.write('stop\n');o.stdin.flush();o.wait(timeout=20)
+            check(o.returncode==0,'observer stopped cleanly')
+    finally:
+        for p in reversed(procs):
+            if p.poll() is None:p.kill()
+
+
 def agent_check():
     """lens-agent as the app talks to it: the user-only Unix socket, engine pass-through, diagnostics and shutdown."""
     import socket
@@ -59,7 +96,9 @@ def agent_check():
         add={'op':'add','consent':True,'id':'a1','text':'Synthetic note: the Larkspur demo is on Thursday.','language':'en',
              'timestamp':'2026-10-30T09:00:00Z','device':'linux','kind':'note','provenance':'smoke'}
         check(ask(add).get('ok') and ask({'op':'search','query':'Larkspur','limit':3})['sources'][0]['id']=='a1','agent passes add and search to the engine')
-        check(ask({'op':'set_consent','observe_screen':True}).get('ok') and not ask({'op':'status'})['observer_running'],'observe consent accepted; no observer on this OS yet')
+        on=ask({'op':'set_consent','observe_screen':True}).get('ok') and ask({'op':'status'})['observer_running']==(BIN/'lens-observer').exists()
+        off=ask({'op':'set_consent','observe_screen':False}).get('ok') and not ask({'op':'status'})['observer_running']
+        check(on and off,'agent starts the observer on consent and stops it when consent is withdrawn')
         d=ask({'op':'diagnostics'});names=[p['name'] for p in d.get('processes',[])]
         check(d.get('ok') and 'lens-agent' in names and 'lens-engine' in names and d['memory']['working_set']>0,
               f"diagnostics process tree {names}, {d.get('memory',{}).get('working_set',0)/1e6:.0f} MB working set")
@@ -115,6 +154,7 @@ def main():
         with tempfile.TemporaryDirectory() as tmp:
             rows=engine(Path(tmp)/'v.db',reqs+[{'op':'search','query':'country','limit':3}],semantic=False)
             check(all(r.get('ok') for r in rows) and rows[-1]['sources'],'voice note transcribed by whisper and stored')
+    observer_check()
     agent_check()
     sys.path.insert(0,str(ROOT/'ci'));import ocr_parity
     if ORT and (BIN/'lens-ocr').exists() and ocr_parity.available():

@@ -84,9 +84,10 @@ if(nlohmann_json_FOUND)
 endif()
 
 # Milestone 3 observer: consent-gated UI Automation text capture (engine/observer/), plus a synthetic test window.
-add_executable(lens-observer observer/observer_main.cpp observer/uia_text.cpp observer/screen_capture.cpp)
+add_executable(lens-observer observer/observer_main.cpp observer/uia_text.cpp observer/screen_capture.cpp observer/capture_common.cpp
+  observer/os_window_win.cpp agent/os.cpp platform.cpp)
 find_package(nlohmann_json CONFIG QUIET)
-target_link_libraries(lens-observer PRIVATE nlohmann_json::nlohmann_json ole32 oleaut32 bcrypt dwmapi gdi32 crypt32)
+target_link_libraries(lens-observer PRIVATE nlohmann_json::nlohmann_json ole32 oleaut32 bcrypt dwmapi gdi32 crypt32 advapi32 shell32)
 target_compile_definitions(lens-observer PRIVATE NOMINMAX)
 target_compile_options(lens-observer PRIVATE /utf-8 /W4 /sdl)
 add_executable(lens-observer-testapp WIN32 observer/testapp_main.cpp)

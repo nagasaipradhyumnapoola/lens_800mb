@@ -155,6 +155,18 @@ add_executable(lens-agent agent/agent_main.cpp agent/child_process.cpp agent/act
 target_link_libraries(lens-agent PRIVATE lens-embedding OpenSSL::Crypto Threads::Threads)
 target_compile_options(lens-agent PRIVATE ${LENS_WARN})
 
+# Linux screen observer (lens-observer): AT-SPI text of the followed frame, X11 capture for the OCR fallback; built when
+# libatspi and Xlib are installed. lens-observer-testapp is the synthetic GTK window its tests read.
+if(NOT APPLE AND NOT ANDROID)
+  pkg_check_modules(LENS_ATSPI IMPORTED_TARGET atspi-2 gobject-2.0 glib-2.0 x11)
+  if(LENS_ATSPI_FOUND)
+    add_executable(lens-observer observer/observer_main.cpp observer/os_window_linux.cpp observer/uia_text_atspi.cpp
+      observer/capture_x11.cpp observer/capture_common.cpp agent/os.cpp)
+    target_link_libraries(lens-observer PRIVATE lens-embedding OpenSSL::Crypto PkgConfig::LENS_ATSPI Threads::Threads)
+    target_compile_options(lens-observer PRIVATE ${LENS_WARN})
+  endif()
+endif()
+
 # Linux app (lens-app): GTK 4 + WebKitGTK 6 hosting engine/app/ui, relaying to lens-agent; built when both are installed.
 if(NOT APPLE AND NOT ANDROID)
   pkg_check_modules(LENS_GTK IMPORTED_TARGET gtk4 webkitgtk-6.0)
@@ -164,6 +176,8 @@ if(NOT APPLE AND NOT ANDROID)
     target_compile_options(lens-app PRIVATE ${LENS_WARN})
     add_custom_command(TARGET lens-app POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory
       "${CMAKE_CURRENT_SOURCE_DIR}/app/ui" "$<TARGET_FILE_DIR:lens-app>/ui")
+    add_executable(lens-observer-testapp observer/testapp_gtk.cpp)
+    target_link_libraries(lens-observer-testapp PRIVATE PkgConfig::LENS_GTK)
   endif()
 endif()
 

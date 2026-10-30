@@ -141,7 +141,8 @@ struct Walker {
 };
 }
 
-UiaText extract_window_text(HWND window,const UiaBudget& budget) {
+UiaText extract_window_text(Window id,const UiaBudget& budget) {
+    HWND window=reinterpret_cast<HWND>(id);
     UiaText out;
     CComPtr<IUIAutomation> uia;
     if(FAILED(uia.CoCreateInstance(__uuidof(CUIAutomation),nullptr,CLSCTX_INPROC_SERVER))||!uia)return out;

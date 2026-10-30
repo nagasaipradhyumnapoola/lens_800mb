@@ -1372,5 +1372,14 @@ travel in `metadata`).
   profiles sealed with AES-256-GCM under the OS-held master key (DPAPI stays on Windows). Linux smoke: a file-input
   session segments speech and the engine transcribes and stores it (now 22 checks PASS); Windows test_voice 19 OK.
   No live microphone tested on any OS here.
-- Not ported yet: observation (macOS Accessibility + ScreenCaptureKit, Linux AT-SPI + screencast portal, Android
-  Accessibility Service), the Android app's use of the native core, sign-in autostart off Windows. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.
+- lens-observer on Linux: the capture loop (settle, delta, exclusions, language labels, OCR fallback, CPU budget, OCR
+  hold) is now shared; the OS side is engine/observer/os_window.hpp — Windows: Win32/DWM + UI Automation + PrintWindow
+  (unchanged behaviour, test_observer 28/28 OK after the refactor); Linux: AT-SPI frames on the accessibility bus
+  (SHOWING-only walk, password-text role never read, visible text ranges where the toolkit reports them), /proc process
+  names, X server capture of the frame's area for the OCR fallback (native Wayland gives no capture without the portal:
+  OCR is skipped there), Linux exclusions (password managers, gcr-prompter, pinentry, polkit agents, screen lockers).
+  Linux smoke on Xvfb with a synthetic GTK 4 window (lens-observer-testapp): the window's note is stored as a
+  screen_observation, the password field is never read, an edit is captured, the observer stops cleanly, and the agent
+  starts/stops it with consent. Smoke now 29/29 PASS (OCR parity with the small recogniser: 1.75%, as on Windows).
+- Not ported yet: observation on macOS (Accessibility + ScreenCaptureKit) and Android (Accessibility Service), the
+  Android app's use of the native core, sign-in autostart off Windows. No real Linux desktop session tested. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.

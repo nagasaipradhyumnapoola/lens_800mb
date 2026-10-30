@@ -6,11 +6,11 @@
 // subtrees entirely outside it are not walked. Edit/document elements with a TextPattern contribute only their visible
 // ranges (never the whole document or scroll-back) and their subtree is not walked again.
 // Password elements (UIA IsPassword) and their subtrees are never read; elements UIA reports off-screen are skipped.
-#include <windows.h>
+#include "os_window.hpp"
 #include <string>
 
 namespace lens::observe {
-struct UiaBudget {int max_nodes=4000;int max_depth=48;size_t max_chars=8000;DWORD max_ms=300;};
+struct UiaBudget {int max_nodes=4000;int max_depth=48;size_t max_chars=8000;unsigned max_ms=300;};
 struct UiaText {
     std::wstring text;          // visible text, one line per element (or text line), consecutive duplicates removed
     int nodes=0;                // elements visited
@@ -22,6 +22,6 @@ struct UiaText {
     bool timed_out=false;       // the time budget stopped it (the text is a partial, unreliable view)
     bool available=false;       // UIA returned an element for the window
 };
-// Requires COM initialised on the calling thread (COINIT_MULTITHREADED).
-UiaText extract_window_text(HWND window,const UiaBudget& budget);
+// Requires init_thread() on the calling thread. Windows: UI Automation (uia_text.cpp); Linux: AT-SPI (uia_text_atspi.cpp).
+UiaText extract_window_text(Window window,const UiaBudget& budget);
 }
