@@ -21,18 +21,40 @@ class LensRepository(private val context: Context) {
             return Laptop(hosts, prefs.getInt("port", 0), fp)
         }
 
-    /** Pairs with the laptop shown in the code. Returns null on success, or a user-facing reason. */
-    fun pair(code: PairingCode, deviceName: String): String? = try {
+    /** The Lens account this phone belongs to (set by its first pairing); a laptop of another account is refused. */
+    val accountId: String? get() = prefs.getString("account", null)
+
+    /**
+     * Pairs with the laptop shown in the code. The laptop's user must approve this phone there: [onVerificationCode]
+     * receives the 8-digit code to show, which must match the one on the laptop. Returns null once approved, or a
+     * user-facing reason. Waits at most 5 minutes.
+     */
+    fun pair(code: PairingCode, deviceName: String, onVerificationCode: (String) -> Unit = {}): String? = try {
         MeshClient.connect(code.hosts, code.port, code.fingerprint).use { link ->
-            val r = link.ask(JSONObject().put("op", "pair").put("token", code.token).put("name", deviceName.take(64)))
-            if (r.optBoolean("paired")) {
-                prefs.edit().putString("fp", code.fingerprint).putString("hosts", code.hosts.joinToString(",")).putInt("port", code.port).apply()
-                null
-            } else "The laptop refused this code. Show a new pairing code on the laptop and try again."
+            val request = JSONObject().put("op", "pair").put("token", code.token).put("name", deviceName.take(64))
+            accountId?.let { request.put("account_id", it) }
+            var r = link.ask(request)
+            if (r.optString("error") == "account_mismatch") return "This laptop belongs to a different Lens account. Lens never links devices of different accounts."
+            if (!r.optBoolean("ok")) return "The laptop refused this code. Show a new pairing code on the laptop and try again."
+            if (r.optBoolean("awaiting_approval")) onVerificationCode(r.optString("verification_code"))
+            val deadline = System.currentTimeMillis() + 5 * 60 * 1000
+            while (!r.optBoolean("paired")) {
+                if (r.optString("error") == "pairing_denied") return "Pairing was declined on the laptop."
+                if (!r.optBoolean("ok") || System.currentTimeMillis() > deadline) return "The laptop did not approve this phone. Start pairing again."
+                Thread.sleep(2000); r = link.ask(JSONObject().put("op", "pair_status"))
+            }
+            val account = r.optString("account_id")
+            if (!ACCOUNT.matches(account) || (accountId != null && accountId != account)) return "This laptop belongs to a different Lens account."
+            prefs.edit().putString("fp", code.fingerprint).putString("hosts", code.hosts.joinToString(",")).putInt("port", code.port)
+                .putString("account", account).apply()
+            null
         }
     } catch (e: Exception) { "Could not reach the laptop (${e.javaClass.simpleName}). Both devices must be on the same network." }
 
-    fun unpair() { prefs.edit().clear().apply(); DeviceIdentity.forget() }
+    /** Forgets the laptop; the phone keeps its Lens account, so it can only ever re-pair within that account. */
+    fun unpair() { val account = accountId; prefs.edit().clear().apply { account?.let { putString("account", it) } }.apply(); DeviceIdentity.forget() }
+
+    private companion object { val ACCOUNT = Regex("^[0-9a-f]{32}$") }
 
     private fun <T> withLink(block: (MeshClient) -> T): T {
         val l = laptop ?: throw IllegalStateException("not paired")

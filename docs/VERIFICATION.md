@@ -1236,6 +1236,34 @@ travel in `metadata`).
 - Not met: the 0.80 gate. Verifier quality on Lens-style memories is the limit (harness AUC 0.871 vs the 1.79 GB
   teacher's 0.923); next: training data from Lens-style (memory, question) pairs with near-misses.
 
+## Guardrails: one account per device link, no involuntary actions (2026-10-30) — PASS (functional, H0)
+
+- Founder rule (docs/LENS_V1_SPEC.md §13–14, AGENTS.md): devices of different Lens accounts never share data; Lens
+  never acts, changes settings or starts a conversation on its own.
+- lens-mesh: one account id per laptop (mesh/account.json); a pairing device that presents another account is refused
+  (`account_mismatch`) before approval is offered. A valid one-time token no longer pairs by itself: the device waits
+  (`pair_status`) until the user approves it in the app, which shows the same 8-digit code as the device
+  (SHA-256 of both certificate fingerprints); denied or expired requests cannot be approved later. Paired status is
+  checked on every request, so revoking cuts open connections. Approve/deny exist only on the agent's local endpoint.
+- Actions: undecided requests expire (default 600 s, `action_expiry_seconds`) and cannot be approved afterwards.
+- App: Devices shows waiting devices with their code, Approve and Deny. Android companion: sends and keeps its account
+  id, shows the code while waiting, refuses a laptop of another account (compiles; core unit tests pass; not run on a
+  device).
+- Tests (Windows): test_mesh 4 (new: other account refused and never listed, denial holds, no late approval, a device
+  cannot approve itself, revocation cuts an open link), test_actions 4 (new: expiry), test_agent 7, test_security 5,
+  test_app 17 OK.
+
+## Linux app; English hard-screen OCR held-out (2026-10-30)
+
+- lens-app for Linux (engine/app/linux/app_gtk.cpp: GTK 4 + WebKitGTK 6, the same UI through a WebView2-compatible
+  shim, lens:// bundle only, microphone the only grantable permission, agent started detached when absent):
+  `--self-test` against the running agent on Xvfb: 9 views, no errors, UI ready 971 ms. Linux smoke 20/20 PASS.
+  macOS host (engine/app/macos/app_mac.mm, WKWebView) is built and self-tested only in CI.
+- OCR held-out, 25 screens, run once per configuration (no tuning): Lens shipped (PP-OCRv5 mobile det + v6 tiny rec +
+  Lens row assembly) page CER **1.59%**, line accuracy 0.85, 1.4 s, 119 MB; PaddleOCR server det + v6 medium rec as
+  PaddleOCR outputs lines 4.85% / 0.33 / 18.2 s / 373 MB; the same Baidu models with Lens row assembly 0.76% / 0.92 /
+  17.8 s / 374 MB (reports/ocr-screens/ocr-native-en-hard-heldout-*). Any change to close the gap is chosen on dev.
+
 ## Lens English G2P for unknown words; English screen-recogniser fine-tune (2026-10-30)
 
 - G2P (lens_model/train/train_g2p.py; models/Lens--g2p-en, pinned): a 4.8M-parameter character-to-phoneme Transformer

@@ -33,6 +33,16 @@ status in IMPLEMENTATION_STATUS.md, release gates in docs/RELEASE_READINESS.md.
 Baseline 2026-10-28 (HEAD a7533c3 + working tree): 250 of 251 OK, test_android_link skipped (no device).
 Android: `android\gradlew.bat` with JAVA_HOME = JDK 17 (Android Studio's JBR 25 does not work with Gradle 8.14).
 
+Other operating systems (engine/portable.cmake; docs/VERIFICATION.md "Portable core"):
+```powershell
+docker build -t lens-linux ci/linux                                  # Ubuntu 24.04 image (GTK 4, WebKitGTK 6, Xvfb, ORT 1.24.4)
+docker run --rm -v "D:\Lens:/src" lens-linux bash ci/linux/build.sh  # build + ci/linux/smoke.py (agent, app self-test, OCR parity)
+powershell ci\android\build.ps1                                      # arm64-v8a with NDK r27.1 (needs vcpkg arm64-android deps)
+.venv\Scripts\python.exe -B ci\ocr_parity.py <lens-ocr> <onnxruntime library>   # English hard-screen dev set, any OS
+```
+macOS arm64 and the iOS memory core build and run their smoke tests in .github/workflows/portable.yml on every push to
+the public repository; compiler errors appear as a job annotation (ci/annotate_log.sh), readable without signing in.
+
 ## Rules learned
 
 - Tune only on the dev split; the sealed holdout runs once per candidate, after the decision is frozen.

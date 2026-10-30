@@ -288,7 +288,8 @@ int run(const std::vector<native>& argv) {
     auto save_config=[&]{std::lock_guard g(config_lock);std::ofstream f(config_path);f<<config.dump(1);};
     auto consent=[&](const char* key){std::lock_guard g(config_lock);return config.value(key,false);};
 
-    std::string semantic;Engine engine;Speech speech;lens::agent::Actions actions(test_capabilities);
+    std::string semantic;Engine engine;Speech speech;
+    lens::agent::Actions actions(test_capabilities,std::chrono::seconds(std::clamp(config.value("action_expiry_seconds",600),1,3600)));
     if(!engine.child.start(worker(exe_dir,"lens-engine").native(),engine_args(root,exe_dir,data_dir/"memory.db",semantic))){log({{"event","refused"},{"reason","engine_start_failed"}});return 1;}
     const auto stats=engine.ask({{"op","stats"}});
     if(!stats||!stats->value("ok",false)){log({{"event","refused"},{"reason","database_open_failed"}});return 1;}
@@ -506,9 +507,12 @@ int run(const std::vector<native>& argv) {
             if(!set_autostart(req["enabled"].get<bool>()))return {{"ok",false},{"error","autostart_failed"}};
             return {{"ok",true},{"autostart",autostart_enabled()}};
         }
-        if(op=="mesh_pair_begin"||op=="mesh_devices"||op=="mesh_unpair"||op=="mesh_status") {
+        // Phone link control. Only local clients of this user (the Lens app) reach these: a new device is paired only when
+        // the user approves it here (mesh_approve), never by the device itself; lens-mesh forwards none of them.
+        if(op=="mesh_pair_begin"||op=="mesh_devices"||op=="mesh_unpair"||op=="mesh_status"||op=="mesh_pending"||op=="mesh_approve"||op=="mesh_deny") {
             std::lock_guard g(mesh_lock);if(!mesh.running())return {{"ok",false},{"error","phone_link_off"}};
-            json control={{"op",op.substr(5)}};if(op=="mesh_unpair")control["fingerprint"]=req.value("fingerprint",std::string());
+            json control={{"op",op.substr(5)}};
+            if(op=="mesh_unpair"||op=="mesh_approve"||op=="mesh_deny")control["fingerprint"]=req.value("fingerprint",std::string());
             const auto r=mesh.request(control.dump());return r?json::parse(*r,nullptr,false):json{{"ok",false},{"error","mesh_unavailable"}};
         }
         if(op=="pause"||op=="resume")return set_paused(op=="pause");

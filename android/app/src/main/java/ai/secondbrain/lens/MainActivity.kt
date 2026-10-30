@@ -44,9 +44,14 @@ fun PairScreen(repo: LensRepository, onPaired: () -> Unit) {
     var code by remember { mutableStateOf("") }
     var message by remember { mutableStateOf<String?>(null) }
     var busy by remember { mutableStateOf(false) }
+    var verification by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
     Column(Modifier.fillMaxSize().padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Text("Lens", fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
+        verification?.let {
+            Text("Approve this phone on the laptop only if it shows the same code:", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(it, fontSize = 32.sp, fontWeight = FontWeight.SemiBold)
+        }
         Text("Pair this phone with Lens on your laptop: open Lens › Privacy › Phone link, then paste the pairing code shown there.",
             color = MaterialTheme.colorScheme.onSurfaceVariant)
         OutlinedTextField(code, { code = it }, label = { Text("Pairing code") }, modifier = Modifier.fillMaxWidth(), minLines = 3)
@@ -55,10 +60,12 @@ fun PairScreen(repo: LensRepository, onPaired: () -> Unit) {
             if (parsed == null) { message = "That is not a Lens pairing code."; return@Button }
             busy = true
             scope.launch {
-                val error = withContext(Dispatchers.IO) { repo.pair(parsed, Build.MODEL ?: "Phone") }
-                busy = false; if (error == null) onPaired() else message = error
+                val error = withContext(Dispatchers.IO) {
+                    repo.pair(parsed, Build.MODEL ?: "Phone") { shown -> verification = shown }
+                }
+                busy = false; verification = null; if (error == null) onPaired() else message = error
             }
-        }) { Text(if (busy) "Pairing…" else "Pair") }
+        }) { Text(if (verification != null) "Waiting for approval…" else if (busy) "Pairing…" else "Pair") }
         message?.let { Text(it, color = MaterialTheme.colorScheme.error) }
     }
 }

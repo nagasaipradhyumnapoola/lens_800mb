@@ -483,8 +483,30 @@
   // ---- Devices (pairing) ---------------------------------------------------------------------------------------
   let pairTimer = null;
   function stopPairing() { if (pairTimer) clearInterval(pairTimer); pairTimer = null; $('pairing-card').hidden = true; $('pair-qr').replaceChildren(); $('pair-text').textContent = ''; }
+  // A device that scanned the code waits here: it is paired only if the user approves it, after checking that the phone
+  // shows the same verification code. Devices of another Lens account never reach this list (lens-mesh refuses them).
+  async function renderPending() {
+    const box = $('devices-pending'), r = await call({ op: 'mesh_pending' });
+    box.replaceChildren();
+    if (!r || !r.ok || !r.pending) return;
+    for (const p of r.pending) {
+      const name = p.name || 'Unnamed device', fp = String(p.fingerprint || '');
+      const row = el('div', 'row-static device pending'), info = el('div');
+      info.append(memoryText('span', 'li-title', name),
+        el('span', 'row-meta', `Wants to pair · code ${p.verification_code} · approve only if the device shows the same code`));
+      const decide = (op) => async (e) => {
+        e.target.disabled = true; const d = await call({ op, fingerprint: fp });
+        if (!d || !d.ok) { e.target.disabled = false; e.target.textContent = 'Failed'; return; }
+        if (op === 'mesh_approve') stopPairing();
+        loadDevices();
+      };
+      row.append(info, button('primary', 'Approve', decide('mesh_approve'), `Approve ${name}`), button('ghost danger-text', 'Deny', decide('mesh_deny'), `Deny ${name}`));
+      box.append(row);
+    }
+  }
   async function loadDevices() {
     const link = $('devices-link'), list = $('devices-list');
+    $('devices-pending').replaceChildren();
     const s = await call({ op: 'status' });
     link.replaceChildren();
     if (!s || !s.ok) { link.append(el('p', 'error', `Lens is not running (${errorText(s)}).`)); return; }
@@ -501,6 +523,7 @@
     const [d, ms] = await Promise.all([call({ op: 'mesh_devices' }), call({ op: 'mesh_status' })]);
     settled(list);
     if (ms && ms.ok) link.append(el('p', 'muted small', `This PC's certificate ${String(ms.fingerprint || '').slice(0, 16)}… · port ${ms.port} · ${ms.connections} connected now`));
+    await renderPending();
     if (!d || !d.ok) { list.append(el('p', 'error', `Device list unavailable (${errorText(d)}).`)); return; }
     if (!d.devices.length) { emptyState(list, 'No paired devices', 'Pair a phone or watch to search this PC’s memory from it.'); return; }
     for (const dev of d.devices) {
@@ -529,6 +552,7 @@
       const left = Math.max(0, Math.round((ends - Date.now()) / 1000));
       $('pair-expiry').textContent = left ? `Expires in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}` : 'Expired. Start pairing again.';
       if (!left) { clearInterval(pairTimer); pairTimer = null; $('pair-qr').replaceChildren(); $('pair-text').textContent = ''; }
+      else if (left % 2 === 0) renderPending();  // the scanning device appears here for approval
     };
     tick(); pairTimer = setInterval(tick, 1000);
     $('pair-cancel').focus();

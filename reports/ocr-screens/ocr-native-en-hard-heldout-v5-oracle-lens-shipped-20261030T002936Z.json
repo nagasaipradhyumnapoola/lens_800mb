@@ -1,0 +1,1483 @@
+{
+ "created_utc": "20261030T002936Z",
+ "worker": "lens-ocr.exe mode=screen",
+ "set": "en-hard-heldout",
+ "manifest_sha256": "2e3c37c14f100c9a9c0710e0776fe214d18e705178cbe8e55cfd4e89c548a41d",
+ "det": "v5",
+ "det_pixels": 409600,
+ "only": null,
+ "route": "oracle",
+ "threads": 2,
+ "te_recognizer": "PaddlePaddle--te_PP-OCRv5_mobile_rec",
+ "recognizer_overrides": [],
+ "tag": "lens-shipped",
+ "merge_lines": true,
+ "te_onnx_sha256": "636f40684474dc5a9d5aa321018d9a591deff5f9d7eec6230b1576482637a48b",
+ "metric": "page CER on NFC text, ZWNJ/ZWJ removed, whitespace collapsed (page_cer_raw: without NFC/ZW removal)",
+ "edge_version": "156.0.4314.50",
+ "summary": {
+  "en": {
+   "page_cer": 0.015892728445105704,
+   "page_cer_raw": 0.015892728445105704,
+   "line_accuracy": 0.8529350065139539
+  },
+  "latency_ms": {
+   "full_compute_p50": 1432.7466,
+   "full_compute_p95": 3864.224299999999,
+   "region_compute_p50": 59.30779999999999,
+   "region_compute_p95": 126.80517999999998,
+   "region_wall_p50": 462.97079999931157,
+   "full_wall_p50": 1829.3344999983674
+  },
+  "peak_working_set_mb_max": 118.849536
+ },
+ "rows": [
+  {
+   "name": "small-ui-9px-light-0",
+   "language": "en",
+   "page_cer": 0.04201680672268908,
+   "page_cer_raw": 0.04201680672268908,
+   "line_accuracy": 0.38461538461538464,
+   "full": {
+    "timing_ms": {
+     "detect": 1071.552,
+     "detector_load": 177.6778,
+     "recognize": 175.98250000000002,
+     "recognizer_load": 72.3561
+    },
+    "wall_ms": 1662.844499995117,
+    "peak_working_set_bytes": 102514688,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     455,
+     46
+    ],
+    "timing_ms": {
+     "detect": 22.3667,
+     "detector_load": 164.5718,
+     "recognize": 33.2122,
+     "recognizer_load": 56.6599
+    },
+    "wall_ms": 449.48319999093655,
+    "peak_working_set_bytes": 53624832,
+    "text": [
+     "Settings",
+     "Language off",
+     "Sound output off"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Settings",
+    "Language off",
+    "Sound output off",
+    "Proxy server off",
+    "Clipboard history 4%6",
+    "Default ownload folder 296",
+    "Dark mode 42%",
+    "Focus assist off",
+    "Storage sense On",
+    "Start on login off",
+    "Location access Automatic",
+    "Send usage data Never",
+    "Battery saver 49%6"
+   ]
+  },
+  {
+   "name": "small-ui-10px-dark-1",
+   "language": "en",
+   "page_cer": 0.012345679012345678,
+   "page_cer_raw": 0.012345679012345678,
+   "line_accuracy": 0.8461538461538461,
+   "full": {
+    "timing_ms": {
+     "detect": 801.3715,
+     "detector_load": 167.6369,
+     "recognize": 187.1748,
+     "recognizer_load": 60.6631
+    },
+    "wall_ms": 1362.336200007121,
+    "peak_working_set_bytes": 102334464,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     451,
+     40
+    ],
+    "timing_ms": {
+     "detect": 28.6199,
+     "detector_load": 167.9685,
+     "recognize": 24.187300000000008,
+     "recognizer_load": 82.4159
+    },
+    "wall_ms": 462.2487999877194,
+    "peak_working_set_bytes": 53698560,
+    "text": [
+     "LLII4",
+     "Start on login off"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Settings",
+    "Start on login off",
+    "Location access Never",
+    "Focus assist 49%",
+    "Default download folder off",
+    "Sound output 80%",
+    "Proxy server On",
+    "Storage sense Never",
+    "Battery saver Never",
+    "Dark mode On",
+    "Language off",
+    "Send usage data Never",
+    "Clipboard history Automatic"
+   ]
+  },
+  {
+   "name": "small-ui-11px-low-2",
+   "language": "en",
+   "page_cer": 0.016736401673640166,
+   "page_cer_raw": 0.016736401673640166,
+   "line_accuracy": 0.6923076923076923,
+   "full": {
+    "timing_ms": {
+     "detect": 806.1491,
+     "detector_load": 179.4548,
+     "recognize": 176.6445,
+     "recognizer_load": 63.8432
+    },
+    "wall_ms": 1383.1881000078283,
+    "peak_working_set_bytes": 101093376,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     456,
+     47
+    ],
+    "timing_ms": {
+     "detect": 20.5914,
+     "detector_load": 160.8806,
+     "recognize": 37.3026,
+     "recognizer_load": 66.4894
+    },
+    "wall_ms": 447.9183999937959,
+    "peak_working_set_bytes": 54464512,
+    "text": [
+     "settings",
+     "Send usage data Off",
+     "Lanquage 0E"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Settings",
+    "Send usage data off",
+    "Language off",
+    "Proxy server Never",
+    "Start on login off",
+    "Default download folder On",
+    "Sound output off",
+    "Clipboard history Automatic",
+    "Storage sense Never",
+    "Battery saver On",
+    "Dark mode On",
+    "Focus assist Never",
+    "Location access On"
+   ]
+  },
+  {
+   "name": "small-ui-10px-light-3",
+   "language": "en",
+   "page_cer": 0.011857707509881422,
+   "page_cer_raw": 0.011857707509881422,
+   "line_accuracy": 0.8461538461538461,
+   "full": {
+    "timing_ms": {
+     "detect": 843.5138,
+     "detector_load": 166.8681,
+     "recognize": 172.9765,
+     "recognizer_load": 65.0877
+    },
+    "wall_ms": 1396.2099000054877,
+    "peak_working_set_bytes": 102645760,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     457,
+     48
+    ],
+    "timing_ms": {
+     "detect": 23.9115,
+     "detector_load": 189.1316,
+     "recognize": 43.696,
+     "recognizer_load": 71.9989
+    },
+    "wall_ms": 466.55069998814724,
+    "peak_working_set_bytes": 53432320,
+    "text": [
+     "Settings",
+     "Send usage data On",
+     "Sound output Automatic"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Settings",
+    "Send usage data On",
+    "Sound output Automatic",
+    "Dark mode 5%",
+    "Start on login Never",
+    "Language On",
+    "Clipboard history Automatic",
+    "Location access On",
+    "Storage sense 74%6",
+    "Battery saver Automatic",
+    "Focus assist off",
+    "Proxy server Automatic",
+    "Default download folder ff"
+   ]
+  },
+  {
+   "name": "code-go-dark",
+   "language": "en",
+   "page_cer": 0.019230769230769232,
+   "page_cer_raw": 0.019230769230769232,
+   "line_accuracy": 0.7727272727272727,
+   "full": {
+    "timing_ms": {
+     "detect": 807.6184,
+     "detector_load": 181.9278,
+     "recognize": 523.6374000000001,
+     "recognizer_load": 75.0106
+    },
+    "wall_ms": 1736.3821999897482,
+    "peak_working_set_bytes": 101380096,
+    "boxes": 67
+   },
+   "region": {
+    "size": [
+     169,
+     43
+    ],
+    "timing_ms": {
+     "detect": 10.1165,
+     "detector_load": 180.853,
+     "recognize": 50.735299999999995,
+     "recognizer_load": 71.7031
+    },
+    "wall_ms": 472.27270000439603,
+    "peak_working_set_bytes": 53846016,
+    "text": [
+     "1 package billing",
+     "3",
+     "1 号"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "go_module.go X",
+    "1 package billing",
+    "3 import C",
+    "4 \"errors\"",
+    "5 \"time\"",
+    "6 1",
+    "8 var ErrExpired 三 errors.New(\"contract expired\")",
+    "10 type Contract struct f",
+    "11 ID int64",
+    "12 Vendor string",
+    "13 Deadline time.Time",
+    "14",
+    "16 func (c Contract) Check(now time.Time) error {",
+    "17 if now.After(c.Deadline) {",
+    "18 return ErrExpired",
+    "19 }",
+    "20 return nil",
+    "21 }",
+    "23 func Remaining(c Contract, now time.Time) time.Duration Y",
+    "24 return c.Deadline.Sub(now).Round(time.Hour)",
+    "25 A",
+    "Ln 5, Col 8 Spaces: 4 UTF-8 Go"
+   ]
+  },
+  {
+   "name": "code-go-light",
+   "language": "en",
+   "page_cer": 0.00425531914893617,
+   "page_cer_raw": 0.00425531914893617,
+   "line_accuracy": 0.9545454545454546,
+   "full": {
+    "timing_ms": {
+     "detect": 897.2617,
+     "detector_load": 164.931,
+     "recognize": 456.8885,
+     "recognizer_load": 65.8609
+    },
+    "wall_ms": 1738.5346999944886,
+    "peak_working_set_bytes": 102526976,
+    "boxes": 47
+   },
+   "region": {
+    "size": [
+     169,
+     43
+    ],
+    "timing_ms": {
+     "detect": 9.3223,
+     "detector_load": 187.5322,
+     "recognize": 17.093000000000004,
+     "recognizer_load": 79.9947
+    },
+    "wall_ms": 461.7703999974765,
+    "peak_working_set_bytes": 53948416,
+    "text": [
+     "1 package billing"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "go_module.go x",
+    "1 package billing",
+    "3 import (",
+    "4 \"errorsⁿ",
+    "5 \"time\"",
+    "6 )",
+    "8 var ErrExpired = errors.New(\"contract expired\")",
+    "10 type Contract struct {",
+    "11 ID int64",
+    "12 Vendor string",
+    "13 Deadline time.Time",
+    "14 }",
+    "16 func (c Contract) Check(now time.Time) error {",
+    "17 if now.After(c.Deadline) {",
+    "18 return ErrExpired",
+    "19 }",
+    "20 return nil",
+    "21 }",
+    "23 func Remaining(c Contract, now time.Time) time.Duration {",
+    "24 return c.Deadline.Sub(now).Round(time.Hour)",
+    "25 }",
+    "Ln 30, Col 16 Spaces:4 UTF-8 Go"
+   ]
+  },
+  {
+   "name": "code-rust-dark",
+   "language": "en",
+   "page_cer": 0.0411663807890223,
+   "page_cer_raw": 0.0411663807890223,
+   "line_accuracy": 0.7142857142857143,
+   "full": {
+    "timing_ms": {
+     "detect": 815.5616,
+     "detector_load": 193.2117,
+     "recognize": 744.7405,
+     "recognizer_load": 101.6695
+    },
+    "wall_ms": 2007.5608000042848,
+    "peak_working_set_bytes": 102371328,
+    "boxes": 87
+   },
+   "region": {
+    "size": [
+     306,
+     43
+    ],
+    "timing_ms": {
+     "detect": 18.0,
+     "detector_load": 264.81,
+     "recognize": 24.793800000000005,
+     "recognizer_load": 73.6147
+    },
+    "wall_ms": 538.5447000007844,
+    "peak_working_set_bytes": 55537664,
+    "text": [
+     "1 use std: :collections::HashMap;"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "rust_module.rs X",
+    "1 use std::collections: :HashMap;",
+    "3 #[derive(Debug, clone)]",
+    "4 pub struct Ticket {",
+    "5 pub id: u32,",
+    "6 pub title: String,",
+    "7 pub points: u8,",
+    "8 }",
+    "10 pub fn points_by_label(tickets: &[Ticket]) 2 HashMap<&str u32> {",
+    "11 let mut out = HashMap::new();",
+    "12 for t in tickets {",
+    "13 let label = if t.points > 5 { \"large\" } else r \"smal]\" }:",
+    "14 *out.entry(label).or_insert (0) += t.points a.5 u32;",
+    "15 r",
+    "16 out",
+    "17",
+    "19 fn main() {",
+    "20 let t = vec! [Ticket { id: 7, title: \"Fix export\".into), points: 3 }];",
+    "21 println! (\"{:?}\" points_by_label (&t)); 5",
+    "22",
+    "Ln 40, Col 26 Spaces: 4 UTF-8 Rust"
+   ]
+  },
+  {
+   "name": "code-rust-light",
+   "language": "en",
+   "page_cer": 0.013745704467353952,
+   "page_cer_raw": 0.013745704467353952,
+   "line_accuracy": 0.8095238095238095,
+   "full": {
+    "timing_ms": {
+     "detect": 1507.6758,
+     "detector_load": 169.8485,
+     "recognize": 526.9126,
+     "recognizer_load": 67.2712
+    },
+    "wall_ms": 2426.971799999592,
+    "peak_working_set_bytes": 104185856,
+    "boxes": 43
+   },
+   "region": {
+    "size": [
+     376,
+     48
+    ],
+    "timing_ms": {
+     "detect": 18.2417,
+     "detector_load": 155.511,
+     "recognize": 18.8523,
+     "recognizer_load": 89.5397
+    },
+    "wall_ms": 433.6228000029223,
+    "peak_working_set_bytes": 57327616,
+    "text": [
+     "use std: :co1lections::HashMap;"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "rust_module.rs x",
+    "1 use std::collections::HashMap;",
+    "3 #[derive(Debug, clone)]",
+    "4 pub struct Ticket {",
+    "5",
+    "pub id: u32,",
+    "6",
+    "pub title: String,",
+    "pub points: u8,",
+    "8 子",
+    "10 pub fn points_by_label(tickets: &[Ticket]) -> HashMap<&str, u32> {",
+    "11 let mut out = HashMap::new() ;",
+    "12 for t in tickets {",
+    "13 let label = if t.points > 5 { \"large\" } else { \"small\" };",
+    "14 \"out.entry(label).or_insert(0) += t.points as u32;",
+    "15 }",
+    "16 out",
+    "17 }",
+    "19 fn main() {",
+    "20 let t = vec![Ticket { id: 7, title: \"Fix export\".into(), points: 3 }];",
+    "21 println!(\"{:?}\", points_by_label(&t));",
+    "22 }",
+    "Ln 15, Col 3 Spaces: 4 UTF-8 Rust"
+   ]
+  },
+  {
+   "name": "code-yaml-dark",
+   "language": "en",
+   "page_cer": 0.03653846153846154,
+   "page_cer_raw": 0.03653846153846154,
+   "line_accuracy": 0.6666666666666666,
+   "full": {
+    "timing_ms": {
+     "detect": 916.5151,
+     "detector_load": 205.7457,
+     "recognize": 657.4576999999999,
+     "recognizer_load": 58.0225
+    },
+    "wall_ms": 1974.8596999997972,
+    "peak_working_set_bytes": 101281792,
+    "boxes": 83
+   },
+   "region": {
+    "size": [
+     358,
+     39
+    ],
+    "timing_ms": {
+     "detect": 19.3732,
+     "detector_load": 166.7398,
+     "recognize": 43.0984,
+     "recognizer_load": 67.4244
+    },
+    "wall_ms": 442.89340000250377,
+    "peak_working_set_bytes": 57188352,
+    "text": [
+     "1 # CI pipeline for the reporting service"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "yaml_module.yml x",
+    "1 # CI pipeline for the reporting service",
+    "2 name : build-and-test",
+    "3 on:",
+    "4 push:",
+    "5 branches: [main, \"release/*\"]",
+    "6 pul1 request:",
+    "7 jobs:",
+    "8 test:",
+    "9 runs-on: windows-latest",
+    "10 timeout-minutes: 30",
+    "11 step3:",
+    "12 u3e3: actions/checkout@v4",
+    "13",
+    "1 name: Install dependencies",
+    "14 run: python -Ⅲ pip install -r requirements.txt",
+    "15 name: Run tests",
+    "16 run: python -Ⅲ pytest -g -maxfail=3",
+    "17 name: Upload coverage",
+    "18 if: always()",
+    "19 run: echo \"coverage stored in reports/cov.xml\"",
+    "Ln 36, Col 7 Spaces: 4 UTE-8 Yaml"
+   ]
+  },
+  {
+   "name": "code-yaml-light",
+   "language": "en",
+   "page_cer": 0.023121387283236993,
+   "page_cer_raw": 0.023121387283236993,
+   "line_accuracy": 0.7142857142857143,
+   "full": {
+    "timing_ms": {
+     "detect": 932.2775,
+     "detector_load": 181.2515,
+     "recognize": 420.38779999999997,
+     "recognizer_load": 57.3344
+    },
+    "wall_ms": 1745.1379999984056,
+    "peak_working_set_bytes": 101253120,
+    "boxes": 44
+   },
+   "region": {
+    "size": [
+     357,
+     42
+    ],
+    "timing_ms": {
+     "detect": 16.3693,
+     "detector_load": 151.1549,
+     "recognize": 34.349900000000005,
+     "recognizer_load": 51.9773
+    },
+    "wall_ms": 385.0000000093132,
+    "peak_working_set_bytes": 58056704,
+    "text": [
+     "1 # CI pipeline for the reporting service"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "yaml_module. yml x",
+    "1 # CI pipeline for the reporting service",
+    "2 name: build-and-test",
+    "3 on:",
+    "4 push:",
+    "5 branches: [main, \"release/*\"]",
+    "6 pull_request:",
+    "jobs:",
+    "8 test:",
+    "9 runs-on: windows-latest",
+    "10 timeout-minutes: 30",
+    "11 steps:",
+    "12 uses: actions/checkout@v4",
+    "13 name: Install dependencies",
+    "14 run: python -m pip install -r requirements.txt",
+    "15 name: Run tests",
+    "16 run: python -m pytest -q --maxfail=3",
+    "17 name: Upload coverage",
+    "18 if: always()",
+    "19 run: echo \"coverage stored in reports/cov.xml\"",
+    "Ln 2, Col 2 Spaces: 4 UTE-8 Yaml"
+   ]
+  },
+  {
+   "name": "terminal-shell-0",
+   "language": "en",
+   "page_cer": 0.019434628975265017,
+   "page_cer_raw": 0.019434628975265017,
+   "line_accuracy": 0.9230769230769231,
+   "full": {
+    "timing_ms": {
+     "detect": 814.799,
+     "detector_load": 182.9745,
+     "recognize": 411.2508,
+     "recognizer_load": 68.7403
+    },
+    "wall_ms": 1617.9382000118494,
+    "peak_working_set_bytes": 101220352,
+    "boxes": 24
+   },
+   "region": {
+    "size": [
+     221,
+     42
+    ],
+    "timing_ms": {
+     "detect": 13.6996,
+     "detector_load": 153.2609,
+     "recognize": 48.76579999999999,
+     "recognizer_load": 58.2263
+    },
+    "wall_ms": 423.16680001385976,
+    "peak_working_set_bytes": 55762944,
+    "text": [
+     "martindbui Ld-4:~, 子一 1eCTS",
+     "inventory y-8 Up 30 minutes"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "martin@build–4:~/projects/release$ docker ps 1 format \"{{.Names}} {{.Status}}\"",
+    "inventory-8 Up 30 minutes",
+    "workshop-8 Up 25 minutes",
+    "workshop-7 Up 36 minutes",
+    "payroll–3 Up 41 minutes",
+    "martin@build–3:~/projects/ticket$ cargo build --release",
+    "Compiling handbook vθ.8.3",
+    "Finished 'release'profile [optimized] target(s) in 36.62s",
+    "martin@build–5:~/projects/proposal$ npm run lint",
+    "155:20 warning Unexpected console statement no-console",
+    "121:58 warning Unexpected console statement no-console",
+    "27:21 warning Unexpected console statement no-console",
+    "9 problems (θ errors, 9 warnings)"
+   ]
+  },
+  {
+   "name": "terminal-powershell-1",
+   "language": "en",
+   "page_cer": 0.038817005545286505,
+   "page_cer_raw": 0.038817005545286505,
+   "line_accuracy": 0.7692307692307693,
+   "full": {
+    "timing_ms": {
+     "detect": 858.4039,
+     "detector_load": 174.3392,
+     "recognize": 403.8418,
+     "recognizer_load": 71.2079
+    },
+    "wall_ms": 1652.8697999892756,
+    "peak_working_set_bytes": 102494208,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     226,
+     42
+    ],
+    "timing_ms": {
+     "detect": 9.6797,
+     "detector_load": 166.6013,
+     "recognize": 47.12879999999999,
+     "recognizer_load": 60.249
+    },
+    "wall_ms": 444.4883999967715,
+    "peak_working_set_bytes": 54530048,
+    "text": [
+     "sers\\ethan vendor",
+     "dashboard-7 Up 56 minutes"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "P5 c:\\users\\ethan\\vendor> docker ps - -format \"{{. Names}} {{.status}}'",
+    "dashboard-7 up 56 minutes",
+    "quota-9 Up 19 minutes",
+    "payro1–4 up 58 minutes",
+    "workshop-1 up 30 minutes",
+    "P5 c:\\users\\ethan\\dashboard> cargo build --release",
+    "Compiling schedule vO.8.9",
+    "Finished 'release' profile [optimized] target(s) in 18.50s",
+    "P5 c:\\Users\\ethan\\checklist> npm run lint",
+    "70:38 warning Unexpected console statement no-console",
+    "122:10 warning Unexpected console statement no-console",
+    "42:22 warning Unexpected console statement no-console",
+    "2 problems (0 errors, 3 warnings)"
+   ]
+  },
+  {
+   "name": "terminal-shell-2",
+   "language": "en",
+   "page_cer": 0.0088339222614841,
+   "page_cer_raw": 0.0088339222614841,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 3518.0608,
+     "detector_load": 155.6763,
+     "recognize": 418.3513,
+     "recognizer_load": 77.0391
+    },
+    "wall_ms": 4329.196400009096,
+    "peak_working_set_bytes": 109309952,
+    "boxes": 15
+   },
+   "region": {
+    "size": [
+     358,
+     50
+    ],
+    "timing_ms": {
+     "detect": 13.7645,
+     "detector_load": 185.7835,
+     "recognize": 16.64529999999999,
+     "recognizer_load": 77.6756
+    },
+    "wall_ms": 473.83869999612216,
+    "peak_working_set_bytes": 56147968,
+    "text": [
+     "dashboard–8 Up 36 minutes"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "samuel@build-6:~/projects/payroll$ docker ps format \"{{.Names}} {{.Status}}\"",
+    "dashboard-8 Up 36 minutes",
+    "schedule-5 Up 39 minutes",
+    "checklist-1 Up 35 minutes",
+    "ticket-7 Up 45 minutes",
+    "samuel@build–7:~/projects/prototype$ cargo build --release",
+    "Compiling quota v0.1.6",
+    "Finished 'release' profile [optimized] target(s) in 49.92s",
+    "samuel@build-9:~/projects/proposal$ npm run lint",
+    "141:67 warning Unexpected console statement no-console",
+    "146:5 warning Unexpected console statement no-console",
+    "191:34 warning Unexpected console statement no-console",
+    "2 problems (0 errors, 7 warnings)"
+   ]
+  },
+  {
+   "name": "browser-light-0",
+   "language": "en",
+   "page_cer": 0.009584664536741214,
+   "page_cer_raw": 0.009584664536741214,
+   "line_accuracy": 0.9230769230769231,
+   "full": {
+    "timing_ms": {
+     "detect": 801.4551,
+     "detector_load": 202.1671,
+     "recognize": 368.3209,
+     "recognizer_load": 70.4781
+    },
+    "wall_ms": 1586.7639999923995,
+    "peak_working_set_bytes": 102309888,
+    "boxes": 17
+   },
+   "region": {
+    "size": [
+     365,
+     47
+    ],
+    "timing_ms": {
+     "detect": 16.7106,
+     "detector_load": 192.1635,
+     "recognize": 43.0014,
+     "recognizer_load": 55.9081
+    },
+    "wall_ms": 462.97079999931157,
+    "peak_working_set_bytes": 53526528,
+    "text": [
+     "Payroll Audit Quota Dashboard Ticket"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "https://www.contoso.com/vendor/905?ref=home",
+    "Payroll Audit Quota Dashboard Ticket",
+    "The Thursday ticket sync starts at 5:15 am in Desk 31",
+    "Could you update the handbook for Woodgrove by 11 Apr 2027?",
+    "Mateo: I will close checklist-43-.png tonight.",
+    "The Friday handbook sync starts at 7:45 pm in Suite 210.",
+    "Dev: I will draft inventory-70.zip tonight.",
+    "The Monday vendor sync starts at 9:15 am in Office 88.",
+    "Proseware signed the roadmap on 19 Apr 2026.",
+    "Our meeting budget is $93,726.13, up 6% from last quarter.",
+    "Martin: I will cancel audit-07.png tonight.",
+    "Status of the ticket: 47 open, 39 done.",
+    "@ 2026 Margie Privacy · Terms Contact"
+   ]
+  },
+  {
+   "name": "browser-dark-1",
+   "language": "en",
+   "page_cer": 0.002967359050445104,
+   "page_cer_raw": 0.002967359050445104,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 3143.3671,
+     "detector_load": 156.7842,
+     "recognize": 432.106,
+     "recognizer_load": 83.8746
+    },
+    "wall_ms": 3982.9587999993237,
+    "peak_working_set_bytes": 109535232,
+    "boxes": 20
+   },
+   "region": {
+    "size": [
+     579,
+     50
+    ],
+    "timing_ms": {
+     "detect": 32.6066,
+     "detector_load": 206.9674,
+     "recognize": 42.5917,
+     "recognizer_load": 82.3029
+    },
+    "wall_ms": 537.3735000030138,
+    "peak_working_set_bytes": 53993472,
+    "text": [
+     "Release Checklist Schedule Proposal Ticket"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "https://www.wingtip.com/quota/977?ref=home",
+    "Release Checklist Schedule Proposal Ticket",
+    "The Wednesday roadmap sync starts at 3:30 pm in Hall 4",
+    "Our ticket budget is $44,713.80, up 7% from last quarter.",
+    "The Tuesday vendor sync starts at 11:45 am in Suite 210.",
+    "Status of the vendor: 26 open, 21 done.",
+    "Our quota budget is $6,982.31, up 22% from last quarter.",
+    "The Friday vendor sync starts at 11:00 am in Studio 2.",
+    "The Monday handbook sync starts at 1:30 am in Annex 3.",
+    "Could you cancel the schedule for Margie by 6 Oct 2026?",
+    "Could you share the meeting g for Woodgrove by 4 Oct 2025?",
+    "The Wednesday roadmap sync starts at 10:15 am in Hall 4.",
+    "© 2026 Margie · Privacy · Terms · Contact"
+   ]
+  },
+  {
+   "name": "browser-light-2",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 6275.2472,
+     "detector_load": 198.9657,
+     "recognize": 347.1601,
+     "recognizer_load": 84.3447
+    },
+    "wall_ms": 7082.551600004081,
+    "peak_working_set_bytes": 118849536,
+    "boxes": 17
+   },
+   "region": {
+    "size": [
+     800,
+     68
+    ],
+    "timing_ms": {
+     "detect": 26.1887,
+     "detector_load": 229.6787,
+     "recognize": 37.6596,
+     "recognizer_load": 68.546
+    },
+    "wall_ms": 583.1236000085482,
+    "peak_working_set_bytes": 54091776,
+    "text": [
+     "Schedule Roadmap Workshop Checklist Audit"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "https://www.tailspin.com/payroll/667?ref=home",
+    "Schedule Roadmap Workshop Checklist Audit",
+    "Version 2.7.0 fixes the proposal export bug",
+    "Dev: I will publish inventory-16.pptx tonight.",
+    "Version 4.19.8 fixes the inventory export bug.",
+    "Mateo left 19 comments on the proposal draft.",
+    "Tailspin signed the inventory on 11 Dec 2025.",
+    "Version 7.7.8 fixes the handbook export bug.",
+    "Status of the workshop: 38 open, 39 done.",
+    "Status of the schedule: 8 open, 10 done.",
+    "Ethan: I will archive ticket-02.csv tonight.",
+    "Version 4.14.9 fixes the meeting export bug.",
+    "© 2026 Woodgrove · Privacy · Terms · Contact"
+   ]
+  },
+  {
+   "name": "pdf-0",
+   "language": "en",
+   "page_cer": 0.00211864406779661,
+   "page_cer_raw": 0.00211864406779661,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1118.61,
+     "detector_load": 183.5354,
+     "recognize": 472.0847,
+     "recognizer_load": 70.6113
+    },
+    "wall_ms": 1996.9052999949781,
+    "peak_working_set_bytes": 101072896,
+    "boxes": 20
+   },
+   "region": {
+    "size": [
+     232,
+     42
+    ],
+    "timing_ms": {
+     "detect": 9.6504,
+     "detector_load": 194.0273,
+     "recognize": 49.657399999999996,
+     "recognizer_load": 96.755
+    },
+    "wall_ms": 503.56169999577105,
+    "peak_working_set_bytes": 54734848,
+    "text": [
+     "Ja9101101",
+     "Bruno and Noah · Tailspin · 9 Apr 2025"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Could you archive the payroll for Contoso by 12 Oct 2026",
+    "Bruno and Noah · Tailspin · 9 Apr 2025",
+    "Status of the payroll: 13 open, 27 done.",
+    "Ethan left 39 comments on the release draft.",
+    "Version 8.17.4 fixes the inventory export bug.",
+    "Could you publish the ticket for Contoso by 24 Aug 2026?",
+    "Our release budget is $46,607.64, up 7% from last quarter.",
+    "Our payroll budget is $38,332.51, up 14% from last quarter.",
+    "Could you update the roadmap for Woodgrove by 4 Feb 2025?",
+    "Arjun left 43 comments on the meeting draft.",
+    "Lucas: I will cancel audit-38.zip tonight.",
+    "Felix left 16 comments on the workshop draft.",
+    "Could you draft the ticket for Proseware by 23 Dec 2027?",
+    "Could you cancel the inventory for Margie by 8 Apr 2026?",
+    "Proseware signed the release on 27 Dec 2025.",
+    "Victor left 41 comments on the vendor draft.",
+    "1 Status of the payroll:38 open, 11 done.",
+    "2 Status of the vendor 42 open, 44 done.",
+    "3 Tailspin signed the vendor on 11 Oct 2027.",
+    "Page 11 of 80"
+   ]
+  },
+  {
+   "name": "pdf-1",
+   "language": "en",
+   "page_cer": 0.0010672358591248667,
+   "page_cer_raw": 0.0010672358591248667,
+   "line_accuracy": 0.95,
+   "full": {
+    "timing_ms": {
+     "detect": 1371.9927,
+     "detector_load": 165.3381,
+     "recognize": 396.9934,
+     "recognizer_load": 62.4268
+    },
+    "wall_ms": 2163.4863000072073,
+    "peak_working_set_bytes": 104071168,
+    "boxes": 20
+   },
+   "region": {
+    "size": [
+     286,
+     46
+    ],
+    "timing_ms": {
+     "detect": 11.0007,
+     "detector_load": 152.2605,
+     "recognize": 21.756200000000007,
+     "recognizer_load": 58.5017
+    },
+    "wall_ms": 411.6360000043642,
+    "peak_working_set_bytes": 56000512,
+    "text": [
+     "Victor and Noah ·Tailspin · 21 Oct 2027"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Our release budget is $48,603.27, up 14% from last quarter",
+    "Victor and Noah · Tailspin · 21 Oct 2027",
+    "The Friday inventory sync starts at 1:15 am in Suite 210.",
+    "Omar left 25 comments on the roadmap draft.",
+    "Wingtip signed the payroll on 12 Apr 2026.",
+    "Our schedule budget is $21,696.56, up 10% from last quarter.",
+    "Version 8.7.5 fixes the payroll export bug.",
+    "The Wednesday roadmap sync starts at 7:30 pm in Office 88.",
+    "Wingtip signed the release on 22 Jun 2025.",
+    "Status of the checklist: 2 open, 37 done.",
+    "The Wednesday proposal sync starts at 6:15 pm in Studio 2.",
+    "Version 8.3.5 fixes the inventory export bug.",
+    "Could you attach the inventory for Wingtip by 13 Apr 2025?",
+    "Version 4.10.4 fixes the audit export bug.",
+    "Dev left 48 comments on the workshop draft.",
+    "Wingtip signed the schedule on 25 Oct 2027.",
+    "1 Kenji left 15 comments on the ticket draft.",
+    "2 Version 3.11.0 fixes the quota export bug.",
+    "3 Version 4.3.4 fixes the audit export bug.",
+    "Page 15 of80"
+   ]
+  },
+  {
+   "name": "table-13px-light",
+   "language": "en",
+   "page_cer": 0.027261462205700124,
+   "page_cer_raw": 0.027261462205700124,
+   "line_accuracy": 0.9473684210526315,
+   "full": {
+    "timing_ms": {
+     "detect": 798.1028,
+     "detector_load": 156.9442,
+     "recognize": 738.1836,
+     "recognizer_load": 57.5931
+    },
+    "wall_ms": 1892.6639999990584,
+    "peak_working_set_bytes": 101265408,
+    "boxes": 95
+   },
+   "region": {
+    "size": [
+     626,
+     57
+    ],
+    "timing_ms": {
+     "detect": 24.0269,
+     "detector_load": 211.6046,
+     "recognize": 105.04440000000001,
+     "recognizer_load": 104.5502
+    },
+    "wall_ms": 600.1118999993196,
+    "peak_working_set_bytes": 54001664,
+    "text": [
+     "D Owmer Item Due Amount",
+     "H-g050 Mateo Workshop 7 Jun 2027 $89,774.06",
+     "A-0r2 Martin Workshon 12 Dec 203/ $r2.2a8r4"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "ID Owner Item Due Amount",
+    "H-9050 Mateo Workshop 7Jun 2027 $89,774.06",
+    "A-9524 Martin Workshop 12 Dec 2025 $52,328.54",
+    "E-2459 Victor Prototype 25 Aug 2025 $89,108.79",
+    "G-7680 Dev Ticket 1Aug 2027 $52,480.54",
+    "D-4756 Ravi Roadmap 16 Jun 2027 $77347.66",
+    "D-5034 Ethan Audit 12 Oct 2026 $447.97",
+    "F-9754 Daniel Schedule 4Feb 2027 $23,691.60",
+    "C-1789 Ravi Roadmap 18 Oct 2026 $12,643.75",
+    "A-118 Kenji Meeting 22 Feb 2027 $96,056.84",
+    "C-7641 Ravi Quota 16 Jun 2027 $97:593-.93",
+    "D-6641 Kenji Vendor 24Aug 2026 $41892.37",
+    "F-3872 Samuel Vendor 17 .Aug 2025 579.784.94",
+    "D-4160 Ethan Payrol 7 Dec 2027 $24.730.73",
+    "G-1632 Omar Prototype 5 Feb 2026 $6,2871",
+    "B-6930 Daniel Prototype 6Feb 2025 $67,498.36",
+    "A-5721 Bruno Quota 21 Aug 2027 $42,460.61",
+    "A-6275 Arjun Workshop 5Feb 2027 $96,924.20",
+    "A-7910 Bruno Schedule 18 Jum 2027 11,837.29"
+   ]
+  },
+  {
+   "name": "table-12px-dark",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 805.6128,
+     "detector_load": 173.5208,
+     "recognize": 627.1338000000001,
+     "recognizer_load": 64.3788
+    },
+    "wall_ms": 1829.3344999983674,
+    "peak_working_set_bytes": 102490112,
+    "boxes": 95
+   },
+   "region": {
+    "size": [
+     613,
+     47
+    ],
+    "timing_ms": {
+     "detect": 34.4053,
+     "detector_load": 293.7432,
+     "recognize": 74.48870000000001,
+     "recognizer_load": 81.9295
+    },
+    "wall_ms": 647.8400999912992,
+    "peak_working_set_bytes": 55664640,
+    "text": [
+     "1D VWGI 1LGI T 1",
+     "G-7632 Bruno Checkist 5 Oct 2025 $47,291.94"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "ID Owner Item Due Amount",
+    "G-7632 Bruno Checklist 5 Oct 2025 $47,291.94",
+    "E-5477 Tomas Meeting 13 Jun 2027 $50,333.22",
+    "F-9973 Ethan Checklist 3 Apr 2025 $89,459.39",
+    "A-8580 Tomas Prototype 22 Dec 2027 $67,833.04",
+    "C-3496 Victor Quota 3 Aug 2025 $60,681.51",
+    "A-9184 Felix Proposal 25 Aug 2025 $74,458.41",
+    "F-7314 Felix Audit 11 Aug 2025 $20,013.58",
+    "B-174 Ravi Workshop 10 Jun 2027 $36,459.02",
+    "H-9191 Tomas Payroll 18 Jun 2026 $59,700.11",
+    "D-2734 Bruno Inventory 13 Apr 2026 $96,054.02",
+    "B-4091 Martin Roadmap 18 Jun 2026 $73,027.94",
+    "A-7203 Bruno Prototype 13 Jun 2025 $20,484.73",
+    "B-8889 Daniel Roadmap 22 Oct 2025 $97,127.53",
+    "H-5354 Noah Payroll 25 Dec 2026 $47,886.71",
+    "F-9756 Bruno Handbook 5 Apr 2026 $59,312.36",
+    "B-5901 Arjun Dashboard 20 Feb 2027 $8,398.91",
+    "D-9026 Arjun Ticket 23 Jun 2025 $45,423.50",
+    "A-6308 Martin Roadmap 14 Aug 2027 $49,632.00"
+   ]
+  },
+  {
+   "name": "table-11px-light",
+   "language": "en",
+   "page_cer": 0.04779411764705882,
+   "page_cer_raw": 0.04779411764705882,
+   "line_accuracy": 0.631578947368421,
+   "full": {
+    "timing_ms": {
+     "detect": 814.8125,
+     "detector_load": 166.1699,
+     "recognize": 688.9164,
+     "recognizer_load": 76.9763
+    },
+    "wall_ms": 1892.9365999938454,
+    "peak_working_set_bytes": 102576128,
+    "boxes": 95
+   },
+   "region": {
+    "size": [
+     612,
+     56
+    ],
+    "timing_ms": {
+     "detect": 25.2185,
+     "detector_load": 189.2431,
+     "recognize": 110.3291,
+     "recognizer_load": 62.7762
+    },
+    "wall_ms": 543.0285999900661,
+    "peak_working_set_bytes": 54079488,
+    "text": [
+     "ID Owner Item Due Amount",
+     "E-4803 Ethan Schedule 23 Apr 2025 $22,720.16",
+     "F-311 Lucas Pavroll 3 0ct 2027 $85.736.33"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "D Owner Item Due Amount",
+    "E-4803 Ethan Schedule 23.Apr 2025 $22,720.16",
+    "F-31 Lucas Payroll 3 0ct 2027 $85.736.33",
+    "E-529 Ethan Inventory 1.Apr 2026 $8,907.23",
+    "H-7019 Martin Schedule 14 Jun 2027 $86,840.30",
+    "B-3660 Noah Proposal 8.Aug 2026 $95,254.47",
+    "H-3372 Mateo Checktist 19Jun 2026 $69,707.10",
+    "H-2963 Martin Dasbard 9Dec 2025 $90;330.89",
+    "E-9360 Tomas Andit 10ct 2027 $4:598.02",
+    "E-8484 Rari Workshop 22 0ct 2026 $9.791.96",
+    "E-4575 Ethan Workshop 23Feb 2026 $41;728.92",
+    "E-5389 Martin Prototype 260ct 2025 $78,611.62",
+    "F-3034 Dev Meeting 3.Aug 2025 $8371.02",
+    "E-5146 Arjun Quota 1 0ct 2025 $92,564.85",
+    "E-8055 Samel Roadmap 7Feb 2027 $50,231.50",
+    "D-8186 Kenji Meting 174pr2026 $86,862.24",
+    "B-1575 Mateo Inventory 13 Dec 2027 $5543.04",
+    "F-8294 Daniel Andit 18 eb 2027 $83.622.58",
+    "A-6638 Martin Checklist 20 Dec 2027 $37,677.81"
+   ]
+  },
+  {
+   "name": "chat-light",
+   "language": "en",
+   "page_cer": 0.012522361359570662,
+   "page_cer_raw": 0.012522361359570662,
+   "line_accuracy": 0.7777777777777778,
+   "full": {
+    "timing_ms": {
+     "detect": 1005.2769,
+     "detector_load": 178.0262,
+     "recognize": 206.31509999999997,
+     "recognizer_load": 64.5065
+    },
+    "wall_ms": 1600.755499996012,
+    "peak_working_set_bytes": 102408192,
+    "boxes": 18
+   },
+   "region": {
+    "size": [
+     370,
+     43
+    ],
+    "timing_ms": {
+     "detect": 16.7689,
+     "detector_load": 191.5754,
+     "recognize": 23.2646,
+     "recognizer_load": 62.4735
+    },
+    "wall_ms": 441.87629999942146,
+    "peak_working_set_bytes": 55590912,
+    "text": [
+     "The Monday quota sync starts at 11:oo pm in Office 88."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Noah 10:27 AM",
+    "The Monday quota sync starts at 11:oo pm in Office 88.",
+    "Victor 11:56 AM",
+    "The Thursday checklist sync starts at 12:0o am in Desk 31.",
+    "Lucas 9:13 PM",
+    "Status of the ticket: 43 open, 46 done.",
+    "Arjun 1:18 PM",
+    "Dev left 15 comments on the roadmap draft.",
+    "Martin 10:50o PM",
+    "Contoso signed the audit on 18 Feb 2027.",
+    "Mateo 9:35 PM",
+    "Status of the quota: 11 open, 11 done.",
+    "Ethan 1031 AM",
+    "Could you flag the dashboard for Tailspin by 2 Dec 2026?",
+    "Ethan 10:26 AM",
+    "Ethan: I will archive meeting-49.zip tonight.",
+    "Victor g:58 AM",
+    "Version 8.19.1 fixes the schedule export bug."
+   ]
+  },
+  {
+   "name": "chat-dark",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1316.2166,
+     "detector_load": 166.8644,
+     "recognize": 323.3888,
+     "recognizer_load": 67.4594
+    },
+    "wall_ms": 2023.532699997304,
+    "peak_working_set_bytes": 104235008,
+    "boxes": 27
+   },
+   "region": {
+    "size": [
+     468,
+     47
+    ],
+    "timing_ms": {
+     "detect": 21.6801,
+     "detector_load": 153.9972,
+     "recognize": 28.914499999999997,
+     "recognizer_load": 60.897
+    },
+    "wall_ms": 427.4349000043003,
+    "peak_working_set_bytes": 55230464,
+    "text": [
+     "The Tuesday checklist sync starts at 11:15 am in Suite 210."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Dev 9:57 PM",
+    "The Tuesday checklist sync starts at 11:15 am in Suite 210.",
+    "Tomas 11:11 AM",
+    "The Monday roadmap sync starts at 6:30 pm in Desk 31.",
+    "Ethan 8:59 PM",
+    "Could you publish the quota for Woodgrove by 1 Jun 2026?",
+    "Lucas 11:27 AM",
+    "Version 7.10.0 fixes the checklist export bug.",
+    "Noah 10:36 PM",
+    "Tomas: I will close payroll-07.png tonight.",
+    "Samuel 9:44 AM",
+    "Our audit budget is $69,951.84, up 11% from last quarter.",
+    "Lucas 8:58 AM",
+    "Woodgrove signed the roadmap on 24 Jun 2027.",
+    "Ravi 10:15 PM",
+    "Could you flag the release for Wingtip by 15 Apr 2026?",
+    "Felix 10:47 AM",
+    "The Monday inventory sync starts at 6:15 pm in Suite 210."
+   ]
+  },
+  {
+   "name": "mail-light",
+   "language": "en",
+   "page_cer": 0.005902192242833052,
+   "page_cer_raw": 0.005902192242833052,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 798.1824,
+     "detector_load": 159.3392,
+     "recognize": 532.0824,
+     "recognizer_load": 62.4152
+    },
+    "wall_ms": 1688.502699995297,
+    "peak_working_set_bytes": 101351424,
+    "boxes": 54
+   },
+   "region": {
+    "size": [
+     1015,
+     49
+    ],
+    "timing_ms": {
+     "detect": 44.8316,
+     "detector_load": 163.4621,
+     "recognize": 72.9091,
+     "recognizer_load": 76.7979
+    },
+    "wall_ms": 510.37620000715833,
+    "peak_working_set_bytes": 57872384,
+    "text": [
+     "Samuel The Wednesday vendor sync starts at 4:30 am in Hall 4. 19 Dec 2026"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Tomas Bruno: I will export meeting-12.png tonight. 6 Feb 2025",
+    "Samuel The Wednesday vendor sync starts at 4:30 am in Hal 4. 19 Dec 2026",
+    "Ethan Could you archive the roadmap for Proseware by 28 Dec 2027? 7 Dec 2027",
+    "Daniel Could you export the ticket for Proseware by 13 Feb 2027? 1 Aug 2026",
+    "Victor Version 6.20.0 fixes the prototype export bug. 28 Dec 2026",
+    "Noah The Tuesday payroll sync starts at 11:30 am in Desk 31. 17 Jun 2027",
+    "Bruno Could you draft the ticket for Woodgrove by 19 Apr 2026? 19 Jun 2026",
+    "O0mar Lucas left 23 comments on the proposal draft. 7 Apr 2027",
+    "Arjun Version 2.20.1 fixes the release export bug. 10 0ct 2026",
+    "Bruno Tailspin signed the meeting on 17 Oct 2026. 10 Aug 2025",
+    "Bruno Felix: I wil xport checklist-25.xlsx tonight. 4 Aug 2026",
+    "Daniel Status of the vendor: 43 open, 48 done. 19 Dec 2026",
+    "Kenji Could you sync the release for Wingtip by 14 Feb 2026? 16 0ct 2025",
+    "Mateo Status of the roadmap: 39 open, 5 done. 7 Dec 2027",
+    "Kenji Contoso signed the vendor on 28 Apr 2025. 6 Dec 2026",
+    "Martin Status of the meeting: 42 open, 17 done. 28 Apr 2027",
+    "Bruno Wingtip signed the dashboard on 22 Jun 2027. 2 Apr 2025",
+    "Ravi Version 9.1.0 fixes the schedule export bug. 26 0ct 2026"
+   ]
+  },
+  {
+   "name": "mail-lowdark",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 760.8086,
+     "detector_load": 148.3353,
+     "recognize": 761.7946000000001,
+     "recognizer_load": 57.9362
+    },
+    "wall_ms": 1882.3915000102716,
+    "peak_working_set_bytes": 101318656,
+    "boxes": 54
+   },
+   "region": {
+    "size": [
+     1004,
+     44
+    ],
+    "timing_ms": {
+     "detect": 55.0067,
+     "detector_load": 179.2737,
+     "recognize": 43.770199999999996,
+     "recognizer_load": 60.8238
+    },
+    "wall_ms": 490.2083000051789,
+    "peak_working_set_bytes": 56414208,
+    "text": [
+     "Ravi Proseware siqned the handbook on 12 Jun 2025. 9 Apr 2027"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Noah Woodgrove signed the vendor on 28 Oct 2025. 1 Jun 2025",
+    "Ravi Proseware signed the handbook on 12 Jun 2025. 9 Apr 2027",
+    "Bruno Status of the ticket: 23 open, 3 done. 10 Apr 2025",
+    "Ethan Status of the ticket: 30 open, 47 done. 9 Jun 2025",
+    "Dev Our checklist budget is $44,198.04, up 6% from last quarter. 16 Oct 2026",
+    "Ravi Samuel left 31 comments on the quota draft. 18 Feb 2026",
+    "Samuel Margie signed the release on 20 Dec 2027. 15 Jun 2025",
+    "Tomas Our audit budget is $92,100.44, up 32% from last quarter. 28 Jun 2027",
+    "Kenji Could you sync the release for Margie by 3 Jun 2025? 19 Aug 2027",
+    "Victor Could you update the quota for Contoso by 2 Aug 2027? 6 Dec 2026",
+    "Kenji The Wednesday roadmap sync starts at 5:45 am in Suite 210. 13 Oct 2026",
+    "Martin Version 7.7.5 fixes the release export bug. 7 Aug 2027",
+    "Noah The Wednesday audit sync starts at 6:00 am in Desk 31. 25 Dec 2025",
+    "Tomas Version 9.17.0 fixes the proposal export bug. 21 Oct 2025",
+    "Ethan Version 6.6.9 fixes the checklist export bug. 21 Jun 2027",
+    "Kenji Felix left 17 comments on the schedule draft. 5 Apr 2026",
+    "Dev Tomas: I will attach proposal-57.yaml tonight. 2 Jun 2026",
+    "Ravi Version 1.9.6 fixes the ticket export bug. 26 Aug 2026"
+   ]
+  }
+ ]
+}

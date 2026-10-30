@@ -48,6 +48,21 @@ class Link:
     def close(self):self.s.close()
 
 
+def pair_approved(pipe,link,qr,name='Pixel'):
+    """Phone side presents the token; the user approves on the laptop (the only way a device is paired)."""
+    r=link.ask({'op':'pair','token':qr['token'],'name':name})
+    assert r.get('awaiting_approval'),r
+    fp=next(p['fingerprint'] for p in pipe.ask({'op':'mesh_pending'})['pending'] if p['verification_code']==r['verification_code'])
+    assert pipe.ask({'op':'mesh_approve','fingerprint':fp})['paired']
+    return r
+
+
+def expected_code(laptop_fp,cert):
+    phone_fp=hashlib.sha256(ssl.PEM_cert_to_DER_cert(Path(cert[0]).read_text())).hexdigest()
+    v=int.from_bytes(hashlib.sha256(f'{laptop_fp}:{phone_fp}'.encode()).digest()[:4],'big')%100000000
+    return f'{v//10000:04d} {v%10000:04d}',phone_fp
+
+
 class Mesh(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.data=Path(self.tmp.name);self.name=f'lens-mesh-test-{uuid.uuid4().hex[:8]}'
@@ -75,7 +90,15 @@ class Mesh(unittest.TestCase):
         link=Link(qr['port'],qr['fp'],phone)
         self.assertEqual(link.ask({'op':'recall','query':'Halvorsen'})['error'],'not_paired')
         self.assertEqual(link.ask({'op':'pair','token':'0'*32,'name':'Pixel'})['error'],'pairing_refused')
-        r=link.ask({'op':'pair','token':qr['token'],'name':'Pixel'});self.assertTrue(r['paired']);self.assertEqual(r['laptop_fingerprint'],qr['fp'])
+        r=link.ask({'op':'pair','token':qr['token'],'name':'Pixel'});self.assertFalse(r['paired']);self.assertTrue(r['awaiting_approval'])
+        self.assertEqual(r['laptop_fingerprint'],qr['fp'])
+        code,phone_fp=expected_code(qr['fp'],phone);self.assertEqual(r['verification_code'],code)  # the phone can show the same code
+        self.assertEqual(link.ask({'op':'search','query':'Halvorsen'})['error'],'not_paired')  # nothing until the user approves
+        self.assertTrue(link.ask({'op':'pair_status'})['awaiting_approval'])
+        self.assertEqual(link.ask({'op':'approve','fingerprint':phone_fp})['error'],'not_paired')  # a device cannot approve itself
+        pend=self.pipe.ask({'op':'mesh_pending'})['pending'];self.assertEqual([(p['name'],p['verification_code'],p['fingerprint']) for p in pend],[('Pixel',code,phone_fp)])
+        self.assertTrue(self.pipe.ask({'op':'mesh_approve','fingerprint':phone_fp})['paired'])
+        st=link.ask({'op':'pair_status'});self.assertTrue(st['paired']);self.assertEqual(st['account_id'],self.pipe.ask({'op':'mesh_status'})['account_id'])
         hit=link.ask({'op':'search','query':'Halvorsen'})['sources'][0];self.assertEqual(hit['id'],'laptop-1')
         self.assertEqual(link.ask({'op':'delete','consent':True,'id':'laptop-1'})['error'],'unsupported_operation')
         self.assertEqual(link.ask({'op':'set_consent','observe_screen':True})['error'],'unsupported_operation')
@@ -92,8 +115,26 @@ class Mesh(unittest.TestCase):
         again.close()
         stranger=Link(qr['port'],qr['fp'],make_cert(self.certs,'stranger'));self.assertEqual(stranger.ask({'op':'ping'})['error'],'not_paired');stranger.close()
         devices=self.pipe.ask({'op':'mesh_devices'})['devices'];self.assertEqual([d['name'] for d in devices],['Pixel'])
+        open_link=Link(qr['port'],qr['fp'],phone);self.assertTrue(open_link.ask({'op':'ping'})['ok'])
         self.assertTrue(self.pipe.ask({'op':'mesh_unpair','fingerprint':devices[0]['fingerprint']})['removed'])
+        self.assertEqual(open_link.ask({'op':'search','query':'Halvorsen'})['error'],'not_paired');open_link.close()  # cut at once
         revoked=Link(qr['port'],qr['fp'],phone);self.assertEqual(revoked.ask({'op':'ping'})['error'],'not_paired');revoked.close()
+
+    def test_devices_of_another_account_never_pair_and_denial_holds(self):
+        self.pipe.ask({'op':'set_consent','phone_link':True})
+        account=self.pipe.ask({'op':'mesh_status'})['account_id'];self.assertRegex(account,'^[0-9a-f]{32}$')
+        qr=self.pair_code();other=Link(qr['port'],qr['fp'],make_cert(self.certs,'other-account'))
+        self.assertEqual(other.ask({'op':'pair','token':qr['token'],'name':'Their phone','account_id':'f'*32})['error'],'account_mismatch')
+        self.assertEqual(self.pipe.ask({'op':'mesh_pending'})['pending'],[])  # never even offered for approval
+        self.assertEqual(other.ask({'op':'search','query':'Halvorsen'})['error'],'not_paired');other.close()
+        qr=self.pair_code();phone=make_cert(self.certs,'phone');link=Link(qr['port'],qr['fp'],phone)
+        r=link.ask({'op':'pair','token':qr['token'],'name':'Unknown','account_id':account});self.assertTrue(r['awaiting_approval'])
+        _,fp=expected_code(qr['fp'],phone)
+        self.assertEqual(self.pipe.ask({'op':'mesh_deny','fingerprint':fp})['paired'],False)
+        self.assertEqual(link.ask({'op':'pair_status'})['error'],'pairing_denied')
+        self.assertEqual(link.ask({'op':'search','query':'Halvorsen'})['error'],'not_paired')
+        self.assertEqual(self.pipe.ask({'op':'mesh_approve','fingerprint':fp})['error'],'no_pending_request')  # no late approval
+        self.assertEqual(self.pipe.ask({'op':'mesh_devices'})['devices'],[]);link.close()
 
     def test_client_without_certificate_and_wrong_pin_are_refused(self):
         self.pipe.ask({'op':'set_consent','phone_link':True});qr=self.pair_code()

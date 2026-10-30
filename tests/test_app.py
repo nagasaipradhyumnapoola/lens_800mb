@@ -58,6 +58,8 @@ window.__lensMock = (req) => {
   if (req.op === 'mesh_status') return { ok: true, port: 47821, fingerprint: 'cd'.repeat(32), connections: 1 };
   if (req.op === 'mesh_devices') return { ok: true, devices: __state.revoked ? [] : [{ fingerprint: 'ab'.repeat(32), name: 'Pixel ' + X, paired_utc: '2026-10-26T10:00:00Z' }] };
   if (req.op === 'mesh_unpair') { __state.revoked = true; return { ok: true, removed: true }; }
+  if (req.op === 'mesh_pending') return { ok: true, pending: __state.decided ? [] : [{ fingerprint: '9a'.repeat(32), name: 'Tablet ' + X, verification_code: '1234 5678', requested_utc: '2026-10-30T10:00:00Z' }] };
+  if (req.op === 'mesh_approve' || req.op === 'mesh_deny') { __state.decided = req.op; return { ok: true, fingerprint: req.fingerprint, paired: req.op === 'mesh_approve' }; }
   if (req.op === 'mesh_pair_begin') return { ok: true, qr: { v: 1, hosts: ['192.168.1.20', '10.0.0.7'], port: 47821, fp: 'ef'.repeat(32), token: '12'.repeat(16) }, expires_in_seconds: 300 };
   if (req.op === 'import_preview') return req.format === 'whatsapp' && !req.date_order ? { ok: false, error: 'date_order_required' } :
       { ok: true, records: 3, skipped: 1, sample: [{ timestamp: '2026-10-01T10:00:00Z', text: 'Msg ' + X, source_application: 'WhatsApp' }], first: '2026-10-01T10:00:00Z', last: '2026-10-02T10:00:00Z' };
@@ -357,6 +359,10 @@ VIEWS=r"""
     document.querySelector('#devices-link button').click(); await settle(); await settle();
     out.link_consent = calls('set_consent').slice(-1)[0];
     out.devices = document.querySelectorAll('#devices-list .device').length;
+    const pend = document.querySelector('#devices-pending .pending');
+    out.pending_text = pend ? pend.textContent : ''; out.pending_buttons = pend ? [...pend.querySelectorAll('button')].map((b) => b.textContent) : [];
+    if (pend) { pend.querySelector('button.primary').click(); await settle(); await settle(); }
+    out.approve = calls('mesh_approve').map((c) => c.fingerprint); out.pending_after = document.querySelectorAll('#devices-pending .pending').length;
     $('pair-start').click(); await settle();
     out.qr_svg = !!document.querySelector('#pair-qr svg[role="img"][aria-label]'); out.pair_text = $('pair-text').textContent; out.expiry = $('pair-expiry').textContent;
     const q = window.lensQr.encode(out.pair_text); out.qr_rows = q.modules.map((r) => r.map((c) => (c ? 1 : 0)).join('')); out.qr_version = q.version;
@@ -498,6 +504,8 @@ class AppViews(unittest.TestCase):
         self.assertEqual(out['project_sections'],['People','Facts','Sessions','Memories'])
         self.assertEqual(out['devices_off'],'Phone link is off');self.assertTrue(out['pair_disabled'])
         self.assertEqual(out['link_consent'],{'op':'set_consent','phone_link':True});self.assertEqual(out['devices'],1)
+        self.assertIn('1234 5678',out['pending_text']);self.assertIn('<img',out['pending_text'])  # device name shown as text only
+        self.assertEqual(out['pending_buttons'],['Approve','Deny']);self.assertEqual(out['approve'],['9a'*32]);self.assertEqual(out['pending_after'],0)
         self.assertTrue(out['qr_svg']);self.assertIn('Expires in 5:00',out['expiry']);self.assertTrue(out['pair_hidden'])
         qr=json.loads(out['pair_text']);self.assertEqual(qr,{'v':1,'hosts':['192.168.1.20','10.0.0.7'],'port':47821,'fp':'ef'*32,'token':'12'*16})
         self.assertEqual(decode_qr(out['qr_rows']),out['pair_text'])  # the in-app QR decodes to exactly the pairing code

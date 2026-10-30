@@ -4,6 +4,7 @@ installed. Exit code 0 only when every step passes. Usage: python3 ci/linux/smok
 """
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -65,6 +66,16 @@ def agent_check():
         if s.get('semantic')=='verified' and (ROOT/'models/Lens--kokoro-82m-mixed-int8/model.onnx').exists():
             r=ask({'op':'speak','text':'The demo is on Thursday.'})
             check(r.get('ok') and ask({'op':'diagnostics'})['ocr_hold']==['speech'],'agent spoken reply with the governor holding OCR')
+        app=BIN/'lens-app'
+        if app.exists() and (sys.platform=='darwin' or shutil.which('xvfb-run')):  # the app against this agent
+            # Linux: a virtual display; WebKit's bubblewrap sandbox cannot start in an unprivileged container (on outside tests).
+            cmd=[str(app),'--self-test','--pipe-name','lens-smoke']
+            if sys.platform!='darwin':cmd=['xvfb-run','-a']+cmd
+            p=subprocess.run(cmd,capture_output=True,text=True,timeout=300,
+                             env={**env,'WEBKIT_DISABLE_SANDBOX_THIS_IS_DANGEROUS':'1','LIBGL_ALWAYS_SOFTWARE':'1'} if sys.platform!='darwin' else env)
+            r=next((json.loads(l) for l in p.stdout.splitlines() if l.startswith('{')),{})
+            bad=[v for v,x in r.get('views',{}).items() if x.get('errors') or x.get('exception')]
+            check(r.get('ok') and not bad,f"app self-test ({'WKWebView' if sys.platform=='darwin' else 'GTK 4 + WebKitGTK'}): {len(r.get('views',{}))} views, ready {r.get('ready_ms')} ms, errors {r.get('errors')} {bad}")
         check(ask({'op':'shutdown'}).get('ok'),'agent shutdown');f.close();sock.close()
         check(agent.wait(timeout=60)==0,'agent exited cleanly');agent.stderr.close()
 

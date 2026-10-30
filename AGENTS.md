@@ -9,6 +9,10 @@ authenticated sync/execution, then Windows/Android/Wear clients and original UI.
 Preserve user files. Never push, publish, or change repository visibility without approval.
 Use pinned upstream runtimes; Python is development-only. No cloud inference or private-data training.
 No microphone, screen, notification, accessibility or other capture without specific consent.
+Devices of different Lens accounts never pair or share data; a new device is paired only after the user approves it
+on a trusted device. Lens takes no involuntary action: no change outside its memory, no settings or consent change,
+no message or conversation started on its own; every side effect waits for the user's approval in the app
+(docs/LENS_V1_SPEC.md §13–14).
 Personal content must never enter Git, model weights, telemetry, logs or plaintext databases.
 Keep originals immutable; derived records link to their sources. Retrieval can return not_found.
 Models run serially and unload explicitly. RAM (founder, 2026-10-29): absolute 500,000,000-byte ceiling for

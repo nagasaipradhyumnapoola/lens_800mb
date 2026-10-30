@@ -140,6 +140,24 @@ private:
     HANDLE pipe_;std::atomic<DWORD> thread_=0;std::atomic<bool> busy_=false,cancelled_=false;
 };
 }
+namespace {
+class PipeClient:public Connection {
+public:
+    explicit PipeClient(HANDLE p):pipe_(p){}
+    ~PipeClient() override {CloseHandle(pipe_);}
+    bool read_some(std::string& into) override {char buf[65536];DWORD n=0;if(!ReadFile(pipe_,buf,sizeof buf,&n,nullptr)||!n)return false;into.append(buf,n);return true;}
+    bool write(const std::string& data) override {DWORD n=0;return WriteFile(pipe_,data.data(),static_cast<DWORD>(data.size()),&n,nullptr)&&n==data.size();}
+    void cancel() override {CancelIoEx(pipe_,nullptr);}
+private:
+    HANDLE pipe_;
+};
+}
+std::unique_ptr<Connection> connect(const std::string& name) {
+    const auto path=L"\\\\.\\pipe\\"+fs::path(std::u8string(name.begin(),name.end())).wstring();
+    HANDLE h=CreateFileW(path.c_str(),GENERIC_READ|GENERIC_WRITE,0,nullptr,OPEN_EXISTING,0,nullptr);
+    if(h==INVALID_HANDLE_VALUE)return nullptr;
+    return std::make_unique<PipeClient>(h);
+}
 struct Server::State {SECURITY_ATTRIBUTES sa{};std::wstring path;std::atomic<bool> stopping=false;};
 Server::Server():s_(std::make_unique<State>()){}
 Server::~Server(){if(s_->sa.lpSecurityDescriptor)LocalFree(s_->sa.lpSecurityDescriptor);}
@@ -291,6 +309,19 @@ SingleInstance::SingleInstance(const std::string& name) {
 }
 SingleInstance::~SingleInstance(){if(fd_>=0)::close(fd_);}
 
+std::unique_ptr<Connection> connect(const std::string& name) {
+    std::string error;const auto dir=runtime_dir(error);if(dir.empty())return nullptr;
+    const auto path=dir/(name+".sock");sockaddr_un addr{};addr.sun_family=AF_UNIX;
+    if(path.native().size()>=sizeof addr.sun_path)return nullptr;
+    std::memcpy(addr.sun_path,path.c_str(),path.native().size()+1);
+    const int fd=::socket(AF_UNIX,SOCK_STREAM,0);if(fd<0)return nullptr;
+    ::fcntl(fd,F_SETFD,FD_CLOEXEC);
+#ifdef SO_NOSIGPIPE
+    const int one=1;::setsockopt(fd,SOL_SOCKET,SO_NOSIGPIPE,&one,sizeof one);
+#endif
+    if(::connect(fd,reinterpret_cast<sockaddr*>(&addr),sizeof addr)!=0){::close(fd);return nullptr;}
+    return std::make_unique<SocketConnection>(fd);
+}
 struct Server::State {int fd=-1,wake[2]{-1,-1};std::atomic<bool> stopping=false;fs::path path;};
 Server::Server():s_(std::make_unique<State>()){}
 Server::~Server() {

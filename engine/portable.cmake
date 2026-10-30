@@ -140,5 +140,27 @@ add_executable(lens-agent agent/agent_main.cpp agent/child_process.cpp agent/act
 target_link_libraries(lens-agent PRIVATE lens-embedding OpenSSL::Crypto Threads::Threads)
 target_compile_options(lens-agent PRIVATE ${LENS_WARN})
 
+# Linux app (lens-app): GTK 4 + WebKitGTK 6 hosting engine/app/ui, relaying to lens-agent; built when both are installed.
+if(NOT APPLE AND NOT ANDROID)
+  pkg_check_modules(LENS_GTK IMPORTED_TARGET gtk4 webkitgtk-6.0)
+  if(LENS_GTK_FOUND)
+    add_executable(lens-app app/linux/app_gtk.cpp agent/os.cpp)
+    target_link_libraries(lens-app PRIVATE lens-embedding OpenSSL::Crypto PkgConfig::LENS_GTK Threads::Threads)
+    target_compile_options(lens-app PRIVATE ${LENS_WARN})
+    add_custom_command(TARGET lens-app POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory
+      "${CMAKE_CURRENT_SOURCE_DIR}/app/ui" "$<TARGET_FILE_DIR:lens-app>/ui")
+  endif()
+endif()
+
+# macOS app (lens-app): Cocoa + WKWebView hosting engine/app/ui, relaying to lens-agent.
+if(APPLE)
+  enable_language(OBJCXX)
+  add_executable(lens-app app/macos/app_mac.mm agent/os.cpp)
+  target_link_libraries(lens-app PRIVATE lens-embedding OpenSSL::Crypto Threads::Threads "-framework Cocoa" "-framework WebKit")
+  target_compile_options(lens-app PRIVATE -fobjc-arc ${LENS_WARN})
+  add_custom_command(TARGET lens-app POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_CURRENT_SOURCE_DIR}/app/ui" "$<TARGET_FILE_DIR:lens-app>/ui")
+endif()
+
 add_executable(lens-embed embed_main.cpp)
 target_link_libraries(lens-embed PRIVATE lens-embedding)

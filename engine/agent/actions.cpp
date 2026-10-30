@@ -47,30 +47,39 @@ json Actions::request(const json& req) {
     else if(cap=="laptop.remember"){if(!params.contains("text")||!params["text"].is_string()||params["text"].get<std::string>().empty()||params["text"].get<std::string>().size()>20000)return {{"ok",false},{"error","invalid_parameters"}};}
     else if(cap=="test.echo"&&test_){if(!params.contains("message")||!params["message"].is_string())return {{"ok",false},{"error","invalid_parameters"}};}
     else return {{"ok",false},{"error","unknown_capability"}};
-    std::lock_guard g(lock_);
+    std::lock_guard g(lock_);expire_locked();
     size_t open=0;for(const auto& [_,a]:actions_)if(a["status"]=="pending_confirmation")++open;
     if(open>=20)return {{"ok",false},{"error","too_many_pending_actions"}};
     const auto id=random_id();
-    actions_[id]={{"id",id},{"capability",cap},{"params",params},{"requested_by",by},{"status","pending_confirmation"},{"requested_utc",now_iso()}};
+    actions_[id]={{"id",id},{"capability",cap},{"params",params},{"requested_by",by},{"status","pending_confirmation"},{"requested_utc",now_iso()},
+                  {"expires_in_seconds",expiry_.count()}};
+    requested_[id]=std::chrono::steady_clock::now();
     return {{"ok",true},{"action",actions_[id]}};
 }
 
+void Actions::expire_locked() {
+    const auto now=std::chrono::steady_clock::now();
+    for(auto& [id,a]:actions_)
+        if(a["status"]=="pending_confirmation"&&now-requested_[id]>=expiry_){a["status"]="expired";a["expired_utc"]=now_iso();}
+}
+
 json Actions::pending() {
-    std::lock_guard g(lock_);json out=json::array();
+    std::lock_guard g(lock_);expire_locked();json out=json::array();
     for(const auto& [_,a]:actions_)if(a["status"]=="pending_confirmation")out.push_back(a);
     return {{"ok",true},{"actions",out}};
 }
 
 json Actions::status(const std::string& id) {
-    std::lock_guard g(lock_);const auto it=actions_.find(id);
+    std::lock_guard g(lock_);expire_locked();const auto it=actions_.find(id);
     if(it==actions_.end())return {{"ok",false},{"error","unknown_action"}};
     return {{"ok",true},{"action",it->second}};
 }
 
 json Actions::decide(const std::string& id,bool approve) {
     json action;
-    {std::lock_guard g(lock_);const auto it=actions_.find(id);
+    {std::lock_guard g(lock_);expire_locked();const auto it=actions_.find(id);
      if(it==actions_.end())return {{"ok",false},{"error","unknown_action"}};
+     if(it->second["status"]=="expired")return {{"ok",false},{"error","action_expired"},{"action",it->second}};
      if(it->second["status"]!="pending_confirmation")return {{"ok",false},{"error","already_decided"},{"action",it->second}};
      if(!approve){it->second["status"]="denied";it->second["decided_utc"]=now_iso();return {{"ok",true},{"action",it->second}};}
      it->second["status"]="executing";it->second["decided_utc"]=now_iso();action=it->second;}

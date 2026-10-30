@@ -155,12 +155,20 @@ notifications. Cryptographic device identity, explicit pairing, E2E encryption, 
 authorization, offline queues, conflict resolution, incremental sync, retry, revocation, capabilities, audit
 logs. Cactus may route; a separate authenticated layer authorizes. Never execute privileged commands from
 model output alone.
+Account boundary (founder, 2026-10-30): every device belongs to exactly one Lens account; devices of different
+accounts never pair and never exchange data. A device joins an account only by pairing, and pairing completes only
+when the user approves the new device on an already trusted device (matching verification code on both screens).
+Revocation takes effect immediately, including on open connections.
 
 ## 14. Safe cross-device actions
 
 Typed capability registry: device, permissions, parameters, side effects, confirmation, status, verification.
 Confirmation for sensitive operations; no unauthorized messaging, payments, deletion, credential access or
 remote execution. Personal data (addresses, phone numbers) in protected storage; no raw card storage.
+No involuntary actions (founder, 2026-10-30): Lens never changes anything outside its own memory, changes settings
+or consents, or starts a conversation or message on its own. Every side effect is a pending request that runs only
+when the user approves it in the Lens app at that time; approvals never arrive over the network or from a model, and
+an undecided request expires (default 10 minutes).
 
 ## 15. Resource efficiency and hardware compatibility (founder requirement, 2026-10-26)
 

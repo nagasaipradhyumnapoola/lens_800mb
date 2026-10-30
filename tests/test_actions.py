@@ -12,13 +12,15 @@ ROOT=Path(__file__).resolve().parents[1]
 REL=ROOT/'build/engine/Release'
 sys.path.insert(0,str(ROOT/'tests'))
 from test_agent import Pipe
-from test_mesh import Link,make_cert
+from test_mesh import Link,make_cert,pair_approved
 
 
 class Actions(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.data=Path(self.tmp.name);self.name=f'lens-actions-{uuid.uuid4().hex[:8]}'
-        (self.data/'config.json').write_text(json.dumps({'mesh_port':0,'mesh_bind':'127.0.0.1'}),encoding='utf-8')
+        config={'mesh_port':0,'mesh_bind':'127.0.0.1'}
+        if 'expire' in self._testMethodName:config['action_expiry_seconds']=2  # short expiry for that test
+        (self.data/'config.json').write_text(json.dumps(config),encoding='utf-8')
         self.agent=subprocess.Popen([str(REL/'lens-agent.exe'),'--data-dir',str(self.data),'--root',str(ROOT),'--pipe-name',self.name,'--test-capabilities'],
                                     stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         self.pipe=Pipe(self.name)
@@ -56,13 +58,21 @@ class Actions(unittest.TestCase):
     def test_devices_can_request_but_never_approve(self):
         self.pipe.ask({'op':'set_consent','phone_link':True});qr=self.pipe.ask({'op':'mesh_pair_begin'})['qr']
         with tempfile.TemporaryDirectory() as certs:
-            link=Link(qr['port'],qr['fp'],make_cert(Path(certs),'phone'));link.ask({'op':'pair','token':qr['token'],'name':'Pixel'})
+            link=Link(qr['port'],qr['fp'],make_cert(Path(certs),'phone'));pair_approved(self.pipe,link,qr)
             r=link.ask({'op':'action_request','capability':'test.echo','params':{'message':'from phone'},'requested_by':'forged'})
             a=r['action'];self.assertEqual(a['requested_by'],'paired device Pixel');self.assertEqual(a['status'],'pending_confirmation')
             self.assertEqual(link.ask({'op':'action_decide','id':a['id'],'approve':True})['error'],'unsupported_operation')
             self.assertEqual(link.ask({'op':'action_status','id':a['id']})['action']['status'],'pending_confirmation')
             link.close()
         self.assertEqual(self.pipe.ask({'op':'action_decide','id':a['id'],'approve':True})['action']['status'],'executed')
+
+    def test_undecided_requests_expire_and_cannot_be_approved_late(self):
+        import time
+        a=self.pipe.ask({'op':'action_request','capability':'test.echo','params':{'message':'stale'},'requested_by':'test'})['action']
+        self.assertEqual(a['expires_in_seconds'],2);time.sleep(2.5)
+        self.assertEqual(self.pipe.ask({'op':'action_pending'})['actions'],[])
+        r=self.pipe.ask({'op':'action_decide','id':a['id'],'approve':True})
+        self.assertEqual(r['error'],'action_expired');self.assertEqual(r['action']['status'],'expired');self.assertNotIn('result',r['action'])
 
 
 if __name__=='__main__':unittest.main()

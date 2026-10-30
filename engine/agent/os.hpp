@@ -40,6 +40,9 @@ public:
     virtual void cancel()=0;
 };
 
+// A client connection to the agent's endpoint `name` (the app, CLI tools); nullptr when no agent is listening.
+std::unique_ptr<Connection> connect(const std::string& name);
+
 class Server {
 public:
     Server();~Server();
