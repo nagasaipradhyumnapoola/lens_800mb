@@ -7,8 +7,9 @@ docs/retrieval.md. Original model-proof decision record: docs/architecture.md.
 ## Process structure
 
 ```
-lens-app.exe (Win32 + WebView2 UI, bundled engine/app/ui)        android/ :app (phone), :wear (watch)
-      │ user-only named pipe                                            │ TLS 1.3, mutual auth, pinned certificates
+lens-app.exe (Win32 + WebView2 UI, bundled engine/app/ui)        android/ :app (phone, own memory: liblens-core.so
+      │ user-only named pipe                                            │  = lens-store over JNI), :wear (watch)
+      │                                                                 │ TLS 1.3, mutual auth, pinned certificates
       ▼                                                                 ▼
 lens-agent.exe (engine/agent/) ── lens-mesh.exe (engine/mesh/) ────────┘
   │ op allow-list, consent and exclusions (%LOCALAPPDATA%\Lens\config.json), import jobs, action registry

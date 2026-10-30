@@ -15,7 +15,7 @@ status in IMPLEMENTATION_STATUS.md, release gates in docs/RELEASE_READINESS.md.
 | lens-app | Win32 + WebView2 UI (Ask, evidence viewer, Timeline, People, Projects, Devices with QR pairing, Import, Privacy + Requests, Storage, Diagnostics, onboarding); strict CSP, textContent rendering |
 | lens-mesh | Device link: TLS 1.3 mutual auth, pinned self-signed P-256 certs, one-time pairing token, allow-listed remote ops |
 | lens-needle | Standalone Needle runner; not wired into consolidation or the action flow |
-| android/ | :core (pairing, Keystore identity, pinned link, repository), :app (Compose phone), :wear (Wear Compose); never run on an emulator or device |
+| android/ | :core (own memory via liblens-core.so + Keystore-wrapped key, pairing, Keystore identity, pinned link, repository), :app (Compose phone), :wear (Wear Compose); phone app tested on the emulator, never on a device; watch never run |
 | lens_model/ | Trained Lens answerability heads v0/v1 (not adopted), data builders, export/quantize, comparison harness |
 
 ## How to run
@@ -38,6 +38,8 @@ Other operating systems (engine/portable.cmake; docs/VERIFICATION.md "Portable c
 docker build -t lens-linux ci/linux                                  # Ubuntu 24.04 image (GTK 4, WebKitGTK 6, Xvfb, ORT 1.24.4)
 docker run --rm -v "D:\Lens:/src" lens-linux bash ci/linux/build.sh  # build + ci/linux/smoke.py (agent, app self-test, OCR parity)
 powershell ci\android\build.ps1                                      # arm64-v8a with NDK r27.1 (needs vcpkg arm64-android deps)
+powershell ci\android\build.ps1 -Abi x86_64 -CoreOnly                # emulator library (vcpkg x64-android deps); both stage android/native-libs
+# emulator: emulator -avd lens-test -no-window -no-audio; then tests/test_android_link.py (also runs LocalMemoryTest)
 .venv\Scripts\python.exe -B ci\ocr_parity.py <lens-ocr> <onnxruntime library>   # English hard-screen dev set, any OS
 ```
 macOS arm64 and the iOS memory core build and run their smoke tests in .github/workflows/portable.yml on every push to
@@ -69,11 +71,11 @@ the public repository; compiler errors appear as a job annotation (ci/annotate_l
 
 1. English false answers (sealed holdout 100k: rejection 0.67, worst of all languages): Lens-Core answerability v2
    with English-heavy near-miss negatives, judged on the Lens harness at 5% false answers; sealed acceptance set once.
-2. Privacy: partial deletion leaves trained zstd dictionaries; keep `train_text_dictionary` off the product path
-   (agent refuses it today) or re-train/re-compress/delete after partial deletes, with a sentinel test.
-3. Idle private commit: one idle sample showed 23 MB working set but 318 MB private; identify the owning process.
+2–3. (Done 2026-10-28: partial deletion retires trained zstd dictionaries; the 318 MB idle private sample did not
+   reproduce. docs/VERIFICATION.md.)
 4. Public retrieval baselines (LM0): MIRACL en/hi/zh/es and the MMTEB retrieval subset for e5-small vs
    EmbeddingGemma-300M INT8, CPU-only with RAM; LongMemEval_S retrieval recall.
 5. Hindi ASR (FLEURS held-out WER 26.6%), then English/Spanish with whisper small q5 vs base (RAM, latency).
 6. Second real-screen run (needs consent); Needle into the pending-action flow; device events/notifications.
-7. Android emulator end-to-end, then Wear; demos 1–10 and the acceptance report.
+7. Android: phone emulator end-to-end done (2026-10-31); next the retrieval models on the phone (keyword-only today),
+   a physical phone, then Wear; demos 1–10 and the acceptance report.

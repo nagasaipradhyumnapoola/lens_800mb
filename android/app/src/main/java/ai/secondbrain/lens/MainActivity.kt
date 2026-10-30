@@ -25,6 +25,12 @@ private val Graphite = darkColorScheme(
     primary = Color(0xFFE7E8EC), onPrimary = Color(0xFF121316), onBackground = Color(0xFFE9E9EC), onSurface = Color(0xFFE9E9EC),
     onSurfaceVariant = Color(0xFF9B9CA4), outline = Color(0xFF383A41), error = Color(0xFFEF8A8A))
 
+/** A stored ISO-8601 instant in this phone's time zone ("2026-10-30 14:21"); anything else as stored. */
+fun localTime(timestamp: String): String = runCatching {
+    java.time.OffsetDateTime.parse(timestamp).atZoneSameInstant(java.time.ZoneId.systemDefault())
+        .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+}.getOrDefault(timestamp.take(16).replace('T', ' '))
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,20 +39,23 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/** This phone's memory works on its own; pairing with a laptop is optional and adds the laptop's whole memory. */
 @Composable
 fun LensApp(repo: LensRepository) {
     var paired by remember { mutableStateOf(repo.laptop != null) }
-    if (!paired) PairScreen(repo) { paired = true } else HomeScreen(repo) { repo.unpair(); paired = false }
+    var pairing by remember { mutableStateOf(false) }
+    if (pairing) PairScreen(repo, onCancel = { pairing = false }) { paired = true; pairing = false }
+    else HomeScreen(repo, paired, onPair = { pairing = true }) { repo.unpair(); paired = false }
 }
 
 @Composable
-fun PairScreen(repo: LensRepository, onPaired: () -> Unit) {
+fun PairScreen(repo: LensRepository, onCancel: () -> Unit, onPaired: () -> Unit) {
     var code by remember { mutableStateOf("") }
     var message by remember { mutableStateOf<String?>(null) }
     var busy by remember { mutableStateOf(false) }
     var verification by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
-    Column(Modifier.fillMaxSize().padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
+    Column(Modifier.fillMaxSize().safeDrawingPadding().padding(24.dp), verticalArrangement = Arrangement.spacedBy(16.dp)) {
         Text("Lens", fontSize = 28.sp, fontWeight = FontWeight.SemiBold)
         verification?.let {
             Text("Approve this phone on the laptop only if it shows the same code:", color = MaterialTheme.colorScheme.onSurfaceVariant)
@@ -66,29 +75,42 @@ fun PairScreen(repo: LensRepository, onPaired: () -> Unit) {
                 busy = false; verification = null; if (error == null) onPaired() else message = error
             }
         }) { Text(if (verification != null) "Waiting for approval…" else if (busy) "Pairing…" else "Pair") }
+        TextButton(enabled = !busy, onClick = onCancel) { Text("Not now") }
         message?.let { Text(it, color = MaterialTheme.colorScheme.error) }
     }
 }
 
 @Composable
-fun HomeScreen(repo: LensRepository, onUnpair: () -> Unit) {
+fun HomeScreen(repo: LensRepository, paired: Boolean, onPair: () -> Unit, onUnpair: () -> Unit) {
     var query by remember { mutableStateOf("") }
     var results by remember { mutableStateOf<List<Evidence>?>(null) }
     var status by remember { mutableStateOf<String?>(null) }
     var note by remember { mutableStateOf("") }
+    var confirmErase by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
-    Column(Modifier.fillMaxSize().padding(20.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+    if (confirmErase) AlertDialog(onDismissRequest = { confirmErase = false },
+        title = { Text("Erase this phone's memory?") },
+        text = { Text("Deletes every note and screen memory Lens stored on this phone, and its encryption keys. Your laptop's memory is not touched. This cannot be undone.") },
+        confirmButton = { TextButton(onClick = { confirmErase = false; results = null
+            scope.launch { withContext(Dispatchers.IO) { repo.eraseLocal() }; status = "This phone's memory was erased." } }) { Text("Erase") } },
+        dismissButton = { TextButton(onClick = { confirmErase = false }) { Text("Cancel") } })
+    // Android 15+ draws edge to edge: keep clear of the status bar, navigation bar and keyboard.
+    Column(Modifier.fillMaxSize().safeDrawingPadding().padding(20.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
         Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
             Text("Ask your memory", fontSize = 22.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
-            TextButton(onClick = onUnpair) { Text("Unpair") }
+            if (paired) TextButton(onClick = onUnpair) { Text("Unpair") } else TextButton(onClick = onPair) { Text("Pair laptop") }
         }
         OutlinedTextField(query, { query = it }, placeholder = { Text("What did Priya say about the budget?") }, modifier = Modifier.fillMaxWidth(), singleLine = true)
         Button(enabled = query.isNotBlank(), onClick = {
-            status = "Asking your laptop…"; results = null
+            status = if (paired) "Asking your laptop…" else "Searching this phone…"; results = null
             scope.launch {
-                val r = withContext(Dispatchers.IO) { runCatching { repo.recall(query) } }
-                r.onSuccess { results = parseEvidence(it); status = if (it.optBoolean("ok")) null else "Lens could not search (${it.optString("error")})." }
-                 .onFailure { status = "Your laptop is not reachable right now." }
+                val a = withContext(Dispatchers.IO) { repo.ask(query) }
+                results = parseEvidence(a.response)
+                status = when {
+                    !a.response.optBoolean("ok") -> "Lens could not search (${a.response.optString("error")})."
+                    a.fromPhone && paired -> "Your laptop is not reachable; these are from this phone's memory only."
+                    else -> null
+                }
             }
         }) { Text("Ask") }
         status?.let { Text(it, color = MaterialTheme.colorScheme.onSurfaceVariant) }
@@ -100,7 +122,7 @@ fun HomeScreen(repo: LensRepository, onUnpair: () -> Unit) {
                     Column(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.surface, RoundedCornerShape(12.dp)).padding(14.dp)) {
                         Text("${e.app}  ${e.window}", color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp, maxLines = 1)
                         Spacer(Modifier.height(6.dp)); Text(e.quote)   // plain text only
-                        Spacer(Modifier.height(6.dp)); Text(e.timestamp.take(16).replace('T', ' '), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp)
+                        Spacer(Modifier.height(6.dp)); Text(localTime(e.timestamp), color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp)
                     }
                 }
             }
@@ -121,9 +143,16 @@ fun HomeScreen(repo: LensRepository, onUnpair: () -> Unit) {
         Button(enabled = note.isNotBlank(), onClick = {
             val text = note; note = ""
             scope.launch {
-                val delivered = withContext(Dispatchers.IO) { repo.addNote(text) }
-                status = if (delivered > 0) "Saved to your laptop." else "Saved on this phone; it will be sent when your laptop is reachable (${repo.pending()} waiting)."
+                val saved = withContext(Dispatchers.IO) { repo.remember(text) }
+                status = when {
+                    saved.error == "sensitive_content_excluded" -> "Not saved: Lens never stores passwords, codes or card details."
+                    saved.error != null && saved.delivered == 0 -> "Could not save on this phone (${saved.error})."
+                    saved.delivered > 0 -> "Saved on this phone and your laptop."
+                    paired -> "Saved on this phone; it will be sent when your laptop is reachable (${repo.pending()} waiting)."
+                    else -> "Saved on this phone."
+                }
             }
         }) { Text("Remember") }
+        TextButton(onClick = { confirmErase = true }) { Text("Erase this phone's memory", color = MaterialTheme.colorScheme.error) }
     }
 }

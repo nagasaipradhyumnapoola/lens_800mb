@@ -1,6 +1,8 @@
 """End-to-end phone ↔ laptop link: the Android companion (instrumented test on an emulator) pairs with a real
-lens-agent/lens-mesh on this machine, recalls laptop memory over TLS 1.3 and contributes a note; the laptop then
-verifies that note's device and provenance were set by the laptop. Skipped when no emulator/device is connected."""
+lens-agent/lens-mesh on this machine (the test approves the pending phone, as the laptop's user would), recalls laptop
+memory over TLS 1.3 and contributes a note; the laptop then verifies that note's device and provenance were set by the
+laptop. The same Gradle run executes the phone's own-memory tests (LocalMemoryTest). Needs liblens-core.so staged by
+ci/android/build.ps1 for the device's ABI. Skipped when no emulator/device is connected."""
 import base64
 import json
 import os
@@ -8,6 +10,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 import uuid
 ROOT=Path(__file__).resolve().parents[1]
@@ -39,9 +42,19 @@ class AndroidLink(unittest.TestCase):
                 qr=pipe.ask({'op':'mesh_pair_begin'})['qr'];qr['hosts']=['10.0.2.2']  # emulator alias for the host loopback
                 code=base64.b64encode(json.dumps(qr).encode()).decode()
                 env={**os.environ,'JAVA_HOME':JDK}
-                p=subprocess.run([str(ANDROID/'gradlew.bat'),':app:connectedDebugAndroidTest','--console=plain',
-                                  f'-Pandroid.testInstrumentationRunnerArguments.pairingCode={code}'],cwd=ANDROID,env=env,capture_output=True,text=True,timeout=3600)
-                self.assertEqual(p.returncode,0,p.stdout[-4000:]+p.stderr[-2000:])
+                with tempfile.TemporaryFile() as log:
+                    p=subprocess.Popen([str(ANDROID/'gradlew.bat'),':app:connectedDebugAndroidTest','--console=plain',
+                                        f'-Pandroid.testInstrumentationRunnerArguments.pairingCode={code}'],cwd=ANDROID,env=env,stdout=log,stderr=subprocess.STDOUT)
+                    # The laptop's user approves the phone (the only way a device is paired): approve the test phone once it asks.
+                    deadline=time.monotonic()+1800;approved=False
+                    while p.poll() is None and time.monotonic()<deadline:
+                        pending=[d for d in pipe.ask({'op':'mesh_pending'}).get('pending',[]) if d['name']=='Lens test phone']
+                        if pending and not approved:approved=pipe.ask({'op':'mesh_approve','fingerprint':pending[0]['fingerprint']})['paired']
+                        time.sleep(1)
+                    if p.poll() is None:p.kill()
+                    log.seek(0);out=log.read().decode('utf-8','replace')
+                self.assertTrue(approved,out[-4000:])
+                self.assertEqual(p.returncode,0,out[-6000:])
                 hit=pipe.ask({'op':'search','query':'Marlow venue deposit'})['sources'][0]
                 self.assertEqual(hit['device'],'Lens test phone');self.assertTrue(hit['provenance'].startswith('lens-mesh paired device'))
                 self.assertEqual(hit['source_application'],'lens-companion')

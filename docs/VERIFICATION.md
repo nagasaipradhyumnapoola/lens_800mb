@@ -1442,3 +1442,43 @@ travel in `metadata`).
   builds; tests/test_mesh.py covers the laptop side. Not run on a phone or emulator.
 - Not ported yet: the Android app's use of the native core (memory stays on the laptop), sign-in autostart off Windows.
   No real Linux desktop session tested. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.
+
+## Android: the phone's own memory through the native core; emulator end-to-end (2026-10-31) — PASS (emulator only)
+
+- liblens-core.so (adapters/android/lens_jni.cpp, engine/portable.cmake `lens-core`): the memory core (lens-store:
+  SQLCipher, zstd text codec, keyword recall, deletion, provenance) inside the app's process through JNI; JSON requests
+  as UTF-8 byte arrays (JNI's modified UTF-8 would break characters outside the BMP); one request at a time; open
+  failures surface as reason codes, never content. Only the five JNI entry points are exported (static OpenSSL/SQLCipher
+  hidden), 16 KB page alignment for Android 15+. Stripped size 8.6 MB (arm64-v8a), 9.4 MB (x86_64); needs only libc,
+  libm, libdl, liblog. Built by `ci/android/build.ps1 [-Abi arm64-v8a|x86_64] [-CoreOnly]`, staged in
+  android/native-libs/ for Gradle (git-ignored).
+- Key chain (android/core LocalMemory.kt): random 32-byte master key, stored as "LENSMK01" | IV | AES-256-GCM
+  ciphertext under a non-exportable Android Keystore key; unwrapped once per process and handed to the native side
+  (adapters/android/master_key.cpp), which wraps the database key file as on Linux/macOS. A missing Keystore key or
+  master-key file next to an existing database fails with `key_unavailable` and never creates a new key. Erase deletes
+  the Keystore key (crypto-erase), then the files. Storage: noBackupFilesDir (excluded from backups).
+- App: notes, shares and phone screen observations are stored on the phone first; with a paired laptop they are also
+  queued and delivered as before (only while paired: pairing later never uploads earlier phone-only items). Ask uses
+  the laptop when reachable, else this phone's memory, and says so. Pairing is optional (the app opens on Ask, with
+  "Pair laptop"); "Erase this phone's memory" with confirmation. Fixed: on Android 15 (edge to edge) the keyboard
+  covered the note field and the title sat under the status bar (safe-drawing insets now); evidence times are shown in
+  the phone's time zone instead of UTC.
+- Recall on the phone is keyword-only (exact and spaced-script words; English stopwords dropped): the embedding and
+  reranker models do not ship on Android yet, so paraphrased questions find nothing on the phone alone.
+- Tests, emulator `lens-test` (Android 15, x86_64 image, WHPX, headless `-no-window`), synthetic data only:
+  - LocalMemoryTest 7/7 (store and recall incl. Hindi, dedup, unrelated question finds nothing; emoji and U+20000
+    round trip; sensitive content refused; no plaintext sentinel in any file incl. WAL, reopen after release; lost
+    Keystore key or key file never opens or starts over; erase removes files and Keystore key; malformed requests come
+    back as errors and the store keeps answering). x86_64 native: 6.3 s; the arm64-v8a library itself (the phone
+    binary) also passes 7/7 under the emulator's ARM translation (libndk_translation, 77 s).
+  - tests/test_android_link.py now runs (first time; it approves the pending phone as the laptop's user would, since
+    pairing needs laptop approval): the phone pairs with a real lens-agent/lens-mesh on the host over pinned TLS 1.3,
+    recalls laptop memory, an unrelated question finds nothing, its note reaches the laptop with device and provenance
+    set by the laptop, a wrong pin never connects; the same run executes LocalMemoryTest: 8/8 on the device, Python
+    test OK (94 s).
+  - UI smoke (adb input, uiautomator): app opens without pairing; a typed note is "Saved on this phone." and Ask finds
+    it; with the store open the debug app uses 88.8 MB PSS (12.5 MB native heap).
+  - JVM unit tests 11/11; debug APK and test APK build.
+- Not verified: any physical phone; release (minified) build; the accessibility observer storing locally on a device
+  (code path shared with notes, not exercised on the emulator); Wear OS; the Windows suite was not re-run (no Windows
+  code changed).

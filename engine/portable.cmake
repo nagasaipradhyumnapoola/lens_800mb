@@ -81,6 +81,15 @@ target_compile_definitions(lens-store PRIVATE SQLITE_HAS_CODEC)
 target_link_libraries(lens-store PUBLIC lens-embedding ${LENS_SQLCIPHER} OpenSSL::Crypto ${LENS_ZSTD} ${LENS_MASTER_KEY_LIBS})
 target_compile_options(lens-store PRIVATE ${LENS_WARN})
 
+# Android app library (liblens-core.so): the memory core inside the app's process through JNI. Only the JNI entry points are
+# exported; 16 KB page alignment for Android 15+ devices.
+if(ANDROID)
+  add_library(lens-core SHARED "${LENS_ROOT}/adapters/android/lens_jni.cpp")
+  target_link_libraries(lens-core PRIVATE lens-store)
+  target_link_options(lens-core PRIVATE "-Wl,--exclude-libs,ALL" "-Wl,-z,max-page-size=16384")
+  target_compile_options(lens-core PRIVATE ${LENS_WARN})
+endif()
+
 # LENS_CORE_ONLY (iOS, Android app libraries): the memory core only; the app links it and has no worker processes.
 option(LENS_CORE_ONLY "build only lens-store and lens-embedding" OFF)
 if(LENS_CORE_ONLY)

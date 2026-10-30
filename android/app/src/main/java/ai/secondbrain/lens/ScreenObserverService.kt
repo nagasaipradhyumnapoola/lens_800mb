@@ -9,8 +9,8 @@ import java.util.concurrent.Executors
 
 /**
  * Phone screen observation (docs/LENS_V1_SPEC.md §3): reads the visible text of the app in front through Android's
- * accessibility tree, never password fields, never excluded apps or private browsing (ScreenPolicy), and queues only new
- * lines per window for the paired laptop. Runs only while the user has enabled this service in Android settings and
+ * accessibility tree, never password fields, never excluded apps or private browsing (ScreenPolicy), and stores only new
+ * lines per window on this phone (queued for the laptop when paired). Runs only while the user has enabled this service in Android settings and
  * switched "Observe phone screen" on in Lens; either switch stops it.
  */
 class ScreenObserverService : AccessibilityService() {

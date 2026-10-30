@@ -26,6 +26,9 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions { jvmTarget = "17" }
+    ndkVersion = "27.1.12297006"  // strips liblens-core.so when packaging
+    // liblens-core.so per ABI from ci/android/build.ps1 (arm64-v8a for phones, x86_64 for the emulator).
+    sourceSets["main"].jniLibs.srcDirs("../native-libs")
     buildFeatures { compose = true }
     packaging { resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" } }
 }

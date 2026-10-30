@@ -67,16 +67,17 @@ One C++20 core everywhere; each OS keeps its own native window, accessibility an
 
 | | Windows | Linux | macOS | Android | iOS |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Encrypted memory core | ✅ tested | ✅ tested | ✅ CI smoke test | 🟡 builds | 🟡 builds |
+| Encrypted memory core | ✅ tested | ✅ tested | ✅ CI smoke test | ✅ emulator | 🟡 builds |
 | Background agent | ✅ tested | ✅ tested | ✅ CI smoke test | 🟡 builds | — |
 | Screen observation | ✅ tested | ✅ tested (virtual display) | 🟡 builds | 🟡 builds | — |
 | Screen OCR | ✅ tested | ✅ tested | 🟡 builds | 🟡 builds | — |
 | Speech in / spoken replies | ✅ tested | ✅ tested | 🟡 builds | 🟡 builds | — |
-| App | ✅ WebView2 | ✅ GTK + WebKitGTK | ✅ WKWebView (CI self-test) | 🟡 companion builds | ⬜ not built |
+| App | ✅ WebView2 | ✅ GTK + WebKitGTK | ✅ WKWebView (CI self-test) | ✅ emulator: own memory + laptop link | ⬜ not built |
 
-✅ = automated tests pass on that OS (CI = GitHub's runners, no models there) · 🟡 = compiles and links, not yet run on
-real hardware · ⬜ = not built. Linux builds and tests run in a container, Android with the NDK on Windows, macOS and
-iOS in [GitHub Actions](.github/workflows/portable.yml).
+✅ = automated tests pass on that OS (CI = GitHub's runners, no models there; emulator = Android 15 emulator, no phone
+yet) · 🟡 = compiles and links, not yet run on real hardware · ⬜ = not built. Linux builds and tests run in a container,
+Android with the NDK on Windows and on the emulator, macOS and iOS in [GitHub Actions](.github/workflows/portable.yml).
+On Android the phone keeps its own encrypted memory and works without a laptop; recall there is keyword-only for now.
 
 ## How it works
 
@@ -155,7 +156,7 @@ Other operating systems (see [docs/HANDOFF.md](docs/HANDOFF.md)):
 ```powershell
 docker build -t lens-linux ci/linux
 docker run --rm -v "${PWD}:/src" lens-linux bash ci/linux/build.sh   # build + smoke test
-powershell ci\android\build.ps1                                         # Android arm64-v8a (NDK r27.1)
+powershell ci\android\build.ps1                                         # Android arm64-v8a (NDK r27.1); -Abi x86_64 for the emulator
 ```
 
 ## Testing
@@ -164,9 +165,10 @@ powershell ci\android\build.ps1                                         # Androi
 .venv\Scripts\python.exe -B -m unittest discover -s tests -v
 ```
 
-270 tests pass on Windows (one skipped: no Android device). Tests use temporary directories and invisible test windows
-only; they never read the real screen or open the microphone. The Android companion builds with
-`android\gradlew.bat` (JDK 17).
+270 tests pass on Windows; the Android end-to-end test (`tests/test_android_link.py`) runs when an emulator or device is
+connected and is skipped otherwise. Tests use temporary directories and invisible test windows only; they never read
+the real screen or open the microphone. The Android app builds with `android\gradlew.bat` (JDK 17) after
+`ci\android\build.ps1` has staged its native library.
 
 ## Packaging
 

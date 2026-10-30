@@ -7,10 +7,26 @@ import java.io.File
 import java.time.Instant
 import java.util.UUID
 
-/** Paired laptop, offline note queue and the operations the companion performs over the link. */
+/**
+ * This phone's memory ([LocalMemory], works with no laptop), the paired laptop, and the queue of items waiting for it.
+ * Items are queued for the laptop only while a laptop is paired; pairing later never uploads earlier phone-only items.
+ */
 class LensRepository(private val context: Context) {
     private val prefs = context.getSharedPreferences("lens-link", Context.MODE_PRIVATE)
     private val queueFile = File(context.noBackupFilesDir, "pending-notes.jsonl")  // app-private, excluded from backups
+    private val memoryDir = File(context.noBackupFilesDir, "lens-memory")
+
+    /** This phone's encrypted store; throws IllegalStateException(reason code) when it cannot be opened. */
+    val local: LocalMemory get() = LocalMemory.shared(memoryDir)
+
+    /** Deletes everything Lens stored on this phone (memory, its keys, items waiting for the laptop). */
+    fun eraseLocal() { LocalMemory.erase(memoryDir); synchronized(queueFile) { queueFile.delete() } }
+
+    /** Result of saving one item: [error] is a reason code when this phone did not store it; [delivered] counts laptop deliveries. */
+    data class Saved(val error: String?, val delivered: Int)
+
+    /** An answer and where it came from: the laptop (whole memory) or, when it is unpaired or unreachable, this phone. */
+    data class Answer(val response: JSONObject, val fromPhone: Boolean)
 
     data class Laptop(val hosts: List<String>, val port: Int, val fingerprint: String)
 
@@ -63,13 +79,29 @@ class LensRepository(private val context: Context) {
 
     fun recall(query: String): JSONObject = withLink { it.ask(JSONObject().put("op", "recall").put("query", query).put("limit", 5)) }
 
-    /** Queues a note (works offline) and tries to deliver everything pending. Returns how many were delivered. */
-    fun addNote(text: String, kind: String = "note"): Int {
-        val note = JSONObject().put("op", "add").put("consent", true).put("id", "phone-" + UUID.randomUUID()).put("text", text.take(20000))
-            .put("language", "und").put("timestamp", Instant.now().toString()).put("kind", kind)
+    /** Asks the paired laptop; falls back to this phone's memory when there is no laptop or it cannot be reached. */
+    fun ask(query: String): Answer {
+        if (laptop != null) runCatching { return Answer(recall(query), fromPhone = false) }
+        return Answer(try { local.recall(query) } catch (e: IllegalStateException) { JSONObject().put("ok", false).put("error", e.message) }, fromPhone = true)
+    }
+
+    /** Stores a note on this phone and, when paired, queues it for the laptop and delivers what it can. */
+    fun remember(text: String, kind: String = "note"): Saved =
+        save("phone-" + UUID.randomUUID(), text.take(20000), kind, "Lens", null, null)
+
+    fun addNote(text: String, kind: String = "note"): Int = remember(text, kind).delivered
+
+    private fun save(id: String, text: String, kind: String, app: String, title: String?, metadata: JSONObject?): Saved {
+        val now = Instant.now()
+        val error = try { local.add(id, text, kind, now, app, title?.let { "window:$it" }, metadata).let { if (it.optBoolean("ok")) null else it.optString("error") } }
+                    catch (e: IllegalStateException) { e.message ?: "store_unavailable" }
+        if (error == "sensitive_content_excluded" || laptop == null) return Saved(error, 0)  // the laptop refuses the same content
+        val item = JSONObject().put("op", "add").put("consent", true).put("id", id).put("text", text)
+            .put("language", "und").put("timestamp", now.toString()).put("kind", kind)
             .put("device", "phone").put("provenance", "lens-companion")  // the laptop replaces device and provenance
-        synchronized(queueFile) { queueFile.appendText(note.toString() + "\n") }
-        return flush()
+        metadata?.let { item.put("metadata", it) }
+        synchronized(queueFile) { queueFile.appendText(item.toString() + "\n") }
+        return Saved(error, flush())
     }
 
     /**
@@ -80,15 +112,10 @@ class LensRepository(private val context: Context) {
         get() = prefs.getBoolean("observe_screen", false)
         set(on) { prefs.edit().putBoolean("observe_screen", on).apply() }
 
-    /** Queues new screen text of one app window (only lines not stored before) and delivers what it can. */
-    fun addObservation(text: String, packageName: String, title: String): Int {
-        val note = JSONObject().put("op", "add").put("consent", true).put("id", "phone-screen-" + UUID.randomUUID()).put("text", text.take(4000))
-            .put("language", "und").put("timestamp", Instant.now().toString()).put("kind", "screen_observation")
-            .put("device", "phone").put("provenance", "lens-companion")  // the laptop replaces device and provenance
-            .put("metadata", JSONObject().put("package", packageName.take(128)).put("window_title", title.take(256)).put("capture", "android_accessibility"))
-        synchronized(queueFile) { queueFile.appendText(note.toString() + "\n") }
-        return flush()
-    }
+    /** Stores new screen text of one app window (only lines not stored before); queued for the laptop when paired. */
+    fun addObservation(text: String, packageName: String, title: String): Int =
+        save("phone-screen-" + UUID.randomUUID(), text.take(4000), "screen_observation", packageName.take(128), title.take(256),
+            JSONObject().put("package", packageName.take(128)).put("window_title", title.take(256)).put("capture", "android_accessibility")).delivered
 
     fun pending(): Int = synchronized(queueFile) { if (queueFile.exists()) queueFile.readLines().count { it.isNotBlank() } else 0 }
 
