@@ -105,7 +105,15 @@ class Mesh(unittest.TestCase):
         add={'op':'add','consent':True,'id':'phone-1','text':'Synthetic phone note: call Ana about the venue.','language':'en',
              'timestamp':'2026-10-27T10:00:00Z','device':'laptop','kind':'note','provenance':'forged','source_application':'forged'}
         self.assertTrue(link.ask(add)['ok'])
-        self.assertEqual(link.ask({**add,'id':'phone-2','kind':'screen_observation'})['error'],'not_allowed')
+        self.assertEqual(link.ask({**add,'id':'phone-2','kind':'screen_observation','consent':False})['error'],'not_allowed')
+        self.assertEqual(link.ask({**add,'id':'phone-2b','kind':'clipboard'})['error'],'not_allowed')
+        screen={**add,'id':'phone-3','kind':'screen_observation','text':'Synthetic phone screen: the Kestrel venue is booked.',
+                'metadata':{'package':'com.example.mail','window_title':'Inbox','capture':'android_accessibility'}}
+        self.assertTrue(link.ask(screen)['ok'])
+        s3=self.pipe.ask({'op':'find_source','id':'phone-3'})['source']
+        self.assertEqual(s3['source_application'],'android:com.example.mail');self.assertEqual(s3['consent_context']['mode'],'paired_device_screen')
+        forged={**screen,'id':'phone-4','metadata':{'package':'evil; rm -rf /'}}
+        self.assertTrue(link.ask(forged)['ok']);self.assertEqual(self.pipe.ask({'op':'find_source','id':'phone-4'})['source']['source_application'],'lens-companion')
         src=self.pipe.ask({'op':'find_source','id':'phone-1'})['source']
         self.assertEqual(src['device'],'Pixel');self.assertTrue(src['provenance'].startswith('lens-mesh paired device'))
         self.assertEqual(src['source_application'],'lens-companion');self.assertEqual(src['consent_context']['mode'],'paired_device')

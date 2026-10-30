@@ -72,6 +72,24 @@ class LensRepository(private val context: Context) {
         return flush()
     }
 
+    /**
+     * Phone screen observation, off by default: on only while the user has switched it on in Lens *and* enabled the
+     * Lens accessibility service in Android settings. Turning it off here stops capture at once.
+     */
+    var observeScreen: Boolean
+        get() = prefs.getBoolean("observe_screen", false)
+        set(on) { prefs.edit().putBoolean("observe_screen", on).apply() }
+
+    /** Queues new screen text of one app window (only lines not stored before) and delivers what it can. */
+    fun addObservation(text: String, packageName: String, title: String): Int {
+        val note = JSONObject().put("op", "add").put("consent", true).put("id", "phone-screen-" + UUID.randomUUID()).put("text", text.take(4000))
+            .put("language", "und").put("timestamp", Instant.now().toString()).put("kind", "screen_observation")
+            .put("device", "phone").put("provenance", "lens-companion")  // the laptop replaces device and provenance
+            .put("metadata", JSONObject().put("package", packageName.take(128)).put("window_title", title.take(256)).put("capture", "android_accessibility"))
+        synchronized(queueFile) { queueFile.appendText(note.toString() + "\n") }
+        return flush()
+    }
+
     fun pending(): Int = synchronized(queueFile) { if (queueFile.exists()) queueFile.readLines().count { it.isNotBlank() } else 0 }
 
     fun flush(): Int = synchronized(queueFile) {

@@ -1381,5 +1381,19 @@ travel in `metadata`).
   Linux smoke on Xvfb with a synthetic GTK 4 window (lens-observer-testapp): the window's note is stored as a
   screen_observation, the password field is never read, an edit is captured, the observer stops cleanly, and the agent
   starts/stops it with consent. Smoke now 29/29 PASS (OCR parity with the small recogniser: 1.75%, as on Windows).
-- Not ported yet: observation on macOS (Accessibility + ScreenCaptureKit) and Android (Accessibility Service), the
-  Android app's use of the native core, sign-in autostart off Windows. No real Linux desktop session tested. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.
+- macOS observer (engine/observer/os_window_mac.mm, uia_text_ax.mm, capture_mac.mm): the frontmost/followed
+  application's focused window through the Accessibility API (visible character range of text areas, secure text fields
+  never read, elements outside the window skipped), ScreenCaptureKit for the OCR fallback; refuses to start without the
+  user's Accessibility permission. GitHub's macOS runner (which grants that permission) builds it and the smoke test
+  passes there (language labeller, refusal without consent, clean start and stop); no capture of a real macOS window
+  has been verified.
+- Android phone observer (android/app ScreenObserverService, android/core ScreenText.kt): Android's accessibility tree
+  of the app in front, only while the user has both enabled "Lens screen memory" in Android accessibility settings
+  and switched "Observe phone screen" on in Lens (off by default); never password fields, Lens itself, password
+  managers, the lock screen, system settings/permission prompts or private-browsing tabs; content must settle for 2 s;
+  only lines new to that app window are queued and sent to the paired laptop of the same account, where lens-mesh
+  stores them as `screen_observation` with consent mode `paired_device_screen` and source `android:<package>` (only a
+  plausible package name; anything else stays "lens-companion"). JVM unit tests 11/11 (ScreenTextTest 5 new), debug APK
+  builds; tests/test_mesh.py covers the laptop side. Not run on a phone or emulator.
+- Not ported yet: the Android app's use of the native core (memory stays on the laptop), sign-in autostart off Windows.
+  No real Linux desktop session tested. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.

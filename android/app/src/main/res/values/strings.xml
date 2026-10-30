@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="screen_observer_description">Lens reads the text on your screen into your private Lens memory on your own laptop. It never reads password fields, password managers, the lock screen or private browsing tabs, and it stops as soon as you turn it off in Lens or here.</string>
+</resources>

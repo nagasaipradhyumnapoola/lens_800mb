@@ -163,7 +163,8 @@ struct Agent {
 };
 
 const std::set<std::string> remote_read={"ping","recall","search","episodes","episode_context","find_source","timeline","entities","entity_context","facts","projects","project_context"};
-const std::set<std::string> remote_kinds={"note","voice_note","share","reminder"};
+const std::set<std::string> remote_kinds={"note","voice_note","share","reminder","screen_observation"};  // screen: the phone's own
+                                                                                                         // opt-in observer
 
 std::vector<std::string> local_ipv4() {
     std::vector<std::string> out;ULONG size=15000;std::vector<BYTE> buf(size);
@@ -249,7 +250,13 @@ int wmain(int argc,wchar_t** argv) {
                         auto a=req;const auto kind=a.value("kind",std::string());
                         if(!a.value("consent",false)||!remote_kinds.count(kind)){send({{"ok",false},{"error","not_allowed"}});continue;}
                         a["device"]=device->at("name");a["provenance"]="lens-mesh paired device "+fp.substr(0,16);
-                        a["consent_context"]={{"mode","paired_device"},{"device_fingerprint",fp}};a["source_application"]="lens-companion";
+                        a["consent_context"]={{"mode",kind=="screen_observation"?"paired_device_screen":"paired_device"},{"device_fingerprint",fp}};
+                        a["source_application"]="lens-companion";
+                        if(kind=="screen_observation") {  // the observed Android app, when it is a plausible package name
+                            const auto meta=a.value("metadata",json::object());const auto pkg=meta.is_object()?meta.value("package",std::string()):std::string();
+                            if(!pkg.empty()&&pkg.size()<=128&&std::all_of(pkg.begin(),pkg.end(),[](char c){return std::isalnum(static_cast<unsigned char>(c))||c=='.'||c=='_';}))
+                                a["source_application"]="android:"+pkg;
+                        }
                         send(agent.ask(a));continue;
                     }
                     send({{"ok",false},{"error","unsupported_operation"}});

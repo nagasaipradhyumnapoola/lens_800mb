@@ -106,6 +106,17 @@ fun HomeScreen(repo: LensRepository, onUnpair: () -> Unit) {
             }
         } ?: Spacer(Modifier.weight(1f))
         HorizontalDivider(color = MaterialTheme.colorScheme.outline)
+        var observing by remember { mutableStateOf(repo.observeScreen) }
+        val context = androidx.compose.ui.platform.LocalContext.current
+        Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+            Column(Modifier.weight(1f)) {
+                Text("Observe phone screen", fontWeight = FontWeight.SemiBold)
+                Text("Off unless you turn it on here and enable “Lens screen memory” in Android accessibility settings. Never reads passwords, password managers or private tabs.",
+                    color = MaterialTheme.colorScheme.onSurfaceVariant, fontSize = 12.sp)
+            }
+            Switch(observing, { on -> repo.observeScreen = on; observing = on
+                if (on) context.startActivity(android.content.Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS)) })
+        }
         OutlinedTextField(note, { note = it }, label = { Text("Quick note to remember") }, modifier = Modifier.fillMaxWidth())
         Button(enabled = note.isNotBlank(), onClick = {
             val text = note; note = ""
