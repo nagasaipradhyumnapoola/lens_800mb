@@ -20,7 +20,7 @@ VERSION='0.3.0-dev'
 EXES=['lens-agent.exe','lens-app.exe','lens-engine.exe','lens-mesh.exe','lens-observer.exe','lens-ocr.exe','lens-voice.exe','lens-sherpa.exe','lens-tts.exe']
 DLLS=['sqlcipher.dll','libcrypto-3-x64.dll','libssl-3-x64.dll','zstd.dll','whisper.dll','ggml.dll','ggml-base.dll']
 CRT=Path(r'C:\Program Files\Microsoft Visual Studio\18\Community\VC\Redist\MSVC\14.51.36231\x64\Microsoft.VC145.CRT')
-OCR_MODELS=['PP-OCRv5_mobile_det','PP-OCRv6_tiny_rec','devanagari_PP-OCRv5_mobile_rec','ta_PP-OCRv5_mobile_rec','te_PP-OCRv5_mobile_rec']
+OCR_MODELS=['PP-OCRv5_mobile_det','PP-OCRv6_small_rec','devanagari_PP-OCRv5_mobile_rec','ta_PP-OCRv5_mobile_rec','te_PP-OCRv5_mobile_rec']
 WHISPER=['ggml-base-q5_1.bin','ggml-tiny-q5_1.bin']
 # English speech: Canary-180M-flash (input, lens-sherpa route) and Kokoro + misaki (spoken replies, lens-tts)
 SPEECH=['models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/','models/Lens--kokoro-82m-mixed-int8/','models/hexgrad--misaki/us_',

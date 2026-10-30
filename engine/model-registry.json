@@ -12,5 +12,5 @@
     "auto": {"model":"ggml-base-q5_1.bin","status":"experimental language detection; worldwide quality unverified"}
   },
   "extraction": {"model":"needle3.cact","status":"experimental; unsafe routing/factual errors in smoke set; never execute its calls"},
-  "ocr": {"global":"PP-OCRv6_tiny_rec","hindi":"devanagari_PP-OCRv5_mobile_rec","status":"native recognition-crop adapter tested; screenshot detection and real UI validation pending"}
+  "ocr": {"global":"PP-OCRv6_small_rec","hindi":"devanagari_PP-OCRv5_mobile_rec","status":"native recognition-crop adapter tested; screenshot detection and real UI validation pending"}
 }

@@ -1,0 +1,1470 @@
+{
+ "created_utc": "20261030T043611Z",
+ "worker": "lens-ocr.exe mode=screen",
+ "set": "en-hard-dev",
+ "manifest_sha256": "62720efb25671ae0c85f522aed4853182abdb1ff93f17ce28c426173849bbc75",
+ "det": "v5",
+ "det_pixels": 409600,
+ "only": null,
+ "route": "oracle",
+ "threads": 2,
+ "te_recognizer": "PaddlePaddle--te_PP-OCRv5_mobile_rec",
+ "recognizer_overrides": [
+  "general=PaddlePaddle--PP-OCRv6_medium_rec"
+ ],
+ "tag": "dev-mobile-medium",
+ "merge_lines": true,
+ "te_onnx_sha256": "636f40684474dc5a9d5aa321018d9a591deff5f9d7eec6230b1576482637a48b",
+ "metric": "page CER on NFC text, ZWNJ/ZWJ removed, whitespace collapsed (page_cer_raw: without NFC/ZW removal)",
+ "edge_version": "156.0.4314.50",
+ "summary": {
+  "en": {
+   "page_cer": 0.020400878956368107,
+   "page_cer_raw": 0.020400878956368107,
+   "line_accuracy": 0.9387008547008547
+  },
+  "latency_ms": {
+   "full_compute_p50": 8741.3207,
+   "full_compute_p95": 13345.454240000001,
+   "region_compute_p50": 564.7331999999999,
+   "region_compute_p95": 1790.0606199999963,
+   "region_wall_p50": 1345.1267999917036,
+   "full_wall_p50": 9402.37939999497
+  },
+  "peak_working_set_mb_max": 209.092608
+ },
+ "rows": [
+  {
+   "name": "small-ui-9px-light-0",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 794.5137,
+     "detector_load": 168.579,
+     "recognize": 3473.8707,
+     "recognizer_load": 446.2124
+    },
+    "wall_ms": 5052.92560000089,
+    "peak_working_set_bytes": 199299072,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     455,
+     45
+    ],
+    "timing_ms": {
+     "detect": 27.106,
+     "detector_load": 153.917,
+     "recognize": 616.3845,
+     "recognizer_load": 401.5685
+    },
+    "wall_ms": 1370.8862000057707,
+    "peak_working_set_bytes": 197341184,
+    "text": [
+     "Settings",
+     "Backup schedule Automatic",
+     "Spell check Never"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Settings",
+    "Backup schedule Automatic",
+    "Spell check Never",
+    "Microphone access 17%",
+    "Night light 7%",
+    "Time zone 95%",
+    "Show notifications 6%",
+    "Pointer speed Off",
+    "Keyboard shortcuts Automatic",
+    "Automatic updates 28%",
+    "Sync over metered connections Off",
+    "Text size 56%",
+    "Screen timeout Never"
+   ]
+  },
+  {
+   "name": "small-ui-10px-dark-1",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 771.7687,
+     "detector_load": 172.327,
+     "recognize": 3209.8136,
+     "recognizer_load": 443.558
+    },
+    "wall_ms": 4771.469400002388,
+    "peak_working_set_bytes": 200007680,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     451,
+     40
+    ],
+    "timing_ms": {
+     "detect": 25.3633,
+     "detector_load": 176.3973,
+     "recognize": 392.87519999999995,
+     "recognizer_load": 385.0923
+    },
+    "wall_ms": 1180.7906000030925,
+    "peak_working_set_bytes": 196677632,
+    "text": [
+     "ung",
+     "Time zone Off"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Settings",
+    "Time zone Off",
+    "Spell check Never",
+    "Night light Off",
+    "Pointer speed Never",
+    "Automatic updates On",
+    "Sync over metered connections On",
+    "Microphone access Never",
+    "Backup schedule Never",
+    "Show notifications Automatic",
+    "Keyboard shortcuts Never",
+    "Text size Automatic",
+    "Screen timeout Off"
+   ]
+  },
+  {
+   "name": "small-ui-11px-low-2",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 744.5337,
+     "detector_load": 192.304,
+     "recognize": 3250.0643,
+     "recognizer_load": 466.7503
+    },
+    "wall_ms": 4838.939199995366,
+    "peak_working_set_bytes": 200040448,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     455,
+     48
+    ],
+    "timing_ms": {
+     "detect": 20.2138,
+     "detector_load": 162.3309,
+     "recognize": 634.719,
+     "recognizer_load": 414.4955
+    },
+    "wall_ms": 1406.3269999896875,
+    "peak_working_set_bytes": 197390336,
+    "text": [
+     "Settings",
+     "Time zone Off",
+     "Night light Never"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Settings",
+    "Time zone Off",
+    "Night light Never",
+    "Spell check Off",
+    "Text size Off",
+    "Microphone access 44%",
+    "Automatic updates On",
+    "Show notifications Never",
+    "Backup schedule 75%",
+    "Keyboard shortcuts On",
+    "Pointer speed 29%",
+    "Screen timeout 91%",
+    "Sync over metered connections 16%"
+   ]
+  },
+  {
+   "name": "small-ui-10px-light-3",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 772.2944,
+     "detector_load": 155.5262,
+     "recognize": 3261.4715,
+     "recognizer_load": 426.2749
+    },
+    "wall_ms": 4783.692199998768,
+    "peak_working_set_bytes": 200581120,
+    "boxes": 25
+   },
+   "region": {
+    "size": [
+     457,
+     50
+    ],
+    "timing_ms": {
+     "detect": 18.8344,
+     "detector_load": 179.3327,
+     "recognize": 684.5258,
+     "recognizer_load": 351.2015
+    },
+    "wall_ms": 1424.7169000009308,
+    "peak_working_set_bytes": 196677632,
+    "text": [
+     "Settings",
+     "Screen timeout 24%",
+     "Backup schedule Off"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Settings",
+    "Screen timeout 24%",
+    "Backup schedule Off",
+    "Night light On",
+    "Keyboard shortcuts 72%",
+    "Text size On",
+    "Time zone Off",
+    "Spell check On",
+    "Automatic updates Automatic",
+    "Pointer speed Automatic",
+    "Show notifications Never",
+    "Microphone access 10%",
+    "Sync over metered connections 35%"
+   ]
+  },
+  {
+   "name": "code-python-dark",
+   "language": "en",
+   "page_cer": 0.03884892086330935,
+   "page_cer_raw": 0.03884892086330935,
+   "line_accuracy": 0.7,
+   "full": {
+    "timing_ms": {
+     "detect": 778.3293,
+     "detector_load": 170.4748,
+     "recognize": 12312.784800000001,
+     "recognizer_load": 347.5271
+    },
+    "wall_ms": 13810.38469998748,
+    "peak_working_set_bytes": 199749632,
+    "boxes": 81
+   },
+   "region": {
+    "size": [
+     125,
+     40
+    ],
+    "timing_ms": {
+     "detect": 6.5141,
+     "detector_load": 189.1289,
+     "recognize": 417.7005,
+     "recognizer_load": 427.8178
+    },
+    "wall_ms": 1236.915899993619,
+    "peak_working_set_bytes": 197300224,
+    "text": [
+     "1 import CSV"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "python_module.py X",
+    "1 import CSV",
+    "2 from pathlib import Path",
+    "4 def load_invoices(folder: Path) −> list[dict]:",
+    "5 \"\"\"Read every CSV invoice in the folder. \"",
+    "6 rows = []",
+    "7 for path in sorted(folder.glob(\"*.csv\")):",
+    "8 with path.open(newline=\"\" encoding=\"utf-8\" \") as f:",
+    "9 for row in csv.DictReader(f):",
+    "10 row[' \"amount\"] = float(row[ \"amount\"])",
+    "11 rows.append(row)",
+    "12 return rows",
+    "14 def total _by_vendor(rows):",
+    "15 totals = {}",
+    "16 for row in rows:",
+    "17 totals[row[\"vendor\"]] = totals.get(row[\"vendor\"], , 0) ) + row[\"amount\"]",
+    "18 return dict(sorted(totals.items(), key=lambda kv: -kv[1]))",
+    "20 if name == H main \":",
+    "21 print(total_by_vendor(load_invoices(Path(\"data/2026\"))))",
+    "Ln 31, Col 22 Spaces: 4 UTF-8 Python"
+   ]
+  },
+  {
+   "name": "code-python-light",
+   "language": "en",
+   "page_cer": 0.025899280575539568,
+   "page_cer_raw": 0.025899280575539568,
+   "line_accuracy": 0.9,
+   "full": {
+    "timing_ms": {
+     "detect": 801.7744,
+     "detector_load": 183.4637,
+     "recognize": 8106.348499999999,
+     "recognizer_load": 407.9885
+    },
+    "wall_ms": 9664.486800000304,
+    "peak_working_set_bytes": 199294976,
+    "boxes": 45
+   },
+   "region": {
+    "size": [
+     124,
+     40
+    ],
+    "timing_ms": {
+     "detect": 8.0401,
+     "detector_load": 203.7231,
+     "recognize": 287.16299999999995,
+     "recognizer_load": 409.0301
+    },
+    "wall_ms": 1082.1221999940462,
+    "peak_working_set_bytes": 196804608,
+    "text": [
+     "1 import csv"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "python_module.py X",
+    "1 import csv",
+    "2 from pathlib import Path",
+    "4 def load_invoices(folder: Path) -> list[dict]:",
+    "5",
+    "\"\"\"Read every CSV invoice in the folder.\"\"\"",
+    "6 rows = []",
+    "7",
+    "for path in sorted(folder.glob(\"*.csv\")):",
+    "8 with path.open(newline=\"\", encoding=\"utf-8\") as f:",
+    "9 for row in csv.DictReader(f):",
+    "10 row[\"amount\"] = float(row[\"amount\"])",
+    "11 rows.append(row)",
+    "12 return rows",
+    "14 def total_by_vendor(rows):",
+    "15 totals = {}",
+    "16 for row in rows:",
+    "17 totals[row[\"vendor\"]] = totals.get(row[\"vendor\"], 0) + row[\"amount\"]",
+    "18 return dict(sorted(totals.items(), key=lambda kv: -kv[1]))",
+    "20 if name",
+    "1",
+    "main",
+    "21 print(total_by_vendor(load_invoices(Path(\"data/2026\"))))",
+    "Ln 13, Col 18 Spaces: 4 UTF-8 Python"
+   ]
+  },
+  {
+   "name": "code-javascript-dark",
+   "language": "en",
+   "page_cer": 0.008683068017366137,
+   "page_cer_raw": 0.008683068017366137,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 716.0783,
+     "detector_load": 179.459,
+     "recognize": 11881.319300000001,
+     "recognizer_load": 380.7706
+    },
+    "wall_ms": 13348.797400001786,
+    "peak_working_set_bytes": 200392704,
+    "boxes": 70
+   },
+   "region": {
+    "size": [
+     393,
+     42
+    ],
+    "timing_ms": {
+     "detect": 22.3422,
+     "detector_load": 173.8563,
+     "recognize": 516.0217,
+     "recognizer_load": 398.2198
+    },
+    "wall_ms": 1281.6832000098657,
+    "peak_working_set_bytes": 196288512,
+    "text": [
+     "1 // Debounced search box for the project list"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "javascript_module.js X",
+    "1 // Debounced search box for the project list",
+    "2 const input = document.querySelector(\"#search\");",
+    "3 let timer = null;",
+    "5 function render(items) {",
+    "6 const list = document.getElementById(\"results\");",
+    "7 list.innerHTML = items.map(i => `<li>${i.name} (${i.owner})</li>`).join(\"' );",
+    "8 }",
+    "10 input.addEventListener(\"input\", (event) => {",
+    "11 clearTimeout(timer);",
+    "12 timer = setTimeout(async () => {",
+    "13 const à = encodeURIComponent(event.target.value.trim());",
+    "14 const res = await fetch(`/api/projects?q=${q}&limit=25`);",
+    "15 if (!res.ok) { console.error(\"search failed\" \", res.status); return; }",
+    "16 render(await res.json());",
+    "17 }, 250);",
+    "18 });",
+    "Ln 38, Col 18 Spaces: 4 UTF-8 Javascript"
+   ]
+  },
+  {
+   "name": "code-javascript-light",
+   "language": "en",
+   "page_cer": 0.010130246020260492,
+   "page_cer_raw": 0.010130246020260492,
+   "line_accuracy": 0.9444444444444444,
+   "full": {
+    "timing_ms": {
+     "detect": 1177.5784,
+     "detector_load": 177.3314,
+     "recognize": 7357.1024,
+     "recognizer_load": 371.7335
+    },
+    "wall_ms": 9279.295300002559,
+    "peak_working_set_bytes": 201457664,
+    "boxes": 36
+   },
+   "region": {
+    "size": [
+     485,
+     47
+    ],
+    "timing_ms": {
+     "detect": 31.3932,
+     "detector_load": 213.8051,
+     "recognize": 496.7459,
+     "recognizer_load": 473.3741
+    },
+    "wall_ms": 1386.1662999988766,
+    "peak_working_set_bytes": 197177344,
+    "text": [
+     "1 // Debounced search box for the project list"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "javascript_module.js x",
+    "1 // Debounced search box for the project list",
+    "2 const input = document.querySelector(\"#search\");",
+    "3 let timer = null;",
+    "5 function render(items) {",
+    "6",
+    "const list = document.getElementById(\"results\");",
+    "list.innerHTML = items.map(i => `<li>${i.name} (${i.owner})</li>).join(\"\");",
+    "1",
+    "8",
+    "10 input.addEventListener(\"input\", (event) => {",
+    "11 clearTimeout(timer);",
+    "12 timer = setTimeout(async () => {",
+    "13 const q = encodeURIComponent(event.target.value.trim());",
+    "14 const res = await fetch(`/api/projects?q=${q}&limit=25`);",
+    "15 if (!res.ok) { console.error(\"search failed\", res.status); return; }",
+    "16 render(await res.json());",
+    "17 }, 250);",
+    "18 });",
+    "Ln 21, Col 11 Spaces: 4 UTF-8 Javascript"
+   ]
+  },
+  {
+   "name": "code-sql-dark",
+   "language": "en",
+   "page_cer": 0.032586558044806514,
+   "page_cer_raw": 0.032586558044806514,
+   "line_accuracy": 0.6666666666666666,
+   "full": {
+    "timing_ms": {
+     "detect": 713.1766,
+     "detector_load": 169.0637,
+     "recognize": 9115.029999999999,
+     "recognizer_load": 344.9835
+    },
+    "wall_ms": 10526.178799991612,
+    "peak_working_set_bytes": 199974912,
+    "boxes": 68
+   },
+   "region": {
+    "size": [
+     368,
+     40
+    ],
+    "timing_ms": {
+     "detect": 21.3824,
+     "detector_load": 161.3587,
+     "recognize": 543.3507999999999,
+     "recognizer_load": 371.6851
+    },
+    "wall_ms": 1295.614899994689,
+    "peak_working_set_bytes": 196390912,
+    "text": [
+     "1 -- Monthly revenue per region, last 6 months"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "sql_module.sq1 X",
+    "1 Monthly revenue per region, last 6 months",
+    "2 SELECT r.name AS region,",
+    "3 date_trunc( 'month' 3 o.created_at) AS month,",
+    "4 SUM(o.total_ _cents) I 100.0 AS revenue,",
+    "5 COUNT(DISTINCT o.customer_id) AS customers",
+    "6 FROM orders o",
+    "7 JOIN regions r ON r.id = o.region_id",
+    "8 WHERE o.status = 'paid'",
+    "9 AND o.created_at >= now() interval 6 months",
+    "10 GROUP BY 1, 2",
+    "11 HAVING SUM(o.total_cents) > 500000",
+    "12 ORDER BY month DESC, revenue DESC",
+    "13 LIMIT 50;",
+    "Ln 2, Col 30 Spaces: 4 UTF-8 Sq1"
+   ]
+  },
+  {
+   "name": "code-sql-light",
+   "language": "en",
+   "page_cer": 0.010183299389002037,
+   "page_cer_raw": 0.010183299389002037,
+   "line_accuracy": 0.9333333333333333,
+   "full": {
+    "timing_ms": {
+     "detect": 711.9143,
+     "detector_load": 194.3865,
+     "recognize": 5651.6242999999995,
+     "recognizer_load": 390.4399
+    },
+    "wall_ms": 7147.357499998179,
+    "peak_working_set_bytes": 200085504,
+    "boxes": 31
+   },
+   "region": {
+    "size": [
+     366,
+     43
+    ],
+    "timing_ms": {
+     "detect": 26.1874,
+     "detector_load": 181.2655,
+     "recognize": 577.0346,
+     "recognizer_load": 362.6671
+    },
+    "wall_ms": 1334.3738999974448,
+    "peak_working_set_bytes": 197238784,
+    "text": [
+     "1 -- Monthly revenue per region, last 6 months"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "sql_module.sql x",
+    "1 -- Monthly revenue per region, last 6 months",
+    "2 SELECT r.name AS region,",
+    "3 date_trunc('month', o.created_at) AS month,",
+    "4",
+    "SUM(o.total_cents) / 100.0 AS revenue,",
+    "5 COUNT(DISTINCT o.customer_id) AS customers",
+    "6 FROM orders o",
+    "JOIN regions r ON r.id = o.region_id",
+    "8 WHERE o.status = 'paid'",
+    "9",
+    "AND o.created_at >= now() - interval '6 months'",
+    "10 GROUP BY 1, 2",
+    "11 HAVING SUM(o.total_cents) > 500000",
+    "12 ORDER BY month DESC, revenue DESC",
+    "13 LIMIT 50;",
+    "Ln 9, Col 10 Spaces: 4 UTF-8 Sq1"
+   ]
+  },
+  {
+   "name": "terminal-shell-0",
+   "language": "en",
+   "page_cer": 0.08395802098950525,
+   "page_cer_raw": 0.08395802098950525,
+   "line_accuracy": 0.8666666666666667,
+   "full": {
+    "timing_ms": {
+     "detect": 706.6403,
+     "detector_load": 164.4416,
+     "recognize": 6354.9439,
+     "recognizer_load": 352.4475
+    },
+    "wall_ms": 7754.134300004807,
+    "peak_working_set_bytes": 199876608,
+    "boxes": 33
+   },
+   "region": {
+    "size": [
+     130,
+     39
+    ],
+    "timing_ms": {
+     "detect": 8.1476,
+     "detector_load": 167.5038,
+     "recognize": 513.715,
+     "recognizer_load": 419.7165
+    },
+    "wall_ms": 1270.7258999871556,
+    "peak_working_set_bytes": 197275648,
+    "text": [
+     "zara@bu11d-5:~71",
+     "On branch main"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "zara@build-5:~/projects/report$ git status",
+    "On branch main",
+    "Your branch is up to date with 'origin/main'",
+    "Changes not staged for commit:",
+    "modified: src/deadline.py",
+    "modified: tests/test_deadline.py",
+    "zara@build-3:~/projects/budget$ 1s -1 reports",
+    "-rw-r- -r- 1 zara staff 54833 Nov 14 16:20 template-67.pdf",
+    "-rw-r- −r-− 1 zara staff 19680 Mar 14 23:56 migration-86.pdf",
+    "-rw-r--r-- 1 zara staff 27780 Mar 4 23:56 renewal-16.json",
+    "-rw-r--r-- 1 zara staff 67832 Jan 21 18:32 license-86.docx",
+    "-rw-r--r-- 1 zara staff 36249 Nov 19 21:19 report-66.1og",
+    "zara@build-8:~/projects/sprint$ python -m pytest -q",
+    "[100%]",
+    "73 passed, 0 failed in 2.77s"
+   ]
+  },
+  {
+   "name": "terminal-powershell-1",
+   "language": "en",
+   "page_cer": 0.07751937984496124,
+   "page_cer_raw": 0.07751937984496124,
+   "line_accuracy": 0.8,
+   "full": {
+    "timing_ms": {
+     "detect": 734.1254,
+     "detector_load": 181.7419,
+     "recognize": 7528.7251,
+     "recognizer_load": 353.2995
+    },
+    "wall_ms": 8981.007099995622,
+    "peak_working_set_bytes": 199872512,
+    "boxes": 50
+   },
+   "region": {
+    "size": [
+     130,
+     39
+    ],
+    "timing_ms": {
+     "detect": 7.6952,
+     "detector_load": 178.1614,
+     "recognize": 551.1984,
+     "recognizer_load": 412.3735
+    },
+    "wall_ms": 1345.1267999917036,
+    "peak_working_set_bytes": 197148672,
+    "text": [
+     "users\\e1 e",
+     "On branch main"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "PS C:\\Users\\elena\\license> git status",
+    "On branch main",
+    "Your branch : is up to date with 'origin/main'",
+    "Changes not staged for commit:",
+    "modified: src/renewal.py",
+    "modified: tests/test_estimate.py",
+    "PS C:\\Users\\elena\\estimate> ls -1 reports",
+    "-rw-r- -r-- 1 elena staff 49093 Nov 9 10:36 pipeline-31.md",
+    "-rw-r- -ã: 1 elena staff 24262 Mar 22 17:35 license-39.pdf",
+    "-rw-r- -r-- 1 elena staff 90447 Mar 15 18:26 budget-75.json",
+    "-rw-r--r-- 1 elena staff 24384 Nov 4 17:52 license-57.log",
+    "-rw-r--r-- 1 elena staff 39877 Jan 27 22:57 pipeline-71.log",
+    "PS C:\\Users\\elena\\sprint> python -m pytest -q",
+    "[100%]",
+    "62 passed, 0 failed in 3.65s"
+   ]
+  },
+  {
+   "name": "terminal-shell-2",
+   "language": "en",
+   "page_cer": 0.08395802098950525,
+   "page_cer_raw": 0.08395802098950525,
+   "line_accuracy": 0.9333333333333333,
+   "full": {
+    "timing_ms": {
+     "detect": 2907.9846,
+     "detector_load": 178.9548,
+     "recognize": 6237.0122,
+     "recognizer_load": 433.0658
+    },
+    "wall_ms": 9955.333099991549,
+    "peak_working_set_bytes": 204136448,
+    "boxes": 27
+   },
+   "region": {
+    "size": [
+     203,
+     50
+    ],
+    "timing_ms": {
+     "detect": 8.6489,
+     "detector_load": 179.608,
+     "recognize": 194.1603,
+     "recognizer_load": 503.6173
+    },
+    "wall_ms": 1083.285699991393,
+    "peak_working_set_bytes": 196382720,
+    "text": [
+     "On branch main"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "maya@build-7:~/projects/license$ git status",
+    "On branch main",
+    "Your branch is up to date with 'origin/main'.",
+    "Changes not staged for commit:",
+    "modified: src/budget.py",
+    "modified: tests/test_invoice.py",
+    "maya@build-4:~/projects/survey$ 1s -1 reports",
+    "-rw-r--r-- 1 maya staff 19981 Jul 13 13:48 pipeline-99.txt",
+    "-rw-r--r-- 1 maya staff 4903 Mar 12 14:51 summary-96.1og",
+    "-rw-r--r-- 1 maya staff 57577 Jan 18 19:22 budget-89.json",
+    "-rw-r--r-- 1 maya staff 85536 Sep 5 17:36 backlog-89.pdf",
+    "-rw-r--r-- 1 maya staff 1875 Sep 13 17:16 1icense-44.txt",
+    "maya@build-9:~/projects/contract$ python -m pytest -q",
+    "[100%]",
+    "70 passed, 2 failed in 7.31s"
+   ]
+  },
+  {
+   "name": "browser-light-0",
+   "language": "en",
+   "page_cer": 0.004702194357366771,
+   "page_cer_raw": 0.004702194357366771,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 893.7638,
+     "detector_load": 163.214,
+     "recognize": 5763.566199999999,
+     "recognizer_load": 456.283
+    },
+    "wall_ms": 7466.821699999855,
+    "peak_working_set_bytes": 200036352,
+    "boxes": 17
+   },
+   "region": {
+    "size": [
+     383,
+     47
+    ],
+    "timing_ms": {
+     "detect": 23.7631,
+     "detector_load": 160.4944,
+     "recognize": 651.1433,
+     "recognizer_load": 370.8813
+    },
+    "wall_ms": 1392.1551999956137,
+    "peak_working_set_bytes": 196603904,
+    "text": [
+     "Survey Budget Migration Invoice Backlog"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "https://www.fabrikam.com/summary/830?ref=home",
+    "Survey Budget Migration Invoice Backlog",
+    "We will reopen version 9.7.1 after the backlog call",
+    "Please merge the attached backlog and reply by 12:00 pm.",
+    "Please reopen the attached deadline and reply by 6:00 am.",
+    "Chloe shared budget-59.log with 44 people.",
+    "Total for the invoice: $1,389.16 across 33 items.",
+    "Fabrikam moved the migration review to Wing C.",
+    "Nadia shared survey-95.md with 26 people.",
+    "Please rename the attached backlog and reply by 9:15 pm",
+    "Please verify the attached estimate and reply by 7:45 am.",
+    "Fabrikam moved the survey review to Room 1.14.",
+    "© 2026 Adatum - Privacy - Terms · Contact"
+   ]
+  },
+  {
+   "name": "browser-dark-1",
+   "language": "en",
+   "page_cer": 0.008012820512820512,
+   "page_cer_raw": 0.008012820512820512,
+   "line_accuracy": 0.9230769230769231,
+   "full": {
+    "timing_ms": {
+     "detect": 2837.4052,
+     "detector_load": 202.3285,
+     "recognize": 6114.8174,
+     "recognizer_load": 343.9707
+    },
+    "wall_ms": 9700.476900005015,
+    "peak_working_set_bytes": 204451840,
+    "boxes": 22
+   },
+   "region": {
+    "size": [
+     609,
+     55
+    ],
+    "timing_ms": {
+     "detect": 25.4139,
+     "detector_load": 165.6899,
+     "recognize": 717.6780000000001,
+     "recognizer_load": 400.1087
+    },
+    "wall_ms": 1508.8500999991084,
+    "peak_working_set_bytes": 196825088,
+    "text": [
+     "Forecast Migration Backlog Template Deadline"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "https://www.northwind.com/survey/943?ref=home",
+    "Forecast Migration Backlog Template Deadline",
+    "Adatum moved the contract review to Room 1.14",
+    "Total for the budget: $47,176.01 across 33 items.",
+    "Zara shared pipeline-28.docx with 5 people.",
+    "Litware moved the estimate review to Wing g C.",
+    "Litware moved the invoice review to Floor 9.",
+    "Total for the license: $74,110.33 across 21 items.",
+    "Hannah shared budget-93.log with 23 people.",
+    "Please confirm the attached budget and reply by 11:00 am.",
+    "The migration for Lucerne is due on 15 Nov 2027.",
+    "Priya asked the team to merge the estimate before Friday.",
+    "© 2026 Fabrikam - Privacy - Terms - Contact"
+   ]
+  },
+  {
+   "name": "browser-light-2",
+   "language": "en",
+   "page_cer": 0.0031847133757961785,
+   "page_cer_raw": 0.0031847133757961785,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 4181.5625,
+     "detector_load": 200.4951,
+     "recognize": 6073.645100000001,
+     "recognizer_load": 421.4274
+    },
+    "wall_ms": 11073.234700001194,
+    "peak_working_set_bytes": 209092608,
+    "boxes": 18
+   },
+   "region": {
+    "size": [
+     777,
+     66
+    ],
+    "timing_ms": {
+     "detect": 27.5985,
+     "detector_load": 163.9771,
+     "recognize": 672.5621999999998,
+     "recognizer_load": 460.41
+    },
+    "wall_ms": 1516.9063000066672,
+    "peak_working_set_bytes": 197382144,
+    "text": [
+     "Forecast License Migration Estimate Budget"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "https://www.northwind.com/license/980?ref=home",
+    "Forecast License Migration Estimate Budget",
+    "Maya asked the team to approve the c contract before Monday",
+    "Total for the renewal: $19,186.80 across 30 items.",
+    "Clara shared template-14.md with 45 people.",
+    "Hannah shared deadline-73.log with 18 people.",
+    "Total for the backlog: $11,252.02 across 25 items.",
+    "Reminder: the pipeline closes at 11:30 am on Thursday.",
+    "Isabel shared pipeline-40.txt with 37 people.",
+    "The budget for Fabrikam is due on 11 Sep 2027.",
+    "Reminder: the forecast closes at 6:45 pm on Monday.",
+    "Adatum moved the pipeline review to Floor 9.",
+    "© 2026 Fabrikam · Privacy · Terms · Contact"
+   ]
+  },
+  {
+   "name": "pdf-0",
+   "language": "en",
+   "page_cer": 0.11651469098277609,
+   "page_cer_raw": 0.11651469098277609,
+   "line_accuracy": 0.85,
+   "full": {
+    "timing_ms": {
+     "detect": 922.0405,
+     "detector_load": 171.8765,
+     "recognize": 6783.7938,
+     "recognizer_load": 371.4706
+    },
+    "wall_ms": 8404.795399997965,
+    "peak_working_set_bytes": 199991296,
+    "boxes": 20
+   },
+   "region": {
+    "size": [
+     222,
+     42
+    ],
+    "timing_ms": {
+     "detect": 18.1297,
+     "detector_load": 184.3354,
+     "recognize": 356.78200000000004,
+     "recognizer_load": 373.4529
+    },
+    "wall_ms": 1153.4551000077045,
+    "peak_working_set_bytes": 196354048,
+    "text": [
+     "Zara and Isabel · Litware · 18 Mar 2027"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Chloe asked the team to confirm the forecast before Thursday",
+    "Zara and Isabel · Litware · 18 Mar 2027",
+    "Total for the summary: $7,420.80 across 6 items.",
+    "Total for the template: $65,363.61 across 48 items.",
+    "We will rename version 8.0.4 after the backlog call.",
+    "Reminder: the license closes at 2:15 pm on Wednesday.",
+    "Priya asked the team to tag the contract before Tuesday.",
+    "We will merge version 5.11.1 after the contract call.",
+    "Reminder: the pipeline closes at 12:45 am on Friday.",
+    "Leila shared template-45.docx with 17 people.",
+    "Reminder: the renewal closes at 11:45 am on Wednesday.",
+    "Reminder: the estimate closes at 2:00 am on Monday.",
+    "Chloe shared budget-60.docx with 5 people.",
+    "Reminder: the pipeline closes at 9:00 pm on Tuesday.",
+    "Total for the template: $32,905.22 across 22 items.",
+    "Leila asked the team to tag the deadline before Tuesday.",
+    "Iaedew40ee",
+    "2 La 3e",
+    "3Wwi ebkl",
+    "Page 9 of 46"
+   ]
+  },
+  {
+   "name": "pdf-1",
+   "language": "en",
+   "page_cer": 0.005060728744939271,
+   "page_cer_raw": 0.005060728744939271,
+   "line_accuracy": 0.95,
+   "full": {
+    "timing_ms": {
+     "detect": 1252.0997,
+     "detector_load": 166.5774,
+     "recognize": 7489.2210000000005,
+     "recognizer_load": 335.476
+    },
+    "wall_ms": 9402.37939999497,
+    "peak_working_set_bytes": 201351168,
+    "boxes": 20
+   },
+   "region": {
+    "size": [
+     302,
+     44
+    ],
+    "timing_ms": {
+     "detect": 15.2879,
+     "detector_load": 172.6063,
+     "recognize": 370.84690000000006,
+     "recognizer_load": 425.7992
+    },
+    "wall_ms": 1153.2670999877155,
+    "peak_working_set_bytes": 197435392,
+    "text": [
+     "Maya and Leila - Fourth Coffee - 7 Mar 2027"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Reminder: the backlog closes at 9:45 am on Thursday",
+    "Maya and Leila - Fourth Coffee - 7 Mar 2027",
+    "Reminder: the budget closes at 9:15 pm on Wednesday.",
+    "Reminder: the backlog closes at 5:15 pm on Thursday.",
+    "The backlog for Adatum is due on 11 Mar 2026.",
+    "Lucerne moved the migration review to Room B12.",
+    "Please confirm the attached pipeline and reply by 11:00 pm.",
+    "The survey for Fourth Coffee is due on 8 Sep 2026.",
+    "Lucerne moved the sprint review to Room 1.14.",
+    "We will assign version 7.5.4 after the template call.",
+    "Reminder: the license closes at 7:45 am on Tuesday.",
+    "Total for the deadline: $59,382.94 across 39 items.",
+    "Please merge the attached survey and reply by 9:45 am.",
+    "The template for Fourth Coffee is due on 19 May 2026.",
+    "Reminder: the license closes at 7:30 am on Tuesday.",
+    "Reminder: the report closes at 5:45 am on Thursday.",
+    "1 Yuki shared survey-70.md with 11 people.",
+    "2 Reminder: he surey closes a 11:15 pm on Tuesday.",
+    "3 The survey for Fourth Coffee is due on 14 Nov 2027.",
+    "Page 30 of 68"
+   ]
+  },
+  {
+   "name": "table-13px-light",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 707.0414,
+     "detector_load": 148.7927,
+     "recognize": 12695.791500000001,
+     "recognizer_load": 344.7761
+    },
+    "wall_ms": 14038.01880001265,
+    "peak_working_set_bytes": 200200192,
+    "boxes": 95
+   },
+   "region": {
+    "size": [
+     624,
+     56
+    ],
+    "timing_ms": {
+     "detect": 27.727,
+     "detector_load": 175.5487,
+     "recognize": 2024.0758,
+     "recognizer_load": 366.5987
+    },
+    "wall_ms": 2813.406000001123,
+    "peak_working_set_bytes": 196812800,
+    "text": [
+     "ID Owner Item Due Amount",
+     "G-5917 Clara Survey 22 Jul 2027 $26,370.64",
+     "C.596 Leila Centrast 11 Sen 2025 $13,195 44"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "ID Owner Item Due Amount",
+    "G-5917 Clara Survey 22 Jul 2027 $26,370.64",
+    "C-596 Leila Contract 11 Sep 2025 $13,195.44",
+    "E-6105 Chloe Pipeline 1 Nov 2025 $86,658.76",
+    "F-2143 Ingrid Deadline 8 Jan 2026 $4,731.86",
+    "B-4778 Elena Contract 18 Sep 2027 $26,232.33",
+    "B-509 Nadia Contract 8 Nov 2025 $75,480.15",
+    "C-3602 Ingrid Survey 28 Sep 2025 $61,214.02",
+    "H-5865 Elena Contract 21 Jul 2025 $58,833.27",
+    "F-6053 Hannah Backlog 3 Jul 2026 $20,897.42",
+    "D-4236 Grace Invoice 8 Mar 2027 $28,840.11",
+    "D-8220 Maya Deadline 13 Sep 2027 $32,134.98",
+    "D-975 Isabel Contract 6 Nov 2025 $84,696.41",
+    "H-8746 Isabel Summary 25 Jan 2027 $47,805.03",
+    "G-6741 Aisha Migration 14 Jan 2027 $11,414.81",
+    "G-5533 Grace Survey 21 May 2025 $92,710.02",
+    "G-5627 Isabel Invoice 2 May 2025 $27,297.27",
+    "C-6255 Chloe Report 2 Nov 2027 $47,815.62",
+    "C-4065 Leila License 10 Nov 2026 $57,297.02"
+   ]
+  },
+  {
+   "name": "table-12px-dark",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 736.7353,
+     "detector_load": 180.0524,
+     "recognize": 12111.2256,
+     "recognizer_load": 338.1222
+    },
+    "wall_ms": 13539.046000005328,
+    "peak_working_set_bytes": 200044544,
+    "boxes": 95
+   },
+   "region": {
+    "size": [
+     609,
+     44
+    ],
+    "timing_ms": {
+     "detect": 31.1262,
+     "detector_load": 188.7088,
+     "recognize": 648.2633,
+     "recognizer_load": 372.1563
+    },
+    "wall_ms": 1431.0520999861183,
+    "peak_working_set_bytes": 197464064,
+    "text": [
+     "C-9210 Amara Forecast 24 Jul 2027 $58,947.43"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "ID Owner Item Due Amount",
+    "C-9210 Amara Forecast 24 Jul 2027 $58,947.43",
+    "E-9550 Maya Estimate 8 Jul 2026 $50,948.54",
+    "D-2582 Hannah Renewal 25 Jan 2027 $43,618.39",
+    "E-2319 Ingrid Migration 9 Nov 2026 $61,752.39",
+    "G-5544 Nadia Summary 15 May 2027 $70,043.62",
+    "H-9295 Priya Sprint 8 May 2026 $3,238.32",
+    "A-1346 Hannah Budget 8 Mar 2027 $96,704.49",
+    "G-5001 Ingrid Estimate 14 Sep 2026 $9,404.03",
+    "D-7830 Maya License 9 Jan 2027 $87,216.07",
+    "D-3956 Clara Survey 21 Nov 2026 $58,683.66",
+    "E-9487 Hannah Backlog 8 May 2025 $85,367.42",
+    "F-9546 Hannah Summary 10 Mar 2026 $72,446.75",
+    "E-7148 Isabel Contract 2 Jan 2025 $16,487.15",
+    "G-9391 Yuki Sprint 11 Nov 2026 $54,724.20",
+    "D-5795 Maya Template 2 Nov 2025 $93,861.50",
+    "G-9269 Aisha Budget 21 May 2025 $68,010.28",
+    "H-9262 Aisha Budget 16 Jul 2026 $82,366.81",
+    "G-6943 Elena Deadline 4 Jul 2027 $56,968.63"
+   ]
+  },
+  {
+   "name": "table-11px-light",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 753.3322,
+     "detector_load": 157.5173,
+     "recognize": 13433.497,
+     "recognizer_load": 362.0076
+    },
+    "wall_ms": 14879.64009999996,
+    "peak_working_set_bytes": 200302592,
+    "boxes": 95
+   },
+   "region": {
+    "size": [
+     613,
+     51
+    ],
+    "timing_ms": {
+     "detect": 26.609,
+     "detector_load": 196.5147,
+     "recognize": 2028.1945999999998,
+     "recognizer_load": 414.8505
+    },
+    "wall_ms": 2851.413700002013,
+    "peak_working_set_bytes": 197316608,
+    "text": [
+     "ID Owner Item Due Amount",
+     "G-2696 Grace Forecast 20 May 2026 $68,150.24",
+     "C-798 Priva Renewal 8 Mar 2027 $35 931.07"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "ID Owner Item Due Amount",
+    "G-2696 Grace Forecast 20 May 2026 $68,150.24",
+    "C-798 Priya Renewal 8 Mar 2027 $35,931.07",
+    "C-5400 Aisha Budget 18 Mar 2025 $34,858.25",
+    "A-3324 Hannah License 28 Jan 2026 $82,033.01",
+    "F-6302 Sofia Report 1 Sep 2027 $39,275.84",
+    "E-4457 Isabel License 17 Nov 2026 $25,792.71",
+    "C-9725 Sofia Sprint 20 Jul 2026 $88,356.38",
+    "G-9629 Hannah Template 18 Mar 2025 $93,114.15",
+    "B-9365 Grace Contract 26 Jan 2025 $94,027.77",
+    "G-2436 Amara Renewal 19 Jul 2027 $31,335.52",
+    "A-4359 Grace Invoice 17 Sep 2027 $58,720.52",
+    "H-1001 Clara Survey 8 May 2025 $3,373.01",
+    "G-8395 Amara Estimate 13 Jan 2026 $24,912.96",
+    "B-3370 Nadia Summary 4 Jul 2027 $32,859.15",
+    "B-5860 Clara Budget 26 Nov 2025 $3,954.94",
+    "D-4667 Sofia Template 17 Jul 2027 $98,640.02",
+    "B-3150 Ingrid Budget 26 Nov 2025 $10,905.30",
+    "A-3039 Grace Estimate 9 Mar 2026 $80,339.25"
+   ]
+  },
+  {
+   "name": "chat-light",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 851.1571,
+     "detector_load": 197.0659,
+     "recognize": 4471.563,
+     "recognizer_load": 444.5484
+    },
+    "wall_ms": 6147.009699998307,
+    "peak_working_set_bytes": 200290304,
+    "boxes": 18
+   },
+   "region": {
+    "size": [
+     293,
+     43
+    ],
+    "timing_ms": {
+     "detect": 13.2642,
+     "detector_load": 220.154,
+     "recognize": 388.81219999999996,
+     "recognizer_load": 350.5538
+    },
+    "wall_ms": 1162.3680999909993,
+    "peak_working_set_bytes": 197386240,
+    "text": [
+     "Maya shared survey-78.docx with 3 people."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Aisha 10:26 PM",
+    "Maya shared survey-78.docx with 3 people.",
+    "Sofia 10:52 AM",
+    "Grace shared contract-34.docx with 16 people.",
+    "Grace 11:57 AM",
+    "Total for the deadline: $90,532.96 across 32 items.",
+    "Leila 11:11 PM",
+    "Please assign the attached summary and reply by 11:45 pm.",
+    "Ingrid 9:37 AM",
+    "Total for the migration: $13,731.51 across 32 items.",
+    "Grace 10:47 AM",
+    "Total for the migration: $75,004.47 across 25 items.",
+    "Grace 10:57 PM",
+    "Yuki shared estimate-26.pdf with 38 people.",
+    "Elena 8:26 AM",
+    "Total for the deadline: $71,788.55 across 5 items.",
+    "Hannah 9:49 AM",
+    "We will rename version 7.18.6 after the license call."
+   ]
+  },
+  {
+   "name": "chat-dark",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 1242.0153,
+     "detector_load": 186.1742,
+     "recognize": 5158.0886,
+     "recognizer_load": 341.6713
+    },
+    "wall_ms": 7113.314200003515,
+    "peak_working_set_bytes": 201945088,
+    "boxes": 22
+   },
+   "region": {
+    "size": [
+     467,
+     47
+    ],
+    "timing_ms": {
+     "detect": 21.731,
+     "detector_load": 172.094,
+     "recognize": 455.0247,
+     "recognizer_load": 423.0048
+    },
+    "wall_ms": 1248.6358999885852,
+    "peak_working_set_bytes": 197246976,
+    "text": [
+     "Please confirm the attached invoice and reply by 5:15 am."
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Isabel 10:59 PM",
+    "Please confirm the attached invoice and reply by 5:15 am.",
+    "Clara 9:29 PM",
+    "Reminder: the migration closes at 6:00 am on Tuesday.",
+    "Aisha 8:53 AM",
+    "Please rename the attached deadline and reply by 11:00 pm.",
+    "Yuki 10:54 PM",
+    "We will verify version 6.4.4 after the summary call.",
+    "Priya 9:19 AM",
+    "Nadia shared invoice-83.txt with 9 people.",
+    "Grace 11:13 AM",
+    "Grace shared forecast-93.json with 47 people.",
+    "Elena 8:29 AM",
+    "Maya shared license-03.docx with 21 people.",
+    "Clara 10:42 PM",
+    "Lucerne moved the license review to Wing C.",
+    "Isabel 9:36 PM",
+    "Reminder: the renewal closes at 4:30 pm on Thursday."
+   ]
+  },
+  {
+   "name": "mail-light",
+   "language": "en",
+   "page_cer": 0.00078003120124805,
+   "page_cer_raw": 0.00078003120124805,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 856.1991,
+     "detector_load": 188.0277,
+     "recognize": 9950.6251,
+     "recognizer_load": 437.2042
+    },
+    "wall_ms": 11604.25600000599,
+    "peak_working_set_bytes": 200245248,
+    "boxes": 54
+   },
+   "region": {
+    "size": [
+     1015,
+     54
+    ],
+    "timing_ms": {
+     "detect": 45.5321,
+     "detector_load": 170.7787,
+     "recognize": 693.8888,
+     "recognizer_load": 369.7481
+    },
+    "wall_ms": 1481.1273999948753,
+    "peak_working_set_bytes": 196841472,
+    "text": [
+     "Clara The survey for Fabrikam is due on 18 Mar 2027. 22 Sep 2026"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Grace We will confirm version 9.4.1 after the estimate call. 8 Jan 2026",
+    "Clara The survey for Fabrikam is due on 18 Mar 2027. 22 Sep 2026",
+    "Priya We will merge version 7.0.3 after the report call. 5 Sep 2026",
+    "Ingrid Please reopen the attached contract and reply by 3:15 am. 14 Jan 2027",
+    "Priya Total for the forecast: $71,872.92 across 22 items. 20 Mar 2027",
+    "Leila Reminder: the survey closes at 7:15 am on Wednesday. 22 May 2025",
+    "Grace Grace asked the team to sgn the forecast before Thursday. 12 Sep 2026",
+    "Yuki Amara asked the team to schedule the survey before Friday. 17 May 2027",
+    "Chloe The summary for Lucerne is due on 16 May 2025. 7 Jan 2027",
+    "Aisha Please approve the attached deadline and reply by 10:00 pm. 5 Nov 2027",
+    "Grace Maya shared sprint-81.pdf with 27 people. 15 Jan 2027",
+    "Nadia Aisha asked the team to rename the survey before Wednesday. 25 May 2027",
+    "Maya The estimate for Northwind is due on 18 Jul 2025. 28 Jan 2026",
+    "Aisha Please confirm the attached license and reply by 12:15 am. 22 Jul 2027",
+    "Hannah The survey for Northwind is due on 17 May 2025. 9 Jul 2026",
+    "Ingrid Total for the report: $43,695.78 across 16 items. 25 Sep 2027",
+    "Elena Reminder: the renewal closes at 5:30 pm on Thursday. 18 Jul 2027",
+    "Leila Chloe asked the team to upload the summary before Wednesday. 1 Sep 2027"
+   ]
+  },
+  {
+   "name": "mail-lowdark",
+   "language": "en",
+   "page_cer": 0.0,
+   "page_cer_raw": 0.0,
+   "line_accuracy": 1.0,
+   "full": {
+    "timing_ms": {
+     "detect": 786.2278,
+     "detector_load": 165.8603,
+     "recognize": 12329.7118,
+     "recognizer_load": 323.2044
+    },
+    "wall_ms": 13771.685699990485,
+    "peak_working_set_bytes": 200282112,
+    "boxes": 54
+   },
+   "region": {
+    "size": [
+     1007,
+     45
+    ],
+    "timing_ms": {
+     "detect": 56.1644,
+     "detector_load": 163.3497,
+     "recognize": 544.2656999999999,
+     "recognizer_load": 476.4541
+    },
+    "wall_ms": 1410.6224999995902,
+    "peak_working_set_bytes": 197308416,
+    "text": [
+     "Zara Fabrikam moved the template review to Lab 7. 4 Nov 2026"
+    ]
+   },
+   "recognizers": [
+    "general"
+   ],
+   "pred": [
+    "Nadia We will merge version 3.5.6 after the sprint call. 17 Jul 2026",
+    "Zara Fabrikam moved the template review to Lab 7. 4 Nov 2026",
+    "Leila Please tag the attached renewal and reply by 10:15 am. 28 Nov 2025",
+    "Chloe Total for the report: $54,190.44 across 41 items. 8 Sep 2027",
+    "Ingrid Adatum moved the renewal review to Room B12. 8 Jul 2026",
+    "Amara Total for the survey: $40,192.52 across 18 items. 3 Sep 2025",
+    "Isabel Grace shared sprint-83.txt with 6 people. 6 Jan 2025",
+    "Priya Reminder: the deadline closes at 11:00 pm on Monday. 8 Nov 2026",
+    "Hannah Maya asked the team to confirm the license before Wednesday. 20 May 2025",
+    "Elena Total for the migration: $22,817.43 across 19 items. 21 Jan 2027",
+    "Maya Please merge the attached template and reply by 7:30 pm. 19 May 2027",
+    "Aisha Elena asked the team to schedule the renewal before Tuesday. 2 Jul 2025",
+    "Clara Fourth Coffee moved the pipeline review to Room 1.14. 4 Jul 2027",
+    "Sofia Total for the estimate: $35,077.40 across 27 items. 11 Mar 2027",
+    "Aisha Fourth Coffee moved the backlog review to Floor 9. 24 May 2026",
+    "Chloe The renewal for Litware is due on 14 Nov 2025. 14 Jan 2025",
+    "Leila Please upload the attached summary and reply by 8:30 pm. 27 Sep 2026",
+    "Sofia Grace asked the team to rename the migration before Wednesday. 7 Sep 2026"
+   ]
+  }
+ ]
+}

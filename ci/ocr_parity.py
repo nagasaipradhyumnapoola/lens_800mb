@@ -1,5 +1,5 @@
 """Screen OCR parity across operating systems: runs one lens-ocr build on the English hard-screen dev set with the shipped
-configuration (PP-OCRv5 mobile detector 0.3/0.6/1.5, PP-OCRv6 tiny recogniser, Lens row assembly) and reports page CER
+configuration (PP-OCRv5 mobile detector 0.3/0.6/1.5, PP-OCRv6 small recogniser (shipped since 2026-10-30), Lens row assembly) and reports page CER
 with the metric of scripts/benchmark_ocr_native.py (NFC, ZWNJ/ZWJ removed, whitespace collapsed). Standard library only,
 so it runs in the Linux container and on macOS runners. Dev split only (artifacts/ocr-screens/en-hard-dev).
 Usage: python3 ci/ocr_parity.py <lens-ocr executable> <ONNX Runtime library> [--max-cer 0.03] [--limit N]
@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 M=ROOT/'models'
 SET=ROOT/'artifacts/ocr-screens/en-hard-dev/manifest.json'
 DET=M/'PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx'
-REC=M/'PaddlePaddle--PP-OCRv6_tiny_rec'
+REC=M/'PaddlePaddle--PP-OCRv6_small_rec'
 
 
 def edit(a,b):

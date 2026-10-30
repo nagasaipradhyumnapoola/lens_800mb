@@ -148,7 +148,7 @@ elseif($Action -eq 'Extract') {
     }
   } elseif($Action -eq 'ImportImage') {
     if($Language -notin @('en','es','zh','fr','de','pt','hi')){throw 'script-specific OCR pack is not configured for this language'}
-    $modelName=if($Language -eq 'hi'){'devanagari_PP-OCRv5_mobile_rec'}else{'PP-OCRv6_tiny_rec'}
+    $modelName=if($Language -eq 'hi'){'devanagari_PP-OCRv5_mobile_rec'}else{'PP-OCRv6_small_rec'}
     $folder=Join-Path $root "models/PaddlePaddle--$modelName"
     $ocrLock=Get-Content -LiteralPath (Join-Path $root 'third_party/ocr-runtime-lock.json') -Raw | ConvertFrom-Json
     $export=$ocrLock.exports | Where-Object { $_.model -eq $modelName -and $_.path.EndsWith('.onnx') }

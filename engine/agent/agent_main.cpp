@@ -329,7 +329,7 @@ int run(const std::vector<native>& argv) {
             try{runtime=ort_runtime(root,exe_dir,sha);}catch(const std::exception&){}
             auto rec=[&](const char* dir){return json{{"model",u8(m/dir/"inference.onnx")},{"dictionary",u8(m/dir/"ctc-dictionary.json")}};};
             json t={{"runtime",u8(runtime.make_preferred())},{"detector",u8(m/"PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx")},
-                    {"route","auto"},{"threads",2},{"recognizers",{{"general",rec("PaddlePaddle--PP-OCRv6_tiny_rec")},{"hi",rec("PaddlePaddle--devanagari_PP-OCRv5_mobile_rec")},
+                    {"route","auto"},{"threads",2},{"recognizers",{{"general",rec("PaddlePaddle--PP-OCRv6_small_rec")},{"hi",rec("PaddlePaddle--devanagari_PP-OCRv5_mobile_rec")},
                     {"ta",rec("PaddlePaddle--ta_PP-OCRv5_mobile_rec")},{"te",rec("PaddlePaddle--te_PP-OCRv5_mobile_rec")}}}};
             if(!runtime.empty()&&fs::exists(runtime)&&fs::exists(m/"PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx"))ocfg["ocr"]=t;
         }

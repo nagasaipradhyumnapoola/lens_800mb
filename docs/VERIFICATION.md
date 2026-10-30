@@ -1278,6 +1278,12 @@ travel in `metadata`).
   Lens row assembly) page CER **1.59%**, line accuracy 0.85, 1.4 s, 119 MB; PaddleOCR server det + v6 medium rec as
   PaddleOCR outputs lines 4.85% / 0.33 / 18.2 s / 373 MB; the same Baidu models with Lens row assembly 0.76% / 0.92 /
   17.8 s / 374 MB (reports/ocr-screens/ocr-native-en-hard-heldout-*). Any change to close the gap is chosen on dev.
+- Decision on dev only (25 screens, Lens row assembly): mobile det + tiny rec 2.17%; mobile det + v6 small rec
+  **1.75%** (2.9 s, 119 MB — same RAM); mobile det + v6 medium rec 2.04% (8.7 s, 209 MB); server det + tiny rec 1.46%
+  (6.8 s, 374 MB: too heavy for low-end laptops beside the rest of Lens). Shipped English/Latin recogniser is now
+  PP-OCRv6 small (agent default, package, CLI, ci/ocr_parity.py). Held-out once after the decision: **0.85% page CER,
+  line accuracy 0.91, 2.9 s full screen, 173 ms changed region, 119 MB** — within 0.1 point of Baidu's largest models
+  with Lens row assembly (0.76%, 374 MB) and 5.7× better than their raw output (4.85%).
 
 ## Lens English G2P for unknown words; English screen-recogniser fine-tune (2026-10-30)
 

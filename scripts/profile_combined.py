@@ -42,7 +42,7 @@ def workloads(db):
     dolphin=next(ROOT/m['path'] for m in sherpa_lock['models'] if m['filename']=='model.int8.onnx')
     tokens=next(ROOT/m['path'] for m in sherpa_lock['models'] if m['filename']=='tokens.txt')
     sherpa=json.dumps({'consent':True,'audio':fleurs('zh'),'model':str(dolphin),'tokens':str(tokens),'library':library,'language':'zh','model_type':'dolphin'})+'\n'
-    ocr_dir=ROOT/'models/PaddlePaddle--PP-OCRv6_tiny_rec'
+    ocr_dir=ROOT/'models/PaddlePaddle--PP-OCRv6_small_rec'
     ocr=json.dumps({'consent':True,'runtime':ort,'model':str(ocr_dir/'inference.onnx'),'dictionary':str(ocr_dir/'ctc-dictionary.json'),
                     'image':str(ROOT/'artifacts/ocr-smoke/es.png')})+'\n'
     return [('retrieval',retrieval_args,recall),('asr_whisper_base',[str(REL/'lens-engine.exe'),'--db',str(db.with_name('asr.db'))],whisper),

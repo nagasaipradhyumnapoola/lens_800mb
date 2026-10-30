@@ -28,7 +28,7 @@ M=ROOT/'models'
 RUNTIME=ROOT/'.tools/ocr-runtime/onnxruntime.dll'
 DET={'v5':(M/'PaddlePaddle--PP-OCRv5_mobile_det/inference.onnx',0.3,0.6,1.5),'v6':(M/'PaddlePaddle--PP-OCRv6_tiny_det/inference.onnx',0.2,0.4,1.4),
      'server':(M/'PaddlePaddle--PP-OCRv5_server_det/inference.onnx',0.3,0.6,1.5)}  # PaddleOCR's default (most accurate) detector
-REC={'general':'PaddlePaddle--PP-OCRv6_tiny_rec','hi':'PaddlePaddle--devanagari_PP-OCRv5_mobile_rec','ta':'PaddlePaddle--ta_PP-OCRv5_mobile_rec',
+REC={'general':'PaddlePaddle--PP-OCRv6_small_rec','hi':'PaddlePaddle--devanagari_PP-OCRv5_mobile_rec','ta':'PaddlePaddle--ta_PP-OCRv5_mobile_rec',
      'te':'PaddlePaddle--te_PP-OCRv5_mobile_rec','ja':'PaddlePaddle--PP-OCRv5_mobile_rec','ar':'PaddlePaddle--arabic_PP-OCRv5_mobile_rec',
      'ru':'PaddlePaddle--cyrillic_PP-OCRv5_mobile_rec'}
 RTL={'ar'}  # PaddleOCR reverses arabic_* output (pred_reverse); lens-ocr does it for "rtl":true
