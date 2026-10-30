@@ -10,7 +10,7 @@ if(APPLE)
   set(CMAKE_BUILD_RPATH "@loader_path")
 endif()
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(LENS_WARN -Wall -Wextra -Wno-unused-parameter)
+set(LENS_WARN -Wall -Wextra -Wno-unused-parameter -Wno-misleading-indentation)  # the code base writes short if/for bodies on one line
 set(LENS_ORT_DIR "" CACHE PATH "ONNX Runtime release folder (include/, lib/)")
 
 find_package(nlohmann_json CONFIG REQUIRED)
@@ -122,6 +122,16 @@ if(LENS_SHERPA_INCLUDE)
   target_include_directories(lens-sherpa PRIVATE "${LENS_SHERPA_INCLUDE}")
   target_link_libraries(lens-sherpa PRIVATE lens-embedding lens-whisper-common)  # platform layer; miniaudio decoder
   target_compile_options(lens-sherpa PRIVATE ${LENS_WARN})
+endif()
+
+# Screen text (lens-ocr): PaddleOCR detector and recognisers through ONNX Runtime; images decoded by stb_image (ci/fetch_stb.sh).
+set(LENS_STB_DIR "${LENS_ROOT}/third_party/stb")
+if(EXISTS "${LENS_STB_DIR}/stb_image.h")
+  add_executable(lens-ocr ocr_main.cpp stb_image_impl.c)
+  target_include_directories(lens-ocr PRIVATE "${LENS_STB_DIR}")
+  target_link_libraries(lens-ocr PRIVATE lens-embedding)  # platform layer, ONNX Runtime headers
+  target_compile_options(lens-ocr PRIVATE $<$<COMPILE_LANGUAGE:CXX>:${LENS_WARN}>)
+  set_source_files_properties(stb_image_impl.c PROPERTIES COMPILE_OPTIONS -w)  # upstream code, unmodified
 endif()
 
 add_executable(lens-embed embed_main.cpp)

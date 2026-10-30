@@ -5,6 +5,7 @@
 set -euo pipefail
 [ -f build/sqlcipher-4.19.0/sqlite3.c ] || bash ci/sqlcipher/amalgamation.sh
 [ -f build/sherpa-onnx-include/sherpa-onnx/c-api/c-api.h ] || bash ci/fetch_sherpa_header.sh
+bash ci/fetch_stb.sh
 cmake -S engine -B build/linux -G Ninja -DCMAKE_BUILD_TYPE=Release -DLENS_ORT_DIR=/opt/onnxruntime \
       -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DLENS_SHERPA_INCLUDE="$PWD/build/sherpa-onnx-include"
 cmake --build build/linux --parallel

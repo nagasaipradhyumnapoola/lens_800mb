@@ -26,7 +26,7 @@ jobs:
         run: bash ci/annotate_log.sh build.log
 
   macos:
-    runs-on: macos-14
+    runs-on: macos-15  # Xcode 16: ggml's apple_m4 (SME) CPU variant does not compile with Xcode 15
     steps:
       - uses: actions/checkout@v4
       - name: Fetch whisper.cpp (pinned)
@@ -43,6 +43,7 @@ jobs:
           set -o pipefail
           bash ci/sqlcipher/amalgamation.sh
           bash ci/fetch_sherpa_header.sh
+          bash ci/fetch_stb.sh
           cmake -S engine -B build/macos -G Ninja -DCMAKE_BUILD_TYPE=Release -DLENS_ORT_DIR="$RUNNER_TEMP/ort" \
             -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DOPENSSL_ROOT_DIR="$(brew --prefix openssl@3)" \
             -DLENS_SHERPA_INCLUDE="$PWD/build/sherpa-onnx-include" \
@@ -59,7 +60,7 @@ jobs:
           python3 ci/linux/smoke.py build/macos/bin
 
   ios:
-    runs-on: macos-14
+    runs-on: macos-15  # Xcode 16: ggml's apple_m4 (SME) CPU variant does not compile with Xcode 15
     steps:
       - uses: actions/checkout@v4
       - name: Fetch whisper.cpp (pinned)

@@ -15,11 +15,14 @@
 #define ORT_API_MANUAL_INIT
 #include "onnxruntime_cxx_api.h"
 #include "input.hpp"
+#include "platform.hpp"
+#ifdef _WIN32
 #include <windows.h>
-#include <psapi.h>
 #include <wincodec.h>
-#include <wincrypt.h>
 #include <wrl/client.h>
+#else
+#include "stb_image.h"  // implementation: stb_image_impl.c
+#endif
 #include <nlohmann/json.hpp>
 #include <algorithm>
 #include <cctype>
@@ -31,15 +34,21 @@
 #include <memory>
 #include <vector>
 using json=nlohmann::json;
+struct Module {void* h{};~Module(){lens::platform::close_library(h);}};
+#ifdef _WIN32
 using Microsoft::WRL::ComPtr;
-struct Module {HMODULE h{};~Module(){if(h)FreeLibrary(h);}};
-struct Com {HRESULT result=CoInitializeEx(nullptr,COINIT_MULTITHREADED);~Com(){if(SUCCEEDED(result))CoUninitialize();}};
+// Image decoding: WIC on Windows (COM per thread), stb_image elsewhere (PNG, JPEG, BMP).
+struct Com {HRESULT result=CoInitializeEx(nullptr,COINIT_MULTITHREADED);~Com(){if(SUCCEEDED(result))CoUninitialize();}bool ready()const{return SUCCEEDED(result);}};
 void checked(HRESULT h){if(FAILED(h))throw lens::Error("image_decode_failed");}
+#else
+struct Com {bool ready()const{return true;}};
+#endif
 void quiet_ort(void*,OrtLoggingLevel,const char*,const char*,const char*,const char*){}
 
 namespace {
-struct Image {int w=0,h=0;std::vector<BYTE> bgr;};  // 8-bit BGR, row-major
+struct Image {int w=0,h=0;std::vector<std::uint8_t> bgr;};  // 8-bit BGR, row-major
 
+#ifdef _WIN32
 Image decode(const std::vector<char>& bytes) {
     ComPtr<IWICImagingFactory> factory;
     checked(CoCreateInstance(CLSID_WICImagingFactory,nullptr,CLSCTX_INPROC_SERVER,IID_PPV_ARGS(&factory)));
@@ -51,16 +60,30 @@ Image decode(const std::vector<char>& bytes) {
     if(!w||!h||static_cast<std::uint64_t>(w)*h>16000000)throw lens::Error("image_dimensions_exceeded");
     ComPtr<IWICFormatConverter> converter;checked(factory->CreateFormatConverter(&converter));
     checked(converter->Initialize(frame.Get(),GUID_WICPixelFormat24bppBGR,WICBitmapDitherTypeNone,nullptr,0,WICBitmapPaletteTypeCustom));
-    Image img{static_cast<int>(w),static_cast<int>(h),std::vector<BYTE>(static_cast<size_t>(w)*h*3)};
+    Image img{static_cast<int>(w),static_cast<int>(h),std::vector<std::uint8_t>(static_cast<size_t>(w)*h*3)};
     checked(converter->CopyPixels(nullptr,w*3,static_cast<UINT>(img.bgr.size()),img.bgr.data()));
     return img;
 }
+#else
+Image decode(const std::vector<char>& bytes) {
+    if(bytes.empty()||bytes.size()>64000000)throw lens::Error("image_decode_failed");
+    const auto* data=reinterpret_cast<const stbi_uc*>(bytes.data());const int len=static_cast<int>(bytes.size());int w=0,h=0,n=0;
+    if(!stbi_info_from_memory(data,len,&w,&h,&n))throw lens::Error("image_decode_failed");
+    if(w<=0||h<=0||static_cast<std::uint64_t>(w)*h>16000000)throw lens::Error("image_dimensions_exceeded");
+    // Three channels, alpha dropped: the same pixels WIC's 24bppBGR conversion gives on Windows.
+    std::unique_ptr<stbi_uc,void(*)(void*)> rgb(stbi_load_from_memory(data,len,&w,&h,&n,3),stbi_image_free);
+    if(!rgb)throw lens::Error("image_decode_failed");
+    Image img{w,h,std::vector<std::uint8_t>(static_cast<size_t>(w)*h*3)};
+    for(size_t i=0;i<img.bgr.size();i+=3){img.bgr[i]=rgb.get()[i+2];img.bgr[i+1]=rgb.get()[i+1];img.bgr[i+2]=rgb.get()[i];}
+    return img;
+}
+#endif
 
 // Bilinear resize with half-pixel centres (OpenCV INTER_LINEAR semantics); rows [r0,r1) of the nw x nh result only,
 // so the detector can resize one band at a time instead of holding a second full-screen copy.
 Image resize(const Image& s,int nw,int nh,int r0=0,int r1=-1) {
     if(r1<0)r1=nh;
-    Image d{nw,r1-r0,std::vector<BYTE>(static_cast<size_t>(nw)*(r1-r0)*3)};
+    Image d{nw,r1-r0,std::vector<std::uint8_t>(static_cast<size_t>(nw)*(r1-r0)*3)};
     const double fx=static_cast<double>(s.w)/nw,fy=static_cast<double>(s.h)/nh;
     for(int y=r0;y<r1;++y) {
         double sy=std::clamp((y+0.5)*fy-0.5,0.0,static_cast<double>(s.h-1));int y0=static_cast<int>(sy),y1=std::min(y0+1,s.h-1);double wy=sy-y0;
@@ -69,7 +92,7 @@ Image resize(const Image& s,int nw,int nh,int r0=0,int r1=-1) {
             for(int c=0;c<3;++c) {
                 auto at=[&](int yy,int xx){return static_cast<double>(s.bgr[(static_cast<size_t>(yy)*s.w+xx)*3+c]);};
                 const double v=(1-wy)*((1-wx)*at(y0,x0)+wx*at(y0,x1))+wy*((1-wx)*at(y1,x0)+wx*at(y1,x1));
-                d.bgr[(static_cast<size_t>(y-r0)*nw+x)*3+c]=static_cast<BYTE>(std::clamp(std::lround(v),0L,255L));
+                d.bgr[(static_cast<size_t>(y-r0)*nw+x)*3+c]=static_cast<std::uint8_t>(std::clamp(std::lround(v),0L,255L));
             }
         }
     }
@@ -77,13 +100,13 @@ Image resize(const Image& s,int nw,int nh,int r0=0,int r1=-1) {
 }
 
 Image sub(const Image& s,int x0,int y0,int x1,int y1) {
-    Image d{x1-x0,y1-y0,std::vector<BYTE>(static_cast<size_t>(x1-x0)*(y1-y0)*3)};
+    Image d{x1-x0,y1-y0,std::vector<std::uint8_t>(static_cast<size_t>(x1-x0)*(y1-y0)*3)};
     for(int y=y0;y<y1;++y)std::copy_n(&s.bgr[(static_cast<size_t>(y)*s.w+x0)*3],static_cast<size_t>(x1-x0)*3,&d.bgr[static_cast<size_t>(y-y0)*d.w*3]);
     return d;
 }
 
 Image rotate_ccw(const Image& s) {  // numpy rot90: counter-clockwise
-    Image d{s.h,s.w,std::vector<BYTE>(s.bgr.size())};
+    Image d{s.h,s.w,std::vector<std::uint8_t>(s.bgr.size())};
     for(int y=0;y<s.h;++y)for(int x=0;x<s.w;++x)for(int c=0;c<3;++c)
         d.bgr[(static_cast<size_t>(s.w-1-x)*d.w+y)*3+c]=s.bgr[(static_cast<size_t>(y)*s.w+x)*3+c];
     return d;
@@ -92,10 +115,10 @@ Image rotate_ccw(const Image& s) {  // numpy rot90: counter-clockwise
 struct Runtime {
     Module module;const OrtApiBase* base=nullptr;std::unique_ptr<Ort::Env> env;
     explicit Runtime(const std::filesystem::path& dll) {
-        module.h=LoadLibraryExW(dll.c_str(),nullptr,LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR|LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+        module.h=lens::platform::open_library(dll);
         if(!module.h)throw lens::Error("ocr_runtime_unavailable");
         using GetBase=const OrtApiBase*(ORT_API_CALL*)();
-        const auto get_base=reinterpret_cast<GetBase>(GetProcAddress(module.h,"OrtGetApiBase"));
+        const auto get_base=reinterpret_cast<GetBase>(lens::platform::library_symbol(module.h,"OrtGetApiBase"));
         if(!get_base)throw lens::Error("ocr_runtime_api_unavailable");
         base=get_base();const auto api=base->GetApi(ORT_API_VERSION);if(!api)throw lens::Error("ocr_runtime_version_mismatch");
         Ort::InitApi(api);env=std::make_unique<Ort::Env>(ORT_LOGGING_LEVEL_FATAL,"Lens",quiet_ort,nullptr);env->DisableTelemetryEvents();
@@ -109,10 +132,10 @@ struct Runtime {
         return std::make_unique<Ort::Session>(*env,model.c_str(),options);
     }
     // Sessions are cached per (model, threads); screen requests release all but one recogniser after each request.
-    std::map<std::pair<std::wstring,int>,std::unique_ptr<Ort::Session>> sessions;std::map<std::string,std::vector<std::string>> dictionaries;
+    std::map<std::pair<std::filesystem::path,int>,std::unique_ptr<Ort::Session>> sessions;std::map<std::string,std::vector<std::string>> dictionaries;
     std::string preferred="general";  // recogniser key that read most of the previous auto screen
     Ort::Session& cached(const std::filesystem::path& model,int threads,double& load_ms) {
-        auto& s=sessions[{model.wstring(),threads}];
+        auto& s=sessions[{model,threads}];
         if(!s){const auto t=std::chrono::steady_clock::now();s=session(model,threads);load_ms+=std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-t).count();}
         return *s;
     }
@@ -231,7 +254,7 @@ std::vector<Box> detect(Ort::Session& session,const Image& img,float thresh,floa
                 prob[static_cast<size_t>(oy+y)*nw+ox+x]=static_cast<std::uint16_t>(std::lround(std::clamp(p[static_cast<size_t>(y)*tw+x],0.0f,1.0f)*65535.0f));
         }
     }
-    std::vector<BYTE> seen(static_cast<size_t>(nw)*nh,0);std::vector<Box> boxes;std::vector<std::pair<int,int>> stack;
+    std::vector<std::uint8_t> seen(static_cast<size_t>(nw)*nh,0);std::vector<Box> boxes;std::vector<std::pair<int,int>> stack;
     const double sx=static_cast<double>(img.w)/nw,sy=static_cast<double>(img.h)/nh;
     for(int y=0;y<nh&&boxes.size()<1000;++y)for(int x=0;x<nw;++x) {
         const size_t i=static_cast<size_t>(y)*nw+x;
@@ -264,11 +287,7 @@ std::vector<Box> detect(Ort::Session& session,const Image& img,float thresh,floa
 }
 
 std::vector<char> base64_decode(const std::string& text) {
-    DWORD size=0;
-    if(!CryptStringToBinaryA(text.data(),static_cast<DWORD>(text.size()),CRYPT_STRING_BASE64,nullptr,&size,nullptr,nullptr))throw lens::Error("image_decode_failed");
-    std::vector<char> out(size);
-    if(!CryptStringToBinaryA(text.data(),static_cast<DWORD>(text.size()),CRYPT_STRING_BASE64,reinterpret_cast<BYTE*>(out.data()),&size,nullptr,nullptr))throw lens::Error("image_decode_failed");
-    out.resize(size);return out;
+    try{return lens::platform::base64_decode(text);}catch(const lens::Error&){throw lens::Error("image_decode_failed");}
 }
 
 double ms_since(std::chrono::steady_clock::time_point t){return std::chrono::duration<double,std::milli>(std::chrono::steady_clock::now()-t).count();}
@@ -294,7 +313,7 @@ json screen(const json& req,Runtime& rt,Image img) {
     // At most `max_recognizers` recogniser sessions are loaded at once (least recently used is released first).
     const size_t max_loaded=static_cast<size_t>(std::clamp(req.value("max_recognizers",2),1,16));
     std::map<std::string,Recognizer> loaded;std::vector<std::string> lru;double rec_load_ms=0;
-    auto model_key=[&](const std::string& key){return std::make_pair(lens::utf8_path(specs.at(key).at("model").get<std::string>()).wstring(),threads);};
+    auto model_key=[&](const std::string& key){return std::make_pair(lens::utf8_path(specs.at(key).at("model").get<std::string>()),threads);};
     auto get=[&](const std::string& key)->Recognizer& {
         lru.erase(std::remove(lru.begin(),lru.end(),key),lru.end());lru.push_back(key);
         auto it=loaded.find(key);if(it!=loaded.end())return it->second;
@@ -355,10 +374,9 @@ json screen(const json& req,Runtime& rt,Image img) {
     for(const auto& [key,n]:votes)if(n>best){best=n;keep=key;}
     for(const auto& [key,_]:loaded)if(key!=keep)rt.sessions.erase(model_key(key));
     if(route=="auto")rt.preferred=keep;
-    PROCESS_MEMORY_COUNTERS pmc{};GetProcessMemoryInfo(GetCurrentProcess(),&pmc,sizeof pmc);
     return {{"ok",true},{"lines",lines},{"boxes",boxes.size()},{"width",img.w},{"height",img.h},
             {"timing_ms",{{"detector_load",load_ms},{"detect",det_ms},{"recognizer_load",rec_load_ms},{"recognize",ms_since(t_rec)-rec_load_ms}}},
-            {"peak_working_set_bytes",pmc.PeakWorkingSetSize},{"runtime_version",rt.base->GetVersionString()},
+            {"peak_working_set_bytes",lens::platform::peak_memory_bytes()},{"runtime_version",rt.base->GetVersionString()},
             {"scope","screen text detection + script-routed recognition"}};
 }
 
@@ -379,7 +397,7 @@ json handle(const json& req,Runtime& rt) {
 // Errors come back as {"ok":false,"error":...} lines. The caller closes stdin when idle to release the memory.
 int serve() {
     std::unique_ptr<Runtime> rt;std::filesystem::path runtime_path;Com com;
-    if(FAILED(com.result)){std::cout<<json{{"ok",false},{"error","image_decoder_unavailable"}}.dump()<<std::endl;return 1;}
+    if(!com.ready()){std::cout<<json{{"ok",false},{"error","image_decoder_unavailable"}}.dump()<<std::endl;return 1;}
     std::string line;
     while(true) {
         const auto status=lens::read_line(std::cin,line,64*1024*1024);
@@ -408,7 +426,7 @@ int main(int argc,char** argv) {
         const auto req=json::parse(line);
         if(!req.value("consent",false))throw lens::Error("consent_required");
         Runtime rt(lens::utf8_path(req.at("runtime").get<std::string>()));
-        Com com;if(FAILED(com.result))throw lens::Error("image_decoder_unavailable");
+        Com com;if(!com.ready())throw lens::Error("image_decoder_unavailable");
         std::cout<<handle(req,rt).dump()<<'\n';
     } catch(const lens::Error& e){std::cerr<<e.what()<<'\n';return 1;}
     catch(const Ort::Exception&){std::cerr<<"ocr_runtime_failed\n";return 1;}

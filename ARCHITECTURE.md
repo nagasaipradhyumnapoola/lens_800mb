@@ -50,7 +50,11 @@ windows, application and entity signals, user pins and feedback, abstention, and
 
 Models load lazily in the process that needs them, run one heavy model at a time, and unload when idle
 (`--model-idle-unload-ms`, default 60 s; OCR worker after 30 s). The 500,000,000-byte ceiling (founder, 2026-10-29) applies to the
-complete Lens process tree. Measurements are recorded in docs/VERIFICATION.md.
+complete Lens process tree. lens-agent's resource governor keeps the heavy models apart: the spoken-reply worker
+(Kokoro) runs alone (retrieval models unloaded, OCR held), and while the engine's retrieval models are loaded the
+observer's OCR worker is held; the agent unloads them after `retrieval_idle_seconds` (default 30) without a
+model-loading request and releases OCR, whose deferred captures then run. Measurements are recorded in
+docs/VERIFICATION.md.
 
 ## Not yet built
 

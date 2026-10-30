@@ -1,6 +1,7 @@
 #pragma once
 // Thin operating-system layer for the portable core (Windows, Linux, macOS, Android, iOS): shared libraries and durable
 // new files. Everything else in the core is standard C++. Key storage lives in adapters/<os>/key_store.cpp.
+#include <cstdint>
 #include <filesystem>
 #include <optional>
 #include <string>
@@ -40,4 +41,5 @@ void write_new_file(const std::filesystem::path& path,const std::string& data); 
 // Atomically replaces `to` with `from` (same volume), durable when it returns; false when `to` is in use.
 bool replace_file(const std::filesystem::path& from,const std::filesystem::path& to);
 std::string environment(const char* name);  // empty when unset
+std::uint64_t peak_memory_bytes();  // this process's peak resident set (Windows: peak working set)
 }

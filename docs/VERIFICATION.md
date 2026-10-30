@@ -1178,6 +1178,22 @@ travel in `metadata`).
 - Remaining dev errors are recognition: monospace `l`/`1`, dash runs (`-rw-r--r--` -> `-rw-r- -r-`), `PS` -> `P5`, case
   (`csv` -> `CSV`), `%` -> `%6`, spaces inside code (`row[ "amount"]`), terminal progress-dot rows not detected.
 
+## Resource governor v2: retrieval models and the OCR worker never overlap (2026-10-30) — PASS (functional, H0)
+
+- Closes the gap left by v1 (retrieval models up to 323 MB and the OCR worker up to 141 MB resident together, ≈ 518 MB
+  with the idle tree). lens-agent now keeps one OCR hold with reasons: "speech" while lens-tts runs, "retrieval" from
+  the first model-loading engine request (recall, search, retrieve_context, index, ingest_audio, transcribe) until the
+  agent itself unloads the models after `retrieval_idle_seconds` (config, default 30) without such a request. The
+  observer gets `hold_ocr` on the first reason and `release_ocr` when none is left (OCR-only windows are deferred
+  meanwhile, UI Automation capture continues). One lock orders an unload against a new request, so OCR is never
+  released while a request is loading models. `diagnostics` reports `ocr_hold`.
+- Tests: tests/test_agent.py — the governor test now also checks `ocr_hold` (["retrieval"] after indexing, ["speech"]
+  while speaking, ["retrieval"] after the next recall); new `test_governor_releases_ocr_after_retrieval_idle` (with a
+  2 s timer: hold released, and only after the models were unloaded). test_agent 7/7, test_observer 28/28,
+  test_native_ocr 14/14 OK.
+- Cost: an OCR-only window changed within 30 s of a question is read up to 30 s later; a question more than 30 s after
+  the previous one reloads the retrieval models. Whole-tree 500 MB not yet re-measured with v2.
+
 ## Voice questions: speech in -> recall -> speech out (2026-10-29) — PASS (functional, H0; no live microphone)
 
 - App: a Speak button beside Ask records from the default microphone (getUserMedia; WebView2's own permission prompt),
@@ -1232,7 +1248,7 @@ travel in `metadata`).
   ADOPTED; the shipped PP-OCRv6 tiny recogniser stays. Likely cause: training crops are whole rendered rows, while table
   and settings cells reach the recogniser as separate detector segments.
 
-## Portable core: Linux build and smoke test; macOS/iOS CI; Android in progress (2026-10-30)
+## Portable core: Linux build and smoke test; Android build; macOS/iOS CI (2026-10-30)
 
 - Founder directive 2026-10-30: build for iPhone, Android, Windows, Linux and macOS. The core's OS-specific calls moved
   behind engine/platform.{hpp,cpp} (shared libraries, durable new files, atomic replace, environment, executable folder,
@@ -1249,15 +1265,31 @@ travel in `metadata`).
 - whisper.cpp at the pinned commit with both Lens RAM patches (ci/fetch_whisper.sh, sha256-checked), GGML_OPENMP=OFF,
   shared libraries with all 15 x86-64 ggml CPU variants selected at run time, as on Windows.
 - Linux (ci/linux: Ubuntu 24.04 container, GCC 13.3, ONNX Runtime 1.24.4 checked against GitHub's published sha256):
-  lens-engine, lens-tts and lens-embed build; ci/linux/smoke.py on synthetic data, with the pinned models mounted:
-  **10/10 PASS** — add/stats/keyword search, wrapped key file in the Secret Service keyring, no plaintext in the
-  database file, semantic recall with e5 + the Lens v2c reranker, plaintext export, encrypted backup, restore into a
-  new database that opens and searches, spoken reply with Kokoro + misaki (2.9 s of audio, real-time factor 0.48).
+  lens-engine, lens-tts, lens-embed, lens-sherpa and lens-ocr build; ci/linux/smoke.py on synthetic data, with the
+  pinned models mounted: **11/11 PASS** — add/stats/keyword search, wrapped key file in the Secret Service keyring, no
+  plaintext in the database file, semantic recall with e5 + the Lens v2c reranker, plaintext export, encrypted backup,
+  restore into a new database that opens and searches, spoken reply with Kokoro + misaki (2.9 s of audio, real-time
+  factor 0.52), and screen OCR on the 25-screen English hard-screen dev set: **page CER 2.17%, the same as the Windows
+  build** (ci/ocr_parity.py on Windows: 2.174%, peak working set 124 MB; Linux peak RSS 141 MB).
 - .github/workflows/portable.yml: Linux (the same container), macOS 14 arm64 (Homebrew deps, ONNX Runtime osx-arm64
   1.24.4 sha256-pinned, smoke test with a temporary keychain) and iOS arm64 (vcpkg deps at the overlay's vcpkg commit;
   links the memory core, lens-store). Results only once pushed and run on GitHub's hosted runners.
-- Android: NDK r27.1 (already installed); vcpkg building OpenSSL, zstd, ICU and nlohmann-json for arm64-android; vcpkg's
-  SQLCipher port is Windows-only, so Android also uses the amalgamation. Not yet built.
+- Android arm64-v8a (ci/android/build.ps1 on the Windows host: NDK r27.1, API 29, vcpkg OpenSSL/zstd/utf8proc/nlohmann-json
+  for arm64-android; vcpkg's SQLCipher port is Windows-only, so the amalgamation; vcpkg's ICU does not build for
+  Android, so grapheme clusters come from utf8proc on every non-Windows platform): lens-engine, lens-tts, lens-embed,
+  lens-sherpa, lens-ocr and the seven Android ggml CPU variants (armv8.0 … armv9.2 with SME) **build and link**, no
+  warnings. SQLCipher's logcat hook needs liblog. **Not executed**: no Android device or emulator here.
+- Speech input off Windows: lens-sherpa now uses the platform layer (library loading, base64) and builds from the
+  sherpa-onnx C API header at the pinned commit (ci/fetch_sherpa_header.sh; sha256 equal to the v2.0.0 SDK header the
+  Windows build uses). Windows: rebuilt, tests/test_voice.py 19, test_cli_extended 2, test_tts 5 OK.
+- Screen OCR off Windows: lens-ocr decodes PNG/JPEG/BMP with stb_image (pinned in third_party/upstream-lock.json,
+  MIT or Unlicense) instead of WIC, loads ONNX Runtime and reports peak memory through the platform layer
+  (`peak_memory_bytes`: peak working set on Windows, ru_maxrss elsewhere). ci/ocr_parity.py (standard library only)
+  runs one lens-ocr build on the English hard-screen dev set with the shipped configuration.
+- macOS CI, first runs: Linux and iOS jobs PASS on GitHub's runners; macOS failed in ggml's apple_m4 CPU variant (SME
+  intrinsics need a newer clang than Xcode 15 on macos-14: `'svmmla_s32' needs target feature sve,i8mm`), found
+  through ci/annotate_log.sh, which turns compiler errors into a job annotation readable without the job log. The Apple
+  jobs moved to macos-15 (Xcode 16); ggml modules load as .so on macOS; Metal and Accelerate BLAS are off (CPU-only).
 - Not ported yet: observation (macOS Accessibility + ScreenCaptureKit, Linux AT-SPI + screencast portal, Android
-  Accessibility Service), the app shells (WKWebView, WebKitGTK, Android WebView), the agent's IPC, lens-ocr (image
-  decoding via Windows Imaging Component), lens-voice microphone capture. No run on macOS, iOS or Android hardware.
+  Accessibility Service), the app shells (WKWebView, WebKitGTK, Android WebView), the agent (named pipe, tray, process
+  tree), lens-voice microphone capture. No run on macOS, iOS or Android hardware.

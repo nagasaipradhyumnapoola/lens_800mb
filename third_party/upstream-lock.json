@@ -103,6 +103,21 @@
       "license_spdx": "MIT",
       "license_path": "LICENSE",
       "license_sha256": "661142e53c313d2bb5e1b055f5c0a39001450ff1b5e27b89dc4bc7de9a6352ca"
+    },
+    {
+      "repository": "nothings/stb",
+      "url": "https://github.com/nothings/stb",
+      "commit": "013ac3beddff3dbffafd5177e7972067cd2b5083",
+      "license_spdx": "MIT OR Unlicense",
+      "license_path": "LICENSE",
+      "license_sha256": "bebfe904b14301657e4e5d655c811d51fd31b97c455b9cc2d8600d6bac6cff63",
+      "files": [
+        {
+          "path": "stb_image.h",
+          "sha256": "594c2fe35d49488b4382dbfaec8f98366defca819d916ac95becf3e75f4200b3"
+        }
+      ],
+      "purpose": "PNG/JPEG/BMP decoding for lens-ocr outside Windows (Windows decodes with WIC)"
     }
   ]
 }

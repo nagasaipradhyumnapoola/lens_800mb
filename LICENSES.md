@@ -22,6 +22,11 @@ Needle binaries have separate artifact SHA256s in third_party/model-lock.json.
 | Microsoft vcpkg and reused SQLCipher build recipe | MIT; overlay version/digest changes documented in lens-provenance.json |
 | OpenSSL | Apache-2.0; vcpkg copyright notice must accompany redistributed DLL |
 | nlohmann/json | MIT; vcpkg copyright notice must accompany redistribution |
+| Zstandard (zstd) | BSD-3-Clause (dual BSD/GPLv2; BSD chosen); compressed observation text; vcpkg notice in third_party/licenses |
+| utf8proc | MIT (code) + Unicode data license; grapheme clusters outside Windows; vcpkg notice in third_party/licenses |
+| stb_image | MIT or Unlicense (public domain); unmodified, PNG/JPEG/BMP decoding in lens-ocr outside Windows |
+| libsecret (Linux) | LGPL-2.1-or-later; system library loaded from the distribution, not redistributed |
+| Apple Security framework, Android Keystore | Operating-system components holding the master key; not redistributed |
 | sherpa-onnx | Apache-2.0; official v2.0.0 native runtime, pinned separately from research HEAD |
 | Dolphin code and weights | Apache-2.0; official int8 sherpa model export, upstream license retained |
 | ActivityWatch | MPL-2.0; reference only, no code copied |

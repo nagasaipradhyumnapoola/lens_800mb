@@ -63,6 +63,10 @@ def main():
             p=subprocess.run([str(BIN/'lens-tts')],input=json.dumps(req)+'\n',capture_output=True,text=True,timeout=600)
             r=json.loads(p.stdout.splitlines()[0]) if p.stdout else {}
             check(r.get('ok') and r.get('duration_s',0)>1.5,f"spoken reply synthesised ({r.get('duration_s')} s, RTF {r.get('real_time_factor')})")
+    sys.path.insert(0,str(ROOT/'ci'));import ocr_parity
+    if ORT and (BIN/'lens-ocr').exists() and ocr_parity.available():
+        cer,rows=ocr_parity.run(BIN/'lens-ocr',ORT)
+        check(cer<=0.03,f"screen OCR, English hard-screen dev set: page CER {cer:.4f} on {len(rows)} screens, peak {max(r['peak_bytes'] for r in rows)/1e6:.0f} MB")
     print('smoke: all passed')
 
 

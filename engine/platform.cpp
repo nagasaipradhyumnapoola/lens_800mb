@@ -7,11 +7,13 @@
 #include <thread>
 #ifdef _WIN32
 #include <windows.h>
+#include <psapi.h>  // K32GetProcessMemoryInfo (kernel32)
 #else
 #include <dlfcn.h>
 #include <fcntl.h>
 #include <signal.h>
 #include <spawn.h>
+#include <sys/resource.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #ifdef __APPLE__
@@ -99,6 +101,9 @@ std::string environment(const char* name) {
     if(_dupenv_s(&value,&n,name)==0&&value)out=value;
     free(value);return out;
 }
+std::uint64_t peak_memory_bytes() {
+    PROCESS_MEMORY_COUNTERS pmc{};return GetProcessMemoryInfo(GetCurrentProcess(),&pmc,sizeof pmc)?pmc.PeakWorkingSetSize:0;
+}
 #else
 std::filesystem::path executable_dir() {
 #ifdef __APPLE__
@@ -161,6 +166,14 @@ bool replace_file(const std::filesystem::path& from,const std::filesystem::path&
     return true;
 }
 std::string environment(const char* name){const char* v=std::getenv(name);return v?v:"";}  // NOLINT(concurrency-mt-unsafe)
+std::uint64_t peak_memory_bytes() {
+    rusage u{};if(getrusage(RUSAGE_SELF,&u)!=0)return 0;
+#ifdef __APPLE__
+    return static_cast<std::uint64_t>(u.ru_maxrss);  // bytes on Apple platforms
+#else
+    return static_cast<std::uint64_t>(u.ru_maxrss)*1024;  // kilobytes on Linux and Android
+#endif
+}
 #endif
 void write_new_file(const std::filesystem::path& path,const std::string& data) {
     NewFile f(path);if(!f.write(data)||!f.commit())throw Error("file_write_failed");

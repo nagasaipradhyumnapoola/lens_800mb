@@ -86,7 +86,9 @@ class Agent(unittest.TestCase):
 class AgentSpeech(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.data=Path(self.tmp.name);self.name=f'lens-test-{uuid.uuid4().hex[:10]}'
-        (self.data/'config.json').write_text(json.dumps({'speech_idle_seconds':2}),encoding='utf-8')
+        config={'speech_idle_seconds':2}
+        if 'retrieval_idle' in self._testMethodName:config['retrieval_idle_seconds']=2  # short governor timer for that test
+        (self.data/'config.json').write_text(json.dumps(config),encoding='utf-8')
         self.agent=subprocess.Popen([str(REL/'lens-agent.exe'),'--data-dir',str(self.data),'--root',str(ROOT),'--pipe-name',self.name],
                                     stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
         self.pipe=Pipe(self.name)
@@ -125,11 +127,25 @@ class AgentSpeech(unittest.TestCase):
         self.assertTrue(self.pipe.ask(add)['ok']);self.pipe.ask({'op':'index','limit':16})
         if not self.pipe.ask({'op':'stats'}).get('models_loaded'):self.skipTest('semantic models not installed')
         names=lambda:[p['name'] for p in self.pipe.ask({'op':'diagnostics'})['processes']]
+        hold=lambda:self.pipe.ask({'op':'diagnostics'})['ocr_hold']
+        self.assertEqual(hold(),['retrieval'])  # OCR waits while the retrieval models are loaded
         self.assertTrue(self.pipe.ask({'op':'speak','text':'The audit moved to Tuesday.'})['ok'])
         self.assertFalse(self.pipe.ask({'op':'stats'})['models_loaded'])  # retrieval models unloaded before Kokoro loaded
-        self.assertIn('lens-tts.exe',names())
+        self.assertIn('lens-tts.exe',names());self.assertEqual(hold(),['speech'])
         self.assertTrue(self.pipe.ask({'op':'recall','query':'when is the Brightwater audit','limit':3})['ok'])
         self.assertNotIn('lens-tts.exe',names())  # a model-loading request stops the speech worker first
+        self.assertEqual(hold(),['retrieval'])
+
+    def test_governor_releases_ocr_after_retrieval_idle(self):
+        add={'op':'add','consent':True,'id':'r1','text':'Synthetic note: the Halvorsen review moved to Friday.','language':'en',
+             'timestamp':'2026-10-30T09:00:00Z','device':'laptop','kind':'note','provenance':'test'}
+        self.assertTrue(self.pipe.ask(add)['ok']);self.pipe.ask({'op':'index','limit':16})
+        if not self.pipe.ask({'op':'stats'}).get('models_loaded'):self.skipTest('semantic models not installed')
+        self.assertEqual(self.pipe.ask({'op':'diagnostics'})['ocr_hold'],['retrieval'])
+        end=time.time()+30  # retrieval_idle_seconds=2 for this test; the governor checks every 2 s
+        while time.time()<end and self.pipe.ask({'op':'diagnostics'})['ocr_hold']:time.sleep(0.5)
+        self.assertEqual(self.pipe.ask({'op':'diagnostics'})['ocr_hold'],[])  # OCR released
+        self.assertFalse(self.pipe.ask({'op':'stats'})['models_loaded'])  # only after the models were unloaded
 
 
 if __name__=='__main__':unittest.main()

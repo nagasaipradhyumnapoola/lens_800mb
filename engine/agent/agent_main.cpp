@@ -332,6 +332,15 @@ int wmain(int argc,wchar_t** argv) {
 
     // Observer: started only while consent is recorded in the config; its records go straight into memory.
     Child observer;std::mutex observer_lock;std::atomic<long long> observed=0,stored=0,failed=0;std::atomic<bool> paused=false;
+    // OCR hold (resource governor): the observer's OCR worker is stopped while another heavy model has the RAM budget —
+    // a spoken reply ("speech") or the engine's retrieval models ("retrieval"). Lock order: hold_lock, then observer_lock.
+    std::mutex hold_lock;std::set<std::string> ocr_hold;std::atomic<bool> ocr_held=false;
+    auto set_hold=[&](const char* reason,bool on) {
+        std::lock_guard h(hold_lock);const bool was=!ocr_hold.empty();
+        if(on)ocr_hold.insert(reason);else ocr_hold.erase(reason);
+        ocr_held=!ocr_hold.empty();if(was==ocr_held)return;
+        std::lock_guard g(observer_lock);if(observer.running())observer.send(ocr_held?"hold_ocr":"release_ocr");
+    };
     auto start_observer=[&]{
         std::lock_guard g(observer_lock);if(observer.running()||paused)return;  // paused: starts on resume
         observer.stop();  // reap a previous run that ended by itself (its reader thread must be joined before reuse)
@@ -351,21 +360,33 @@ int wmain(int argc,wchar_t** argv) {
             long long ms=0;const auto r=timed_ask(req,ms);if(r&&r->value("ok",false))++stored;else ++failed;
             note_capture("screen",req,r,ms);
         });
-        if(speech.child.running())observer.send("hold_ocr");  // a spoken reply is using the heavy-model budget
+        if(ocr_held)observer.send("hold_ocr");  // a spoken reply or recall is using the heavy-model budget
         log({{"event","observer_started"}});
     };
     auto stop_observer=[&]{std::lock_guard g(observer_lock);if(observer.running()){observer.stop();log({{"event","observer_stopped"}});}};
-    // Resource governor (spec §15, 500 MB for the whole tree): the TTS worker never runs beside the engine's retrieval
-    // models or the OCR worker. Speaking unloads the first and holds the second; any engine request that loads a model
-    // stops the TTS worker first, which releases the OCR hold.
+    // Resource governor (spec §15, 500 MB for the whole tree): no two heavy models are resident together. The TTS worker
+    // never runs beside the engine's retrieval models or the OCR worker: speaking unloads the first and holds the second.
+    // An engine request that loads a model stops the TTS worker and holds OCR until the retrieval models have been idle
+    // for retrieval_idle_seconds (default 30), when the agent unloads them and releases OCR (deferred OCR then runs).
+    std::mutex retrieval_lock;std::chrono::steady_clock::time_point last_retrieval{};
     speech.on_start=[&]{
-        engine.ask({{"op","unload_models"}});
-        std::lock_guard g(observer_lock);if(observer.running())observer.send("hold_ocr");
+        {std::lock_guard r(retrieval_lock);engine.ask({{"op","unload_models"}});set_hold("retrieval",false);}
+        set_hold("speech",true);
     };
-    speech.on_stop=[&]{std::lock_guard g(observer_lock);if(observer.running())observer.send("release_ocr");};
+    speech.on_stop=[&]{set_hold("speech",false);};
     engine.before=[&](const json& r){
         static const std::set<std::string> loads_models{"recall","search","retrieve_context","index","ingest_audio","transcribe"};
-        if(r.is_object()&&loads_models.count(r.value("op",std::string())))speech.stop();
+        if(!r.is_object()||!loads_models.count(r.value("op",std::string())))return;
+        speech.stop();
+        std::lock_guard g(retrieval_lock);set_hold("retrieval",true);last_retrieval=std::chrono::steady_clock::now();
+    };
+    // Called every few seconds: unloads idle retrieval models and lets OCR back. retrieval_lock makes an unload and a new
+    // model-loading request strictly ordered, so OCR is never released while that request loads models.
+    auto release_idle_retrieval=[&](std::chrono::seconds idle) {
+        std::lock_guard g(retrieval_lock);
+        {std::lock_guard h(hold_lock);if(!ocr_hold.count("retrieval"))return;}
+        if(std::chrono::steady_clock::now()-last_retrieval<idle)return;
+        engine.ask({{"op","unload_models"}});set_hold("retrieval",false);
     };
     if(consent("observe_screen"))start_observer();
 
@@ -414,12 +435,14 @@ int wmain(int argc,wchar_t** argv) {
             if(semantic=="verified")for(int k=0;k<20&&!stopping;++k){const auto r=engine.ask({{"op","index"},{"limit",256}});if(!r||r->value("pending_sources",0)==0)break;}
         }
     });
-    std::thread speech_idle([&]{  // the TTS worker exits after 60 s without a spoken reply
+    std::thread speech_idle([&]{  // the TTS worker exits after 60 s without a spoken reply; idle retrieval models unload
         std::unique_lock l(wake_lock);
         while(!stopping){
-            wake.wait_for(l,std::chrono::seconds(5));
-            int idle=60;{std::lock_guard g(config_lock);idle=std::max(1,config.value("speech_idle_seconds",60));}
-            speech.stop_if_idle(std::chrono::seconds(idle));
+            int idle=60,retrieval_idle=30;
+            {std::lock_guard g(config_lock);idle=std::max(1,config.value("speech_idle_seconds",60));retrieval_idle=std::max(1,config.value("retrieval_idle_seconds",30));}
+            wake.wait_for(l,std::chrono::seconds(std::min(5,retrieval_idle)));
+            if(stopping)break;
+            l.unlock();speech.stop_if_idle(std::chrono::seconds(idle));release_idle_retrieval(std::chrono::seconds(retrieval_idle));l.lock();
         }
     });
 
@@ -532,6 +555,7 @@ int wmain(int argc,wchar_t** argv) {
             const auto up=std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now()-started_at).count();
             return {{"ok",true},{"uptime_seconds",up},{"processes",procs},{"memory",{{"working_set",ws},{"private",pv},{"ceiling",500000000}}},
                     {"capture",t},{"observer_running",observer.running()},{"voice_running",voice_running()},{"mesh_running",mesh_running()},
+                    {"ocr_hold",[&]{std::lock_guard h(hold_lock);return json(ocr_hold);}()},
                     {"paused",paused.load()},{"observed",observed.load()},{"stored",stored.load()},{"failed",failed.load()},{"voiced",voiced.load()},
                     {"semantic",semantic},{"storage",{{"data_dir",utf8(data_dir.wstring())},{"files",files},{"total_bytes",total}}}};
         }
