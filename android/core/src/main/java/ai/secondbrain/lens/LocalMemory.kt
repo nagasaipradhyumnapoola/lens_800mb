@@ -8,6 +8,9 @@ import java.io.File
 import java.security.KeyStore
 import java.security.SecureRandom
 import java.time.Instant
+import java.util.concurrent.Executors
+import java.util.concurrent.ScheduledFuture
+import java.util.concurrent.TimeUnit
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
@@ -20,26 +23,35 @@ import javax.crypto.spec.GCMParameterSpec
  * that never leaves Android Keystore (hardware-backed where the device has one). [erase] deletes that Keystore key, so
  * copies of the files are unreadable. One store per process ([shared]); requests are serialised.
  *
- * Recall here is keyword-only: the retrieval models (embedding, reranker) do not ship on Android yet.
+ * Recall: with the retrieval models ([LensModels]) it is the laptop's recall (keyword + e5 embeddings fused, reranked and
+ * gated by the Lens answerability head, abstaining rather than guessing); new items are embedded in the background and
+ * the models are released after [IDLE_UNLOAD_SECONDS] without use. Without models it is keyword-only.
  */
-class LocalMemory private constructor(private var handle: Long, private val dir: File) : Closeable {
+class LocalMemory private constructor(private var handle: Long, private val dir: File, val semantic: Boolean) : Closeable {
     companion object {
         const val WRAP_ALIAS = "lens-memory-master-wrap"
+        const val IDLE_UNLOAD_SECONDS = 30L  // as lens-agent's retrieval_idle_seconds
         private val MAGIC = "LENSMK01".toByteArray()
         private var instance: LocalMemory? = null
 
         /**
-         * The process-wide store in [dir] (created on first use), its master key wrapped by Keystore key [alias]. The native
-         * master key is per process, so a second directory is refused while one is open. Throws IllegalStateException(reason code).
+         * The process-wide store in [dir] (created on first use), its master key wrapped by Keystore key [alias]; [models]
+         * is asked only when the store opens: [LensModels.install]'s result, or null (keyword-only). The native master key
+         * is per process, so a second directory is refused while one is open. Throws IllegalStateException(reason code).
          */
-        @Synchronized fun shared(dir: File, alias: String = WRAP_ALIAS): LocalMemory {
+        @Synchronized fun shared(dir: File, alias: String = WRAP_ALIAS, models: () -> JSONObject? = { null }): LocalMemory {
             instance?.let { if (it.dir == dir.absoluteFile) return it else throw IllegalStateException("store_in_use") }
+            val config = models()
             dir.mkdirs()
             val master = masterKey(File(dir, "master.key"), alias)
             try { NativeCore.setMasterKey(master) } finally { master.fill(0) }
-            val handle = try { NativeCore.open(File(dir, "memory.db").absolutePath.toByteArray()) } catch (e: Exception) { NativeCore.clearMasterKey(); throw e }
-            return LocalMemory(handle, dir.absoluteFile).also { instance = it }
+            val handle = try { NativeCore.open(File(dir, "memory.db").absolutePath.toByteArray(), (config ?: JSONObject()).toString().toByteArray()) }
+                         catch (e: Exception) { NativeCore.clearMasterKey(); throw e }
+            return LocalMemory(handle, dir.absoluteFile, config != null).also { instance = it; if (it.semantic) it.indexInBackground() }
         }
+
+        /** Low memory: releases the retrieval models of the open store, if any (they reload on the next recall). */
+        @Synchronized fun trim() { instance?.takeIf { it.semantic }?.let { runCatching { it.unloadModels() } } }
 
         /** Closes the shared store and forgets the master key in native memory (the files and Keystore key stay). */
         @Synchronized fun release() { instance?.close(); instance = null; NativeCore.clearMasterKey() }
@@ -96,9 +108,31 @@ class LocalMemory private constructor(private var handle: Long, private val dir:
             .put("source_application", app).apply { locator?.let { put("source_locator", it) } }
             .put("consent_context", JSONObject().put("mode", if (kind == "screen_observation") "android_accessibility" else "explicit_user_note"))
             .apply { metadata?.let { put("metadata", it) } })
+            .also { if (it.optBoolean("ok") && !it.optBoolean("deduplicated")) indexInBackground() }
 
+    /** The laptop's recall with models (abstains when no memory answers), keyword-only without. */
     fun recall(query: String, limit: Int = 5): JSONObject =
-        request(JSONObject().put("op", "recall").put("query", query).put("limit", limit).put("mode", "keyword"))
+        if (semantic) request(JSONObject().put("op", "recall").put("query", query).put("limit", limit)).also { modelsUsed() }
+        else request(JSONObject().put("op", "recall").put("query", query).put("limit", limit).put("mode", "keyword"))
 
-    @Synchronized override fun close() { if (handle != 0L) { NativeCore.close(handle); handle = 0L } }
+    /** Embeds every item not embedded yet, in small batches so recall can run in between; returns the last response. */
+    fun indexNow(): JSONObject {
+        while (true) {
+            val r = request(JSONObject().put("op", "index").put("limit", 16))
+            if (!r.optBoolean("ok") || r.optLong("pending_sources") == 0L || r.optLong("indexed_sources") == 0L) return r.also { modelsUsed() }
+        }
+    }
+
+    /** Releases the retrieval models now (they reload on the next recall); also called after [IDLE_UNLOAD_SECONDS] idle. */
+    fun unloadModels(): JSONObject = request(JSONObject().put("op", "unload_models"))
+
+    private val worker = Executors.newSingleThreadScheduledExecutor { Thread(it, "lens-memory").apply { isDaemon = true } }
+    private var unload: ScheduledFuture<*>? = null
+    private fun indexInBackground() { if (semantic) runCatching { worker.execute { runCatching { indexNow() } } } }
+    @Synchronized private fun modelsUsed() {
+        unload?.cancel(false)
+        if (handle != 0L) unload = runCatching { worker.schedule({ runCatching { unloadModels() } }, IDLE_UNLOAD_SECONDS, TimeUnit.SECONDS) }.getOrNull()
+    }
+
+    @Synchronized override fun close() { worker.shutdownNow(); if (handle != 0L) { NativeCore.close(handle); handle = 0L } }
 }

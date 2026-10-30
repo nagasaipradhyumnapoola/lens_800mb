@@ -13,6 +13,7 @@ struct EmbedderConfig {
     std::filesystem::path model;        // multilingual-e5-small ONNX
     std::filesystem::path tokenizer;    // tokenizer.json from the same revision
     std::string model_id;               // recorded with every stored vector
+    bool low_memory=false;              // phones: no ONNX Runtime arena, memory patterns or pre-packed weight copies
     bool configured() const {return !model.empty();}
 };
 // multilingual-e5-small: "query: "/"passage: " prefixes, mean pooling over the attention mask, L2 norm.

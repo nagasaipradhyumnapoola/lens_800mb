@@ -15,7 +15,7 @@ Needle binaries have separate artifact SHA256s in third_party/model-lock.json.
 | Needle3 weights and published native engine | Published model repository LICENSE is Apache-2.0; included license copied with runtime; native runtime source unavailable for auditing |
 | PaddleOCR / PP-OCR packs | Apache-2.0 project/model cards; official weights converted to ONNX for native recognition |
 | PaddleX preprocessing/CTC conventions | Apache-2.0; adapted in native OCR with source attribution |
-| ONNX Runtime | MIT plus bundled third-party notices; unmodified native DLLs; exact pins in ocr-runtime-lock.json |
+| ONNX Runtime | MIT plus bundled third-party notices; unmodified native DLLs; exact pins in ocr-runtime-lock.json; Android: official onnxruntime-android 1.24.3 AAR from Maven Central (native library only, unmodified) |
 | miniaudio | Dual public-domain / MIT No Attribution; bundled upstream decoder, full notice retained |
 | SQLCipher | BSD-3-Clause (reviewed actual notice; GitHub API returned NOASSERTION) |
 | sqlcipher-android | BSD-3-Clause; researched, not packaged |

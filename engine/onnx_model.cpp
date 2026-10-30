@@ -23,7 +23,7 @@ struct OnnxModel::State {
     ~State(){session.reset();env.reset();platform::close_library(module);}
 };
 
-OnnxModel::OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads,bool low_memory):state_(std::make_unique<State>()){
+OnnxModel::OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads,bool low_memory,bool no_prepacking):state_(std::make_unique<State>()){
     state_->module=platform::open_library(runtime);
     if(!state_->module)throw Error("onnx_runtime_unavailable");
     using GetBase=const OrtApiBase*(ORT_API_CALL*)();
@@ -36,6 +36,7 @@ OnnxModel::OnnxModel(const std::filesystem::path& runtime,const std::filesystem:
     Ort::SessionOptions options;options.SetIntraOpNumThreads(threads);options.SetInterOpNumThreads(1);
     options.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_ALL);
     if(low_memory){options.DisableCpuMemArena();options.DisableMemPattern();}
+    if(no_prepacking)options.AddConfigEntry("session.disable_prepacking","1");
     state_->session=std::make_unique<Ort::Session>(*state_->env,model.c_str(),options);
     Ort::AllocatorWithDefaultOptions allocator;
     for(std::size_t i=0;i<state_->session->GetInputCount();++i)state_->inputs.emplace_back(state_->session->GetInputNameAllocated(i,allocator).get());

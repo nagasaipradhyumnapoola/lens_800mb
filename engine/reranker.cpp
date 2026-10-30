@@ -2,7 +2,7 @@
 #include "input.hpp"
 #include "onnx_model.hpp"
 namespace lens {
-Reranker::Reranker(const RerankerConfig& config):model_(std::make_unique<OnnxModel>(config.runtime,config.model)),tokenizer_(config.tokenizer){}
+Reranker::Reranker(const RerankerConfig& config):model_(std::make_unique<OnnxModel>(config.runtime,config.model,4,config.low_memory,config.low_memory)),tokenizer_(config.tokenizer){}
 Reranker::~Reranker()=default;
 
 std::vector<float> Reranker::score(const std::string& query,const std::vector<std::string>& passages){

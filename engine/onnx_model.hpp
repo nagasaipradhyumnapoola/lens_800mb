@@ -10,7 +10,8 @@ namespace lens {
 class OnnxModel {
 public:
     // low_memory: no CPU arena or memory patterns (variable-shape models whose arena would keep every peak shape).
-    OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads=4,bool low_memory=false);
+    // no_prepacking: weights stay in their stored layout instead of a second, pre-packed copy (phones).
+    OnnxModel(const std::filesystem::path& runtime,const std::filesystem::path& model,int threads=4,bool low_memory=false,bool no_prepacking=false);
     ~OnnxModel();
     OnnxModel(const OnnxModel&)=delete;
     OnnxModel& operator=(const OnnxModel&)=delete;

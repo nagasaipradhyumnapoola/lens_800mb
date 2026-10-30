@@ -77,7 +77,8 @@ One C++20 core everywhere; each OS keeps its own native window, accessibility an
 ✅ = automated tests pass on that OS (CI = GitHub's runners, no models there; emulator = Android 15 emulator, no phone
 yet) · 🟡 = compiles and links, not yet run on real hardware · ⬜ = not built. Linux builds and tests run in a container,
 Android with the NDK on Windows and on the emulator, macOS and iOS in [GitHub Actions](.github/workflows/portable.yml).
-On Android the phone keeps its own encrypted memory and works without a laptop; recall there is keyword-only for now.
+On Android the phone keeps its own encrypted memory and works without a laptop, with the laptop's recall (e5 embeddings
+and the Lens answerability head, same scores as on the laptop); the models make the debug APK 346 MB.
 
 ## How it works
 

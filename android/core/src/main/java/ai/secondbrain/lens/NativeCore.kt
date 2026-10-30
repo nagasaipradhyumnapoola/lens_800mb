@@ -8,8 +8,8 @@ internal object NativeCore {
     init { System.loadLibrary("lens-core") }
     @JvmStatic external fun setMasterKey(key: ByteArray)
     @JvmStatic external fun clearMasterKey()
-    /** Opens (creating on first use) the encrypted database; throws IllegalStateException(reason code). */
-    @JvmStatic external fun open(path: ByteArray): Long
+    /** Opens (creating on first use) the encrypted database; [models] is {} or [LensModels.install]'s configuration (UTF-8 JSON). Throws IllegalStateException(reason code). */
+    @JvmStatic external fun open(path: ByteArray, models: ByteArray): Long
     @JvmStatic external fun request(handle: Long, request: ByteArray): ByteArray
     @JvmStatic external fun close(handle: Long)
 }

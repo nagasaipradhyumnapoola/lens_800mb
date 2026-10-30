@@ -77,5 +77,7 @@ the public repository; compiler errors appear as a job annotation (ci/annotate_l
    EmbeddingGemma-300M INT8, CPU-only with RAM; LongMemEval_S retrieval recall.
 5. Hindi ASR (FLEURS held-out WER 26.6%), then English/Spanish with whisper small q5 vs base (RAM, latency).
 6. Second real-screen run (needs consent); Needle into the pending-action flow; device events/notifications.
-7. Android: phone emulator end-to-end done (2026-10-31); next the retrieval models on the phone (keyword-only today),
-   a physical phone, then Wear; demos 1–10 and the acceptance report.
+7. Android: phone emulator end-to-end and the retrieval models on the phone done (2026-10-31). Next: phone RAM with
+   both models loaded is 460–498 MB RSS (ONNX external-data weights mapped from file would make them reclaimable);
+   APK 290+ MB per ABI needs Play Asset Delivery for a store release; a physical phone, then Wear; demos 1–10 and
+   the acceptance report.

@@ -10,6 +10,7 @@ struct RerankerConfig {
     std::filesystem::path runtime;   // onnxruntime.dll (hash-verified by the client)
     std::filesystem::path model;     // cross-encoder/mmarco-mMiniLMv2-L12-H384-v1 ONNX
     std::filesystem::path tokenizer; // tokenizer.json from the same revision
+    bool low_memory=false;           // phones: no ONNX Runtime arena, memory patterns or pre-packed weight copies
     bool configured() const {return !model.empty();}
 };
 // Multilingual cross-encoder: one relevance logit per (query, passage) pair. Loaded lazily, one pair per run

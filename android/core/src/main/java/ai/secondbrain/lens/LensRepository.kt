@@ -16,8 +16,12 @@ class LensRepository(private val context: Context) {
     private val queueFile = File(context.noBackupFilesDir, "pending-notes.jsonl")  // app-private, excluded from backups
     private val memoryDir = File(context.noBackupFilesDir, "lens-memory")
 
-    /** This phone's encrypted store; throws IllegalStateException(reason code) when it cannot be opened. */
-    val local: LocalMemory get() = LocalMemory.shared(memoryDir)
+    /**
+     * This phone's encrypted store, with the APK's retrieval models (installed on first use; keyword-only if they are
+     * missing or fail their hash check). Throws IllegalStateException(reason code) when the store cannot be opened.
+     */
+    val local: LocalMemory get() = LocalMemory.shared(memoryDir) {
+        runCatching { LensModels.install(context, File(context.noBackupFilesDir, "lens-models")) }.getOrNull() }
 
     /** Deletes everything Lens stored on this phone (memory, its keys, items waiting for the laptop). */
     fun eraseLocal() { LocalMemory.erase(memoryDir); synchronized(queueFile) { queueFile.delete() } }

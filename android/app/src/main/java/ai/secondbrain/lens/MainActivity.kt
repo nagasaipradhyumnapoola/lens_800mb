@@ -37,6 +37,11 @@ class MainActivity : ComponentActivity() {
         val repo = LensRepository(applicationContext)
         setContent { MaterialTheme(colorScheme = Graphite) { Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) { LensApp(repo) } } }
     }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        if (level >= TRIM_MEMORY_BACKGROUND) kotlin.concurrent.thread { LocalMemory.trim() }  // models reload on the next recall
+    }
 }
 
 /** This phone's memory works on its own; pairing with a laptop is optional and adds the laptop's whole memory. */
@@ -88,6 +93,8 @@ fun HomeScreen(repo: LensRepository, paired: Boolean, onPair: () -> Unit, onUnpa
     var note by remember { mutableStateOf("") }
     var confirmErase by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
+    // Open the phone's memory early: the first launch installs the retrieval models (one copy, hash-checked) off screen.
+    LaunchedEffect(Unit) { withContext(Dispatchers.IO) { runCatching { repo.local } } }
     if (confirmErase) AlertDialog(onDismissRequest = { confirmErase = false },
         title = { Text("Erase this phone's memory?") },
         text = { Text("Deletes every note and screen memory Lens stored on this phone, and its encryption keys. Your laptop's memory is not touched. This cannot be undone.") },
@@ -141,7 +148,7 @@ fun HomeScreen(repo: LensRepository, paired: Boolean, onPair: () -> Unit, onUnpa
         }
         OutlinedTextField(note, { note = it }, label = { Text("Quick note to remember") }, modifier = Modifier.fillMaxWidth())
         Button(enabled = note.isNotBlank(), onClick = {
-            val text = note; note = ""
+            val text = note; note = ""; status = "Saving…"
             scope.launch {
                 val saved = withContext(Dispatchers.IO) { repo.remember(text) }
                 status = when {

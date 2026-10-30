@@ -1482,3 +1482,33 @@ travel in `metadata`).
 - Not verified: any physical phone; release (minified) build; the accessibility observer storing locally on a device
   (code path shared with notes, not exercised on the emulator); Wear OS; the Windows suite was not re-run (no Windows
   code changed).
+
+## Android: the laptop's retrieval models on the phone (2026-10-31) — PASS functional (emulator); RAM near the ceiling
+
+- What ships: multilingual-e5-small INT8 (embeddings) and the Lens answerability head v3c (reranker, verifier and
+  answer gate with gate.json), the same files and lock-file hashes as the laptop. android/app `stageLensModels`
+  copies them from models/ into the APK assets after checking every SHA-256 against third_party/embedding-lock.json
+  and model-lock.json (build fails otherwise; `-PlensModels=false` builds a keyword-only app). ONNX Runtime: the
+  official onnxruntime-android 1.24.3 AAR (Maven Central, sha256 67397e4a…cbce; the newest 1.24 Android release,
+  desktop pins 1.24.4, same C API 24), native library only; the app is restricted to arm64-v8a and x86_64.
+- On the phone (android/core LensModels.kt): models are copied once to app-private storage and each copy re-hashed
+  against the APK manifest (17 s on the emulator, started in the background at app launch); the engine is opened
+  with them over JNI. New items are embedded in the background; models are released after 30 s idle (as
+  lens-agent) and on low memory (onTrimMemory). Phone sessions use no ONNX Runtime arena, no memory patterns and no
+  pre-packed weight copy (new `low_memory` flag; desktop unchanged), and freed memory is purged after release.
+- Parity: the phone (x86_64 emulator) and lens-engine on Windows over the same 103 synthetic notes give identical
+  scores to every printed digit (best rerank -1.3448833227157593 and -0.384787380695343, best cosine
+  0.6027097920828265 and 0.5751416995628419). Both decline to answer those two paraphrased questions: the answer
+  gate's conservatism is the known gap (target 0.80 not met), not a phone effect.
+- Emulator tests (synthetic data): SemanticMemoryTest 3/3 (paraphrase ranked first without the gate; a question
+  nothing answers abstains; models reload after release; background embedding of a new note; a stale or damaged
+  model install is replaced and re-verified), with LocalMemoryTest 7/7 and LaptopLinkTest: 11/11 on the device,
+  tests/test_android_link.py OK. Desktop retrieval tests after the shared-code change: answer gate 1, hybrid
+  retrieval 10, idle unload 3, query interpretation 7, temporal query 6 — all OK; JVM unit tests 11/11.
+- Measured on the emulator (Android 15 x86_64, debug build, indicative only): embedding 100 notes 0.6–1.4 s; warm
+  recall 0.25–0.6 s; recall after release (models reload) 2.4–5.4 s. Process RSS: 148 MB before models, 323 MB with
+  the embedder, 460–498 MB with both models (PSS 370–409 MB; the spread is between runs of the same build), ~195 MB
+  after release. Without the low-memory options the peak was 494–499 MB.
+- Open: the phone peak with both models is at the 500 MB ceiling on its own; weights mapped from file (ONNX external
+  data) would make them reclaimable. APK size: 346 MB debug with two ABIs (about 290 MB for one ABI), above Google
+  Play's 200 MB base limit (asset packs needed for a store release). No physical phone; release build not run.

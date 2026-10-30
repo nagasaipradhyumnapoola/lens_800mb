@@ -9,7 +9,7 @@ struct Embedder::Runtime {std::unique_ptr<OnnxModel> model;};
 
 Embedder::Embedder(const EmbedderConfig& config):runtime_(std::make_unique<Runtime>()),tokenizer_(config.tokenizer),id_(config.model_id){
     if(id_.empty())throw Error("embedding_model_id_required");
-    runtime_->model=std::make_unique<OnnxModel>(config.runtime,config.model);
+    runtime_->model=std::make_unique<OnnxModel>(config.runtime,config.model,4,config.low_memory,config.low_memory);
 }
 Embedder::~Embedder()=default;
 
