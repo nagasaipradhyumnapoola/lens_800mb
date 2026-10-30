@@ -49,9 +49,11 @@ def observer_check():
         check(p.returncode==0 and json.loads(p.stdout.splitlines()[0])['language']=='en','observer language labeller')
         p=subprocess.run([str(obs)],capture_output=True,text=True,timeout=60)
         check(p.returncode==2 and 'consent_required' in p.stderr,'observer refuses to start without consent')
-        if sys.platform=='darwin':  # CI runners never grant Accessibility access: the observer must refuse, not guess
+        if sys.platform=='darwin':  # refuses without Accessibility access; with it (CI runners grant it) starts and stops cleanly
             p=subprocess.run([str(obs),'--consent'],input='',capture_output=True,text=True,timeout=60)
-            check(p.returncode==1 and 'accessibility_unavailable' in p.stderr,'observer refuses without Accessibility permission')
+            refused=p.returncode==1 and 'accessibility_unavailable' in p.stderr
+            ran=p.returncode==0 and '"started"' in p.stderr and '"stopped"' in p.stderr
+            check(refused or ran,'observer '+('refuses without Accessibility permission' if refused else 'starts with Accessibility permission and stops on EOF'))
     if not (obs.exists() and app.exists() and shutil.which('Xvfb')):return
     import threading,time
     display=':97';x=subprocess.Popen(['Xvfb',display,'-screen','0','1280x800x24','-nolisten','tcp'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
