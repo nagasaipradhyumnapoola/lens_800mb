@@ -5,7 +5,9 @@ Canary-180M-flash INT8, punctuation and capitalisation on), CPU only. Public aud
   - LibriSpeech test-clean, every utterance whose sha256(id) % 10 == 0 (~10%, fixed; data/external/librispeech).
 WER uses benchmarks/metrics.py (NFC, case-folded, punctuation removed; no number normalisation), the same metric as the
 whisper results. No tuning: the route's settings are the shipped ones.
-Usage: .venv\\Scripts\\python.exe scripts/benchmark_asr_english.py [--limit N] [--sets fleurs,librispeech]
+--path engine measures the product path instead: lens-engine `transcribe` with the English route and the whisper base
+fallback for a routed model that loops or returns nothing.
+Usage: .venv\\Scripts\\python.exe scripts/benchmark_asr_english.py [--limit N] [--sets fleurs,librispeech] [--path sherpa|engine]
 """
 import argparse
 from datetime import datetime,timezone
@@ -20,6 +22,8 @@ from benchmarks.process import measure
 CANARY=ROOT/'models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8'
 LIBRARY=ROOT/'.tools/sherpa-runtime/sherpa-onnx-v2.0.0-win-x64-shared-MD-Release-no-tts/lib/sherpa-onnx-c-api.dll'
 WORKER=ROOT/'build/engine/Release/lens-sherpa.exe'
+ENGINE=ROOT/'build/engine/Release/lens-engine.exe'
+WHISPER=ROOT/'models/ggerganov--whisper.cpp/ggml-base-q5_1.bin'
 LIBRI=ROOT/'data/external/librispeech/extracted/LibriSpeech/test-clean'
 
 
@@ -37,9 +41,13 @@ def librispeech():
 
 
 def main():
-    ap=argparse.ArgumentParser();ap.add_argument('--limit',type=int,default=0);ap.add_argument('--sets',default='fleurs,librispeech');args=ap.parse_args()
-    import soundfile
-    report={'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'worker':'lens-sherpa canary (shipped route)','threads':2,
+    ap=argparse.ArgumentParser();ap.add_argument('--limit',type=int,default=0);ap.add_argument('--sets',default='fleurs,librispeech')
+    ap.add_argument('--path',choices=['sherpa','engine'],default='sherpa');args=ap.parse_args()
+    import base64,soundfile,tempfile
+    tmp=tempfile.TemporaryDirectory();db=Path(tmp.name)/'asr.db'
+    route={'en':{'model_type':'canary','model':str(CANARY/'encoder.int8.onnx'),'decoder':str(CANARY/'decoder.int8.onnx'),'tokens':str(CANARY/'tokens.txt'),'library':str(LIBRARY)}}
+    report={'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'path':args.path,
+            'worker':'lens-sherpa canary (shipped route)' if args.path=='sherpa' else 'lens-engine transcribe: canary route + whisper base fallback','threads':2,
             'model_sha256':{f:hashlib.sha256((CANARY/f).read_bytes()).hexdigest() for f in ('encoder.int8.onnx','decoder.int8.onnx','tokens.txt')},
             'metric':'WER on benchmarks/metrics.py normalisation (case-folded, punctuation removed, no number normalisation)','sets':{}}
     for name in args.sets.split(','):
@@ -47,18 +55,26 @@ def main():
         for i,(uid,path,ref,dur) in enumerate(fleurs() if name=='fleurs' else librispeech()):
             if args.limit and i>=args.limit:break
             if dur is None:info=soundfile.info(str(path));dur=info.frames/info.samplerate
-            req={'consent':True,'model_type':'canary','language':'en','audio':str(path),'model':str(CANARY/'encoder.int8.onnx'),
-                 'decoder':str(CANARY/'decoder.int8.onnx'),'tokens':str(CANARY/'tokens.txt'),'library':str(LIBRARY)}
-            r=measure([WORKER],timeout=300,input_data=(json.dumps(req)+'\n').encode())
-            out=json.loads(r['stdout']) if r['exit_code']==0 and r.get('stdout') else {}
+            if args.path=='sherpa':
+                req={'consent':True,'model_type':'canary','language':'en','audio':str(path),'model':str(CANARY/'encoder.int8.onnx'),
+                     'decoder':str(CANARY/'decoder.int8.onnx'),'tokens':str(CANARY/'tokens.txt'),'library':str(LIBRARY)}
+                r=measure([WORKER],timeout=300,input_data=(json.dumps(req)+'\n').encode())
+                out=json.loads(r['stdout']) if r['exit_code']==0 and r.get('stdout') else {}
+            else:
+                req={'op':'transcribe','consent':True,'language':'en','model':str(WHISPER),'asr_routes':route,
+                     'audio_base64':base64.b64encode(Path(path).read_bytes()).decode('ascii')}
+                r=measure([ENGINE,'--db',db],timeout=300,input_data=(json.dumps(req)+'\n').encode())
+                line=json.loads(r['stdout'].splitlines()[0]) if r['exit_code']==0 and r.get('stdout') else {}
+                out=line.get('transcript',{}) if line.get('ok') else {}
             hyp=out.get('text','');e,n=error_rate(ref,hyp);errors+=e;words+=n
             secs=r['wall_ms']/1000;audio_s+=dur;wall_s+=secs
             peak=max(peak,r['sum_observed_process_peak_wset_bytes'])
-            rows.append({'id':uid,'wer':e/max(1,n),'words':n,'seconds':secs,'audio_s':dur,'reference':ref,'hypothesis':hyp,'exit_code':r['exit_code']})
+            rows.append({'id':uid,'wer':e/max(1,n),'words':n,'seconds':secs,'audio_s':dur,'reference':ref,'hypothesis':hyp,'exit_code':r['exit_code'],
+                         'provider':out.get('provider'),'routed_fallback':out.get('routed_fallback')})
             print(f"{name} {i+1:4d} WER so far {errors/max(1,words):.4f} ({uid})",flush=True)
         report['sets'][name]={'utterances':len(rows),'words':words,'wer':errors/max(1,words),'failures':sum(r['exit_code']!=0 for r in rows),
                               'real_time_factor_incl_load':wall_s/max(1e-9,audio_s),'peak_working_set_bytes':peak,'rows':rows}
-    out=ROOT/'reports/voice'/f"asr-english-canary-{report['created_utc']}.json";out.parent.mkdir(parents=True,exist_ok=True)
+    out=ROOT/'reports/voice'/f"asr-english-{args.path}-{report['created_utc']}.json";out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(report,ensure_ascii=False,indent=1),encoding='utf-8')
     print(json.dumps({k:{x:v[x] for x in ('utterances','wer','failures','real_time_factor_incl_load','peak_working_set_bytes')} for k,v in report['sets'].items()},indent=1));print(out)
 

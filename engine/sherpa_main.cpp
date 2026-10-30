@@ -61,12 +61,35 @@ int main(){
     config.model_config.num_threads=2;config.model_config.provider="cpu";config.model_config.debug=0;config.decoding_method="greedy_search";
     std::unique_ptr<const SherpaOnnxOfflineRecognizer,decltype(destroy)> recognizer(create(&config),destroy);
     if(!recognizer)throw lens::Error("asr_model_load_failed");
-    std::unique_ptr<const SherpaOnnxOfflineStream,decltype(stream_destroy)> stream(stream_create(recognizer.get()),stream_destroy);
-    if(!stream)throw lens::Error("asr_stream_failed");
-    accept(stream.get(),16000,pcm.data(),static_cast<int32_t>(got));decode(recognizer.get(),stream.get());
-    std::unique_ptr<const char,decltype(result_destroy)> raw(result_get(stream.get()),result_destroy);
-    if(!raw)throw lens::Error("transcription_failed");
-    auto result=json::parse(raw.get());result["ok"]=true;result["confidence"]=nullptr;
+    // Memory grows with the length decoded at once (Canary on H0: 341 MB up to ~6 s, 428 MB at 18 s, 577 MB at 34 s), so
+    // audio is decoded in pieces of at most 8 s, each cut at the quietest 100 ms between 5 and 8 s (a pause between words):
+    // 390 MB peak for a 34 s clip (12 s pieces: 487 MB).
+    constexpr size_t RATE=16000,MIN_PIECE=5*RATE,MAX_PIECE=8*RATE,FRAME=RATE/10;
+    std::vector<std::pair<size_t,size_t>> pieces;
+    for(size_t start=0;start<got;) {
+        size_t end=static_cast<size_t>(got);
+        if(end-start>MAX_PIECE) {
+            double quietest=-1;end=start+MAX_PIECE;
+            for(size_t f=start+MIN_PIECE;f+FRAME<=start+MAX_PIECE;f+=FRAME/2) {
+                double energy=0;for(size_t i=f;i<f+FRAME;++i)energy+=static_cast<double>(pcm[i])*pcm[i];
+                if(quietest<0||energy<quietest){quietest=energy;end=f+FRAME/2;}
+            }
+        }
+        pieces.emplace_back(start,end);start=end;
+    }
+    json result;std::string text;
+    for(const auto& [from,to]:pieces) {
+        std::unique_ptr<const SherpaOnnxOfflineStream,decltype(stream_destroy)> stream(stream_create(recognizer.get()),stream_destroy);
+        if(!stream)throw lens::Error("asr_stream_failed");
+        accept(stream.get(),16000,pcm.data()+from,static_cast<int32_t>(to-from));decode(recognizer.get(),stream.get());
+        std::unique_ptr<const char,decltype(result_destroy)> raw(result_get(stream.get()),result_destroy);
+        if(!raw)throw lens::Error("transcription_failed");
+        auto part=json::parse(raw.get());const auto t=part.value("text",std::string());
+        if(!t.empty())text+=(text.empty()?"":" ")+t;
+        if(result.is_null())result=part;
+    }
+    result["text"]=text;result["pieces"]=pieces.size();
+    result["ok"]=true;result["confidence"]=nullptr;
     result["confidence_status"]="not_provided_by_model";
     result["provider"]=model_type=="dolphin"?"sherpa-onnx-dolphin-ctc":model_type=="canary"?"sherpa-onnx-canary-180m-flash":"sherpa-onnx-indicconformer-ctc";
     result["language"]=language;

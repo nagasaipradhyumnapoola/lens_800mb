@@ -1236,6 +1236,21 @@ travel in `metadata`).
 - Not met: the 0.80 gate. Verifier quality on Lens-style memories is the limit (harness AUC 0.871 vs the 1.79 GB
   teacher's 0.923); next: training data from Lens-style (memory, question) pairs with near-misses.
 
+## English speech input: accuracy, memory bound, fallback (2026-10-30) — PASS (H0, CPU, public audio)
+
+- scripts/benchmark_asr_english.py, no tuning: FLEURS en_us priority hold-out (100 clips, the set whisper base was
+  measured on) and LibriSpeech test-clean (273 utterances, sha256(id) % 10 == 0); WER with benchmarks/metrics.py
+  (case-folded, punctuation removed, no number normalisation: "10,000" vs "ten thousand" counts as errors).
+- Canary-180M-flash direct, whole clip at once: FLEURS 20.6% (one clip looped, "T H I N T H I N …", 19× WER on its own),
+  LibriSpeech 2.84%; lens-sherpa peak working set grew with length: 341 MB ≤ 6 s, 428 MB at 18 s, **577 MB at 34 s**.
+- Fixes: lens-sherpa decodes in pieces of at most 8 s, cut at the quietest 100 ms between 5 and 8 s (34 s clip: 390 MB,
+  10 s instead of 19 s); lens-engine retries a routed segment that loops or returns nothing with whisper base
+  (`routed_fallback` in the transcript) instead of storing it.
+- Product path (lens-engine `transcribe`, English route + fallback): **FLEURS 8.69%** (whisper base on the same clips
+  10.27%), **LibriSpeech 3.03%**, 0 failures, 0 fallbacks needed, real-time factor 0.40–0.49 including model load,
+  peak 444 MB for engine + worker (reports/voice/asr-english-engine-20261030T040028Z.json; direct run
+  asr-english-canary-20261030T033031Z.json). Tests: test_voice 19, test_tts 5 OK.
+
 ## Guardrails: one account per device link, no involuntary actions (2026-10-30) — PASS (functional, H0)
 
 - Founder rule (docs/LENS_V1_SPEC.md §13–14, AGENTS.md): devices of different Lens accounts never share data; Lens

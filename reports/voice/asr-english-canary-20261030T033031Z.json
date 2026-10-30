@@ -1,0 +1,3763 @@
+{
+ "created_utc": "20261030T033031Z",
+ "worker": "lens-sherpa canary (shipped route)",
+ "threads": 2,
+ "model_sha256": {
+  "encoder.int8.onnx": "7a75b4e2a5857a6dcc0819503bbe3fad66943db4a3ccf21d3f27c633667d303f",
+  "decoder.int8.onnx": "e41a2ab9c0c2fe81a1e8ade5a45fb02a74bc4db7d1f91b89a54a25e2cf79cba2",
+  "tokens.txt": "2dae6fc7815f9640645e0c765522b278ee0cef49b482d91f6913e334628d3e77"
+ },
+ "metric": "WER on benchmarks/metrics.py normalisation (case-folded, punctuation removed, no number normalisation)",
+ "sets": {
+  "fleurs": {
+   "utterances": 100,
+   "words": 2151,
+   "wer": 0.20595072059507205,
+   "failures": 0,
+   "real_time_factor_incl_load": 0.4228386428240628,
+   "peak_working_set_bytes": 438575104,
+   "rows": [
+    {
+     "id": "fleurs-en_us-1662-10614481583312370701.wav",
+     "wer": 0.045454545454545456,
+     "words": 22,
+     "seconds": 4.268075799991493,
+     "audio_s": 8.38,
+     "reference": "Alloys are basically a mixture of two or more metals. Don't forget that there are many elements on the periodic table.",
+     "hypothesis": "Alloys are basically a mixture of two or more metals. Don't forget there are many elements on the periodic table.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1667-11554335886429174193.wav",
+     "wer": 0.0,
+     "words": 29,
+     "seconds": 5.315727700013667,
+     "audio_s": 14.22,
+     "reference": "Generally speaking, two behaviors can emerge as managers begin to lead their former peers. One end of the spectrum is trying to remain “one of the guys” (or gals).",
+     "hypothesis": "Generally speaking, two behaviors can emerge as managers begin to lead their former peers. One end of the spectrum is trying to remain one of the guys or gals.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1668-12519810849995407480.wav",
+     "wer": 0.0,
+     "words": 31,
+     "seconds": 5.098267900000792,
+     "audio_s": 13.32,
+     "reference": "It may also be beneficial for one to buy a Wild Card, which provides entry to either selections of parks in South Africa or all of the South African National Parks.",
+     "hypothesis": "It may also be beneficial for one to buy a wild card, which provides entry to either selections of parks in South Africa or all of the South African National Parks.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1674-10492135991603561867.wav",
+     "wer": 0.125,
+     "words": 16,
+     "seconds": 3.385232599990559,
+     "audio_s": 5.64,
+     "reference": "In some areas boiling water for a minute is enough, in others several minutes are needed.",
+     "hypothesis": "In some areas, boiling water for a minute is enough, and other several minutes are needed.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1678-1111475259790805601.wav",
+     "wer": 0.034482758620689655,
+     "words": 29,
+     "seconds": 4.805899300001329,
+     "audio_s": 12.78,
+     "reference": "Oliver Sacks, in his paper The President's Speech, indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.",
+     "hypothesis": "Oliver Sachs in his paper The President's speech indicated how people who are unable to understand speech because of brain damage are nevertheless able to assess sincerity accurately.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1680-10894616243452123700.wav",
+     "wer": 0.038461538461538464,
+     "words": 26,
+     "seconds": 4.465507299988531,
+     "audio_s": 10.2,
+     "reference": "A well rounded athlete, the tiger can climb (though not well), swim, leap great distances and pull with five times the force of a strong human.",
+     "hypothesis": "A well rounded athlete, the tiger can climb, though not well, swim, lead great distances, and pull with five times the force of a strong human.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1685-1045619486290403122.wav",
+     "wer": 0.10714285714285714,
+     "words": 28,
+     "seconds": 4.853780399993411,
+     "audio_s": 13.92,
+     "reference": "For example, the most common still image photography format in the world is 35mm, which was the dominant film size at the close of the analog film era.",
+     "hypothesis": "For example, the most common still image photography format in the world is thirty five MM, which was the dominant film size at the close of the analog film era.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1691-12382404601461539160.wav",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.68419920001179,
+     "audio_s": 9.36,
+     "reference": "On some routes, the larger companies have their own planes, but for other routes and smaller firms there was a problem.",
+     "hypothesis": "On some routes, the larger companies have their own planes, but for other routes and smaller firms, there was a problem.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1698-11966709226632417907.wav",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 3.1453559000074165,
+     "audio_s": 6.42,
+     "reference": "Everything in the Universe is made of matter. All matter is made of tiny particles called atoms.",
+     "hypothesis": "Everything in the universe is made of matter. All matter is made of tiny particles called atoms.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1701-11147918080606585533.wav",
+     "wer": 0.1111111111111111,
+     "words": 18,
+     "seconds": 3.5730738999991445,
+     "audio_s": 10.62,
+     "reference": "Goats seem to have been first domesticated roughly 10,000 years ago in the Zagros Mountains of Iran.",
+     "hypothesis": "Goats seem to have been first domesticated roughly ten thousand years ago in the Zagros Mountains of Iran.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1705-10550734868852131138.wav",
+     "wer": 19.133333333333333,
+     "words": 15,
+     "seconds": 12.38871480000671,
+     "audio_s": 10.12,
+     "reference": "On 15 August 1940, the Allies invaded southern France, the invasion was called \"Operation Dragoon\".",
+     "hypothesis": "O R O S T E N T H I N T H I N T E N N T H I N T E N N N E N T H I N T H I N T H I N T E N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T H I N T",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1710-11260391063812418810.wav",
+     "wer": 0.15,
+     "words": 20,
+     "seconds": 3.8975556999939727,
+     "audio_s": 9.12,
+     "reference": "Last week, METI announced that Apple had informed it of 34 additional overheating incidents, which the company called \"non-serious.\"",
+     "hypothesis": "Last week, Medi announced that Apple had informed it of thirty four additional overheating incidents, which the company called non serious.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1711-1043394666292127188.wav",
+     "wer": 0.029411764705882353,
+     "words": 34,
+     "seconds": 4.575903699995251,
+     "audio_s": 15.56,
+     "reference": "These theories look at what it is about certain people that make them want the things that they do and what things in their environment will make them do or not do certain things.",
+     "hypothesis": "These things look at what it is about certain people that make them want the things that they do and what things in their environment will make them do or not do certain things.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1712-11766033532714442721.wav",
+     "wer": 0.3333333333333333,
+     "words": 30,
+     "seconds": 5.7227152999985265,
+     "audio_s": 17.46,
+     "reference": "Since 1966 the Sundarbans have been a wildlife sanctuary, and it is estimated that there are now 400 Royal Bengal tigers and about 30,000 spotted deer in the area.",
+     "hypothesis": "Since nineteen sixty six, the Sun Darbans have been a wildlife sanctuary, and it is estimated there are now four hundred royal Bengal tigers and about thirty thousand spotted deer in the area.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1717-10933070083389897676.wav",
+     "wer": 0.0,
+     "words": 25,
+     "seconds": 4.218655699994997,
+     "audio_s": 10.92,
+     "reference": "Due to the underwater topology the return flow is concentrated at a few deeper sections, and a fast current to deep water may form there.",
+     "hypothesis": "Due to the underwater topology, the return flow is concentrated at a few deeper sections and a fast current to deep water may form there.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1720-11374239868879585530.wav",
+     "wer": 0.0,
+     "words": 14,
+     "seconds": 3.225183200003812,
+     "audio_s": 6.42,
+     "reference": "The hot chocolate is up to Belgian standards. Fruit juices are pricey but excellent.",
+     "hypothesis": "The hot chocolate is up to Belgian standards, fruit juices are pricey but excellent.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1722-11617272550749387741.wav",
+     "wer": 0.1111111111111111,
+     "words": 18,
+     "seconds": 3.685001599995303,
+     "audio_s": 9.42,
+     "reference": "Cuomo, 53, began his governorship earlier this year and signed a bill last month legalizing same-sex marriage.",
+     "hypothesis": "Cuomo fifty three began his governorship earlier this year and signed a bill last month legalizing same sex marriage.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1722-125194026787628519.wav",
+     "wer": 0.1111111111111111,
+     "words": 18,
+     "seconds": 3.6442397000064375,
+     "audio_s": 9.3,
+     "reference": "Cuomo, 53, began his governorship earlier this year and signed a bill last month legalizing same-sex marriage.",
+     "hypothesis": "Cuomo, fifty three, began his governorship earlier this year and signed a bill last month legalizing same sex marriage.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1723-11426556553252626005.wav",
+     "wer": 0.11538461538461539,
+     "words": 26,
+     "seconds": 4.822558100000606,
+     "audio_s": 12.78,
+     "reference": "The harbor was the site of an infamous naval standoff in 1889 when seven ships from Germany, the US, and Britain refused to leave the harbor.",
+     "hypothesis": "The Harbor was the site of an infamous naval standoff in eighteen eighty nine, when seven ships from Germany, the US and Britain refused to leave the harbor.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1728-10197164397713068203.wav",
+     "wer": 0.06666666666666667,
+     "words": 15,
+     "seconds": 3.0775031999946805,
+     "audio_s": 5.76,
+     "reference": "The cabbage juice changes color depending on how acidic or basic (alkaline) the chemical is.",
+     "hypothesis": "The cabbage juice changes color depending on how acidic, basic, alkaline the chemical is.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1729-10383288285905292158.wav",
+     "wer": 0.02631578947368421,
+     "words": 38,
+     "seconds": 4.98316750000231,
+     "audio_s": 11.28,
+     "reference": "For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.",
+     "hypothesis": "For example, each year students from Bennett School in North Carolina design a website about their trip to the state capital. Each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1729-10622204403793540766.wav",
+     "wer": 0.05263157894736842,
+     "words": 38,
+     "seconds": 5.131077999991248,
+     "audio_s": 11.4,
+     "reference": "For example, each year students from Bennet School in North Carolina design a website about their trip to the State Capital, each year the website gets remodeled, but old versions are kept online to serve as a scrapbook.",
+     "hypothesis": "For example, each year students from Bennett School in North Carolina design a website about their trip to the state capital. Each year the website gets remodeled, but older versions are kept online to serve as a scrapbook.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1732-12462354014280856258.wav",
+     "wer": 0.43333333333333335,
+     "words": 30,
+     "seconds": 5.417646100002457,
+     "audio_s": 13.68,
+     "reference": "The age where the events took place is commonly referred as the High Middle Ages the period of European history in the 11th, 12th, and 13th centuries (AD 1000–1300).",
+     "hypothesis": "The age where the events took place is commonly referred as the high Middle Ages, the period of European history in the eleventh, twelfth and thirteenth centuries, a d a hundred or one thousand to thirteen hundred.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1740-10903101168349732260.wav",
+     "wer": 0.1111111111111111,
+     "words": 18,
+     "seconds": 3.230886899997131,
+     "audio_s": 8.34,
+     "reference": "The pyramid sound and light show is one of the most interesting things in the area for kids.",
+     "hypothesis": "The Pyramids Salon and Light Show is one of the most interesting things in the area for kids.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1749-1054805305879816018.wav",
+     "wer": 0.10344827586206896,
+     "words": 29,
+     "seconds": 4.099807799997507,
+     "audio_s": 9.6,
+     "reference": "It was ruled by the \"Vichy\" French. These were French people who had made peace with the Germans in 1940 and worked with the invaders instead of fighting them.",
+     "hypothesis": "It was ruled by the Viki French, these were French people who had made peace with the Germans in nineteen forty and worked with the invaders instead of fighting them.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1750-11974497390699501411.wav",
+     "wer": 0.16666666666666666,
+     "words": 12,
+     "seconds": 2.793773900004453,
+     "audio_s": 4.62,
+     "reference": "The find also grants insight into the evolution of feathers in birds.",
+     "hypothesis": "The find also grasps insight into the evolution of feathers and birds.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1750-12596201646041937807.wav",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.7522813999967184,
+     "audio_s": 5.16,
+     "reference": "The find also grants insight into the evolution of feathers in birds.",
+     "hypothesis": "The find also grants insight into the evolution of feathers in birds.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1752-10536763405165824117.wav",
+     "wer": 0.05263157894736842,
+     "words": 19,
+     "seconds": 3.9119528999872273,
+     "audio_s": 11.44,
+     "reference": "As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+     "hypothesis": "As a result, two fish species have become extinct and two others have become endangered, including the humpbacked chub.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1752-11060294228176938598.wav",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 3.4352253999968525,
+     "audio_s": 7.56,
+     "reference": "As a result, two fish species have become extinct, and two others have become endangered, including the humpback chub.",
+     "hypothesis": "As a result, two fish species have become extinct and two others have become endangered, including the humpback chub.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1757-12156117084384995618.wav",
+     "wer": 0.09523809523809523,
+     "words": 21,
+     "seconds": 3.908157800004119,
+     "audio_s": 10.98,
+     "reference": "Only mutations in germ-line cells can be passed on to children, while mutations elsewhere can cause cell-death or cancer.",
+     "hypothesis": "Only mutations in germline cells can be passed on to children, while mutations elsewhere can cause cell death or cancer.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1760-12596571867015231445.wav",
+     "wer": 0.13333333333333333,
+     "words": 15,
+     "seconds": 3.162928000005195,
+     "audio_s": 6.9,
+     "reference": "Mosasaurus was the apex predator of its time, so it feared nothing, except other mosasaurs.",
+     "hypothesis": "Mosaurus was the apex predator of its time so it feared nothing except other Mosaurus.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1769-11459777646810052940.wav",
+     "wer": 0.0,
+     "words": 24,
+     "seconds": 4.154694299999392,
+     "audio_s": 8.94,
+     "reference": "Built by the Egyptians in the third century BCE, the Great Pyramid is one of many large pyramid structures built to honor dead Pharaoh.",
+     "hypothesis": "Built by the Egyptians in the third century BCE, the Great Pyramid is one of many large pyramid structures built to honor dead pharaoh.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1776-1038214857203833067.wav",
+     "wer": 0.4666666666666667,
+     "words": 15,
+     "seconds": 3.1158087000076193,
+     "audio_s": 4.8,
+     "reference": "Through the night between 150 and 200 copies were made, now known as \"Dunlap broadsides\".",
+     "hypothesis": "To the night between one hundred and fifty and two hundred copies were made now known as Dunlap Broadsides.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1778-11665346626937246597.wav",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.6980426000081934,
+     "audio_s": 5.04,
+     "reference": "Television reports show white smoke coming from the plant.",
+     "hypothesis": "Television reports show white smoke coming from the plant.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1789-10768814098664478369.wav",
+     "wer": 0.08695652173913043,
+     "words": 23,
+     "seconds": 5.6773934999946505,
+     "audio_s": 14.6,
+     "reference": "The other nominations include Best Picture, Director, Cinematography, Costume Design, Film-editing, Original Score, Production Design, Sound Editing, Sound Mixing and Original Screenplay.",
+     "hypothesis": "The other nominations include Best Picture, Director, Cinematography, Costume Design, Film Editing, Original Score, Production Design, Soul Editing, Soul Mixing, and Original Screenplay.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1790-10731896540541531669.wav",
+     "wer": 0.0,
+     "words": 28,
+     "seconds": 4.904539600000135,
+     "audio_s": 14.66,
+     "reference": "His work is of such recognized quality and detail that he is one of the very few \"household names\" among philatelists. Some specialize in collecting his work alone.",
+     "hypothesis": "His work is of such recognized quality and detail that he is one of the very few household names among philatelists, some specialize in collecting his work alone.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1792-12018418318980824126.wav",
+     "wer": 0.125,
+     "words": 16,
+     "seconds": 3.082539499999257,
+     "audio_s": 5.88,
+     "reference": "This is called a chemical's pH. You can make an indicator using red cabbage juice.",
+     "hypothesis": "This is called a chemicals pH, you can make an indicator using red cabbage juice.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1794-1146643745158029931.wav",
+     "wer": 0.09090909090909091,
+     "words": 22,
+     "seconds": 3.6798503000027267,
+     "audio_s": 8.88,
+     "reference": "A civilization is a singular culture shared by a significant large group of people who live and work co-operatively, a society.",
+     "hypothesis": "A civilization is a singular culture shared by a significant large group of people who live and work cooperatively, a society.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1797-12356293452530186109.wav",
+     "wer": 0.0,
+     "words": 14,
+     "seconds": 3.830281099988497,
+     "audio_s": 11.64,
+     "reference": "Everyone participates in society and uses transportation systems. Almost everyone complains about transportation systems.",
+     "hypothesis": "Everyone participates in society and uses transportation systems. Almost everyone complains about transportation systems.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1798-1218355507714944126.wav",
+     "wer": 0.041666666666666664,
+     "words": 24,
+     "seconds": 4.381924000001163,
+     "audio_s": 13.18,
+     "reference": "In its early days, the show was featured solely at the long-running internet radio site TogiNet Radio, a site focused on talk radio.",
+     "hypothesis": "In its early days, the show was featured solely at the long running Internet radio site TokyoNet Radio, a site focused on talk radio.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1799-12618421744672029626.wav",
+     "wer": 0.07692307692307693,
+     "words": 13,
+     "seconds": 3.00538200000301,
+     "audio_s": 5.7,
+     "reference": "Beyond Wednesday's event, Carpanedo competed in two individual races at the Championships.",
+     "hypothesis": "Beyond Wednesday's event, Carpaneto competed in two individual races at the championships.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1801-1242235796224521830.wav",
+     "wer": 0.03225806451612903,
+     "words": 31,
+     "seconds": 4.830407499990542,
+     "audio_s": 14.28,
+     "reference": "The parade of buildings that make the Hong Kong skyline has been likened to a glittering bar chart that is made apparent by the presence of the waters of Victoria Harbour.",
+     "hypothesis": "The Parade of Buildings that Make the Hong Kong Skyline has been likened to a glittering bar chart that is made apparent by the presence of the waters of Victoria Harbor.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1802-1042003289011443756.wav",
+     "wer": 0.0,
+     "words": 10,
+     "seconds": 2.8992096000001766,
+     "audio_s": 5.72,
+     "reference": "The Internet combines elements of both mass and interpersonal communication.",
+     "hypothesis": "The Internet combines elements of both mass and interpersonal communication.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1803-11987168412167267165.wav",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.390207599994028,
+     "audio_s": 8.52,
+     "reference": "The moisture on your hands will react with the outer layers, which will feel funny and form a sort of shell.",
+     "hypothesis": "The moisture on your hands will react with the outer layers, which will feel funny, and form a sort of shell.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1806-1036771894648013441.wav",
+     "wer": 0.0,
+     "words": 33,
+     "seconds": 4.423771100002341,
+     "audio_s": 9.9,
+     "reference": "As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses, easier to reach than those built in modern times.",
+     "hypothesis": "As light pollution in their heyday was not the kind of problem it is today, they are usually located in cities or at campuses easier to reach than those built in modern times.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1814-11559094331412401332.wav",
+     "wer": 0.047619047619047616,
+     "words": 21,
+     "seconds": 3.551470899998094,
+     "audio_s": 7.68,
+     "reference": "Hydrogen ions are protons that had their electrons stripped off them (since Hydrogen atoms consist of one proton and one electron).",
+     "hypothesis": "Hydrogen ions are protons that have their electrons stripped off them, since hydrogen atoms consist of one proton and one electron.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1824-12190760535244332971.wav",
+     "wer": 0.030303030303030304,
+     "words": 33,
+     "seconds": 5.638342400008696,
+     "audio_s": 15.06,
+     "reference": "The Giza Plateau, or \"Giza Necropolis\" in the Egyptian Valley of the Dead contains several pyramids (of which the great pyramid is the largest), several small tombs, several temples, and the great Sphinx.",
+     "hypothesis": "The Giza Plateau or Giza Necropolis in the Egyptian Valley of the Dead contains several pyramids of which the great pyramid is the largest several tombs several temples and the great sphinx.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1830-11668734600035674277.wav",
+     "wer": 0.2222222222222222,
+     "words": 18,
+     "seconds": 4.001582700002473,
+     "audio_s": 10.64,
+     "reference": "The ruling party, South West Africa People's Organisation (SWAPO), also retained a majority in the parliamentary elections.",
+     "hypothesis": "The ruling party's Southwest Africa People's Organization also retained a majority in the parliamentary elections.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1831-11781376959217630586.wav",
+     "wer": 0.041666666666666664,
+     "words": 24,
+     "seconds": 4.914088600009563,
+     "audio_s": 15.36,
+     "reference": "The Plitvice Lakes national park is heavily forested, mainly with beech, spruce, and fir trees, and features a mixture of Alpine and Mediterranean vegetation.",
+     "hypothesis": "The Plidweiss Lakes National Park is heavily forested, mainly with beech, spruce, and fir trees, and features a mixture of alpine and Mediterranean vegetation.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1841-11670188897888947692.wav",
+     "wer": 0.0,
+     "words": 30,
+     "seconds": 4.181481499996153,
+     "audio_s": 9.48,
+     "reference": "Nothing can be seen other than the clear, beautiful sky above and the many surrounding mountains. Very little of this world can be seen or heard from inside the cave.",
+     "hypothesis": "Nothing can be seen other than the clear, beautiful sky above and the many surrounding mountains. Very little of this world can be seen or heard from inside the cave.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1846-10344335557154974057.wav",
+     "wer": 0.13043478260869565,
+     "words": 23,
+     "seconds": 3.9476788000029046,
+     "audio_s": 11.04,
+     "reference": "The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2.",
+     "hypothesis": "The aspect ratio of this format, dividing by twelve to obtain the simplest whole number ratio, is therefore said to be three to two.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1846-12442340605801616197.wav",
+     "wer": 0.13043478260869565,
+     "words": 23,
+     "seconds": 3.700407099997392,
+     "audio_s": 8.76,
+     "reference": "The aspect ratio of this format (dividing by twelve to obtain the simplest whole-number ratio) is therefore said to be 3:2.",
+     "hypothesis": "The aspect ratio of this format, dividing by twelve to obtain the simplest whole number ratio, is therefore said to be three to two.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1849-1153104690713813269.wav",
+     "wer": 0.0,
+     "words": 24,
+     "seconds": 3.526638399998774,
+     "audio_s": 6.78,
+     "reference": "If you have watched the movie National Treasure, you may think a treasure map was written on the back of the Declaration of Independence.",
+     "hypothesis": "If you have watched the movie National Treasure, you may think a treasure map was written on the back of the Declaration of Independence.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1855-10405958125670257178.wav",
+     "wer": 0.06896551724137931,
+     "words": 29,
+     "seconds": 4.322895899997093,
+     "audio_s": 10.92,
+     "reference": "Lion prides act much like packs of wolves or dogs, animals surprisingly similar to lions (but not other big cats) in behavior, and also very deadly to their prey.",
+     "hypothesis": "Lion Pride acts much like packs of wolves or dogs, animals surprisingly similar to lions, but not other big cats in behavior, and also very deadly to their prey.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1855-11497310594035767755.wav",
+     "wer": 0.0,
+     "words": 29,
+     "seconds": 4.20335859998886,
+     "audio_s": 10.2,
+     "reference": "Lion prides act much like packs of wolves or dogs, animals surprisingly similar to lions (but not other big cats) in behavior, and also very deadly to their prey.",
+     "hypothesis": "Lion prides act much like packs of wolves or dogs, animals surprisingly similar to lions but not other big cats in behavior, and also very deadly to their prey.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1858-10751756685109361684.wav",
+     "wer": 0.11764705882352941,
+     "words": 17,
+     "seconds": 3.2673130000039237,
+     "audio_s": 6.3,
+     "reference": "Danielle Lantagne, a UN expert on the disease, stated the outbreak was likely caused by the peacekeepers.",
+     "hypothesis": "Daniel Lantigin, a UN expert on the disease, stated the outbreak was likely caused by the peacekeepers.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1860-12164368102080603077.wav",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 3.095386100001633,
+     "audio_s": 7.26,
+     "reference": "The governor's office said nineteen of the injured were police officers.",
+     "hypothesis": "The governor's office said nineteen of the injured were police officers.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1864-11318597463051480163.wav",
+     "wer": 0.11764705882352941,
+     "words": 34,
+     "seconds": 5.900472699999227,
+     "audio_s": 19.12,
+     "reference": "Mrs. Kirchner announced her intention to run for president at the Argentine Theatre, the same location she used to start her 2005 campaign for the Senate as member of the Buenos Aires province delegation.",
+     "hypothesis": "Mrs. Kirchner announced her intention to run for president at the Argentine Theatre, same location she used to start her two thousand five campaign for the Senate as member of the Buenos Aires Province delegation.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1866-11705046490861852963.wav",
+     "wer": 0.06666666666666667,
+     "words": 15,
+     "seconds": 3.2276611999986926,
+     "audio_s": 7.86,
+     "reference": "First, most riders wear riding boots with a heel and a smooth, quite narrow, sole.",
+     "hypothesis": "First, most riders wearing riding boots with a heel and a smooth, quite narrow sole.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1867-12682843461389402977.wav",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 3.4732259000011254,
+     "audio_s": 7.02,
+     "reference": "Plants make oxygen which humans breathe, and they take in carbon-dioxide which humans exhale (that is, breathe out).",
+     "hypothesis": "Plants make oxygen which humans breathe, and they take in carbon dioxide which humans exhale, that is, breathe out.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1870-11827077161070295147.wav",
+     "wer": 0.0,
+     "words": 14,
+     "seconds": 2.897185099995113,
+     "audio_s": 4.32,
+     "reference": "The scenes are displayed on the pyramids and the different pyramids are lit up.",
+     "hypothesis": "The scenes are displayed on the pyramids and the different pyramids are lit up.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1876-10323357556845456822.wav",
+     "wer": 0.125,
+     "words": 16,
+     "seconds": 3.7205266000091797,
+     "audio_s": 10.8,
+     "reference": "The Northern Marianas emergency management office said that there were no damages reported in the nation.",
+     "hypothesis": "The Northern Mariana's Emergency Management Office said that there were no damages reported in the nation.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1881-12316410148883063626.wav",
+     "wer": 0.045454545454545456,
+     "words": 22,
+     "seconds": 3.5251444000023184,
+     "audio_s": 7.68,
+     "reference": "Sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes.",
+     "hypothesis": "Sharing a field trip virtually is also a great way to reflect on a trip and share experiences with future classes.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1882-11504385604540375365.wav",
+     "wer": 0.05,
+     "words": 20,
+     "seconds": 3.3099374000012176,
+     "audio_s": 6.18,
+     "reference": "Scientists hope to understand how planets form, especially how the Earth formed, since comets collided with the Earth long ago.",
+     "hypothesis": "Scientists hope to understand how planets form, especially how the Earth forms, since comets collided with the Earth long ago.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1890-11525263464519603482.wav",
+     "wer": 0.14285714285714285,
+     "words": 14,
+     "seconds": 3.3170919999975013,
+     "audio_s": 6.84,
+     "reference": "Most modern research telescopes are enormous facilities in remote areas with favorable atmospheric conditions.",
+     "hypothesis": "Moder research telescopes are enormous facilities in remote areas with favorable atmospheric conditions.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1893-11536232800365538941.wav",
+     "wer": 0.2,
+     "words": 25,
+     "seconds": 4.371991199994227,
+     "audio_s": 10.2,
+     "reference": "The Sundarbans are the largest littoral mangrove belt in the world, stretching 80 km (50 mi) into the Bangladeshi and Indian hinterland from the coast.",
+     "hypothesis": "The Sundarbins are the largest littoral mangrove belt in the world stretching eighty kilometers, fifty miles, into the Bangladeshi and Indian hinterland from the coast.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1893-11593450817032542587.wav",
+     "wer": 0.28,
+     "words": 25,
+     "seconds": 4.4442589999962365,
+     "audio_s": 12.24,
+     "reference": "The Sundarbans are the largest littoral mangrove belt in the world, stretching 80 km (50 mi) into the Bangladeshi and Indian hinterland from the coast.",
+     "hypothesis": "The Sundarbins are the largest coastal mangrove bell in the world, stretching eighty kilometers fifty miles into the Bangladeshi and Indian hinterland from the coast.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1895-11200231708585274851.wav",
+     "wer": 0.0,
+     "words": 18,
+     "seconds": 3.98741109999537,
+     "audio_s": 10.18,
+     "reference": "As knowledge of Greek declined, the West found itself cut off from its Greek philosophical and scientific roots.",
+     "hypothesis": "As knowledge of Greek declined, the West found itself cut off from its Greek philosophical and scientific roots.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1896-12230326991067783666.wav",
+     "wer": 0.0,
+     "words": 33,
+     "seconds": 5.170687799996813,
+     "audio_s": 15.0,
+     "reference": "USA Gymnastics and the USOC have the same goal — making the sport of gymnastics, and others, as safe as possible for athletes to follow their dreams in a safe, positive and empowered environment.",
+     "hypothesis": "USA gymnastics and the USOC have the same goal, making the sport of gymnastics and others as safe as possible for athletes to follow their dreams in a safe, positive and empowered environment.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1897-10861831846737909528.wav",
+     "wer": 0.0,
+     "words": 20,
+     "seconds": 3.5390407999948366,
+     "audio_s": 9.58,
+     "reference": "In the north the region is bounded by the Sahel, and in the south and west by the Atlantic Ocean.",
+     "hypothesis": "In the north the region is bounded by the Sahel and in the south and west by the Atlantic Ocean.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1899-12381237049043414166.wav",
+     "wer": 0.034482758620689655,
+     "words": 29,
+     "seconds": 4.459158700003172,
+     "audio_s": 11.28,
+     "reference": "Muhammad was deeply interested in matters beyond this mundane life. He used to frequent a cave that became known as “Hira‘” on the Mountain of “Noor” (light) for contemplation.",
+     "hypothesis": "Muhammad was deeply interested in matters beyond this mundane life. He used to frequent a cave that became known as Hira on the mountain of Nor Light for contemplation.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1908-10969774925516121312.wav",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.7887043000082485,
+     "audio_s": 4.5,
+     "reference": "This is an important way to distinguish between some verbs and objects.",
+     "hypothesis": "This is an important way to distinguish between some verbs and objects.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1909-10849792007407044602.wav",
+     "wer": 0.16666666666666666,
+     "words": 18,
+     "seconds": 3.2916888000036124,
+     "audio_s": 5.64,
+     "reference": "Virtual teams are held to the same standards of excellence as conventional teams, but there are subtle differences.",
+     "hypothesis": "Virtual teens are held to the same standard of excellence as conventional teens, but there are subtle differences.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1911-11880309600276730497.wav",
+     "wer": 0.07142857142857142,
+     "words": 28,
+     "seconds": 4.759542300002067,
+     "audio_s": 14.88,
+     "reference": "Similarly, by having a Schengen visa, you do not need to apply for visas to each of the Schengen member countries separately, hence saving time, money and paperwork.",
+     "hypothesis": "Similarly, by having a Shigen visa, you do not need to apply for visas to each of the Shigen member countries separately, hence saving time, money, and paperwork.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1914-10335587906469246566.wav",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 3.633519700000761,
+     "audio_s": 6.96,
+     "reference": "Twentieth century research has shown that there are two pools of genetic variation: hidden and expressed.",
+     "hypothesis": "Twentieth Century research has shown that there are two pools of genetic variation hidden and expressed.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1919-10411016628242228511.wav",
+     "wer": 0.09090909090909091,
+     "words": 22,
+     "seconds": 4.4202147999894805,
+     "audio_s": 11.28,
+     "reference": "The city is also the base to climb the Nyiragongo volcano along with some of the cheapest Mountain Gorilla tracking in Africa.",
+     "hypothesis": "The city is also the base to climb the Niraigango volcano along with some of the cheapest mountain gorilla trafficking in Africa.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1930-1261572251451962704.wav",
+     "wer": 0.06666666666666667,
+     "words": 15,
+     "seconds": 3.8516710000112653,
+     "audio_s": 9.16,
+     "reference": "Six hostages, including the children and elderly, were released early, as were the Filipino photographers.",
+     "hypothesis": "Six hostages, including the children elderly, were released early, as were the Filipino photographers.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1938-10235738076911595987.wav",
+     "wer": 0.05,
+     "words": 20,
+     "seconds": 4.3636364999983925,
+     "audio_s": 11.42,
+     "reference": "The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+     "hypothesis": "The hospital has followed a protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1939-11820398005906165915.wav",
+     "wer": 0.15789473684210525,
+     "words": 19,
+     "seconds": 4.083765000003041,
+     "audio_s": 7.02,
+     "reference": "Also after the Revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed.",
+     "hypothesis": "Also after the Revolution occupations were opened small male applicants, allowing the most ambitious and successful to succeed.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1941-11853072634976133891.wav",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 3.4980445000110194,
+     "audio_s": 6.84,
+     "reference": "These couples may choose to make an adoption plan for their baby.",
+     "hypothesis": "These couples may choose to make an adoption plan for their baby.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1941-12200368278244671662.wav",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.9894773999985773,
+     "audio_s": 4.8,
+     "reference": "These couples may choose to make an adoption plan for their baby.",
+     "hypothesis": "These couples may choose to make an adoption plan for their baby.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1950-10167324587744183095.wav",
+     "wer": 0.030303030303030304,
+     "words": 33,
+     "seconds": 4.968265500006964,
+     "audio_s": 11.46,
+     "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron.",
+     "hypothesis": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendor recorded by Lord Byron.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1950-11483786862560523973.wav",
+     "wer": 0.09090909090909091,
+     "words": 33,
+     "seconds": 4.9052407999988645,
+     "audio_s": 12.48,
+     "reference": "To the north and within easy reach is the romantic and fascinating town of Sintra and which was made famous to foreigners after a glowing account of its splendours recorded by Lord Byron.",
+     "hypothesis": "To the north and within easy reach is the romantic and fascinating town of Sintra, in which was made famous to foreigners after a glowing account of its splendors recorded by Lord Bryan.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1952-10492761258488775721.wav",
+     "wer": 0.043478260869565216,
+     "words": 23,
+     "seconds": 3.9982326999888755,
+     "audio_s": 8.58,
+     "reference": "Anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow, ice, or freezing temperatures.",
+     "hypothesis": "Anyone who's going to drive at hot latitudes or over mountain passes should consider the possibility of snow, ice or freezing temperatures.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1953-10899527843662463911.wav",
+     "wer": 0.2,
+     "words": 10,
+     "seconds": 3.6016441999963718,
+     "audio_s": 6.84,
+     "reference": "He was subsequently relocated to Addenbrooke's Hospital in Cambridge.",
+     "hypothesis": "He was subsequently relocated to Adonbrooks Hospital in Cambridge.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1955-12239464249642485259.wav",
+     "wer": 0.0,
+     "words": 24,
+     "seconds": 3.7595296999934362,
+     "audio_s": 7.2,
+     "reference": "MS is a disease that affects the central nervous system, which is made up of the brain, the spinal cord and the optic nerve.",
+     "hypothesis": "MS is a disease that affects the central nervous system, which is made up of the brain, the spinal cord, and the optic nerve.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1969-12517884865939916901.wav",
+     "wer": 0.037037037037037035,
+     "words": 27,
+     "seconds": 4.798973800003296,
+     "audio_s": 12.8,
+     "reference": "It states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally (see example).",
+     "hypothesis": "It states that the most effective place for the main subject is at the intersection of lines dividing the image into ver vertically and horizontally. See example.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1972-10233995782544396174.wav",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 2.818933599992306,
+     "audio_s": 4.32,
+     "reference": "Many people don't think about them as dinosaurs because they have feathers and can fly.",
+     "hypothesis": "Many people don't think about them as dinosaurs because they have feathers and can fly.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1975-11265842188315045636.wav",
+     "wer": 0.30434782608695654,
+     "words": 23,
+     "seconds": 3.755309699990903,
+     "audio_s": 10.74,
+     "reference": "Vatican City's population is around 800. It is the smallest independent country in the world and the country with the lowest population.",
+     "hypothesis": "Vatican City population is around eight hundred. It is the smallest independent country in the world and the population.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1982-10481451226514948764.wav",
+     "wer": 0.1111111111111111,
+     "words": 18,
+     "seconds": 3.588206300002639,
+     "audio_s": 10.14,
+     "reference": "Women: It is recommended that any women travellers say that they are married, regardless of actual marital status.",
+     "hypothesis": "Women is recommended that any women travelers say that they are married regardless of actual marital status.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1987-10937407360976471523.wav",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 3.5983548000076553,
+     "audio_s": 9.82,
+     "reference": "The crash occurred high up in mountainous terrain, and is believed to have been the result of hostile fire.",
+     "hypothesis": "The crash occurred high up in mountainous terrain and is believed to have been the result of hostile fire.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1990-10938576782105608041.wav",
+     "wer": 0.0,
+     "words": 27,
+     "seconds": 4.108990400010953,
+     "audio_s": 8.76,
+     "reference": "Blogs can also help improve student writing. While students often begin their blog experience with sloppy grammar and spelling, the presence of an audience generally changes that.",
+     "hypothesis": "Blogs can also help improve student writing, while students often begin their blog experience with sloppy grammar and spelling, the presence of an audience generally changes that.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1991-1116401173651214130.wav",
+     "wer": 0.0,
+     "words": 18,
+     "seconds": 3.949396900003194,
+     "audio_s": 11.4,
+     "reference": "During this period of European history, the Catholic Church, which had become rich and powerful, came under scrutiny.",
+     "hypothesis": "During this period of European history, the Catholic church, which had become rich and powerful, came under scrutiny.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1992-1046653381869710616.wav",
+     "wer": 0.10526315789473684,
+     "words": 19,
+     "seconds": 3.678300700004911,
+     "audio_s": 8.64,
+     "reference": "The term safari in popular use refers to overland travel to view the stunning African wildlife, particularly on savanna.",
+     "hypothesis": "The term safari in popular loop refers to overland travel to view the stunning African wildlife, particularly on Savannah.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-1999-11596505942268625598.wav",
+     "wer": 0.2777777777777778,
+     "words": 18,
+     "seconds": 3.9165683000028366,
+     "audio_s": 8.76,
+     "reference": "Throughout 1960s, Brzezinski worked for John F. Kennedy as his advisor and then the Lyndon B. Johnson administration.",
+     "hypothesis": "Throughout nineteen sixties, Brazinski worked for John F. Kennedy as his advisor in the Lyndon B. Johnson Administration.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-2001-1116140877447157610.wav",
+     "wer": 0.0,
+     "words": 23,
+     "seconds": 3.488748799994937,
+     "audio_s": 7.32,
+     "reference": "Travellers are strongly advised to be aware of any risk of severe weather affecting their area as they may affect any travel plans.",
+     "hypothesis": "Travellers are strongly advised to be aware of any risk of severe weather affecting their area, as they may affect any travel plans.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-2004-12570605547501325774.wav",
+     "wer": 0.058823529411764705,
+     "words": 17,
+     "seconds": 3.175750099995639,
+     "audio_s": 6.48,
+     "reference": "The same month saw another airliner overrun a runway at Mashhad and strike a wall, killing seventeen.",
+     "hypothesis": "The same month saw another airliner overrun a runway at Mishad and strike a wall killing seventeen.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-2005-10471564175308895403.wav",
+     "wer": 0.06666666666666667,
+     "words": 15,
+     "seconds": 2.9171459000062896,
+     "audio_s": 5.36,
+     "reference": "But there are a lot of things about birds that still look like a dinosaur.",
+     "hypothesis": "But there are a lot of things about those that still look like a dinosaur.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-2005-1107772981946748169.wav",
+     "wer": 0.0,
+     "words": 15,
+     "seconds": 2.9637354999867966,
+     "audio_s": 5.78,
+     "reference": "But there are a lot of things about birds that still look like a dinosaur.",
+     "hypothesis": "But there are a lot of things about birds that still look like a dinosaur.",
+     "exit_code": 0
+    },
+    {
+     "id": "fleurs-en_us-2008-12700569942235742079.wav",
+     "wer": 0.038461538461538464,
+     "words": 26,
+     "seconds": 4.100892599992221,
+     "audio_s": 9.66,
+     "reference": "Other subjects on the agenda in Bali include saving the world's remaining forests, and sharing technologies to help developing nations grow in less-polluting ways.",
+     "hypothesis": "Other topics on the agenda in Bali include saving the world's remaining forests and sharing technologies to help developing nations grow in less polluting ways.",
+     "exit_code": 0
+    }
+   ]
+  },
+  "librispeech": {
+   "utterances": 273,
+   "words": 5421,
+   "wer": 0.028408042796532005,
+   "failures": 0,
+   "real_time_factor_incl_load": 0.4947731918119138,
+   "peak_working_set_bytes": 576552960,
+   "rows": [
+    {
+     "id": "1089-134686-0017",
+     "wer": 0.041666666666666664,
+     "words": 24,
+     "seconds": 3.8144599000079324,
+     "audio_s": 8.87,
+     "reference": "STEPHEN LEANING BACK AND DRAWING IDLY ON HIS SCRIBBLER LISTENED TO THE TALK ABOUT HIM WHICH HERON CHECKED FROM TIME TO TIME BY SAYING",
+     "hypothesis": "Steven, leaning back and drawing idly on his scribbler, listened to the talk about him which Heron checked from time to time by saying,",
+     "exit_code": 0
+    },
+    {
+     "id": "1089-134691-0014",
+     "wer": 0.16666666666666666,
+     "words": 12,
+     "seconds": 2.8950312999950256,
+     "audio_s": 4.755,
+     "reference": "THE PHRASE AND THE DAY AND THE SCENE HARMONIZED IN A CHORD",
+     "hypothesis": "The phrase and the day and the scene harmonized in accord.",
+     "exit_code": 0
+    },
+    {
+     "id": "1089-134691-0023",
+     "wer": 0.0,
+     "words": 24,
+     "seconds": 3.6427947000047425,
+     "audio_s": 7.735,
+     "reference": "IT WAS A PAIN TO SEE THEM AND A SWORD LIKE PAIN TO SEE THE SIGNS OF ADOLESCENCE THAT MADE REPELLENT THEIR PITIABLE NAKEDNESS",
+     "hypothesis": "It was a pain to see them, and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness.",
+     "exit_code": 0
+    },
+    {
+     "id": "1188-133604-0000",
+     "wer": 0.05263157894736842,
+     "words": 19,
+     "seconds": 3.85684599999513,
+     "audio_s": 10.725,
+     "reference": "YOU WILL FIND ME CONTINUALLY SPEAKING OF FOUR MEN TITIAN HOLBEIN TURNER AND TINTORET IN ALMOST THE SAME TERMS",
+     "hypothesis": "You will find me continually speaking of four men Titian, Holbein, Turner, and Tintaret, in almost the same terms.",
+     "exit_code": 0
+    },
+    {
+     "id": "1188-133604-0001",
+     "wer": 0.0,
+     "words": 18,
+     "seconds": 3.994174399995245,
+     "audio_s": 9.04,
+     "reference": "THEY UNITE EVERY QUALITY AND SOMETIMES YOU WILL FIND ME REFERRING TO THEM AS COLORISTS SOMETIMES AS CHIAROSCURISTS",
+     "hypothesis": "They unite every quality, and sometimes you will find me referring to them as colorists, sometimes as chiaroscurists.",
+     "exit_code": 0
+    },
+    {
+     "id": "1188-133604-0006",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.769467000005534,
+     "audio_s": 2.4,
+     "reference": "THEN HE COMES TO THE BEAK OF IT",
+     "hypothesis": "Then he comes to the beak of it.",
+     "exit_code": 0
+    },
+    {
+     "id": "1188-133604-0010",
+     "wer": 0.0,
+     "words": 15,
+     "seconds": 3.6351126999943517,
+     "audio_s": 6.095,
+     "reference": "BUT IN THIS VIGNETTE COPIED FROM TURNER YOU HAVE THE TWO PRINCIPLES BROUGHT OUT PERFECTLY",
+     "hypothesis": "But in this vignette copied from Turner, you have the two principles brought out perfectly.",
+     "exit_code": 0
+    },
+    {
+     "id": "1188-133604-0019",
+     "wer": 0.0,
+     "words": 32,
+     "seconds": 6.015094200003659,
+     "audio_s": 13.93,
+     "reference": "THE LARGE LETTER CONTAINS INDEED ENTIRELY FEEBLE AND ILL DRAWN FIGURES THAT IS MERELY CHILDISH AND FAILING WORK OF AN INFERIOR HAND IT IS NOT CHARACTERISTIC OF GOTHIC OR ANY OTHER SCHOOL",
+     "hypothesis": "The large letter contains, indeed, entirely feeble and ill drawn figures. That is merely childish and failing work of an inferior hand. It is not characteristic of Gothic or any other school.",
+     "exit_code": 0
+    },
+    {
+     "id": "1188-133604-0042",
+     "wer": 0.0,
+     "words": 5,
+     "seconds": 3.0324433999921894,
+     "audio_s": 2.66,
+     "reference": "THE SCENE IS ABSOLUTELY ARCADIAN",
+     "hypothesis": "The scene is absolutely Arcadian.",
+     "exit_code": 0
+    },
+    {
+     "id": "121-123852-0000",
+     "wer": 0.06896551724137931,
+     "words": 29,
+     "seconds": 6.12731850000273,
+     "audio_s": 17.695,
+     "reference": "THOSE PRETTY WRONGS THAT LIBERTY COMMITS WHEN I AM SOMETIME ABSENT FROM THY HEART THY BEAUTY AND THY YEARS FULL WELL BEFITS FOR STILL TEMPTATION FOLLOWS WHERE THOU ART",
+     "hypothesis": "Those pretty wrongs that liberty commits, When I am some time absent from thy heart, Thy beauty, and thy years full well befits, For still temptation follows where thou art,",
+     "exit_code": 0
+    },
+    {
+     "id": "121-123852-0004",
+     "wer": 0.06060606060606061,
+     "words": 33,
+     "seconds": 6.616449199995259,
+     "audio_s": 16.29,
+     "reference": "MY HEART DOTH PLEAD THAT THOU IN HIM DOST LIE A CLOSET NEVER PIERC'D WITH CRYSTAL EYES BUT THE DEFENDANT DOTH THAT PLEA DENY AND SAYS IN HIM THY FAIR APPEARANCE LIES",
+     "hypothesis": "My heart doth plead that thou in him dost lie A closet never pierced with crystal eyes But the defendant doth that plea deny, And says in him thy fair appearance lies.",
+     "exit_code": 0
+    },
+    {
+     "id": "121-127105-0000",
+     "wer": 0.0,
+     "words": 27,
+     "seconds": 4.927708599992911,
+     "audio_s": 9.875,
+     "reference": "IT WAS THIS OBSERVATION THAT DREW FROM DOUGLAS NOT IMMEDIATELY BUT LATER IN THE EVENING A REPLY THAT HAD THE INTERESTING CONSEQUENCE TO WHICH I CALL ATTENTION",
+     "hypothesis": "It was this observation that drew from Douglas, not immediately, but later in the evening, a reply that had the interesting consequence to which I call attention,",
+     "exit_code": 0
+    },
+    {
+     "id": "121-127105-0012",
+     "wer": 0.047619047619047616,
+     "words": 21,
+     "seconds": 3.3649679999944055,
+     "audio_s": 4.83,
+     "reference": "IT WASN'T SIMPLY THAT SHE SAID SO BUT THAT I KNEW SHE HADN'T I WAS SURE I COULD SEE",
+     "hypothesis": "I wasn't simply that she said so, but that I knew she hadn't. I was sure I could see.",
+     "exit_code": 0
+    },
+    {
+     "id": "121-127105-0025",
+     "wer": 0.0,
+     "words": 43,
+     "seconds": 7.016741100000218,
+     "audio_s": 16.065,
+     "reference": "THE DEPARTING LADIES WHO HAD SAID THEY WOULD STAY DIDN'T OF COURSE THANK HEAVEN STAY THEY DEPARTED IN CONSEQUENCE OF ARRANGEMENTS MADE IN A RAGE OF CURIOSITY AS THEY PROFESSED PRODUCED BY THE TOUCHES WITH WHICH HE HAD ALREADY WORKED US UP",
+     "hypothesis": "The departing ladies who had said they would stay didn't, of course, thank Heaven, stay they departed, in consequence of arrangements made, in a rage of curiosity, as they professed, produced by the touches with which he had already worked us up.",
+     "exit_code": 0
+    },
+    {
+     "id": "1221-135766-0007",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 4.366651699994691,
+     "audio_s": 8.795,
+     "reference": "HESTER PRYNNE NEVERTHELESS THE LOVING MOTHER OF THIS ONE CHILD RAN LITTLE RISK OF ERRING ON THE SIDE OF UNDUE SEVERITY",
+     "hypothesis": "Hester Prynne, nevertheless, the loving mother of this one child, ran little risk of erring on the side of undue severity.",
+     "exit_code": 0
+    },
+    {
+     "id": "1221-135767-0012",
+     "wer": 0.025,
+     "words": 40,
+     "seconds": 6.351002900002641,
+     "audio_s": 13.885,
+     "reference": "THEY APPROACHED THE DOOR WHICH WAS OF AN ARCHED FORM AND FLANKED ON EACH SIDE BY A NARROW TOWER OR PROJECTION OF THE EDIFICE IN BOTH OF WHICH WERE LATTICE WINDOWS THE WOODEN SHUTTERS TO CLOSE OVER THEM AT NEED",
+     "hypothesis": "They approached the door, which was of an arched form, and flanked on each side by a narrow tower or projection of the edifice, in both of which were latticed windows, the wooden shutters to close over them at need.",
+     "exit_code": 0
+    },
+    {
+     "id": "1221-135767-0015",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 3.070938399992883,
+     "audio_s": 2.85,
+     "reference": "YE MAY NOT SEE HIS WORSHIP NOW",
+     "hypothesis": "ye may not see His worship now.",
+     "exit_code": 0
+    },
+    {
+     "id": "1221-135767-0020",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 3.241544200005592,
+     "audio_s": 3.345,
+     "reference": "IN TRUTH SHE SEEMED ABSOLUTELY HIDDEN BEHIND IT",
+     "hypothesis": "In Truth, she seemed absolutely hidden behind it.",
+     "exit_code": 0
+    },
+    {
+     "id": "1284-1180-0019",
+     "wer": 0.02,
+     "words": 50,
+     "seconds": 7.181418399995891,
+     "audio_s": 15.025,
+     "reference": "YOU MUST KNOW SAID MARGOLOTTE WHEN THEY WERE ALL SEATED TOGETHER ON THE BROAD WINDOW SEAT THAT MY HUSBAND FOOLISHLY GAVE AWAY ALL THE POWDER OF LIFE HE FIRST MADE TO OLD MOMBI THE WITCH WHO USED TO LIVE IN THE COUNTRY OF THE GILLIKINS TO THE NORTH OF HERE",
+     "hypothesis": "You must know, said Margolotte, when they were all seated together on the broad window seat, that my husband foolishly gave away all the powder of life he first made to old Momby the Witch, who used to live in the country of the Gillikins, to the north of here.",
+     "exit_code": 0
+    },
+    {
+     "id": "1284-1180-0028",
+     "wer": 0.058823529411764705,
+     "words": 17,
+     "seconds": 3.225897000011173,
+     "audio_s": 6.045,
+     "reference": "A BED QUILT MADE OF PATCHES OF DIFFERENT KINDS AND COLORS OF CLOTH ALL NEATLY SEWED TOGETHER",
+     "hypothesis": "a bed quilt made of patches of different kinds and colours of cloth, all neatly sewed together.",
+     "exit_code": 0
+    },
+    {
+     "id": "1284-1180-0029",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 3.240362099997583,
+     "audio_s": 5.335,
+     "reference": "SOMETIMES IT IS CALLED A CRAZY QUILT BECAUSE THE PATCHES AND COLORS ARE SO MIXED UP",
+     "hypothesis": "Sometimes it is called a crazy quilt, because the patches and colors are so mixed up.",
+     "exit_code": 0
+    },
+    {
+     "id": "1284-1181-0009",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 3.152707699991879,
+     "audio_s": 5.245,
+     "reference": "SHE RAN TO HER HUSBAND'S SIDE AT ONCE AND HELPED HIM LIFT THE FOUR KETTLES FROM THE FIRE",
+     "hypothesis": "She ran to her husband's side at once, and helped him lift the four kettles from the fire.",
+     "exit_code": 0
+    },
+    {
+     "id": "1284-1181-0014",
+     "wer": 0.0,
+     "words": 25,
+     "seconds": 4.211436199999298,
+     "audio_s": 7.92,
+     "reference": "HE SELECTED A SMALL GOLD BOTTLE WITH A PEPPER BOX TOP SO THAT THE POWDER MIGHT BE SPRINKLED ON ANY OBJECT THROUGH THE SMALL HOLES",
+     "hypothesis": "He selected a small gold bottle, with a pepper box top, so that the powder might be sprinkled on any object through the small holes.",
+     "exit_code": 0
+    },
+    {
+     "id": "1284-1181-0021",
+     "wer": 0.0,
+     "words": 6,
+     "seconds": 2.8176410000014585,
+     "audio_s": 2.7,
+     "reference": "ASKED THE VOICE IN SCORNFUL ACCENTS",
+     "hypothesis": "asked the voice, in scornful accents.",
+     "exit_code": 0
+    },
+    {
+     "id": "1320-122612-0005",
+     "wer": 0.047619047619047616,
+     "words": 21,
+     "seconds": 3.5170146000018576,
+     "audio_s": 5.915,
+     "reference": "YET HERE ARE WE WITHIN A SHORT RANGE OF THE SCAROONS AND NOT A SIGN OF A TRAIL HAVE WE CROSSED",
+     "hypothesis": "yet here are we, within a short range of the scarrons, and not a sign of a trail have we crossed.",
+     "exit_code": 0
+    },
+    {
+     "id": "1320-122617-0019",
+     "wer": 0.047619047619047616,
+     "words": 21,
+     "seconds": 4.064161700007389,
+     "audio_s": 8.23,
+     "reference": "UNCAS OCCUPIED A DISTANT CORNER IN A RECLINING ATTITUDE BEING RIGIDLY BOUND BOTH HANDS AND FEET BY STRONG AND PAINFUL WITHES",
+     "hypothesis": "Uncas occupied a distant corner in a reclining attitude, being rigidly bound both hands and feet by strong and painful widths.",
+     "exit_code": 0
+    },
+    {
+     "id": "1320-122617-0031",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 3.227268600006937,
+     "audio_s": 6.285,
+     "reference": "BRAVELY AND GENEROUSLY HAS HE BATTLED IN MY BEHALF AND THIS AND MORE WILL I DARE IN HIS SERVICE",
+     "hypothesis": "Bravely and generously has he battled in my behalf, and this and more will I dare in his service.",
+     "exit_code": 0
+    },
+    {
+     "id": "1320-122617-0036",
+     "wer": 0.0,
+     "words": 37,
+     "seconds": 5.436710299996776,
+     "audio_s": 12.37,
+     "reference": "GOD BLESS YOU FRIEND I DO BELIEVE YOUR SCENT IS NOT GREATLY WRONG WHEN THE MATTER IS DULY CONSIDERED AND KEEPING ETERNITY BEFORE THE EYES THOUGH MUCH DEPENDS ON THE NATURAL GIFTS AND THE FORCE OF TEMPTATION",
+     "hypothesis": "God bless you, friend, I do believe your scent is not greatly wrong, when the matter is duly considered, and keeping eternity before the eyes, though much depends on the natural gifts and the force of temptation.",
+     "exit_code": 0
+    },
+    {
+     "id": "1320-122617-0038",
+     "wer": 0.0,
+     "words": 6,
+     "seconds": 2.631976799995755,
+     "audio_s": 2.24,
+     "reference": "WILL THE HURONS HEAR HIS GROANS",
+     "hypothesis": "will the Hurons hear his groans?",
+     "exit_code": 0
+    },
+    {
+     "id": "1580-141083-0031",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.57492739999725,
+     "audio_s": 6.25,
+     "reference": "HOLMES HELD OUT A SMALL CHIP WITH THE LETTERS N N AND A SPACE OF CLEAR WOOD AFTER THEM YOU SEE",
+     "hypothesis": "Holmes held out a small chip with the letters N, N, and a space of clear wood after them. You see,",
+     "exit_code": 0
+    },
+    {
+     "id": "1580-141084-0000",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.988212399999611,
+     "audio_s": 4.615,
+     "reference": "IT WAS THE INDIAN WHOSE DARK SILHOUETTE APPEARED SUDDENLY UPON HIS BLIND",
+     "hypothesis": "It was the Indian, whose dark silhouette appeared suddenly upon his blind.",
+     "exit_code": 0
+    },
+    {
+     "id": "1580-141084-0017",
+     "wer": 0.0,
+     "words": 5,
+     "seconds": 2.472185899998294,
+     "audio_s": 2.0,
+     "reference": "NO GOOD MY DEAR WATSON",
+     "hypothesis": "No good, my dear Watson.",
+     "exit_code": 0
+    },
+    {
+     "id": "1580-141084-0023",
+     "wer": 0.0,
+     "words": 30,
+     "seconds": 4.279913399994257,
+     "audio_s": 8.735,
+     "reference": "IN A FEW HOURS THE EXAMINATION WOULD COMMENCE AND HE WAS STILL IN THE DILEMMA BETWEEN MAKING THE FACTS PUBLIC AND ALLOWING THE CULPRIT TO COMPETE FOR THE VALUABLE SCHOLARSHIP",
+     "hypothesis": "In A FEW HOURS, the examination would commence, and he was still in the dilemma between making the facts public and allowing the culprit to compete for the valuable scholarship.",
+     "exit_code": 0
+    },
+    {
+     "id": "1580-141084-0027",
+     "wer": 0.0,
+     "words": 4,
+     "seconds": 2.643057100009173,
+     "audio_s": 3.36,
+     "reference": "NO SIR CERTAINLY NOT",
+     "hypothesis": "No, sir, certainly not.",
+     "exit_code": 0
+    },
+    {
+     "id": "1580-141084-0034",
+     "wer": 0.0625,
+     "words": 16,
+     "seconds": 3.559433300004457,
+     "audio_s": 4.49,
+     "reference": "WELL WELL DON'T TROUBLE TO ANSWER LISTEN AND SEE THAT I DO YOU NO INJUSTICE",
+     "hypothesis": "Well, don't trouble to answer. Listen, and see that I do you no injustice.",
+     "exit_code": 0
+    },
+    {
+     "id": "1580-141084-0039",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 3.185437300009653,
+     "audio_s": 4.885,
+     "reference": "I ENTERED AND I TOOK YOU INTO MY CONFIDENCE AS TO THE SUGGESTIONS OF THE SIDE TABLE",
+     "hypothesis": "I entered, and I took you into my confidence as to the suggestions of the side table.",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1826-0003",
+     "wer": 0.0,
+     "words": 6,
+     "seconds": 2.6131100000056904,
+     "audio_s": 3.09,
+     "reference": "BETTER GO HE HAD COUNSELLED SENTENTIOUSLY",
+     "hypothesis": "Better go, he had counselled sententiously.",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1826-0008",
+     "wer": 0.0,
+     "words": 6,
+     "seconds": 2.6603602999966824,
+     "audio_s": 2.895,
+     "reference": "SOME OTHERS TOO BIG COTTON COUNTY",
+     "hypothesis": "some others, too, big Cotton County.",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1826-0009",
+     "wer": 0.0,
+     "words": 20,
+     "seconds": 3.766930099998717,
+     "audio_s": 7.57,
+     "reference": "YOU OUGHT TO KNOW JOHN IF I TEACH NEGROES I'LL SCARCELY SEE MUCH OF PEOPLE IN MY OWN CLASS",
+     "hypothesis": "You ought to know, John. If I teach negroes, I'll scarcely see much of people in my own class.",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1826-0010",
+     "wer": 0.0,
+     "words": 6,
+     "seconds": 2.6714894999895478,
+     "audio_s": 2.445,
+     "reference": "AT ANY RATE I SAY GO",
+     "hypothesis": "at any rate, I say go.",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1836-0004",
+     "wer": 0.0625,
+     "words": 96,
+     "seconds": 20.02216259999841,
+     "audio_s": 33.91,
+     "reference": "AS SHE AWAITED HER GUESTS SHE SURVEYED THE TABLE WITH BOTH SATISFACTION AND DISQUIETUDE FOR HER SOCIAL FUNCTIONS WERE FEW TONIGHT THERE WERE SHE CHECKED THEM OFF ON HER FINGERS SIR JAMES CREIGHTON THE RICH ENGLISH MANUFACTURER AND LADY CREIGHTON MISTER AND MISSUS VANDERPOOL MISTER HARRY CRESSWELL AND HIS SISTER JOHN TAYLOR AND HIS SISTER AND MISTER CHARLES SMITH WHOM THE EVENING PAPERS MENTIONED AS LIKELY TO BE UNITED STATES SENATOR FROM NEW JERSEY A SELECTION OF GUESTS THAT HAD BEEN DETERMINED UNKNOWN TO THE HOSTESS BY THE MEETING OF COTTON INTERESTS EARLIER IN THE DAY",
+     "hypothesis": "As she awaited her guests she surveyed the table with both satisfaction and disquietude, for her social functions were few. To night there were, she checked them off on her fingers, Sir James Crichton, the rich English manufacturer, and Lady Crichton, mister and misses Vanderpoel, mister Harry Cresswell, and his sister, John Taylor, and his sister, and mister Charles Smith, whom the evening papers mentioned as likely to be United States senator from New Jersey, a selection of guests that had been determined unknown to the hostess by the meeting of cotton interests earlier in the day.",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1836-0009",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 3.289367499994114,
+     "audio_s": 6.71,
+     "reference": "BUT CRESSWELL ADDED SIGNIFICANTLY CAPACITY DIFFERS ENORMOUSLY BETWEEN RACES",
+     "hypothesis": "but Cresswell added significantly, capacity differs enormously between races.",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1837-0011",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.7318889999878593,
+     "audio_s": 3.375,
+     "reference": "HE STARTED AT THE THOUGHT HE HURRIED FORTH SADLY",
+     "hypothesis": "He started at the thought. He hurried forth sadly.",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1837-0013",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.6213404000009177,
+     "audio_s": 3.195,
+     "reference": "THEN HE LOOKED DOWN THE LAGOON WAS DRY",
+     "hypothesis": "Then he looked down. The lagoon was dry,",
+     "exit_code": 0
+    },
+    {
+     "id": "1995-1837-0023",
+     "wer": 0.0,
+     "words": 46,
+     "seconds": 6.819458500001929,
+     "audio_s": 16.965,
+     "reference": "THE NET AND WEB OF ENDLESS THINGS HAD BEEN CRAWLING AND CREEPING AROUND HER SHE HAD STRUGGLED IN DUMB SPEECHLESS TERROR AGAINST SOME MIGHTY GRASPING THAT STROVE FOR HER LIFE WITH GNARLED AND CREEPING FINGERS BUT NOW AT LAST WEAKLY SHE OPENED HER EYES AND QUESTIONED",
+     "hypothesis": "The net and web of endless things had been crawling and creeping around her. She had struggled in dumb speechless terror against some mighty grasping that strove for her life with gnarled and creeping fingers but now at last, weakly, she opened her eyes and questioned,",
+     "exit_code": 0
+    },
+    {
+     "id": "2094-142345-0001",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.659421200005454,
+     "audio_s": 8.03,
+     "reference": "BUT THE WINDOWS ARE PATCHED WITH WOODEN PANES AND THE DOOR I THINK IS LIKE THE GATE IT IS NEVER OPENED",
+     "hypothesis": "But the windows are patched with wooden panes, and the door, I think, is like the gate it is never opened.",
+     "exit_code": 0
+    },
+    {
+     "id": "2094-142345-0006",
+     "wer": 0.0,
+     "words": 37,
+     "seconds": 6.1045704999996815,
+     "audio_s": 13.82,
+     "reference": "AT THE EDGE OF THIS BOX THERE LIES A GREAT WOODEN DOLL WHICH SO FAR AS MUTILATION IS CONCERNED BEARS A STRONG RESEMBLANCE TO THE FINEST GREEK SCULPTURE AND ESPECIALLY IN THE TOTAL LOSS OF ITS NOSE",
+     "hypothesis": "At the edge of this box there lies a great wooden doll, which, so far as mutilation is concerned, bears a strong resemblance to the finest Greek sculpture, and especially in the total loss of its nose.",
+     "exit_code": 0
+    },
+    {
+     "id": "2094-142345-0023",
+     "wer": 0.14285714285714285,
+     "words": 21,
+     "seconds": 3.354528700001538,
+     "audio_s": 5.18,
+     "reference": "YOU'RE A RARE UN FOR SITTING DOWN TO YOUR WORK A LITTLE WHILE AFTER IT'S TIME TO PUT BY",
+     "hypothesis": "You are a rarun for sitting down to your work a little while after it's time to put by.",
+     "exit_code": 0
+    },
+    {
+     "id": "2094-142345-0032",
+     "wer": 0.0,
+     "words": 13,
+     "seconds": 3.0210490000026766,
+     "audio_s": 3.24,
+     "reference": "I OFTEN HEARD HER TALK OF YOU IN THE SAME SORT OF WAY",
+     "hypothesis": "I often heard her talk of you in the same sort of way.",
+     "exit_code": 0
+    },
+    {
+     "id": "2094-142345-0035",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.825324899997213,
+     "audio_s": 3.575,
+     "reference": "BUT NOT MORE THAN WHAT'S IN THE BIBLE AUNT SAID DINAH",
+     "hypothesis": "But not more than what's in the Bible, aunt, said Dinah.",
+     "exit_code": 0
+    },
+    {
+     "id": "2094-142345-0043",
+     "wer": 0.0,
+     "words": 25,
+     "seconds": 3.6898113999923225,
+     "audio_s": 7.35,
+     "reference": "BY THIS TIME THE TWO GENTLEMEN HAD REACHED THE PALINGS AND HAD GOT DOWN FROM THEIR HORSES IT WAS PLAIN THEY MEANT TO COME IN",
+     "hypothesis": "By this time the two gentlemen had reached the palings, and had got down from their horses. It was plain they meant to come in.",
+     "exit_code": 0
+    },
+    {
+     "id": "2094-142345-0057",
+     "wer": 0.0,
+     "words": 37,
+     "seconds": 4.134671399995568,
+     "audio_s": 10.08,
+     "reference": "I KNOW HIS FARM IS IN BETTER ORDER THAN ANY OTHER WITHIN TEN MILES OF US AND AS FOR THE KITCHEN HE ADDED SMILING I DON'T BELIEVE THERE'S ONE IN THE KINGDOM TO BEAT IT",
+     "hypothesis": "I know his farm is in better order than any other within ten miles of us. And as for the kitchen, he added, smiling, I don't believe there's one in the kingdom to beat it.",
+     "exit_code": 0
+    },
+    {
+     "id": "2300-131720-0005",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.5525698000128614,
+     "audio_s": 6.9,
+     "reference": "WHY IF WE ERECT A STATION AT THE FALLS IT IS A GREAT ECONOMY TO GET IT UP TO THE CITY",
+     "hypothesis": "Why, if we erect a station at the falls, it is a great economy to get it up to the city.",
+     "exit_code": 0
+    },
+    {
+     "id": "2300-131720-0008",
+     "wer": 0.0,
+     "words": 20,
+     "seconds": 3.6902012000064133,
+     "audio_s": 9.125,
+     "reference": "EVERYTHING HE HAS DONE HAS BEEN AIMED AT THE CONSERVATION OF ENERGY THE CONTRACTION OF SPACE THE INTENSIFICATION OF CULTURE",
+     "hypothesis": "Everything he has done has been aimed at the conservation of energy, the contraction of space, the intensification of culture,",
+     "exit_code": 0
+    },
+    {
+     "id": "2300-131720-0017",
+     "wer": 0.0,
+     "words": 48,
+     "seconds": 6.991617299994687,
+     "audio_s": 19.915,
+     "reference": "EDISON HAD INSTALLED HIS HISTORIC FIRST GREAT CENTRAL STATION SYSTEM IN NEW YORK ON THE MULTIPLE ARC SYSTEM COVERED BY HIS FEEDER AND MAIN INVENTION WHICH RESULTED IN A NOTABLE SAVING IN THE COST OF CONDUCTORS AS AGAINST A STRAIGHT TWO WIRE SYSTEM THROUGHOUT OF THE TREE KIND",
+     "hypothesis": "Edison had installed his historic first great central station system in New York on the multiple arc system covered by his feeder and main invention, which resulted in a notable saving in the cost of conductors as against a straight two wire system throughout of the tree kind.",
+     "exit_code": 0
+    },
+    {
+     "id": "2300-131720-0018",
+     "wer": 0.03571428571428571,
+     "words": 28,
+     "seconds": 4.4550717000092845,
+     "audio_s": 12.54,
+     "reference": "HE SOON FORESAW THAT STILL GREATER ECONOMY WOULD BE NECESSARY FOR COMMERCIAL SUCCESS NOT ALONE FOR THE LARGER TERRITORY OPENING BUT FOR THE COMPACT DISTRICTS OF LARGE CITIES",
+     "hypothesis": "He soon foresaw that still greater economy would be necessary for commercial success, not alone for the larger territory opening, but for the compact district of large cities.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-126133-0000",
+     "wer": 0.0,
+     "words": 39,
+     "seconds": 5.244595399999525,
+     "audio_s": 13.29,
+     "reference": "HERE SHE WOULD STAY COMFORTED AND SOOTHED AMONG THE LOVELY PLANTS AND RICH EXOTICS REJOICING THE HEART OF OLD TURNER THE GARDENER WHO SINCE POLLY'S FIRST RAPTUROUS ENTRANCE HAD TAKEN HER INTO HIS GOOD GRACES FOR ALL TIME",
+     "hypothesis": "Here she would stay, comforted and soothed among the lovely plants and rich exotics, rejoicing the heart of old Turner the gardener, who, since Polly's first rapturous entrance, had taken her into his good graces for all time.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134493-0000",
+     "wer": 0.125,
+     "words": 8,
+     "seconds": 2.5342314000008628,
+     "audio_s": 4.105,
+     "reference": "IT IS SIXTEEN YEARS SINCE JOHN BERGSON DIED",
+     "hypothesis": "It is sixteen years since John Burkson died.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134493-0007",
+     "wer": 0.0,
+     "words": 5,
+     "seconds": 2.354148799990071,
+     "audio_s": 2.035,
+     "reference": "ALEXANDRA LETS YOU SLEEP LATE",
+     "hypothesis": "Alexandra lets you sleep late.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134493-0011",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 2.935662299991236,
+     "audio_s": 5.035,
+     "reference": "HOW BROWN YOU'VE GOT SINCE YOU CAME HOME I WISH I HAD AN ATHLETE TO MOW MY ORCHARD",
+     "hypothesis": "How brown you've got since you came home. I wish I had an Athlete to mow my orchard.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134500-0001",
+     "wer": 0.0,
+     "words": 2,
+     "seconds": 2.406446299995878,
+     "audio_s": 1.81,
+     "reference": "MARIE SIGHED",
+     "hypothesis": "Marie sighed.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134500-0003",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.533937000000151,
+     "audio_s": 3.17,
+     "reference": "THE ORCHARD WAS SPARKLING AND RIPPLING IN THE SUN",
+     "hypothesis": "The Orchard was sparkling and rippling in the sun.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134500-0005",
+     "wer": 0.1,
+     "words": 10,
+     "seconds": 2.43737039998814,
+     "audio_s": 2.39,
+     "reference": "OH BUT I'M GLAD TO GET THIS PLACE MOWED",
+     "hypothesis": "O But I'm glad to get this place mowed.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134500-0015",
+     "wer": 0.029411764705882353,
+     "words": 34,
+     "seconds": 4.326401599988458,
+     "audio_s": 10.815,
+     "reference": "THAT SUMMER THE RAINS HAD BEEN SO MANY AND OPPORTUNE THAT IT WAS ALMOST MORE THAN SHABATA AND HIS MAN COULD DO TO KEEP UP WITH THE CORN THE ORCHARD WAS A NEGLECTED WILDERNESS",
+     "hypothesis": "That summer the rains had been so many and opportune that it was almost more than Shabata and his men could do to keep up with the corn. The orchard was a neglected wilderness.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134500-0025",
+     "wer": 1.0,
+     "words": 2,
+     "seconds": 2.399123700000928,
+     "audio_s": 1.63,
+     "reference": "OH EMIL",
+     "hypothesis": "O, Amel,",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134500-0033",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 3.253552199996193,
+     "audio_s": 6.35,
+     "reference": "I WISH YOU WEREN'T SO RESTLESS AND DIDN'T GET SO WORKED UP OVER THINGS SHE SAID SADLY",
+     "hypothesis": "I wish you weren't so restless, and didn't get so worked up over things, she said sadly.",
+     "exit_code": 0
+    },
+    {
+     "id": "237-134500-0039",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 2.988677400004235,
+     "audio_s": 4.63,
+     "reference": "THAT WON'T LAST IT WILL GO AWAY AND THINGS WILL BE JUST AS THEY USED TO",
+     "hypothesis": "That won't last. It will go away, and things will be just as they used to.",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123286-0003",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 3.39792230000603,
+     "audio_s": 7.37,
+     "reference": "YOU SEEM ANXIOUS MY UNCLE I SAID SEEING HIM CONTINUALLY WITH HIS GLASS TO HIS EYE ANXIOUS",
+     "hypothesis": "You seem anxious, my uncle, I said, seeing him continually with his glass to his eye. Anxious",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123286-0010",
+     "wer": 0.0,
+     "words": 3,
+     "seconds": 2.639550899999449,
+     "audio_s": 2.575,
+     "reference": "SUNDAY AUGUST SIXTEENTH",
+     "hypothesis": "Sunday, august sixteenth.",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123286-0030",
+     "wer": 0.06666666666666667,
+     "words": 15,
+     "seconds": 3.4531374000071082,
+     "audio_s": 7.53,
+     "reference": "SUDDENLY THE ICHTHYOSAURUS AND THE PLESIOSAURUS DISAPPEAR BELOW LEAVING A WHIRLPOOL EDDYING IN THE WATER",
+     "hypothesis": "Suddenly the ichthyosaurus and the plesiosaurus disappear below, leaving a whirlpool edding in the water.",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123288-0000",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.6378919999988284,
+     "audio_s": 3.04,
+     "reference": "THE ROARINGS BECOME LOST IN THE DISTANCE",
+     "hypothesis": "The roarings become lost in the distance.",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123288-0004",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.6528245999943465,
+     "audio_s": 4.31,
+     "reference": "THE AIR IS HEAVY THE SEA IS CALM",
+     "hypothesis": "The air is heavy, the sea is calm,",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123288-0016",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.894251499994425,
+     "audio_s": 4.865,
+     "reference": "I REFER TO THE THERMOMETER IT INDICATES THE FIGURE IS OBLITERATED",
+     "hypothesis": "I refer to the thermometer. It indicates the figure is obliterated.",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123288-0023",
+     "wer": 0.0,
+     "words": 4,
+     "seconds": 2.517755399996531,
+     "audio_s": 2.385,
+     "reference": "HE NODS HIS CONSENT",
+     "hypothesis": "He nods his consent.",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123440-0000",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.5238032000052044,
+     "audio_s": 2.165,
+     "reference": "AND HOW ODD THE DIRECTIONS WILL LOOK",
+     "hypothesis": "and how odd the directions will look.",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123440-0004",
+     "wer": 0.0,
+     "words": 33,
+     "seconds": 4.420717600005446,
+     "audio_s": 12.02,
+     "reference": "ALICE TOOK UP THE FAN AND GLOVES AND AS THE HALL WAS VERY HOT SHE KEPT FANNING HERSELF ALL THE TIME SHE WENT ON TALKING DEAR DEAR HOW QUEER EVERYTHING IS TO DAY",
+     "hypothesis": "Alice took up the fan and gloves, and, as the hall was very hot, she kept fanning herself all the time she went on talking Dear, dear, how queer everything is to day",
+     "exit_code": 0
+    },
+    {
+     "id": "260-123440-0018",
+     "wer": 0.0,
+     "words": 10,
+     "seconds": 2.843301999993855,
+     "audio_s": 3.64,
+     "reference": "I AM VERY TIRED OF SWIMMING ABOUT HERE O MOUSE",
+     "hypothesis": "I am very tired of swimming about here. O Mouse",
+     "exit_code": 0
+    },
+    {
+     "id": "2830-3979-0004",
+     "wer": 0.0,
+     "words": 5,
+     "seconds": 2.5514869000035105,
+     "audio_s": 1.945,
+     "reference": "IT WAS WRITTEN IN LATIN",
+     "hypothesis": "It was written in Latin.",
+     "exit_code": 0
+    },
+    {
+     "id": "2830-3979-0011",
+     "wer": 0.0,
+     "words": 26,
+     "seconds": 3.6769793999992544,
+     "audio_s": 9.45,
+     "reference": "THE LORD WHO HAS GIVEN US POWER TO TEACH AND TO HEAR LET HIM ALSO GIVE US THE POWER TO SERVE AND TO DO LUKE TWO",
+     "hypothesis": "The Lord who has given us power to teach and to hear, let Him also give us the power to serve and to do. Luke two",
+     "exit_code": 0
+    },
+    {
+     "id": "2830-3980-0047",
+     "wer": 0.0,
+     "words": 23,
+     "seconds": 3.741681699990295,
+     "audio_s": 7.865,
+     "reference": "TO DO SO IS TO LOSE GOD ALTOGETHER BECAUSE GOD BECOMES INTOLERABLE WHEN WE SEEK TO MEASURE AND TO COMPREHEND HIS INFINITE MAJESTY",
+     "hypothesis": "To do so is to lose God altogether, because God becomes intolerable when we seek to measure and to comprehend His infinite majesty.",
+     "exit_code": 0
+    },
+    {
+     "id": "2830-3980-0056",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 3.213818399992306,
+     "audio_s": 5.35,
+     "reference": "OTHERWISE PAUL SHOULD HAVE WRITTEN GRACE FROM GOD THE FATHER AND PEACE FROM OUR LORD JESUS CHRIST",
+     "hypothesis": "Otherwise Paul should have written Grace from God the Father, and peace from our Lord Jesus Christ.",
+     "exit_code": 0
+    },
+    {
+     "id": "2830-3980-0067",
+     "wer": 0.0,
+     "words": 24,
+     "seconds": 3.498883399995975,
+     "audio_s": 8.13,
+     "reference": "THIS SENTENCE ALSO DEFINES OUR SINS AS GREAT SO GREAT IN FACT THAT THE WHOLE WORLD COULD NOT MAKE AMENDS FOR A SINGLE SIN",
+     "hypothesis": "This sentence also defines our sins as great, so great in fact, that the whole world could not make amends for a single sin.",
+     "exit_code": 0
+    },
+    {
+     "id": "2961-960-0013",
+     "wer": 0.0,
+     "words": 28,
+     "seconds": 3.8021806000033394,
+     "audio_s": 10.575,
+     "reference": "IT IS PROBABLE THAT THE RELATION OF THE IDEAS TO GOD OR OF GOD TO THE WORLD WAS DIFFERENTLY CONCEIVED BY HIM AT DIFFERENT TIMES OF HIS LIFE",
+     "hypothesis": "It is probable that the relation of the ideas to God or of God to the world was differently conceived by him at different times of his life.",
+     "exit_code": 0
+    },
+    {
+     "id": "2961-961-0008",
+     "wer": 0.047619047619047616,
+     "words": 21,
+     "seconds": 3.3343954000010854,
+     "audio_s": 7.155,
+     "reference": "BUT THE MEMORY OF THEIR EXPLOITS HAS PASSED AWAY OWING TO THE LAPSE OF TIME AND THE EXTINCTION OF THE ACTORS",
+     "hypothesis": "But the memory of their exploits had passed away owing to the lapse of time and the extinction of the actors.",
+     "exit_code": 0
+    },
+    {
+     "id": "2961-961-0014",
+     "wer": 0.0,
+     "words": 20,
+     "seconds": 3.5786026999994647,
+     "audio_s": 9.565,
+     "reference": "NINE THOUSAND YEARS HAVE ELAPSED SINCE SHE FOUNDED YOURS AND EIGHT THOUSAND SINCE SHE FOUNDED OURS AS OUR ANNALS RECORD",
+     "hypothesis": "Nine thousand years have elapsed since she founded yours, and eight thousand since she founded ours, as our annals record.",
+     "exit_code": 0
+    },
+    {
+     "id": "2961-961-0020",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 2.952536400000099,
+     "audio_s": 6.125,
+     "reference": "THIS IS THE EXPLANATION OF THE SHALLOWS WHICH ARE FOUND IN THAT PART OF THE ATLANTIC OCEAN",
+     "hypothesis": "This is the explanation of the shallows which are found in that part of the Atlantic Ocean.",
+     "exit_code": 0
+    },
+    {
+     "id": "3570-5694-0006",
+     "wer": 0.0,
+     "words": 41,
+     "seconds": 5.730246099992655,
+     "audio_s": 14.505,
+     "reference": "DRUNKENNESS AND THE OTHER PATHOLOGICAL CONSEQUENCES OF THE FREE USE OF STIMULANTS THEREFORE TEND IN THEIR TURN TO BECOME HONORIFIC AS BEING A MARK AT THE SECOND REMOVE OF THE SUPERIOR STATUS OF THOSE WHO ARE ABLE TO AFFORD THE INDULGENCE",
+     "hypothesis": "Drunkenness and the other pathological consequences of the free use of stimulants therefore tend in their turn to become honorific, as being a mark, at the second remove, of the superior status of those who are able to afford the indulgence.",
+     "exit_code": 0
+    },
+    {
+     "id": "3570-5694-0012",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.562887000007322,
+     "audio_s": 3.205,
+     "reference": "THERE IS A MORE OR LESS ELABORATE SYSTEM OF RANK AND GRADES",
+     "hypothesis": "there is a more or less elaborate system of rank and grades.",
+     "exit_code": 0
+    },
+    {
+     "id": "3570-5694-0022",
+     "wer": 0.0,
+     "words": 13,
+     "seconds": 2.7416257000004407,
+     "audio_s": 4.295,
+     "reference": "THE LIVERY BECOMES OBNOXIOUS TO NEARLY ALL WHO ARE REQUIRED TO WEAR IT",
+     "hypothesis": "The livery becomes obnoxious to nearly all who are required to wear it.",
+     "exit_code": 0
+    },
+    {
+     "id": "3570-5695-0008",
+     "wer": 0.047619047619047616,
+     "words": 21,
+     "seconds": 3.354436400011764,
+     "audio_s": 6.845,
+     "reference": "THE QUESTION IS WHICH OF THE TWO METHODS WILL MOST EFFECTIVELY REACH THE PERSONS WHOSE CONVICTIONS IT IS DESIRED TO AFFECT",
+     "hypothesis": "The question is, which of the two methods will most effectively reach the persons whose convictions it is desired to effect?",
+     "exit_code": 0
+    },
+    {
+     "id": "3570-5695-0014",
+     "wer": 0.030303030303030304,
+     "words": 33,
+     "seconds": 4.95816539999214,
+     "audio_s": 10.54,
+     "reference": "AMONG THE COUNTRY POPULATION ITS PLACE IS TO SOME EXTENT TAKEN BY SAVINGS AND HOME COMFORTS KNOWN THROUGH THE MEDIUM OF NEIGHBORHOOD GOSSIP SUFFICIENTLY TO SERVE THE LIKE GENERAL PURPOSE OF PECUNIARY REPUTE",
+     "hypothesis": "Among the country population its place is to some extent taken by savings and home comforts, known through the medium of neighbourhood gossip, sufficiently to serve the like general purpose of pecuniary repute.",
+     "exit_code": 0
+    },
+    {
+     "id": "3575-170457-0035",
+     "wer": 0.0,
+     "words": 26,
+     "seconds": 3.81419819999428,
+     "audio_s": 9.37,
+     "reference": "I WISH IT WOULD RECUR AGAIN BUT IT WILL TAKE TWO OR THREE INTERVIEWS BEFORE THE STIFFNESS THE ESTRANGEMENT OF THIS LONG SEPARATION WILL WEAR AWAY",
+     "hypothesis": "I wish it would recur again, but it will take two or three interviews before the stiffness, the estrangement of this long separation, will wear away.",
+     "exit_code": 0
+    },
+    {
+     "id": "3575-170457-0037",
+     "wer": 0.0,
+     "words": 38,
+     "seconds": 5.35263350000605,
+     "audio_s": 14.2,
+     "reference": "IF CHRISTIAN PERFECTION BE NECESSARY TO SALVATION I SHALL NEVER BE SAVED MY HEART IS A VERY HOTBED FOR SINFUL THOUGHTS AND WHEN I DECIDE ON AN ACTION I SCARCELY REMEMBER TO LOOK TO MY REDEEMER FOR DIRECTION",
+     "hypothesis": "If Christian perfection be necessary to salvation, I shall never be saved. My heart is a very hotbed for sinful thoughts, and when I decide on an action I scarcely remember to look to my Redeemer for direction.",
+     "exit_code": 0
+    },
+    {
+     "id": "3575-170457-0041",
+     "wer": 0.0,
+     "words": 49,
+     "seconds": 5.597456499992404,
+     "audio_s": 14.01,
+     "reference": "SHE WAS GONE OUT INTO THE VILLAGE ON SOME ERRAND WHEN AS SHE WAS DESCENDING THE STEEP STREET HER FOOT SLIPPED ON THE ICE AND SHE FELL IT WAS DARK AND NO ONE SAW HER MISCHANCE TILL AFTER A TIME HER GROANS ATTRACTED THE ATTENTION OF A PASSER BY",
+     "hypothesis": "She was gone out into the village on some errand when, as she was descending the steep street, her foot slipped on the ice and she fell. It was dark and no one saw her mischance, till after a time her groans attracted the attention of a passer by.",
+     "exit_code": 0
+    },
+    {
+     "id": "3575-170457-0045",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 3.0657165000011446,
+     "audio_s": 6.52,
+     "reference": "I AM NOT GOOD ENOUGH FOR YOU AND YOU MUST BE KEPT FROM THE CONTAMINATION OF TOO INTIMATE SOCIETY",
+     "hypothesis": "I am not good enough for you, and you must be kept from the contamination of too intimate society.",
+     "exit_code": 0
+    },
+    {
+     "id": "3575-170457-0053",
+     "wer": 0.0,
+     "words": 35,
+     "seconds": 4.824157300012303,
+     "audio_s": 11.945,
+     "reference": "BUT ANNE HAD BEGUN TO SUFFER JUST BEFORE THE HOLIDAYS AND CHARLOTTE WATCHED OVER HER YOUNGER SISTERS WITH THE JEALOUS VIGILANCE OF SOME WILD CREATURE THAT CHANGES HER VERY NATURE IF DANGER THREATENS HER YOUNG",
+     "hypothesis": "But Anne had begun to suffer just before the holidays, and Charlotte watched over her younger sisters with the jealous vigilance of some wild creature that changes her very nature if danger threatens her young.",
+     "exit_code": 0
+    },
+    {
+     "id": "3575-170457-0056",
+     "wer": 0.0,
+     "words": 10,
+     "seconds": 2.7339056999917375,
+     "audio_s": 3.3700625,
+     "reference": "I DOUBT WHETHER BRANWELL WAS MAINTAINING HIMSELF AT THIS TIME",
+     "hypothesis": "I doubt whether Branwell was maintaining himself at this time.",
+     "exit_code": 0
+    },
+    {
+     "id": "3729-6852-0012",
+     "wer": 0.4,
+     "words": 5,
+     "seconds": 2.3663560999993933,
+     "audio_s": 2.86,
+     "reference": "I SHALL CALL YOU ESPRIT",
+     "hypothesis": "I shall call you a spree.",
+     "exit_code": 0
+    },
+    {
+     "id": "3729-6852-0017",
+     "wer": 0.0,
+     "words": 48,
+     "seconds": 6.462438100003055,
+     "audio_s": 17.99,
+     "reference": "I SEE A QUANTITY OF CHAIRS FOR HIRE AT THE RATE OF ONE SOU MEN READING THE NEWSPAPER UNDER THE SHADE OF THE TREES GIRLS AND MEN BREAKFASTING EITHER ALONE OR IN COMPANY WAITERS WHO WERE RAPIDLY GOING UP AND DOWN A NARROW STAIRCASE HIDDEN UNDER THE FOLIAGE",
+     "hypothesis": "I see a quantity of chairs for hire at the rate of one sou men reading the newspaper under the shade of the trees girls and men breakfasting either alone or in company waiters who were rapidly going up and down a narrow staircase hidden under the foliage.",
+     "exit_code": 0
+    },
+    {
+     "id": "3729-6852-0021",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.4375398000120185,
+     "audio_s": 2.96,
+     "reference": "I THANK HIM AND TAKE MY LEAVE",
+     "hypothesis": "I thank him, and take my leave.",
+     "exit_code": 0
+    },
+    {
+     "id": "3729-6852-0039",
+     "wer": 0.0,
+     "words": 25,
+     "seconds": 3.7996102000033716,
+     "audio_s": 8.825,
+     "reference": "HE HIMSELF RECITED THE SAME PASSAGE IN FRENCH AND POLITELY POINTED OUT THE PARTS IN WHICH HE THOUGHT THAT I HAD IMPROVED ON THE ORIGINAL",
+     "hypothesis": "He himself recited the same passage in French, and politely pointed out the parts in which he thought that I had improved on the original.",
+     "exit_code": 0
+    },
+    {
+     "id": "3729-6852-0041",
+     "wer": 0.0,
+     "words": 30,
+     "seconds": 4.216189500002656,
+     "audio_s": 10.895,
+     "reference": "I BELIEVE IT SIR AND THAT IS WHAT I FEAR THEREFORE THE PRINCIPAL OBJECT OF MY VISIT HERE IS TO DEVOTE MYSELF ENTIRELY TO THE STUDY OF THE FRENCH LANGUAGE",
+     "hypothesis": "I believe it, sir, and that is what I fear. Therefore the principal object of my visit here is to devote myself entirely to the study of the French language.",
+     "exit_code": 0
+    },
+    {
+     "id": "3729-6852-0045",
+     "wer": 0.03278688524590164,
+     "words": 61,
+     "seconds": 8.090384600000107,
+     "audio_s": 20.375,
+     "reference": "HE HAD A GOOD APPETITE COULD TELL A GOOD STORY WITHOUT LAUGHING WAS CELEBRATED FOR HIS WITTY REPARTEES AND HIS SOCIABLE MANNERS BUT HE SPENT HIS LIFE AT HOME SELDOM GOING OUT AND SEEING HARDLY ANYONE BECAUSE HE ALWAYS HAD A PIPE IN HIS MOUTH AND WAS SURROUNDED BY AT LEAST TWENTY CATS WITH WHICH HE WOULD AMUSE HIMSELF ALL DAY",
+     "hypothesis": "He had a good appetite, could tell a good story without laughing, was celebrated for his witty repartees and his sociable manners but he spent his life at home, seldom going out and seeing hardly any one, because he always had a pipe in his mouth, and was surrounded by at least twenty cats with which he would amuse himself all day.",
+     "exit_code": 0
+    },
+    {
+     "id": "4077-13751-0003",
+     "wer": 0.0,
+     "words": 44,
+     "seconds": 6.491181499994127,
+     "audio_s": 16.72,
+     "reference": "IN PLACE OF A SINGLE HAMLET IN THE SMALLEST CORNER OF WHICH THE MEMBERS COULD HAVE CONGREGATED THERE NOW ARE ABOUT SEVENTY STAKES OF ZION AND ABOUT SEVEN HUNDRED ORGANIZED WARDS EACH WARD AND STAKE WITH ITS FULL COMPLEMENT OF OFFICERS AND PRIESTHOOD ORGANIZATIONS",
+     "hypothesis": "In place of a single hamlet, in the smallest corner of which the members could have congregated, there now are about seventy stakes of Zion and about seven hundred organized wards, each ward and stake with its full complement of officers and priesthood organizations.",
+     "exit_code": 0
+    },
+    {
+     "id": "4077-13751-0005",
+     "wer": 0.02,
+     "words": 50,
+     "seconds": 7.543093299987959,
+     "audio_s": 19.61,
+     "reference": "NEVERTHELESS THE MUSTARD SEED AMONG THE SMALLEST OF ALL SEEDS HAS ATTAINED THE PROPORTIONS OF A TREE AND THE BIRDS OF THE AIR ARE NESTING IN ITS BRANCHES THE ACORN IS NOW AN OAK OFFERING PROTECTION AND THE SWEETS OF SATISFACTION TO EVERY EARNEST PILGRIM JOURNEYING ITS WAY FOR TRUTH",
+     "hypothesis": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth.",
+     "exit_code": 0
+    },
+    {
+     "id": "4077-13751-0008",
+     "wer": 0.0,
+     "words": 31,
+     "seconds": 4.328232500003651,
+     "audio_s": 10.555,
+     "reference": "IT IS NOTABLE THAT THE INDIAN TRIBES HAVE GENERALLY REGARDED THE RELIGION OF THE LATTER DAY SAINTS WITH FAVOR SEEING IN THE BOOK OF MORMON STRIKING AGREEMENT WITH THEIR OWN TRADITIONS",
+     "hypothesis": "It is notable that the Indian tribes have generally regarded the religion of the Latter day saints with favor, seeing in the Book of Mormon striking agreement with their own traditions.",
+     "exit_code": 0
+    },
+    {
+     "id": "4077-13751-0012",
+     "wer": 0.11538461538461539,
+     "words": 26,
+     "seconds": 4.9626506000058725,
+     "audio_s": 12.015,
+     "reference": "THE LIEUTENANT GOVERNOR LILBURN W BOGGS AFTERWARD GOVERNOR WAS A PRONOUNCED MORMON HATER AND THROUGHOUT THE PERIOD OF THE TROUBLES HE MANIFESTED SYMPATHY WITH THE PERSECUTORS",
+     "hypothesis": "The Lieutenant Governor Littleburn W. Boggs, afterward Governor, was a pronounced Mormon hater, and throughout the period of the troubles he manifests his sympathy with the persecutors.",
+     "exit_code": 0
+    },
+    {
+     "id": "4077-13754-0011",
+     "wer": 0.0,
+     "words": 33,
+     "seconds": 5.462011800002074,
+     "audio_s": 14.13,
+     "reference": "FEDERAL JUDGES AND UNITED STATES ATTORNEYS IN UTAH WHO WERE NOT MORMONS NOR LOVERS OF MORMONISM REFUSED TO ENTERTAIN COMPLAINTS OR PROSECUTE CASES UNDER THE LAW BECAUSE OF ITS MANIFEST INJUSTICE AND INADEQUACY",
+     "hypothesis": "Federal judges and United States attorneys in Utah, who were not Mormons nor lovers of Mormonism, refused to entertain complaints or prosecute cases under the law because of its manifest injustice and inadequacy.",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2271-0003",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 2.827568599997903,
+     "audio_s": 3.7,
+     "reference": "IT'S BEEN ON ONLY TWO WEEKS AND I'VE BEEN HALF A DOZEN TIMES ALREADY",
+     "hypothesis": "It's been on only two weeks, and I've been half a dozen times already.",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2271-0015",
+     "wer": 0.0,
+     "words": 6,
+     "seconds": 2.522693999999319,
+     "audio_s": 2.595,
+     "reference": "A LITTLE ATTACK OF NERVES POSSIBLY",
+     "hypothesis": "a little attack of nerves, possibly.",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2271-0016",
+     "wer": 0.0,
+     "words": 31,
+     "seconds": 4.178332099996624,
+     "audio_s": 10.205,
+     "reference": "HE WAS BEGINNING TO FEEL A KEEN INTEREST IN THE SLENDER BAREFOOT DONKEY GIRL WHO SLIPPED IN AND OUT OF THE PLAY SINGING LIKE SOME ONE WINDING THROUGH A HILLY FIELD",
+     "hypothesis": "He was beginning to feel a keen interest in the slender, barefoot donkey girl who slipped in and out of the play, singing like some one winding through a hilly field.",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2271-0018",
+     "wer": 0.1111111111111111,
+     "words": 18,
+     "seconds": 3.016240299999481,
+     "audio_s": 5.715,
+     "reference": "SHE CONSIDERED A MOMENT AND THEN SAID NO I THINK NOT THOUGH I AM GLAD YOU ASK ME",
+     "hypothesis": "She considered for a moment, and then said No, I think not, though I am glad you asked me.",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2273-0007",
+     "wer": 0.25,
+     "words": 8,
+     "seconds": 2.6833330999943428,
+     "audio_s": 3.095,
+     "reference": "THOSE FELLOWS ARE ALL VERY LOYAL EVEN MAINHALL",
+     "hypothesis": "Those fellows are all very loyal, even Main Hall.",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2273-0015",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 2.7739243999967584,
+     "audio_s": 4.505,
+     "reference": "DON'T I THOUGH I'M SO SORRY TO HEAR IT HOW DID HER SON TURN OUT",
+     "hypothesis": "Don't I, though? I'm so sorry to hear it. How did her son turn out?",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2273-0018",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.695615700009512,
+     "audio_s": 3.4,
+     "reference": "DO YOU REMEMBER THAT FIRST WALK WE TOOK TOGETHER IN PARIS",
+     "hypothesis": "Do you remember that first walk we took together in Paris?",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2273-0025",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 2.9959674999990966,
+     "audio_s": 4.83,
+     "reference": "IT WAS VERY JOLLY HE MURMURED LAZILY AS MARIE CAME IN TO TAKE AWAY THE COFFEE",
+     "hypothesis": "It was very jolly, he murmured lazily, as Marie came in to take away the coffee.",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2273-0031",
+     "wer": 0.0,
+     "words": 4,
+     "seconds": 2.295194599995739,
+     "audio_s": 1.795,
+     "reference": "THERE JUST IN FRONT",
+     "hypothesis": "There, just in front,",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2273-0034",
+     "wer": 0.0,
+     "words": 14,
+     "seconds": 2.6984323999931803,
+     "audio_s": 3.59,
+     "reference": "HE FELT A TREMOR RUN THROUGH THE SLENDER YELLOW FIGURE IN FRONT OF HIM",
+     "hypothesis": "He felt a tremor run through the slender yellow figure in front of him.",
+     "exit_code": 0
+    },
+    {
+     "id": "4446-2275-0040",
+     "wer": 0.0,
+     "words": 24,
+     "seconds": 3.3262800999946194,
+     "audio_s": 6.965,
+     "reference": "THE SIGHT OF YOU BARTLEY TO SEE YOU LIVING AND HAPPY AND SUCCESSFUL CAN I NEVER MAKE YOU UNDERSTAND WHAT THAT MEANS TO ME",
+     "hypothesis": "The sight of you, Bartley, to see you living and happy and successful Can I never make you understand what that means to me?",
+     "exit_code": 0
+    },
+    {
+     "id": "4507-16021-0005",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.5454983999952674,
+     "audio_s": 4.21,
+     "reference": "WE HAVE NEVER UNDERSTOOD THIS SORT OF OBJECTIONS",
+     "hypothesis": "We have never understood this sort of objections.",
+     "exit_code": 0
+    },
+    {
+     "id": "4507-16021-0031",
+     "wer": 0.0,
+     "words": 34,
+     "seconds": 4.727775400009705,
+     "audio_s": 14.31,
+     "reference": "AND THEN WE INSIST UPON IT THE STUDY OF SOCIAL DEFORMITIES AND INFIRMITIES AND THE TASK OF POINTING THEM OUT WITH A VIEW TO REMEDY IS NOT A BUSINESS IN WHICH CHOICE IS PERMITTED",
+     "hypothesis": "and then we insist upon it the study of social deformities and infirmities, and the task of pointing them out with a view to remedy, is not a business in which choice is permitted.",
+     "exit_code": 0
+    },
+    {
+     "id": "4507-16021-0037",
+     "wer": 0.0,
+     "words": 10,
+     "seconds": 2.8490517000027467,
+     "audio_s": 5.35,
+     "reference": "THERE IT CLOTHES ITSELF IN WORD MASKS IN METAPHOR RAGS",
+     "hypothesis": "there it clothes itself in word masks, in metaphor rags,",
+     "exit_code": 0
+    },
+    {
+     "id": "4507-16021-0039",
+     "wer": 0.0,
+     "words": 23,
+     "seconds": 4.931652800005395,
+     "audio_s": 15.42,
+     "reference": "ONE PERCEIVES WITHOUT UNDERSTANDING IT A HIDEOUS MURMUR SOUNDING ALMOST LIKE HUMAN ACCENTS BUT MORE NEARLY RESEMBLING A HOWL THAN AN ARTICULATE WORD",
+     "hypothesis": "One perceives, without understanding it, a hideous murmur, sounding almost like human accents, but more nearly resembling a howl than an articulate word.",
+     "exit_code": 0
+    },
+    {
+     "id": "4507-16021-0049",
+     "wer": 0.0,
+     "words": 15,
+     "seconds": 2.9329826000030152,
+     "audio_s": 5.91,
+     "reference": "THERE IS HARDLY ONE DAY OUT OF A HUNDRED WHICH IS WHOLLY JOYOUS AND SUNNY",
+     "hypothesis": "there is hardly one day out of a hundred which is wholly joyous and sunny.",
+     "exit_code": 0
+    },
+    {
+     "id": "4507-16021-0056",
+     "wer": 0.0,
+     "words": 10,
+     "seconds": 2.8332087000017054,
+     "audio_s": 6.345,
+     "reference": "HOWEVER HE WHO SAYS LIGHT DOES NOT NECESSARILY SAY JOY",
+     "hypothesis": "However, he who says light does not necessarily say joy.",
+     "exit_code": 0
+    },
+    {
+     "id": "4507-16021-0058",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.4863125999982003,
+     "audio_s": 3.11,
+     "reference": "THE FLAME IS THE ENEMY OF THE WING",
+     "hypothesis": "The Flame is the enemy of the wing.",
+     "exit_code": 0
+    },
+    {
+     "id": "4970-29093-0003",
+     "wer": 0.023809523809523808,
+     "words": 42,
+     "seconds": 6.373538499989081,
+     "audio_s": 15.355,
+     "reference": "THE MODEST FELLOW WOULD HAVE LIKED FAME THRUST UPON HIM FOR SOME WORTHY ACHIEVEMENT IT MIGHT BE FOR A BOOK OR FOR THE SKILLFUL MANAGEMENT OF SOME GREAT NEWSPAPER OR FOR SOME DARING EXPEDITION LIKE THAT OF LIEUTENANT STRAIN OR DOCTOR KANE",
+     "hypothesis": "The modest fellow would have liked fame thrust upon him for some worthy achievement it might be for a book, or for the skilful management of some great newspaper, or for some daring expedition like that of Lieutenant Strain or Doctor Kane.",
+     "exit_code": 0
+    },
+    {
+     "id": "4970-29093-0009",
+     "wer": 0.0,
+     "words": 19,
+     "seconds": 3.755780599996797,
+     "audio_s": 9.12,
+     "reference": "PHILIP THEREFORE READ DILIGENTLY IN THE ASTOR LIBRARY PLANNED LITERARY WORKS THAT SHOULD COMPEL ATTENTION AND NURSED HIS GENIUS",
+     "hypothesis": "Philip therefore read diligently in the Astor Library, planned literary works that should compel attention, and nursed his genius.",
+     "exit_code": 0
+    },
+    {
+     "id": "4970-29093-0011",
+     "wer": 0.030303030303030304,
+     "words": 33,
+     "seconds": 4.531401800006279,
+     "audio_s": 11.45,
+     "reference": "O VERY WELL SAID GRINGO TURNING AWAY WITH A SHADE OF CONTEMPT YOU'LL FIND IF YOU ARE GOING INTO LITERATURE AND NEWSPAPER WORK THAT YOU CAN'T AFFORD A CONSCIENCE LIKE THAT",
+     "hypothesis": "Oh, very well, said Gringo, turning away with a shade of contempt, you'll find, if you are going into literature and newspaper work, that you can't afford a conscience like that.",
+     "exit_code": 0
+    },
+    {
+     "id": "4970-29095-0004",
+     "wer": 0.0,
+     "words": 31,
+     "seconds": 3.959425099994405,
+     "audio_s": 9.61,
+     "reference": "I HEARD FATHER TELL COUSIN ABNER THAT HE WAS WHIPPED SO OFTEN FOR WHISTLING WHEN HE WAS A BOY THAT HE WAS DETERMINED TO HAVE WHAT COMPENSATION HE COULD GET NOW",
+     "hypothesis": "I heard father tell Cousin Abner that he was whipped so often for whistling when he was a boy, that he was determined to have what compensation he could get now.",
+     "exit_code": 0
+    },
+    {
+     "id": "4970-29095-0010",
+     "wer": 0.3333333333333333,
+     "words": 3,
+     "seconds": 2.3936955999961356,
+     "audio_s": 2.64,
+     "reference": "THEE STUDY MEDICINE",
+     "hypothesis": "The Study Medicine,",
+     "exit_code": 0
+    },
+    {
+     "id": "4970-29095-0029",
+     "wer": 0.23076923076923078,
+     "words": 13,
+     "seconds": 2.616533899999922,
+     "audio_s": 3.89,
+     "reference": "IS HE GOING TO START A DAILY NEWSPAPER AMONG THE KICK A POOS",
+     "hypothesis": "Is he going to start a daily newspaper among the Kickapoos?",
+     "exit_code": 0
+    },
+    {
+     "id": "4970-29095-0030",
+     "wer": 0.18181818181818182,
+     "words": 11,
+     "seconds": 2.769193100000848,
+     "audio_s": 4.67,
+     "reference": "FATHER THEE'S UNJUST TO PHILIP HE'S GOING INTO BUSINESS",
+     "hypothesis": "Father, these unjust, to Philip. He's going into business.",
+     "exit_code": 0
+    },
+    {
+     "id": "4970-29095-0036",
+     "wer": 0.0625,
+     "words": 16,
+     "seconds": 2.9691688000020804,
+     "audio_s": 5.25,
+     "reference": "HAS THEE CONSULTED THY MOTHER ABOUT A CAREER I SUPPOSE IT IS A CAREER THEE WANTS",
+     "hypothesis": "Has thee consulted thy mother about a career? I suppose it is a career thy wants.",
+     "exit_code": 0
+    },
+    {
+     "id": "4992-23283-0006",
+     "wer": 0.0,
+     "words": 6,
+     "seconds": 2.5431328999984544,
+     "audio_s": 2.965,
+     "reference": "PERHAPS I AM MISTAKEN ANSWERED SHE",
+     "hypothesis": "Perhaps I am mistaken, answered she.",
+     "exit_code": 0
+    },
+    {
+     "id": "4992-41797-0000",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.7838043000083417,
+     "audio_s": 5.485,
+     "reference": "YES DEAD THESE FOUR YEARS AN A GOOD JOB FOR HER TOO",
+     "hypothesis": "Yes, dead these four years, an a good job for her, too.",
+     "exit_code": 0
+    },
+    {
+     "id": "4992-41797-0002",
+     "wer": 0.25,
+     "words": 12,
+     "seconds": 2.89538379998703,
+     "audio_s": 5.625,
+     "reference": "GRANDFATHER WAS ALEXANDER CAREY L L D DOCTOR OF LAWS THAT IS",
+     "hypothesis": "Grandfather was Alexander Carey, LLD, Doctor of Laws, that is.",
+     "exit_code": 0
+    },
+    {
+     "id": "4992-41797-0004",
+     "wer": 0.043478260869565216,
+     "words": 23,
+     "seconds": 3.3441948000108823,
+     "audio_s": 7.315,
+     "reference": "I SWAN TO MAN HE EJACULATED IF YOU DON'T WORK HARD YOU CAN'T KEEP UP WITH THE TIMES DOCTOR OF LAWS",
+     "hypothesis": "I swain to man he ejaculated. If you don't work hard you can't keep up with the times. Doctor of Laws?",
+     "exit_code": 0
+    },
+    {
+     "id": "4992-41806-0000",
+     "wer": 0.043478260869565216,
+     "words": 46,
+     "seconds": 5.39962050000031,
+     "audio_s": 14.36,
+     "reference": "NATTY HARMON TRIED THE KITCHEN PUMP SECRETLY SEVERAL TIMES DURING THE EVENING FOR THE WATER HAD TO RUN UP HILL ALL THE WAY FROM THE WELL TO THE KITCHEN SINK AND HE BELIEVED THIS TO BE A CONTINUAL MIRACLE THAT MIGHT GIVE OUT AT ANY MOMENT",
+     "hypothesis": "Natty Harmon tried the kitchen pump secretly several times during the evening, for the water had to run uphill all the way from the well to the kitchen sink, and he believed this to be a continual miracle that might give out at any moment.",
+     "exit_code": 0
+    },
+    {
+     "id": "4992-41806-0002",
+     "wer": 0.08695652173913043,
+     "words": 46,
+     "seconds": 6.561381299994537,
+     "audio_s": 17.745,
+     "reference": "THEY BEGAN WITH THE ONE IN THE FAMILY SITTING ROOM COLONEL WHEELER RALPH THURSTON MISTER AND MISSUS BILL HARMON WITH NATTY AND RUFUS MISTER AND MISSUS POPHAM WITH DIGBY AND LALLIE JOY ALL STANDING IN ADMIRING GROUPS AND THRILLING WITH DELIGHT AT THE ORDER OF EVENTS",
+     "hypothesis": "They began with the one in the family sitting room Colonel Wheeler, Ralph Thurston, mister and misses Bill Harmon with Natty and Ruffis, mister and misses Popham with Digby and Lally Joy, all standing in admiring groups and thrilling with delight at the order of events.",
+     "exit_code": 0
+    },
+    {
+     "id": "4992-41806-0007",
+     "wer": 0.0,
+     "words": 33,
+     "seconds": 4.328591600002255,
+     "audio_s": 11.415,
+     "reference": "OLIVE HAD PAINTED THE MOTTO ON A LONG NARROW PANEL OF CANVAS AND GIVING IT TO MISTER POPHAM STOOD BY THE FIRESIDE WHILE HE DEFTLY FITTED IT INTO THE PLACE PREPARED FOR IT",
+     "hypothesis": "Olive had painted the motto on a long, narrow panel of canvas, and giving it to mister Popham stood by the fireside while he deftly fitted it into the place prepared for it.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28233-0010",
+     "wer": 0.05714285714285714,
+     "words": 35,
+     "seconds": 5.175823699988541,
+     "audio_s": 13.595,
+     "reference": "UNLIKE HIS MASTER HE MADE NO PRETENSION TO ANY GIFT OF POETIC POWER BUT HIS INEXHAUSTIBLE MEMORY MADE HIM A LIVING ENCYCLOPAEDIA AND FOR HIS STOCK OF ANECDOTES AND TROOPER'S TALES HE WAS MATCHLESS",
+     "hypothesis": "Unlike his master, he made no pretension to any gift of poetic power, but his inexhaustible memory made him a living encyclopaedia, and for his stock of anecdotes and troopers tales he was matchless.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28240-0009",
+     "wer": 0.0,
+     "words": 29,
+     "seconds": 4.37677440000698,
+     "audio_s": 11.65,
+     "reference": "SLIGHTLY CHANGING HER COURSE SHE FIRST STRUCK HER MAINSAIL AND IN ORDER TO FACILITATE THE MOVEMENTS OF HER HELMSMAN SOON CARRIED NOTHING BUT HER TWO TOPSAILS BRIGANTINE AND JIB",
+     "hypothesis": "Slightly changing her course, she first struck her mainsail, and in order to facilitate the movements of her helmsman soon carried nothing but her two topsails, brigantine and jib.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28241-0006",
+     "wer": 0.0,
+     "words": 24,
+     "seconds": 3.504743999990751,
+     "audio_s": 7.55,
+     "reference": "THE LOG AND THE COMPASS THEREFORE WERE ABLE TO BE CALLED UPON TO DO THE WORK OF THE SEXTANT WHICH HAD BECOME UTTERLY USELESS",
+     "hypothesis": "The log and the compass, therefore, were able to be called upon to do the work of the sextant, which had become utterly useless.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28241-0007",
+     "wer": 0.14285714285714285,
+     "words": 7,
+     "seconds": 2.4362360000086483,
+     "audio_s": 1.88,
+     "reference": "THERE IS NO FEAR OF THAT SIR",
+     "hypothesis": "There's no fear of that, sir.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28241-0008",
+     "wer": 0.08695652173913043,
+     "words": 23,
+     "seconds": 3.5952683000068646,
+     "audio_s": 8.54,
+     "reference": "THE EARTH HAS UNDOUBTEDLY ENTERED UPON A NEW ORBIT BUT SHE IS NOT INCURRING ANY PROBABLE RISK OF BEING PRECIPITATED ONTO THE SUN",
+     "hypothesis": "the earth has undoubtedly entered upon a new orbit, but she is not incurring any probable risk of being precipitated on to the sun.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28241-0009",
+     "wer": 0.07142857142857142,
+     "words": 14,
+     "seconds": 3.0624727999966126,
+     "audio_s": 7.01,
+     "reference": "AND WHAT DEMONSTRATION DO YOU OFFER ASKED SERVADAC EAGERLY THAT IT WILL NOT HAPPEN",
+     "hypothesis": "And what demonstration do you offer? asked Servadac eaguely, that it will not happen.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28241-0010",
+     "wer": 0.0,
+     "words": 3,
+     "seconds": 2.360199000002467,
+     "audio_s": 2.31,
+     "reference": "OCEAN REIGNED SUPREME",
+     "hypothesis": "Ocean reigned supreme.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28241-0015",
+     "wer": 0.013333333333333334,
+     "words": 75,
+     "seconds": 12.529133300005924,
+     "audio_s": 29.14,
+     "reference": "TO THE SURPRISE OF ALL AND ESPECIALLY OF LIEUTENANT PROCOPE THE LINE INDICATED A BOTTOM AT A NEARLY UNIFORM DEPTH OF FROM FOUR TO FIVE FATHOMS AND ALTHOUGH THE SOUNDING WAS PERSEVERED WITH CONTINUOUSLY FOR MORE THAN TWO HOURS OVER A CONSIDERABLE AREA THE DIFFERENCES OF LEVEL WERE INSIGNIFICANT NOT CORRESPONDING IN ANY DEGREE TO WHAT WOULD BE EXPECTED OVER THE SITE OF A CITY THAT HAD BEEN TERRACED LIKE THE SEATS OF AN AMPHITHEATER",
+     "hypothesis": "To the surprise of all, and especially of Lieutenant Procope, the line indicated a bottom at a nearly uniform depth of from four to five fathoms and although the sounding was persevered with, continuously, for more than two hours, over a considerable area, the differences of level were insignificant, not corresponding in any degree to what would be expected over the site of a city that had been terraced like the seats of an amphitheatre.",
+     "exit_code": 0
+    },
+    {
+     "id": "5105-28241-0019",
+     "wer": 0.0625,
+     "words": 16,
+     "seconds": 3.031021300004795,
+     "audio_s": 5.29,
+     "reference": "NOTHING WAS TO BE DONE BUT TO PUT ABOUT AND RETURN IN DISAPPOINTMENT TOWARDS THE NORTH",
+     "hypothesis": "Nothing was to be done but to put about, and return in disappointment toward the North.",
+     "exit_code": 0
+    },
+    {
+     "id": "5142-33396-0003",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.636933100002352,
+     "audio_s": 3.47,
+     "reference": "THE REST OF YOU OFF A VIKING HE HAD THREE SHIPS",
+     "hypothesis": "The rest of you off a Viking. He had three ships.",
+     "exit_code": 0
+    },
+    {
+     "id": "5142-33396-0019",
+     "wer": 0.0,
+     "words": 20,
+     "seconds": 2.94120099999418,
+     "audio_s": 4.985,
+     "reference": "OH IT IS BETTER TO LIVE ON THE SEA AND LET OTHER MEN RAISE YOUR CROPS AND COOK YOUR MEALS",
+     "hypothesis": "Oh, it is better to live on the sea and let other men raise your crops and cook your meals.",
+     "exit_code": 0
+    },
+    {
+     "id": "5142-33396-0046",
+     "wer": 0.2,
+     "words": 15,
+     "seconds": 2.7468478999944637,
+     "audio_s": 3.745,
+     "reference": "BY THE BEARD OF ODIN I CRIED YOU HAVE TAKEN OUR JOKE LIKE A MAN",
+     "hypothesis": "BEARD OF ODEN I cried, you have taken our joke like a man.",
+     "exit_code": 0
+    },
+    {
+     "id": "5142-33396-0061",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.398558000000776,
+     "audio_s": 2.14,
+     "reference": "YOUR MOTHER THE QUEEN WAS STANDING BY",
+     "hypothesis": "Your Mother, the Queen, was standing by.",
+     "exit_code": 0
+    },
+    {
+     "id": "5142-33396-0065",
+     "wer": 0.13333333333333333,
+     "words": 15,
+     "seconds": 2.9334564000018872,
+     "audio_s": 5.195,
+     "reference": "SOFT HEART HE SAID GENTLY TO HER THEN TO THORKEL WELL LET HIM GO THORKEL",
+     "hypothesis": "Soft Heart, he said gently to her. Then to Torkle. Well, let him go, Torkle.",
+     "exit_code": 0
+    },
+    {
+     "id": "5142-36377-0019",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.562852599992766,
+     "audio_s": 2.415,
+     "reference": "WHEN I ADDRESSED HIM HE ANSWERED CONSTRAINEDLY",
+     "hypothesis": "When I addressed him, he answered constrainedly.",
+     "exit_code": 0
+    },
+    {
+     "id": "5639-40744-0001",
+     "wer": 0.02857142857142857,
+     "words": 35,
+     "seconds": 4.910897100009606,
+     "audio_s": 12.44,
+     "reference": "SECURE AS HE THOUGHT IN THE CAREFUL ADMINISTRATION OF JUSTICE IN THAT CITY AND THE CHARACTER OF ITS WELL DISPOSED INHABITANTS THE GOOD HIDALGO WAS FAR FROM THINKING THAT ANY DISASTER COULD BEFAL HIS FAMILY",
+     "hypothesis": "Secure, as he thought, in the careful administration of justice in that city, and the character of its well disposed inhabitants, the good Hidalgo was far from thinking that any disaster could befall his family.",
+     "exit_code": 0
+    },
+    {
+     "id": "5639-40744-0008",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.478828599996632,
+     "audio_s": 2.215,
+     "reference": "WHO TOUCHES ME AM I IN BED",
+     "hypothesis": "Who touches me? Am I in bed?",
+     "exit_code": 0
+    },
+    {
+     "id": "5639-40744-0009",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.427259600008256,
+     "audio_s": 2.375,
+     "reference": "MOTHER DEAR FATHER DO YOU HEAR ME",
+     "hypothesis": "Mother, dear father, do you hear me?",
+     "exit_code": 0
+    },
+    {
+     "id": "5639-40744-0012",
+     "wer": 0.07692307692307693,
+     "words": 26,
+     "seconds": 3.6566289000038523,
+     "audio_s": 8.595,
+     "reference": "SHE SUCCEEDED IN OPENING THE WINDOW AND THE MOONLIGHT SHONE IN SO BRIGHTLY THAT SHE COULD DISTINGUISH THE COLOUR OF SOME DAMASK HANGINGS IN THE ROOM",
+     "hypothesis": "She succeeded in opening the window, and the moonlight shone in so brightly that she could distinguish the color of some damask hanging in the room.",
+     "exit_code": 0
+    },
+    {
+     "id": "5639-40744-0015",
+     "wer": 0.0,
+     "words": 37,
+     "seconds": 4.529086799986544,
+     "audio_s": 11.02,
+     "reference": "THIS PERSON WAS RODOLFO WHO THOUGH HE HAD GONE TO LOOK FOR HIS FRIENDS HAD CHANGED HIS MIND IN THAT RESPECT NOT THINKING IT ADVISABLE TO ACQUAINT THEM WITH WHAT HAD PASSED BETWEEN HIM AND THE GIRL",
+     "hypothesis": "This person was Rodolfo, who, though he had gone to look for his friends, had changed his mind in that respect, not thinking it advisable to acquaint them with what had passed between him and the girl.",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32865-0002",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.4842987000010908,
+     "audio_s": 2.78,
+     "reference": "HE HAD HIS HAND UPON LAKE'S SHOULDER",
+     "hypothesis": "He had his hand upon Lake's shoulder.",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32866-0003",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.531785300001502,
+     "audio_s": 2.865,
+     "reference": "IN THE MEANTIME I HAD FORMED A NEW IDEA OF HER",
+     "hypothesis": "In the meantime I had formed a new idea of her.",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32866-0014",
+     "wer": 0.0,
+     "words": 13,
+     "seconds": 2.7377053999953205,
+     "audio_s": 3.97,
+     "reference": "DON'T INSULT ME STANLEY BY TALKING AGAIN AS YOU DID THIS MORNING",
+     "hypothesis": "Don't insult me, Stanley, by talking again as you did this morning.",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32866-0017",
+     "wer": 0.0,
+     "words": 14,
+     "seconds": 2.8638998000096763,
+     "audio_s": 4.585,
+     "reference": "I AM VERY UNEASY ABOUT IT WHATEVER IT IS I CAN'T HELP IT",
+     "hypothesis": "I am very uneasy about it, whatever it is. I can't help it.",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32866-0020",
+     "wer": 0.0,
+     "words": 13,
+     "seconds": 2.7429038000118453,
+     "audio_s": 3.93,
+     "reference": "THE FLOOR MORE THAN ANYTHING ELSE SHOWED THE GREAT AGE OF THE ROOM",
+     "hypothesis": "The floor more than anything else showed the great age of the room,",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32879-0003",
+     "wer": 0.0,
+     "words": 23,
+     "seconds": 3.5965270000015153,
+     "audio_s": 9.345,
+     "reference": "WOMEN CAN HIDE THEIR PAIN BETTER THAN WE MEN AND BEAR IT BETTER TOO EXCEPT WHEN SHAME DROPS FIRE INTO THE DREADFUL CHALICE",
+     "hypothesis": "Women can hide their pain better than we men, and bear it better too, except when shame drops fire into the dreadful chalice.",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32879-0004",
+     "wer": 0.0,
+     "words": 28,
+     "seconds": 4.289591100008693,
+     "audio_s": 11.21,
+     "reference": "BUT POOR RACHEL LAKE HAD MORE THAN THAT STOICAL HYPOCRISY WHICH ENABLES THE TORTURED SPIRITS OF HER SEX TO LIFT A PALE FACE THROUGH THE FLAMES AND SMILE",
+     "hypothesis": "but poor Rachel Lake had more than that stoical hypocrisy which enables the tortured spirits of her sex to lift a pale face through the flames and smile.",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32879-0012",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.7028962999902433,
+     "audio_s": 4.38,
+     "reference": "THANK YOU RACHEL MY COUSIN RACHEL MY ONLY FRIEND",
+     "hypothesis": "Thank You, Rachel. My cousin, Rachel, my only friend,",
+     "exit_code": 0
+    },
+    {
+     "id": "5683-32879-0025",
+     "wer": 0.0,
+     "words": 4,
+     "seconds": 2.3828044999972917,
+     "audio_s": 1.905,
+     "reference": "THANK YOU DORCAS DEAR",
+     "hypothesis": "Thank You, Dorcas dear.",
+     "exit_code": 0
+    },
+    {
+     "id": "61-70968-0005",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 2.802782999991905,
+     "audio_s": 5.07,
+     "reference": "THIS WAS SO SWEET A LADY SIR AND IN SOME MANNER I DO THINK SHE DIED",
+     "hypothesis": "This was so sweet a lady, sir, and in some manner I do think she died.",
+     "exit_code": 0
+    },
+    {
+     "id": "61-70968-0015",
+     "wer": 0.0,
+     "words": 13,
+     "seconds": 2.969667400000617,
+     "audio_s": 5.375,
+     "reference": "NAY WE REFUSED THEIR REQUEST MOST POLITELY MOST NOBLE SAID THE LITTLE STROLLER",
+     "hypothesis": "Nay, we refused their request most politely, most noble, said the little stroller,",
+     "exit_code": 0
+    },
+    {
+     "id": "61-70968-0019",
+     "wer": 0.07692307692307693,
+     "words": 13,
+     "seconds": 2.9510792000073707,
+     "audio_s": 5.475,
+     "reference": "IT IS ENOUGH SAID GEORGE GAMEWELL SHARPLY AND HE TURNED UPON THE CROWD",
+     "hypothesis": "It is enough, said George Gamewell sharply, as he turned upon the crowd,",
+     "exit_code": 0
+    },
+    {
+     "id": "61-70968-0045",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.5999070999969263,
+     "audio_s": 3.475,
+     "reference": "PRAY FOLLOW US WITH MINE AND MY LORD SHERIFF'S MEN",
+     "hypothesis": "pray follow us, with mine and my Lord Sheriff's men.",
+     "exit_code": 0
+    },
+    {
+     "id": "61-70970-0000",
+     "wer": 0.0,
+     "words": 23,
+     "seconds": 3.280232800010708,
+     "audio_s": 6.075,
+     "reference": "YOUNG FITZOOTH HAD BEEN COMMANDED TO HIS MOTHER'S CHAMBER SO SOON AS HE HAD COME OUT FROM HIS CONVERSE WITH THE SQUIRE",
+     "hypothesis": "Young Fitzooth had been commanded to his mother's chamber so soon as he had come out from his converse with the squire,",
+     "exit_code": 0
+    },
+    {
+     "id": "61-70970-0011",
+     "wer": 0.0,
+     "words": 15,
+     "seconds": 3.0486228999943705,
+     "audio_s": 6.075,
+     "reference": "AS ANY IN ENGLAND I WOULD SAY SAID GAMEWELL PROUDLY THAT IS IN HIS DAY",
+     "hypothesis": "As any in England, I would say, said Gamewell proudly, that is, in his day,",
+     "exit_code": 0
+    },
+    {
+     "id": "61-70970-0032",
+     "wer": 0.25,
+     "words": 8,
+     "seconds": 2.587367899992387,
+     "audio_s": 3.135,
+     "reference": "ENQUIRED ROBIN WITH HIS SUSPICIONS STILL UPON HIM",
+     "hypothesis": "inquired Robin, with his suspicion still upon him,",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0002",
+     "wer": 0.35135135135135137,
+     "words": 37,
+     "seconds": 4.315319300003466,
+     "audio_s": 13.62,
+     "reference": "HE DID NOT THINK OF THE WARM SUN AND OF THE FRESH AIR HE DID NOT CARE FOR THE LITTLE COTTAGE CHILDREN THAT RAN ABOUT AND PRATTLED WHEN THEY WERE IN THE WOODS LOOKING FOR WILD STRAWBERRIES",
+     "hypothesis": "He did not care for the little cottage children that ran about and prattled when they were in the woods looking for wild strawberries.",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0003",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.738643899996532,
+     "audio_s": 4.76,
+     "reference": "BUT THIS WAS WHAT THE TREE COULD NOT BEAR TO HEAR",
+     "hypothesis": "But this was what the tree could not bear to hear.",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0006",
+     "wer": 0.0,
+     "words": 24,
+     "seconds": 4.118897699998342,
+     "audio_s": 13.95,
+     "reference": "TO GROW AND GROW TO GET OLDER AND BE TALL THOUGHT THE TREE THAT AFTER ALL IS THE MOST DELIGHTFUL THING IN THE WORLD",
+     "hypothesis": "To grow and grow, to get older and be tall, thought the tree. That, after all, is the most delightful thing in the world.",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0024",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.500857199993334,
+     "audio_s": 4.13,
+     "reference": "THE DEPARTURE WAS NOT AT ALL AGREEABLE",
+     "hypothesis": "The departure was not at all agreeable.",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0028",
+     "wer": 0.0,
+     "words": 5,
+     "seconds": 2.3878903000004357,
+     "audio_s": 2.61,
+     "reference": "THIS EVENING THEY ALL SAID",
+     "hypothesis": "This evening, they all said,",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0032",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.6108723000070313,
+     "audio_s": 4.0,
+     "reference": "CRIED THE YOUNG LADIES AND THEY QUICKLY PUT OUT THE FIRE",
+     "hypothesis": "cried the young ladies, and they quickly put out the fire.",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0038",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.4122643000009703,
+     "audio_s": 8.8,
+     "reference": "THOUGHT THE FIR TREE AND BELIEVED IT ALL BECAUSE THE MAN WHO TOLD THE STORY WAS SO GOOD LOOKING WELL WELL",
+     "hypothesis": "thought the fir tree, and believed it all, because the man who told the story was so good looking. Well, well,",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0061",
+     "wer": 0.058823529411764705,
+     "words": 17,
+     "seconds": 3.1431680000096094,
+     "audio_s": 7.59,
+     "reference": "DON'T YOU KNOW ONE ABOUT BACON AND TALLOW CANDLES CAN'T YOU TELL ANY LARDER STORIES",
+     "hypothesis": "Don't you know one about bacon and tallow candles? Can't you tell any larger stories?",
+     "exit_code": 0
+    },
+    {
+     "id": "672-122797-0072",
+     "wer": 0.0,
+     "words": 18,
+     "seconds": 3.160662800000864,
+     "audio_s": 7.94,
+     "reference": "AND THE GARDENER'S BOY CHOPPED THE TREE INTO SMALL PIECES THERE WAS A WHOLE HEAP LYING THERE",
+     "hypothesis": "and the gardener's boy chopped the tree into small pieces. There was a whole heap lying there.",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68769-0002",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.55389149999246,
+     "audio_s": 3.075,
+     "reference": "I CAN'T SEE IT IN THAT LIGHT SAID THE OLD LAWYER",
+     "hypothesis": "I can't see it in that light, said the old lawyer,",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68769-0004",
+     "wer": 0.04,
+     "words": 25,
+     "seconds": 3.6426026999979513,
+     "audio_s": 7.145,
+     "reference": "BUT THEY COULD NOT HAVE PROVEN A CASE AGAINST LUCY IF SHE WAS INNOCENT AND ALL THEIR THREATS OF ARRESTING HER WERE PROBABLY MERE BLUFF",
+     "hypothesis": "But they could not have proven a case against Lucy, if she was innocent, and all their threats of arresting her were probably a mere bluff,",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68769-0020",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 3.0860705000086455,
+     "audio_s": 5.125,
+     "reference": "SIT DOWN PLEASE SAID GATES IN A CHEERFUL AND PLEASANT VOICE THERE'S A BENCH HERE",
+     "hypothesis": "Sit down, please, said Gates, in a cheerful and pleasant voice. There's a bench here.",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68769-0022",
+     "wer": 0.0,
+     "words": 14,
+     "seconds": 2.7274302000005264,
+     "audio_s": 4.115,
+     "reference": "WE HAVE HEARD SOMETHING OF YOUR STORY SAID KENNETH AND ARE INTERESTED IN IT",
+     "hypothesis": "We have heard something of your story, said Kenneth, and are interested in it,",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68769-0023",
+     "wer": 0.047619047619047616,
+     "words": 21,
+     "seconds": 2.9783996000041952,
+     "audio_s": 4.89,
+     "reference": "I DIDN'T STOP TO THINK WHETHER IT WAS FOOLISH OR NOT I DID IT AND I'M GLAD I DID",
+     "hypothesis": "I didn't stop to think whether it was foolish or not. I did it, and I'm glad I did it.",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68769-0024",
+     "wer": 0.0625,
+     "words": 16,
+     "seconds": 2.8975973000051454,
+     "audio_s": 4.945,
+     "reference": "OLD WILL IS A FINE FELLOW BUT POOR AND HELPLESS SINCE MISSUS ROGERS HAD HER ACCIDENT",
+     "hypothesis": "Old Will is a fine fellow, but poor and helpless since misses Rogers had her accident.",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68769-0032",
+     "wer": 0.0,
+     "words": 20,
+     "seconds": 3.0892912999988766,
+     "audio_s": 5.72,
+     "reference": "I DISCOVERED AND PUT OUT A FIRE THAT WOULD HAVE DESTROYED THE WHOLE PLANT BUT MARSHALL NEVER EVEN THANKED ME",
+     "hypothesis": "I discovered and put out a fire that would have destroyed the whole plant, but Marshall never even thanked me,",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68769-0040",
+     "wer": 0.058823529411764705,
+     "words": 17,
+     "seconds": 2.903731800004607,
+     "audio_s": 4.77,
+     "reference": "SOME GIRL HAS BEEN HERE TWICE TO INTERVIEW MY MEN AND I HAVE REFUSED TO ADMIT HER",
+     "hypothesis": "Some girl has been in here twice to interview my men, and I have refused to admit her.",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68771-0001",
+     "wer": 0.029411764705882353,
+     "words": 34,
+     "seconds": 4.596005899991724,
+     "audio_s": 10.355,
+     "reference": "ONE OF MISTER HOPKINS'S FIRST TASKS AFTER CALLING HIS FAITHFUL HENCHMEN AROUND HIM WAS TO MAKE A CAREFUL CANVASS OF THE VOTERS OF HIS DISTRICT TO SEE WHAT WAS STILL TO BE ACCOMPLISHED",
+     "hypothesis": "One of mister Hopkins's first tasks, after calling his faithful henchmen around him, was to make a careful canvas of the voters of his district to see what was still to be accomplished.",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68771-0007",
+     "wer": 0.02040816326530612,
+     "words": 49,
+     "seconds": 6.502942500010249,
+     "audio_s": 16.285,
+     "reference": "THE DESCRIPTION SHE GAVE OF THE COMING RECEPTION TO THE WOMAN'S POLITICAL LEAGUE WAS SO HUMOROUS AND DIVERTING THAT THEY WERE BOTH LAUGHING HEARTILY OVER THE THING WHEN THE YOUNG PEOPLE PASSED THEM AND THUS MISTER HOPKINS FAILED TO NOTICE WHO THE OCCUPANTS OF THE OTHER VEHICLE WERE",
+     "hypothesis": "The description she gave of the coming reception to the Women's Political League was so humorous and diverting that they were both laughing heartily over the thing when the young people passed them and thus mister Hopkins failed to notice who the occupants of the other vehicle were.",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68771-0014",
+     "wer": 0.0,
+     "words": 12,
+     "seconds": 2.88263600000937,
+     "audio_s": 4.77,
+     "reference": "WE OUGHT TO HAVE MORE ATTENDANTS BETH SAID LOUISE APPROACHING HER COUSIN",
+     "hypothesis": "We ought to have more attendants, Beth, said Louise, approaching her cousin,",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68771-0018",
+     "wer": 0.0,
+     "words": 22,
+     "seconds": 3.5032626000029268,
+     "audio_s": 8.445,
+     "reference": "FOR A MOMENT BETH STOOD STARING WHILE THE NEW MAID REGARDED HER WITH COMPOSURE AND A SLIGHT SMILE UPON HER BEAUTIFUL FACE",
+     "hypothesis": "For a moment Beth stood staring, while the new maid regarded her with composure and a slight smile upon her beautiful face.",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68771-0019",
+     "wer": 0.047619047619047616,
+     "words": 21,
+     "seconds": 3.4095601000008173,
+     "audio_s": 7.42,
+     "reference": "SHE WAS DRESSED IN THE REGULATION COSTUME OF THE MAIDS AT ELMHURST A PLAIN BLACK GOWN WITH WHITE APRON AND CAP",
+     "hypothesis": "She was dressed in the regulation costume of the maids at Elmhurst, a plain black gown, with a white apron and cap,",
+     "exit_code": 0
+    },
+    {
+     "id": "6829-68771-0036",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 2.9425482000078773,
+     "audio_s": 5.2,
+     "reference": "ELIZA CLOSED THE DOOR BEHIND HER WITH A DECIDED SLAM AND A KEY CLICKED IN THE LOCK",
+     "hypothesis": "Eliza closed the door behind her with a decided slam, and a key clicked in the lock,",
+     "exit_code": 0
+    },
+    {
+     "id": "6930-75918-0011",
+     "wer": 0.0,
+     "words": 10,
+     "seconds": 2.591973800008418,
+     "audio_s": 3.195,
+     "reference": "I AM CONVINCED OF WHAT I SAY SAID THE COUNT",
+     "hypothesis": "I am convinced of what I say, said the Count,",
+     "exit_code": 0
+    },
+    {
+     "id": "6930-75918-0017",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 3.120966700007557,
+     "audio_s": 6.16,
+     "reference": "BUT IN THIS FRIENDLY PRESSURE RAOUL COULD DETECT THE NERVOUS AGITATION OF A GREAT INTERNAL CONFLICT",
+     "hypothesis": "but in this friendly pressure Raoul could detect the nervous agitation of a great internal conflict.",
+     "exit_code": 0
+    },
+    {
+     "id": "6930-76324-0001",
+     "wer": 0.1,
+     "words": 10,
+     "seconds": 2.6443531999975676,
+     "audio_s": 3.2,
+     "reference": "THEY WERE CERTAINLY NO NEARER THE SOLUTION OF THEIR PROBLEM",
+     "hypothesis": "They were certainly no near the solution of their problem,",
+     "exit_code": 0
+    },
+    {
+     "id": "6930-76324-0002",
+     "wer": 0.0,
+     "words": 18,
+     "seconds": 3.043928799990681,
+     "audio_s": 5.56,
+     "reference": "THE POOR LITTLE THINGS CRIED CYNTHIA THINK OF THEM HAVING BEEN TURNED TO THE WALL ALL THESE YEARS",
+     "hypothesis": "The poor little things cried Cynthia, think of them having been turned to the wall all these years,",
+     "exit_code": 0
+    },
+    {
+     "id": "6930-76324-0005",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 2.969530800008215,
+     "audio_s": 5.035,
+     "reference": "THE TWIN BROTHER DID SOMETHING SHE DIDN'T LIKE AND SHE TURNED HIS PICTURE TO THE WALL",
+     "hypothesis": "The Twin Brother did something she didn't like, and she turned his picture to the wall.",
+     "exit_code": 0
+    },
+    {
+     "id": "6930-76324-0008",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.089970800006995,
+     "audio_s": 5.185,
+     "reference": "I THOUGHT WE WERE STUMPED AGAIN WHEN I FIRST SAW THAT PICTURE BUT IT'S BEEN OF SOME USE AFTER ALL",
+     "hypothesis": "I thought we were stumped again when I first saw that picture, but it's been of some use, after all.",
+     "exit_code": 0
+    },
+    {
+     "id": "6930-76324-0018",
+     "wer": 0.16666666666666666,
+     "words": 6,
+     "seconds": 2.389864900003886,
+     "audio_s": 2.14,
+     "reference": "HE MAKES IT SORT OF COZIER",
+     "hypothesis": "He makes it sort of cosier.",
+     "exit_code": 0
+    },
+    {
+     "id": "6930-81414-0025",
+     "wer": 0.0,
+     "words": 5,
+     "seconds": 2.4286284999980126,
+     "audio_s": 2.53,
+     "reference": "MY POSITION WAS TOO TERRIBLE",
+     "hypothesis": "My position was too terrible,",
+     "exit_code": 0
+    },
+    {
+     "id": "7021-79730-0001",
+     "wer": 0.0,
+     "words": 26,
+     "seconds": 3.9540874999947846,
+     "audio_s": 11.49,
+     "reference": "TO SUPPOSE THAT THE OBJECT OF THIS WORK IS TO AID IN EFFECTING SUCH A SUBSTITUTION AS THAT IS ENTIRELY TO MISTAKE ITS NATURE AND DESIGN",
+     "hypothesis": "To suppose that the object of this work is to aid in effecting such a substitution as that is entirely to mistake its nature and design,",
+     "exit_code": 0
+    },
+    {
+     "id": "7021-79730-0004",
+     "wer": 0.043478260869565216,
+     "words": 46,
+     "seconds": 6.398266299991519,
+     "audio_s": 17.945,
+     "reference": "THE MOTHER AS SOON AS THE CHAISE IS SO FAR TURNED THAT MARY CAN NO LONGER WATCH THE EXPRESSION OF HER COUNTENANCE GOES AWAY FROM THE DOOR WITH A SMILE OF COMPLACENCY AND SATISFACTION UPON HER FACE AT THE INGENUITY AND SUCCESS OF HER LITTLE ARTIFICE",
+     "hypothesis": "The mother, as soon as the chase is so far turned that Mary can no longer watch the expression of her countenance, goes away from the door with a smile of complacency and satisfaction on her face at the ingenuity and success of her little artifice.",
+     "exit_code": 0
+    },
+    {
+     "id": "7021-79740-0013",
+     "wer": 0.09090909090909091,
+     "words": 22,
+     "seconds": 3.3016643000009935,
+     "audio_s": 7.365,
+     "reference": "PUT THESE PLAYTHINGS ALL AWAY QUICK AND CAREFULLY AND WE WILL NOT LET THEM KNOW ANY THING ABOUT YOUR LEAVING THEM OUT",
+     "hypothesis": "Put these playthings all away quick and carefully, and we will not let them know anything about your leaving them out.",
+     "exit_code": 0
+    },
+    {
+     "id": "7021-79740-0014",
+     "wer": 0.0,
+     "words": 38,
+     "seconds": 5.478510000000824,
+     "audio_s": 14.175,
+     "reference": "AND THIS METHOD OF TREATING THE CASE WAS MUCH MORE EFFECTUAL IN MAKING THEM DISPOSED TO AVOID COMMITTING A SIMILAR FAULT ANOTHER TIME THAN ANY DIRECT REBUKES OR EXPRESSIONS OF DISPLEASURE ADDRESSED PERSONALLY TO THEM WOULD HAVE BEEN",
+     "hypothesis": "and this method of treating the case was much more effectual in making them disposed to avoid committing a similar fault another time than any direct rebukes or expressions of displeasure addressed personally to them would have been.",
+     "exit_code": 0
+    },
+    {
+     "id": "7021-85628-0005",
+     "wer": 0.0,
+     "words": 15,
+     "seconds": 2.710101799995755,
+     "audio_s": 5.015,
+     "reference": "SEEING THAT I AM SO FINE I MAY AS WELL GO AND VISIT THE KING",
+     "hypothesis": "Seeing that I am so fine, I may as well go and visit the King.",
+     "exit_code": 0
+    },
+    {
+     "id": "7021-85628-0021",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 2.8894774000073085,
+     "audio_s": 5.365,
+     "reference": "HE STILL HELD ON TO IT WITH BOTH HANDS AS HE RUSHED INTO HIS MOTHER'S COTTAGE",
+     "hypothesis": "He still held on to it with both hands as he rushed into his mother's cottage.",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75946-0001",
+     "wer": 0.0,
+     "words": 3,
+     "seconds": 2.3249819000047864,
+     "audio_s": 2.17,
+     "reference": "AH VERY WELL",
+     "hypothesis": "Ah, very well.",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75946-0002",
+     "wer": 0.045454545454545456,
+     "words": 44,
+     "seconds": 5.2711871000065,
+     "audio_s": 13.19,
+     "reference": "LET HIM COME IN THEN SAID THE KING AND AS IF COLBERT HAD BEEN LISTENING AT THE DOOR FOR THE PURPOSE OF KEEPING HIMSELF AU COURANT WITH THE CONVERSATION HE ENTERED AS SOON AS THE KING HAD PRONOUNCED HIS NAME TO THE TWO COURTIERS",
+     "hypothesis": "Let him come in, then, said the king and as if Colbert had been listening at the door for the purpose of keeping himself occurrent with the conversation, he entered as soon as the king had pronounced his name to the two courtiers.",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75946-0012",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.953849799989257,
+     "audio_s": 9.87,
+     "reference": "THE NEWS CIRCULATED WITH THE RAPIDITY OF LIGHTNING DURING ITS PROGRESS IT KINDLED EVERY VARIETY OF COQUETRY DESIRE AND WILD AMBITION",
+     "hypothesis": "The news circulated with the rapidity of lightning. During its progress it kindled every variety of coquetry, desire, and wild ambition.",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75946-0023",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.5957013000006555,
+     "audio_s": 3.745,
+     "reference": "THE KING SEEMED ONLY PLEASED WITH EVERY ONE PRESENT",
+     "hypothesis": "The King seemed only pleased with every one present.",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75946-0025",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.5847954000055324,
+     "audio_s": 3.96,
+     "reference": "THE BALLET BEGAN THE EFFECT WAS MORE THAN BEAUTIFUL",
+     "hypothesis": "The ballet began. The effect was more than beautiful.",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75947-0000",
+     "wer": 0.045454545454545456,
+     "words": 44,
+     "seconds": 6.833528699993622,
+     "audio_s": 17.97,
+     "reference": "EVERY ONE COULD OBSERVE HIS AGITATION AND PROSTRATION A PROSTRATION WHICH WAS INDEED THE MORE REMARKABLE SINCE PEOPLE WERE NOT ACCUSTOMED TO SEE HIM WITH HIS ARMS HANGING LISTLESSLY BY HIS SIDE HIS HEAD BEWILDERED AND HIS EYES WITH ALL THEIR BRIGHT INTELLIGENCE BEDIMMED",
+     "hypothesis": "every one could observe his agitation and prostration a prostration which was, indeed, the more remarkable since people were not accustomed to see him, with his arms hanging listlessly by his side, his head bewildered, and his eyes, with all their bright intelligence, be dimmed.",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75947-0004",
+     "wer": 0.0,
+     "words": 2,
+     "seconds": 2.383329500007676,
+     "audio_s": 1.905,
+     "reference": "EXPLAIN YOURSELF",
+     "hypothesis": "Explain yourself?",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75947-0008",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.645757100006449,
+     "audio_s": 4.155,
+     "reference": "THE ARROW PIERCED HIS HEART AND WOUNDED HIM MORTALLY",
+     "hypothesis": "the arrow pierced his heart and wounded him mortally.",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75947-0032",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.7089050999929896,
+     "audio_s": 4.745,
+     "reference": "YES BUT PERHAPS I FRIGHTENED HER IN WHAT WAY",
+     "hypothesis": "Yes, but perhaps I frightened her. In what way?",
+     "exit_code": 0
+    },
+    {
+     "id": "7127-75947-0037",
+     "wer": 0.0,
+     "words": 27,
+     "seconds": 3.813281700000516,
+     "audio_s": 8.8249375,
+     "reference": "OH I AM SPEAKING SERIOUSLY REPLIED MONTALAIS AND MY OPINION IN THIS CASE IS QUITE AS GOOD AS THE KING'S I SUPPOSE IS IT NOT LOUISE",
+     "hypothesis": "Oh, I am speaking seriously, replied Montalais, and my opinion in this case is quite as good as the King's, I suppose. Is it not, Louise?",
+     "exit_code": 0
+    },
+    {
+     "id": "7176-92135-0020",
+     "wer": 0.4666666666666667,
+     "words": 15,
+     "seconds": 2.9791437999956543,
+     "audio_s": 7.165,
+     "reference": "DOUBLE NINE TWO THREE ELSINORE DOUBLE NINE YES HALLO IS THAT YOU HORATIO HAMLET SPEAKING",
+     "hypothesis": "Double Not Yes. Hello, is that you, Horatio? Hamlet speaking.",
+     "exit_code": 0
+    },
+    {
+     "id": "7176-92135-0028",
+     "wer": 0.1,
+     "words": 10,
+     "seconds": 2.652226200007135,
+     "audio_s": 3.345,
+     "reference": "LARKSPUR BIT ME AGAIN THIS MORNING FOR THE THIRD TIME",
+     "hypothesis": "Larksburgh bit me again this morning for the third time,",
+     "exit_code": 0
+    },
+    {
+     "id": "7176-92135-0029",
+     "wer": 0.1111111111111111,
+     "words": 9,
+     "seconds": 2.423058400003356,
+     "audio_s": 2.985,
+     "reference": "I WANT TO GET AWAY FROM IT ALL SWOONS",
+     "hypothesis": "I want to get away from it all. Swoon.",
+     "exit_code": 0
+    },
+    {
+     "id": "7176-92135-0031",
+     "wer": 0.0,
+     "words": 26,
+     "seconds": 3.906974800003809,
+     "audio_s": 9.64,
+     "reference": "AND THERE YOU ARE YOU WILL OF COURSE APPRECIATE THAT THE UNFINISHED SENTENCES NOT ONLY SAVE TIME BUT ALSO MAKE THE MANOEUVRING VERY MUCH MORE NATURAL",
+     "hypothesis": "And there you are. You will, of course, appreciate that the unfinished sentences not only save time, but also make the manoeuvring very much more natural.",
+     "exit_code": 0
+    },
+    {
+     "id": "7176-92135-0040",
+     "wer": 0.0,
+     "words": 31,
+     "seconds": 4.716050799994264,
+     "audio_s": 10.345,
+     "reference": "HOSTESS REPLACES LUMP AND INCLINES EMPTY TEAPOT OVER TRAY FOR A MOMENT THEN HANDS HIM A CUP PAINTED BROWN INSIDE THUS DECEIVING THE GENTLEMAN WITH THE TELESCOPE IN THE UPPER CIRCLE",
+     "hypothesis": "Hostess replaces lump, and inclines empty teapot over tray for a moment, then hands him a cup painted brown inside, thus deceiving the gentleman with the telescope in the upper circle.",
+     "exit_code": 0
+    },
+    {
+     "id": "7729-102255-0011",
+     "wer": 0.0392156862745098,
+     "words": 51,
+     "seconds": 7.872430999996141,
+     "audio_s": 20.355,
+     "reference": "THE PRESENT CHAPTERS CAN ONLY TOUCH UPON THE MORE SALIENT MOVEMENTS OF THE CIVIL WAR IN KANSAS WHICH HAPPILY WERE NOT SANGUINARY IF HOWEVER THE INDIVIDUAL AND MORE ISOLATED CASES OF BLOODSHED COULD BE DESCRIBED THEY WOULD SHOW A STARTLING AGGREGATE OF BARBARITY AND LOSS OF LIFE FOR OPINION'S SAKE",
+     "hypothesis": "The present chapters can only touch upon the more salient movements of the Civil War in Kansas, which, happily, are not sanguinary. If, however, the individual and more isolated cases of bloodshed could be described, they would show a startling aggregate of barbarity and a loss of life for opinion's sake.",
+     "exit_code": 0
+    },
+    {
+     "id": "7729-102255-0014",
+     "wer": 0.0,
+     "words": 14,
+     "seconds": 2.9796504999976605,
+     "audio_s": 5.295,
+     "reference": "THE LEADERS OF THE CONSPIRACY BECAME DISTRUSTFUL OF THEIR POWER TO CRUSH THE TOWN",
+     "hypothesis": "The leaders of the conspiracy became distrustful of their power to crush the town,",
+     "exit_code": 0
+    },
+    {
+     "id": "7729-102255-0034",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.5184706000000006,
+     "audio_s": 2.71,
+     "reference": "TO THEIR SORROW THEY WERE SOON UNDECEIVED",
+     "hypothesis": "To their sorrow they were soon undeceived,",
+     "exit_code": 0
+    },
+    {
+     "id": "7729-102255-0040",
+     "wer": 0.11538461538461539,
+     "words": 26,
+     "seconds": 4.474740899997414,
+     "audio_s": 11.76,
+     "reference": "IN THIS INCIDENT CONTRASTING THE CREATIVE AND THE DESTRUCTIVE SPIRIT OF THE FACTIONS THE EMIGRANT AID SOCIETY OF MASSACHUSETTS FINDS ITS MOST HONORABLE AND TRIUMPHANT VINDICATION",
+     "hypothesis": "Incident, contrasting the creative and the destructive spirit of the factions, the Immigrant Aid Society of Massachusetts finds its most honorable and triumphant vindication.",
+     "exit_code": 0
+    },
+    {
+     "id": "8224-274381-0008",
+     "wer": 0.06666666666666667,
+     "words": 45,
+     "seconds": 7.395693700003903,
+     "audio_s": 20.98,
+     "reference": "WITH THESE AND SOME REENFORCEMENTS OF THE ATHOLEMEN AND MACDONALDS WHOM HE HAD RECALLED MONTROSE FELL SUDDENLY UPON ARGYLE'S COUNTRY AND LET LOOSE UPON IT ALL THE RAGE OF WAR CARRYING OFF THE CATTLE BURNING THE HOUSES AND PUTTING THE INHABITANTS TO THE SWORD",
+     "hypothesis": "With these and some reinforcements of the Athol men and Macdonalds whom he had recalled, Montrose fell suddenly upon Argyle's country, and let loose upon it all the rage of war, carrying off the cattle, burning the houses, and putting the inhabitants to the sword.",
+     "exit_code": 0
+    },
+    {
+     "id": "8224-274381-0017",
+     "wer": 0.08823529411764706,
+     "words": 34,
+     "seconds": 6.175080299988622,
+     "audio_s": 17.825,
+     "reference": "HISTORIANS AT LEAST PERHAPS FROM THEIR OWN IGNORANCE AND INEXPERIENCE HAVE NOT REMARKED ANY THING BUT A HEADLONG IMPETUOUS CONDUCT EACH PARTY HURRYING TO A BATTLE WHERE VALOR AND FORTUNE CHIEFLY DETERMINED THE SUCCESS",
+     "hypothesis": "Historians, at least, perhaps from their own ignorance and inexperience, have not remarked anything but a headlong, impetuous conduct, each party hurrying to a battle, where valour and fortune chiefly determined the success,",
+     "exit_code": 0
+    },
+    {
+     "id": "8224-274384-0002",
+     "wer": 0.0,
+     "words": 23,
+     "seconds": 3.811074799989001,
+     "audio_s": 9.815,
+     "reference": "THEY INFORMED THE ENGLISH PARLIAMENT OF THIS UNEXPECTED INCIDENT AND ASSURED THEM THAT THEY HAD ENTERED INTO NO PRIVATE TREATY WITH THE KING",
+     "hypothesis": "They informed the English Parliament of this unexpected incident, and assured them that they had entered into no private treaty with the king.",
+     "exit_code": 0
+    },
+    {
+     "id": "8224-274384-0004",
+     "wer": 0.0,
+     "words": 48,
+     "seconds": 6.257682499999646,
+     "audio_s": 20.64,
+     "reference": "AND THE MEN OF ISRAEL ANSWERED THE MEN OF JUDAH AND SAID WE HAVE TEN PARTS IN THE KING AND WE HAVE ALSO MORE RIGHT IN DAVID THAN YE WHY THEN DID YE DESPISE US THAT OUR ADVICE SHOULD NOT BE FIRST HAD IN BRINGING BACK OUR KING",
+     "hypothesis": "And the men of Israel answered the men of Judah, and said, We have ten parts in the king, and we have also more right in David than ye. Why then did ye despise us, that our advice should not be first had in bringing back our king?",
+     "exit_code": 0
+    },
+    {
+     "id": "8224-274384-0011",
+     "wer": 0.0,
+     "words": 49,
+     "seconds": 7.931770299997879,
+     "audio_s": 22.36,
+     "reference": "THE ENGLISH IT IS EVIDENT HAD THEY NOT BEEN PREVIOUSLY ASSURED OF RECEIVING THE KING WOULD NEVER HAVE PARTED WITH SO CONSIDERABLE A SUM AND WHILE THEY WEAKENED THEMSELVES BY THE SAME MEASURE HAVE STRENGTHENED A PEOPLE WITH WHOM THEY MUST AFTERWARDS HAVE SO MATERIAL AN INTEREST TO DISCUSS",
+     "hypothesis": "The English, it is evident, had they not been previously assured of receiving the king, would never have parted with so considerable a sum, and while they weakened themselves by the same measure, have strengthened a people with whom they must afterwards have so material an interest to discuss.",
+     "exit_code": 0
+    },
+    {
+     "id": "8230-279154-0001",
+     "wer": 0.0,
+     "words": 34,
+     "seconds": 6.095852899990859,
+     "audio_s": 17.38,
+     "reference": "WHAT IS CALLED PERCEPTION DIFFERS FROM SENSATION BY THE FACT THAT THE SENSATIONAL INGREDIENTS BRING UP HABITUAL ASSOCIATES IMAGES AND EXPECTATIONS OF THEIR USUAL CORRELATES ALL OF WHICH ARE SUBJECTIVELY INDISTINGUISHABLE FROM THE SENSATION",
+     "hypothesis": "What is called perception differs from sensation by the fact that the sensational ingredients bring up habitual associates, images, and expectations of their usual correlates, all of which are subjectively indistinguishable from the sensation.",
+     "exit_code": 0
+    },
+    {
+     "id": "8230-279154-0002",
+     "wer": 0.07317073170731707,
+     "words": 41,
+     "seconds": 6.156396299993503,
+     "audio_s": 16.475,
+     "reference": "WHETHER OR NOT THIS PRINCIPLE IS LIABLE TO EXCEPTIONS EVERYONE WOULD AGREE THAT IS HAS A BROAD MEASURE OF TRUTH THOUGH THE WORD EXACTLY MIGHT SEEM AN OVERSTATEMENT AND IT MIGHT SEEM MORE CORRECT TO SAY THAT IDEAS APPROXIMATELY REPRESENT IMPRESSIONS",
+     "hypothesis": "Whether or not this principle is liable to exceptions, every one would agree that it has a broad measure of truth, though the word exactly might seem an overstatement, and it might seem more correct to say that ideas approximately represent impressions.",
+     "exit_code": 0
+    },
+    {
+     "id": "8230-279154-0003",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.5546403999906033,
+     "audio_s": 3.195,
+     "reference": "AND WHAT SORT OF EVIDENCE IS LOGICALLY POSSIBLE",
+     "hypothesis": "and what sort of evidence is logically possible?",
+     "exit_code": 0
+    },
+    {
+     "id": "8230-279154-0007",
+     "wer": 0.022222222222222223,
+     "words": 45,
+     "seconds": 6.261964699995588,
+     "audio_s": 15.905,
+     "reference": "HABIT IS A CONCEPT INVOLVING THE OCCURRENCE OF SIMILAR EVENTS AT DIFFERENT TIMES IF THE BEHAVIOURIST FEELS CONFIDENT THAT THERE IS SUCH A PHENOMENON AS HABIT THAT CAN ONLY BE BECAUSE HE TRUSTS HIS MEMORY WHEN IT ASSURES HIM THAT THERE HAVE BEEN OTHER TIMES",
+     "hypothesis": "Habit is a concept involving the occurrence of similar events at different times. If the behaviorist feels confident that there is such a phenomenon as habit, that can only be because he trusts his memory, when it assures him that there have been other times.",
+     "exit_code": 0
+    },
+    {
+     "id": "8230-279154-0008",
+     "wer": 0.0,
+     "words": 10,
+     "seconds": 2.5981939999910537,
+     "audio_s": 3.62,
+     "reference": "BUT I DO NOT THINK SUCH AN INFERENCE IS WARRANTED",
+     "hypothesis": "but I do not think such an inference is warranted.",
+     "exit_code": 0
+    },
+    {
+     "id": "8230-279154-0022",
+     "wer": 0.0,
+     "words": 17,
+     "seconds": 3.02641649999714,
+     "audio_s": 6.44,
+     "reference": "SOME POINTS MAY BE TAKEN AS FIXED AND SUCH AS ANY THEORY OF MEMORY MUST ARRIVE AT",
+     "hypothesis": "Some points may be taken as fixed, and such as any theory of memory must arrive at.",
+     "exit_code": 0
+    },
+    {
+     "id": "8230-279154-0034",
+     "wer": 0.0,
+     "words": 37,
+     "seconds": 5.550973500008695,
+     "audio_s": 14.51,
+     "reference": "WHENEVER THE SENSE OF FAMILIARITY OCCURS WITHOUT A DEFINITE OBJECT IT LEADS US TO SEARCH THE ENVIRONMENT UNTIL WE ARE SATISFIED THAT WE HAVE FOUND THE APPROPRIATE OBJECT WHICH LEADS US TO THE JUDGMENT THIS IS FAMILIAR",
+     "hypothesis": "Whenever the sense of familiarity occurs without a definite object, it leads us to search the environment until we are satisfied that we have found the appropriate object, which leads us to the judgment this is familiar.",
+     "exit_code": 0
+    },
+    {
+     "id": "8230-279154-0036",
+     "wer": 0.0,
+     "words": 5,
+     "seconds": 2.4931444999965606,
+     "audio_s": 3.235,
+     "reference": "A FURTHER STAGE IS RECOGNITION",
+     "hypothesis": "A further stage is recognition.",
+     "exit_code": 0
+    },
+    {
+     "id": "8455-210777-0014",
+     "wer": 0.09090909090909091,
+     "words": 11,
+     "seconds": 2.6858254999970086,
+     "audio_s": 4.12,
+     "reference": "SIR KENNINGTON OVAL IS A VERY FINE PLAYER SAID MY WIFE",
+     "hypothesis": "Sir Kennington Oville is a very fine player, said my wife.",
+     "exit_code": 0
+    },
+    {
+     "id": "8455-210777-0029",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.619152100000065,
+     "audio_s": 3.085,
+     "reference": "THINKING OF ALL THIS I WENT TO SLEEP",
+     "hypothesis": "Thinking of all this, I went to sleep.",
+     "exit_code": 0
+    },
+    {
+     "id": "8455-210777-0047",
+     "wer": 0.14285714285714285,
+     "words": 7,
+     "seconds": 2.559408999994048,
+     "audio_s": 2.54,
+     "reference": "YOU PROPOSE TO KIDNAP ME I SAID",
+     "hypothesis": "You proposed to kidnap me, I said.",
+     "exit_code": 0
+    },
+    {
+     "id": "8455-210777-0048",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.5373418999952264,
+     "audio_s": 3.43,
+     "reference": "WHAT WOULD BECOME OF YOUR GUN WERE I TO KIDNAP YOU",
+     "hypothesis": "What would become of your gun were I to kidnap you?",
+     "exit_code": 0
+    },
+    {
+     "id": "8455-210777-0049",
+     "wer": 0.0,
+     "words": 7,
+     "seconds": 2.606029900009162,
+     "audio_s": 4.11,
+     "reference": "LIEUTENANT CROSSTREES IS A VERY GALLANT OFFICER",
+     "hypothesis": "Lieutenant Crosstrees is a very gallant officer.",
+     "exit_code": 0
+    },
+    {
+     "id": "8455-210777-0053",
+     "wer": 0.0,
+     "words": 21,
+     "seconds": 3.4345066999958362,
+     "audio_s": 6.955,
+     "reference": "WERE I TO COMPLY WITH YOUR ORDERS WITHOUT EXPRESSING MY OWN OPINION I SHOULD SEEM TO HAVE DONE SO WILLINGLY HEREAFTER",
+     "hypothesis": "Were I to comply with your orders without expressing my own opinion, I should seem to have done so willingly hereafter.",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-287645-0003",
+     "wer": 0.05555555555555555,
+     "words": 18,
+     "seconds": 3.472960500002955,
+     "audio_s": 7.905,
+     "reference": "OF THIS PARTY EDWARD A BOY OF SEVENTEEN CALLED FORTH MUCH SYMPATHY HE TOO WAS CLAIMED BY HOLLAN",
+     "hypothesis": "Of this party, Edward, a boy of seventeen, called forth much sympathy. He, too, was claimed by Holland.",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-287645-0008",
+     "wer": 0.0,
+     "words": 10,
+     "seconds": 2.5218762000004062,
+     "audio_s": 3.325,
+     "reference": "AS USUAL NOTHING WAS DONE IN THE WAY OF PUNISHMENT",
+     "hypothesis": "As usual nothing was done in the way of punishment.",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-294825-0002",
+     "wer": 0.0,
+     "words": 22,
+     "seconds": 4.134676000001491,
+     "audio_s": 10.56,
+     "reference": "FIRST AS A PARIS STOCKBROKER LATER AS A CELEBRATED AUTHOR AND YACHTSMAN HE WENT ON FREQUENT VOYAGES TO BRITAIN AMERICA THE MEDITERRANEAN",
+     "hypothesis": "First as a Paris stockbroker, later as a celebrated author and yachtsman, he went on frequent voyages to Britain, America, the Mediterranean,",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-294825-0015",
+     "wer": 0.125,
+     "words": 8,
+     "seconds": 2.5663916999910725,
+     "audio_s": 3.25,
+     "reference": "GRAM ROUGHLY ONE TWENTY EIGHTH OF AN OUNCE",
+     "hypothesis": "Graham, roughly one twenty eighth of an ounce.",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-294828-0001",
+     "wer": 0.07692307692307693,
+     "words": 26,
+     "seconds": 3.854405499994755,
+     "audio_s": 9.19,
+     "reference": "THREE SECONDS BEFORE THE ARRIVAL OF J B HOBSON'S LETTER I NO MORE DREAMED OF CHASING THE UNICORN THAN OF TRYING FOR THE NORTHWEST PASSAGE",
+     "hypothesis": "Three seconds before the arrival of JB Hobson's letter, I no more dreamed of chasing the unicorn than of trying for the Northwest Passage.",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-294828-0009",
+     "wer": 0.07142857142857142,
+     "words": 14,
+     "seconds": 2.8109449000039604,
+     "audio_s": 4.17,
+     "reference": "NOT ONCE DID HE COMMENT ON THE LENGTH OR THE HARDSHIPS OF A JOURNEY",
+     "hypothesis": "Not once did he comment on the length or the hardships of the journey,",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-294828-0013",
+     "wer": 0.0,
+     "words": 22,
+     "seconds": 3.2679863999946974,
+     "audio_s": 7.2,
+     "reference": "HE WAS A FANATIC ON FORMALITY AND HE ONLY ADDRESSED ME IN THE THIRD PERSON TO THE POINT WHERE IT GOT TIRESOME",
+     "hypothesis": "He was a fanatic on formality, and he only addressed me in the third person, to the point where it got tiresome.",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-294828-0015",
+     "wer": 0.0,
+     "words": 8,
+     "seconds": 2.7082620000001043,
+     "audio_s": 4.88,
+     "reference": "CONSEIL I CALLED A THIRD TIME CONSEIL APPEARED",
+     "hypothesis": "Conseil I called a third time. Conseil appeared.",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-294828-0026",
+     "wer": 0.2222222222222222,
+     "words": 9,
+     "seconds": 2.488094699991052,
+     "audio_s": 2.745,
+     "reference": "WE HAVE A COMMANDER WHO'S GAME FOR ANYTHING",
+     "hypothesis": "We have a commander whose game for anything.",
+     "exit_code": 0
+    },
+    {
+     "id": "8463-294828-0034",
+     "wer": 0.0,
+     "words": 9,
+     "seconds": 2.5252716000104556,
+     "audio_s": 3.505,
+     "reference": "WE'LL BE QUITE COMFORTABLE HERE I TOLD CONSEIL",
+     "hypothesis": "We'll be quite comfortable here, I told Conseil.",
+     "exit_code": 0
+    },
+    {
+     "id": "8555-284447-0024",
+     "wer": 0.0,
+     "words": 11,
+     "seconds": 2.7379274999984773,
+     "audio_s": 4.635,
+     "reference": "COME AND GET THE BOOLOOROO SHE SAID GOING TOWARD THE BENCHES",
+     "hypothesis": "Come and get the Boolooroo, she said, going toward the benches.",
+     "exit_code": 0
+    },
+    {
+     "id": "8555-284449-0013",
+     "wer": 0.058823529411764705,
+     "words": 17,
+     "seconds": 2.9850426000048174,
+     "audio_s": 5.775,
+     "reference": "SCUSE ME SAID TROT I NEGLECTED TO TELL YOU THAT YOU'RE NOT THE BOOLOOROO ANY MORE",
+     "hypothesis": "Excuse me, said Trot. I neglected to tell you that you're not the Boolooroo any more.",
+     "exit_code": 0
+    },
+    {
+     "id": "8555-284449-0016",
+     "wer": 0.05263157894736842,
+     "words": 19,
+     "seconds": 3.0746790999983205,
+     "audio_s": 5.895,
+     "reference": "AS A PRIVATE CITIZEN I SHALL BE A MODEL OF DEPORTMENT BECAUSE IT WOULD BE DANGEROUS TO BE OTHERWISE",
+     "hypothesis": "A private citizen I shall be a model of deportment, because it would be dangerous to be otherwise.",
+     "exit_code": 0
+    },
+    {
+     "id": "8555-292519-0011",
+     "wer": 0.0,
+     "words": 6,
+     "seconds": 2.40764940000372,
+     "audio_s": 3.08,
+     "reference": "HE HAD GOT INTO HER COURTYARD",
+     "hypothesis": "He had got into her courtyard,",
+     "exit_code": 0
+    },
+    {
+     "id": "8555-292519-0013",
+     "wer": 0.1,
+     "words": 10,
+     "seconds": 2.583866400003899,
+     "audio_s": 4.185,
+     "reference": "THAT WAS BUT RUSTLING OF DRIPPING PLANTS IN THE DARK",
+     "hypothesis": "That was but rustling of tripping plants in the dark.",
+     "exit_code": 0
+    },
+    {
+     "id": "8555-292519-0014",
+     "wer": 0.0,
+     "words": 5,
+     "seconds": 2.3195310000010068,
+     "audio_s": 2.435,
+     "reference": "SHE WAS ALONE THAT NIGHT",
+     "hypothesis": "She was alone that night,",
+     "exit_code": 0
+    },
+    {
+     "id": "908-157963-0017",
+     "wer": 0.23076923076923078,
+     "words": 13,
+     "seconds": 2.789306199993007,
+     "audio_s": 4.95,
+     "reference": "THE CLOUD THEN SHEWD HIS GOLDEN HEAD AND HIS BRIGHT FORM EMERG'D",
+     "hypothesis": "The cloud then showed his golden head, and his bright form emerged,",
+     "exit_code": 0
+    },
+    {
+     "id": "908-157963-0026",
+     "wer": 0.0,
+     "words": 23,
+     "seconds": 3.4476865000033285,
+     "audio_s": 8.1,
+     "reference": "AND SAYS THOU MOTHER OF MY CHILDREN I HAVE LOVED THEE AND I HAVE GIVEN THEE A CROWN THAT NONE CAN TAKE AWAY",
+     "hypothesis": "and says, Thou mother of my children, I have loved thee, and I have given thee a crown that none can take away.",
+     "exit_code": 0
+    },
+    {
+     "id": "908-157963-0027",
+     "wer": 0.0,
+     "words": 13,
+     "seconds": 2.7480477999924915,
+     "audio_s": 5.225,
+     "reference": "AND LAY ME DOWN IN THY COLD BED AND LEAVE MY SHINING LOT",
+     "hypothesis": "and lay me down in thy cold bed, and leave my shining lot.",
+     "exit_code": 0
+    },
+    {
+     "id": "908-31957-0006",
+     "wer": 0.0,
+     "words": 13,
+     "seconds": 2.8641773000126705,
+     "audio_s": 5.89,
+     "reference": "OPEN THY HEART WIDE AND FOLD WITHIN THE WET WINGS OF THY DOVE",
+     "hypothesis": "Open thy heart wide, and fold within the wet wings of thy dove.",
+     "exit_code": 0
+    },
+    {
+     "id": "908-31957-0012",
+     "wer": 0.0,
+     "words": 16,
+     "seconds": 3.1767243000067538,
+     "audio_s": 7.615,
+     "reference": "IF HE TO KEEP ONE OATH MUST LOSE ONE JOY BY HIS LIFE'S STAR FORETOLD",
+     "hypothesis": "If he, to keep one oath, must lose one joy, By his life's star foretold.",
+     "exit_code": 0
+    }
+   ]
+  }
+ }
+}

@@ -157,12 +157,21 @@ json transcribe(const json& request) {
         result["text"]=text;result["duration_s"]=static_cast<double>(pcm.size())/WHISPER_SAMPLE_RATE;result["confidence_is_accuracy"]=false;
         return result;
     };
-    // Explicitly configured routed language: no whisper at all.
+    // A routed model that returns nothing or loops ("T H I N T H I N ...", seen on 1 of 100 FLEURS English clips with
+    // Canary) is not stored: the segment falls back to whisper, and the response says so.
+    auto usable=[](const json& r) {
+        const auto t=valid_utf8(strip_annotations(r.value("text",std::string())));const auto cps=codepoints(t);
+        return !std::all_of(cps.begin(),cps.end(),is_mark)&&!repetition_loop(t);
+    };
+    json fallback=nullptr;
+    // Explicitly configured routed language: no whisper at all, unless the routed model fails.
     if(requested!="auto"&&routes.contains(requested)) {
         if(audio_base64.empty())throw Error("asr_route_requires_audio_base64");
         auto r=transcribe_routed(request,routes.at(requested),requested,audio_base64);
-        return finish(r.value("text",std::string()),{{"language",requested},{"language_source","configured"},{"provider",r.value("provider","")},
+        if(usable(r))return finish(r.value("text",std::string()),{{"language",requested},{"language_source","configured"},{"provider",r.value("provider","")},
                       {"segments",json::array()},{"token_probability",0.0},{"confidence_status","not_provided_by_model; 0 means unavailable"},{"cpu_backend","onnxruntime"}});
+        if(!request.contains("model"))throw Error("repetition_rejected");
+        fallback={{"provider",r.value("provider","")},{"reason","degenerate_output"}};
     }
     const auto& cpu=ensure_ggml_cpu_backend();
     if(!cpu.ready)throw Error("asr_runtime_unavailable");
@@ -185,11 +194,15 @@ json transcribe(const json& request) {
         language_source="whisper_lid_restricted";
         if(static_cast<double>(pcm.size())/WHISPER_SAMPLE_RATE<short_seconds&&best<short_min_lid)throw Error("uncertain_short_segment");
     }
-    if(language!="auto"&&routes.contains(language)&&!audio_base64.empty()) {
+    if(language!="auto"&&routes.contains(language)&&!audio_base64.empty()&&fallback.is_null()) {
         ctx.reset();model.close();  // free whisper before the routed model loads: one speech model resident at a time
         auto r=transcribe_routed(request,routes.at(language),language,audio_base64);
-        return finish(r.value("text",std::string()),{{"language",language},{"language_source",language_source},{"language_identification",lid},
+        if(usable(r))return finish(r.value("text",std::string()),{{"language",language},{"language_source",language_source},{"language_identification",lid},
                       {"provider",r.value("provider","")},{"segments",json::array()},{"token_probability",0.0},{"confidence_status","not_provided_by_model; 0 means unavailable"},{"cpu_backend","onnxruntime"}});
+        fallback={{"provider",r.value("provider","")},{"reason","degenerate_output"}};
+        model.clear();model.open(utf8_path(request.at("model").get<std::string>()),std::ios::binary);  // whisper again, after the routed model exited
+        if(!model)throw Error("model_unavailable");
+        ctx.reset(whisper_init_with_params(&loader,cp));if(!ctx)throw Error("model_load_failed");
     }
     auto params=whisper_full_default_params(WHISPER_SAMPLING_GREEDY);
     params.n_threads=4;params.greedy.best_of=1;params.language=language.c_str();params.no_context=true;
@@ -206,6 +219,6 @@ json transcribe(const json& request) {
     if(mean_probability<min_confidence)throw Error("low_confidence_transcript");
     return finish(text,{{"language",whisper_lang_str(whisper_full_lang_id(ctx.get()))},{"language_source",language_source},
             {"language_identification",lid},{"provider","whisper.cpp"},{"segments",segments},{"token_probability",mean_probability},
-            {"cpu_backend",cpu.variant}});
+            {"cpu_backend",cpu.variant},{"routed_fallback",fallback}});
 }
 }
