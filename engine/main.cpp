@@ -66,7 +66,11 @@ int run(int argc,wchar_t** argv) {
             std::lock_guard request_lock(busy);
             try {
                 auto request=nlohmann::json::parse(line);
-                if(request.value("op",std::string{})=="ingest_audio") {
+                // A speech model (whisper ~175 MB, the Canary worker ~400 MB) never shares RAM with the retrieval models
+                // (up to ~320 MB): they are released first and reload lazily on the next recall (spec §15, 500 MB).
+                const auto op=request.value("op",std::string{});
+                if(op=="ingest_audio"||op=="transcribe")store.request({{"op","unload_models"}});
+                if(op=="ingest_audio") {
                     const auto result=lens::transcribe(request);
                     if(result.at("text").get<std::string>().empty())throw lens::Error("no_speech_found");
                     request["op"]="add";request["text"]=result.at("text");request["language"]=result.at("language");

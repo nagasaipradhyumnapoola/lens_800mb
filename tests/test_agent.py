@@ -116,9 +116,14 @@ class AgentSpeech(unittest.TestCase):
     def test_spoken_question_is_transcribed_and_not_stored(self):
         import base64
         jfk=ROOT/'third_party/whisper.cpp/samples/jfk.wav'
+        add={'op':'add','consent':True,'id':'q1','text':'Synthetic note: the Larkspur demo is on Thursday.','language':'en',
+             'timestamp':'2026-10-30T09:00:00Z','device':'laptop','kind':'note','provenance':'test'}
+        self.assertTrue(self.pipe.ask(add)['ok']);self.pipe.ask({'op':'index','limit':16})
+        loaded=self.pipe.ask({'op':'stats'}).get('models_loaded')
         r=self.pipe.ask({'op':'transcribe','audio_base64':base64.b64encode(jfk.read_bytes()).decode()})
         self.assertTrue(r['ok'],r);self.assertIn('your country',r['transcript']['text'].lower())
-        self.assertEqual(self.pipe.ask({'op':'stats'})['source_count'],0)
+        stats=self.pipe.ask({'op':'stats'});self.assertEqual(stats['source_count'],1)  # the question itself is not stored
+        if loaded:self.assertFalse(stats['models_loaded'])  # retrieval models released before the speech model loaded
         self.assertEqual(self.pipe.ask({'op':'transcribe','audio_base64':'A'*1500000})['error'],'invalid_request')  # over ~30 s
 
     def test_governor_keeps_speech_and_retrieval_models_apart(self):

@@ -45,7 +45,7 @@ def request(image_bytes,args,route,region=None):
     req={'consent':True,'runtime':str(RUNTIME),'mode':'screen','detector':str(det),'det_thresh':thresh,'box_thresh':box_thresh,
          'unclip_ratio':unclip,'threads':args.threads,'route':route,'auto_threshold':args.auto_threshold,'det_pixels':args.det_pixels,
          'recognizers':{k:{'model':str(M/v/'inference.onnx'),'dictionary':str(M/v/'ctc-dictionary.json'),'rtl':k in RTL} for k,v in rec.items()},
-         'image_base64':base64.b64encode(image_bytes).decode('ascii')}
+         'image_base64':base64.b64encode(image_bytes).decode('ascii'),'merge_lines':not args.no_merge}
     if region:req['region']=region
     t=time.perf_counter()
     p=subprocess.run([str(ROOT/'build/engine/Release/lens-ocr.exe')],input=json.dumps(req)+'\n',capture_output=True,text=True,encoding='utf-8',timeout=300)
@@ -62,6 +62,7 @@ def main():
     ap.add_argument('--tag',default='',help='label added to the report file name')
     ap.add_argument('--det-pixels',type=int,default=409600);ap.add_argument('--only',help='comma-separated languages to run')
     ap.add_argument('--det-thresh',type=float);ap.add_argument('--box-thresh',type=float);ap.add_argument('--unclip',type=float)  # detector overrides
+    ap.add_argument('--no-merge',action='store_true',help='detector boxes as lines (PaddleOCR output, no Lens row assembly)')
     args=ap.parse_args()
     manifest=json.loads(SETS[args.set].read_text(encoding='utf-8'));rows=[]
     for sc in manifest['scenarios']:
@@ -98,7 +99,7 @@ def main():
     te=M/args.te/'inference.onnx'
     report={'created_utc':datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ'),'worker':'lens-ocr.exe mode=screen','set':args.set,
             'manifest_sha256':hashlib.sha256(SETS[args.set].read_bytes()).hexdigest(),'det':args.det,'det_pixels':args.det_pixels,'only':args.only,'route':args.route,'threads':args.threads,
-            'te_recognizer':args.te,'recognizer_overrides':args.rec,'tag':args.tag,'te_onnx_sha256':hashlib.sha256(te.read_bytes()).hexdigest(),
+            'te_recognizer':args.te,'recognizer_overrides':args.rec,'tag':args.tag,'merge_lines':not args.no_merge,'te_onnx_sha256':hashlib.sha256(te.read_bytes()).hexdigest(),
             'metric':'page CER on NFC text, ZWNJ/ZWJ removed, whitespace collapsed (page_cer_raw: without NFC/ZW removal)',
             'edge_version':manifest['edge_version'],'summary':summary,'rows':rows}
     out=ROOT/'reports/ocr-screens'/f"ocr-native-{args.set}-{args.det}-{args.route}{'-'+args.tag if args.tag else ''}-{report['created_utc']}.json";out.write_text(json.dumps(report,ensure_ascii=False,indent=1),encoding='utf-8')

@@ -1191,6 +1191,11 @@ travel in `metadata`).
   while speaking, ["retrieval"] after the next recall); new `test_governor_releases_ocr_after_retrieval_idle` (with a
   2 s timer: hold released, and only after the models were unloaded). test_agent 7/7, test_observer 28/28,
   test_native_ocr 14/14 OK.
+- Speech models too: the Canary worker (lens-sherpa) peaks at ~404 MB working set on H0 (scripts/benchmark_asr_english.py
+  trial) and whisper base at ~175 MB, so lens-engine now releases its retrieval models before every `transcribe` and
+  `ingest_audio` request (engine/main.cpp; whisper was already freed before a routed model loads). tests/test_agent.py
+  `test_spoken_question_is_transcribed_and_not_stored` checks `models_loaded` false after a spoken question
+  (test_agent 7/7, test_voice 19/19 OK).
 - Cost: an OCR-only window changed within 30 s of a question is read up to 30 s later; a question more than 30 s after
   the previous one reloads the retrieval models. Whole-tree 500 MB not yet re-measured with v2.
 
@@ -1306,7 +1311,9 @@ travel in `metadata`).
   (semantic recall verified), socket mode 0600, add and search passed through to the engine, observation consent
   accepted with no observer on this OS (reported, not crashed), diagnostics process tree (lens-agent, lens-engine;
   28 MB working set idle), a spoken reply through the agent with the governor holding OCR, clean shutdown.
-  Android arm64 also builds lens-agent.
+  Android arm64 also builds lens-agent. GitHub run 40979831791 (commit 31e3e8e): the same agent checks **PASS on the
+  macOS arm64 runner** (peer check by getpeereid, process tree by libproc; keyword-only there, no models), Linux and
+  iOS PASS.
 - Not ported yet: observation (macOS Accessibility + ScreenCaptureKit, Linux AT-SPI + screencast portal, Android
   Accessibility Service), the app shells (WKWebView, WebKitGTK, Android WebView), sign-in autostart off Windows,
   lens-voice microphone capture. No run on macOS, iOS or Android hardware beyond GitHub's macOS runner.
