@@ -1258,6 +1258,34 @@ travel in `metadata`).
 - Next: Lens-style pairs with programmatic near-misses (entity, day, number substitution in generated memories),
   labelled by the Qwen3-1.7B judge, or a larger generator; the 0.80 gate stays unmet.
 
+## Answerability head v3c: programmatic Lens-style near-misses (2026-10-31) — ADOPTED; gate improved, still below target
+
+- Data (lens_model/data/build_lens_style.py, no LLM writing): 4,000 generated memories from nine event schemas
+  (meeting, order, doctor, flight, recommendation, bill, tech decision, child's event, deadline), en 2,254 / hi 616 /
+  zh 556 / es 574 plus cross-lingual questions; per memory answerable questions, near-misses that change one detail
+  (entity 3,383, specific 2,961, attribution 2,128, action 2,027) and one unrelated question: 22,197 pairs. Leak guard
+  against every data/fixtures/retrieval-nl/*.json (5-word sequences, in-sentence names): 22 dropped, 1,175 duplicates.
+- Labels: y = 0.5·gold + 0.5·Platt(Qwen3-1.7B judge) (a 0.181, b 0.311); judge AUC against gold 0.990, 1,012 pairs
+  disagree by > 0.5 (mostly answerable questions the judge doubts). Training set: these pairs + an equal random sample of
+  the v3 public pool (44,394 rows). Student v3c from v2c, 1 epoch, batch 32, lr 2e-5, max length 384, MarginMSE 0.1
+  (1,387 steps, 139 s on the RTX 5060). INT8: sign agreement 0.988, Pearson 0.9985 on 600 pairs.
+- Tuning pairs (v1 dev + near-miss set, 258): **AUC v3c 0.920 vs v2c 0.892**.
+- Recall with v3c as reranker and verifier (scripts/experiment_answer_verifier.py, same 614 questions, 10k synthetic
+  corpora; never the sealed holdout): 5-fold grouped CV gate **0.598 vs 0.493** (unanswerable rejected 0.951, expansion
+  near-misses rejected 1.0). Retrieval cost: top-1 correct for answerable questions **0.836 -> 0.798** (recall@3
+  0.927 -> 0.911); paraphrase 0.72 -> 0.62, code-switch 0.77 -> 0.73, cross-language 0.82 -> 0.80, exact/cross-app/
+  timeline equal. Verifier latency p50 8.1 ms, p95 12.2 ms.
+- Shipped gate refit (fit_gate.py on dev + near-miss only, threshold 0.592; models/Lens--answerability-v3c/gate.json):
+  validation **v1 test 0.544 correct answered (v2c 0.456)**, unanswerable rejected 1.0, wrong evidence answered 0.041
+  (v2c 0.017); **expansion 0.533 (v2c 0.233)**, unanswerable and near-miss rejected 1.0; dev 0.556 (v2c 0.421);
+  near-miss set rejected 0.944 (unchanged).
+- Adopted: pinned with lens_model/export/pin_model.py (model_int8.onnx sha256 be6e3e5f…, tokenizer, gate,
+  quantization and training reports in third_party/model-lock.json); lens-agent, scripts/package_lens.py,
+  ci/linux/smoke.py and tests/test_answer_gate.py use models/Lens--answerability-v3c. Same size as v2c (118 MB INT8),
+  one model resident. Tests from PowerShell: test_answer_gate 1/1, test_agent 7/7, test_installer 4/4.
+- Not met: the 0.80 gate. Next: ranking-preserving paraphrase pairs in the Lens-style data (the paraphrase top-1 loss
+  caps answered-correct), and more near-miss variety for the 0.944 near-miss rejection.
+
 ## English speech input: accuracy, memory bound, fallback (2026-10-30) — PASS (H0, CPU, public audio)
 
 - scripts/benchmark_asr_english.py, no tuning: FLEURS en_us priority hold-out (100 clips, the set whisper base was

@@ -148,13 +148,13 @@ std::vector<native> engine_args(const fs::path& root,const fs::path& exe_dir,con
         std::string ort_sha;const auto ort=ort_runtime(root,exe_dir,ort_sha);
         if(os::sha256_file(ort)!=ort_sha)throw std::runtime_error("hash_mismatch:onnxruntime");
         const auto id="intfloat/multilingual-e5-small@"+e.at("revision").get<std::string>().substr(0,12)+"/onnx/model_qint8_avx512_vnni.onnx#sha256:"+model.at("sha256").get<std::string>().substr(0,16);
-        // The trained Lens answerability head (v2c, fine-tuned from the mMARCO reranker) replaces that reranker and also
+        // The trained Lens answerability head (v3c, fine-tuned from the mMARCO reranker) replaces that reranker and also
         // verifies evidence: one model resident instead of two (500 MB ceiling). Used only when every file matches
         // third_party/model-lock.json; otherwise the pinned mMARCO reranker is verified and used.
         fs::path rerank_model,rerank_tok;bool lens_head=false;
         try {
             json pinned;for(const auto& r:read_json(root/"third_party/model-lock.json"))pinned[r.at("path").get<std::string>()]=r.at("sha256");
-            const std::string dir="models/Lens--answerability-v2c/";
+            const std::string dir="models/Lens--answerability-v3c/";
             for(const auto* f:{"model_int8.onnx","tokenizer.json","gate.json"})check(dir+f,pinned.at(dir+f).get<std::string>());
             rerank_model=root/up(dir+"model_int8.onnx");rerank_tok=root/up(dir+"tokenizer.json");lens_head=true;
         } catch(const std::exception&) {
@@ -167,7 +167,7 @@ std::vector<native> engine_args(const fs::path& root,const fs::path& exe_dir,con
             arg("--reranker-model"),rerank_model.native(),arg("--reranker-tokenizer"),rerank_tok.native()})args.push_back(a);
         if(lens_head)for(const auto& a:{arg("--verifier-model"),rerank_model.native(),arg("--verifier-tokenizer"),rerank_tok.native()})args.push_back(a);
         semantic_status="verified";  // compared verbatim elsewhere; whether the Lens head is used is logged below
-        if(lens_head)log({{"event","lens_answerability_head"},{"model","Lens--answerability-v2c"}});
+        if(lens_head)log({{"event","lens_answerability_head"},{"model","Lens--answerability-v3c"}});
     } catch(const std::exception& ex){semantic_status=std::string("keyword_only: ")+ex.what();}
     return args;
 }

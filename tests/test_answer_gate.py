@@ -1,4 +1,4 @@
-"""Recall with the trained Lens answerability head as reranker and verifier, gated by models/Lens--answerability-v2c/
+"""Recall with the trained Lens answerability head as reranker and verifier, gated by models/Lens--answerability-v3c/
 gate.json (lens_model/eval/fit_gate.py). Synthetic memories only."""
 import json
 from pathlib import Path
@@ -7,7 +7,7 @@ import tempfile
 import unittest
 ROOT=Path(__file__).resolve().parents[1]
 REL=ROOT/'build/engine/Release'
-HEAD=ROOT/'models/Lens--answerability-v2c'
+HEAD=ROOT/'models/Lens--answerability-v3c'
 
 
 def lock(name,filename):

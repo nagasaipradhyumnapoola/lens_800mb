@@ -27,7 +27,7 @@ SPEECH=['models/csukuangfj--sherpa-onnx-nemo-canary-180m-flash-en-es-de-fr-int8/
         'models/onnx-community--Kokoro-82M-v1.0-ONNX/tokenizer.json','models/onnx-community--Kokoro-82M-v1.0-ONNX/voices/',
         'models/Lens--g2p-en/encoder.onnx','models/Lens--g2p-en/decoder.onnx','models/Lens--g2p-en/vocab.json']
 SHERPA_LIBS=('/lib/sherpa-onnx-c-api.dll','/lib/onnxruntime.dll','/lib/onnxruntime_providers_shared.dll')
-LENS_HEAD='models/Lens--answerability-v2c/'
+LENS_HEAD='models/Lens--answerability-v3c/'
 
 
 def sha(p):

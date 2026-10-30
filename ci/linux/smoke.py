@@ -24,7 +24,7 @@ def lock(name,filename):
 def engine(db,lines,semantic=True):
     args=[str(BIN/'lens-engine'),'--db',str(db)]
     if semantic and ORT:
-        head=ROOT/'models/Lens--answerability-v2c'
+        head=ROOT/'models/Lens--answerability-v3c'
         args+=['--ort',str(ORT),'--embedding-model',str(lock('embedding-lock.json','onnx/model_qint8_avx512_vnni.onnx')),
                '--embedding-tokenizer',str(lock('embedding-lock.json','onnx/tokenizer.json')),'--embedding-id','smoke-e5']
         if (head/'model_int8.onnx').exists():args+=['--reranker-model',str(head/'model_int8.onnx'),'--reranker-tokenizer',str(head/'tokenizer.json')]

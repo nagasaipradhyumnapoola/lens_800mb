@@ -844,5 +844,50 @@
   "sha256": "0b6961ac9e01009f0e0440d3a4d18b77e6761d82dfafe6033132f2141e8f8ae4",
   "derived_from": "models\\Lens--g2p-en",
   "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "model_int8.onnx",
+  "path": "models/Lens--answerability-v3c/model_int8.onnx",
+  "bytes": 118444516,
+  "sha256": "be6e3e5fe9fba444822d9e073d3edb7e1cebf05f7b04cb253c81e6883d08ed02",
+  "derived_from": "artifacts\\lens-model\\onnx\\answerability-v3c",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "tokenizer.json",
+  "path": "models/Lens--answerability-v3c/tokenizer.json",
+  "bytes": 17082987,
+  "sha256": "344e3feb078b84a4c30158f5b85f3dbaeee7a1d2689e0a0a9ebb8a0d63a8faf7",
+  "derived_from": "artifacts\\lens-model\\onnx\\answerability-v3c",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "quantization-report.json",
+  "path": "models/Lens--answerability-v3c/quantization-report.json",
+  "bytes": 408,
+  "sha256": "b1ab660b621c8fd08a70c3591fc4dc840fee3fd7fb1228e62d73ce5a79170041",
+  "derived_from": "artifacts\\lens-model\\onnx\\answerability-v3c",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "training-report.json",
+  "path": "models/Lens--answerability-v3c/training-report.json",
+  "bytes": 8782,
+  "sha256": "2d0da99fe79b4bcb955c0998618abef3d1e7c256e68964cb5fb57daaf3f3ad3d",
+  "derived_from": "artifacts\\lens-model\\onnx\\answerability-v3c",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
+ },
+ {
+  "repo": "derived",
+  "filename": "gate.json",
+  "path": "models/Lens--answerability-v3c/gate.json",
+  "bytes": 1985,
+  "sha256": "7c76c9813ccf27b446d1faa564baf4d295fce83833b959fc054aa0bea46f9861",
+  "derived_from": "artifacts\\lens-model\\onnx\\answerability-v3c",
+  "license": "Lens (all rights reserved); base model licence in third_party/licenses"
  }
 ]
