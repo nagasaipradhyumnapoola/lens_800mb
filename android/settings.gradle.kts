@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "LensCompanion"
-include(":core", ":app", ":wear")
+include(":core", ":app", ":wear", ":lensmodels")

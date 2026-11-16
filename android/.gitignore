@@ -6,3 +6,4 @@ local.properties
 .idea/
 captures/
 native-libs/
+lensmodels/src/main/assets/

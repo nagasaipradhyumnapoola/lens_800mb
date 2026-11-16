@@ -35,6 +35,7 @@ android {
     // liblens-core.so per ABI from ci/android/build.ps1 (arm64-v8a for phones, x86_64 for the emulator).
     sourceSets["main"].jniLibs.srcDirs("../native-libs")
     buildFeatures { compose = true }
+    assetPacks += listOf(":lensmodels")  // release bundles: the retrieval models (see stageLensModelsPack)
     androidResources { noCompress += "onnx" }  // the models are copied out once; stored, they copy fast
     packaging {
         resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" }
@@ -81,17 +82,29 @@ abstract class StageLensModels : DefaultTask() {
     }
 }
 
+/**
+ * Where the models go: debug APKs (sideloaded, emulator tests) carry them as ordinary assets; release bundles carry them in
+ * the install-time asset pack :lensmodels, which Google Play installs with the app (the base module stays under Play's
+ * 200 MB limit) and which the app reads through the same AssetManager paths.
+ */
 if (providers.gradleProperty("lensModels").orNull != "false") {
-    val stageLensModels = tasks.register<StageLensModels>("stageLensModels") {
+    fun StageLensModels.fromRepository() {
         val root = rootProject.layout.projectDirectory.dir("..")
         repository.set(root)
         inputs.files(listOf("third_party/embedding-lock.json", "third_party/model-lock.json",
             "models/intfloat--multilingual-e5-small/onnx/model_qint8_avx512_vnni.onnx", "models/intfloat--multilingual-e5-small/onnx/tokenizer.json",
             "models/Lens--answerability-v3c/model_int8.onnx", "models/Lens--answerability-v3c/tokenizer.json",
             "models/Lens--answerability-v3c/gate.json").map { root.file(it) })
-        outputDir.set(layout.buildDirectory.dir("generated/lens-models"))
     }
-    androidComponents.onVariants { it.sources.assets?.addGeneratedSourceDirectory(stageLensModels, StageLensModels::outputDir) }
+    val stageLensModels = tasks.register<StageLensModels>("stageLensModels") {
+        fromRepository(); outputDir.set(layout.buildDirectory.dir("generated/lens-models"))
+    }
+    androidComponents.onVariants(androidComponents.selector().withBuildType("debug")) {
+        it.sources.assets?.addGeneratedSourceDirectory(stageLensModels, StageLensModels::outputDir)
+    }
+    tasks.register<StageLensModels>("stageLensModelsPack") {  // :lensmodels' tasks depend on this one
+        fromRepository(); outputDir.set(rootProject.layout.projectDirectory.dir("lensmodels/src/main/assets"))
+    }
 }
 
 dependencies {
