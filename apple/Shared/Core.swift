@@ -42,8 +42,11 @@ enum LensPaths {
             ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         return base.appendingPathComponent("Lens", isDirectory: true)
     }
-    static var memory: URL { root.appendingPathComponent("Memory", isDirectory: true) }
-    static var outbox: URL { root.appendingPathComponent("outbox.jsonl") }
+    /// Screenshot and demo runs only (launch argument `-LensDemo YES`): a separate memory filled with synthetic items and
+    /// no laptop; the user's own memory is never opened.
+    static var demo: Bool { UserDefaults.standard.bool(forKey: "LensDemo") }
+    static var memory: URL { root.appendingPathComponent(demo ? "Demo" : "Memory", isDirectory: true) }
+    static var outbox: URL { root.appendingPathComponent(demo ? "demo-outbox.jsonl" : "outbox.jsonl") }
     static var defaults: UserDefaults { UserDefaults(suiteName: group) ?? .standard }
 
     static func prepare(_ directory: URL) throws {

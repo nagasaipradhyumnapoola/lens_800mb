@@ -96,3 +96,48 @@ jobs:
       - name: Report build errors
         if: failure()
         run: bash ci/annotate_log.sh build.log
+
+  ios-screens:  # the iPhone and Watch apps running on simulators in demo mode; screenshots as the run's artifact
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch whisper.cpp (pinned)
+        run: bash ci/fetch_whisper.sh
+      - name: vcpkg for the iOS simulator
+        run: |
+          git clone https://github.com/microsoft/vcpkg "$RUNNER_TEMP/vcpkg" && git -C "$RUNNER_TEMP/vcpkg" checkout 817892b0ecbc6af994dd6df999c73faf795adbf2
+          "$RUNNER_TEMP/vcpkg/bootstrap-vcpkg.sh" -disableMetrics
+          "$RUNNER_TEMP/vcpkg/vcpkg" install openssl zstd utf8proc nlohmann-json --triplet arm64-ios-simulator
+      - name: Build the memory core for the iOS simulator (arm64)
+        run: |
+          set -o pipefail
+          brew install ninja tcl-tk
+          bash ci/sqlcipher/amalgamation.sh
+          curl -fsSL -o ort.tgz https://github.com/microsoft/onnxruntime/releases/download/v1.24.4/onnxruntime-osx-arm64-1.24.4.tgz
+          echo "93787795f47e1eee369182e43ed51b9e5da0878ab0346aecf4258979b8bba989  ort.tgz" | shasum -a 256 -c -
+          mkdir -p "$RUNNER_TEMP/ort" && tar -xzf ort.tgz -C "$RUNNER_TEMP/ort" --strip-components=1   # C API headers
+          cmake -S engine -B build/ios-sim -G Ninja -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_SYSROOT=iphonesimulator -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=16.0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="$RUNNER_TEMP/vcpkg/scripts/buildsystems/vcpkg.cmake" \
+            -DVCPKG_TARGET_TRIPLET=arm64-ios-simulator -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DLENS_ORT_DIR="$RUNNER_TEMP/ort" -DLENS_CORE_ONLY=ON
+          cmake --build build/ios-sim --target lens-capi --parallel 2>&1 | tee build.log
+          mkdir -p build/ios-app
+          libtool -static -o build/ios-app/liblens.a $(find build/ios-sim -name 'liblens-*.a') "$RUNNER_TEMP"/vcpkg/installed/arm64-ios-simulator/lib/*.a
+      - name: Build the apps for the simulators (ad-hoc signed)
+        run: |
+          set -o pipefail
+          brew install xcodegen
+          cd apple && xcodegen generate
+          xcodebuild -project Lens.xcodeproj -scheme Lens -configuration Debug -destination 'generic/platform=iOS Simulator' -derivedDataPath ../build/dd \
+            ARCHS=arm64 CODE_SIGN_IDENTITY=- CODE_SIGN_STYLE=Manual build 2>&1 | tee ../build.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" ../build.log
+      - name: Screenshots (demo memory with synthetic items)
+        run: bash ci/ios/screenshots.sh screenshots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lens-apple-screenshots
+          path: screenshots/
+          if-no-files-found: warn
+      - name: Report build errors
+        if: failure()
+        run: bash ci/annotate_log.sh build.log

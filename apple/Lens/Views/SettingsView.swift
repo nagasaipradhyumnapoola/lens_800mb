@@ -24,6 +24,7 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Lens")
+            .onAppear { if LensPaths.demo && UserDefaults.standard.bool(forKey: "LensPair") { pairing = true } }  // screenshots
             .sheet(isPresented: $pairing) { PairView { model.paired() } }
             .confirmationDialog("Unpair your laptop?", isPresented: $confirmUnpair, titleVisibility: .visible) {
                 Button("Unpair", role: .destructive) { model.unpair() }

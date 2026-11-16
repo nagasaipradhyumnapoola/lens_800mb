@@ -31,7 +31,15 @@ final class WatchModel {
     private(set) var origin = ""
     private let link = PhoneLink()
 
-    init() { link.activate() }
+    init() {
+        link.activate()
+        if UserDefaults.standard.bool(forKey: "LensDemo") {  // screenshot runs only: a synthetic answer, no iPhone involved
+            asked = "When is the dentist appointment?"
+            origin = "From your iPhone"
+            results = [WatchResult(quote: "Dentist appointment moved to Thursday 20 Nov at 8:30 am with Dr. Mehta at the Elm Street clinic.",
+                                   app: "Lens", date: Date().addingTimeInterval(-3 * 3600))]
+        }
+    }
 
     func ask(_ query: String) {
         let q = query.trimmingCharacters(in: .whitespacesAndNewlines)

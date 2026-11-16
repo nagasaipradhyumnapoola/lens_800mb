@@ -99,7 +99,10 @@ final class LensService: @unchecked Sendable {
     // MARK: Paired laptop
 
     var laptop: Laptop? {
-        get { LensPaths.defaults.data(forKey: "laptop").flatMap { try? JSONDecoder().decode(Laptop.self, from: $0) } }
+        get {
+            guard !LensPaths.demo else { return nil }
+            return LensPaths.defaults.data(forKey: "laptop").flatMap { try? JSONDecoder().decode(Laptop.self, from: $0) }
+        }
         set { LensPaths.defaults.set(newValue.flatMap { try? JSONEncoder().encode($0) }, forKey: "laptop") }
     }
 

@@ -26,6 +26,12 @@ struct AskView: View {
             .background(Color(uiColor: .systemGroupedBackground))
             .navigationTitle("Ask")
         }
+        .task {  // demo runs: `-LensAsk "question"` asks once the synthetic memory is in place
+            guard LensPaths.demo, answer == nil, let q = UserDefaults.standard.string(forKey: "LensAsk") else { return }
+            for _ in 0..<40 where model.memories.count < 5 { try? await Task.sleep(for: .milliseconds(250)) }
+            query = q
+            ask()
+        }
         .onChange(of: dictation.transcript) { _, text in if !text.isEmpty { query = text } }
         .onChange(of: dictation.running) { _, running in if !running && !query.isEmpty && !asking { ask() } }
     }

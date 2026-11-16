@@ -3,19 +3,29 @@ import SwiftUI
 struct RootView: View {
     @Environment(AppModel.self) private var model
     @AppStorage("onboarded") private var onboarded = false
+    @State private var tab = UserDefaults.standard.integer(forKey: "LensTab")  // `-LensTab n` opens a tab (screenshots)
+
+    /// Demo runs skip the first-run sheet unless `-LensOnboarding YES` asks for it.
+    private var showOnboarding: Bool {
+        LensPaths.demo ? UserDefaults.standard.bool(forKey: "LensOnboarding") && !onboarded : !onboarded
+    }
 
     var body: some View {
-        TabView {
+        TabView(selection: $tab) {
             AskView()
                 .tabItem { Label("Ask", systemImage: "magnifyingglass") }
+                .tag(0)
             RememberView()
                 .tabItem { Label("Remember", systemImage: "plus.circle") }
+                .tag(1)
             MemoriesView()
                 .tabItem { Label("Memories", systemImage: "clock") }
+                .tag(2)
             SettingsView()
                 .tabItem { Label("Lens", systemImage: "gearshape") }
+                .tag(3)
         }
-        .sheet(isPresented: Binding(get: { !onboarded }, set: { if !$0 { onboarded = true } })) {
+        .sheet(isPresented: Binding(get: { showOnboarding }, set: { if !$0 { onboarded = true } })) {
             OnboardingView { onboarded = true }
                 .interactiveDismissDisabled()
         }

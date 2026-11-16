@@ -41,8 +41,20 @@ final class AppModel {
         Task {
             storeProblem = await service.storeProblem()
             await refresh()
+            if LensPaths.demo && memories.isEmpty { await seedDemo() }
             await sendWaiting()
         }
+    }
+
+    /// Synthetic items for demo and screenshot runs (`-LensDemo YES`), stored in the separate demo memory.
+    private func seedDemo() async {
+        let items = [("Book recommendation from Ana: The Overstory by Richard Powers.", "note"),
+                     ("Call Tomás about the catering quote before Wednesday.", "voice_note"),
+                     ("Flight to Lisbon: TP 1351 on 4 December, departs 07:40, seat 14C.", "share"),
+                     ("Kestrel Hall is booked for the team dinner on Saturday 14 December from 6 pm. Deposit of $400 paid.", "share"),
+                     ("Dentist appointment moved to Thursday 20 Nov at 8:30 am with Dr. Mehta at the Elm Street clinic.", "note")]
+        for (text, kind) in items { _ = await service.remember(text, kind: kind) }
+        await refresh()
     }
 
     func refresh() async {
