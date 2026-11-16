@@ -1527,7 +1527,8 @@ travel in `metadata`).
   settings (QR pairing with VisionKit, laptop status and outbox, privacy, erase); Share extension; its own SQLCipher
   memory with the Keychain master key (adapters/apple/master_key.cpp). Apple Watch app: asks and takes notes through the
   iPhone (WatchConnectivity; notes queue with transferUserInfo); the watch keeps nothing. CI: .github/workflows/
-  portable.yml job ios links liblens.a and builds all three targets unsigned. Never run on a simulator or device.
+  portable.yml job ios links liblens.a and builds all three targets unsigned: run 21 (public 6d791d5) BUILD SUCCEEDED;
+  run 20 had failed on the watch app's TextFieldLink argument order. Never run on a simulator or device.
 - Android app UI: first-run explanation; Ask / Remember / Memories / Settings tabs; best evidence first with the
   question's words marked (stopwords not marked); voice only through createOnDeviceSpeechRecognizer (no server
   fallback); pairing by the Google code scanner or a pasted code, with the verification code; delete and erase with
