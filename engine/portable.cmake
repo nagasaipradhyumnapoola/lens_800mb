@@ -171,6 +171,14 @@ add_executable(lens-agent agent/agent_main.cpp agent/child_process.cpp agent/act
 target_link_libraries(lens-agent PRIVATE lens-embedding OpenSSL::Crypto Threads::Threads)
 target_compile_options(lens-agent PRIVATE ${LENS_WARN})
 
+# Paired-device link (lens-mesh): the network-facing TLS 1.3 endpoint for phones and watches, separate from the engine and
+# reaching memory only through the agent's socket; its identity is sealed with the per-user master key (lens-store's).
+if(NOT ANDROID)
+  add_executable(lens-mesh mesh/mesh_main.cpp agent/os.cpp)
+  target_link_libraries(lens-mesh PRIVATE lens-store OpenSSL::SSL OpenSSL::Crypto Threads::Threads)
+  target_compile_options(lens-mesh PRIVATE ${LENS_WARN})
+endif()
+
 # Linux screen observer (lens-observer): AT-SPI text of the followed frame, X11 capture for the OCR fallback; built when
 # libatspi and Xlib are installed. lens-observer-testapp is the synthetic GTK window its tests read.
 if(NOT APPLE AND NOT ANDROID)

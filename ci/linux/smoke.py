@@ -87,12 +87,58 @@ def observer_check():
             if p.poll() is None:p.kill()
 
 
+def mesh_check(ask,tmp):
+    """The paired-device link on this OS: lens-mesh starts on phone-link consent; a phone (TLS 1.3, its own certificate,
+    the laptop pinned by fingerprint) pairs only after approval on the laptop, sees the same verification code, then asks
+    the laptop's memory; unpairing cuts it off. Loopback only."""
+    import hashlib,socket,ssl,time
+    check(ask({'op':'set_consent','phone_link':True}).get('phone_link') and ask({'op':'status'}).get('mesh_running'),'agent starts lens-mesh on phone-link consent')
+    qr={}
+    for _ in range(50):
+        r=ask({'op':'mesh_pair_begin'})
+        if r.get('ok'):qr=r['qr'];break
+        time.sleep(0.2)
+    check(qr.get('port') and len(qr.get('fp',''))==64,'lens-mesh gives a pairing code')
+    brew='/opt/homebrew/opt/openssl@3/bin/openssl'
+    openssl=brew if os.path.exists(brew) else shutil.which('openssl')
+    key,cert=tmp/'phone.key',tmp/'phone.pem'
+    subprocess.run([openssl,'req','-x509','-newkey','ec','-pkeyopt','ec_paramgen_curve:P-256','-nodes','-keyout',str(key),'-out',str(cert),
+                    '-days','1','-subj','/CN=phone'],check=True,capture_output=True)
+    ctx=ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT);ctx.minimum_version=ssl.TLSVersion.TLSv1_3;ctx.check_hostname=False;ctx.verify_mode=ssl.CERT_NONE
+    ctx.load_cert_chain(str(cert),str(key))
+    s=ctx.wrap_socket(socket.create_connection(('127.0.0.1',qr['port']),timeout=30))
+    check(hashlib.sha256(s.getpeercert(binary_form=True)).hexdigest()==qr['fp'],'laptop certificate matches the pinned fingerprint')
+    buf=b''
+    def link(req):
+        nonlocal buf
+        s.sendall((json.dumps(req)+'\n').encode())
+        while b'\n' not in buf:
+            chunk=s.recv(65536)
+            if not chunk:return {}
+            buf+=chunk
+        line,buf=buf.split(b'\n',1);return json.loads(line)
+    check(link({'op':'search','query':'Larkspur'}).get('error')=='not_paired','an unpaired device reads nothing')
+    r=link({'op':'pair','token':qr['token'],'name':'Smoke phone'})
+    phone_fp=hashlib.sha256(ssl.PEM_cert_to_DER_cert(cert.read_text())).hexdigest()
+    v=int.from_bytes(hashlib.sha256(f"{qr['fp']}:{phone_fp}".encode()).digest()[:4],'big')%100000000
+    check(r.get('awaiting_approval') and r.get('verification_code')==f'{v//10000:04d} {v%10000:04d}','pairing waits for approval; both screens show the same code')
+    check(link({'op':'search','query':'Larkspur'}).get('error')=='not_paired','nothing is shared before the laptop approves')
+    check(ask({'op':'mesh_approve','fingerprint':phone_fp}).get('paired') and link({'op':'pair_status'}).get('paired'),'approved on the laptop')
+    hits=link({'op':'search','query':'Larkspur'}).get('sources',[])
+    check(hits and hits[0]['id']=='a1','the paired phone searches the laptop memory over the link')
+    check(link({'op':'delete','consent':True,'id':'a1'}).get('error')=='unsupported_operation','a phone cannot delete laptop memory')
+    check(ask({'op':'mesh_unpair','fingerprint':phone_fp}).get('removed') and link({'op':'ping'}).get('error')=='not_paired','unpairing cuts the open link')
+    s.close()
+    check(ask({'op':'set_consent','phone_link':False}).get('ok') and not ask({'op':'status'}).get('mesh_running'),'phone link off stops lens-mesh')
+
+
 def agent_check():
     """lens-agent as the app talks to it: the user-only Unix socket, engine pass-through, diagnostics and shutdown."""
     import socket
     with tempfile.TemporaryDirectory() as tmp:
         tmp=Path(tmp);run=tmp/'run';run.mkdir(mode=0o700)
         env={**os.environ,'LENS_RUNTIME_DIR':str(run)}
+        (tmp/'data').mkdir();(tmp/'data/config.json').write_text(json.dumps({'mesh_port':0,'mesh_bind':'127.0.0.1'}))  # loopback only
         agent=subprocess.Popen([str(BIN/'lens-agent'),'--data-dir',str(tmp/'data'),'--root',str(ROOT),'--pipe-name','lens-smoke'],
                                env=env,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,text=True)
         sock=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM);path=str(run/'lens-smoke.sock')
@@ -127,6 +173,7 @@ def agent_check():
             r=next((json.loads(l) for l in p.stdout.splitlines() if l.startswith('{')),{})
             bad=[v for v,x in r.get('views',{}).items() if x.get('errors') or x.get('exception')]
             check(r.get('ok') and not bad,f"app self-test ({'WKWebView' if sys.platform=='darwin' else 'GTK 4 + WebKitGTK'}): {len(r.get('views',{}))} views, ready {r.get('ready_ms')} ms, errors {r.get('errors')} {bad}")
+        if (BIN/'lens-mesh').exists():mesh_check(ask,tmp)
         check(ask({'op':'shutdown'}).get('ok'),'agent shutdown');f.close();sock.close()
         check(agent.wait(timeout=60)==0,'agent exited cleanly');agent.stderr.close()
 

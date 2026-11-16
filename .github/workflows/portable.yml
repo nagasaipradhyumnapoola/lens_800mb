@@ -24,6 +24,15 @@ jobs:
       - name: Report build errors
         if: failure()
         run: bash ci/annotate_log.sh build.log
+      - name: Package Lens for Linux (x86_64, per-user install)
+        run: |
+          sudo chown -R "$(id -u)" build
+          python3 scripts/package_posix.py --platform linux --bin build/linux/bin --out dist
+          tar -C dist -czf dist/Lens-linux-x86_64.tar.gz Lens && du -sh dist/Lens dist/Lens-linux-x86_64.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lens-linux
+          path: dist/Lens-linux-x86_64.tar.gz
 
   macos:
     runs-on: macos-15  # Xcode 16: ggml's apple_m4 (SME) CPU variant does not compile with Xcode 15
@@ -58,6 +67,35 @@ jobs:
           security create-keychain -p lens-ci lens-ci.keychain && security default-keychain -s lens-ci.keychain
           security unlock-keychain -p lens-ci lens-ci.keychain && security set-keychain-settings lens-ci.keychain
           python3 ci/linux/smoke.py build/macos/bin
+      - name: Package Lens.app (ad-hoc signed, not notarized)
+        run: |
+          set -o pipefail
+          brew install dylibbundler
+          python3 scripts/package_posix.py --platform macos --bin build/macos/bin --out dist
+          app=dist/Lens.app/Contents/MacOS; fix=()
+          for f in "$app"/*; do file "$f" | grep -q Mach-O && fix+=(-x "$f"); done
+          dylibbundler -of -b "${fix[@]}" -d "$app" -p @executable_path/ -s build/macos/bin </dev/null >dylib.log 2>&1 \
+            || { echo "::error title=dylibbundler::$(tail -5 dylib.log | tr '\n' ' ')"; exit 1; }
+          if otool -L "$app"/* 2>/dev/null | grep -E "/opt/homebrew|/usr/local/(opt|Cellar)"; then
+            echo "::error title=Lens.app::links a library outside the bundle"; exit 1; fi
+          codesign --force --deep --sign - dist/Lens.app
+          ditto -c -k --keepParent dist/Lens.app dist/Lens-macos-arm64.zip
+          du -sh dist/Lens.app dist/Lens-macos-arm64.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lens-macos-app
+          path: dist/Lens-macos-arm64.zip
+      - name: Screenshot of the Mac app
+        continue-on-error: true
+        run: |
+          mkdir -p screenshots && open dist/Lens.app && sleep 15
+          screencapture -x screenshots/macos-app.png && ls -la screenshots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lens-macos-screenshot
+          path: screenshots/
+          if-no-files-found: ignore
 
   ios:
     runs-on: macos-15  # Xcode 16: ggml's apple_m4 (SME) CPU variant does not compile with Xcode 15
