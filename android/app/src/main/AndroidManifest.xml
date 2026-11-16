@@ -24,6 +24,12 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+        <service android:name=".WatchRelayService" android:exported="true">  <!-- requests from Lens on the paired watch -->
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.REQUEST_RECEIVED" />
+                <data android:scheme="wear" android:host="*" android:pathPrefix="/lens/" />
+            </intent-filter>
+        </service>
         <service android:name=".ScreenObserverService" android:exported="false" android:label="Lens screen memory"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter><action android:name="android.accessibilityservice.AccessibilityService" /></intent-filter>

@@ -166,10 +166,10 @@ span.chip { padding: 3px 10px; }
 .toolbar { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
 .timeline { display: flex; flex-direction: column; gap: 22px; }
 .day h2 { font-size: 13px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 8px; }
-.episode-row { display: grid; grid-template-columns: 110px 140px 1fr auto; gap: 12px; align-items: center; width: 100%; padding: 10px 14px;
+.episode-row { display: grid; grid-template-columns: 170px 140px 1fr auto; gap: 12px; align-items: center; width: 100%; padding: 10px 14px;
   border: 0; border-bottom: 1px solid var(--line); background: transparent; text-align: left; cursor: pointer; }
 .episode-row:hover { background: var(--bg-raised); }
-.episode-row .when { color: var(--muted); font-variant-numeric: tabular-nums; }
+.episode-row .when { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .episode-row .what { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .episode-row .count { color: var(--muted); font-size: 12px; }
 

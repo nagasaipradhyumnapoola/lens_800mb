@@ -102,6 +102,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     // Google code scanner: QR pairing without a camera permission (the scan runs in Play services); paste works without it
     implementation("com.google.android.gms:play-services-code-scanner:16.1.0")
+    implementation("com.google.android.gms:play-services-wearable:19.0.0")  // the Wear OS app goes through this phone
     implementation("androidx.activity:activity-compose:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
