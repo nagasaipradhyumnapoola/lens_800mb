@@ -1543,3 +1543,19 @@ travel in `metadata`).
   native core. No network permission on the watch; same application id as the phone (Data Layer requirement). Builds
   (24.7 MB debug APK); never run on an emulator or watch.
 - Desktop: the timeline's time column no longer wraps; tests/test_app.py 17/17 (headless Edge, hidden native window).
+
+## Phone link on macOS and Linux laptops; Mac and Linux packages; Android release bundle (2026-11-16) — PARTIAL
+
+- lens-mesh ported to macOS and Linux (POSIX sockets, the agent's user-only Unix socket, getifaddrs, SIGPIPE ignored;
+  TLS identity sealed with AES-256-GCM under HMAC-SHA256(per-user master key, "Lens mesh identity v1") instead of
+  DPAPI). Windows unchanged: tests/test_mesh.py + tests/test_capi.py 7/7. The macOS/Linux smoke test (ci/linux/smoke.py
+  mesh_check) pairs a phone over loopback: pinned laptop certificate, nothing readable before approval, the same
+  verification code on both sides, search over the link, no delete, unpair cuts the open link, phone link off stops
+  lens-mesh. Linux CI (run 24, public c3bddd7): PASS. macOS: not run yet (GitHub macOS runners unavailable for runs 23-24).
+- scripts/package_posix.py: Lens.app for macOS (Homebrew libraries bundled with dylibbundler, ad-hoc signed, not
+  notarized; CI checks no library outside the bundle) and a per-user Linux package (install.sh into ~/.local, menu
+  launcher, uninstall.sh keeps the memory). Linux package built in CI (35.4 MB artifact); Lens.app not built yet (macOS
+  runners). Both carry no models in CI (the Lens-trained ones are not downloadable), so recall is keyword-only there.
+- Android release: bundleRelease with R8 builds; the retrieval models moved to the install-time asset pack :lensmodels
+  (base module 29.6 MB compressed, native libraries 13.3 MB arm64 / 14.8 MB x86_64; model pack 174 MB), within Google
+  Play's limits; debug APKs keep the models inside. Unsigned (needs the owner's upload key); not installed or run.
