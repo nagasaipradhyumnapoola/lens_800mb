@@ -90,6 +90,13 @@ if(ANDROID)
   target_compile_options(lens-core PRIVATE ${LENS_WARN})
 endif()
 
+# iPhone app library: the memory core and the device side of the Lens link behind the C API (adapters/capi/lens.h).
+if(APPLE)
+  add_library(lens-capi STATIC "${LENS_ROOT}/adapters/capi/lens_capi.cpp")
+  target_link_libraries(lens-capi PUBLIC lens-store OpenSSL::SSL OpenSSL::Crypto)
+  target_compile_options(lens-capi PRIVATE ${LENS_WARN})
+endif()
+
 # LENS_CORE_ONLY (iOS, Android app libraries): the memory core only; the app links it and has no worker processes.
 option(LENS_CORE_ONLY "build only lens-store and lens-embedding" OFF)
 if(LENS_CORE_ONLY)

@@ -1,0 +1,110 @@
+# Lens for iPhone and Apple Watch (docs/LENS_V1_SPEC.md §18). Generate the Xcode project with XcodeGen:
+#   cd apple && xcodegen generate
+# The iPhone app and its Share extension link liblens.a from ../build/ios-app (the memory core, the Lens link client and
+# their libraries; built by .github/workflows/portable.yml, job ios). The watch app has no core: it goes through the iPhone.
+name: Lens
+options:
+  bundleIdPrefix: org.secondbrain
+  deploymentTarget:
+    iOS: "17.0"
+    watchOS: "10.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    DEAD_CODE_STRIPPING: YES
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+
+targets:
+  Lens:
+    type: application
+    platform: iOS
+    sources:
+      - path: Lens
+      - path: Shared
+    info:
+      path: Lens/Info.plist
+      properties:
+        CFBundleDisplayName: Lens
+        LSApplicationCategoryType: public.app-category.productivity
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        NSLocalNetworkUsageDescription: Lens connects to Lens on your laptop over your Wi-Fi to search its memory and send your notes.
+        NSCameraUsageDescription: Lens uses the camera only to scan the pairing code your laptop shows.
+        NSMicrophoneUsageDescription: Lens listens only while you hold the microphone on, to turn speech into text on this iPhone.
+        NSSpeechRecognitionUsageDescription: Speech is recognised on this iPhone; the audio is never stored or sent anywhere.
+    entitlements:
+      path: Lens/Lens.entitlements
+      properties:
+        com.apple.security.application-groups: [group.org.secondbrain.lens]
+        keychain-access-groups: ["$(AppIdentifierPrefix)org.secondbrain.lens.shared"]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.secondbrain.lens
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_INCLUDE_PATHS: $(SRCROOT)/LensCore
+        LIBRARY_SEARCH_PATHS: $(SRCROOT)/../build/ios-app
+        OTHER_LDFLAGS: [-llens, -lc++, -framework, Security]
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    dependencies:
+      - target: LensShare
+      - target: LensWatch
+        embed: true
+        copy:
+          destination: productsDirectory
+          subpath: $(CONTENTS_FOLDER_PATH)/Watch
+    scheme: {}
+
+  LensShare:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: LensShare
+      - path: Shared
+    info:
+      path: LensShare/Info.plist
+      properties:
+        CFBundleDisplayName: Lens
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsText: true
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsImageWithMaxCount: 1
+              NSExtensionActivationSupportsFileWithMaxCount: 1
+    entitlements:
+      path: LensShare/LensShare.entitlements
+      properties:
+        com.apple.security.application-groups: [group.org.secondbrain.lens]
+        keychain-access-groups: ["$(AppIdentifierPrefix)org.secondbrain.lens.shared"]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.secondbrain.lens.share
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_INCLUDE_PATHS: $(SRCROOT)/LensCore
+        LIBRARY_SEARCH_PATHS: $(SRCROOT)/../build/ios-app
+        OTHER_LDFLAGS: [-llens, -lc++, -framework, Security]
+
+  LensWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - path: LensWatch
+    info:
+      path: LensWatch/Info.plist
+      properties:
+        CFBundleDisplayName: Lens
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: org.secondbrain.lens
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.secondbrain.lens.watchkitapp
+        SKIP_INSTALL: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

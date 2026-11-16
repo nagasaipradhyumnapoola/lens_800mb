@@ -81,8 +81,18 @@ jobs:
           cmake -S engine -B build/ios -G Ninja -DCMAKE_SYSTEM_NAME=iOS -DCMAKE_OSX_ARCHITECTURES=arm64 -DCMAKE_OSX_DEPLOYMENT_TARGET=16.0 \
             -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE="$RUNNER_TEMP/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=arm64-ios \
             -DLENS_SQLCIPHER_AMALGAMATION="$PWD/build/sqlcipher-4.19.0" -DLENS_ORT_DIR="$RUNNER_TEMP/ort" -DLENS_CORE_ONLY=ON
-          cmake --build build/ios --target lens-store --parallel 2>&1 | tee build.log
-          ls -la build/ios/*.a build/ios/**/*.a 2>/dev/null || find build/ios -name '*.a' | head
+          cmake --build build/ios --target lens-capi --parallel 2>&1 | tee build.log
+          mkdir -p build/ios-app  # one static library for the app: the core, the link client and their dependencies
+          libtool -static -o build/ios-app/liblens.a $(find build/ios -name 'liblens-*.a') "$RUNNER_TEMP"/vcpkg/installed/arm64-ios/lib/*.a
+          ls -la build/ios-app
+      - name: Build the iPhone app, Share extension and Apple Watch app (unsigned)
+        run: |
+          set -o pipefail
+          brew install xcodegen
+          cd apple && xcodegen generate
+          xcodebuild -project Lens.xcodeproj -scheme Lens -configuration Release -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO build 2>&1 | tee ../build.log | grep -E "error:|warning: .*\.swift|BUILD (SUCCEEDED|FAILED)" || true
+          grep -q "BUILD SUCCEEDED" ../build.log
       - name: Report build errors
         if: failure()
         run: bash ci/annotate_log.sh build.log

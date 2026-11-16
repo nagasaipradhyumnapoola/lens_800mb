@@ -1,0 +1,5 @@
+// The Lens C API (adapters/capi/lens.h) as a Swift module; the app links liblens.a (the memory core and its libraries).
+module LensCore {
+    header "../../adapters/capi/lens.h"
+    export *
+}
