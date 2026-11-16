@@ -30,7 +30,7 @@ class LensRepository(private val context: Context) {
     data class Saved(val error: String?, val delivered: Int)
 
     /** An answer and where it came from: the laptop (whole memory) or, when it is unpaired or unreachable, this phone. */
-    data class Answer(val response: JSONObject, val fromPhone: Boolean)
+    data class Answer(val response: JSONObject, val fromPhone: Boolean, val laptopUnreachable: Boolean = false, val searchedLaptop: Boolean = false)
 
     data class Laptop(val hosts: List<String>, val port: Int, val fingerprint: String)
 
@@ -83,11 +83,30 @@ class LensRepository(private val context: Context) {
 
     fun recall(query: String): JSONObject = withLink { it.ask(JSONObject().put("op", "recall").put("query", query).put("limit", 5)) }
 
-    /** Asks the paired laptop; falls back to this phone's memory when there is no laptop or it cannot be reached. */
+    /**
+     * Asks the paired laptop (its whole memory) first; this phone's memory when there is no laptop, it cannot be reached,
+     * or it has nothing. No results means no reliable evidence: Lens abstains rather than guessing.
+     */
     fun ask(query: String): Answer {
-        if (laptop != null) runCatching { return Answer(recall(query), fromPhone = false) }
-        return Answer(try { local.recall(query) } catch (e: IllegalStateException) { JSONObject().put("ok", false).put("error", e.message) }, fromPhone = true)
+        var unreachable = false; var searched = false
+        if (laptop != null) {
+            val remote = runCatching { recall(query) }.getOrNull()
+            if (remote != null && remote.optBoolean("ok")) {
+                if (!remote.optBoolean("not_found")) return Answer(remote, fromPhone = false)
+                searched = true
+            } else unreachable = true
+        }
+        val here = try { local.recall(query) } catch (e: IllegalStateException) { JSONObject().put("ok", false).put("error", e.message) }
+        return Answer(here, fromPhone = true, laptopUnreachable = unreachable, searchedLaptop = searched)
     }
+
+    /** This phone's memories, newest first. */
+    fun timeline(limit: Int = 100): List<Evidence> =
+        try { parseSources(local.request(JSONObject().put("op", "timeline").put("limit", limit))) } catch (e: IllegalStateException) { emptyList() }
+
+    /** Deletes one memory on this phone and everything derived from it (a copy already sent to the laptop stays there). */
+    fun delete(id: String): Boolean =
+        try { local.request(JSONObject().put("op", "delete").put("consent", true).put("id", id)).optBoolean("ok") } catch (e: IllegalStateException) { false }
 
     /** Stores a note on this phone and, when paired, queues it for the laptop and delivers what it can. */
     fun remember(text: String, kind: String = "note"): Saved =
@@ -141,16 +160,31 @@ class LensRepository(private val context: Context) {
     }
 }
 
-/** Evidence items from a recall response, for display. */
-data class Evidence(val quote: String, val app: String, val window: String, val timestamp: String)
+/** Evidence items from a recall response (or source rows from a timeline), for display. */
+data class Evidence(val quote: String, val app: String, val window: String, val timestamp: String,
+                    val id: String = "", val kind: String = "note", val device: String = "", val text: String = quote)
+
+private fun evidenceOf(src: JSONObject, quote: String?): Evidence {
+    val text = src.optString("text")
+    val app = src.optString("source_application").removePrefix("android:").removeSuffix(".exe")
+    return Evidence(quote.orEmpty().ifEmpty { text },
+        if (app.isEmpty() || app == "lens-companion") "Lens" else app.replaceFirstChar { it.uppercase() },
+        src.optString("source_locator").removePrefix("window:"), src.optString("timestamp"),
+        src.optString("id"), src.optString("kind", "note"), src.optString("device"), text)
+}
 
 fun parseEvidence(response: JSONObject): List<Evidence> {
     if (!response.optBoolean("ok") || response.optBoolean("not_found")) return emptyList()
     val results: JSONArray = response.optJSONArray("results") ?: return emptyList()
     return (0 until results.length()).map { i ->
-        val item = results.getJSONObject(i); val src = item.optJSONObject("source") ?: JSONObject()
-        Evidence(item.optJSONObject("evidence")?.optString("quote").orEmpty().ifEmpty { src.optString("text") },
-            src.optString("source_application").removeSuffix(".exe").replaceFirstChar { it.uppercase() },
-            src.optString("source_locator").removePrefix("window:"), src.optString("timestamp"))
+        val item = results.getJSONObject(i)
+        evidenceOf(item.optJSONObject("source") ?: JSONObject(), item.optJSONObject("evidence")?.optString("quote"))
     }
+}
+
+/** Source rows of a timeline or search response, newest first as the engine returns them. */
+fun parseSources(response: JSONObject): List<Evidence> {
+    if (!response.optBoolean("ok")) return emptyList()
+    val rows: JSONArray = response.optJSONArray("sources") ?: return emptyList()
+    return (0 until rows.length()).map { evidenceOf(rows.getJSONObject(it), null) }
 }

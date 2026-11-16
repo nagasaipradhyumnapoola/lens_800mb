@@ -102,10 +102,13 @@ struct EvidenceCard: View {
         .accessibilityElement(children: .combine)
     }
 
+    private static let stopwords: Set<String> = ["the", "and", "for", "with", "what", "when", "where", "which", "who", "how", "did", "does", "was",
+        "were", "are", "about", "this", "that", "from", "have", "has", "had", "will", "can", "you", "your", "our", "his", "her", "its", "they", "them"]
+
     private var highlighted: AttributedString {
         var text = AttributedString(item.quote)
         let plain = item.quote
-        for word in query.split(whereSeparator: { !$0.isLetter && !$0.isNumber }) where word.count >= 3 {
+        for word in query.split(whereSeparator: { !$0.isLetter && !$0.isNumber }) where word.count >= 3 && !Self.stopwords.contains(word.lowercased()) {
             var from = plain.startIndex
             while let found = plain.range(of: word, options: [.caseInsensitive, .diacriticInsensitive], range: from..<plain.endIndex) {
                 if let range = Range(found, in: text) {

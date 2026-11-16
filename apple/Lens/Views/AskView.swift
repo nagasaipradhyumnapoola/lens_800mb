@@ -121,7 +121,14 @@ private struct AnswerView: View {
                       systemImage: answer.origin == .laptop ? "laptopcomputer" : "iphone")
                     .font(.footnote.weight(.semibold))
                     .foregroundStyle(.secondary)
-                ForEach(answer.results) { EvidenceCard(item: $0, query: query) }
+                EvidenceCard(item: answer.results[0], query: query)
+                if answer.results.count > 1 {
+                    Text("Other matches")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                        .padding(.top, 6)
+                    ForEach(answer.results.dropFirst().prefix(2)) { EvidenceCard(item: $0, query: query).opacity(0.85) }
+                }
             }
             if !paired && answer.origin == .iPhone {
                 Text("Pair with Lens on your laptop to ask everything it remembers.")
