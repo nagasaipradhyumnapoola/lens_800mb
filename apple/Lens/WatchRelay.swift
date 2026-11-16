@@ -40,7 +40,7 @@ final class WatchRelay: NSObject, WCSessionDelegate {
             guard let query = message["query"] as? String, !query.isEmpty else { return ["ok": false, "error": "empty"] }
             let answer = await service.ask(query)
             return ["ok": answer.error == nil, "origin": answer.origin.rawValue, "unreachable": answer.laptopUnreachable,
-                    "results": answer.results.map { e in
+                    "results": answer.results.map { e -> [String: Any] in
                         ["quote": String(e.quote.prefix(600)), "app": e.app, "kind": e.kind, "time": e.date?.timeIntervalSince1970 ?? 0]
                     }]
         case "note":

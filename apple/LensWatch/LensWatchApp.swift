@@ -98,14 +98,12 @@ struct WatchRoot: View {
     var body: some View {
         NavigationStack {
             List {
-                TextFieldLink(prompt: Text("Ask your memory"), onSubmit: { model.ask($0) }) {
-                    Label("Ask", systemImage: "magnifyingglass")
-                }
-                .listItemTint(.indigo)
-                TextFieldLink(prompt: Text("What should Lens remember?"), onSubmit: { model.remember($0) }) {
-                    Label("Remember", systemImage: "plus")
-                }
-                .listItemTint(.indigo)
+                TextFieldLink(prompt: Text("Ask your memory"), label: { Label("Ask", systemImage: "magnifyingglass") },
+                              onSubmit: { model.ask($0) })
+                    .listItemTint(.indigo)
+                TextFieldLink(prompt: Text("What should Lens remember?"), label: { Label("Remember", systemImage: "plus") },
+                              onSubmit: { model.remember($0) })
+                    .listItemTint(.indigo)
                 if model.busy {
                     HStack { ProgressView(); Text("Asking…").foregroundStyle(.secondary) }
                 }

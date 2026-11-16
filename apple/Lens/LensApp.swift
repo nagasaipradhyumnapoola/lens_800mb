@@ -30,8 +30,8 @@ final class AppModel {
     private let relay: WatchRelay
 
     init() {
-        laptop = service.laptop
-        relay = WatchRelay(service: service)
+        relay = WatchRelay(service: LensService.shared)
+        laptop = LensService.shared.laptop
         relay.activate()
     }
 

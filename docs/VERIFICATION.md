@@ -1512,3 +1512,33 @@ travel in `metadata`).
 - Open: the phone peak with both models is at the 500 MB ceiling on its own; weights mapped from file (ONNX external
   data) would make them reclaimable. APK size: 346 MB debug with two ABIs (about 290 MB for one ABI), above Google
   Play's 200 MB base limit (asset packs needed for a store release). No physical phone; release build not run.
+
+## Native apps: iPhone, Apple Watch, Android, Wear OS; desktop polish (2026-11-16) — PARTIAL (built; iOS/watchOS CI only)
+
+- C API for app shells off the JVM (adapters/capi/lens.h): the memory core in the app's process and the device side of
+  the Lens link (TLS 1.3 client, own P-256 identity, laptop pinned by fingerprint). Built as lens-capi.dll on Windows;
+  tests/test_capi.py 3/3 against the real lens-agent + lens-mesh on loopback: store add/recall/reopen with the same
+  wrapped key, no plaintext in the database file, invalid model configuration refused; identity fingerprint equals
+  SHA-256 of the DER certificate; wrong pin refused (laptop_mismatch), closed port (laptop_unreachable), unreadable
+  identity, first address unreachable then the second used; pairing waits for laptop approval and shows the same
+  verification code; recall of laptop memory, a note stored with the device's name, unpair cuts the open link.
+- iPhone app (apple/, SwiftUI, XcodeGen): Ask (laptop first, then the iPhone; best evidence first), Remember (notes,
+  on-device-only dictation, text from photos with Vision, text and PDF files), Memories (by day, detail, delete),
+  settings (QR pairing with VisionKit, laptop status and outbox, privacy, erase); Share extension; its own SQLCipher
+  memory with the Keychain master key (adapters/apple/master_key.cpp). Apple Watch app: asks and takes notes through the
+  iPhone (WatchConnectivity; notes queue with transferUserInfo); the watch keeps nothing. CI: .github/workflows/
+  portable.yml job ios links liblens.a and builds all three targets unsigned. Never run on a simulator or device.
+- Android app UI: first-run explanation; Ask / Remember / Memories / Settings tabs; best evidence first with the
+  question's words marked (stopwords not marked); voice only through createOnDeviceSpeechRecognizer (no server
+  fallback); pairing by the Google code scanner or a pasted code, with the verification code; delete and erase with
+  confirmation; light and dark palette; adaptive launcher icon. Emulator (Android 15 x86_64, debug build): every screen
+  rendered and driven by adb; first question after start took 44 s (model load and indexing of the new items on the
+  emulator; the app explains it after 3 s); later questions answer in seconds. Two of five notes sent with `am start`
+  6 s apart while the first share was still opening the store were not stored; most likely `am start` brought the
+  still-open share task to the front instead of delivering the new intent (intents are matched without extras); the
+  same notes sent again were stored. Not checked through the real share sheet.
+- Wear OS app: now goes through Lens on the paired phone (Wear Data Layer request to WatchRelayService; system voice and
+  keyboard input); it had required typing the laptop's pairing code on the watch and its Note reached the phone-only
+  native core. No network permission on the watch; same application id as the phone (Data Layer requirement). Builds
+  (24.7 MB debug APK); never run on an emulator or watch.
+- Desktop: the timeline's time column no longer wraps; tests/test_app.py 17/17 (headless Edge, hidden native window).

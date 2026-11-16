@@ -13,7 +13,9 @@ final class Dictation {
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
 
-    func toggle() async { running ? stop() : await start() }
+    func toggle() async {
+        if running { stop() } else { await start() }
+    }
 
     func start() async {
         problem = nil

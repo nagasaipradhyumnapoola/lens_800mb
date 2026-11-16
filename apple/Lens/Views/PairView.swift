@@ -26,7 +26,7 @@ struct PairView: View {
                             QRScanner { use($0) }
                                 .frame(height: 300)
                                 .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-                                .overlay(RoundedRectangle(cornerRadius: 20, style: .continuous).strokeBorder(.tint.opacity(0.5), lineWidth: 2))
+                                .overlay(RoundedRectangle(cornerRadius: 20, style: .continuous).strokeBorder(Color.accentColor.opacity(0.5), lineWidth: 2))
                         }
                         DisclosureGroup("Paste the code instead") {
                             TextField("Pairing code", text: $pasted, axis: .vertical)
@@ -66,7 +66,7 @@ struct PairView: View {
             Text(code)
                 .font(.system(size: 44, weight: .semibold, design: .rounded).monospacedDigit())
                 .textSelection(.enabled)
-                .accessibilityLabel("Verification code \(code.map(String.init).joined(separator: " "))")
+                .accessibilityLabel("Verification code \(code.map { String($0) }.joined(separator: " "))")
             ProgressView("Waiting for approval…")
         }
         .frame(maxWidth: .infinity)

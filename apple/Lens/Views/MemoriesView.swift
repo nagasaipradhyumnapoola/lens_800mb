@@ -6,10 +6,16 @@ struct MemoriesView: View {
     @State private var filter = ""
     @State private var pendingDelete: Evidence?
 
-    private var days: [(day: Date, items: [Evidence])] {
+    private struct Day: Identifiable {
+        let day: Date
+        let items: [Evidence]
+        var id: Date { day }
+    }
+
+    private var days: [Day] {
         let shown = filter.isEmpty ? model.memories : model.memories.filter { $0.text.localizedCaseInsensitiveContains(filter) }
         let groups = Dictionary(grouping: shown) { Calendar.current.startOfDay(for: $0.date ?? .distantPast) }
-        return groups.keys.sorted(by: >).map { ($0, groups[$0] ?? []) }
+        return groups.keys.sorted(by: >).map { Day(day: $0, items: groups[$0] ?? []) }
     }
 
     var body: some View {
@@ -20,7 +26,7 @@ struct MemoriesView: View {
                                            description: Text("Notes, voice, photos and things you share to Lens appear here."))
                 } else {
                     List {
-                        ForEach(days, id: \.day) { group in
+                        ForEach(days) { group in
                             Section(group.day == .distantPast ? "Undated" : group.day.formatted(.dateTime.weekday(.wide).day().month(.wide))) {
                                 ForEach(group.items) { item in
                                     NavigationLink(value: item) { MemoryRow(item: item) }
